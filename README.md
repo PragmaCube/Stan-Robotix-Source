@@ -29,7 +29,7 @@ Pour créer et nommer des sous-dossiers, veiller à respecter la convention suiv
 - Dans un même bloc :
   - Préfixe w pour les variables locales (EX : wDeltaVelocity)
 - Dans une classe :
-  - Préfixe m_ pour les attributs (EX : m_Accelerometer)
+  - Préfixe m pour les attributs (EX : mAccelerometer)
   - Les noms de méthodes commence par un minuscule. Si il y a plusieurs mots, on met une majuscule à leur première lettre (EX : setVoltage())
 - Préfixe k pour les variables constantes (EX : kPi)
 - Mettre des commentaires mais ne pas en abuser
