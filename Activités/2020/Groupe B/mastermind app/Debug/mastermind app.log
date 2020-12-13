@@ -1,0 +1,3 @@
+﻿  algorithme.cpp
+C:\Users\Lune\source\repos\mastermind app\mastermind app\algorithme.cpp(46,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  mastermind app.vcxproj -> C:\Users\Lune\source\repos\mastermind app\Debug\mastermind app.exe
