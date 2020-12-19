@@ -1,59 +1,65 @@
 #include <iostream>
 #include <string>
 
-int main(){
+int main()
+{
   while(true)
   {
-    std::string combinaison;
-    std::string nPlace;
+    std::string wCombinaison;
+    std::string wNPlace;
     std::cout << "tapez un nombre a 4 chiffres" << std::endl;
-    std::cin >> combinaison;
-    while (combinaison.length() != 4){
+    std::cin >> wCombinaison;
+    
+    while (wCombinaison.length() != 4)
+    {
       std::cout << "tapez un nombre a 4 chiffres\n>>>";
-      std::cin >> combinaison;
+      std::cin >> wCombinaison;
     }
-    int bon, bon_bien_place = 0;
 
+    int wGood, wGoodPlace = 0;
 
     for (int a = 0; a < 4; a++) //savoir pour chacun des nombres s'ils sont bons ('b'), bons et bien placés ('m') ou mauvais ('n')
-    {             
+    {
       for (int y = 0; y < 4; y++)
       {
-        if (combinaison[a] == randomChecker[y])
-        { 
-          nPlace + "m";
-        }
-        if (combinaison[a] == randomChecker[a])
+        if (wCombinaison[a] == randomChecker[y])
         {
-          nPlace + "b";
+          wNPlace + "m";
         }
-        else 
+        if (wCombinaison[a] == randomChecker[a])
         {
-          nPlace + "n";
+          wNPlace + "b";
+        }
+        else
+        {
+          wNPlace + "n";
         }
       }
     }
+
     for (int i = 0; i < 4; i++)
     {
-      switch (nPlace[i])
+      switch (wNPlace[i])
       {
         case 'b':
-          bon++;
+          wGood++;
           break;
         case 'm':
-          bon_bien_place++;
+          wGoodPlace++;
           break;
         case 'n':
           break;
-      } 
-      if (bon_bien_place == 4)
+      }
+
+      if (wGoodPlace == 4)
       {
         std::cout << "Bravo, vous avez trouvez !!!";
         break;
       }
-      else 
+
+      else
       {
-        std::cout << bon << " sont/est bon(s) et " << bon_bien_place << " bn(s) et bien place(s)" << std::endl;
+        std::cout << wGood << " sont/est bon(s) et " << wGoodPlace << " bn(s) et bien place(s)" << std::endl;
       }
     }
   }
