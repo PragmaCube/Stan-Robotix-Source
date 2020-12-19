@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-main(){
+int main(){
   while(true)
   {
     std::string combinaison;
