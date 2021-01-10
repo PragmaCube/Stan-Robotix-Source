@@ -28,8 +28,14 @@
     <Filter Include="Application\Pacman">
       <UniqueIdentifier>{874f414c-71e5-4409-94bb-149d7f1071f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Math">
+    <Filter Include="Application\ConnectFour">
+      <UniqueIdentifier>{3bbaf163-1a29-4b46-907e-2f16cbf9b1b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\PingPong">
       <UniqueIdentifier>{900a9e41-9a53-46cb-a6cf-f01070ac3875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Dessin">
+      <UniqueIdentifier>{3095bb92-8646-46d9-b36d-6f12782b864a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +63,24 @@
     <ClInclude Include="DemoAppBall.h">
       <Filter>Application\Demo</Filter>
     </ClInclude>
+    <ClInclude Include="PingPongApplication.h">
+      <Filter>Application\PingPong</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectFourApplication.h">
+      <Filter>Application\ConnectFour</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeApplication.h">
+      <Filter>Application\Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="PacmanApplication.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleshipApplication.h">
+      <Filter>Application\Battleship</Filter>
+    </ClInclude>
+    <ClInclude Include="DessinApplication.h">
+      <Filter>Application\Dessin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsApp.cpp">
@@ -70,6 +94,24 @@
     </ClCompile>
     <ClCompile Include="DemoAppBall.cpp">
       <Filter>Application\Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="PingPongApplication.cpp">
+      <Filter>Application\PingPong</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectFourApplication.cpp">
+      <Filter>Application\ConnectFour</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeApplication.cpp">
+      <Filter>Application\Snake</Filter>
+    </ClCompile>
+    <ClCompile Include="PacmanApplication.cpp">
+      <Filter>Application\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleshipApplication.cpp">
+      <Filter>Application\Battleship</Filter>
+    </ClCompile>
+    <ClCompile Include="DessinApplication.cpp">
+      <Filter>Application\Dessin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

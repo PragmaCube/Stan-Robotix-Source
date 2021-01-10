@@ -15,6 +15,9 @@
 #define ID_APPLICATION_DEMO             32771
 #define ID_APPLICATION_BATTLESHIP       32772
 #define ID_APPLICATION_SNAKE            32773
+#define ID_APPLICATION_PINGPONG         32776
+#define ID_APPLICATION_CONNECTFOUR      32777
+#define ID_APPLICATION_DESSIN           32778
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -23,7 +26,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        129
-#define _APS_NEXT_COMMAND_VALUE         32776
+#define _APS_NEXT_COMMAND_VALUE         32779
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           110
 #endif

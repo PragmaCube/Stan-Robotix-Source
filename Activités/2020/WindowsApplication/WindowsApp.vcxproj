@@ -139,9 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BattleshipApplication.h" />
+    <ClInclude Include="ConnectFourApplication.h" />
     <ClInclude Include="DemoAppBall.h" />
     <ClInclude Include="DemoApplication.h" />
+    <ClInclude Include="DessinApplication.h" />
     <ClInclude Include="IApplication.h" />
+    <ClInclude Include="PacmanApplication.h" />
+    <ClInclude Include="PingPongApplication.h" />
+    <ClInclude Include="SnakeApplication.h" />
     <ClInclude Include="WindowsFrame.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
@@ -149,8 +155,14 @@
     <ClInclude Include="WindowsApp.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BattleshipApplication.cpp" />
+    <ClCompile Include="ConnectFourApplication.cpp" />
     <ClCompile Include="DemoAppBall.cpp" />
     <ClCompile Include="DemoApplication.cpp" />
+    <ClCompile Include="DessinApplication.cpp" />
+    <ClCompile Include="PacmanApplication.cpp" />
+    <ClCompile Include="PingPongApplication.cpp" />
+    <ClCompile Include="SnakeApplication.cpp" />
     <ClCompile Include="WindowsFrame.cpp" />
     <ClCompile Include="WindowsApp.cpp" />
   </ItemGroup>

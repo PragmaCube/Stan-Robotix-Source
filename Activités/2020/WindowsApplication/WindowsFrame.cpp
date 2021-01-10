@@ -1,6 +1,14 @@
 #include "WindowsFrame.h"
 #include "resource.h"
+
+// Les applications en cours de developpement
 #include "DemoApplication.h"
+#include "SnakeApplication.h"
+#include "PacmanApplication.h"
+#include "ConnectFourApplication.h"
+#include "PingPongApplication.h"
+#include "BattleshipApplication.h"
+#include "DessinApplication.h"
 
 DemoWindowsFrame::DemoWindowsFrame() : mhWnd(NULL)
 {
@@ -73,15 +81,39 @@ void DemoWindowsFrame::onMouseRightClick(int iPosX, int iPosY)
 
 void DemoWindowsFrame::switchApp(int iAppId)
 {
+	if (nullptr != mCurrentApplication)
+	{
+		delete mCurrentApplication;
+		mCurrentApplication = nullptr;
+	}
+
 	switch (iAppId)
 	{
 	case ID_APPLICATION_DEMO:
+		mCurrentApplication = new DemoApplication();
 		break;
 	case ID_APPLICATION_BATTLESHIP:
+		mCurrentApplication = new BattleshipApplication();
 		break;
 	case ID_APPLICATION_SNAKE:
+		mCurrentApplication = new SnakeApplication();
+		break;
+	case ID_APPLICATION_CONNECTFOUR:
+		mCurrentApplication = new ConnectFourApplication();
+		break;
+	case ID_APPLICATION_PINGPONG:
+		mCurrentApplication = new PingPongApplication();
+		break;
+	case ID_APPLICATION_DESSIN:
+		mCurrentApplication = new DessinApplication();
 		break;
 	};
+
+	if (nullptr != mCurrentApplication)
+	{
+		mCurrentApplication->setHwnd(mhWnd);
+		mCurrentApplication->setFrequencyTimer(1000 / 24);
+	}
 }
 
 
