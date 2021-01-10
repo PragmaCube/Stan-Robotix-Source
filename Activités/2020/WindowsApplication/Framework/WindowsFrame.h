@@ -5,8 +5,17 @@
 
 class DemoWindowsFrame
 {
+public :
+	static const int DEMO_WINDOWS_SIZE_WIDTH = 800;
+	static const int DEMO_WINDOWS_SIZE_HEIGHT = 600;
+	static const int DEMO_WINDOWS_SIZE_MARGIN_WIDTH = 16;
+	static const int DEMO_WINDOWS_SIZE_MARGIN_HEIGHT = 59;
+
 private:
 	HWND mhWnd;
+
+	HBRUSH mWhiteBrush, mLightGrayBrush;
+	HPEN   mBlackBrush;
 
 	IApplication* mCurrentApplication;
 

@@ -188,6 +188,24 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
+    case WM_SIZE:
+        {
+            UINT wWidth = LOWORD(lParam);
+            UINT wHeight = HIWORD(lParam);
+            if (wWidth > DemoWindowsFrame::DEMO_WINDOWS_SIZE_WIDTH && 
+                wHeight > DemoWindowsFrame::DEMO_WINDOWS_SIZE_HEIGHT)
+            {
+                return DefWindowProc(hWnd, message, wParam, lParam);
+            }
+            return TRUE;
+        }
+    case WM_GETMINMAXINFO:
+    {
+        LPMINMAXINFO lpMMI = (LPMINMAXINFO)lParam;
+        lpMMI->ptMinTrackSize.x = DemoWindowsFrame::DEMO_WINDOWS_SIZE_WIDTH;
+        lpMMI->ptMinTrackSize.y = DemoWindowsFrame::DEMO_WINDOWS_SIZE_HEIGHT;
+    }
+ 
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }

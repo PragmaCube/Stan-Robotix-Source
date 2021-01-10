@@ -39,8 +39,8 @@ void DemoAppBall::updateDrawingArea(RECT iWindowRect)
 {
 	if (!mIsInit)
 	{
-		mCoorX = (double)(rand() % (iWindowRect.right - iWindowRect.left));
-		mCoorY = (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
+		mCoorX = iWindowRect.left+ (double)(rand() % (iWindowRect.right - iWindowRect.left));
+		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
 
 		mSpeedX = (double)(rand() % 5 - 10);
 		mSpeedY = (double)(rand() % 5 - 10);
@@ -55,8 +55,9 @@ void DemoAppBall::updateDrawingArea(RECT iWindowRect)
 		mCoorX = (double)(iWindowRect.right);
 		mSpeedX = -mSpeedX;
 	}
-	else if (mCoorX < 0)
+	else if (mCoorX < iWindowRect.left)
 	{
+		mCoorX = (double)(iWindowRect.left);
 		mSpeedX = -mSpeedX;
 	}
 
@@ -65,8 +66,9 @@ void DemoAppBall::updateDrawingArea(RECT iWindowRect)
 		mCoorY = (double)(iWindowRect.bottom);
 		mSpeedY = -mSpeedY;
 	}
-	else if (mCoorY < 0)
+	else if (mCoorY < iWindowRect.top)
 	{
+		mCoorY = (double)(iWindowRect.top);
 		mSpeedY = -mSpeedY;
 	}
 }

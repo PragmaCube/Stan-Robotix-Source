@@ -6,13 +6,17 @@
 #include "../Application\SnakeApp\SnakeApplication.h"
 #include "../Application\PacmanApp\PacmanApplication.h"
 #include "../Application\Connect4App\ConnectFourApplication.h"
-#include "../Application\PingpongApp\PingPongApplication.h"
+#include "../Application\PingpongApp\PingpongApplication.h"
 #include "../Application\BattleshipApp\BattleshipApplication.h"
 #include "../Application\DessinApp\DessinApplication.h"
 
 DemoWindowsFrame::DemoWindowsFrame() : mhWnd(NULL)
 {
 	mCurrentApplication = new DemoApplication();
+
+	mWhiteBrush     = CreateSolidBrush(RGB(0xFF,0xFF,0xFF));
+	mLightGrayBrush = CreateSolidBrush(RGB(0x80, 0x80, 0x80));
+	mBlackBrush = CreatePen(PS_SOLID, 2 /*width*/, RGB(0x00, 0x00, 0x00)/*color*/);
 }
 
 void DemoWindowsFrame::setHwnd(HWND ihwnd)
@@ -35,6 +39,41 @@ void DemoWindowsFrame::paint(HDC ihdc, RECT& iPaintArea)
 {
 	if (nullptr != mCurrentApplication)
 	{
+		int wDrawingWidth = iPaintArea.right - iPaintArea.left;
+		int wDrawingHeight = iPaintArea.bottom - iPaintArea.top;
+
+		int wExtraWidth = wDrawingWidth - DEMO_WINDOWS_SIZE_WIDTH - DEMO_WINDOWS_SIZE_MARGIN_WIDTH;
+		int wExtraHeight = wDrawingHeight - DEMO_WINDOWS_SIZE_HEIGHT - DEMO_WINDOWS_SIZE_MARGIN_HEIGHT;
+				
+		HGDIOBJ wPrevBrush = ::SelectObject(ihdc, mLightGrayBrush);
+		::Rectangle(
+			ihdc,
+			iPaintArea.left,
+			iPaintArea.top,
+			iPaintArea.right,
+			iPaintArea.bottom);
+
+		if (wExtraWidth > 0)
+		{
+			iPaintArea.left += wExtraWidth / 2;
+			iPaintArea.right-= wExtraWidth / 2;
+		}
+		if (wExtraHeight > 0)
+		{
+			iPaintArea.top    += wExtraHeight / 2;
+			iPaintArea.bottom -= wExtraHeight / 2;
+		}
+
+		::SelectObject(ihdc, mWhiteBrush);
+		::Rectangle(
+			ihdc,
+			iPaintArea.left,
+			iPaintArea.top,
+			iPaintArea.right,
+			iPaintArea.bottom);
+
+		::SelectObject(ihdc, wPrevBrush);
+
 		mCurrentApplication->paint(ihdc, iPaintArea);
 	}
 }
