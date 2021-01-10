@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Framework headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Framework sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{7df0725c-e9cc-4f4f-8791-34ccde6ce337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Demo">
+      <UniqueIdentifier>{1a0e0d9b-d464-485f-9ed8-06c6a73ec68d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Snake">
+      <UniqueIdentifier>{82d236da-f7cb-49c0-ad50-10fbbb1f3866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Battleship">
+      <UniqueIdentifier>{01e59ac4-7eae-4a18-b298-8b1c60b84288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Pacman">
+      <UniqueIdentifier>{874f414c-71e5-4409-94bb-149d7f1071f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Math">
+      <UniqueIdentifier>{900a9e41-9a53-46cb-a6cf-f01070ac3875}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Framework headers</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Framework headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Framework headers</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsApp.h">
+      <Filter>Framework headers</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsFrame.h">
+      <Filter>Framework headers</Filter>
+    </ClInclude>
+    <ClInclude Include="IApplication.h">
+      <Filter>Framework headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoApplication.h">
+      <Filter>Application\Demo</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoAppBall.h">
+      <Filter>Application\Demo</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WindowsApp.cpp">
+      <Filter>Framework sources</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsFrame.cpp">
+      <Filter>Framework sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoApplication.cpp">
+      <Filter>Application\Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoAppBall.cpp">
+      <Filter>Application\Demo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WindowsApp.rc">
+      <Filter>Fichiers de ressources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="WindowsApp.ico">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
