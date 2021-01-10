@@ -2,13 +2,13 @@
 #include "resource.h"
 
 // Les applications en cours de developpement
-#include "DemoApplication.h"
-#include "SnakeApplication.h"
-#include "PacmanApplication.h"
-#include "ConnectFourApplication.h"
-#include "PingPongApplication.h"
-#include "BattleshipApplication.h"
-#include "DessinApplication.h"
+#include "../Application\DemoApp\DemoApplication.h"
+#include "../Application\SnakeApp\SnakeApplication.h"
+#include "../Application\PacmanApp\PacmanApplication.h"
+#include "../Application\Connect4App\ConnectFourApplication.h"
+#include "../Application\PingpongApp\PingPongApplication.h"
+#include "../Application\BattleshipApp\BattleshipApplication.h"
+#include "../Application\DessinApp\DessinApplication.h"
 
 DemoWindowsFrame::DemoWindowsFrame() : mhWnd(NULL)
 {

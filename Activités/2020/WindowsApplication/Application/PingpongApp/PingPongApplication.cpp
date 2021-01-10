@@ -1,5 +1,6 @@
 #include "PingPongApplication.h"
 
+#include <string>
 
 PingPongApplication::PingPongApplication()
 {
@@ -8,7 +9,14 @@ PingPongApplication::PingPongApplication()
 
 void PingPongApplication::paint(HDC ihdc, RECT& iPaintArea)
 {
+	std::wstring wTitle = L"Application de Pingpong";
 
+	::DrawText(
+		ihdc,
+		wTitle.c_str(),
+		wTitle.length(),
+		&iPaintArea,
+		DT_CENTER | DT_TOP);
 }
 
 void PingPongApplication::onChar(char iChar, short iDetail)

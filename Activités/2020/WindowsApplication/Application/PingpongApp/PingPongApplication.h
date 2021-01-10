@@ -1,10 +1,10 @@
 #pragma once
-#include "IApplication.h"
-#include "DemoAppBall.h"
-class DemoApplication : public IApplication
+#include "../../Framework/IApplication.h"
+
+class PingPongApplication : public IApplication
 {
 public:
-	DemoApplication();
+	PingPongApplication();
 
 protected:
 	void paint(HDC ihdc, RECT& iPaintArea);
@@ -17,10 +17,5 @@ protected:
 	void onMouseRightClick(int iPosX, int iPosY);
 
 	void onTimer();
-
-	DemoAppBall mDemoAppBall[8];
-
-private:
-	int mNbActiveBall;
-	int mCircleRadius;
 };
+

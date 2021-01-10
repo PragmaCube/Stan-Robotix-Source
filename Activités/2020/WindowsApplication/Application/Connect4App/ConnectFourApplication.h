@@ -1,10 +1,11 @@
 #pragma once
-#include "IApplication.h"
+#include "../../Framework/IApplication.h"
 
-class PingPongApplication : public IApplication
+class ConnectFourApplication :
+    public IApplication
 {
 public:
-	PingPongApplication();
+	ConnectFourApplication();
 
 protected:
 	void paint(HDC ihdc, RECT& iPaintArea);

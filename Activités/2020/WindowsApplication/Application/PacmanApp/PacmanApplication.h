@@ -1,10 +1,11 @@
 #pragma once
-#include "IApplication.h"
-class SnakeApplication :
+#include "../../Framework/IApplication.h"
+
+class PacmanApplication :
     public IApplication
 {
 public:
-	SnakeApplication();
+	PacmanApplication();
 
 protected:
 	void paint(HDC ihdc, RECT& iPaintArea);

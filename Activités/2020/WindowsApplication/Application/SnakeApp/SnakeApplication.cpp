@@ -1,5 +1,7 @@
 #include "SnakeApplication.h"
 
+#include <string>
+
 SnakeApplication::SnakeApplication()
 {
 
@@ -7,7 +9,14 @@ SnakeApplication::SnakeApplication()
 
 void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 {
+	std::wstring wTitle = L"Application de Snake";
 
+	::DrawText(
+		ihdc,
+		wTitle.c_str(),
+		wTitle.length(),
+		&iPaintArea,
+		DT_CENTER | DT_TOP);
 }
 
 void SnakeApplication::onChar(char iChar, short iDetail)

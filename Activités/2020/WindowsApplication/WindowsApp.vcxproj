@@ -139,32 +139,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BattleshipApplication.h" />
-    <ClInclude Include="ConnectFourApplication.h" />
-    <ClInclude Include="DemoAppBall.h" />
-    <ClInclude Include="DemoApplication.h" />
-    <ClInclude Include="DessinApplication.h" />
-    <ClInclude Include="IApplication.h" />
-    <ClInclude Include="PacmanApplication.h" />
-    <ClInclude Include="PingPongApplication.h" />
-    <ClInclude Include="SnakeApplication.h" />
-    <ClInclude Include="WindowsFrame.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="WindowsApp.h" />
+    <ClInclude Include="Application\BattleshipApp\BattleshipApplication.h" />
+    <ClInclude Include="Application\Connect4App\ConnectFourApplication.h" />
+    <ClInclude Include="Application\DemoApp\DemoAppBall.h" />
+    <ClInclude Include="Application\DemoApp\DemoApplication.h" />
+    <ClInclude Include="Application\DessinApp\DessinApplication.h" />
+    <ClInclude Include="Framework\IApplication.h" />
+    <ClInclude Include="Application\PacmanApp\PacmanApplication.h" />
+    <ClInclude Include="Application\PingpongApp\PingPongApplication.h" />
+    <ClInclude Include="Application\SnakeApp\SnakeApplication.h" />
+    <ClInclude Include="Framework\WindowsFrame.h" />
+    <ClInclude Include="Framework\framework.h" />
+    <ClInclude Include="Framework\Resource.h" />
+    <ClInclude Include="Framework\targetver.h" />
+    <ClInclude Include="Framework\WindowsApp.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BattleshipApplication.cpp" />
-    <ClCompile Include="ConnectFourApplication.cpp" />
-    <ClCompile Include="DemoAppBall.cpp" />
-    <ClCompile Include="DemoApplication.cpp" />
-    <ClCompile Include="DessinApplication.cpp" />
-    <ClCompile Include="PacmanApplication.cpp" />
-    <ClCompile Include="PingPongApplication.cpp" />
-    <ClCompile Include="SnakeApplication.cpp" />
-    <ClCompile Include="WindowsFrame.cpp" />
-    <ClCompile Include="WindowsApp.cpp" />
+    <ClCompile Include="Application\BattleshipApp\BattleshipApplication.cpp" />
+    <ClCompile Include="Application\Connect4App\ConnectFourApplication.cpp" />
+    <ClCompile Include="Application\DemoApp\DemoAppBall.cpp" />
+    <ClCompile Include="Application\DemoApp\DemoApplication.cpp" />
+    <ClCompile Include="Application\DessinApp\DessinApplication.cpp" />
+    <ClCompile Include="Application\PacmanApp\PacmanApplication.cpp" />
+    <ClCompile Include="Application\PingpongApp\PingPongApplication.cpp" />
+    <ClCompile Include="Application\SnakeApp\SnakeApplication.cpp" />
+    <ClCompile Include="Framework\WindowsFrame.cpp" />
+    <ClCompile Include="Framework\WindowsApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsApp.rc" />

@@ -1,10 +1,11 @@
 #pragma once
-#include "IApplication.h"
-class ConnectFourApplication :
-    public IApplication
+#include "../../Framework/IApplication.h"
+#include "DemoAppBall.h"
+
+class DemoApplication : public IApplication
 {
 public:
-	ConnectFourApplication();
+	DemoApplication();
 
 protected:
 	void paint(HDC ihdc, RECT& iPaintArea);
@@ -17,5 +18,10 @@ protected:
 	void onMouseRightClick(int iPosX, int iPosY);
 
 	void onTimer();
-};
 
+	DemoAppBall mDemoAppBall[8];
+
+private:
+	int mNbActiveBall;
+	int mCircleRadius;
+};

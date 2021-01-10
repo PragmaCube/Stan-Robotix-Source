@@ -1,5 +1,7 @@
 #include "PacmanApplication.h"
 
+#include <string>
+
 PacmanApplication::PacmanApplication()
 {
 
@@ -7,7 +9,14 @@ PacmanApplication::PacmanApplication()
 
 void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 {
+	std::wstring wTitle = L"Application de Pacman";
 
+	::DrawText(
+		ihdc,
+		wTitle.c_str(),
+		wTitle.length(),
+		&iPaintArea,
+		DT_CENTER | DT_TOP);
 }
 
 void PacmanApplication::onChar(char iChar, short iDetail)

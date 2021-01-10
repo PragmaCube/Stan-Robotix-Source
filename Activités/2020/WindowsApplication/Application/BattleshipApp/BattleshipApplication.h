@@ -1,10 +1,11 @@
 #pragma once
-#include "IApplication.h"
-class DessinApplication :
+#include "../../Framework/IApplication.h"
+
+class BattleshipApplication :
     public IApplication
 {
 public:
-	DessinApplication();
+	BattleshipApplication();
 
 protected:
 	void paint(HDC ihdc, RECT& iPaintArea);
