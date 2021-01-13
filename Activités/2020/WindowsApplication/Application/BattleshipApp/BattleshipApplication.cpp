@@ -47,5 +47,5 @@ void BattleshipApplication::onMouseRightClick(int iPosX, int iPosY)
 void BattleshipApplication::onTimer()
 {
 
-	IApplication::onTimer();
+	IApplication::onTimer(); // Pour redessiner l'ecran
 }

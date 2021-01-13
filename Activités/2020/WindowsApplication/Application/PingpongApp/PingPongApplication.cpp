@@ -47,5 +47,5 @@ void PingPongApplication::onMouseRightClick(int iPosX, int iPosY)
 void PingPongApplication::onTimer()
 {
 
-	IApplication::onTimer();
+	IApplication::onTimer(); // Pour redessiner l'ecran
 }

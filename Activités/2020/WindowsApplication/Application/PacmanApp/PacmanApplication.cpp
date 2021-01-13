@@ -47,5 +47,5 @@ void PacmanApplication::onMouseRightClick(int iPosX, int iPosY)
 void PacmanApplication::onTimer()
 {
 
-	IApplication::onTimer();
+	IApplication::onTimer(); // Pour redessiner l'ecran
 }

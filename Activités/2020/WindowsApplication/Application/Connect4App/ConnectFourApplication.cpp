@@ -47,5 +47,5 @@ void ConnectFourApplication::onMouseRightClick(int iPosX, int iPosY)
 void ConnectFourApplication::onTimer()
 {
 
-	IApplication::onTimer();
+	IApplication::onTimer(); // Pour redessiner l'ecran
 }

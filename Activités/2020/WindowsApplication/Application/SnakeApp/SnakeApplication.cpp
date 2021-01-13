@@ -47,5 +47,5 @@ void SnakeApplication::onMouseRightClick(int iPosX, int iPosY)
 void SnakeApplication::onTimer()
 {
 
-	IApplication::onTimer();
+	IApplication::onTimer(); // Pour redessiner l'ecran
 }

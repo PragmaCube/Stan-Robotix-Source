@@ -100,5 +100,5 @@ void DemoApplication::onTimer()
 	{
 		mDemoAppBall[i].applyTime();
 	}
-	IApplication::onTimer();
+	IApplication::onTimer(); // Pour redessiner l'ecran
 }
