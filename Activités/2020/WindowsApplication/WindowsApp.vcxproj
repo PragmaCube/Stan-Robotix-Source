@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -144,6 +144,7 @@
     <ClInclude Include="Application\DemoApp\DemoAppBall.h" />
     <ClInclude Include="Application\DemoApp\DemoApplication.h" />
     <ClInclude Include="Application\DessinApp\DessinApplication.h" />
+    <ClInclude Include="Application\PacmanApp\MazeFloor.h" />
     <ClInclude Include="Framework\IApplication.h" />
     <ClInclude Include="Application\PacmanApp\PacmanApplication.h" />
     <ClInclude Include="Application\PingpongApp\PingPongApplication.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Framework\Resource.h" />
     <ClInclude Include="Framework\targetver.h" />
     <ClInclude Include="Framework\WindowsApp.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\BattleshipApp\BattleshipApplication.cpp" />
@@ -160,6 +162,7 @@
     <ClCompile Include="Application\DemoApp\DemoAppBall.cpp" />
     <ClCompile Include="Application\DemoApp\DemoApplication.cpp" />
     <ClCompile Include="Application\DessinApp\DessinApplication.cpp" />
+    <ClCompile Include="Application\PacmanApp\MazeFloor.cpp" />
     <ClCompile Include="Application\PacmanApp\PacmanApplication.cpp" />
     <ClCompile Include="Application\PingpongApp\PingPongApplication.cpp" />
     <ClCompile Include="Application\SnakeApp\SnakeApplication.cpp" />

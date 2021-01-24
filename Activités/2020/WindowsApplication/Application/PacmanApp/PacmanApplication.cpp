@@ -17,6 +17,7 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 		wTitle.length(),
 		&iPaintArea,
 		DT_CENTER | DT_TOP);
+	mMazeFloor.paint(ihdc, iPaintArea);
 }
 
 void PacmanApplication::onChar(char iChar, short iDetail)
