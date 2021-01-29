@@ -35,14 +35,14 @@ void DemoApplication::onChar(char iChar, short iDetail)
 {
 	if (iChar == '-')
 	{
-		if (mNbActiveBall > 2)
+		if (mNbActiveBall > 1)
 		{
 			mNbActiveBall--;
 		}
 	}
 	else if(iChar == '+')
 	{
-		if (mNbActiveBall < 8)
+		if (mNbActiveBall < 80)
 		{
 			mNbActiveBall++;
 		}
@@ -59,7 +59,7 @@ void DemoApplication::onChar(char iChar, short iDetail)
 				break;
 			case 's':
 			case 'S':
-				mDemoAppBall[i] .increaseRadius();
+				mDemoAppBall[i].increaseRadius();
 				break;
 			case 'q':
 			case 'Q':
@@ -96,9 +96,9 @@ void DemoApplication::onMouseRightClick(int iPosX, int iPosY)
 
 void DemoApplication::onTimer()
 {
-	for (int i = 0; i < 8; i++)
+	/*for (int i = 0; i < 8; i++)
 	{
 		mDemoAppBall[i].applyTime();
-	}
+	}*/
 	IApplication::onTimer(); // Pour redessiner l'ecran
 }

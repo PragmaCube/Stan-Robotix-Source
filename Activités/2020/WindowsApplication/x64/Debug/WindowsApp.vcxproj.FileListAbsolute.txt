@@ -1,0 +1,2 @@
+C:\Users\pragm\OneDrive\Bureau\Stan Robotix\Stan-Robotix-Source\Activités\2020\WindowsApplication\x64\Debug\WindowsApp.exe
+C:\Users\pragm\OneDrive\Bureau\Stan Robotix\Stan-Robotix-Source\Activités\2020\WindowsApplication\x64\Debug\WindowsApp.pdb

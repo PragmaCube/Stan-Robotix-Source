@@ -1,0 +1,3 @@
+﻿  DemoApplication.cpp
+C:\Users\pragm\OneDrive\Bureau\Stan Robotix\Stan-Robotix-Source\Activités\2020\WindowsApplication\Application\DemoApp\DemoApplication.cpp(8,12): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+  WindowsApp.vcxproj -> C:\Users\pragm\OneDrive\Bureau\Stan Robotix\Stan-Robotix-Source\Activités\2020\WindowsApplication\x64\Debug\WindowsApp.exe
