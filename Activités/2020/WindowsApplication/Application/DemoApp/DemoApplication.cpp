@@ -47,6 +47,12 @@ void DemoApplication::onChar(char iChar, short iDetail)
 			mNbActiveBall++;
 		}
 	}
+
+	else if(iChar == 't' || iChar == 'T')
+	{
+		mTime = !mTime;
+	}
+
 	else
 	{
 		for (int i = 0; i < 8; i++)
@@ -96,9 +102,13 @@ void DemoApplication::onMouseRightClick(int iPosX, int iPosY)
 
 void DemoApplication::onTimer()
 {
-	/*for (int i = 0; i < 8; i++)
+	if (mTime)
 	{
-		mDemoAppBall[i].applyTime();
-	}*/
+		for (int i = 0; i < 8; i++)
+		{
+			mDemoAppBall[i].applyTime();
+		}
+	}
+	
 	IApplication::onTimer(); // Pour redessiner l'ecran
 }
