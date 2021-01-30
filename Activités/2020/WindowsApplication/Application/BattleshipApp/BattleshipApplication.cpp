@@ -4,7 +4,7 @@
 
 BattleshipApplication::BattleshipApplication()
 {
-
+	setFrequencyTimer(200000);
 }
 
 void BattleshipApplication::paint(HDC ihdc, RECT& iPaintArea)
@@ -17,6 +17,8 @@ void BattleshipApplication::paint(HDC ihdc, RECT& iPaintArea)
 		wTitle.length(),
 		&iPaintArea,
 		DT_CENTER | DT_TOP);
+
+	mGameBoard.drawGameBoard(ihdc, iPaintArea);
 }
 
 void BattleshipApplication::onChar(char iChar, short iDetail)
