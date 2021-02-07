@@ -11,6 +11,7 @@ public:
 	Token();
 	void drawTokenRed(HDC ihdc, RECT& iPaintArea);
 	void drawTokenBlue(HDC ihdc, RECT& iPaintArea);
+	void drawToken(HDC ihdc, RECT& iPaintArea, HBRUSH & iBrush);
 
 
 	
