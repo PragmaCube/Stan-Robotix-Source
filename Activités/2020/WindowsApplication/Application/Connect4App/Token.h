@@ -13,8 +13,7 @@ public:
 	void drawTokenBlue(HDC ihdc, RECT& iPaintArea);
 	void drawToken(HDC ihdc, RECT& iPaintArea, HBRUSH & iBrush);
 
-
-	
+private:
 	HBRUSH mRedBrush, mBlueBrush;
 
 	

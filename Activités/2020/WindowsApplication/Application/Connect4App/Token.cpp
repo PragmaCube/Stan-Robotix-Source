@@ -2,17 +2,16 @@
 
 Token::Token(): mPosX(0), mPosY(0)
 {
-		mRedBrush = CreateSolidBrush(RGB(255, 0, 0));
-		mBlueBrush = CreateSolidBrush(RGB(0,0,255));
+	mRedBrush = CreateSolidBrush(RGB(255, 0, 0));
+	mBlueBrush = CreateSolidBrush(RGB(0,0,255));
 	
 }
 
-
 void Token::drawTokenRed(HDC ihdc, RECT& iPaintArea)
 {
-
-	drawToken(ihdc, iPaintArea, mRedBrush);
+    drawToken(ihdc, iPaintArea, mRedBrush);
 }
+
 void Token::drawTokenBlue(HDC ihdc, RECT& iPaintArea)
 {
 	drawToken(ihdc, iPaintArea, mBlueBrush);
