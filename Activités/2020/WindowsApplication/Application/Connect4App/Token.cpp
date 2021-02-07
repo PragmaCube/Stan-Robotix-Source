@@ -2,13 +2,9 @@
 
 Token::Token(): mPosX(0), mPosY(0)
 {
-	for (int i = 0; i < 8; i++)
-	{
-		int wRed = (i & 0x1) ? 255 : 0; // Le premier bit détermine si la composante rouge.
-		int wGreen = (i & 0x2) ? 255 : 0; // Le deuxieme bit détermine si la composante verte.
-		int wBlue = (i & 0x4) ? 255 : 0; // Le troisieme bit détermine si la composante bleue.
-		mBrush[i] = CreateSolidBrush(RGB(wRed, wGreen, wBlue));
-	}
+		mRedBrush = CreateSolidBrush(RGB(255, 0, 0));
+		mBlueBrush = CreateSolidBrush(RGB(0,0,255));
+	
 }
 
 
@@ -28,13 +24,11 @@ void Token::drawTokenRed(HDC ihdc, RECT& iPaintArea)
 
 			wRadius -= 5;
 		}
-		HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBrush[0]);
+		HGDIOBJ wOldBrush = ::SelectObject(ihdc, mRedBrush);
 
-		for (int i = 0; i < 8; i++)
-		{
-			::SelectObject(ihdc, mBrush[i]);
+		
 			::FloodFill(ihdc, mPosX , mPosY, RGB(0, 0, 0));
-		}
+	
 		::SelectObject(ihdc, wOldBrush);
 	}
 
@@ -53,14 +47,10 @@ void Token::drawTokenBlue(HDC ihdc, RECT& iPaintArea)
 
 		wRadius -= 5;
 	}
-	HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBrush[255,0,0]);
+	HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBlueBrush);
 
-	for (int i = 0; i < 8; i++)
-	{
-		
-		::SelectObject(ihdc, mBrush[i]);
-		::FloodFill(ihdc, mPosX+i*10, mPosY, RGB(0,0,0));
-	}
+	   ::FloodFill(ihdc, mPosX, mPosY, RGB(0,0,0));
+
 	::SelectObject(ihdc, wOldBrush);
 }
 

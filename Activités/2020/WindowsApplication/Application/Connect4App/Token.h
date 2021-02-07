@@ -14,7 +14,7 @@ public:
 
 
 	
-	HBRUSH mBrush[8];
+	HBRUSH mRedBrush, mBlueBrush;
 
 	
 };
