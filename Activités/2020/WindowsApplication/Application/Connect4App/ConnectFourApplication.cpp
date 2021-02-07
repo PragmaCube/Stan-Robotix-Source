@@ -22,7 +22,7 @@ ConnectFourApplication::ConnectFourApplication() : mPosX(0), mPosY(0)
 
 
 	mBoardGame.paint(ihdc, iPaintArea);
-	switch (mLastClickType)
+	/*switch (mLastClickType)
 	{
 	case eRightClick:
 		mToken.drawTokenRed(ihdc, iPaintArea);
@@ -38,7 +38,7 @@ ConnectFourApplication::ConnectFourApplication() : mPosX(0), mPosY(0)
 
 
 	
-	}
+	}*/
 		
 	
 	
@@ -62,23 +62,22 @@ void ConnectFourApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 
 	mLastClickType = eLeftDoubleClick;
 
+
 }
 
 void ConnectFourApplication::onMouseLeftClick(int iPosX, int iPosY)
 {
-	mPosX = iPosX;
-	mPosY = iPosY;
+	
     
 	mLastClickType = eLeftClick;
-
+	mBoardGame.AddBlueToken(iPosX, iPosY);
 }
 
 void ConnectFourApplication::onMouseRightClick(int iPosX, int iPosY)
 {
-	mPosX = iPosX;
-	mPosY = iPosY;
 
     mLastClickType = eRightClick;
+	mBoardGame.AddRedToken(iPosX, iPosY);
 }
 /*
 void ConnectFourApplication::drawHorizontalLines()

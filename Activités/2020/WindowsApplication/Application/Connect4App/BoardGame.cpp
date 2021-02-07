@@ -13,4 +13,18 @@ void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 		::MoveToEx(ihdc, j, iPaintArea.top+50, nullptr);
 		::LineTo(ihdc, j, iPaintArea.bottom);
 	} //dessiner les lignes verticales
+
+	mRed.drawTokenRed(ihdc, iPaintArea);
+	mBlue.drawTokenBlue(ihdc, iPaintArea);
+}
+
+void BoardGame::AddRedToken(int iPosX, int iPosY)
+{
+	mRed.setPosition(iPosX, iPosY);
+	
+}
+
+void BoardGame::AddBlueToken(int iPosX, int iPosY)
+{
+	mBlue.setPosition(iPosX, iPosY);
 }
