@@ -77,6 +77,12 @@
     <ClInclude Include="Framework\IApplication.h">
       <Filter>Framework sources</Filter>
     </ClInclude>
+    <ClInclude Include="Application\Connect4App\Token.h">
+      <Filter>Application\ConnectFour</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Connect4App\BoardGame.h">
+      <Filter>Application\ConnectFour</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\WindowsApp.cpp">
@@ -108,6 +114,12 @@
     </ClCompile>
     <ClCompile Include="Application\DessinApp\DessinApplication.cpp">
       <Filter>Application\Dessin</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Connect4App\BoardGame.cpp">
+      <Filter>Application\ConnectFour</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Connect4App\Token.cpp">
+      <Filter>Application\ConnectFour</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
