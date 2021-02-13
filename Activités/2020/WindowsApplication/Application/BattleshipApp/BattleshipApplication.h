@@ -1,6 +1,7 @@
 #pragma once
 #include "../../Framework/IApplication.h"
 #include "GameBoard.h"
+#include "BoatsPosition.h"
 
 class BattleshipApplication :
     public IApplication
