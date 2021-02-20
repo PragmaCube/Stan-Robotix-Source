@@ -4,46 +4,68 @@
 
 GameBoard::GameBoard()
 {
+	defineDefautBrush();
+
+	reset();
+}
+
+void GameBoard::defineDefautBrush()
+{
 	mBlackBrush = CreateSolidBrush(RGB(0, 0, 0));
 	mRedBrush = CreateSolidBrush(RGB(255, 0, 0));
 	mGreenBrush = CreateSolidBrush(RGB(0, 255, 0));
 	mGrayBrush = CreateSolidBrush(RGB(125, 125, 125));
+	mWhiteBrush = CreateSolidBrush(RGB(255, 255, 255));
 }
-		
+
+void GameBoard::reset()
+{
+	mBoatsPosition.resetSetState();
+}
 
 void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea)
 {
-	int wStateAttribution;
 	int x = 400;
 	int y = 100;
 	int wlast = 1;
 	std::wstring wletters = L"ABCDEFGHIJ";
 	std::wstring wnumbers = L"12345678910";
 	int wRadius = 15;
-	HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBlackBrush);
+	HGDIOBJ wOldBrush = ::SelectObject(ihdc, mWhiteBrush);
+
+	static bool wDebugDrawGreen = true;
+	static bool wDebugDrawBlack = true;
+	static bool wDebugDrawRed   = true;
+	static bool wDebugDrawGray = true;
+
 	for (int i = 0; i < 10; i++)
 	{
-		;
 		for (int i2 = 0; i2 < 10; i2++)
 		{
+			HBRUSH wDrawingBrush = getBrush(i, i2);
+
+			if ((mBlackBrush == wDrawingBrush && wDebugDrawBlack) ||
+				(mRedBrush   == wDrawingBrush && wDebugDrawRed) ||
+				(mGreenBrush == wDrawingBrush && wDebugDrawGreen) ||
+				(mGrayBrush  == wDrawingBrush && wDebugDrawGray))
+			{
+				::SelectObject(ihdc, wDrawingBrush);
+			}
+			else
+			{
+				::SelectObject(ihdc, mWhiteBrush);
+			}
+
 			::Ellipse(ihdc,
 				(int)(x + i2 * 40) - wRadius,/*x*/
 				(int)(y + i * 40) - wRadius,/*y*/
 				(int)(x + i2 * 40) + wRadius,/*x*/
 				(int)(y + i * 40) + wRadius);/*y*/
-
-			HGDIOBJ wOldBrush = ::SelectObject(ihdc, getColour(i, i2));
-			::FloodFill(ihdc, x + i2 * 40, y + i * 40, RGB(0, 0, 0));
-			::SelectObject(ihdc, wOldBrush);
-			
-			mPositions[i2][i].top = y + i * 40 - wRadius;
-			mPositions[i2][i].left = x + i2 * 40 - wRadius;
-			mPositions[i2][i].right = x + i2 * 40 + wRadius;
-			mPositions[i2][i].bottom = y + i * 40 + wRadius;
 		}
 	}
 
-	
+	::SelectObject(ihdc, wOldBrush);
+
 	for (int i3 = 0; i3 < 10; i3++)
 	{
 		std::wstring wChar = wletters.substr(i3, 1);
@@ -53,8 +75,9 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea)
 			wChar.c_str(),
 			wChar.length(),
 			&wTextArea,
-			DT_LEFT | DT_BOTTOM);
+			((int)DT_LEFT | DT_BOTTOM));
 	}
+
 	for (int i4 = 0; i4 < 10; i4++)
 	{
 		if (i4 == 9)
@@ -68,16 +91,19 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea)
 			wChar.c_str(),
 			wChar.length(),
 			&wTextArea,
-			DT_LEFT | DT_BOTTOM);
+			(int)(DT_LEFT | DT_BOTTOM ));
 	}
 }
 
-HBRUSH GameBoard::getColour(int i, int i2)
+HBRUSH GameBoard::getBrush(int i, int i2)
 {
-	int wPositionState = mBoatsPosition.getBoatsPosition(i2,i);
-	HBRUSH wSelect= mBlackBrush;
+	int wPositionState = mBoatsPosition.getGridState(i2,i);
+	HBRUSH wSelect= 0;
 	switch (wPositionState)
 	{
+	case 1:
+		wSelect = mBlackBrush;
+		break;
 
 	case 2: wSelect = mGrayBrush;
 		break;

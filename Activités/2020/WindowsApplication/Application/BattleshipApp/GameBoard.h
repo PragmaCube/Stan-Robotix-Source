@@ -9,17 +9,19 @@ class GameBoard
 public:
 	GameBoard();
 
-	void drawGameBoard(HDC ihdc, RECT& iPaintArea);
-	HBRUSH getColour(int i, int i2);
-	RECT mPositions[10][10];
+	void reset();
 
-	BoatsPosition mBoatsPosition;
-	
+	void drawGameBoard(HDC ihdc, RECT& iPaintArea);
 
 private:
 	HBRUSH mBlackBrush;
 	HBRUSH mRedBrush;
 	HBRUSH mGreenBrush;
 	HBRUSH mGrayBrush;
+	HBRUSH mWhiteBrush;
+	BoatsPosition mBoatsPosition;
+
+	HBRUSH getBrush(int i, int i2);
+	void defineDefautBrush();
 };
 
