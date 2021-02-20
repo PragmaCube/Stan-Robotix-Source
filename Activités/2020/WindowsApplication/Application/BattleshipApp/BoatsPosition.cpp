@@ -27,6 +27,11 @@ int BoatsPosition::getGridState(int x, int y)
 	return mState[x][y];
 }
 
+void BoatsPosition::setGridState(int x, int y, int iNewState)
+{
+	mState[x][y] = iNewState;
+}
+
 void BoatsPosition::GenerateAircraftCarrier()
 {
 	generateBoatPosition(5);

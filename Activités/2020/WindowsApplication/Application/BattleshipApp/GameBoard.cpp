@@ -14,7 +14,7 @@ void GameBoard::defineDefautBrush()
 	mBlackBrush = CreateSolidBrush(RGB(0, 0, 0));
 	mRedBrush = CreateSolidBrush(RGB(255, 0, 0));
 	mGreenBrush = CreateSolidBrush(RGB(0, 255, 0));
-	mGrayBrush = CreateSolidBrush(RGB(125, 125, 125));
+	mGrayBrush = CreateSolidBrush(RGB(200, 200, 200));
 	mWhiteBrush = CreateSolidBrush(RGB(255, 255, 255));
 }
 
@@ -23,14 +23,45 @@ void GameBoard::reset()
 	mBoatsPosition.resetSetState();
 }
 
+void GameBoard::click(int iX, int iY)
+{
+	const int wLeftBorder     = mLeftBoardCoor- mRadiusToken;
+	const int wTopBorder      = mTopBoardCoor - mRadiusToken;
+	const int wTotalGridSize  = 10 * mSizeCell;
+
+	int wRowClick = -1;
+	int wColumnClick = -1;
+	if (
+		 (wLeftBorder < iX) && (iX < wLeftBorder + wTotalGridSize) &&
+		 (wTopBorder < iY)  && (iY < wTopBorder + wTotalGridSize)
+	   )
+	{
+      wRowClick   = (iY - wTopBorder)/ mSizeCell;
+	  wColumnClick= (iX - wLeftBorder) / mSizeCell;
+	}
+
+	if ((wRowClick != -1) && (wColumnClick != -1))
+	{
+		int wPositionState = mBoatsPosition.getGridState(wColumnClick, wRowClick);
+		
+		switch(wPositionState)
+		{
+		case BoatsPosition::eBoat:
+			mBoatsPosition.setGridState(wColumnClick, wRowClick, BoatsPosition::eHit);
+			break;
+		case BoatsPosition::eSea:
+			mBoatsPosition.setGridState(wColumnClick, wRowClick, BoatsPosition::eMiss);
+			break;
+		}
+	}
+}
+
 void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea)
 {
-	int x = 400;
-	int y = 100;
 	int wlast = 1;
 	std::wstring wletters = L"ABCDEFGHIJ";
 	std::wstring wnumbers = L"12345678910";
-	int wRadius = 15;
+	
 	HGDIOBJ wOldBrush = ::SelectObject(ihdc, mWhiteBrush);
 
 	static bool wDebugDrawGreen = true;
@@ -38,11 +69,11 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea)
 	static bool wDebugDrawRed   = true;
 	static bool wDebugDrawGray = true;
 
-	for (int i = 0; i < 10; i++)
+	for (int x = 0; x < 10; x++)
 	{
-		for (int i2 = 0; i2 < 10; i2++)
+		for (int y = 0; y < 10; y++)
 		{
-			HBRUSH wDrawingBrush = getBrush(i, i2);
+			HBRUSH wDrawingBrush = getBrush(x, y);
 
 			if ((mBlackBrush == wDrawingBrush && wDebugDrawBlack) ||
 				(mRedBrush   == wDrawingBrush && wDebugDrawRed) ||
@@ -57,10 +88,10 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea)
 			}
 
 			::Ellipse(ihdc,
-				(int)(x + i2 * 40) - wRadius,/*x*/
-				(int)(y + i * 40) - wRadius,/*y*/
-				(int)(x + i2 * 40) + wRadius,/*x*/
-				(int)(y + i * 40) + wRadius);/*y*/
+				(int)(mLeftBoardCoor + y * mSizeCell) - mRadiusToken,/*x*/
+				(int)(mTopBoardCoor  + x * mSizeCell) - mRadiusToken,/*y*/
+				(int)(mLeftBoardCoor + y * mSizeCell) + mRadiusToken,/*x*/
+				(int)(mTopBoardCoor  + x * mSizeCell) + mRadiusToken);/*y*/
 		}
 	}
 

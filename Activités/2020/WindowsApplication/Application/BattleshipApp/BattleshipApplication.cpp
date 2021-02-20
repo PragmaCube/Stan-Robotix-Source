@@ -41,7 +41,7 @@ void BattleshipApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 
 void BattleshipApplication::onMouseLeftClick(int iPosX, int iPosY)
 {
-
+	mGameBoard.click(iPosX, iPosY);
 }
 
 void BattleshipApplication::onMouseRightClick(int iPosX, int iPosY)

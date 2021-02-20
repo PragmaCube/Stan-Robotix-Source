@@ -11,7 +11,7 @@ public:
 	void GenerateCruiser();
 	void GenerateBattleship();
 	int getGridState(int x, int y);
-	
+	void setGridState(int x, int y, int iNewState);
 	void resetSetState();
 private:
 
