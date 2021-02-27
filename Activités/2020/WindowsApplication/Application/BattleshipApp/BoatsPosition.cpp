@@ -1,16 +1,16 @@
 #include "BoatsPosition.h"
 
-void BoatsPosition::resetSetState()
+void BoatsPosition::resetSetState() // formation de la table de jeu
 {
-	for (int y = 0; y < 10; y++)
+	for (int y = 0; y < 10; y++)       // attribution à toutes les positions l'état eau
 	{
 		for (int x = 0; x < 10; x ++)
 		{
-			mState[x][y] = eSea;
+			mState[y][x] = eSea;
 		}
 	}
 
-	GenerateAircraftCarrier();
+	GenerateAircraftCarrier();  // appels des différentes fonctions des bateaux pour générer le positions selon le type définit par la taille
 
 	GenerateCruiser();
 	
@@ -20,16 +20,16 @@ void BoatsPosition::resetSetState()
 	}
 
 	GenerateDestroyer();
-}
+} 
 
 int BoatsPosition::getGridState(int x, int y)
 {
-	return mState[x][y];
+	return mState[y][x];  //retourner l'état d'une position
 }
 
 void BoatsPosition::setGridState(int x, int y, int iNewState)
 {
-	mState[x][y] = iNewState;
+	mState[y][x] = iNewState; //changement de l'état par l'état introduit
 }
 
 void BoatsPosition::GenerateAircraftCarrier()
@@ -52,88 +52,38 @@ void BoatsPosition::GenerateBattleship()
 	generateBoatPosition(3);
 }
 
-bool BoatsPosition::isBoatPerfectlyPlaced(int x, int y, int iDirection, int iLong)
-{
-	bool wBoatPositionOk = true;
-	switch (iDirection)
-	{
-	case eUp:
-		for (int i = 1; i < iLong; i++)
-		{
-			if (mState[x][y - i] != eSea)
-			{
-				wBoatPositionOk = false;
-				break;
-			}
-		}
-		break;
-
-	case eRight:
-		for (int i = 1; i < iLong; i++)
-		{
-			if (mState[x + i][y] != eSea)
-			{
-				wBoatPositionOk = false;
-				break;
-			}
-		}
-		break;
-
-	case eDown:
-		for (int i = 1; i < iLong; i++)
-		{
-			if (mState[x][y + i] != eSea)
-			{
-				wBoatPositionOk = false;
-				break;
-			}
-		}
-		break;
-
-	case eLeft:
-		for (int i = 1; i < iLong; i++)
-		{
-			if (mState[x - i][y] != eSea)
-			{
-				wBoatPositionOk = false;
-				break;
-			}
-		}
-	}
-	return wBoatPositionOk;
-}
-
-void BoatsPosition::generateBoatPosition(int iLong)
+void BoatsPosition::generateBoatPosition(int iLong) //processus de génération des position d'un bateau en fonction de sa taille
 {
 	int wDirectionShip;
 	int x;
 	int y;
 	bool wFindHead = false;
-	int wFoundPosition = false;
-	while (wFoundPosition == false)
+	bool wFoundPosition = false;
+	while (wFoundPosition == false) //boucle du processus entier
 	{
-		while (wFindHead == false)
+		while (wFindHead == false)//boucle de généner la postion de la tête
 		{
-			x = rand() % 10 + 1;;
-			y = rand() % 10 + 1;;
-			wFindHead = (mState[x][y] == eSea);
+			x = rand() % 10;  //génération de la tête du bateau (1/taille du bateau en construction)
+			y = rand() % 10;
+			wFindHead = (mState[y][x] == eSea); //vérification la position, si elle est disponible de base, si disponible, desactivation de cette boucle
 		}
-		wDirectionShip = getRandomDirection(x, y, iLong);
+		wDirectionShip = getRandomDirection(x, y, iLong); /*appel d'une fonction qui fournit une direction que la construction du 
+		corps du bateau va prendre, il est possible qu'il retourne la réponse qu'il impossible de placer le bateau*/
 
-		switch (wDirectionShip)
+		switch (wDirectionShip) //attribution de l'état bateau aux positions de la tête et les positions avoisinnantes selon le sens
 		{
 		case eUp:
 			for (int i = 0; i < iLong; i++)
 			{
-				mState[x][y - i] = eBoat;
+				mState[y - i][x] = eBoat;
 			}
-			wFoundPosition = true;
+			wFoundPosition = true; //désactivation de la boucle du processus entier
 			break;
 
 		case eRight:
 			for (int i = 0; i < iLong; i++)
 			{
-				mState[x + i][y] = eBoat;
+				mState[y][x + i] = eBoat;
 			}
 			wFoundPosition = true;
 			break;
@@ -141,7 +91,7 @@ void BoatsPosition::generateBoatPosition(int iLong)
 		case eDown:
 			for (int i = 0; i < iLong; i++)
 			{
-				mState[x][y + i] = eBoat;
+				mState[y + i][x] = eBoat;
 			}
 			wFoundPosition = true;
 			break;
@@ -149,13 +99,14 @@ void BoatsPosition::generateBoatPosition(int iLong)
 		case eLeft:
 			for (int i = 0; i < iLong; i++)
 			{
-				mState[x - i][y] = eBoat;
+				mState[y][x - i] = eBoat;
 			}
 			wFoundPosition = true;
 			break;
 
-		case eNoDirection: 
-			wFindHead = false;
+		case eNoDirection: //cas où le bateau est implaçable dans toute les directions à partir de la tête
+			wFindHead = false; /*réactivation de la boucle de génération de la position de la tête, pour une nouvelle tentative 
+							   de trouver une place*/
 			break;
 		}
 	}
@@ -163,29 +114,31 @@ void BoatsPosition::generateBoatPosition(int iLong)
 
 int BoatsPosition::getRandomDirection(int iHeadX, int iHeadY, int iLong)
 {
-	int wWhile = 0;
+	bool wSearchingDirectionCycle = false;
 	int wRandomDirection;
 	bool wCheckResults = false;
 	int wResultsTable[4] = { 0 };
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)//création d'un tableau de résultat d'analyse des 4 sens
 	{
-		wResultsTable[i] = 0;
+		wResultsTable[i] = 0; 
 	}
 
 	int wCheckingProgress = 0;
-	while (wWhile == 0)
+	while (wSearchingDirectionCycle == false) //boucle à la recherche d'une potentille direction
 	{
-		wRandomDirection = rand() % 4 + 1;
+		wRandomDirection = rand() % 4 + 1; //génération aléatoire d'un sens 
 
 		switch (wRandomDirection)
 		{
 		case eUp:
-			if (iHeadY - iLong >= 0)
+			if (iHeadY - iLong >= 0) //calcul permettant de savoir si quand le bateau prend une certaine direction il sort ou pas du tableau
 			{
-				wCheckResults = isBoatPerfectlyPlaced(iHeadX, iHeadY, wRandomDirection, iLong);
+				wCheckResults = isBoatPerfectlyPlaced(iHeadX, iHeadY, wRandomDirection, iLong); /*appel d'une fonction qui vérifie si les 
+				positioons sont disponibles*/
 				if (wCheckResults == true)
 				{
-					wWhile = 1;
+					wSearchingDirectionCycle = true; /*si il est possible de placer le bateau à cette emplacement la boucle de recherche d'une 
+					direction est désactivée*/
 				}
 			}
 			break;
@@ -196,7 +149,7 @@ int BoatsPosition::getRandomDirection(int iHeadX, int iHeadY, int iLong)
 				wCheckResults = isBoatPerfectlyPlaced(iHeadX, iHeadY, wRandomDirection, iLong);
 				if (wCheckResults == true)
 				{
-					wWhile = 1;
+					wSearchingDirectionCycle = true;
 				}
 			}
 			break;
@@ -207,7 +160,7 @@ int BoatsPosition::getRandomDirection(int iHeadX, int iHeadY, int iLong)
 				wCheckResults = isBoatPerfectlyPlaced(iHeadX, iHeadY, wRandomDirection, iLong);
 				if (wCheckResults == true)
 				{
-					wWhile = 1;
+					wSearchingDirectionCycle = true;
 				}
 			}
 			break;
@@ -218,24 +171,79 @@ int BoatsPosition::getRandomDirection(int iHeadX, int iHeadY, int iLong)
 				wCheckResults = isBoatPerfectlyPlaced(iHeadX, iHeadY, wRandomDirection, iLong);
 				if (wCheckResults == true)
 				{
-					wWhile = 1;
+					wSearchingDirectionCycle = true;
 				}
 			}
 		}
-		if (wCheckResults == false)
+		if (wCheckResults == false)/*quand le bateau ne peut pas être placé dans un certain sens, le sens est placé dans un 
+			tableau, la mémoire de ce qui a été analysé et pas*/
 		{
 			if (wResultsTable[wRandomDirection - 1] != wRandomDirection)
 			{
 				wResultsTable[wRandomDirection - 1] = wRandomDirection;
-				wCheckingProgress = wCheckingProgress + 1;
+				wCheckingProgress = wCheckingProgress + 1; //à chaque fois qu'un sens n'a pas été analysé, le compteur du nombre de sens testés
 			}
 		}
-		if (wCheckingProgress == 4)
+		if (wCheckingProgress == 4) /*quand le compteur attteint 4, donc toute les sens ont été testés, la fonction va retourner 
+			une valeur qui fera recommencer le processus entier*/
 		{
 			wRandomDirection = 5;
-			wWhile = 1;
+			wSearchingDirectionCycle = true; //désactivation de la boucle 
 		}
 	}
 	return wRandomDirection;
 }
+
+bool BoatsPosition::isBoatPerfectlyPlaced(int x, int y, int iDirection, int iLong)
+{
+	bool wBoatPositionOk = true;
+	switch (iDirection)
+	{
+	case eUp:
+		for (int i = 1; i < iLong; i++)
+		{
+			if (mState[y - i][x] != eSea) /*vérification de si une des positions est occupée, si oui, la vérification est arrêter 
+				et la fonction va retourner qu'il n'est pas possible de placer le bateau*/
+			{
+				wBoatPositionOk = false;
+				break;
+			}
+		}
+		break;
+
+	case eRight:
+		for (int i = 1; i < iLong; i++)
+		{
+			if (mState[y][x + i] != eSea)
+			{
+				wBoatPositionOk = false;
+				break;
+			}
+		}
+		break;
+
+	case eDown:
+		for (int i = 1; i < iLong; i++)
+		{
+			if (mState[y + i][x] != eSea)
+			{
+				wBoatPositionOk = false;
+				break;
+			}
+		}
+		break;
+
+	case eLeft:
+		for (int i = 1; i < iLong; i++)
+		{
+			if (mState[y][x - i] != eSea)
+			{
+				wBoatPositionOk = false;
+				break;
+			}
+		}
+	}
+	return wBoatPositionOk;
+}
+
 

@@ -23,6 +23,7 @@ void BattleshipApplication::paint(HDC ihdc, RECT& iPaintArea)
 
 void BattleshipApplication::onChar(char iChar, short iDetail)
 {
+	//réinisialisation du jeu en appuyant sur n ou N
 	if ((iChar == 'N') || (iChar == 'n'))
 	{
 		mGameBoard.reset();
@@ -41,7 +42,7 @@ void BattleshipApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 
 void BattleshipApplication::onMouseLeftClick(int iPosX, int iPosY)
 {
-	mGameBoard.click(iPosX, iPosY);
+	mGameBoard.click(iPosX, iPosY); 
 }
 
 void BattleshipApplication::onMouseRightClick(int iPosX, int iPosY)

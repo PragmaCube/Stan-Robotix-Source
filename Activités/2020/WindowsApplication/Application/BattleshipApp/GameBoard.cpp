@@ -9,7 +9,7 @@ GameBoard::GameBoard()
 	reset();
 }
 
-void GameBoard::defineDefautBrush()
+void GameBoard::defineDefautBrush() //création des pinceaux de couleurs
 {
 	mBlackBrush = CreateSolidBrush(RGB(0, 0, 0));
 	mRedBrush = CreateSolidBrush(RGB(255, 0, 0));
@@ -18,12 +18,12 @@ void GameBoard::defineDefautBrush()
 	mWhiteBrush = CreateSolidBrush(RGB(255, 255, 255));
 }
 
-void GameBoard::reset()
+void GameBoard::reset() //réinitialisation de la table de jeux
 {
 	mBoatsPosition.resetSetState();
 }
 
-void GameBoard::click(int iX, int iY)
+void GameBoard::click(int iX, int iY) //cliquer sur un cercle pour changer l'état de la position
 {
 	const int wLeftBorder     = mLeftBoardCoor- mRadiusToken;
 	const int wTopBorder      = mTopBoardCoor - mRadiusToken;
@@ -56,7 +56,7 @@ void GameBoard::click(int iX, int iY)
 	}
 }
 
-void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea)
+void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau de jeu
 {
 	int wlast = 1;
 	std::wstring wletters = L"ABCDEFGHIJ";
@@ -73,6 +73,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea)
 	{
 		for (int y = 0; y < 10; y++)
 		{
+			//coloriagre du cercle, la couleur selon l'état de la position
 			HBRUSH wDrawingBrush = getBrush(x, y);
 
 			if ((mBlackBrush == wDrawingBrush && wDebugDrawBlack) ||
@@ -86,7 +87,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea)
 			{
 				::SelectObject(ihdc, mWhiteBrush);
 			}
-
+			//dessin du contour du cercle
 			::Ellipse(ihdc,
 				(int)(mLeftBoardCoor + y * mSizeCell) - mRadiusToken,/*x*/
 				(int)(mTopBoardCoor  + x * mSizeCell) - mRadiusToken,/*y*/
@@ -96,9 +97,10 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea)
 	}
 
 	::SelectObject(ihdc, wOldBrush);
-
+	//écriture des lettre en ordonnée
 	for (int i3 = 0; i3 < 10; i3++)
 	{
+		
 		std::wstring wChar = wletters.substr(i3, 1);
 		RECT wTextArea = { 350, 95+i3*40, 2000, 2000 };
 		::DrawText(
@@ -108,7 +110,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea)
 			&wTextArea,
 			((int)DT_LEFT | DT_BOTTOM));
 	}
-
+	//écriture des chiffres et le nombre en abscisse 
 	for (int i4 = 0; i4 < 10; i4++)
 	{
 		if (i4 == 9)
@@ -126,9 +128,9 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea)
 	}
 }
 
-HBRUSH GameBoard::getBrush(int i, int i2)
+HBRUSH GameBoard::getBrush(int i, int i2) //fonction qui définit la couleur du pinceau pour une certaine position en fonction de l'état
 {
-	int wPositionState = mBoatsPosition.getGridState(i2,i);
+	int wPositionState = mBoatsPosition.getGridState(i2,i);//récupération de l'état à la position i2 i
 	HBRUSH wSelect= 0;
 	switch (wPositionState)
 	{
