@@ -30,7 +30,7 @@ switch(mLastClickType)
 
 void ConnectFourApplication::onChar(char iChar, short iDetail)
 {
-	if ((iChar == 'End') || (iChar == 'end'))
+	if ((iChar == 'N') || (iChar == 'n'))
 	{
 		mBoardGame.InitArray();
 	}
@@ -56,10 +56,7 @@ void ConnectFourApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 void ConnectFourApplication::onMouseLeftClick(int iPosX, int iPosY)
 {
 	mLastClickType = eLeftClick;
-	for (int i = 0; i <= 21; i++)
-	{
-		mBoardGame.AddBlueToken(iPosX, iPosY);
-	}
+	mBoardGame.mColor = true;
 		
 	
 	
@@ -69,7 +66,7 @@ void ConnectFourApplication::onMouseRightClick(int iPosX, int iPosY)
 {
 
     mLastClickType = eRightClick;
-	mBoardGame.AddRedToken(iPosX, iPosY);
+	mBoardGame.mColor = false;
 }
 
 /*

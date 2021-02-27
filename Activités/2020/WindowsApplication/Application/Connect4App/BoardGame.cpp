@@ -20,16 +20,40 @@ void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 
 	mRed.drawTokenRed(ihdc, iPaintArea);
 	mBlue.drawTokenBlue(ihdc, iPaintArea);
+
+	/*if (mColor = true)
+	{
+		::Ellipse(ihdc,
+			(int)(100)-100,
+			(int)(25)-100,
+			(int)(100)+100,
+			(int)(25)+100);
+
+		HGDIOBJ wOldBrush = ::SelectObject(ihdc, mColor.mBlueBrush);
+
+
+		::FloodFill(ihdc, 100, 25, RGB(0, 0, 0));
+
+		::SelectObject(ihdc, wOldBrush);
+	}*/
 }
 
 void BoardGame::AddRedToken(int iPosX, int iPosY)
-{
-	mRed.setPosition(iPosX, iPosY);
+{  
+	if (mColor = false)
+	{
+		mRed.setPosition(iPosX, iPosY);
+	}
+	
 }
 
 void BoardGame::AddBlueToken(int iPosX, int iPosY)
 {
-	mBlue.setPosition(iPosX, iPosY);
+	if (mColor = true)
+	{
+		mBlue.setPosition(iPosX, iPosY);
+	}
+	
 }
 
 void BoardGame::InitArray()
@@ -56,3 +80,4 @@ void BoardGame::click(int iPosX, int iPosY)
 	}
 }
 
+// dessiner un petit cercle de la couleur du jeton qui doit etre poser

@@ -15,6 +15,8 @@ private:
 
 	std::vector<Token> mTokenList;
 
+	
+
 public:
 
 	void paint(HDC ihdc, RECT& iPaintArea);
@@ -23,9 +25,11 @@ public:
 	void InitArray();
 	void click(int iPosX, int iPosY);
 	
+	bool mColor; // true = bleu false = rouge
 
 	Token mRed;
 	Token mBlue;
+	
 
 };
 

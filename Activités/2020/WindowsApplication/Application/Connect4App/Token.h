@@ -13,10 +13,11 @@ public:
 	void drawToken(HDC ihdc, RECT& iPaintArea, HBRUSH & iBrush);
 	void setPosition(int iPosX, int iPosY);
 
+	HBRUSH mRedBrush, mBlueBrush;
 private:
 
 	int mPosX, mPosY;
-	HBRUSH mRedBrush, mBlueBrush;
+	
 	bool mPos;
 
 	
