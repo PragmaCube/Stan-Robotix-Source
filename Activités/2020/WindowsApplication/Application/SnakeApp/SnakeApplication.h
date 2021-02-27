@@ -1,6 +1,8 @@
 #pragma once
 #include "../../Framework/IApplication.h"
 
+
+
 class SnakeApplication :
     public IApplication
 {
@@ -12,11 +14,15 @@ protected:
 
 	void onChar(char iChar, short iDetail);
 	void onKeyDown(char iChar, short iDetail);
-
 	void onMouseLeftDoubleClick(int iPosX, int iPosY);
 	void onMouseLeftClick(int iPosX, int iPosY);
 	void onMouseRightClick(int iPosX, int iPosY);
+private:
 
-	void onTimer();
+}; 
+
+class Serpent{
+	public:
+		int NombreDeBalles;
+		enum ProchaineDirection { haut, bas, gauche, droite};
 };
-

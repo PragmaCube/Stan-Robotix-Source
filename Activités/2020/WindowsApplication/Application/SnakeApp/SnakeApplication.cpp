@@ -1,11 +1,12 @@
 #include "SnakeApplication.h"
-
+#include "../../Framework/IApplication.h"
+#include <stdlib.h>     
+#include <time.h>       
+#include <math.h>
 #include <string>
 
-SnakeApplication::SnakeApplication()
-{
 
-}
+		
 
 void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 {
@@ -17,17 +18,38 @@ void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 		wTitle.length(),
 		&iPaintArea,
 		DT_CENTER | DT_TOP);
-}
 
+
+}
 void SnakeApplication::onChar(char iChar, short iDetail)
 {
-
+		while (true)
+		{
+			switch (iChar)
+			{
+			case 'a':
+			case 'A':
+				Serpent::ProchaineDirection = 'gauche';
+				break;
+			case 's':
+			case 'S':
+				break;
+			case 'd':
+			case 'D':
+				break;
+			case 'w':
+			case 'W':
+				break;
+			};
+		}
 }
+
 
 void SnakeApplication::onKeyDown(char iChar, short iDetail)
 {
 
 }
+
 
 void SnakeApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 {
@@ -44,8 +66,3 @@ void SnakeApplication::onMouseRightClick(int iPosX, int iPosY)
 
 }
 
-void SnakeApplication::onTimer()
-{
-
-	IApplication::onTimer(); // Pour redessiner l'ecran
-}
