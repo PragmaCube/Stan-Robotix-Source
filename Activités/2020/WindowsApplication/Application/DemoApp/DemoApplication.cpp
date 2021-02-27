@@ -3,7 +3,7 @@
 #include <stdlib.h>     
 #include <time.h>   
 
-DemoApplication::DemoApplication()
+DemoApplication::DemoApplication() : mTime(true)
 {
 	srand(time(NULL));
 

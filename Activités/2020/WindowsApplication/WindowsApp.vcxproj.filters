@@ -77,9 +77,6 @@
     <ClInclude Include="Framework\IApplication.h">
       <Filter>Framework sources</Filter>
     </ClInclude>
-    <ClInclude Include="Application\PacmanApp\MazeFloor.h">
-      <Filter>Application\Pacman</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -112,9 +109,6 @@
     </ClCompile>
     <ClCompile Include="Application\DessinApp\DessinApplication.cpp">
       <Filter>Application\Dessin</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\PacmanApp\MazeFloor.cpp">
-      <Filter>Application\Pacman</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

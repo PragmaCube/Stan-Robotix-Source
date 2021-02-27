@@ -1,6 +1,5 @@
 #pragma once
 #include "../../Framework/IApplication.h"
-#include "MazeFloor.h"
 
 class PacmanApplication :
     public IApplication
@@ -19,8 +18,5 @@ protected:
 	void onMouseRightClick(int iPosX, int iPosY);
 
 	void onTimer();
-
-private:
-	MazeFloor mMazeFloor;
 };
 
