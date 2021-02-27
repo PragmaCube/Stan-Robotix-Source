@@ -1,5 +1,7 @@
 #pragma once
 #include "../../Framework/IApplication.h"
+#include "PingPongBall.h"
+#include "PingPongPad.h"
 
 class PingPongApplication : public IApplication
 {
@@ -17,5 +19,13 @@ protected:
 	void onMouseRightClick(int iPosX, int iPosY);
 
 	void onTimer();
+
+private:
+	PingPongBall mBall;
+	
+	PingPongPad mLeftPad;
+	PingPongPad mRightPad;
+	/*
+	DynamicMechanic mEngine;*/
 };
 
