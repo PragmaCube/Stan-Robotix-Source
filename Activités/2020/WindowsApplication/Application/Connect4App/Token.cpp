@@ -19,7 +19,7 @@ void Token::drawTokenBlue(HDC ihdc, RECT& iPaintArea)
 void Token::drawToken(HDC ihdc, RECT& iPaintArea, HBRUSH& iBrush)
 {
 
-	if (mInit)
+	if (mPos)
 	{
 		int wRadius = 30;
 		while (wRadius > 15)
@@ -33,6 +33,7 @@ void Token::drawToken(HDC ihdc, RECT& iPaintArea, HBRUSH& iBrush)
 
 
 			wRadius -= 5;
+	
 		}
 		HGDIOBJ wOldBrush = ::SelectObject(ihdc, iBrush);
 
@@ -44,7 +45,7 @@ void Token::drawToken(HDC ihdc, RECT& iPaintArea, HBRUSH& iBrush)
 }
 void Token::setPosition(int iPosX, int iPosY)
 {
-	mInit = true;
+	mPos = true;
 	mPosX = iPosX;
 	mPosY = iPosY;
 }

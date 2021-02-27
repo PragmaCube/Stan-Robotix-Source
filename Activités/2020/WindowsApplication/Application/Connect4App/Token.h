@@ -17,7 +17,7 @@ private:
 
 	int mPosX, mPosY;
 	HBRUSH mRedBrush, mBlueBrush;
-	bool mInit;
+	bool mPos;
 
 	
 };

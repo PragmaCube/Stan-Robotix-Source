@@ -11,6 +11,7 @@ class ConnectFourApplication :
 public:
 	ConnectFourApplication();
 private:
+	
 	int mPosX;
 	int mPosY;
 	int mLastClickType;
@@ -20,7 +21,7 @@ protected:
 	void paint(HDC ihdc, RECT& iPaintArea);
 
 	void onChar(char iChar, short iDetail);
-	void onKeyDown(char iChar, short iDetail);
+	//void onKeyDown(char iChar, short iDetail);
 
 	void onMouseLeftDoubleClick(int iPosX, int iPosY);
 	void onMouseLeftClick(int iPosX, int iPosY);
@@ -32,6 +33,7 @@ protected:
 
 
 	void onTimer();
+
 
 	BoardGame mBoardGame;
 	Token mToken;
