@@ -26,5 +26,6 @@ private:
 	
 	PingPongPad mLeftPad;
 	PingPongPad mRightPad;
-    CollisionEngine mCollisionEngine;};
+    CollisionEngine mCollisionEngine;
+};
 

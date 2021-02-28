@@ -5,18 +5,18 @@ CollisionEngine::CollisionEngine() : mBallPtr(nullptr), mLeftPadPtr(nullptr), mR
 
 }
 
-void CollisionEngine::setBall(Ball* iBall)
+void CollisionEngine::setBall(PingPongBall* iBall)
 {
 	mBallPtr = iBall;
 
 }
 
-void CollisionEngine::setLeftPad(Pad* iPad)
+void CollisionEngine::setLeftPad(PingPongPad* iPad)
 {
 	mLeftPadPtr = iPad;
 }
 
-void CollisionEngine::setRightPad(Pad* iPad)
+void CollisionEngine::setRightPad(PingPongPad* iPad)
 {
 	mRightPadPtr = iPad;
 }

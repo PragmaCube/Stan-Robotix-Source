@@ -23,6 +23,16 @@ PingPongBall::PingPongBall()
 	mRadius = 20;
 }
 
+int PingPongBall::getX()
+{
+	return mCoorY;
+}
+
+int PingPongBall::getY()
+{
+	return mCoorX;
+}
+
 void PingPongBall::setColor(COLORREF iRef)
 {
 	mColor = iRef;

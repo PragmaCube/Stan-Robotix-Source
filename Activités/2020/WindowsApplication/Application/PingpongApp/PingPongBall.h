@@ -6,6 +6,10 @@ class PingPongBall
 public:
 	PingPongBall();
 
+	int getX();
+	int getY();
+
+
 	void setColor(COLORREF iRef);
 	void updateDrawingArea(RECT iWindowRect);
 

@@ -4,10 +4,19 @@
 #include <time.h>       
 #include <math.h>
 
-PingPongPad::PingPongPad()
+PingPongPad::PingPongPad(int iId) : mBallPtr(nullptr)
 {
 }
 
+void PingPongPad::setBall(PingPongBall* iBall)
+{
+	mBallPtr = iBall;
+}
+
+int PingPongPad::getY()
+{
+	return mCoorY;
+}
 
 
 void PingPongPad::setAsLeft(HDC ihdc, RECT& iPaintArea)

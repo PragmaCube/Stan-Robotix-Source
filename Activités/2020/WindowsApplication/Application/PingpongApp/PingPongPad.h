@@ -1,10 +1,18 @@
 #pragma once
 #include <Windows.h>
 
+#include "PingPongBall.h"
+
 	class PingPongPad
 	{
 	public:
-		PingPongPad();
+	    enum { eRightPadId, eLeftPadId };
+	
+		PingPongPad(int iId);
+
+		int getY();
+		
+		void setBall(PingPongBall* iball);
 
 		void setAsLeft(HDC ihdc, RECT& iPaintArea);
 		void setAsRight(HDC ihdc, RECT& iPaintArea);
@@ -16,6 +24,7 @@
 
 
 	private:
+		PingPongBall* mBallPtr;
 
 		const double mWidth = 20;
 		const double mHeight =	100;

@@ -1,9 +1,8 @@
 #include "PingPongApplication.h"
-#include "Ball.h"
 
 #include <string>
 
-PingPongApplication::PingPongApplication() :mLeftPad(Pad::eLeftPadId), mRightPad(Pad::eRightPadId)
+PingPongApplication::PingPongApplication() :mLeftPad(PingPongPad::eLeftPadId), mRightPad(PingPongPad::eRightPadId)
 {
 	int wRed = (1 & 0x1) ? 255 : 0; // Le premier bit détermine si la composante rouge.
 	int wGreen = (1 & 0x2) ? 255 : 0; // Le deuxieme bit détermine si la composante verte.
@@ -21,6 +20,7 @@ PingPongApplication::PingPongApplication() :mLeftPad(Pad::eLeftPadId), mRightPad
 
 void PingPongApplication::paint(HDC ihdc, RECT& iPaintArea)
 {
+	std::wstring wTitle = L"Application de Pingpong";
 
 	::DrawText(
 		ihdc,
