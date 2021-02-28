@@ -18,18 +18,18 @@ PingPongPad::PingPongPad(int iId) :
 
 	if (iId == PingPongPad::eLeftPadId)
 	{
-		int mCoorX = 230; // Mauvaise intention. mCoorX est une variable locale a ta fonction.
-		int mCoorY = 300; // Je pense que tu veux modifier les proprietes de l objet lui meme.
-		char iChar1 = 'a';// Si oui enleve int, char.... comme cela. 
-		char iChar2 = 'z';
-		int mSpeed = 10;
+		mCoorX = 230; // Mauvaise intention. mCoorX est une variable locale a ta fonction.
+		mCoorY = 300; // Je pense que tu veux modifier les proprietes de l objet lui meme.
+		iChar1 = 'a';// Si oui enleve int, char.... comme cela. 
+		iChar2 = 'z';
+	    mSpeed = 10;
 
 		wColor = RGB(0, 0/*wGreen*/, 255 /*wBlue*/);
 	}
 	else
 	{
-		int mCoorX = 900;
-		int mCoorY = 300;
+		mCoorX = 900;
+		mCoorY = 300;
 
 		wColor = RGB(0, 255/*wGreen*/, 0 /*wBlue*/);
 	}
@@ -38,10 +38,21 @@ PingPongPad::PingPongPad(int iId) :
 	mBrush = CreateSolidBrush(wColor);
 }
 
+
+void PingPongPad::UpdatePosition()
+{
+	if (mBallPtr != nullptr)
+	{
+		mCoorY = mBallPtr->getY();
+	}
+}
+
 void PingPongPad::setBall(PingPongBall* iBall)
 {
 	mBallPtr = iBall;
 }
+
+
 
 int PingPongPad::getY()
 {
@@ -64,6 +75,7 @@ void PingPongPad::paint(HDC ihdc, RECT& iPaintArea)
 		wPadRect.right,
 		wPadRect.bottom);
 }
+
 void PingPongPad::moovePad(char iChar)
 {
 	if (iChar == iChar1)

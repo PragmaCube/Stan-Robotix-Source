@@ -29,7 +29,7 @@ void PingPongApplication::paint(HDC ihdc, RECT& iPaintArea)
 	mBall.updateDrawingArea(iPaintArea);
 	mBall.paint(ihdc);
 	mBall.applyTime();
-
+	mRightPad.UpdatePosition();
 	mLeftPad.paint(ihdc, iPaintArea);
 	mRightPad.paint(ihdc, iPaintArea);
 }

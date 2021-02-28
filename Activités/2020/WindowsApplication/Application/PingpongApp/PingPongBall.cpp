@@ -22,12 +22,12 @@ PingPongBall::PingPongBall() :
 
 int PingPongBall::getX()
 {
-	return mCoorY;
+	return mCoorX;
 }
 
 int PingPongBall::getY()
 {
-	return mCoorX;
+	return mCoorY;
 }
 void PingPongBall::updateDrawingArea(RECT iWindowRect)
 {

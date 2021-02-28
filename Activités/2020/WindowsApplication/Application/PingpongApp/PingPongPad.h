@@ -18,6 +18,8 @@
 
 		void paint(HDC ihdc, RECT& iPaintArea);
 
+		void UpdatePosition();
+
 
 	private:
 		PingPongBall* mBallPtr;
