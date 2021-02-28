@@ -1,5 +1,8 @@
 #pragma once
 #include "../../Framework/IApplication.h"
+#include "Pad.h"
+#include "Ball.h"
+#include "CollisionEngine.h"
 
 class PingPongApplication : public IApplication
 {
@@ -17,5 +20,10 @@ protected:
 	void onMouseRightClick(int iPosX, int iPosY);
 
 	void onTimer();
+
+private:
+	Pad mLeftPad, mRightPad;
+	CollisionEngine mCollisionEngine;
+	Ball mBall;
 };
 
