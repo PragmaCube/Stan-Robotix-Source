@@ -2,6 +2,7 @@
 #include "../../Framework/IApplication.h"
 #include "PingPongBall.h"
 #include "PingPongPad.h"
+#include "CollisionEngine.h"
 
 class PingPongApplication : public IApplication
 {
@@ -25,7 +26,5 @@ private:
 	
 	PingPongPad mLeftPad;
 	PingPongPad mRightPad;
-	/*
-	DynamicMechanic mEngine;*/
-};
+    CollisionEngine mCollisionEngine;};
 

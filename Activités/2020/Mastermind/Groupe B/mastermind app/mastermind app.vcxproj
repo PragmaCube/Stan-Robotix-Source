@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{434fe9f9-789e-48ea-bd25-83029bbfe9ca}</ProjectGuid>
-    <RootNamespace>WindowsApp</RootNamespace>
+    <ProjectGuid>{85ea6aaa-0760-413c-9a0d-0344bfc4138e}</ProjectGuid>
+    <RootNamespace>mastermindapp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -86,11 +86,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -100,11 +100,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -114,11 +114,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -128,58 +128,22 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Application\BattleshipApp\BattleshipApplication.h" />
-    <ClInclude Include="Application\Connect4App\ConnectFourApplication.h" />
-    <ClInclude Include="Application\DemoApp\DemoAppBall.h" />
-    <ClInclude Include="Application\DemoApp\DemoApplication.h" />
-    <ClInclude Include="Application\DessinApp\DessinApplication.h" />
-    <ClInclude Include="Application\PingpongApp\Ball.h" />
-    <ClInclude Include="Application\PingpongApp\CollisionEngine.h" />
-    <ClInclude Include="Application\PingpongApp\Pad.h" />
-    <ClInclude Include="Framework\IApplication.h" />
-    <ClInclude Include="Application\PacmanApp\PacmanApplication.h" />
-    <ClInclude Include="Application\PingpongApp\PingPongApplication.h" />
-    <ClInclude Include="Application\SnakeApp\SnakeApplication.h" />
-    <ClInclude Include="Framework\WindowsFrame.h" />
-    <ClInclude Include="Framework\framework.h" />
-    <ClInclude Include="Framework\Resource.h" />
-    <ClInclude Include="Framework\targetver.h" />
-    <ClInclude Include="Framework\WindowsApp.h" />
-    <ClInclude Include="resource.h" />
+    <ClCompile Include="algorithme.cpp" />
+    <ClCompile Include="mastermind app.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Application\BattleshipApp\BattleshipApplication.cpp" />
-    <ClCompile Include="Application\Connect4App\ConnectFourApplication.cpp" />
-    <ClCompile Include="Application\DemoApp\DemoAppBall.cpp" />
-    <ClCompile Include="Application\DemoApp\DemoApplication.cpp" />
-    <ClCompile Include="Application\DessinApp\DessinApplication.cpp" />
-    <ClCompile Include="Application\PacmanApp\PacmanApplication.cpp" />
-    <ClCompile Include="Application\PingpongApp\Ball.cpp" />
-    <ClCompile Include="Application\PingpongApp\CollisionEngine.cpp" />
-    <ClCompile Include="Application\PingpongApp\Pad.cpp" />
-    <ClCompile Include="Application\PingpongApp\PingPongApplication.cpp" />
-    <ClCompile Include="Application\SnakeApp\SnakeApplication.cpp" />
-    <ClCompile Include="Framework\WindowsFrame.cpp" />
-    <ClCompile Include="Framework\WindowsApp.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="WindowsApp.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="small.ico" />
-    <Image Include="WindowsApp.ico" />
+    <ClInclude Include="algorithme.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

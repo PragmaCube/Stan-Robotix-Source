@@ -24,4 +24,5 @@ protected:
 private:
 	int mNbActiveBall;
 	int mCircleRadius;
+	bool mTime;
 };
