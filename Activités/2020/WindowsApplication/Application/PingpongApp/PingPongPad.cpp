@@ -4,8 +4,38 @@
 #include <time.h>       
 #include <math.h>
 
-PingPongPad::PingPongPad(int iId) : mBallPtr(nullptr)
+PingPongPad::PingPongPad(int iId) : 
+	mBallPtr(nullptr), 
+	mCoorX(0),
+	mCoorY(0),
+	iChar1(0),
+	iChar2(0),
+	mIsInit(false),
+	mBrush(0),
+	mSpeed(0)
 {
+	COLORREF wColor = 0;
+
+	if (iId == PingPongPad::eLeftPadId)
+	{
+		int mCoorX = 230; // Mauvaise intention. mCoorX est une variable locale a ta fonction.
+		int mCoorY = 300; // Je pense que tu veux modifier les proprietes de l objet lui meme.
+		char iChar1 = 'a';// Si oui enleve int, char.... comme cela. 
+		char iChar2 = 'z';
+		int mSpeed = 10;
+
+		wColor = RGB(0, 0/*wGreen*/, 255 /*wBlue*/);
+	}
+	else
+	{
+		int mCoorX = 900;
+		int mCoorY = 300;
+
+		wColor = RGB(0, 255/*wGreen*/, 0 /*wBlue*/);
+	}
+
+	
+	mBrush = CreateSolidBrush(wColor);
 }
 
 void PingPongPad::setBall(PingPongBall* iBall)
@@ -18,33 +48,14 @@ int PingPongPad::getY()
 	return mCoorY;
 }
 
-
-void PingPongPad::setAsLeft(HDC ihdc, RECT& iPaintArea)
-{
-	int mCoorX= 230;
-	int mCoorY = 300;
-	char iChar1 = 'a';
-	char iChar2 = 'z';
-	int mSpeed = 10;
-}
-
-void PingPongPad::setAsRight(HDC ihdc, RECT& iPaintArea)
-{
-	int mCoorX = 900;
-	int mCoorY = 300;
-}
-
-
 void PingPongPad::paint(HDC ihdc, RECT& iPaintArea)
 {
-
 	::SelectObject(ihdc, mBrush);
 	RECT wPadRect;
 	wPadRect.left = mCoorX - mWidth / 2,
 		wPadRect.top = mCoorY - mHeight / 2,
 		wPadRect.right = mCoorX + mWidth / 2,
 		wPadRect.bottom = mCoorY + mHeight / 2;
-
 
 	::Rectangle(
 		ihdc,

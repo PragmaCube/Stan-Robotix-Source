@@ -5,22 +5,19 @@
 #include <time.h>       
 #include <math.h>
 
-PingPongBall::PingPongBall()
+PingPongBall::PingPongBall() : 
+	mCoorX(0.0),
+    mCoorY(0.0),
+    mSpeedX(0.0),
+    mSpeedY(0.0),
+	mIsInit(false),
+	mBrush(0)
 {
-	mColor = 0x00000000;
-
-	mCoorX = 0.0;
-	mCoorY = 0.0;
-	mSpeedX = 0.0;
-	mSpeedY = 0.0;
-
-	mIsInit = false;
-
-	mDrawingArea = { 0,0,0,0 };
-
-	mBrush = 0;
-
-	mRadius = 20;
+	int wRed   = (1 & 0x1) ? 255 : 0; // Le premier bit détermine si la composante rouge.
+	int wGreen = (1 & 0x2) ? 255 : 0; // Le deuxieme bit détermine si la composante verte.
+	int wBlue  = (1 & 0x4) ? 255 : 0; // Le troisieme bit détermine si la composante bleue.
+	COLORREF wColor = RGB(wRed, wGreen, wBlue);
+	mBrush = CreateSolidBrush(wColor);
 }
 
 int PingPongBall::getX()
@@ -32,20 +29,6 @@ int PingPongBall::getY()
 {
 	return mCoorX;
 }
-
-void PingPongBall::setColor(COLORREF iRef)
-{
-	mColor = iRef;
-	mBrush = CreateSolidBrush(iRef);
-
-	mCoorX = 0.0;
-	mCoorY = 0.0;
-	mSpeedX = 0.0;
-	mSpeedY = 0.0;
-
-	mIsInit = false;
-}
-
 void PingPongBall::updateDrawingArea(RECT iWindowRect)
 {
 	if (!mIsInit)
@@ -58,8 +41,6 @@ void PingPongBall::updateDrawingArea(RECT iWindowRect)
 
 		mIsInit = true;
 	}
-
-	mDrawingArea = iWindowRect;
 
 	if (mCoorX > iWindowRect.right)
 	{
@@ -114,28 +95,13 @@ void PingPongBall::decreaseSpeed()
 
 void PingPongBall::paint(HDC ihdc)
 {
-	::SelectObject(ihdc, mBrush);
+	HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBrush);
 
 	::Ellipse(ihdc,
 		(int)(mCoorX)-mRadius,
 		(int)(mCoorY)-mRadius,
 		(int)(mCoorX)+mRadius,
 		(int)(mCoorY)+mRadius);
-}
 
-void PingPongBall::increaseRadius()
-{
-	if (mRadius < 75)
-	{
-		mRadius += 10;
-	}
+	::SelectObject(ihdc, wOldBrush);
 }
-
-void PingPongBall::decreaseRadius()
-{
-	if (mRadius > 20)
-	{
-		mRadius -= 10;
-	}
-}
-

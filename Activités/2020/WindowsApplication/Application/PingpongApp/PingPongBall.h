@@ -9,8 +9,6 @@ public:
 	int getX();
 	int getY();
 
-
-	void setColor(COLORREF iRef);
 	void updateDrawingArea(RECT iWindowRect);
 
 	void increaseSpeed();
@@ -30,10 +28,7 @@ private:
 
 	bool mIsInit;
 
-	int mRadius;
+	const int mRadius = 20;
 
-	RECT mDrawingArea;
-
-	COLORREF mColor;
 	HBRUSH mBrush;
 };

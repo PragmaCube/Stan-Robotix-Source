@@ -14,11 +14,7 @@
 		
 		void setBall(PingPongBall* iball);
 
-		void setAsLeft(HDC ihdc, RECT& iPaintArea);
-		void setAsRight(HDC ihdc, RECT& iPaintArea);
-
 		void moovePad(char iChar);
-
 
 		void paint(HDC ihdc, RECT& iPaintArea);
 
@@ -29,14 +25,11 @@
 		const double mWidth = 20;
 		const double mHeight =	100;
 		int mCoorY, mCoorX, mSpeed;
-		char iChar1, iChar2;
+		char iChar1, iChar2; // Antoine mauvaise convention. Suffixe doit etre m pas i
+		                     // Que signifie iChar1 ? Pourquoi ne pas donner les noms mKeyUp et mKeyDown
 
 		bool mIsInit;
 
-
-		RECT mDrawingArea;
-
-		COLORREF mColor;
 		HBRUSH mBrush;
 	};
 
