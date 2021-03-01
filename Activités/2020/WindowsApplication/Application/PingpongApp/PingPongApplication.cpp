@@ -9,8 +9,7 @@ PingPongApplication::PingPongApplication() :
 	mCollisionEngine.setBall(&mBall);
 	mCollisionEngine.setLeftPad(&mLeftPad);
 	mCollisionEngine.setRightPad(&mRightPad);
-	mLeftPad.setBall(&mBall);
-	mRightPad.setBall(&mBall);
+
 	mLeftPad.setBall(&mBall);
 	mRightPad.setBall(&mBall);
 }
@@ -32,11 +31,20 @@ void PingPongApplication::paint(HDC ihdc, RECT& iPaintArea)
 	mRightPad.UpdatePosition();
 	mLeftPad.paint(ihdc, iPaintArea);
 	mRightPad.paint(ihdc, iPaintArea);
+	mCollisionEngine.rebound();
+	mCollisionEngine.updateDrawingArea(iPaintArea);
 }
 
 void PingPongApplication::onChar(char iChar, short iDetail)
 {
-
+	if (iChar == 'q')
+	{
+		mLeftPad.moovePadUp();
+	}
+	else if (iChar == 'a')
+	{
+		mLeftPad.moovePadDown();
+	}
 }
 
 

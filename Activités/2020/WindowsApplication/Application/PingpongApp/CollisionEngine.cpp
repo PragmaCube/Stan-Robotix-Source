@@ -27,3 +27,37 @@ void CollisionEngine::execute()
 	mLeftPadPtr->getY();
 	mRightPadPtr->getY();
 }
+
+void CollisionEngine::rebound()
+{
+	if (mBallPtr->getX() <= 250 && mLeftPadPtr->getY() - 100 <= mRightPadPtr->getY() && mRightPadPtr->getY() <= mLeftPadPtr->getY() + 100)
+	{
+		mBallPtr->flipXSpeed();
+	}
+	
+	else if (mBallPtr->getX() >= 880)
+	{
+		mBallPtr->flipXSpeed();
+	}
+}
+
+void CollisionEngine::updateDrawingArea(RECT iWindowRect)
+{
+	if (mBallPtr->getX() > iWindowRect.right)
+	{
+		mBallPtr->flipXSpeed();
+	}
+	else if (mBallPtr->getX() < iWindowRect.left)
+	{
+		mBallPtr->flipXSpeed();
+	}
+
+	if (mBallPtr->getY() > iWindowRect.bottom)
+	{
+		mBallPtr->flipYSpeed();
+	}
+	else if (mBallPtr->getY() < iWindowRect.top)
+	{
+		mBallPtr->flipYSpeed();
+	}
+}

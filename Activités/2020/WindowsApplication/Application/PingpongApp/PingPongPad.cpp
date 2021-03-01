@@ -8,8 +8,8 @@ PingPongPad::PingPongPad(int iId) :
 	mBallPtr(nullptr), 
 	mCoorX(0),
 	mCoorY(0),
-	iChar1(0),
-	iChar2(0),
+	mKeyUp(0),
+	mKeyDown(0),
 	mIsInit(false),
 	mBrush(0),
 	mSpeed(0)
@@ -18,13 +18,14 @@ PingPongPad::PingPongPad(int iId) :
 
 	if (iId == PingPongPad::eLeftPadId)
 	{
-		mCoorX = 230; // Mauvaise intention. mCoorX est une variable locale a ta fonction.
-		mCoorY = 300; // Je pense que tu veux modifier les proprietes de l objet lui meme.
-		iChar1 = 'a';// Si oui enleve int, char.... comme cela. 
-		iChar2 = 'z';
-	    mSpeed = 10;
+		mCoorX = 230; 
+		mCoorY = 300;
+		mKeyUp = 'q';
+		mKeyDown = 'a';
+	    mSpeed = 30;
 
 		wColor = RGB(0, 0/*wGreen*/, 255 /*wBlue*/);
+
 	}
 	else
 	{
@@ -76,14 +77,12 @@ void PingPongPad::paint(HDC ihdc, RECT& iPaintArea)
 		wPadRect.bottom);
 }
 
-void PingPongPad::moovePad(char iChar)
+void PingPongPad::moovePadUp()
 {
-	if (iChar == iChar1)
-	{
-		mCoorY -= mSpeed;
-	}
-	else if (iChar == iChar2)
-	{
-		mCoorY += mSpeed;
-	}
+	mCoorY -= mSpeed;
+}
+
+void PingPongPad::moovePadDown()
+{
+	mCoorY += mSpeed;
 }

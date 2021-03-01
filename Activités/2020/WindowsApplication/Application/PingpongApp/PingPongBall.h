@@ -14,15 +14,20 @@ public:
 	void increaseSpeed();
 	void decreaseSpeed();
 
-	void applyTime();
+	void flipYSpeed();
+	void flipXSpeed();
 
 	void paint(HDC ihdc);
+
+	void applyTime();
 
 	void increaseRadius();
 	void decreaseRadius();
 
 
 private:
+
+
 	double mCoorX, mCoorY;
 	double mSpeedX, mSpeedY;
 
