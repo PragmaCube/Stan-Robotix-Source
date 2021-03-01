@@ -28,7 +28,7 @@ void CollisionEngine::execute()
 	mRightPadPtr->getY();
 }
 
-void CollisionEngine::rebound()
+void CollisionEngine::rebound(RECT iWindowRect)
 {
 	if (mBallPtr->getX() <= 250 && mLeftPadPtr->getY() - 100 <= mRightPadPtr->getY() && mRightPadPtr->getY() <= mLeftPadPtr->getY() + 100)
 	{
@@ -39,10 +39,7 @@ void CollisionEngine::rebound()
 	{
 		mBallPtr->flipXSpeed();
 	}
-}
 
-void CollisionEngine::updateDrawingArea(RECT iWindowRect)
-{
 	if (mBallPtr->getX() > iWindowRect.right)
 	{
 		mBallPtr->flipXSpeed();
@@ -61,3 +58,4 @@ void CollisionEngine::updateDrawingArea(RECT iWindowRect)
 		mBallPtr->flipYSpeed();
 	}
 }
+

@@ -12,8 +12,7 @@ public:
 	void setBall(PingPongBall* iball);
 	void setLeftPad(PingPongPad* iPad);
 	void setRightPad(PingPongPad* iPad);
-	void updateDrawingArea(RECT iWindowRect);
-	void rebound();
+	void rebound(RECT iWindowRect);
 
 private:
 	PingPongBall* mBallPtr;

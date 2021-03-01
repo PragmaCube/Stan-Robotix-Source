@@ -31,8 +31,7 @@ void PingPongApplication::paint(HDC ihdc, RECT& iPaintArea)
 	mRightPad.UpdatePosition();
 	mLeftPad.paint(ihdc, iPaintArea);
 	mRightPad.paint(ihdc, iPaintArea);
-	mCollisionEngine.rebound();
-	mCollisionEngine.updateDrawingArea(iPaintArea);
+	mCollisionEngine.rebound(iPaintArea);
 }
 
 void PingPongApplication::onChar(char iChar, short iDetail)
