@@ -1,6 +1,4 @@
-
 #include "PingPongBall.h"
-#include "CollisionEngine.h"
 
 #include <stdlib.h>     
 #include <time.h>       

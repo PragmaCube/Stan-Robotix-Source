@@ -36,14 +36,22 @@ void PingPongApplication::paint(HDC ihdc, RECT& iPaintArea)
 
 void PingPongApplication::onChar(char iChar, short iDetail)
 {
-	if (iChar == 'q')
+	switch (iChar)
 	{
-		mLeftPad.moovePadUp();
-	}
-	else if (iChar == 'a')
+	case('q'):
+	case('Q'):
 	{
-		mLeftPad.moovePadDown();
+		mLeftPad.movePadUp();
+		break;
 	}
+	case('a'):
+	case('A'):
+	{
+		mLeftPad.movePadDown();
+		break;
+	}
+	}
+	
 }
 
 

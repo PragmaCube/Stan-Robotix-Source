@@ -30,7 +30,7 @@ void CollisionEngine::execute()
 
 void CollisionEngine::rebound(RECT iWindowRect)
 {
-	if (mBallPtr->getX() <= 250 && mLeftPadPtr->getY() - 100 <= mRightPadPtr->getY() && mRightPadPtr->getY() <= mLeftPadPtr->getY() + 100)
+	if (mBallPtr->getX() <= 250 && mLeftPadPtr->getY() - mPadHeight/2 <= mRightPadPtr->getY() && mRightPadPtr->getY() <= mLeftPadPtr->getY() + mPadHeight/2)
 	{
 		mBallPtr->flipXSpeed();
 	}
@@ -58,4 +58,3 @@ void CollisionEngine::rebound(RECT iWindowRect)
 		mBallPtr->flipYSpeed();
 	}
 }
-

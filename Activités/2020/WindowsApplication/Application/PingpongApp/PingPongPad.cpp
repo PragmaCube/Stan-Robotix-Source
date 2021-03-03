@@ -77,12 +77,12 @@ void PingPongPad::paint(HDC ihdc, RECT& iPaintArea)
 		wPadRect.bottom);
 }
 
-void PingPongPad::moovePadUp()
+void PingPongPad::movePadUp()
 {
 	mCoorY -= mSpeed;
 }
 
-void PingPongPad::moovePadDown()
+void PingPongPad::movePadDown()
 {
 	mCoorY += mSpeed;
 }

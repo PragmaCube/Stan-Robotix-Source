@@ -21,12 +21,7 @@ public:
 
 	void applyTime();
 
-	void increaseRadius();
-	void decreaseRadius();
-
-
 private:
-
 
 	double mCoorX, mCoorY;
 	double mSpeedX, mSpeedY;

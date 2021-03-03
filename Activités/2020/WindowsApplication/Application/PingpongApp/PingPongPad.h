@@ -14,9 +14,9 @@
 		
 		void setBall(PingPongBall* iball);
 
-		void moovePadUp();
+		void movePadUp();
 
-		void moovePadDown();
+		void movePadDown();
 
 		void paint(HDC ihdc, RECT& iPaintArea);
 
