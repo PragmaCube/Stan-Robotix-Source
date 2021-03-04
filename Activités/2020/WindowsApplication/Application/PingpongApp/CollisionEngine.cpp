@@ -1,4 +1,5 @@
 #include "CollisionEngine.h"
+#include <time.h>
 
 CollisionEngine::CollisionEngine() : mBallPtr(nullptr), mLeftPadPtr(nullptr), mRightPadPtr(nullptr)
 {
@@ -33,6 +34,7 @@ void CollisionEngine::rebound(RECT iWindowRect)
 	if (mBallPtr->getX() <= 250 && mLeftPadPtr->getY() - mPadHeight/2 <= mRightPadPtr->getY() && mRightPadPtr->getY() <= mLeftPadPtr->getY() + mPadHeight/2)
 	{
 		mBallPtr->flipXSpeed();
+		mBallPtr->increaseSpeed();
 	}
 	
 	else if (mBallPtr->getX() >= 880)
@@ -43,10 +45,12 @@ void CollisionEngine::rebound(RECT iWindowRect)
 	if (mBallPtr->getX() > iWindowRect.right)
 	{
 		mBallPtr->flipXSpeed();
+		mBallPtr->decreaseSpeed();
 	}
 	else if (mBallPtr->getX() < iWindowRect.left)
 	{
-		mBallPtr->flipXSpeed();
+		Sleep(1000);
+		mBallPtr->restart(iWindowRect);
 	}
 
 	if (mBallPtr->getY() > iWindowRect.bottom)

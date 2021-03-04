@@ -21,6 +21,8 @@ public:
 
 	void applyTime();
 
+	void restart(RECT iWindowRect);
+
 private:
 
 	double mCoorX, mCoorY;

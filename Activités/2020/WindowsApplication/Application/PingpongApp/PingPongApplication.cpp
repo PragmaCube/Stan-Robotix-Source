@@ -16,7 +16,7 @@ PingPongApplication::PingPongApplication() :
 
 void PingPongApplication::paint(HDC ihdc, RECT& iPaintArea)
 {
-	std::wstring wTitle = L"Application de Pingpong";
+	std::wstring wTitle = L"Application de Pong";
 
 	::DrawText(
 		ihdc,
@@ -28,6 +28,7 @@ void PingPongApplication::paint(HDC ihdc, RECT& iPaintArea)
 	mBall.updateDrawingArea(iPaintArea);
 	mBall.paint(ihdc);
 	mBall.applyTime();
+	
 	mRightPad.UpdatePosition();
 	mLeftPad.paint(ihdc, iPaintArea);
 	mRightPad.paint(ihdc, iPaintArea);
@@ -81,3 +82,5 @@ void PingPongApplication::onTimer()
 
 	IApplication::onTimer(); // Pour redessiner l'ecran
 }
+
+

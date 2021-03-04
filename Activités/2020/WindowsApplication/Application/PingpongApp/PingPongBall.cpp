@@ -92,3 +92,12 @@ void PingPongBall::paint(HDC ihdc)
 
 	::SelectObject(ihdc, wOldBrush);
 }
+
+void PingPongBall::restart(RECT iWindowRect)
+{
+	mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
+	mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
+
+	mSpeedX = (double)(rand() % 5 - 10);
+	mSpeedY = (double)(rand() % 5 - 10);
+}
