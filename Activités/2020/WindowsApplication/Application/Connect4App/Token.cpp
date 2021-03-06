@@ -49,3 +49,13 @@ void Token::setPosition(int iPosX, int iPosY)
 	mPosX = iPosX;
 	mPosY = iPosY;
 }
+
+void Token::color(HDC ihdc, RECT& iPaintArea)
+{
+	::Ellipse(ihdc,
+		(int)(150)-15,
+		(int)(50)-15,
+		(int)(150)+15,
+		(int)(50)+15);
+
+}

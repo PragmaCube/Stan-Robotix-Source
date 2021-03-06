@@ -1,6 +1,7 @@
 #include "BoardGame.h"
 
-BoardGame::BoardGame() {
+BoardGame::BoardGame() 
+{
 	mTokenList.resize(42); // =6*7 
 }
 void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
@@ -21,44 +22,31 @@ void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 	mRed.drawTokenRed(ihdc, iPaintArea);
 	mBlue.drawTokenBlue(ihdc, iPaintArea);
 
-	/*if (mColor = true)
-	{
-		::Ellipse(ihdc,
-			(int)(100)-100,
-			(int)(25)-100,
-			(int)(100)+100,
-			(int)(25)+100);
-
-		HGDIOBJ wOldBrush = ::SelectObject(ihdc, mColor.mBlueBrush);
-
-
-		::FloodFill(ihdc, 100, 25, RGB(0, 0, 0));
-
-		::SelectObject(ihdc, wOldBrush);
-	}*/
+	
 }
 
 void BoardGame::AddRedToken(int iPosX, int iPosY)
-{  
-	if (mColor = false)
+{   
+	if (mToken.mColor = false)
 	{
 		mRed.setPosition(iPosX, iPosY);
 	}
+		
 	
 }
 
 void BoardGame::AddBlueToken(int iPosX, int iPosY)
 {
-	if (mColor = true)
+	if (mToken.mColor = true)
 	{
 		mBlue.setPosition(iPosX, iPosY);
-	}
+	}	
 	
 }
 
 void BoardGame::InitArray()
 {
-	int mGridState[6][7];
+	
 
 	for (int i = 0; i < 7; i++)
 	{
@@ -77,7 +65,9 @@ void BoardGame::click(int iPosX, int iPosY)
 	{
 		mRow = (iPosY - kTopBorder) / kSizeSideCell;
 		mColumn = (iPosX - kLeftBorder) / kSizeTopCell;
+
+		mGridState[mRow][mColumn] = 1;
 	}
 }
 
-// dessiner un petit cercle de la couleur du jeton qui doit etre poser
+
