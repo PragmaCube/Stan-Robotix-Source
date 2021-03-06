@@ -17,8 +17,6 @@ private:
 
 	std::vector<Token> mTokenList;
 
-	
-
 public:
 	BoardGame();
 	void paint(HDC ihdc, RECT& iPaintArea);
@@ -30,6 +28,7 @@ public:
 
 	Token mRed;
 	Token mBlue;
+	Token mToken;
 	
 
 };
