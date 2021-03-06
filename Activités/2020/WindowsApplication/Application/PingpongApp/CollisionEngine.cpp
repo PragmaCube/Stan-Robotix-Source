@@ -46,12 +46,7 @@ void CollisionEngine::rebound(RECT iWindowRect)
 		mBallPtr->flipXSpeed();
 	}
 
-	if (mBallPtr->getX() > iWindowRect.right)
-	{
-		mBallPtr->flipXSpeed();
-		mBallPtr->decreaseSpeed();
-	}
-	else if (mBallPtr->getX() < iWindowRect.left)
+	if (mBallPtr->getX() < iWindowRect.left)
 	{
 		Sleep(1000);
 		mBallPtr->restart(iWindowRect);

@@ -32,7 +32,7 @@ void PingPongBall::updateDrawingArea(RECT iWindowRect)
 {
 	if (!mIsInit)
 	{
-		mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
+		mCoorX = ((iWindowRect.left + iWindowRect.right) / 2);
 		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
 
 		mSpeedX = (double)(rand() % 5 - 10);
@@ -95,7 +95,7 @@ void PingPongBall::paint(HDC ihdc)
 
 void PingPongBall::restart(RECT iWindowRect)
 {
-	mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
+	mCoorX = ((iWindowRect.left + iWindowRect.right) / 2);
 	mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
 
 	mSpeedX = (double)(rand() % 5 - 10);
