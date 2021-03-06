@@ -20,12 +20,15 @@
 
 		void paint(HDC ihdc, RECT& iPaintArea);
 
+		void initialiser(RECT iWindowRect);
+
 		void UpdatePosition();
 
 
 	private:
 		PingPongBall* mBallPtr;
 
+		int mCoorYMax, mCoorYMin;
 		const double mWidth = 20;
 		const double mHeight =	100;
 		int mCoorY, mCoorX, mSpeed;

@@ -19,6 +19,8 @@ private:
 	PingPongPad* mLeftPadPtr;
 	PingPongPad* mRightPadPtr;
 
+	bool init = false;
+
 	const int mPadWith = 20;
 	const int mPadHeight = 200;
 };

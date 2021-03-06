@@ -21,8 +21,6 @@ protected:
 
 	void onTimer();
 
-	void changeStart();
-
 private:
 	PingPongBall mBall;
 	

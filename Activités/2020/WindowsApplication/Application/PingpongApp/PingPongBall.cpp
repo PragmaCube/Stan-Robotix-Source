@@ -62,7 +62,7 @@ void PingPongBall::increaseSpeed()
 {
 	double wSpeed = sqrt(mSpeedX * mSpeedX + mSpeedY * mSpeedY);
 
-	if (wSpeed < 40.0)
+	if (wSpeed < 400.0)
 	{
 		mSpeedX = mSpeedX * 1.1;
 		mSpeedY = mSpeedY * 1.1;

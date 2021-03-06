@@ -77,12 +77,25 @@ void PingPongPad::paint(HDC ihdc, RECT& iPaintArea)
 		wPadRect.bottom);
 }
 
+void PingPongPad::initialiser(RECT iWindowRect)
+{
+	mCoorYMax = iWindowRect.top + mHeight / 2;
+	mCoorYMin = iWindowRect.bottom - mHeight / 2;
+}
+
 void PingPongPad::movePadUp()
 {
-	mCoorY -= mSpeed;
+	if (mCoorY > mCoorYMax)
+	{
+		mCoorY -= mSpeed;
+	}
 }
 
 void PingPongPad::movePadDown()
 {
-	mCoorY += mSpeed;
+	if (mCoorY < mCoorYMin)
+	{
+		mCoorY += mSpeed;
+	}
 }
+
