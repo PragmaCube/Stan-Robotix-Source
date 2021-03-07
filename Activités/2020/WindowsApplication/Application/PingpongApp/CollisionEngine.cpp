@@ -21,12 +21,7 @@ void CollisionEngine::setRightPad(PingPongPad* iPad)
 	mRightPadPtr = iPad;
 }
 
-void CollisionEngine::execute()
-{
-	mBallPtr->getX();
-	mLeftPadPtr->getY();
-	mRightPadPtr->getY();
-}
+
 
 void CollisionEngine::rebound(RECT iWindowRect)
 {
