@@ -15,15 +15,19 @@ private:
 
 	int mGridState[6][7];
 
+	enum { eNothing, eRed, eBlue };
+
 	std::vector<Token> mTokenList;
+
+	int getColumn(int iPosX);
+	int getRow(int iColumn);
 
 public:
 	BoardGame();
 	void paint(HDC ihdc, RECT& iPaintArea);
-	void AddRedToken(int iPosX, int iPosY);
-	void AddBlueToken(int iPosX, int iPosY);
+	void AddRedToken(int iPosX);
+	void AddBlueToken(int iPosX);
 	void InitArray();
-	void click(int iPosX, int iPosY);
 	
 
 	Token mRed;

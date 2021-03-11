@@ -12,14 +12,13 @@ public:
 	void drawTokenBlue(HDC ihdc, RECT& iPaintArea);
 	void drawToken(HDC ihdc, RECT& iPaintArea, HBRUSH & iBrush);
 	void setPosition(int iPosX, int iPosY);
-	void color(HDC ihdc, RECT& iPaintArea);
+	void setcolor(HDC ihdc, RECT& iPaintArea, HBRUSH & iBrush); //indication de la couleur par un cercle afficher en haut 
 
 	HBRUSH mRedBrush, mBlueBrush;
-	bool mColor;
+	bool mColor;  // si vrai le jeton est bleu sinon rouge
 private:
 
 	int mPosX, mPosY;
-	
 	bool mPos;
 	
 

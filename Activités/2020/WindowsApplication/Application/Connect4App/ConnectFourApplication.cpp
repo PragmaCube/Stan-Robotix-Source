@@ -2,9 +2,8 @@
 
 #include <string>
 
-ConnectFourApplication::ConnectFourApplication() : mPosX(0), mPosY(0)
+ConnectFourApplication::ConnectFourApplication() 
 {
-		mLastClickType = eClickNone;	
 }
 
  void ConnectFourApplication::paint(HDC ihdc, RECT& iPaintArea)
@@ -18,7 +17,7 @@ ConnectFourApplication::ConnectFourApplication() : mPosX(0), mPosY(0)
 		&iPaintArea,
 		DT_CENTER | DT_TOP);
 
-	    mBoardGame.paint(ihdc, iPaintArea);
+	mBoardGame.paint(ihdc, iPaintArea);
 }
 
 void ConnectFourApplication::onChar(char iChar, short iDetail)
@@ -29,40 +28,25 @@ void ConnectFourApplication::onChar(char iChar, short iDetail)
 	}
 }
 
-/*void ConnectFourApplication::onKeyDown(char iChar, short iDetail)
+void ConnectFourApplication::onKeyDown(char iChar, short iDetail)
 {
 }
-*/
+
 
 void ConnectFourApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 {
-	mPosX = iPosX;
-	mPosY = iPosY;
 
-	mLastClickType = eLeftDoubleClick;
 }
 
 void ConnectFourApplication::onMouseLeftClick(int iPosX, int iPosY)
 {
-	mLastClickType = eLeftClick;
-	mToken.mColor = true;
+	mBoardGame.AddBlueToken(iPosX);
 }
 
 void ConnectFourApplication::onMouseRightClick(int iPosX, int iPosY)
 {
-    mLastClickType = eRightClick;
-	mToken.mColor = false;
+	mBoardGame.AddRedToken(iPosX);
 }
-
-/*
-void ConnectFourApplication::drawHorizontalLines()
-{
-}
-
-void ConnectFourApplication::drawVerticalLines()
-{
-}
-*/
 
 void ConnectFourApplication::onTimer()
 {
