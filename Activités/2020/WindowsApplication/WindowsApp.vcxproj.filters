@@ -137,7 +137,6 @@
     <ClCompile Include="Application\BattleshipApp\GameBoard.cpp">
       <Filter>Application\Battleship</Filter>
     </ClCompile>
-    </ClCompile>
     <ClCompile Include="Application\PingpongApp\Ball.cpp">
       <Filter>Application\PingPong</Filter>
     </ClCompile>
