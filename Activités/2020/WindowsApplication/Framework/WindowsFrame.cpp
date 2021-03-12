@@ -146,6 +146,9 @@ void DemoWindowsFrame::switchApp(int iAppId)
 	case ID_APPLICATION_DESSIN:
 		mCurrentApplication = new DessinApplication();
 		break;
+	case ID_APPLICATION_PACMAN:
+		mCurrentApplication = new PacmanApplication();
+		break;
 	};
 
 	if (nullptr != mCurrentApplication)

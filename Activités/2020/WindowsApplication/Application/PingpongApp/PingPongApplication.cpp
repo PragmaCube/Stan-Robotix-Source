@@ -1,14 +1,23 @@
 #include "PingPongApplication.h"
+#include "Ball.h"
 
 #include <string>
 
-PingPongApplication::PingPongApplication()
+PingPongApplication::PingPongApplication() :mLeftPad(Pad::eLeftPadId), mRightPad(Pad::eRightPadId)
 {
+	mCollisionEngine.setBall(&mBall);
+	mCollisionEngine.setLeftPad(&mLeftPad);
+	mCollisionEngine.setRightPad(&mRightPad);
 
+	mLeftPad.setBall(&mBall);
+	mRightPad.setBall(&mBall);
 }
 
 void PingPongApplication::paint(HDC ihdc, RECT& iPaintArea)
 {
+	Pad wDummyPad(Pad::eLeftPadId);
+	wDummyPad.setBall((Ball*) 0x12345678);
+
 	std::wstring wTitle = L"Application de Pingpong";
 
 	::DrawText(

@@ -86,6 +86,16 @@
     <ClInclude Include="Application\BattleshipApp\GameBoard.h">
       <Filter>Application\Battleship</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Application\PingpongApp\Ball.h">
+      <Filter>Application\PingPong</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PingpongApp\CollisionEngine.h">
+      <Filter>Application\PingPong</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PingpongApp\Pad.h">
+      <Filter>Application\PingPong</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\WindowsApp.cpp">
@@ -126,6 +136,16 @@
     </ClCompile>
     <ClCompile Include="Application\BattleshipApp\GameBoard.cpp">
       <Filter>Application\Battleship</Filter>
+    </ClCompile>
+    </ClCompile>
+    <ClCompile Include="Application\PingpongApp\Ball.cpp">
+      <Filter>Application\PingPong</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PingpongApp\CollisionEngine.cpp">
+      <Filter>Application\PingPong</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PingpongApp\Pad.cpp">
+      <Filter>Application\PingPong</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
