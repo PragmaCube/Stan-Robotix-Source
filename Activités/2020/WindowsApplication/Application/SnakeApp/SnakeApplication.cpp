@@ -29,16 +29,19 @@ void SnakeApplication::onChar(char iChar, short iDetail)
 			{
 			case 'a':
 			case 'A':
-				Serpent::ProchaineDirection = 'gauche';
+				Serpent::ProchaineDirection gauche =  gauche ;
 				break;
 			case 's':
 			case 'S':
+				Serpent::ProchaineDirection bas = bas ;
 				break;
 			case 'd':
 			case 'D':
-				break;
+				Serpent::ProchaineDirection droite = droite ;
+				break;	
 			case 'w':
 			case 'W':
+				Serpent::ProchaineDirection haut = haut ;
 				break;
 			};
 		}
