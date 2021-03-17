@@ -18,6 +18,9 @@ void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 		wTitle.length(),
 		&iPaintArea,
 		DT_CENTER | DT_TOP);
+		mDemoAppBall[i].updateDrawingArea(iPaintArea);
+		mDemoAppBall[i].paint(ihdc);
+
 
 
 }
