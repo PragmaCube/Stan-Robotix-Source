@@ -38,6 +38,11 @@ void PingPongApplication::onKeyDown(char iChar, short iDetail)
 
 }
 
+void PingPongApplication::onMouseMove(int iPosX, int iPosY)
+{
+
+}
+
 void PingPongApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 {
 

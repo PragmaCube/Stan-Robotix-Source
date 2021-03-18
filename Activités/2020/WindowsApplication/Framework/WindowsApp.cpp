@@ -185,6 +185,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         mFrameWindows.onMouseRightClick(GET_X_LPARAM(lParam),
                                         GET_Y_LPARAM(lParam));
         break;
+
+    case WM_MOUSEMOVE:
+        if (MK_LBUTTON == wParam)
+        {
+            mFrameWindows.onMouseMove(GET_X_LPARAM(lParam),
+                                      GET_Y_LPARAM(lParam));
+        }
+        break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
@@ -205,7 +213,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         lpMMI->ptMinTrackSize.x = DemoWindowsFrame::DEMO_WINDOWS_SIZE_WIDTH;
         lpMMI->ptMinTrackSize.y = DemoWindowsFrame::DEMO_WINDOWS_SIZE_HEIGHT;
     }
- 
+
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
