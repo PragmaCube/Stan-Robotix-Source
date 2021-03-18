@@ -112,6 +112,11 @@ void DessinApplication::onKeyDown(char iChar, short iDetail)
 	}
 }
 
+void DessinApplication::onMouseMove(int iPosX, int iPosY)
+{
+
+}
+
 void DessinApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 {
 	mPosX = iPosX;

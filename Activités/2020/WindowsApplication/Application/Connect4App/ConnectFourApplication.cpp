@@ -29,6 +29,11 @@ void ConnectFourApplication::onKeyDown(char iChar, short iDetail)
 
 }
 
+void ConnectFourApplication::onMouseMove(int iPosX, int iPosY)
+{
+
+}
+
 void ConnectFourApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 {
 

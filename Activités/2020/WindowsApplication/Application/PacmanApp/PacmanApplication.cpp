@@ -29,6 +29,11 @@ void PacmanApplication::onKeyDown(char iChar, short iDetail)
 
 }
 
+void PacmanApplication::onMouseMove(int iPosX, int iPosY)
+{
+
+}
+
 void PacmanApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 {
 
