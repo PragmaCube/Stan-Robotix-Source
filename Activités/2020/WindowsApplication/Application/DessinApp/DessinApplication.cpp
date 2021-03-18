@@ -13,6 +13,10 @@ DessinApplication::DessinApplication() : mPosX(0), mPosY(0)
 		int wBlue = (i & 0x4) ? 255 : 0; // Le troisieme bit détermine si la composante bleue.
 		mBrush[i] = CreateSolidBrush(RGB(wRed, wGreen, wBlue));
 	}
+
+	mFreeWritingPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+
+	mPointList.empty();
 }
 
 void DessinApplication::paint(HDC ihdc, RECT& iPaintArea)
@@ -45,6 +49,8 @@ void DessinApplication::paint(HDC ihdc, RECT& iPaintArea)
 		drawStairs(ihdc, iPaintArea);
 		break;
 	};
+
+	drawFreeWriting(ihdc, iPaintArea);
 }
 
 void DessinApplication::drawHorizontalLines(HDC ihdc, RECT& iPaintArea)
@@ -89,6 +95,38 @@ void DessinApplication::drawConcentricCircle(HDC ihdc, RECT& iPaintArea)
 	::SelectObject(ihdc, wOldBrush);
 }
 
+void DessinApplication::drawFreeWriting(HDC ihdc, RECT& iPaintArea)
+{
+	if (!mPointList.empty())
+	{
+		bool wFirstPoint = false;
+		HGDIOBJ wOldPen = ::SelectObject(ihdc, mFreeWritingPen);
+
+		for (Point wPt : mPointList)
+		{
+			if (!wFirstPoint)
+			{
+				::MoveToEx(
+					ihdc,
+					wPt.getX(),
+					wPt.getY(),
+					nullptr);
+
+				wFirstPoint = true;
+			}
+			else
+			{
+				::LineTo(
+					ihdc,
+					wPt.getX(),
+					wPt.getY());
+			}
+		}
+
+		::SelectObject(ihdc, wOldPen);
+	}
+}
+
 void DessinApplication::drawStairs(HDC ihdc, RECT& iPaintArea)
 {
 
@@ -108,13 +146,15 @@ void DessinApplication::onKeyDown(char iChar, short iDetail)
 		if (wRep == IDYES)
 		{
 			mLastClickType = eClickNone;
+
+			mPointList.clear();
 		}
 	}
 }
 
 void DessinApplication::onMouseMove(int iPosX, int iPosY)
 {
-
+	mPointList.push_front(Point(iPosX, iPosY));
 }
 
 void DessinApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
