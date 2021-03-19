@@ -8,6 +8,10 @@
 
 		
 
+SnakeApplication::SnakeApplication()
+{
+}
+
 void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 {
 	std::wstring wTitle = L"Application de Snake";
@@ -18,36 +22,14 @@ void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 		wTitle.length(),
 		&iPaintArea,
 		DT_CENTER | DT_TOP);
-		mDemoAppBall[i].updateDrawingArea(iPaintArea);
-		mDemoAppBall[i].paint(ihdc);
 
+		
 
 
 }
 void SnakeApplication::onChar(char iChar, short iDetail)
 {
-		while (true)
-		{
-			switch (iChar)
-			{
-			case 'a':
-			case 'A':
-				Serpent::ProchaineDirection gauche =  gauche ;
-				break;
-			case 's':
-			case 'S':
-				Serpent::ProchaineDirection bas = bas ;
-				break;
-			case 'd':
-			case 'D':
-				Serpent::ProchaineDirection droite = droite ;
-				break;	
-			case 'w':
-			case 'W':
-				Serpent::ProchaineDirection haut = haut ;
-				break;
-			};
-		}
+
 }
 
 
