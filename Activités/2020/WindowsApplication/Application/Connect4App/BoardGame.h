@@ -13,21 +13,24 @@ private:
 	const int kTopBorder = 50;
 	const int kLeftBorder = 0;
 
+	bool mConnect;
+
 	int mGridState[6][7];
 
 	enum { eNothing, eRed, eBlue };
 
-	/*std::vector<Token> mTokenList;*/
+	std::vector<Token> mTokenList;
 
 	int getColumn(int iPosX);
-	int getRow(int iColumn);
+	int getRow( int iPosX);
 
 public:
-	//BoardGame();
+	BoardGame();
 	void paint(HDC ihdc, RECT& iPaintArea);
 	void AddRedToken(int iPosX);
 	void AddBlueToken(int iPosX);
 	void InitArray();
+	void CheckConnect(int iColumn, int iRow);
 	
 
 	Token mRed;

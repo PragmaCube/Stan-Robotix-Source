@@ -1,10 +1,10 @@
 #include "BoardGame.h"
 
-/*BoardGame::BoardGame() 
+BoardGame::BoardGame() 
 {
 	mTokenList.resize(42); // =6*7 
 	
-}*/
+}
 
 void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 {	
@@ -34,7 +34,7 @@ void BoardGame::AddRedToken(int iPosX)
 	int wSelectedColumn = getColumn(iPosX);
     int wSelectedRow = getRow(wSelectedColumn);
 
-	mRed.setPosition(wSelectedColumn * kSizeTopCell, wSelectedRow * kSizeSideCell);	// wSelectedColumn et wSelectedRow en coordonne pixel;
+	mRed.setPosition((wSelectedColumn * kSizeTopCell), (wSelectedRow * kSizeSideCell));	// wSelectedColumn et wSelectedRow en coordonne pixel;
 	
 	mGridState[wSelectedRow][wSelectedColumn] = eRed;
 	
@@ -67,13 +67,13 @@ int BoardGame::getColumn(int iPosX)
 	return wColumn;
 }
 
-int BoardGame::getRow(int iColumn)
+int BoardGame::getRow(int iPosX)
 {
 	int wRow = 0;
 
-	for (int i = 0; i < 7; i++)
+	for (int i = 6; i>0; i--)
 	{
-		if (mGridState[i][getColumn(iColumn)] == eNothing)
+		if (mGridState[i][getColumn(iPosX)] == eNothing)
 		{
 			wRow = 6;
 		}
@@ -82,8 +82,6 @@ int BoardGame::getRow(int iColumn)
 			wRow = i - 1;
 		}
 	}
-	//int mGridState[6][7];
-   // TODO BY LUNE
 
 
 	return wRow;
@@ -113,4 +111,22 @@ void BoardGame::click(int iPosX, int iPosY)
 	}
 }*/
 
+void BoardGame::CheckConnect(int iColumn, int iRow)
+{
+	/*for (int i = 0; i < 7; i++)
+	{
+		for (int j = 0; i < 8; i++)
+		{
+			for (int h = 0; h < 5; h++)
+			{
+				if (mGridState[i][j] = eRed || eBlue)
+				{
+					mConnect = true;
+				}
+			}
+
+		}
+	}
+	*/
+}
 

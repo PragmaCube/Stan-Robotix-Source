@@ -53,7 +53,7 @@ void Token::setcolor(HDC ihdc, RECT& iPaintArea, HBRUSH & iBrush)
 		(int)(150)+15,
 		(int)(50)+15);
 
-	if (mColor = true)
+	if (mColor == true)
 	{
 		HGDIOBJ wOldBrush = ::SelectObject(ihdc, iBrush);
 

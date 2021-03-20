@@ -39,7 +39,9 @@ void ConnectFourApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 }
 
 void ConnectFourApplication::onMouseLeftClick(int iPosX, int iPosY)
-{
+{ 
+	mLastClickType = eLeftClick;
+	
 	mBoardGame.AddBlueToken(iPosX);
 }
 
