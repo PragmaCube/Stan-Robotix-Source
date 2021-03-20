@@ -1,9 +1,10 @@
 #include "BoardGame.h"
 
-BoardGame::BoardGame() 
+/*BoardGame::BoardGame() 
 {
 	mTokenList.resize(42); // =6*7 
-}
+	
+}*/
 
 void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 {	
@@ -24,14 +25,18 @@ void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 
 	mRed.drawTokenRed(ihdc, iPaintArea);
 	mBlue.drawTokenBlue(ihdc, iPaintArea);
+
+	
 }
 
 void BoardGame::AddRedToken(int iPosX)
 {   
 	int wSelectedColumn = getColumn(iPosX);
-    int wSelectedRow = getColumn(wSelectedColumn);
+    int wSelectedRow = getRow(wSelectedColumn);
 
 	mRed.setPosition(wSelectedColumn * kSizeTopCell, wSelectedRow * kSizeSideCell);	// wSelectedColumn et wSelectedRow en coordonne pixel;
+	
+	mGridState[wSelectedRow][wSelectedColumn] = eRed;
 	
 }
 
@@ -42,6 +47,8 @@ void BoardGame::AddBlueToken(int iPosX)
 	
 
 	mBlue.setPosition(wSelectedColumn *kSizeTopCell, wSelectedRow*kSizeSideCell);	// wSelectedColumn et wSelectedRow en coordonne pixel;
+
+	mGridState[wSelectedRow][wSelectedColumn] = eBlue;
 }
 
 int BoardGame::getColumn(int iPosX)
@@ -51,7 +58,7 @@ int BoardGame::getColumn(int iPosX)
 	if ((kLeftBorder < iPosX) && (iPosX < kLeftBorder + (kSizeTopCell * 7))) // click dans l'espace de jeu
 
 	{
-		wColumn = (iPosX - kLeftBorder) / kSizeTopCell;
+		wColumn = iPosX / kSizeTopCell;
 		wColumn = (kSizeTopCell * wColumn) - (kSizeTopCell / 2);
 	}
 
@@ -64,10 +71,19 @@ int BoardGame::getRow(int iColumn)
 {
 	int wRow = 0;
 
-	int mGridState[6][7];
-	//mGridState[i][j] = eNothing
-
-	// TODO BY LUNE
+	for (int i = 0; i < 7; i++)
+	{
+		if (mGridState[i][getColumn(iColumn)] == eNothing)
+		{
+			wRow = 6;
+		}
+		else
+		{
+			wRow = i - 1;
+		}
+	}
+	//int mGridState[6][7];
+   // TODO BY LUNE
 
 
 	return wRow;

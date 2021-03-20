@@ -17,13 +17,13 @@ private:
 
 	enum { eNothing, eRed, eBlue };
 
-	std::vector<Token> mTokenList;
+	/*std::vector<Token> mTokenList;*/
 
 	int getColumn(int iPosX);
 	int getRow(int iColumn);
 
 public:
-	BoardGame();
+	//BoardGame();
 	void paint(HDC ihdc, RECT& iPaintArea);
 	void AddRedToken(int iPosX);
 	void AddBlueToken(int iPosX);
