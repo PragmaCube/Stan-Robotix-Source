@@ -10,9 +10,7 @@ class ConnectFourApplication :
 
 public:
 	ConnectFourApplication();
-private:
-	enum { eLeftDoubleClick, eLeftClick, eRightClick, eClickNone };
-	int mLastClickType;
+
 protected:
 	void paint(HDC ihdc, RECT& iPaintArea);
 

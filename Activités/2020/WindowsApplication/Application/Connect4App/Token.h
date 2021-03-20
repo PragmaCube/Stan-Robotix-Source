@@ -6,20 +6,23 @@
 class Token
 {
 public:
+	enum { eNothing, eRed, eBlue };
 
 	Token();
-	void drawTokenRed(HDC ihdc, RECT& iPaintArea);
-	void drawTokenBlue(HDC ihdc, RECT& iPaintArea);
-	void drawToken(HDC ihdc, RECT& iPaintArea, HBRUSH & iBrush);
+	void draw(HDC ihdc);
+
 	void setPosition(int iPosX, int iPosY);
 	void setcolor(HDC ihdc, RECT& iPaintArea, HBRUSH & iBrush); //indication de la couleur par un cercle afficher en haut 
 
+	void setType(int iColor);
+
 	HBRUSH mRedBrush, mBlueBrush;
-	bool mColor;  // si vrai le jeton est bleu sinon rouge
+
 private:
 
 	int mPosX, mPosY;
-	bool mPos;
+	int mType;
+	
 	
 
 	

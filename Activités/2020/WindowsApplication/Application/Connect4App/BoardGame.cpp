@@ -8,6 +8,8 @@ BoardGame::BoardGame()
 
 void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 {	
+	mDrawingRect = iPaintArea;
+
 	for (int i = iPaintArea.top+50; i < iPaintArea.bottom; i += kSizeSideCell) 
 	{
 
@@ -23,66 +25,73 @@ void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 
 	} //dessiner les lignes verticales
 
-	mRed.drawTokenRed(ihdc, iPaintArea);
-	mBlue.drawTokenBlue(ihdc, iPaintArea);
+	int wNbToken = mTokenList.size();
+	for (int i = 0; i < wNbToken; i++)
+	{
+		Token wToken = mTokenList[i];
+		wToken.draw(ihdc);
+	}
 
-	
+	// Afficher le gagnat ici  selon mWinner
+
+
 }
 
 void BoardGame::AddRedToken(int iPosX)
 {   
-	int wSelectedColumn = getColumn(iPosX);
-    int wSelectedRow = getRow(wSelectedColumn);
-
-	mRed.setPosition((wSelectedColumn * kSizeTopCell), (wSelectedRow * kSizeSideCell));	// wSelectedColumn et wSelectedRow en coordonne pixel;
-	
-	mGridState[wSelectedRow][wSelectedColumn] = eRed;
+	addToken(iPosX, Token::eRed);
 	
 }
 
 void BoardGame::AddBlueToken(int iPosX)
 {
+	addToken(iPosX, Token::eBlue);
+}
+
+void BoardGame::addToken(int iPosX, int iColor)
+{
 	int wSelectedColumn = getColumn(iPosX);
-	int wSelectedRow = getRow(wSelectedColumn);
-	
+	// Rajouter condition si numero de colonne invalide
+	int wSelectedRow = getRow(wSelectedColumn, iColor);
 
-	mBlue.setPosition(wSelectedColumn *kSizeTopCell, wSelectedRow*kSizeSideCell);	// wSelectedColumn et wSelectedRow en coordonne pixel;
+	// Rajouter condition si wSelectedRow
+	int wCenterX = (wSelectedColumn * kSizeTopCell) + mDrawingRect.left + kSizeTopCell / 2;
+	int wCenterY = (wSelectedRow * kSizeSideCell) + mDrawingRect.top + kSizeSideCell / 2;   // Corriger l ordonnee du jeton
 
-	mGridState[wSelectedRow][wSelectedColumn] = eBlue;
+	Token mToken;// coirrige orefixe
+	mToken.setPosition(wCenterX, wCenterY);	// wSelectedColumn et wSelectedRow en coordonne pixel;
+	mToken.setType(iColor);
+
+	mTokenList.push_back(mToken);
+
+	// Creer fonction pour determinant s il y a un gagnant qui sera stocke dans mWinner
 }
 
 int BoardGame::getColumn(int iPosX)
 {
-	
-	int wColumn = 0;
-	if ((kLeftBorder < iPosX) && (iPosX < kLeftBorder + (kSizeTopCell * 7))) // click dans l'espace de jeu
+	int wColumn = 0; // Retourner -1 
+	if ((mDrawingRect.left < iPosX) && (iPosX < mDrawingRect.left + (kSizeTopCell * 7))) // click dans l'espace de jeu
 
 	{
-		wColumn = iPosX / kSizeTopCell;
-		wColumn = (kSizeTopCell * wColumn) - (kSizeTopCell / 2);
+		wColumn = (iPosX-mDrawingRect.left) / kSizeTopCell;
 	}
-
-	// TODO: d/terminer quelle colonne le joueur a clique, et determiner le centre de la colonne en abciss
 
 	return wColumn;
 }
 
-int BoardGame::getRow(int iPosX)
+int BoardGame::getRow(int iPosX, int iTokenColor)
 {
-	int wRow = 0;
+	int wRow = -1;
 
-	for (int i = 6; i>0; i--)
+	for (int i = 5; i>=0; i--)
 	{
-		if (mGridState[i][getColumn(iPosX)] == eNothing)
+		if (mGridState[iPosX][i] == Token::eNothing)
 		{
-			wRow = 6;
-		}
-		else
-		{
-			wRow = i - 1;
+			wRow = i;
+			mGridState[iPosX][i] = iTokenColor;
+			break;
 		}
 	}
-
 
 	return wRow;
 }
@@ -93,23 +102,10 @@ void BoardGame::InitArray()
 	{
 		for (int j = 0; i < 8; i++)
 		{
-			mGridState[i][j] = eNothing;
-
+			mGridState[i][j] = Token::eNothing;
 		}
 	}
 }
-/*
-void BoardGame::click(int iPosX, int iPosY)
-{
-	if ((kLeftBorder < iPosX) && (iPosX < kLeftBorder + (kSizeTopCell*7)) && (kTopBorder < iPosY) && (iPosY < kTopBorder + (kSizeSideCell*6))) // click dans l'espace de jeu
-		
-	{
-		mRow = (iPosY - kTopBorder) / kSizeSideCell;
-		mColumn = (iPosX - kLeftBorder) / kSizeTopCell;
-
-		mGridState[mRow][mColumn] = 1;
-	}
-}*/
 
 void BoardGame::CheckConnect(int iColumn, int iRow)
 {

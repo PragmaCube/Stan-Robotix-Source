@@ -6,45 +6,41 @@ Token::Token(): mPosX(0), mPosY(0)
 	mBlueBrush = CreateSolidBrush(RGB(0,0,255));
 }
 
-void Token::drawTokenRed(HDC ihdc, RECT& iPaintArea)
-{
-    drawToken(ihdc, iPaintArea, mRedBrush);
-}
-
-void Token::drawTokenBlue(HDC ihdc, RECT& iPaintArea)
-{
-	drawToken(ihdc, iPaintArea, mBlueBrush);
-}
-
-void Token::drawToken(HDC ihdc, RECT& iPaintArea, HBRUSH& iBrush)
-{
-	if (mPos)
+void Token::draw(HDC ihdc)
+{	
+	int wRadius = 30;
+	while (wRadius > 15)
 	{
-		int wRadius = 30;
-		while (wRadius > 15)
-		{
-			::Ellipse(ihdc,
-				(int)(mPosX)-wRadius,
-				(int)(mPosY)-wRadius,
-				(int)(mPosX)+wRadius,
-				(int)(mPosY)+wRadius);
+		::Ellipse(ihdc,
+			(int)(mPosX)-wRadius,
+			(int)(mPosY)-wRadius,
+			(int)(mPosX)+wRadius,
+			(int)(mPosY)+wRadius);
 
-			wRadius -= 5;
-	
-		}
-		HGDIOBJ wOldBrush = ::SelectObject(ihdc, iBrush);
-
-		::FloodFill(ihdc, mPosX, mPosY, RGB(0, 0, 0));
-		::SelectObject(ihdc, wOldBrush);
+		wRadius -= 5;
 	}
+
+	HGDIOBJ wOldBrush;
+	if (mType == eRed)
+	{
+	  	wOldBrush = ::SelectObject(ihdc, mRedBrush);
+	}
+	else
+	{
+		wOldBrush = ::SelectObject(ihdc, mBlueBrush);
+	}
+		
+	::FloodFill(ihdc, mPosX, mPosY, RGB(0, 0, 0));
+
+	::SelectObject(ihdc, wOldBrush);
 }
+
 void Token::setPosition(int iPosX, int iPosY)
 {
-	mPosX = true;
 	mPosX = iPosX;
 	mPosY = iPosY;
 }
-
+/*
 void Token::setcolor(HDC ihdc, RECT& iPaintArea, HBRUSH & iBrush)
 {
 	::Ellipse(ihdc,
@@ -72,4 +68,9 @@ void Token::setcolor(HDC ihdc, RECT& iPaintArea, HBRUSH & iBrush)
 		::SelectObject(ihdc, mRedBrush);
 	}
 
+}*/
+
+void Token::setType(int iColor)
+{
+	mType = iColor;
 }
