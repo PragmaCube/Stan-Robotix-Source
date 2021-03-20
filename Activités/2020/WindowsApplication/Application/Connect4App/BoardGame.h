@@ -6,16 +6,14 @@
 class BoardGame
 {
 private: 
-	int mRow;  // Enelever les proprietes inutiles
-	int mColumn;
 	const int kSizeTopCell = 117; 
 	const int kSizeSideCell = 102;
-	const int kTopBorder = 50; // Si inutile ... on enleve
+	const int kTopBorder = 50; 
 	const int kLeftBorder = 0;
 
-	bool mConnect; // Enelever les proprietes inutiles
 
 	int mGridState[7][6];
+	int mWinner;
 
 	std::vector<Token> mTokenList;
 
@@ -23,22 +21,18 @@ private:
 	int getRow( int iPosX, int iTokenColor);
 
 	RECT mDrawingRect;
-	int mWinner;
 
-	
-	void CheckConnect(int iColumn, int iRow); // minuscule
-
+	void checkConnect(int iColumn, int iRow); 
 	void addToken(int iPosX, int iColor);
 
 public:
 	BoardGame();
 
 	void paint(HDC ihdc, RECT& iPaintArea);
+	void resetGame(); 
 
-	void InitArray(); // resetGame a la place
-
-	void AddRedToken(int iPosX);
-	void AddBlueToken(int iPosX);
+	void addRedToken(int iPosX);
+	void addBlueToken(int iPosX);
 	
 	
 };

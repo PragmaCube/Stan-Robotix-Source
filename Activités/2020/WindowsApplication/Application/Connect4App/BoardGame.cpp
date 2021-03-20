@@ -10,7 +10,7 @@ void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 {	
 	mDrawingRect = iPaintArea;
 
-	for (int i = iPaintArea.top+50; i < iPaintArea.bottom; i += kSizeSideCell) 
+	for (int i = iPaintArea.top+kTopBorder; i < iPaintArea.bottom; i += kSizeSideCell) 
 	{
 
 		::MoveToEx(ihdc, iPaintArea.left, i, nullptr);
@@ -20,7 +20,7 @@ void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 
 	for (int j = iPaintArea.left; j < iPaintArea.right; j += kSizeTopCell)
 	{
-		::MoveToEx(ihdc, j, iPaintArea.top + 50, nullptr);
+		::MoveToEx(ihdc, j, iPaintArea.top + kTopBorder, nullptr);
 		::LineTo(ihdc, j, iPaintArea.bottom);
 
 	} //dessiner les lignes verticales
@@ -37,39 +37,44 @@ void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 
 }
 
-void BoardGame::AddRedToken(int iPosX)
+void BoardGame::addRedToken(int iPosX)
 {   
 	addToken(iPosX, Token::eRed);
 	
 }
 
-void BoardGame::AddBlueToken(int iPosX)
+void BoardGame::addBlueToken(int iPosX)
 {
 	addToken(iPosX, Token::eBlue);
 }
 
 void BoardGame::addToken(int iPosX, int iColor)
-{
+{  
 	int wSelectedColumn = getColumn(iPosX);
-	// Rajouter condition si numero de colonne invalide
 	int wSelectedRow = getRow(wSelectedColumn, iColor);
 
-	// Rajouter condition si wSelectedRow
-	int wCenterX = (wSelectedColumn * kSizeTopCell) + mDrawingRect.left + kSizeTopCell / 2;
-	int wCenterY = (wSelectedRow * kSizeSideCell) + mDrawingRect.top + kSizeSideCell / 2;   // Corriger l ordonnee du jeton
 
-	Token mToken;// coirrige orefixe
-	mToken.setPosition(wCenterX, wCenterY);	// wSelectedColumn et wSelectedRow en coordonne pixel;
-	mToken.setType(iColor);
+	if (wSelectedRow != -1 && wSelectedColumn != -1)
+	{
+		int wCenterX = (wSelectedColumn * kSizeTopCell) + mDrawingRect.left + kSizeTopCell / 2;
+		int wCenterY = (wSelectedRow * kSizeSideCell) + (mDrawingRect.top + kTopBorder) + kSizeSideCell / 2;
 
-	mTokenList.push_back(mToken);
+		Token wToken;
+		wToken.setPosition(wCenterX, wCenterY);
+		wToken.setType(iColor);
+
+		mTokenList.push_back(wToken);
+	}
+	
+
+	
 
 	// Creer fonction pour determinant s il y a un gagnant qui sera stocke dans mWinner
 }
 
 int BoardGame::getColumn(int iPosX)
 {
-	int wColumn = 0; // Retourner -1 
+	int wColumn = -1; 
 	if ((mDrawingRect.left < iPosX) && (iPosX < mDrawingRect.left + (kSizeTopCell * 7))) // click dans l'espace de jeu
 
 	{
@@ -83,31 +88,31 @@ int BoardGame::getRow(int iPosX, int iTokenColor)
 {
 	int wRow = -1;
 
-	for (int i = 5; i>=0; i--)
-	{
-		if (mGridState[iPosX][i] == Token::eNothing)
+    for (int i = 5; i >= 0; i--)
 		{
-			wRow = i;
-			mGridState[iPosX][i] = iTokenColor;
-			break;
-		}
-	}
+			if (mGridState[iPosX][i] == Token::eNothing)
+			{
+				wRow = i;
+				mGridState[iPosX][i] = iTokenColor;
+				break;
+			}
+	    }
 
 	return wRow;
 }
 
-void BoardGame::InitArray()
+void BoardGame::resetGame()
 {
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i <= 7; i++)
 	{
-		for (int j = 0; i < 8; i++)
+		for (int j = 0; j <= 6; j++)
 		{
 			mGridState[i][j] = Token::eNothing;
 		}
 	}
 }
 
-void BoardGame::CheckConnect(int iColumn, int iRow)
+void BoardGame::checkConnect(int iColumn, int iRow)
 {
 	/*for (int i = 0; i < 7; i++)
 	{

@@ -40,35 +40,6 @@ void Token::setPosition(int iPosX, int iPosY)
 	mPosX = iPosX;
 	mPosY = iPosY;
 }
-/*
-void Token::setcolor(HDC ihdc, RECT& iPaintArea, HBRUSH & iBrush)
-{
-	::Ellipse(ihdc,
-		(int)(150)-15,
-		(int)(50)-15,
-		(int)(150)+15,
-		(int)(50)+15);
-
-	if (mColor == true)
-	{
-		HGDIOBJ wOldBrush = ::SelectObject(ihdc, iBrush);
-
-
-		::FloodFill(ihdc, 150, 50, RGB(0, 0, 0));
-
-		::SelectObject(ihdc, mBlueBrush);
-	}
-	else
-	{
-		HGDIOBJ wOldBrush = ::SelectObject(ihdc, iBrush);
-
-
-		::FloodFill(ihdc, 150, 50, RGB(0, 0, 0));
-
-		::SelectObject(ihdc, mRedBrush);
-	}
-
-}*/
 
 void Token::setType(int iColor)
 {

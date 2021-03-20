@@ -22,9 +22,9 @@ ConnectFourApplication::ConnectFourApplication()
 
 void ConnectFourApplication::onChar(char iChar, short iDetail)
 {
-	if ((iChar == 'N') || (iChar == 'n'))
+	if ((iChar == 'n') || (iChar == 'N'))
 	{
-		mBoardGame.InitArray();
+		mBoardGame.resetGame();
 	}
 }
 
@@ -40,12 +40,12 @@ void ConnectFourApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 
 void ConnectFourApplication::onMouseLeftClick(int iPosX, int iPosY)
 { 
-	mBoardGame.AddBlueToken(iPosX);
+	mBoardGame.addBlueToken(iPosX);
 }
 
 void ConnectFourApplication::onMouseRightClick(int iPosX, int iPosY)
 {
-	mBoardGame.AddRedToken(iPosX);
+	mBoardGame.addRedToken(iPosX);
 }
 
 void ConnectFourApplication::onTimer()
