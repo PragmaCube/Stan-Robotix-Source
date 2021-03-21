@@ -42,18 +42,15 @@ void PingPongApplication::onChar(char iChar, short iDetail)
 	{
 	case('q'):
 	case('Q'):
-	{
 		mLeftPad.movePadUp();
 		break;
-	}
+
 	case('a'):
 	case('A'):
-	{
 		mLeftPad.movePadDown();
 		break;
+
 	}
-	}
-	
 }
 
 void PingPongApplication::onKeyDown(char iChar, short iDetail)
@@ -78,7 +75,6 @@ void PingPongApplication::onMouseRightClick(int iPosX, int iPosY)
 
 void PingPongApplication::onTimer()
 {
-
 	IApplication::onTimer(); // Pour redessiner l'ecran
 }
 

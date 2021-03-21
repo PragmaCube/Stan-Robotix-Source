@@ -24,8 +24,6 @@ void CollisionEngine::setRightPad(PingPongPad* iPad)
 	mRightPadPtr = iPad;
 }
 
-
-
 void CollisionEngine::rebound(RECT iWindowRect)
 {
 	if (nullptr != mLeftPadPtr && nullptr != mRightPadPtr && nullptr != mBallPtr)
@@ -35,15 +33,16 @@ void CollisionEngine::rebound(RECT iWindowRect)
 			mLeftPadPtr->initialiser(iWindowRect);
 			mInit = true;
 		}
-		if (mBallPtr->getX() <= 250 && mBallPtr->getX() >= 250 + mBallPtr->getSpeedX() // + getSpeedX() parce que la vitesse est négative
-			&& mLeftPadPtr->getY() - mPadHeight / 2 <= mRightPadPtr->getY()
-			&& mRightPadPtr->getY() <= mLeftPadPtr->getY() + mPadHeight / 2)
+
+		if (mBallPtr->getX() <= 250                                      && 
+			mBallPtr->getX() >= 250 + mBallPtr->getSpeedX()              && // + getSpeedX() parce que la vitesse est négative
+			mLeftPadPtr->getY() - mPadHeight / 2 <= mRightPadPtr->getY() &&
+			mRightPadPtr->getY() <= mLeftPadPtr->getY() + mPadHeight / 2)
 		{
 			mBallPtr->flipXSpeed();
 			//PlaySound(TEXT("Ping_Pong.wav"), NULL, SND_ASYNC);
 			mBallPtr->increaseSpeed();
 			mNbEchanges++;
-
 		}
 
 		else if (mBallPtr->getX() >= 880)
@@ -71,8 +70,8 @@ void CollisionEngine::rebound(RECT iWindowRect)
 
 void CollisionEngine::afficherEchanges(HDC ihdc)
 {
-	std::string truc = "Il y a eu " + std::to_string(mNbEchanges) + " echange(s)";
-	std::wstring wChar = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(truc);
+	std::string wMessage = "Il y a eu " + std::to_string(mNbEchanges) + " echange(s)";
+	std::wstring wChar = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(wMessage);
 	RECT wTextArea = { 500, 20, 2000, 2000 };
 	::DrawText(
 		ihdc,

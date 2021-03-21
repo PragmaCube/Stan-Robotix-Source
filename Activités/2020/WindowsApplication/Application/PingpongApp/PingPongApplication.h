@@ -21,7 +21,6 @@ protected:
 
 	void onTimer();
 
-
 private:
 	PingPongBall mBall;
 

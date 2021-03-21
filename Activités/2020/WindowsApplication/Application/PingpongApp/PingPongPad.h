@@ -30,6 +30,7 @@
 
 		int mCoorYPadMax, mCoorYPadMin;
 		int mCoorYMax, mCoorYMin, mCoorXMax, mCoorXMin;
+
 		const double mWidth = 20;
 		const double mHeight =	100;
 		int mCoorY, mCoorX, mSpeed;

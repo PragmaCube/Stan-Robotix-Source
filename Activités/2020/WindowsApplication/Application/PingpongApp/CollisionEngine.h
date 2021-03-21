@@ -7,7 +7,6 @@ class CollisionEngine
 public:
 	CollisionEngine();
 
-
 	void setBall(PingPongBall* iball);
 	void setLeftPad(PingPongPad* iPad);
 	void setRightPad(PingPongPad* iPad);
