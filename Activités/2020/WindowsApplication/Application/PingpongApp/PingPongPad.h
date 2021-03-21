@@ -3,43 +3,41 @@
 
 #include "PingPongBall.h"
 
-	class PingPongPad
-	{
-	public:
-	    enum { eRightPadId, eLeftPadId };
+class PingPongPad
+{
+public:
+	enum { eRightPadId, eLeftPadId };
 	
-	    PingPongPad(int iId);
+	PingPongPad(int iId);
 
-	    int getY();
+	int getY();
 		
-	    void setBall(PingPongBall* iball);
+	void setBall(PingPongBall* iball);
 
-	    void movePadUp();
+	void movePadUp();
 
-	    void movePadDown();
+	void movePadDown();
 
-	    void paint(HDC ihdc, RECT& iPaintArea);
+	void paint(HDC ihdc, RECT& iPaintArea);
 
-	    void initialiser(RECT iWindowRect);
+	void initialiser(RECT iWindowRect);
 
-	    void UpdatePosition();
-
-
-	private:
-		PingPongBall* mBallPtr;
-
-		int mCoorYPadMax, mCoorYPadMin;
-		int mCoorYMax, mCoorYMin, mCoorXMax, mCoorXMin;
-
-		const double mWidth = 20;
-		const double mHeight =	100;
-		int mCoorY, mCoorX, mSpeed;
-		char mKeyUp, mKeyDown;
-
-		bool mIsInit;
-
-		HBRUSH mBrush;
-	};
+	void UpdatePosition();
 
 
+private:
+	PingPongBall* mBallPtr;
 
+	int mCoorYPadMax, mCoorYPadMin;
+	int mCoorYMax, mCoorYMin, mCoorXMax, mCoorXMin;
+	int mCoorY, mCoorX, mSpeed;
+
+	char mKeyUp, mKeyDown;
+
+	bool mIsInit;
+
+	HBRUSH mBrush;
+
+	const double mWidth = 20;
+	const double mHeight = 100;
+};
