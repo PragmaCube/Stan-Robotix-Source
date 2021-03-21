@@ -8,21 +8,21 @@
 	public:
 	    enum { eRightPadId, eLeftPadId };
 	
-		PingPongPad(int iId);
+	    PingPongPad(int iId);
 
-		int getY();
+	    int getY();
 		
-		void setBall(PingPongBall* iball);
+	    void setBall(PingPongBall* iball);
 
-		void movePadUp();
+	    void movePadUp();
 
-		void movePadDown();
+	    void movePadDown();
 
-		void paint(HDC ihdc, RECT& iPaintArea);
+	    void paint(HDC ihdc, RECT& iPaintArea);
 
-		void initialiser(RECT iWindowRect);
+	    void initialiser(RECT iWindowRect);
 
-		void UpdatePosition();
+	    void UpdatePosition();
 
 
 	private:

@@ -13,7 +13,6 @@ public:
 	void setRightPad(PingPongPad* iPad);
 	void rebound(RECT iWindowRect);
 	void afficherEchanges(HDC ihdc);
-	int echanges();
 
 private:
 	PingPongBall* mBallPtr;

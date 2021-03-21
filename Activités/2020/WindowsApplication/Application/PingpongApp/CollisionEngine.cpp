@@ -12,7 +12,6 @@ CollisionEngine::CollisionEngine() : mBallPtr(nullptr), mLeftPadPtr(nullptr), mR
 void CollisionEngine::setBall(PingPongBall* iBall)
 {
 	mBallPtr = iBall;
-
 }
 
 void CollisionEngine::setLeftPad(PingPongPad* iPad)
@@ -34,8 +33,10 @@ void CollisionEngine::rebound(RECT iWindowRect)
 		mLeftPadPtr->initialiser(iWindowRect);
 		init = true;
 	}
-	if (mBallPtr->getX() <= 250 && mBallPtr->getX() >= 250 + mBallPtr->getSpeedX() && mLeftPadPtr->getY() - mPadHeight/2 <= mRightPadPtr->getY() && mRightPadPtr->getY() <= mLeftPadPtr->getY() + mPadHeight/2)
-	{                                                   // + getSpeedX() parce que la vitesse est négative
+	if (mBallPtr->getX() <= 250 && mBallPtr->getX() >= 250 + mBallPtr->getSpeedX() // + getSpeedX() parce que la vitesse est négative
+		&& mLeftPadPtr->getY() - mPadHeight/2 <= mRightPadPtr->getY() 
+		&& mRightPadPtr->getY() <= mLeftPadPtr->getY() + mPadHeight/2)
+	{                                                   
 		mBallPtr->flipXSpeed();
 		//PlaySound(TEXT("Ping_Pong.wav"), NULL, SND_ASYNC);
 		mBallPtr->increaseSpeed();
@@ -63,11 +64,6 @@ void CollisionEngine::rebound(RECT iWindowRect)
 	{
 		mBallPtr->flipYSpeed();
 	}
-}
-
-int CollisionEngine::echanges()
-{
-	return nbEchanges;
 }
 
 void CollisionEngine::afficherEchanges(HDC ihdc)

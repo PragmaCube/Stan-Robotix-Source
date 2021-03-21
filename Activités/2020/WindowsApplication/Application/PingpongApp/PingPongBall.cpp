@@ -6,33 +6,33 @@
 #include <math.h>
 
 PingPongBall::PingPongBall() : 
-	mCoorX(0.0),
+    mCoorX(0.0),
     mCoorY(0.0),
     mSpeedX(0.0),
     mSpeedY(0.0),
-	mIsInit(false),
-	mBrush(0)
+    mIsInit(false),
+    mBrush(0)
 {
-	int wRed   = (1 & 0x1) ? 255 : 0; // Le premier bit détermine si la composante rouge.
-	int wGreen = (1 & 0x2) ? 255 : 0; // Le deuxieme bit détermine si la composante verte.
-	int wBlue  = (1 & 0x4) ? 255 : 0; // Le troisieme bit détermine si la composante bleue.
-	COLORREF wColor = RGB(wRed, wGreen, wBlue);
-	mBrush = CreateSolidBrush(wColor);
+    int wRed   = (1 & 0x1) ? 255 : 0; // Le premier bit détermine si la composante rouge.
+    int wGreen = (1 & 0x2) ? 255 : 0; // Le deuxieme bit détermine si la composante verte.
+    int wBlue  = (1 & 0x4) ? 255 : 0; // Le troisieme bit détermine si la composante bleue.
+    COLORREF wColor = RGB(wRed, wGreen, wBlue);
+    mBrush = CreateSolidBrush(wColor);
 }
 
 int PingPongBall::getX()
 {
-	return mCoorX;
+    return mCoorX;
 }
 
 int PingPongBall::getY()
 {
-	return mCoorY;
+    return mCoorY;
 }
 
 int PingPongBall::getSpeedX()
 {
-	return mSpeedX;
+    return mSpeedX;
 }
 
 void PingPongBall::updateDrawingArea(RECT iWindowRect)

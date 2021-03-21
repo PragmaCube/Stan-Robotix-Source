@@ -39,7 +39,6 @@ PingPongPad::PingPongPad(int iId) :
 	mBrush = CreateSolidBrush(wColor);
 }
 
-
 void PingPongPad::UpdatePosition()
 {
 	if (mBallPtr != nullptr)
@@ -52,8 +51,6 @@ void PingPongPad::setBall(PingPongBall* iBall)
 {
 	mBallPtr = iBall;
 }
-
-
 
 int PingPongPad::getY()
 {
