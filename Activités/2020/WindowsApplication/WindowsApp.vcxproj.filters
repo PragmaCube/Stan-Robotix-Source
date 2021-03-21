@@ -77,6 +77,9 @@
     <ClInclude Include="Framework\IApplication.h">
       <Filter>Framework sources</Filter>
     </ClInclude>
+    <ClInclude Include="Application\SnakeApp\BoutteDeSerpent.h">
+      <Filter>Application\Snake</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\WindowsApp.cpp">
@@ -108,6 +111,9 @@
     </ClCompile>
     <ClCompile Include="Application\DessinApp\DessinApplication.cpp">
       <Filter>Application\Dessin</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\SnakeApp\BouttedeSerpent.cpp">
+      <Filter>Application\Snake</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

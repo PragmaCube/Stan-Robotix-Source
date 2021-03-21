@@ -144,6 +144,7 @@
     <ClInclude Include="Application\DemoApp\DemoAppBall.h" />
     <ClInclude Include="Application\DemoApp\DemoApplication.h" />
     <ClInclude Include="Application\DessinApp\DessinApplication.h" />
+    <ClInclude Include="Application\SnakeApp\BoutteDeSerpent.h" />
     <ClInclude Include="Framework\IApplication.h" />
     <ClInclude Include="Application\PacmanApp\PacmanApplication.h" />
     <ClInclude Include="Application\PingpongApp\PingPongApplication.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="Application\DessinApp\DessinApplication.cpp" />
     <ClCompile Include="Application\PacmanApp\PacmanApplication.cpp" />
     <ClCompile Include="Application\PingpongApp\PingPongApplication.cpp" />
+    <ClCompile Include="Application\SnakeApp\BouttedeSerpent.cpp" />
     <ClCompile Include="Application\SnakeApp\SnakeApplication.cpp" />
     <ClCompile Include="Framework\WindowsFrame.cpp" />
     <ClCompile Include="Framework\WindowsApp.cpp" />
