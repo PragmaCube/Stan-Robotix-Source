@@ -1,21 +1,28 @@
 #pragma 
-#include "Ball.h"
-#include "Pad.h"
+#include "PingPongBall.h"
+#include "PingPongPad.h"
 
 class CollisionEngine
 {
 public:
 	CollisionEngine();
 
-	void execute();
-
-	void setBall(Ball* iball);
-	void setLeftPad(Pad* iPad);
-	void setRightPad(Pad* iPad);
+	void setBall(PingPongBall* iball);
+	void setLeftPad(PingPongPad* iPad);
+	void setRightPad(PingPongPad* iPad);
+	void rebound(RECT iWindowRect);
+	void afficherEchanges(HDC ihdc);
 
 private:
-	Ball* mBallPtr;
-	Pad* mLeftPadPtr;
-	Pad* mRightPadPtr;
+	PingPongBall* mBallPtr;
+	PingPongPad* mLeftPadPtr;
+	PingPongPad* mRightPadPtr;
+
+	bool mInit = false;
+
+	int mNbEchanges = 0;
+
+	const int mPadWith = 20;
+	const int mPadHeight = 200;
 };
 

@@ -78,13 +78,13 @@
       <Filter>Framework sources</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Application\PingpongApp\Ball.h">
-      <Filter>Application\PingPong</Filter>
-    </ClInclude>
     <ClInclude Include="Application\PingpongApp\CollisionEngine.h">
       <Filter>Application\PingPong</Filter>
     </ClInclude>
-    <ClInclude Include="Application\PingpongApp\Pad.h">
+    <ClInclude Include="Application\PingpongApp\PingPongBall.h">
+      <Filter>Application\PingPong</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PingpongApp\PingPongPad.h">
       <Filter>Application\PingPong</Filter>
     </ClInclude>
   </ItemGroup>
@@ -119,13 +119,13 @@
     <ClCompile Include="Application\DessinApp\DessinApplication.cpp">
       <Filter>Application\Dessin</Filter>
     </ClCompile>
-    <ClCompile Include="Application\PingpongApp\Ball.cpp">
-      <Filter>Application\PingPong</Filter>
-    </ClCompile>
     <ClCompile Include="Application\PingpongApp\CollisionEngine.cpp">
       <Filter>Application\PingPong</Filter>
     </ClCompile>
-    <ClCompile Include="Application\PingpongApp\Pad.cpp">
+    <ClCompile Include="Application\PingpongApp\PingPongBall.cpp">
+      <Filter>Application\PingPong</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PingpongApp\PingPongPad.cpp">
       <Filter>Application\PingPong</Filter>
     </ClCompile>
   </ItemGroup>
