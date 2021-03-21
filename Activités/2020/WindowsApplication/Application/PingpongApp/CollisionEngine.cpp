@@ -1,4 +1,7 @@
 #include "CollisionEngine.h"
+#include <string>
+#include <locale>
+#include <codecvt>
 
 CollisionEngine::CollisionEngine() : mBallPtr(nullptr), mLeftPadPtr(nullptr), mRightPadPtr(nullptr)
 {
@@ -34,6 +37,8 @@ void CollisionEngine::rebound(RECT iWindowRect)
 	{
 		mBallPtr->flipXSpeed();
 		mBallPtr->increaseSpeed();
+		nbEchanges++;
+	
 	}
 	
 	else if (mBallPtr->getX() >= 880)
@@ -44,6 +49,7 @@ void CollisionEngine::rebound(RECT iWindowRect)
 	if (mBallPtr->getX() < iWindowRect.left)
 	{
 		Sleep(1000);
+		nbEchanges = 0;
 		mBallPtr->restart(iWindowRect);
 	}
 
@@ -55,4 +61,22 @@ void CollisionEngine::rebound(RECT iWindowRect)
 	{
 		mBallPtr->flipYSpeed();
 	}
+}
+
+int CollisionEngine::echanges()
+{
+	return nbEchanges;
+}
+
+void CollisionEngine::afficherEchanges(HDC ihdc)
+{
+	std::string truc = "Il y a eu " + std::to_string(nbEchanges) + " echange(s)";
+	std::wstring wChar = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(truc);
+	RECT wTextArea = { 500, 20, 2000, 2000 };
+	::DrawText(
+		ihdc,
+		wChar.c_str(),
+		wChar.length(),
+		&wTextArea,
+		((int)DT_LEFT | DT_BOTTOM));
 }

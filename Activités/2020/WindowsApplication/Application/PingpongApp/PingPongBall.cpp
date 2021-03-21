@@ -1,7 +1,8 @@
 #include "PingPongBall.h"
 
 #include <stdlib.h>     
-#include <time.h>       
+#include <time.h>  
+#include <string>
 #include <math.h>
 
 PingPongBall::PingPongBall() : 

@@ -4,7 +4,7 @@
 #include <time.h>       
 #include <math.h>
 
-PingPongPad::PingPongPad(int iId) : 
+PingPongPad::PingPongPad(int iId) :
 	mBallPtr(nullptr), 
 	mCoorX(0),
 	mCoorY(0),
@@ -18,8 +18,8 @@ PingPongPad::PingPongPad(int iId) :
 
 	if (iId == PingPongPad::eLeftPadId)
 	{
-		mCoorX = 230; 
-		mCoorY = 300;
+		mCoorX = mCoorXMin + 230; 
+		mCoorY = mCoorYMin + 300;
 		mKeyUp = 'q';
 		mKeyDown = 'a';
 	    mSpeed = 30;
@@ -30,7 +30,7 @@ PingPongPad::PingPongPad(int iId) :
 	else
 	{
 		mCoorX = 900;
-		mCoorY = 300;
+		mCoorY = mCoorYMin + 300;
 
 		wColor = RGB(0, 255/*wGreen*/, 0 /*wBlue*/);
 	}
@@ -79,13 +79,18 @@ void PingPongPad::paint(HDC ihdc, RECT& iPaintArea)
 
 void PingPongPad::initialiser(RECT iWindowRect)
 {
-	mCoorYMax = iWindowRect.top + mHeight / 2;
-	mCoorYMin = iWindowRect.bottom - mHeight / 2;
+	mCoorYPadMax = iWindowRect.top + mHeight / 2;
+	mCoorYPadMin = iWindowRect.bottom - mHeight / 2;
+	mCoorYMin = iWindowRect.bottom;
+	mCoorYMax = iWindowRect.top;
+	mCoorXMin = iWindowRect.left;
+	mCoorXMax = iWindowRect.right;
+
 }
 
 void PingPongPad::movePadUp()
 {
-	if (mCoorY > mCoorYMax)
+	if (mCoorY > mCoorYPadMax)
 	{
 		mCoorY -= mSpeed;
 	}
@@ -93,7 +98,7 @@ void PingPongPad::movePadUp()
 
 void PingPongPad::movePadDown()
 {
-	if (mCoorY < mCoorYMin)
+	if (mCoorY < mCoorYPadMin)
 	{
 		mCoorY += mSpeed;
 	}

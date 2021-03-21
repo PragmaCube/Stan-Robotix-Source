@@ -33,7 +33,9 @@ void PingPongApplication::paint(HDC ihdc, RECT& iPaintArea)
 	mLeftPad.paint(ihdc, iPaintArea);
 	mRightPad.paint(ihdc, iPaintArea);
 	mCollisionEngine.rebound(iPaintArea);
+	mCollisionEngine.afficherEchanges(ihdc);
 }
+
 
 void PingPongApplication::onChar(char iChar, short iDetail)
 {
@@ -54,8 +56,6 @@ void PingPongApplication::onChar(char iChar, short iDetail)
 	}
 	
 }
-
-
 
 void PingPongApplication::onKeyDown(char iChar, short iDetail)
 {

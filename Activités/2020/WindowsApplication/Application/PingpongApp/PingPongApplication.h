@@ -21,9 +21,10 @@ protected:
 
 	void onTimer();
 
+
 private:
 	PingPongBall mBall;
-	
+
 	PingPongPad mLeftPad;
 	PingPongPad mRightPad;
     CollisionEngine mCollisionEngine;

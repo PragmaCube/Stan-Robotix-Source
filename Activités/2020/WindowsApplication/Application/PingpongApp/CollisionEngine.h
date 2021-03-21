@@ -12,6 +12,8 @@ public:
 	void setLeftPad(PingPongPad* iPad);
 	void setRightPad(PingPongPad* iPad);
 	void rebound(RECT iWindowRect);
+	void afficherEchanges(HDC ihdc);
+	int echanges();
 
 private:
 	PingPongBall* mBallPtr;
@@ -19,6 +21,8 @@ private:
 	PingPongPad* mRightPadPtr;
 
 	bool init = false;
+
+	int nbEchanges = 0;
 
 	const int mPadWith = 20;
 	const int mPadHeight = 200;
