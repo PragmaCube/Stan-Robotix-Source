@@ -1,7 +1,6 @@
 #pragma once
 #include "../../Framework/IApplication.h"
-
-
+#include "BoutteDeSerpent.h"
 
 class SnakeApplication :
     public IApplication
@@ -18,11 +17,6 @@ protected:
 	void onMouseLeftClick(int iPosX, int iPosY);
 	void onMouseRightClick(int iPosX, int iPosY);
 private:
-
+	BoutteDeSerpent mRond;
 }; 
 
-class Serpent{
-	public:
-		int NombreDeBalles;
-		enum ProchaineDirection { haut, bas, gauche, droite};
-};

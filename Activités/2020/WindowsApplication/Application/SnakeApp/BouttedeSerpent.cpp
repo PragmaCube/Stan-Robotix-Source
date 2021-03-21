@@ -1,29 +1,43 @@
-#include "SnakeApplication.h"
-#include "../../Framework/IApplication.h"
+
+#include "BoutteDeSerpent.h"
 #include <stdlib.h>     
 #include <time.h>       
 #include <math.h>
 #include <string>
 
-void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
+BoutteDeSerpent::BoutteDeSerpent()
 {
-	std::wstring wTitle = L"Application de Snake";
 
-	::DrawText(
-		ihdc,
-		wTitle.c_str(),
-		wTitle.length(),
-		&iPaintArea,
-		DT_CENTER | DT_TOP);
-	int wRadius = 100;
-	while (wRadius > 20)
-	{
-		SnakeApplication::Ellipse (ihdc,
-			(int)(mPosX)-wRadius,
-			(int)(mPosY)-wRadius,
-			(int)(mPosX)+wRadius,
-			(int)(mPosY)+wRadius);
+	COLORREF wColor = RGB(255, 0, 0);
+	mBrush = CreateSolidBrush(wColor);
 
-		wRadius -= 10;
 }
+
+void BoutteDeSerpent::updateDrawingArea(RECT iWindowRect)
+{
+
+	if (!mIsInit)
+	{
+		mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
+		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
+
+		mIsInit = true;
+	}
+}
+
+void BoutteDeSerpent::paint(HDC ihdc) {
+	HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBrush);
+
+
+
+	::Ellipse(ihdc,
+		(int)(mCoorX)-mRadius,
+		(int)(mCoorY)-mRadius,
+		(int)(mCoorX)+mRadius,
+		(int)(mCoorY)+mRadius);
+
+
+
+	::SelectObject(ihdc, wOldBrush);
+
 }

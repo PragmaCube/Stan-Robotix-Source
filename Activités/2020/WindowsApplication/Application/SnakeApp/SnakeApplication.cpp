@@ -10,11 +10,12 @@
 
 SnakeApplication::SnakeApplication()
 {
+
 }
 
 void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 {
-	std::wstring wTitle = L"Application de Snake";
+	std::wstring wTitle = L"Application d Snake";
 
 	::DrawText(
 		ihdc,
@@ -23,7 +24,8 @@ void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 		&iPaintArea,
 		DT_CENTER | DT_TOP);
 
-		
+	mRond.updateDrawingArea(iPaintArea);
+	mRond.paint(ihdc);
 
 
 }
