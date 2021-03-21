@@ -29,6 +29,12 @@ int PingPongBall::getY()
 {
 	return mCoorY;
 }
+
+int PingPongBall::getSpeedX()
+{
+	return mSpeedX;
+}
+
 void PingPongBall::updateDrawingArea(RECT iWindowRect)
 {
 	if (!mIsInit)

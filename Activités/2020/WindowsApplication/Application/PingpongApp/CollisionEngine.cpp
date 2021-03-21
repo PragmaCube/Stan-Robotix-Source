@@ -1,4 +1,5 @@
 #include "CollisionEngine.h"
+
 #include <string>
 #include <locale>
 #include <codecvt>
@@ -33,9 +34,10 @@ void CollisionEngine::rebound(RECT iWindowRect)
 		mLeftPadPtr->initialiser(iWindowRect);
 		init = true;
 	}
-	if (mBallPtr->getX() <= 250 && mLeftPadPtr->getY() - mPadHeight/2 <= mRightPadPtr->getY() && mRightPadPtr->getY() <= mLeftPadPtr->getY() + mPadHeight/2)
+	if (mBallPtr->getX() <= 250 && mBallPtr->getX() >= 250 + mBallPtr->getSpeedX() && mLeftPadPtr->getY() - mPadHeight/2 <= mRightPadPtr->getY() && mRightPadPtr->getY() <= mLeftPadPtr->getY() + mPadHeight/2)
 	{
 		mBallPtr->flipXSpeed();
+		//PlaySound(TEXT("Ping_Pong.wav"), NULL, SND_ASYNC);
 		mBallPtr->increaseSpeed();
 		nbEchanges++;
 	

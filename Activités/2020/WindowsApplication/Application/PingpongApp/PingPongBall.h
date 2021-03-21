@@ -8,6 +8,7 @@ public:
 
 	int getX();
 	int getY();
+	int getSpeedX();
 
 	void updateDrawingArea(RECT iWindowRect);
 
