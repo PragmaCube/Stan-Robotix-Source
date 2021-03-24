@@ -31,6 +31,30 @@ void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 }
 void SnakeApplication::onChar(char iChar, short iDetail)
 {
+	switch (iChar)
+	{
+		case ('W'):
+		case ('w'):
+		{
+
+		}
+		case ('S'):
+		case ('s'):
+		{
+
+		}
+		case ('D'):
+		case ('d'):
+		{
+
+		}
+		case ('A'):
+		case ('a'):
+		{
+
+		}
+		
+	}
 
 }
 
