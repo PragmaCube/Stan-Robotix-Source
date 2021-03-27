@@ -36,8 +36,8 @@ void CollisionEngine::rebound(RECT iWindowRect)
 
 		if (mBallPtr->getX() <= 250                                      && 
 			mBallPtr->getX() >= 250 + mBallPtr->getSpeedX()              && // + getSpeedX() parce que la vitesse est négative
-			mLeftPadPtr->getY() - mPadHeight / 2 <= mRightPadPtr->getY() &&
-			mRightPadPtr->getY() <= mLeftPadPtr->getY() + mPadHeight / 2)
+			mLeftPadPtr->getY() - mPadHeight / 2 <= mBallPtr->getY() &&
+			mBallPtr->getY() <= mLeftPadPtr->getY() + mPadHeight / 2)
 		{
 			mBallPtr->flipXSpeed();
 			//PlaySound(TEXT("Ping_Pong.wav"), NULL, SND_ASYNC);
