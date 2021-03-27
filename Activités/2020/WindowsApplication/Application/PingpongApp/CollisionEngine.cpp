@@ -36,7 +36,7 @@ void CollisionEngine::rebound(RECT iWindowRect)
 
 		if (mBallPtr->getX() <= 250                                      && 
 			mBallPtr->getX() >= 250 + mBallPtr->getSpeedX()              && // + getSpeedX() parce que la vitesse est négative
-			mLeftPadPtr->getY() - mPadHeight / 2 <= mBallPtr->getY() &&
+			mLeftPadPtr->getY() - mPadHeight / 2 <= mBallPtr->getY()     &&
 			mBallPtr->getY() <= mLeftPadPtr->getY() + mPadHeight / 2)
 		{
 			mBallPtr->flipXSpeed();
