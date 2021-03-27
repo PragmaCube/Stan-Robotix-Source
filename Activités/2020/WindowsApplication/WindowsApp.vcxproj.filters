@@ -129,6 +129,8 @@
       <Filter>Application\Dessin</Filter>
     </ClCompile>
     <ClCompile Include="Application\PingpongApp\CollisionEngine.cpp">
+      <Filter>Application\Battleship</Filter>
+    </ClCompile>
     <ClCompile Include="Application\BattleshipApp\BoatsPosition.cpp">
       <Filter>Application\Battleship</Filter>
     </ClCompile>
