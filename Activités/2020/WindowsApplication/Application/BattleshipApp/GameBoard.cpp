@@ -15,7 +15,7 @@ void GameBoard::defineDefautBrush() //création des pinceaux de couleurs
 	mBlackBrush = CreateSolidBrush(RGB(0, 0, 0));
 	mRedBrush = CreateSolidBrush(RGB(255, 0, 0));
 	mGreenBrush = CreateSolidBrush(RGB(0, 255, 0));
-	mGrayBrush = CreateSolidBrush(RGB(100, 100, 100));
+	mGrayBrush = CreateSolidBrush(RGB(0, 0, 0));
 	mBlueBrush = CreateSolidBrush(RGB(0, 0, 255));;
 	mPurpleBrush = CreateSolidBrush(RGB(128, 0, 128));;
 	mOrangeBrush = CreateSolidBrush(RGB(255, 165, 0));;
