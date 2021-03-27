@@ -80,9 +80,6 @@
     <ClInclude Include="Application\BattleshipApp\BoatsPosition.h">
       <Filter>Application\Battleship</Filter>
     </ClInclude>
-    <ClInclude Include="Application\BattleshipApp\PlayerControl.h">
-      <Filter>Application\Battleship</Filter>
-    </ClInclude>
     <ClInclude Include="Application\BattleshipApp\GameBoard.h">
       <Filter>Application\Battleship</Filter>
     </ClInclude>
@@ -134,14 +131,8 @@
     <ClCompile Include="Application\BattleshipApp\BoatsPosition.cpp">
       <Filter>Application\Battleship</Filter>
     </ClCompile>
-    <ClCompile Include="Application\BattleshipApp\PlayerControl.cpp">
-      <Filter>Application\Battleship</Filter>
-    </ClCompile>
     <ClCompile Include="Application\BattleshipApp\GameBoard.cpp">
       <Filter>Application\Battleship</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\PingpongApp\Ball.cpp">
-      <Filter>Application\PingPong</Filter>
     </ClCompile>
     <ClCompile Include="Application\PingpongApp\PingPongBall.cpp">
       <Filter>Application\PingPong</Filter>
