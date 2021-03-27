@@ -36,6 +36,11 @@ void BattleshipApplication::onKeyDown(char iChar, short iDetail)
 
 }
 
+void BattleshipApplication::onMouseMove(int iPosX, int iPosY)
+{
+
+}
+
 void BattleshipApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 {
 

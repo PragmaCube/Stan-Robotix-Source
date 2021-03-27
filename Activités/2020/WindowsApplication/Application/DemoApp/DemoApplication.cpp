@@ -85,6 +85,11 @@ void DemoApplication::onKeyDown(char iChar, short iDetail)
 
 }
 
+void DemoApplication::onMouseMove(int iPosX, int iPosY)
+{
+
+}
+
 void DemoApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 {
 

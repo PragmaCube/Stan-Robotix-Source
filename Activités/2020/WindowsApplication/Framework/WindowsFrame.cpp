@@ -110,6 +110,14 @@ void DemoWindowsFrame::onMouseLeftClick(int iPosX, int iPosY)
 	}
 }
 
+void DemoWindowsFrame::onMouseMove(int iPosX, int iPosY)
+{
+	if (nullptr != mCurrentApplication)
+	{
+		mCurrentApplication->onMouseMove(iPosX, iPosY);
+	}
+}
+
 void DemoWindowsFrame::onMouseRightClick(int iPosX, int iPosY)
 {
 	if (nullptr != mCurrentApplication)

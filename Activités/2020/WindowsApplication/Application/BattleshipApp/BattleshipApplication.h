@@ -19,6 +19,8 @@ protected:
 	void onMouseLeftClick(int iPosX, int iPosY);
 	void onMouseRightClick(int iPosX, int iPosY);
 
+	void onMouseMove(int iPosX, int iPosY);
+
 	void onTimer();
 
 private:
