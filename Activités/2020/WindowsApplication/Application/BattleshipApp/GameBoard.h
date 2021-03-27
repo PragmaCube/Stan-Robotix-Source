@@ -15,12 +15,18 @@ public:
 
 	void click(int iX, int iY);
 
+	void ResetStats();
+
 private:
 	HBRUSH mBlackBrush;
 	HBRUSH mRedBrush;
 	HBRUSH mGreenBrush;
 	HBRUSH mGrayBrush;
 	HBRUSH mWhiteBrush;
+	HBRUSH mBlueBrush;
+	HBRUSH mPurpleBrush;
+	HBRUSH mOrangeBrush;
+	HBRUSH mYellowBrush;
 	BoatsPosition mBoatsPosition;
 
 	HBRUSH getBrush(int i, int i2);
@@ -30,5 +36,11 @@ private:
 	const int mTopBoardCoor  = 100;
 	const int mSizeCell= 40;
 	const int mRadiusToken = 15;
+
+	int mShots = 0;
+	int mMissed = 0;
+	int mHits = 0;
+
+	bool mClick = true;
 };
 

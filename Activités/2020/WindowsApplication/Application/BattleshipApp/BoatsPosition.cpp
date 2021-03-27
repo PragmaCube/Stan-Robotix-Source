@@ -9,6 +9,18 @@ void BoatsPosition::resetSetState() // formation de la table de jeu
 			mState[y][x] = eSea;
 		}
 	}
+	
+	for (int i = 0; i < 3; i++)
+	{
+		mHPAircraftCarrier[i] = 0;
+		mHPCruiser[i] = 0;
+		mHPBattleship1[i] = 0;
+		mHPBattleship2[i] = 0;
+		mHPBattleship3[i] = 0;
+		mHPDestroyer[i] = 0;
+	}
+
+	mRound = 0;
 
 	GenerateAircraftCarrier();  // appels des différentes fonctions des bateaux pour générer le positions selon le type définit par la taille
 
@@ -16,10 +28,13 @@ void BoatsPosition::resetSetState() // formation de la table de jeu
 	
 	for (int i = 0; i < 3; i++)
 	{
+		mRound = i;
 		GenerateBattleship();
 	}
 
 	GenerateDestroyer();
+
+	mBoatsRemaining = 6;
 } 
 
 int BoatsPosition::getGridState(int x, int y)
@@ -30,6 +45,11 @@ int BoatsPosition::getGridState(int x, int y)
 void BoatsPosition::setGridState(int x, int y, int iNewState)
 {
 	mState[y][x] = iNewState; //changement de l'état par l'état introduit
+}
+
+int BoatsPosition::getBoatsRemaining()
+{
+	return mBoatsRemaining;
 }
 
 void BoatsPosition::GenerateAircraftCarrier()
@@ -110,6 +130,7 @@ void BoatsPosition::generateBoatPosition(int iLong) //processus de génération de
 			break;
 		}
 	}
+	findBoat(x, y, wDirectionShip, iLong);
 }
 
 int BoatsPosition::getRandomDirection(int iHeadX, int iHeadY, int iLong)
@@ -246,4 +267,138 @@ bool BoatsPosition::isBoatPerfectlyPlaced(int x, int y, int iDirection, int iLon
 	return wBoatPositionOk;
 }
 
+void BoatsPosition::findBoat(int x, int y, int iSens, int iLong)
+{
+	switch (iLong)
+	{
+		case 2: setDestroyerTable(x, y, iSens);
+		break;
 
+		case 3: setBattleshipTable(x, y, iSens);
+		break;
+
+		case 4: setCruiserTable(x, y, iSens);
+		break;
+
+		case 5: setAircraftCarrierTable(x, y, iSens);
+	}
+}
+
+void BoatsPosition::setAircraftCarrierTable(int x, int y, int iSens)
+{
+	mHPAircraftCarrier[0] = x;
+	mHPAircraftCarrier[1] = y;
+	mHPAircraftCarrier[2] = iSens;
+}
+
+void BoatsPosition::setCruiserTable(int x, int y, int iSens)
+{
+
+	mHPCruiser[0] = x;
+	mHPCruiser[1] = y;
+	mHPCruiser[2] = iSens;
+}
+
+void BoatsPosition::setBattleshipTable(int x, int y, int iSens)
+{
+	switch (mRound)
+	{
+	case 0:
+		mHPBattleship1[0] = x;
+		mHPBattleship1[1] = y;
+		mHPBattleship1[2] = iSens;
+		break;
+	case 1:
+		mHPBattleship2[0] = x;
+		mHPBattleship2[1] = y;
+		mHPBattleship2[2] = iSens;
+		break;
+	case 2:
+		mHPBattleship3[0] = x;
+		mHPBattleship3[1] = y;
+		mHPBattleship3[2] = iSens;
+	}
+}
+
+void BoatsPosition::setDestroyerTable(int x, int y, int iSens)
+{
+	mHPDestroyer[0] = x;
+	mHPDestroyer[1] = y;
+	mHPDestroyer[2] = iSens;
+}
+
+void BoatsPosition::setDestroyBoatColor()
+{
+	BoatsColorProcess(mHPAircraftCarrier[0], mHPAircraftCarrier[1], mHPAircraftCarrier[2], 5);
+	BoatsColorProcess(mHPCruiser[0], mHPCruiser[1], mHPCruiser[2], 4);
+	BoatsColorProcess(mHPBattleship1[0], mHPBattleship1[1], mHPBattleship1[2], 3);
+	BoatsColorProcess(mHPBattleship2[0], mHPBattleship2[1], mHPBattleship2[2], 3);
+	BoatsColorProcess(mHPBattleship3[0], mHPBattleship3[1], mHPBattleship3[2], 3);
+	BoatsColorProcess(mHPDestroyer[0], mHPDestroyer[1], mHPDestroyer[2], 2);
+}
+
+void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)
+{
+	int wNumberOfDestroyPointsX4 = 0;
+	switch (iSens)
+	{
+	case eUp:
+		for (int i = 0; i < iLong; i++)
+		{
+			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[y - i][x];
+		}
+		if (iLong * 4 == wNumberOfDestroyPointsX4)
+		{
+			for (int i = 0; i < iLong; i++)
+			{
+				mState[y - i][x] = 3 + iLong;
+			}
+			mBoatsRemaining = mBoatsRemaining - 1;
+		}
+		break;
+
+	case eRight:
+		for (int i = 0; i < iLong; i++)
+		{
+			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[y][x + i];
+		}
+		if (iLong * 4 == wNumberOfDestroyPointsX4)
+		{
+			for (int i = 0; i < iLong; i++)
+			{
+				mState[y][x + i] = 3 + iLong;
+			}
+			mBoatsRemaining = mBoatsRemaining - 1;
+		}
+		break;
+
+	case eDown:
+		for (int i = 0; i < iLong; i++)
+		{
+			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[y + i][x];
+		}
+		if (iLong * 4 == wNumberOfDestroyPointsX4)
+		{
+			for (int i = 0; i < iLong; i++)
+			{
+				mState[y + i][x] = 3 + iLong;
+			}
+			mBoatsRemaining = mBoatsRemaining - 1;
+	    }
+		break;
+
+	case eLeft:
+		for (int i = 0; i < iLong; i++)
+		{
+			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[y][x - i];
+		}
+		if (iLong * 4 == wNumberOfDestroyPointsX4)
+		{
+			for (int i = 0; i < iLong; i++)
+			{
+				mState[y][x - i] = 3 + iLong;
+			}
+			mBoatsRemaining = mBoatsRemaining - 1;
+		}
+	}
+}
