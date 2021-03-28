@@ -71,8 +71,8 @@ void PingPongBall::increaseSpeed()
 			 
 	if (wSpeed < 80.0)
 	{
-		mSpeedX = mSpeedX * 1.1;
-		mSpeedY = mSpeedY * 1.1;
+		mSpeedX = mSpeedX * 1.06;
+		mSpeedY = mSpeedY * 1.06;
 	}
 }
 

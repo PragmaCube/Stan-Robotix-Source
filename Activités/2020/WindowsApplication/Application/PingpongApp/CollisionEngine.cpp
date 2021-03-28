@@ -31,6 +31,7 @@ void CollisionEngine::rebound(RECT iWindowRect)
 		if (!mInit)
 		{
 			mLeftPadPtr->initialiser(iWindowRect);
+			mRightPadPtr->initialiser(iWindowRect);
 			mInit = true;
 		}
 
@@ -45,12 +46,22 @@ void CollisionEngine::rebound(RECT iWindowRect)
 			mNbEchanges++;
 		}
 
-		else if (mBallPtr->getX() >= 880)
+		if (mBallPtr->getX() >= 880 && mBallPtr->getX() <= 880 + mBallPtr->getSpeedX() && mRightPadPtr->getY() - mPadHeight / 2 <= mBallPtr->getY() &&
+			mBallPtr->getY() <= mRightPadPtr->getY() + mPadHeight / 2)
 		{
 			mBallPtr->flipXSpeed();
+			mBallPtr->increaseSpeed();
+			mNbEchanges++;
 		}
 
 		if (mBallPtr->getX() < iWindowRect.left)
+		{
+			Sleep(1000);
+			mNbEchanges = 0;
+			mBallPtr->restart(iWindowRect);
+		}
+
+		if (mBallPtr->getX() > iWindowRect.right)
 		{
 			Sleep(1000);
 			mNbEchanges = 0;
