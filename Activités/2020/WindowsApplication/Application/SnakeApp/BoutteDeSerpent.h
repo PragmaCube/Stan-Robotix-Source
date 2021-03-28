@@ -7,13 +7,18 @@ class BoutteDeSerpent{
 
 		void updateDrawingArea(RECT iWindowRect);
 		void paint(HDC ihdc);
-		
+		void increaseSpeed();
+		void decreaseSpeed();
+		void Up(); //c est le nom du film
+		void Down();
+		void Left();
+		void Right();
 	private:
-		int NombreDeBalles;
 		bool mIsInit = false;
 		int mCoorY;
 		int mCoorX;
-		double mSpeedX = 20, mSpeedY = 20;
+		int mSpeedX = 30;
+		int mSpeedY = 30;
 		int mRadius = 20;
 		HBRUSH mBrush;
 		enum ProchaineDirection { haut, bas, gauche, droite };

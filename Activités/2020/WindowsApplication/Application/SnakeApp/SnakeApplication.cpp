@@ -31,29 +31,30 @@ void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 }
 void SnakeApplication::onChar(char iChar, short iDetail)
 {
+
 	switch (iChar)
 	{
-		case ('W'):
-		case ('w'):
-		{
+	case ('W'):
+	case ('w'):
+	{
+		mRond.Up();
+	}
+	case ('S'):
+	case ('s'):
+	{
+		mRond.Down();// ils se sont inspiré de mon code pour créer des directions
+	}
+	case ('D'):
+	case ('d'):
+	{
+		mRond.Right();
+	}
+	case ('A'):
+	case ('a'):
+	{
+		mRond.Left();
+	}
 
-		}
-		case ('S'):
-		case ('s'):
-		{
-
-		}
-		case ('D'):
-		case ('d'):
-		{
-
-		}
-		case ('A'):
-		case ('a'):
-		{
-
-		}
-		
 	}
 
 }
