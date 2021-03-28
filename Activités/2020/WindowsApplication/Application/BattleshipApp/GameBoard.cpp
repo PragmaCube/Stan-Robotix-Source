@@ -32,7 +32,6 @@ void GameBoard::click(int iX, int iY) //cliquer sur un cercle pour changer l'éta
 	const int wLeftBorder     = mLeftBoardCoor- mRadiusToken;
 	const int wTopBorder      = mTopBoardCoor - mRadiusToken;
 	const int wTotalGridSize  = 10 * mSizeCell;
-
 	int wRowClick = -1;
 	int wColumnClick = -1;
 		if (
@@ -54,13 +53,13 @@ void GameBoard::click(int iX, int iY) //cliquer sur un cercle pour changer l'éta
 				case BoatsPosition::eBoat:
 					mBoatsPosition.setGridState(wColumnClick, wRowClick, BoatsPosition::eHit);
 					mBoatsPosition.setDestroyBoatColor();
-					mShots = mShots + 1;
-					mHits = mHits + 1;
+					mShots++;
+					mHits++;
 					break;
 				case BoatsPosition::eSea:
 					mBoatsPosition.setGridState(wColumnClick, wRowClick, BoatsPosition::eMiss);
-					mShots = mShots + 1;
-					mMissed = mMissed + 1;
+					mShots++;
+					mMissed++;
 					break;
 				}
 			}
@@ -129,10 +128,10 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 			}
 			//dessin du contour du cercle
 			::Ellipse(ihdc,
-				(int)(mLeftBoardCoor + y * mSizeCell) - mRadiusToken,/*x*/
-				(int)(mTopBoardCoor  + x * mSizeCell) - mRadiusToken,/*y*/
-				(int)(mLeftBoardCoor + y * mSizeCell) + mRadiusToken,/*x*/
-				(int)(mTopBoardCoor  + x * mSizeCell) + mRadiusToken);/*y*/
+				(int)(mkLeftBoardCoor + y * mkSizeCell) - mkRadiusToken,/*x*/
+				(int)(mkTopBoardCoor  + x * mkSizeCell) - mkRadiusToken,/*y*/
+				(int)(mkLeftBoardCoor + y * mkSizeCell) + mkRadiusToken,/*x*/
+				(int)(mkTopBoardCoor  + x * mkSizeCell) + mkRadiusToken);/*y*/
 		}
 	}
 
@@ -167,7 +166,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 	}
 
 	std::wstring wChar = wBoats.substr(0, 20);
-	RECT wTextArea = {170,105,2000,2000};
+	RECT wTextArea = {170, 105, 2000, 2000};
 	::DrawText(
 		ihdc,
 		wChar.c_str(),
@@ -176,7 +175,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 		(int)(DT_LEFT | DT_BOTTOM));
 
 	wChar = wShots.substr(0, 20);
-	wTextArea = { 170,130,2000,2000 };
+	wTextArea = { 170, 130, 2000, 2000 };
 	::DrawText(
 		ihdc,
 		wChar.c_str(),
@@ -185,7 +184,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 		(int)(DT_LEFT | DT_BOTTOM));
 
 	wChar = wHits.substr(0, 20);
-	wTextArea = { 170,155,2000,2000 };
+	wTextArea = { 170, 155, 2000, 2000 };
 	::DrawText(
 		ihdc,
 		wChar.c_str(),
@@ -194,7 +193,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 		(int)(DT_LEFT | DT_BOTTOM));
 
 	wChar = wMissed.substr(0, 20);
-	wTextArea = { 170,180,2000,2000 };
+	wTextArea = { 170, 180, 2000, 2000 };
 	::DrawText(
 		ihdc,
 		wChar.c_str(),
@@ -205,7 +204,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 	if (mHits == 20)
 	{
 		wChar = wVictory.substr(0, 30);
-		wTextArea = { 170,275,5000,5000 };
+		wTextArea = { 170, 275, 5000, 5000 };
 		::DrawText(
 			ihdc,
 			wChar.c_str(),
@@ -217,7 +216,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 	if (mMissed == 80)
 	{
 		wChar = wDefeat.substr(0, 30);
-		wTextArea = { 170,275,5000,5000 };
+		wTextArea = { 170, 275, 5000, 5000 };
 		::DrawText(
 			ihdc,
 			wChar.c_str(),
@@ -230,7 +229,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 
 HBRUSH GameBoard::getBrush(int i, int i2) //fonction qui définit la couleur du pinceau pour une certaine position en fonction de l'état
 {
-	int wPositionState = mBoatsPosition.getGridState(i2,i);//récupération de l'état à la position i2 i
+	int wPositionState = mBoatsPosition.getGridState(i2, i);//récupération de l'état à la position i2 i
 	HBRUSH wSelect= 0;
 	switch (wPositionState)
 	{
@@ -257,6 +256,7 @@ HBRUSH GameBoard::getBrush(int i, int i2) //fonction qui définit la couleur du p
 		break;
 
 	case 8: wSelect = mPurpleBrush;
+		break;
 	}
 	
 	return wSelect;

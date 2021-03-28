@@ -22,17 +22,17 @@ void BoatsPosition::resetSetState() // formation de la table de jeu
 
 	mRound = 0;
 
-	GenerateAircraftCarrier();  // appels des différentes fonctions des bateaux pour générer le positions selon le type définit par la taille
+	generateAircraftCarrier();  // appels des différentes fonctions des bateaux pour générer le positions selon le type définit par la taille
 
-	GenerateCruiser();
+	generateCruiser();
 	
 	for (int i = 0; i < 3; i++)
 	{
 		mRound = i;
-		GenerateBattleship();
+		generateBattleship();
 	}
 
-	GenerateDestroyer();
+	generateDestroyer();
 
 	mBoatsRemaining = 6;
 } 
@@ -52,22 +52,22 @@ int BoatsPosition::getBoatsRemaining()
 	return mBoatsRemaining;
 }
 
-void BoatsPosition::GenerateAircraftCarrier()
+void BoatsPosition::generateAircraftCarrier()
 {
 	generateBoatPosition(5);
 }
 
-void BoatsPosition::GenerateDestroyer()
+void BoatsPosition::generateDestroyer()
 {
 	generateBoatPosition(2);
 }
 
-void BoatsPosition::GenerateCruiser()
+void BoatsPosition::generateCruiser()
 {
 	generateBoatPosition(4);
 }
 
-void BoatsPosition::GenerateBattleship()
+void BoatsPosition::generateBattleship()
 {
 	generateBoatPosition(3);
 }
@@ -353,7 +353,7 @@ void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)
 			{
 				mState[y - i][x] = 3 + iLong;
 			}
-			mBoatsRemaining = mBoatsRemaining - 1;
+			mBoatsRemaining--;
 		}
 		break;
 
@@ -368,7 +368,7 @@ void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)
 			{
 				mState[y][x + i] = 3 + iLong;
 			}
-			mBoatsRemaining = mBoatsRemaining - 1;
+			mBoatsRemaining--;
 		}
 		break;
 
@@ -383,7 +383,7 @@ void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)
 			{
 				mState[y + i][x] = 3 + iLong;
 			}
-			mBoatsRemaining = mBoatsRemaining - 1;
+			mBoatsRemaining--;
 	    }
 		break;
 
@@ -398,7 +398,7 @@ void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)
 			{
 				mState[y][x - i] = 3 + iLong;
 			}
-			mBoatsRemaining = mBoatsRemaining - 1;
+			mBoatsRemaining--;
 		}
 	}
 }

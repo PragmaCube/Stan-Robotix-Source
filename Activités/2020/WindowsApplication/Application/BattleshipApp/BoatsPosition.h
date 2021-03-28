@@ -7,10 +7,10 @@ public:
 	enum { eNotUsed, eUp, eRight, eDown, eLeft, eNoDirection};
 	int mBoatsRemaining = 6;
 
-	void GenerateAircraftCarrier();
-	void GenerateDestroyer();
-	void GenerateCruiser();
-	void GenerateBattleship();
+	void generateAircraftCarrier();
+	void generateDestroyer();
+	void generateCruiser();
+	void generateBattleship();
 	int getGridState(int x, int y);
 	void setGridState(int x, int y, int iNewState);
 	void resetSetState();

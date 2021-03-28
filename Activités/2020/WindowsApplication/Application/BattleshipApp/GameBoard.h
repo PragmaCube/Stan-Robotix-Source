@@ -32,10 +32,10 @@ private:
 	HBRUSH getBrush(int i, int i2);
 	void defineDefautBrush();
 
-	const int mLeftBoardCoor = 400;
-	const int mTopBoardCoor  = 100;
-	const int mSizeCell= 40;
-	const int mRadiusToken = 15;
+	const int mkLeftBoardCoor = 400;
+	const int mkTopBoardCoor  = 100;
+	const int mkSizeCell= 40;
+	const int mkRadiusToken = 15;
 
 	int mShots = 0;
 	int mMissed = 0;
