@@ -11,6 +11,10 @@ BoutteDeSerpent::BoutteDeSerpent()
 	COLORREF wColor = RGB(255, 0, 0);
 	mBrush = CreateSolidBrush(wColor);
 
+
+	mIsInit = false;
+
+
 }
 
 void BoutteDeSerpent::updateDrawingArea(RECT iWindowRect)
@@ -24,7 +28,27 @@ void BoutteDeSerpent::updateDrawingArea(RECT iWindowRect)
 
 		mIsInit = true;
 	}
+	if (mCoorX > iWindowRect.right)
+	{
+		mCoorX = (double)(iWindowRect.right);
+		//inserer code qui delet la balle
+	}
+	else if (mCoorX < iWindowRect.left)
+	{
+		mCoorX = (double)(iWindowRect.left);
+		//inserer code qui delet la balle
+	}
 
+	if (mCoorY > iWindowRect.bottom)
+	{
+		mCoorY = (double)(iWindowRect.bottom);
+		//inserer code qui delet la balle
+	}
+	else if (mCoorY < iWindowRect.top)
+	{
+		mCoorY = (double)(iWindowRect.top);
+		//inserer code qui delet la balle
+	}
 }
 
 void BoutteDeSerpent::paint(HDC ihdc) {

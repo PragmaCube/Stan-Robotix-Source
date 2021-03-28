@@ -21,5 +21,6 @@ class BoutteDeSerpent{
 		int mSpeedX = 10;
 		int mSpeedY = 10;
 		int mRadius = 20;
+		RECT mDrawingArea;
 		HBRUSH mBrush;
 };
