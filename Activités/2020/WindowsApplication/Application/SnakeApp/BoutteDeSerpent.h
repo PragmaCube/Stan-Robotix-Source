@@ -9,11 +9,12 @@ class BoutteDeSerpent{
 		void paint(HDC ihdc);
 		void increaseSpeed();
 		void decreaseSpeed();
+//L'anglais c est inspiré de mon code pour ces directions
 		void Up(); //c est le nom du film
 		void Down();
 		void Left();
 		void Right();
-	private:
+	private: 
 		bool mIsInit = false;
 		int mCoorY;
 		int mCoorX;
