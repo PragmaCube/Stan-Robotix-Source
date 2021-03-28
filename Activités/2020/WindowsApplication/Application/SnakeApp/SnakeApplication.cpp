@@ -38,21 +38,28 @@ void SnakeApplication::onChar(char iChar, short iDetail)
 	case ('w'):
 	{
 		mRond.Up();
+		break;
 	}
 	case ('S'):
 	case ('s'):
 	{
 		mRond.Down();// ils se sont inspiré de mon code pour créer des directions
+		break;
+
 	}
 	case ('D'):
 	case ('d'):
 	{
 		mRond.Right();
+		break;
+
 	}
 	case ('A'):
 	case ('a'):
 	{
 		mRond.Left();
+		break;
+
 	}
 
 	}
