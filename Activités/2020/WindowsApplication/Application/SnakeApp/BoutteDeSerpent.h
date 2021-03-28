@@ -17,8 +17,8 @@ class BoutteDeSerpent{
 		bool mIsInit = false;
 		int mCoorY;
 		int mCoorX;
-		int mSpeedX = 30;
-		int mSpeedY = 30;
+		int mSpeedX = 10;
+		int mSpeedY = 10;
 		int mRadius = 20;
 		HBRUSH mBrush;
 };

@@ -12,7 +12,7 @@ SnakeApplication::SnakeApplication()
 {
 
 }
-
+	
 void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 {
 	std::wstring wTitle = L"Application d Snake";
@@ -25,7 +25,24 @@ void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 		DT_CENTER | DT_TOP);
 
 	mRond.updateDrawingArea(iPaintArea);
-	mRond.paint(ihdc);
+	mRond.paint(ihdc);	
+
+	if (ProchaineDir == 1)
+	{
+		mRond.Up();
+	}
+	else if (ProchaineDir == 2)
+	{
+		mRond.Down();
+	}
+	else 	if (ProchaineDir == 3)
+	{
+		mRond.Right();
+	}
+	else if (ProchaineDir == 4)
+	{
+		mRond.Left();
+	}
 
 
 }
@@ -37,27 +54,27 @@ void SnakeApplication::onChar(char iChar, short iDetail)
 	case ('W'):
 	case ('w'):
 	{
-		mRond.Up();
+		ProchaineDir = 1;
 		break;
 	}
 	case ('S'):
 	case ('s'):
 	{
-		mRond.Down();// ils se sont inspiré de mon code pour créer des directions
+		ProchaineDir = 2;
 		break;
 
 	}
 	case ('D'):
 	case ('d'):
 	{
-		mRond.Right();
+		ProchaineDir = 3 ;
 		break;
 
 	}
 	case ('A'):
 	case ('a'):
 	{
-		mRond.Left();
+		ProchaineDir = 4;
 		break;
 
 	}
