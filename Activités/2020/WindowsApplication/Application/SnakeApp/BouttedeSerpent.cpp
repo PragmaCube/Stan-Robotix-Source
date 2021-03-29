@@ -4,6 +4,7 @@
 #include <time.h>       
 #include <math.h>
 #include <string>
+#include "SnakeApplication.h"
 
 BoutteDeSerpent::BoutteDeSerpent()
 {
@@ -28,26 +29,35 @@ void BoutteDeSerpent::updateDrawingArea(RECT iWindowRect)
 
 		mIsInit = true;
 	}
+//sa reset la balle si elle touche un mur, je pourais probablement supprimer le tiers des lignes qui sont ici mais g trop la flemme
 	if (mCoorX > iWindowRect.right)
 	{
 		mCoorX = (double)(iWindowRect.right);
-		//inserer code qui delet la balle
+		mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
+		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
+		SnakeApplication::ProchaineDir = 0;
 	}
 	else if (mCoorX < iWindowRect.left)
 	{
 		mCoorX = (double)(iWindowRect.left);
-		//inserer code qui delet la balle
+		mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
+		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
+
 	}
 
 	if (mCoorY > iWindowRect.bottom)
 	{
 		mCoorY = (double)(iWindowRect.bottom);
-		//inserer code qui delet la balle
+		mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
+		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
+
 	}
 	else if (mCoorY < iWindowRect.top)
 	{
 		mCoorY = (double)(iWindowRect.top);
-		//inserer code qui delet la balle
+		mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
+		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
+
 	}
 }
 
