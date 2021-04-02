@@ -6,7 +6,10 @@
 GameBoard::GameBoard()
 {
 	defineDefautBrush();
-
+	mShots = 0;
+	mHits = 0;
+	mMissed = 0;
+	mClick = true;
 	reset();
 }
 
@@ -27,22 +30,22 @@ void GameBoard::reset() //réinitialisation de la table de jeux
 	mBoatsPosition.resetSetState();
 }
 
-void GameBoard::click(int iX, int iY) //cliquer sur un cercle pour changer l'état de la position
+void GameBoard::click(int x, int y) //cliquer sur un cercle pour changer l'état de la position
 {
-	const int wLeftBorder     = mLeftBoardCoor- mRadiusToken;
-	const int wTopBorder      = mTopBoardCoor - mRadiusToken;
-	const int wTotalGridSize  = 10 * mSizeCell;
+	const int wLeftBorder     = mkLeftBoardCoor- mkRadiusToken;
+	const int wTopBorder      = mkTopBoardCoor - mkRadiusToken;
+	const int wTotalGridSize  = 10 * mkSizeCell;
 	int wRowClick = -1;
 	int wColumnClick = -1;
 		if (
-			(wLeftBorder < iX) && (iX < wLeftBorder + wTotalGridSize) &&
-			(wTopBorder < iY) && (iY < wTopBorder + wTotalGridSize)
+			(wLeftBorder < x) && (x < wLeftBorder + wTotalGridSize) &&
+			(wTopBorder < y) && (y < wTopBorder + wTotalGridSize)
 			)
 		{
-			wRowClick = (iY - wTopBorder) / mSizeCell;
-			wColumnClick = (iX - wLeftBorder) / mSizeCell;
+			wRowClick = (y - wTopBorder) / mkSizeCell;
+			wColumnClick = (x - wLeftBorder) / mkSizeCell;
 		}
-		if (mClick == true)
+		if (mClick == true) //boucle permettant de déscativer le clique pour jouer en fin de partie
 		{
 			if ((wRowClick != -1) && (wColumnClick != -1))
 			{
@@ -50,16 +53,16 @@ void GameBoard::click(int iX, int iY) //cliquer sur un cercle pour changer l'éta
 
 				switch (wPositionState)
 				{
-				case BoatsPosition::eBoat:
-					mBoatsPosition.setGridState(wColumnClick, wRowClick, BoatsPosition::eHit);
-					mBoatsPosition.setDestroyBoatColor();
-					mShots++;
-					mHits++;
+				case BoatsPosition::eBoat: //quand la position est une partie de bâteau cacher
+					mBoatsPosition.setGridState(wColumnClick, wRowClick, BoatsPosition::eHit); //appel d'une fonction qui va chamger l'état de la position en partie du bateau touchée dans le tableau de l'état de chaque position
+					mBoatsPosition.setDestroyBoatColor(); //appel d'une fonction qui vérifie si il y a un bateau trouvé à 100%, comme ça le bâteau prendra une certaine couleur
+					mShots++; //met à jour le conpteur de tirs
+					mHits++; //met à jour le compteur de tirs réussis
 					break;
-				case BoatsPosition::eSea:
-					mBoatsPosition.setGridState(wColumnClick, wRowClick, BoatsPosition::eMiss);
-					mShots++;
-					mMissed++;
+				case BoatsPosition::eSea: //quand la position est de l'eau
+					mBoatsPosition.setGridState(wColumnClick, wRowClick, BoatsPosition::eMiss);//appel d'une fonction qui va chamger l'état de la position en eau visible dans le tableau de l'état de chaque position
+					mShots++; //met à jour le conpteur de tirs
+					mMissed++;//met à jour le compteur de tirs ratés
 					break;
 				}
 			}
@@ -156,15 +159,15 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 			wlast = 2;
 		}
 		std::wstring wChar = wnumbers.substr(i4, wlast);
-		RECT wTextArea = { 395+i4*40, 60, 2000, 2000 };
+		RECT wTextArea = { 395 + i4 * 40, 60, 2000, 2000 };
 		::DrawText(
 			ihdc,
 			wChar.c_str(),
 			wChar.length(),
 			&wTextArea,
-			(int)(DT_LEFT | DT_BOTTOM ));
+			(int)(DT_LEFT | DT_BOTTOM));
 	}
-
+	//Affiche la rogression de la partie, nombre de bateaux restant 
 	std::wstring wChar = wBoats.substr(0, 20);
 	RECT wTextArea = {170, 105, 2000, 2000};
 	::DrawText(
@@ -173,7 +176,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 		wChar.length(),
 		&wTextArea,
 		(int)(DT_LEFT | DT_BOTTOM));
-
+	//Affiche le nombre de tirs effectués
 	wChar = wShots.substr(0, 20);
 	wTextArea = { 170, 130, 2000, 2000 };
 	::DrawText(
@@ -182,7 +185,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 		wChar.length(),
 		&wTextArea,
 		(int)(DT_LEFT | DT_BOTTOM));
-
+	//Affiche le nombre de tirs réussis
 	wChar = wHits.substr(0, 20);
 	wTextArea = { 170, 155, 2000, 2000 };
 	::DrawText(
@@ -191,7 +194,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 		wChar.length(),
 		&wTextArea,
 		(int)(DT_LEFT | DT_BOTTOM));
-
+	//Affiche le nombre de tirs ratés
 	wChar = wMissed.substr(0, 20);
 	wTextArea = { 170, 180, 2000, 2000 };
 	::DrawText(
@@ -200,7 +203,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 		wChar.length(),
 		&wTextArea,
 		(int)(DT_LEFT | DT_BOTTOM));
-
+	//Affiche victoire quand le joueur a trouvé tout les bateaux(= 20 tirs touchés)
 	if (mHits == 20)
 	{
 		wChar = wVictory.substr(0, 30);
@@ -212,7 +215,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 			&wTextArea,
 			(int)(DT_LEFT | DT_BOTTOM));
 	}
-
+	//Affiche défaite quand le jour a trouvé tout les positions de l'eau(80 positions), j'ai touvé un specimen qui a été capable de perdre
 	if (mMissed == 80)
 	{
 		wChar = wDefeat.substr(0, 30);
@@ -227,9 +230,9 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 	}
 }
 
-HBRUSH GameBoard::getBrush(int i, int i2) //fonction qui définit la couleur du pinceau pour une certaine position en fonction de l'état
+HBRUSH GameBoard::getBrush(int x, int y) //fonction qui définit la couleur du pinceau pour une certaine position en fonction de l'état
 {
-	int wPositionState = mBoatsPosition.getGridState(i2, i);//récupération de l'état à la position i2 i
+	int wPositionState = mBoatsPosition.getGridState(y, x);//récupération de l'état à la position i2 i
 	HBRUSH wSelect= 0;
 	switch (wPositionState)
 	{
@@ -260,12 +263,4 @@ HBRUSH GameBoard::getBrush(int i, int i2) //fonction qui définit la couleur du p
 	}
 	
 	return wSelect;
-}
-
-void GameBoard::ResetStats()
-{
-	mShots = 0;
-	mHits = 0;
-	mMissed = 0;
-	mClick = true;
 }

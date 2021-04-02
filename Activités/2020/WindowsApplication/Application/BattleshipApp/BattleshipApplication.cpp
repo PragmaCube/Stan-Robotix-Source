@@ -27,7 +27,6 @@ void BattleshipApplication::onChar(char iChar, short iDetail)
 	if ((iChar == 'N') || (iChar == 'n'))
 	{
 		mGameBoard.reset();
-		mGameBoard.ResetStats();
 	}
 }
 

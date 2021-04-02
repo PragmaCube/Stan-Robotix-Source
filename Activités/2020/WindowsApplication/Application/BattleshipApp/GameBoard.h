@@ -13,9 +13,8 @@ public:
 
 	void drawGameBoard(HDC ihdc, RECT& iPaintArea);
 
-	void click(int iX, int iY);
+	void click(int x, int y);
 
-	void ResetStats();
 
 private:
 	HBRUSH mBlackBrush;
@@ -29,7 +28,7 @@ private:
 	HBRUSH mYellowBrush;
 	BoatsPosition mBoatsPosition;
 
-	HBRUSH getBrush(int i, int i2);
+	HBRUSH getBrush(int x, int y);
 	void defineDefautBrush();
 
 	const int mkLeftBoardCoor = 400;

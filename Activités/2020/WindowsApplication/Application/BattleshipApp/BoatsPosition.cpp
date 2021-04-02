@@ -130,7 +130,7 @@ void BoatsPosition::generateBoatPosition(int iLong) //processus de génération de
 			break;
 		}
 	}
-	findBoat(x, y, wDirectionShip, iLong);
+	findBoat(x, y, wDirectionShip, iLong); //appel d'une fonction pour savoir remplir le tableau d'infornations de l'un des bateaux à l'aide la longeur
 }
 
 int BoatsPosition::getRandomDirection(int iHeadX, int iHeadY, int iLong)
@@ -267,7 +267,7 @@ bool BoatsPosition::isBoatPerfectlyPlaced(int x, int y, int iDirection, int iLon
 	return wBoatPositionOk;
 }
 
-void BoatsPosition::findBoat(int x, int y, int iSens, int iLong)
+void BoatsPosition::findBoat(int x, int y, int iSens, int iLong) //fonction qui permet de déterminer pour quel bateau il faut remplir le tableau d'information grâce à la longeur
 {
 	switch (iLong)
 	{
@@ -284,6 +284,7 @@ void BoatsPosition::findBoat(int x, int y, int iSens, int iLong)
 	}
 }
 
+//fonctions qui remplissent le tableau d'information de chaque bateau
 void BoatsPosition::setAircraftCarrierTable(int x, int y, int iSens)
 {
 	mHPAircraftCarrier[0] = x;
@@ -301,7 +302,7 @@ void BoatsPosition::setCruiserTable(int x, int y, int iSens)
 
 void BoatsPosition::setBattleshipTable(int x, int y, int iSens)
 {
-	switch (mRound)
+	switch (mRound) //vu qu'il en existe tois de ce type, on trouve le tableau exacte à l'aide de mRound  qui permet de déterminer à quel bateau de ce type on est rendu dans la construction
 	{
 	case 0:
 		mHPBattleship1[0] = x;
@@ -327,7 +328,7 @@ void BoatsPosition::setDestroyerTable(int x, int y, int iSens)
 	mHPDestroyer[2] = iSens;
 }
 
-void BoatsPosition::setDestroyBoatColor()
+void BoatsPosition::setDestroyBoatColor() //fonction qui lance plusierus fois le processus de vérification de si le bateau est découvert au complet, avec les données du tableau du bateau à vérifier et sa longueur
 {
 	BoatsColorProcess(mHPAircraftCarrier[0], mHPAircraftCarrier[1], mHPAircraftCarrier[2], 5);
 	BoatsColorProcess(mHPCruiser[0], mHPCruiser[1], mHPCruiser[2], 4);
@@ -337,7 +338,7 @@ void BoatsPosition::setDestroyBoatColor()
 	BoatsColorProcess(mHPDestroyer[0], mHPDestroyer[1], mHPDestroyer[2], 2);
 }
 
-void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)
+void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)//processus de vérification de si le bateau est détruit
 {
 	int wNumberOfDestroyPointsX4 = 0;
 	switch (iSens)
@@ -347,13 +348,13 @@ void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)
 		{
 			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[y - i][x];
 		}
-		if (iLong * 4 == wNumberOfDestroyPointsX4)
+		if (iLong * 4 == wNumberOfDestroyPointsX4) //si la somme des états de chaque parties de bateau est égal à la longueur de bateau fois 4 (4 quand la partie du bateau est touchée), donc le bateau est détruit puisque tout les parties sont donc logiquements touchées
 		{
 			for (int i = 0; i < iLong; i++)
 			{
-				mState[y - i][x] = 3 + iLong;
+				mState[y - i][x] = 3 + iLong; //modification de la valeur de chaque état, pour que le bateau prennent une certaine couleur lors de la coloration
 			}
-			mBoatsRemaining--;
+			mBoatsRemaining--; //mise à jour de compteur de nombre de bateaux restant à détruire
 		}
 		break;
 
