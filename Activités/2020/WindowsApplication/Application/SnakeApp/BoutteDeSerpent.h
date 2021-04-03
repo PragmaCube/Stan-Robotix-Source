@@ -1,9 +1,12 @@
 #pragma once
 #include <Windows.h>
+class SnakeApplication;
 
 class BoutteDeSerpent{
 	public:
 		BoutteDeSerpent();
+
+		void setApplication(SnakeApplication* iPtrApp);
 
 		void updateDrawingArea(RECT iWindowRect);
 		void paint(HDC ihdc);
@@ -23,4 +26,6 @@ class BoutteDeSerpent{
 		int mRadius = 20;
 		RECT mDrawingArea;
 		HBRUSH mBrush;
+
+		SnakeApplication* mPtrSnakeApplication;
 };

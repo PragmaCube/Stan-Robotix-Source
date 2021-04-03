@@ -10,7 +10,7 @@
 
 SnakeApplication::SnakeApplication()
 {
-
+	mRond.setApplication(this);
 }
 	
 void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)

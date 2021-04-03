@@ -80,6 +80,9 @@
     <ClInclude Include="Application\SnakeApp\BoutteDeSerpent.h">
       <Filter>Application\Snake</Filter>
     </ClInclude>
+    <ClInclude Include="pom.h">
+      <Filter>Application\Snake</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\WindowsApp.cpp">
@@ -113,6 +116,9 @@
       <Filter>Application\Dessin</Filter>
     </ClCompile>
     <ClCompile Include="Application\SnakeApp\BouttedeSerpent.cpp">
+      <Filter>Application\Snake</Filter>
+    </ClCompile>
+    <ClCompile Include="pom.cpp">
       <Filter>Application\Snake</Filter>
     </ClCompile>
   </ItemGroup>

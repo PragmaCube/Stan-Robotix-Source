@@ -6,7 +6,7 @@
 #include <string>
 #include "SnakeApplication.h"
 
-BoutteDeSerpent::BoutteDeSerpent()
+BoutteDeSerpent::BoutteDeSerpent(): mPtrSnakeApplication(nullptr)
 {
 
 	COLORREF wColor = RGB(255, 0, 0);
@@ -18,13 +18,18 @@ BoutteDeSerpent::BoutteDeSerpent()
 
 }
 
+void BoutteDeSerpent::setApplication(SnakeApplication* iPtrApp)
+{
+	mPtrSnakeApplication = iPtrApp;
+}
+
 void BoutteDeSerpent::updateDrawingArea(RECT iWindowRect)
 {
 
 	if (!mIsInit)
 	{
-		mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
-		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
+		mCoorX = iWindowRect.left + (double)(100);
+		mCoorY = iWindowRect.top + (double)(1000);
 		
 
 		mIsInit = true;
@@ -35,14 +40,14 @@ void BoutteDeSerpent::updateDrawingArea(RECT iWindowRect)
 		mCoorX = (double)(iWindowRect.right);
 		mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
 		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
-		SnakeApplication::ProchaineDir = 0;
+		mPtrSnakeApplication->ProchaineDir = 0;
 	}
 	else if (mCoorX < iWindowRect.left)
 	{
 		mCoorX = (double)(iWindowRect.left);
 		mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
 		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
-
+		mPtrSnakeApplication->ProchaineDir = 0;
 	}
 
 	if (mCoorY > iWindowRect.bottom)
@@ -50,14 +55,14 @@ void BoutteDeSerpent::updateDrawingArea(RECT iWindowRect)
 		mCoorY = (double)(iWindowRect.bottom);
 		mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
 		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
-
+		mPtrSnakeApplication->ProchaineDir = 0;
 	}
 	else if (mCoorY < iWindowRect.top)
 	{
 		mCoorY = (double)(iWindowRect.top);
 		mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
 		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
-
+		mPtrSnakeApplication->ProchaineDir = 0;
 	}
 }
 

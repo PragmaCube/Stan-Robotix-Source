@@ -2,11 +2,13 @@
 #include "../../Framework/IApplication.h"
 #include "BoutteDeSerpent.h"
 
+
 class SnakeApplication :
     public IApplication
 {
 public:
 	SnakeApplication();
+	 int ProchaineDir;
 
 protected:
 	void paint(HDC ihdc, RECT& iPaintArea);
@@ -17,8 +19,10 @@ protected:
 	void onMouseLeftClick(int iPosX, int iPosY);
 	void onMouseRightClick(int iPosX, int iPosY);
 
+
 private:
 	BoutteDeSerpent mRond;
-	int ProchaineDir;
+
+	
 }; 
 
