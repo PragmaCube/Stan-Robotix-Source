@@ -29,8 +29,9 @@ void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 	int wNbToken = mTokenList.size();
 	for (int i = 0; i < wNbToken; i++)
 	{
-		Token wToken = mTokenList[i];
+     	Token wToken = mTokenList[i];
 		wToken.draw(ihdc);
+
 	}
 
 	if (mWinner == Token::eRed)

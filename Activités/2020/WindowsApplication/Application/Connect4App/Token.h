@@ -6,6 +6,7 @@
 class Token
 {
 public:
+
 	enum { eNothing, eRed, eBlue };
 
 	Token();
@@ -19,9 +20,6 @@ private:
 
 	int mPosX, mPosY;
 	int mType;
-	
-	
 
-	
 };
 

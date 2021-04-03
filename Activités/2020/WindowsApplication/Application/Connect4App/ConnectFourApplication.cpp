@@ -4,6 +4,7 @@
 
 ConnectFourApplication::ConnectFourApplication() 
 {
+
 }
 
  void ConnectFourApplication::paint(HDC ihdc, RECT& iPaintArea)
@@ -30,6 +31,7 @@ void ConnectFourApplication::onChar(char iChar, short iDetail)
 
 void ConnectFourApplication::onKeyDown(char iChar, short iDetail)
 {
+
 }
 
 
@@ -44,7 +46,6 @@ void ConnectFourApplication::onMouseLeftClick(int iPosX, int iPosY)
 	{
 		mBoardGame.addBlueToken(iPosX);
 	}
-
 }
 
 void ConnectFourApplication::onMouseRightClick(int iPosX, int iPosY)
@@ -53,7 +54,6 @@ void ConnectFourApplication::onMouseRightClick(int iPosX, int iPosY)
 	{
 		mBoardGame.addRedToken(iPosX);
 	}
-
 }
 
 void ConnectFourApplication::onTimer()
