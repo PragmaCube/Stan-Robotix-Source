@@ -37,14 +37,14 @@ void BoatsPosition::resetSetState() // formation de la table de jeu
 	mBoatsRemaining = 6;
 } 
 
-int BoatsPosition::getGridState(int x, int y)
+int BoatsPosition::getGridState(int iX, int iY)
 {
-	return mState[y][x];  //retourner l'état d'une position
+	return mState[iY][iX];  //retourner l'état d'une position
 }
 
-void BoatsPosition::setGridState(int x, int y, int iNewState)
+void BoatsPosition::setGridState(int iX, int iY, int iNewState)
 {
-	mState[y][x] = iNewState; //changement de l'état par l'état introduit
+	mState[iY][iX] = iNewState; //changement de l'état par l'état introduit
 }
 
 int BoatsPosition::getBoatsRemaining()
@@ -74,9 +74,10 @@ void BoatsPosition::generateBattleship()
 
 void BoatsPosition::generateBoatPosition(int iLong) //processus de génération des position d'un bateau en fonction de sa taille
 {
-	int wDirectionShip;
-	int x;
-	int y;
+	int wDirectionShip = eUp;
+	int x = 0;
+	int y = 0;
+
 	bool wFindHead = false;
 	bool wFoundPosition = false;
 	while (wFoundPosition == false) //boucle du processus entier
@@ -215,7 +216,7 @@ int BoatsPosition::getRandomDirection(int iHeadX, int iHeadY, int iLong)
 	return wRandomDirection;
 }
 
-bool BoatsPosition::isBoatPerfectlyPlaced(int x, int y, int iDirection, int iLong)
+bool BoatsPosition::isBoatPerfectlyPlaced(int iX, int iY, int iDirection, int iLong)
 {
 	bool wBoatPositionOk = true;
 	switch (iDirection)
@@ -223,7 +224,7 @@ bool BoatsPosition::isBoatPerfectlyPlaced(int x, int y, int iDirection, int iLon
 	case eUp:
 		for (int i = 1; i < iLong; i++)
 		{
-			if (mState[y - i][x] != eSea) /*vérification de si une des positions est occupée, si oui, la vérification est arrêter 
+			if (mState[iY - i][iX] != eSea) /*vérification de si une des positions est occupée, si oui, la vérification est arrêter 
 				et la fonction va retourner qu'il n'est pas possible de placer le bateau*/
 			{
 				wBoatPositionOk = false;
@@ -235,7 +236,7 @@ bool BoatsPosition::isBoatPerfectlyPlaced(int x, int y, int iDirection, int iLon
 	case eRight:
 		for (int i = 1; i < iLong; i++)
 		{
-			if (mState[y][x + i] != eSea)
+			if (mState[iY][iX + i] != eSea)
 			{
 				wBoatPositionOk = false;
 				break;
@@ -246,7 +247,7 @@ bool BoatsPosition::isBoatPerfectlyPlaced(int x, int y, int iDirection, int iLon
 	case eDown:
 		for (int i = 1; i < iLong; i++)
 		{
-			if (mState[y + i][x] != eSea)
+			if (mState[iY + i][iX] != eSea)
 			{
 				wBoatPositionOk = false;
 				break;
@@ -257,7 +258,7 @@ bool BoatsPosition::isBoatPerfectlyPlaced(int x, int y, int iDirection, int iLon
 	case eLeft:
 		for (int i = 1; i < iLong; i++)
 		{
-			if (mState[y][x - i] != eSea)
+			if (mState[iY][iX - i] != eSea)
 			{
 				wBoatPositionOk = false;
 				break;
@@ -267,64 +268,64 @@ bool BoatsPosition::isBoatPerfectlyPlaced(int x, int y, int iDirection, int iLon
 	return wBoatPositionOk;
 }
 
-void BoatsPosition::findBoat(int x, int y, int iSens, int iLong) //fonction qui permet de déterminer pour quel bateau il faut remplir le tableau d'information grâce à la longeur
+void BoatsPosition::findBoat(int iX, int iY, int iSens, int iLong) //fonction qui permet de déterminer pour quel bateau il faut remplir le tableau d'information grâce à la longeur
 {
 	switch (iLong)
 	{
-		case 2: setDestroyerTable(x, y, iSens);
+		case 2: setDestroyerTable(iX, iY, iSens);
 		break;
 
-		case 3: setBattleshipTable(x, y, iSens);
+		case 3: setBattleshipTable(iX, iY, iSens);
 		break;
 
-		case 4: setCruiserTable(x, y, iSens);
+		case 4: setCruiserTable(iX, iY, iSens);
 		break;
 
-		case 5: setAircraftCarrierTable(x, y, iSens);
+		case 5: setAircraftCarrierTable(iX, iY, iSens);
 	}
 }
 
 //fonctions qui remplissent le tableau d'information de chaque bateau
-void BoatsPosition::setAircraftCarrierTable(int x, int y, int iSens)
+void BoatsPosition::setAircraftCarrierTable(int iX, int iY, int iSens)
 {
-	mHPAircraftCarrier[0] = x;
-	mHPAircraftCarrier[1] = y;
+	mHPAircraftCarrier[0] = iX;
+	mHPAircraftCarrier[1] = iY;
 	mHPAircraftCarrier[2] = iSens;
 }
 
-void BoatsPosition::setCruiserTable(int x, int y, int iSens)
+void BoatsPosition::setCruiserTable(int iX, int iY, int iSens)
 {
 
-	mHPCruiser[0] = x;
-	mHPCruiser[1] = y;
+	mHPCruiser[0] = iX;
+	mHPCruiser[1] = iY;
 	mHPCruiser[2] = iSens;
 }
 
-void BoatsPosition::setBattleshipTable(int x, int y, int iSens)
+void BoatsPosition::setBattleshipTable(int iX, int iY, int iSens)
 {
 	switch (mRound) //vu qu'il en existe tois de ce type, on trouve le tableau exacte à l'aide de mRound  qui permet de déterminer à quel bateau de ce type on est rendu dans la construction
 	{
 	case 0:
-		mHPBattleship1[0] = x;
-		mHPBattleship1[1] = y;
+		mHPBattleship1[0] = iX;
+		mHPBattleship1[1] = iY;
 		mHPBattleship1[2] = iSens;
 		break;
 	case 1:
-		mHPBattleship2[0] = x;
-		mHPBattleship2[1] = y;
+		mHPBattleship2[0] = iX;
+		mHPBattleship2[1] = iY;
 		mHPBattleship2[2] = iSens;
 		break;
 	case 2:
-		mHPBattleship3[0] = x;
-		mHPBattleship3[1] = y;
+		mHPBattleship3[0] = iX;
+		mHPBattleship3[1] = iY;
 		mHPBattleship3[2] = iSens;
 	}
 }
 
-void BoatsPosition::setDestroyerTable(int x, int y, int iSens)
+void BoatsPosition::setDestroyerTable(int iX, int iY, int iSens)
 {
-	mHPDestroyer[0] = x;
-	mHPDestroyer[1] = y;
+	mHPDestroyer[0] = iX;
+	mHPDestroyer[1] = iY;
 	mHPDestroyer[2] = iSens;
 }
 
@@ -338,7 +339,7 @@ void BoatsPosition::setDestroyBoatColor() //fonction qui lance plusierus fois le
 	BoatsColorProcess(mHPDestroyer[0], mHPDestroyer[1], mHPDestroyer[2], 2);
 }
 
-void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)//processus de vérification de si le bateau est détruit
+void BoatsPosition::BoatsColorProcess(int iX, int iY, int iSens, int iLong)//processus de vérification de si le bateau est détruit
 {
 	int wNumberOfDestroyPointsX4 = 0;
 	switch (iSens)
@@ -346,13 +347,13 @@ void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)//proce
 	case eUp:
 		for (int i = 0; i < iLong; i++)
 		{
-			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[y - i][x];
+			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[iY - i][iX];
 		}
 		if (iLong * 4 == wNumberOfDestroyPointsX4) //si la somme des états de chaque parties de bateau est égal à la longueur de bateau fois 4 (4 quand la partie du bateau est touchée), donc le bateau est détruit puisque tout les parties sont donc logiquements touchées
 		{
 			for (int i = 0; i < iLong; i++)
 			{
-				mState[y - i][x] = 3 + iLong; //modification de la valeur de chaque état, pour que le bateau prennent une certaine couleur lors de la coloration
+				mState[iY - i][iX] = 3 + iLong; //modification de la valeur de chaque état, pour que le bateau prennent une certaine couleur lors de la coloration
 			}
 			mBoatsRemaining--; //mise à jour de compteur de nombre de bateaux restant à détruire
 		}
@@ -361,13 +362,13 @@ void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)//proce
 	case eRight:
 		for (int i = 0; i < iLong; i++)
 		{
-			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[y][x + i];
+			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[iY][iX + i];
 		}
 		if (iLong * 4 == wNumberOfDestroyPointsX4)
 		{
 			for (int i = 0; i < iLong; i++)
 			{
-				mState[y][x + i] = 3 + iLong;
+				mState[iY][iX + i] = 3 + iLong;
 			}
 			mBoatsRemaining--;
 		}
@@ -376,13 +377,13 @@ void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)//proce
 	case eDown:
 		for (int i = 0; i < iLong; i++)
 		{
-			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[y + i][x];
+			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[iY + i][iX];
 		}
 		if (iLong * 4 == wNumberOfDestroyPointsX4)
 		{
 			for (int i = 0; i < iLong; i++)
 			{
-				mState[y + i][x] = 3 + iLong;
+				mState[iY + i][iX] = 3 + iLong;
 			}
 			mBoatsRemaining--;
 	    }
@@ -391,13 +392,13 @@ void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)//proce
 	case eLeft:
 		for (int i = 0; i < iLong; i++)
 		{
-			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[y][x - i];
+			wNumberOfDestroyPointsX4 = wNumberOfDestroyPointsX4 + mState[iY][iX - i];
 		}
 		if (iLong * 4 == wNumberOfDestroyPointsX4)
 		{
 			for (int i = 0; i < iLong; i++)
 			{
-				mState[y][x - i] = 3 + iLong;
+				mState[iY][iX - i] = 3 + iLong;
 			}
 			mBoatsRemaining--;
 		}

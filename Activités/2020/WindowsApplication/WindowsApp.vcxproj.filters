@@ -125,9 +125,6 @@
     <ClCompile Include="Application\DessinApp\DessinApplication.cpp">
       <Filter>Application\Dessin</Filter>
     </ClCompile>
-    <ClCompile Include="Application\PingpongApp\CollisionEngine.cpp">
-      <Filter>Application\Battleship</Filter>
-    </ClCompile>
     <ClCompile Include="Application\BattleshipApp\BoatsPosition.cpp">
       <Filter>Application\Battleship</Filter>
     </ClCompile>
@@ -138,6 +135,9 @@
       <Filter>Application\PingPong</Filter>
     </ClCompile>
     <ClCompile Include="Application\PingpongApp\PingPongPad.cpp">
+      <Filter>Application\PingPong</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PingpongApp\CollisionEngine.cpp">
       <Filter>Application\PingPong</Filter>
     </ClCompile>
   </ItemGroup>

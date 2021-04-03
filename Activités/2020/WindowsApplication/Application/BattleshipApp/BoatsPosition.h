@@ -6,7 +6,6 @@ public:
 	enum { eNotInit, eSea, eBoat, eMiss, eHit};
 	enum { eNotUsed, eUp, eRight, eDown, eLeft, eNoDirection};
 	
-
 	int getGridState(int x, int y);
 	void setGridState(int x, int y, int iNewState);
 	void resetSetState();
@@ -14,22 +13,22 @@ public:
 	int getBoatsRemaining();
 	 
 private:
-
-	int mState[10][10];
 	void generateAircraftCarrier();
 	void generateDestroyer();
 	void generateCruiser();
 	void generateBattleship();
 	void generateBoatPosition(int iLong);
-	int getRandomDirection(int x, int y, int ilong);
-	bool isBoatPerfectlyPlaced(int x, int y, int iDirection, int iLong);
+	int  getRandomDirection(int iX, int iY, int ilong);
+	bool isBoatPerfectlyPlaced(int iX, int iY, int iDirection, int iLong);
 
-	void findBoat(int x, int y, int iSens, int iLong);
-	void setAircraftCarrierTable(int x, int y, int iSens);
-	void setCruiserTable(int x, int y, int iSens);
-	void setBattleshipTable(int x, int y, int iSens);
-	void setDestroyerTable(int x, int y, int iSens);
-	void BoatsColorProcess(int x, int y, int iSens, int iLong);
+	void findBoat(int iX, int iY, int iSens, int iLong);
+	void setAircraftCarrierTable(int iX, int iY, int iSens);
+	void setCruiserTable(int iX, int iY, int iSens);
+	void setBattleshipTable(int iX, int iY, int iSens);
+	void setDestroyerTable(int iX, int iY, int iSens);
+	void BoatsColorProcess(int iX, int iY, int iSens, int iLong);
+
+	int mState[10][10];
 	int mHPAircraftCarrier[3];
 	int mHPDestroyer[3];
 	int mHPCruiser[3];
@@ -37,5 +36,6 @@ private:
 	int mHPBattleship2[3];
 	int mHPBattleship3[3];
 	int mRound;
-	int mBoatsRemaining = 6;
+
+	int mBoatsRemaining;
 };

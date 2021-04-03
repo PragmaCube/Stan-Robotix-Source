@@ -3,9 +3,10 @@
 #include <string>
 #include <sstream>
 
-GameBoard::GameBoard()
+GameBoard::GameBoard() : mClick(true)
 {
 	defineDefautBrush();
+
 	reset();
 }
 
@@ -30,72 +31,56 @@ void GameBoard::reset() //réinitialisation de la table de jeux
 	mClick = true;
 }
 
-void GameBoard::click(int x, int y) //cliquer sur un cercle pour changer l'état de la position
+void GameBoard::click(int iX, int iY) //cliquer sur un cercle pour changer l'état de la position
 {
 	const int wLeftBorder     = mkLeftBoardCoor- mkRadiusToken;
 	const int wTopBorder      = mkTopBoardCoor - mkRadiusToken;
 	const int wTotalGridSize  = 10 * mkSizeCell;
 	int wRowClick = -1;
 	int wColumnClick = -1;
-		if (
-			(wLeftBorder < x) && (x < wLeftBorder + wTotalGridSize) &&
-			(wTopBorder < y) && (y < wTopBorder + wTotalGridSize)
-			)
+	if (
+		(wLeftBorder < iX) && (iX < wLeftBorder + wTotalGridSize) &&
+		(wTopBorder < iY) && (iY < wTopBorder + wTotalGridSize)
+		)
+	{
+		wRowClick = (iY - wTopBorder) / mkSizeCell;
+		wColumnClick = (iX - wLeftBorder) / mkSizeCell;
+	}
+	if (mClick == true) //boucle permettant de déscativer le clique pour jouer en fin de partie
+	{
+		if ((wRowClick != -1) && (wColumnClick != -1))
 		{
-			wRowClick = (y - wTopBorder) / mkSizeCell;
-			wColumnClick = (x - wLeftBorder) / mkSizeCell;
-		}
-		if (mClick == true) //boucle permettant de déscativer le clique pour jouer en fin de partie
-		{
-			if ((wRowClick != -1) && (wColumnClick != -1))
-			{
-				int wPositionState = mBoatsPosition.getGridState(wColumnClick, wRowClick);
+			int wPositionState = mBoatsPosition.getGridState(wColumnClick, wRowClick);
 
-				switch (wPositionState)
-				{
-				case BoatsPosition::eBoat: //quand la position est une partie de bâteau cacher
-					mBoatsPosition.setGridState(wColumnClick, wRowClick, BoatsPosition::eHit); //appel d'une fonction qui va chamger l'état de la position en partie du bateau touchée dans le tableau de l'état de chaque position
-					mBoatsPosition.setDestroyBoatColor(); //appel d'une fonction qui vérifie si il y a un bateau trouvé à 100%, comme ça le bâteau prendra une certaine couleur
-					mShots++; //met à jour le conpteur de tirs
-					mHits++; //met à jour le compteur de tirs réussis
-					break;
-				case BoatsPosition::eSea: //quand la position est de l'eau
-					mBoatsPosition.setGridState(wColumnClick, wRowClick, BoatsPosition::eMiss);//appel d'une fonction qui va chamger l'état de la position en eau visible dans le tableau de l'état de chaque position
-					mShots++; //met à jour le conpteur de tirs
-					mMissed++;//met à jour le compteur de tirs ratés
-					break;
-				}
+			switch (wPositionState)
+			{
+			case BoatsPosition::eBoat: //quand la position est une partie de bâteau cacher
+				mBoatsPosition.setGridState(wColumnClick, wRowClick, BoatsPosition::eHit); //appel d'une fonction qui va chamger l'état de la position en partie du bateau touchée dans le tableau de l'état de chaque position
+				mBoatsPosition.setDestroyBoatColor(); //appel d'une fonction qui vérifie si il y a un bateau trouvé à 100%, comme ça le bâteau prendra une certaine couleur
+				mShots++; //met à jour le conpteur de tirs
+				mHits++; //met à jour le compteur de tirs réussis
+				break;
+			case BoatsPosition::eSea: //quand la position est de l'eau
+				mBoatsPosition.setGridState(wColumnClick, wRowClick, BoatsPosition::eMiss);//appel d'une fonction qui va chamger l'état de la position en eau visible dans le tableau de l'état de chaque position
+				mShots++; //met à jour le conpteur de tirs
+				mMissed++;//met à jour le compteur de tirs ratés
+				break;
 			}
 		}
+	}
+}
+
+std::wstring  GameBoard::getStringToDisplay(const std::wstring & iText, int iNumber)
+{
+	std::wostringstream wText;
+
+	wText << iText << iNumber;
+
+	return wText.str();
 }
 
 void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau de jeu
 {
-	int wlast = 1; char wBuffer[10];
-	std::wstring wLetters = L"ABCDEFGHIJ";
-
-	std::wstring wNumbers = L"12345678910";
-
-	std::wostringstream wBoatsText;
-	wBoatsText << (L"Boats remaining : ") << mBoatsPosition.getBoatsRemaining();
-	std::wstring wBoats = wBoatsText.str();
-	
-	std::wostringstream wShotsText;
-	wShotsText << (L"Shots : ") <<  mShots;
-	std::wstring wShots = wShotsText.str();
-
-	std::wostringstream wHitsText;
-	wHitsText << (L"Hits : ") << mHits;
-	std::wstring wHits = wHitsText.str();
-
-	std::wostringstream wMissedText;
-	wMissedText << (L"Missed : ") << mMissed;
-	std::wstring wMissed = wMissedText.str();
-	
-	std::wstring wVictory = L"Victory!!! Press N for restart.";
-
-	std::wstring wDefeat = L"Defeat... Press N for restart.";
-
 	HGDIOBJ wOldBrush = ::SelectObject(ihdc, mWhiteBrush);
 
 	static bool wDebugDrawGreen    = true;
@@ -129,6 +114,7 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 			{
 				::SelectObject(ihdc, mWhiteBrush);
 			}
+
 			//dessin du contour du cercle
 			::Ellipse(ihdc,
 				(int)(mkLeftBoardCoor + y * mkSizeCell) - mkRadiusToken,/*x*/
@@ -137,54 +123,66 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 				(int)(mkTopBoardCoor  + x * mkSizeCell) + mkRadiusToken);/*y*/
 		}
 	}
-	//appels d'une fonction pour afficher du texte
 
+	int wlast = 1; char wBuffer[10];
+	std::wstring wLetters = L"ABCDEFGHIJ";
 	//écriture des lettre en ordonnée
 	for (int i3 = 0; i3 < 10; i3++)
 	{
-		textDisplay(350, 95 + i3 * 40, wLetters, i3, 1, ihdc, iPaintArea);
+		displayText(350, 95 + i3 * 40, wLetters, i3, 1, ihdc, iPaintArea);
 	}
 
 	//écriture des chiffres et le nombre en abscisse
+	std::wstring wNumbers = L"12345678910";
 	for (int i4 = 0; i4 < 10; i4++)
 	{
 		if (i4 == 9)
 		{
 			wlast = 2;
 		}
-		textDisplay(395 + i4 * 40, 60, wNumbers, i4, wlast, ihdc, iPaintArea);
+		displayText(395 + i4 * 40, 60, wNumbers, i4, wlast, ihdc, iPaintArea);
 	}
 
 	//Affiche la progression de la partie, nombre de bateaux restant
-	textDisplay(170, 105, wBoats, 0, 30, ihdc, iPaintArea);
+	std::wstring wBoats = getStringToDisplay(L"Boats remaining : ",
+		                                     mBoatsPosition.getBoatsRemaining());
+	displayText(170, 105, wBoats, 0, 30, ihdc, iPaintArea);
 
 	//Affiche le nombre de tirs effectués
-	textDisplay(170, 130, wShots, 0, 30, ihdc, iPaintArea);
+	std::wstring wShots = getStringToDisplay(L"Shots : ",
+		                                     mShots);
+	displayText(170, 130, wShots, 0, 30, ihdc, iPaintArea);
 
 	//Affiche le nombre de tirs réussis
-	textDisplay(170, 155, wHits, 0, 30, ihdc, iPaintArea);
+	std::wstring wHits = getStringToDisplay(L"Hits : ",
+		mHits);
+	displayText(170, 155, wHits, 0, 30, ihdc, iPaintArea);
 
 	//Affiche le nombre de tirs ratés
-	textDisplay(170, 180, wMissed, 0, 30, ihdc, iPaintArea);
+	std::wstring wMissed = getStringToDisplay(L"Missed : ",
+		                                      mMissed);
+	displayText(170, 180, wMissed, 0, 30, ihdc, iPaintArea);
 
 	//Affiche victoire quand le joueur a trouvé tout les bateaux(= 20 tirs touchés)
 	if (mHits == 20)
 	{
-		textDisplay(170, 275, wVictory, 0, 30, ihdc, iPaintArea);
+		const std::wstring wVictory = L"Victory!!! Press N for restart.";
+		displayText(170, 275, wVictory, 0, 30, ihdc, iPaintArea);
 		mClick = false;
 	}
 
 	//Affiche défaite quand le jour a trouvé tout les positions de l'eau(80 positions), j'ai touvé un specimen qui a été capable de perdre
 	if (mMissed == 80)
 	{
-		textDisplay(170, 275, wDefeat, 0, 30, ihdc, iPaintArea);
+		const std::wstring wDefeat = L"Defeat... Press N for restart.";
+		displayText(170, 275, wDefeat, 0, 30, ihdc, iPaintArea);
 		mClick = false;
 	}
 }
 
-HBRUSH GameBoard::getBrush(int x, int y) //fonction qui définit la couleur du pinceau pour une certaine position en fonction de l'état
+HBRUSH GameBoard::getBrush(int iX, int iY) //fonction qui définit la couleur du pinceau pour une certaine position en fonction de l'état
 {
-	int wPositionState = mBoatsPosition.getGridState(y, x);//récupération de l'état à la position i2 i
+	int wPositionState = mBoatsPosition.getGridState(iY, iX);//récupération de l'état à la position i2 i
 	HBRUSH wSelect= 0;
 	switch (wPositionState)
 	{
@@ -217,11 +215,11 @@ HBRUSH GameBoard::getBrush(int x, int y) //fonction qui définit la couleur du pi
 	return wSelect;
 }
 
-void GameBoard::textDisplay(int x, int y, std::wstring iText, int iStart, int iNumberOfCaracters, HDC ihdc, RECT& iPaintArea) //fonction pour afficher du texte
+void GameBoard::displayText(int iX, int iY, std::wstring iText, int iStart, int iNumberOfCaracters, HDC ihdc, RECT& iPaintArea) //fonction pour afficher du texte
 {
 	std::wstring wChar;
 	wChar = iText.substr(iStart, iNumberOfCaracters);
-	RECT wTextArea = { x, y, 5000, 5000 };
+	RECT wTextArea = { iX, iY, 5000, 5000 };
 	::DrawText(
 		ihdc,
 		wChar.c_str(),

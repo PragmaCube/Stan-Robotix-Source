@@ -13,8 +13,7 @@ public:
 
 	void drawGameBoard(HDC ihdc, RECT& iPaintArea);
 
-	void click(int x, int y);
-
+	void click(int iX, int iY);
 
 private:
 	HBRUSH mBlackBrush;
@@ -28,20 +27,21 @@ private:
 	HBRUSH mYellowBrush;
 	BoatsPosition mBoatsPosition;
 
-	HBRUSH getBrush(int x, int y);
+	const static int mkLeftBoardCoor = 400;
+	const static int mkTopBoardCoor  = 100;
+	const static int mkSizeCell      = 40;
+	const static int mkRadiusToken   = 15;
+
+	int mShots;
+	int mMissed;
+	int mHits;
+
+	bool mClick;
+
+	void displayText(int x, int y, std::wstring iText, int iStart, int iNumberOfCaracters, HDC ihdc, RECT& iPaintArea);
+	std::wstring getStringToDisplay(const std::wstring& iText, int iNumber);
+
+	HBRUSH getBrush(int iX, int iY);
 	void defineDefautBrush();
-
-	const int mkLeftBoardCoor = 400;
-	const int mkTopBoardCoor  = 100;
-	const int mkSizeCell= 40;
-	const int mkRadiusToken = 15;
-
-	int mShots = 0;
-	int mMissed = 0;
-	int mHits = 0;
-
-	void textDisplay(int x, int y, std::wstring iText, int iStart, int iNumberOfCaracters, HDC ihdc, RECT& iPaintArea);
-
-	bool mClick = true;
 };
 
