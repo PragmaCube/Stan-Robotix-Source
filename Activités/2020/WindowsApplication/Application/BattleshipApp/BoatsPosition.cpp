@@ -403,3 +403,4 @@ void BoatsPosition::BoatsColorProcess(int x, int y, int iSens, int iLong)//proce
 		}
 	}
 }
+

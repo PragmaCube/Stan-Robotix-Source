@@ -5,12 +5,8 @@ class BoatsPosition
 public:
 	enum { eNotInit, eSea, eBoat, eMiss, eHit};
 	enum { eNotUsed, eUp, eRight, eDown, eLeft, eNoDirection};
-	int mBoatsRemaining = 6;
+	
 
-	void generateAircraftCarrier();
-	void generateDestroyer();
-	void generateCruiser();
-	void generateBattleship();
 	int getGridState(int x, int y);
 	void setGridState(int x, int y, int iNewState);
 	void resetSetState();
@@ -20,7 +16,10 @@ public:
 private:
 
 	int mState[10][10];
-	
+	void generateAircraftCarrier();
+	void generateDestroyer();
+	void generateCruiser();
+	void generateBattleship();
 	void generateBoatPosition(int iLong);
 	int getRandomDirection(int x, int y, int ilong);
 	bool isBoatPerfectlyPlaced(int x, int y, int iDirection, int iLong);
@@ -38,4 +37,5 @@ private:
 	int mHPBattleship2[3];
 	int mHPBattleship3[3];
 	int mRound;
+	int mBoatsRemaining = 6;
 };

@@ -40,6 +40,8 @@ private:
 	int mMissed = 0;
 	int mHits = 0;
 
+	void textDisplay(int x, int y, std::wstring iText, int iStart, int iNumberOfCaracters, HDC ihdc, RECT& iPaintArea);
+
 	bool mClick = true;
 };
 

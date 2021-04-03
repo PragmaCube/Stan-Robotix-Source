@@ -6,10 +6,6 @@
 GameBoard::GameBoard()
 {
 	defineDefautBrush();
-	mShots = 0;
-	mHits = 0;
-	mMissed = 0;
-	mClick = true;
 	reset();
 }
 
@@ -28,6 +24,10 @@ void GameBoard::defineDefautBrush() //création des pinceaux de couleurs
 void GameBoard::reset() //réinitialisation de la table de jeux
 {
 	mBoatsPosition.resetSetState();
+	mShots = 0;
+	mHits = 0;
+	mMissed = 0;
+	mClick = true;
 }
 
 void GameBoard::click(int x, int y) //cliquer sur un cercle pour changer l'état de la position
@@ -72,9 +72,9 @@ void GameBoard::click(int x, int y) //cliquer sur un cercle pour changer l'état 
 void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau de jeu
 {
 	int wlast = 1; char wBuffer[10];
-	std::wstring wletters = L"ABCDEFGHIJ";
+	std::wstring wLetters = L"ABCDEFGHIJ";
 
-	std::wstring wnumbers = L"12345678910";
+	std::wstring wNumbers = L"12345678910";
 
 	std::wostringstream wBoatsText;
 	wBoatsText << (L"Boats remaining : ") << mBoatsPosition.getBoatsRemaining();
@@ -137,95 +137,47 @@ void GameBoard::drawGameBoard(HDC ihdc, RECT& iPaintArea) //création du tableau 
 				(int)(mkTopBoardCoor  + x * mkSizeCell) + mkRadiusToken);/*y*/
 		}
 	}
+	//appels d'une fonction pour afficher du texte
 
-	::SelectObject(ihdc, wOldBrush);
 	//écriture des lettre en ordonnée
 	for (int i3 = 0; i3 < 10; i3++)
 	{
-		std::wstring wChar = wletters.substr(i3, 1);
-		RECT wTextArea = { 350, 95+i3*40, 2000, 2000 };
-		::DrawText(
-			ihdc,
-			wChar.c_str(),
-			wChar.length(),
-			&wTextArea,
-			((int)DT_LEFT | DT_BOTTOM));
+		textDisplay(350, 95 + i3 * 40, wLetters, i3, 1, ihdc, iPaintArea);
 	}
-	//écriture des chiffres et le nombre en abscisse 
+
+	//écriture des chiffres et le nombre en abscisse
 	for (int i4 = 0; i4 < 10; i4++)
 	{
 		if (i4 == 9)
 		{
 			wlast = 2;
 		}
-		std::wstring wChar = wnumbers.substr(i4, wlast);
-		RECT wTextArea = { 395 + i4 * 40, 60, 2000, 2000 };
-		::DrawText(
-			ihdc,
-			wChar.c_str(),
-			wChar.length(),
-			&wTextArea,
-			(int)(DT_LEFT | DT_BOTTOM));
+		textDisplay(395 + i4 * 40, 60, wNumbers, i4, wlast, ihdc, iPaintArea);
 	}
-	//Affiche la rogression de la partie, nombre de bateaux restant 
-	std::wstring wChar = wBoats.substr(0, 20);
-	RECT wTextArea = {170, 105, 2000, 2000};
-	::DrawText(
-		ihdc,
-		wChar.c_str(),
-		wChar.length(),
-		&wTextArea,
-		(int)(DT_LEFT | DT_BOTTOM));
+
+	//Affiche la progression de la partie, nombre de bateaux restant
+	textDisplay(170, 105, wBoats, 0, 30, ihdc, iPaintArea);
+
 	//Affiche le nombre de tirs effectués
-	wChar = wShots.substr(0, 20);
-	wTextArea = { 170, 130, 2000, 2000 };
-	::DrawText(
-		ihdc,
-		wChar.c_str(),
-		wChar.length(),
-		&wTextArea,
-		(int)(DT_LEFT | DT_BOTTOM));
+	textDisplay(170, 130, wShots, 0, 30, ihdc, iPaintArea);
+
 	//Affiche le nombre de tirs réussis
-	wChar = wHits.substr(0, 20);
-	wTextArea = { 170, 155, 2000, 2000 };
-	::DrawText(
-		ihdc,
-		wChar.c_str(),
-		wChar.length(),
-		&wTextArea,
-		(int)(DT_LEFT | DT_BOTTOM));
+	textDisplay(170, 155, wHits, 0, 30, ihdc, iPaintArea);
+
 	//Affiche le nombre de tirs ratés
-	wChar = wMissed.substr(0, 20);
-	wTextArea = { 170, 180, 2000, 2000 };
-	::DrawText(
-		ihdc,
-		wChar.c_str(),
-		wChar.length(),
-		&wTextArea,
-		(int)(DT_LEFT | DT_BOTTOM));
+	textDisplay(170, 180, wMissed, 0, 30, ihdc, iPaintArea);
+
 	//Affiche victoire quand le joueur a trouvé tout les bateaux(= 20 tirs touchés)
 	if (mHits == 20)
 	{
-		wChar = wVictory.substr(0, 30);
-		wTextArea = { 170, 275, 5000, 5000 };
-		::DrawText(
-			ihdc,
-			wChar.c_str(),
-			wChar.length(),
-			&wTextArea,
-			(int)(DT_LEFT | DT_BOTTOM));
+		textDisplay(170, 275, wVictory, 0, 30, ihdc, iPaintArea);
+		mClick = false;
 	}
+
 	//Affiche défaite quand le jour a trouvé tout les positions de l'eau(80 positions), j'ai touvé un specimen qui a été capable de perdre
 	if (mMissed == 80)
 	{
-		wChar = wDefeat.substr(0, 30);
-		wTextArea = { 170, 275, 5000, 5000 };
-		::DrawText(
-			ihdc,
-			wChar.c_str(),
-			wChar.length(),
-			&wTextArea,
-			(int)(DT_LEFT | DT_BOTTOM));
+		textDisplay(170, 275, wDefeat, 0, 30, ihdc, iPaintArea);
 		mClick = false;
 	}
 }
@@ -263,4 +215,17 @@ HBRUSH GameBoard::getBrush(int x, int y) //fonction qui définit la couleur du pi
 	}
 	
 	return wSelect;
+}
+
+void GameBoard::textDisplay(int x, int y, std::wstring iText, int iStart, int iNumberOfCaracters, HDC ihdc, RECT& iPaintArea) //fonction pour afficher du texte
+{
+	std::wstring wChar;
+	wChar = iText.substr(iStart, iNumberOfCaracters);
+	RECT wTextArea = { x, y, 5000, 5000 };
+	::DrawText(
+		ihdc,
+		wChar.c_str(),
+		wChar.length(),
+		&wTextArea,
+		(int)(DT_LEFT | DT_BOTTOM));
 }
