@@ -1,7 +1,7 @@
 #pragma once
 #include "../../Framework/IApplication.h"
 #include "BoutteDeSerpent.h"
-
+#include "pom.h"
 
 class SnakeApplication :
     public IApplication
@@ -22,6 +22,7 @@ protected:
 
 private:
 	BoutteDeSerpent mRond;
+	pom mPomme;
 
 	
 }; 
