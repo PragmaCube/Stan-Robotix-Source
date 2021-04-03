@@ -24,6 +24,10 @@ private:
 
 	void checkConnect(int iColumn, int iRow); 
 	void addToken(int iPosX, int iColor);
+	void rowConnect( int iColor);
+	void columnConnect(int iColor); 
+	void diagonalUpConnect(int iColor);
+	void diagonalDownConnect(int iColor);
 
 public:
 	BoardGame();
@@ -33,6 +37,7 @@ public:
 
 	void addRedToken(int iPosX);
 	void addBlueToken(int iPosX);
+	bool mClick = true;
 	
 	
 };

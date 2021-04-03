@@ -40,12 +40,20 @@ void ConnectFourApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 
 void ConnectFourApplication::onMouseLeftClick(int iPosX, int iPosY)
 { 
-	mBoardGame.addBlueToken(iPosX);
+	if (mBoardGame.mClick == true)
+	{
+		mBoardGame.addBlueToken(iPosX);
+	}
+
 }
 
 void ConnectFourApplication::onMouseRightClick(int iPosX, int iPosY)
-{
-	mBoardGame.addRedToken(iPosX);
+{ 
+	if (mBoardGame.mClick == true)
+	{
+		mBoardGame.addRedToken(iPosX);
+	}
+
 }
 
 void ConnectFourApplication::onTimer()
