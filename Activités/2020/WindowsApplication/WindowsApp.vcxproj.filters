@@ -80,7 +80,7 @@
     <ClInclude Include="Application\SnakeApp\BoutteDeSerpent.h">
       <Filter>Application\Snake</Filter>
     </ClInclude>
-    <ClInclude Include="pom.h">
+    <ClInclude Include="Application\SnakeApp\pom.h">
       <Filter>Application\Snake</Filter>
     </ClInclude>
   </ItemGroup>
@@ -118,7 +118,7 @@
     <ClCompile Include="Application\SnakeApp\BouttedeSerpent.cpp">
       <Filter>Application\Snake</Filter>
     </ClCompile>
-    <ClCompile Include="pom.cpp">
+    <ClCompile Include="Application\SnakeApp\pom.cpp">
       <Filter>Application\Snake</Filter>
     </ClCompile>
   </ItemGroup>

@@ -16,8 +16,8 @@ void pom::updateDrawingArea(RECT iWindowRect)
 
 	if (!mIsInit)
 	{
-		mCoorX = iWindowRect.left + (double)(100);
-		mCoorY = iWindowRect.top + (double)(1000);
+		mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
+		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
 
 
 		mIsInit = true;

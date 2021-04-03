@@ -26,6 +26,8 @@ void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 
 	mRond.updateDrawingArea(iPaintArea);
 	mRond.paint(ihdc);	
+	mPomme.updateDrawingArea(iPaintArea);
+	mPomme.paint(ihdc);
 
 	if (ProchaineDir == 1)
 	{

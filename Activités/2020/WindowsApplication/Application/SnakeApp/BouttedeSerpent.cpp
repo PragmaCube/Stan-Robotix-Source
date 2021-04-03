@@ -9,7 +9,7 @@
 BoutteDeSerpent::BoutteDeSerpent(): mPtrSnakeApplication(nullptr)
 {
 
-	COLORREF wColor = RGB(255, 0, 0);
+	COLORREF wColor = RGB( 0, 255, 0);
 	mBrush = CreateSolidBrush(wColor);
 
 

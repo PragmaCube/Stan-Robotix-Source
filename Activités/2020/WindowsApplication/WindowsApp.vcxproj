@@ -145,6 +145,7 @@
     <ClInclude Include="Application\DemoApp\DemoApplication.h" />
     <ClInclude Include="Application\DessinApp\DessinApplication.h" />
     <ClInclude Include="Application\SnakeApp\BoutteDeSerpent.h" />
+    <ClInclude Include="Application\SnakeApp\pom.h" />
     <ClInclude Include="Framework\IApplication.h" />
     <ClInclude Include="Application\PacmanApp\PacmanApplication.h" />
     <ClInclude Include="Application\PingpongApp\PingPongApplication.h" />
@@ -154,7 +155,6 @@
     <ClInclude Include="Framework\Resource.h" />
     <ClInclude Include="Framework\targetver.h" />
     <ClInclude Include="Framework\WindowsApp.h" />
-    <ClInclude Include="pom.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\BattleshipApp\BattleshipApplication.cpp" />
@@ -165,10 +165,10 @@
     <ClCompile Include="Application\PacmanApp\PacmanApplication.cpp" />
     <ClCompile Include="Application\PingpongApp\PingPongApplication.cpp" />
     <ClCompile Include="Application\SnakeApp\BouttedeSerpent.cpp" />
+    <ClCompile Include="Application\SnakeApp\pom.cpp" />
     <ClCompile Include="Application\SnakeApp\SnakeApplication.cpp" />
     <ClCompile Include="Framework\WindowsFrame.cpp" />
     <ClCompile Include="Framework\WindowsApp.cpp" />
-    <ClCompile Include="pom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsApp.rc" />
