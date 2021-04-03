@@ -1,5 +1,7 @@
 #pragma once
 #include "../../Framework/IApplication.h"
+#include "GameBoard.h"
+#include "BoatsPosition.h"
 
 class BattleshipApplication :
     public IApplication
@@ -20,5 +22,8 @@ protected:
 	void onMouseMove(int iPosX, int iPosY);
 
 	void onTimer();
+
+private:
+	GameBoard mGameBoard;
 };
 

@@ -2,9 +2,9 @@
 
 #include <string>
 
-BattleshipApplication::BattleshipApplication()
+BattleshipApplication::BattleshipApplication() : mGameBoard()
 {
-
+	setFrequencyTimer(200000);
 }
 
 void BattleshipApplication::paint(HDC ihdc, RECT& iPaintArea)
@@ -16,12 +16,18 @@ void BattleshipApplication::paint(HDC ihdc, RECT& iPaintArea)
 		wTitle.c_str(),
 		wTitle.length(),
 		&iPaintArea,
-		DT_CENTER | DT_TOP);
+		(int)(DT_CENTER | DT_TOP));
+
+	mGameBoard.drawGameBoard(ihdc, iPaintArea);
 }
 
 void BattleshipApplication::onChar(char iChar, short iDetail)
 {
-
+	//réinisialisation du jeu en appuyant sur n ou N
+	if ((iChar == 'N') || (iChar == 'n'))
+	{
+		mGameBoard.reset();
+	}
 }
 
 void BattleshipApplication::onKeyDown(char iChar, short iDetail)
@@ -41,7 +47,7 @@ void BattleshipApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 
 void BattleshipApplication::onMouseLeftClick(int iPosX, int iPosY)
 {
-
+	mGameBoard.click(iPosX, iPosY); 
 }
 
 void BattleshipApplication::onMouseRightClick(int iPosX, int iPosY)
