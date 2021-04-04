@@ -155,6 +155,7 @@
     <ClInclude Include="Framework\Resource.h" />
     <ClInclude Include="Framework\targetver.h" />
     <ClInclude Include="Framework\WindowsApp.h" />
+    <ClInclude Include="LeuhCollisioneur.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\BattleshipApp\BattleshipApplication.cpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="Application\SnakeApp\SnakeApplication.cpp" />
     <ClCompile Include="Framework\WindowsFrame.cpp" />
     <ClCompile Include="Framework\WindowsApp.cpp" />
+    <ClCompile Include="LeuhCollisioneur.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsApp.rc" />

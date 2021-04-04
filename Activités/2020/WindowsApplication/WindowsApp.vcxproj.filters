@@ -83,6 +83,9 @@
     <ClInclude Include="Application\SnakeApp\pom.h">
       <Filter>Application\Snake</Filter>
     </ClInclude>
+    <ClInclude Include="LeuhCollisioneur.h">
+      <Filter>Application\Snake</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\WindowsApp.cpp">
@@ -119,6 +122,9 @@
       <Filter>Application\Snake</Filter>
     </ClCompile>
     <ClCompile Include="Application\SnakeApp\pom.cpp">
+      <Filter>Application\Snake</Filter>
+    </ClCompile>
+    <ClCompile Include="LeuhCollisioneur.cpp">
       <Filter>Application\Snake</Filter>
     </ClCompile>
   </ItemGroup>

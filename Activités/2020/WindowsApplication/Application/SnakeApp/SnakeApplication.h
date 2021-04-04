@@ -18,7 +18,7 @@ protected:
 	void onMouseLeftDoubleClick(int iPosX, int iPosY);
 	void onMouseLeftClick(int iPosX, int iPosY);
 	void onMouseRightClick(int iPosX, int iPosY);
-
+	
 
 private:
 	BoutteDeSerpent mRond;
