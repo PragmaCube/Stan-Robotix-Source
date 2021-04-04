@@ -12,6 +12,8 @@ class BoutteDeSerpent{
 		void paint(HDC ihdc);
 		void increaseSpeed();
 		void decreaseSpeed();
+		int getX();
+		int getY();
 //L'anglais c est inspiré de mon code pour ces directions
 		void Up(); //c est le nom du film
 		void Down();

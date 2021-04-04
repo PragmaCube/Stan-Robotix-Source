@@ -104,6 +104,7 @@ void BoutteDeSerpent::decreaseSpeed()
 	}
 }
 
+
 void BoutteDeSerpent::Up()
 {
 	mCoorY -= mSpeedY;
@@ -122,4 +123,14 @@ void BoutteDeSerpent::Left()
 void BoutteDeSerpent::Right()
 {
 	mCoorX += mSpeedX;
+}
+
+int BoutteDeSerpent::getX()
+{
+	return mCoorX;
+}
+
+int  BoutteDeSerpent::getY()
+{
+	return mCoorX;
 }

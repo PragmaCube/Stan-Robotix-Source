@@ -39,3 +39,12 @@ void pom::paint(HDC ihdc) {
 	::SelectObject(ihdc, wOldBrush);
 
 }
+int pom::getX()
+{
+	return mCoorX;
+}
+
+int  pom::getY()
+{
+	return mCoorY;
+}

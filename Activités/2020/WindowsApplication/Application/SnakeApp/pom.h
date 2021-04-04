@@ -7,6 +7,8 @@ class pom
 
 		void updateDrawingArea(RECT iWindowRect);
 		void paint(HDC ihdc);
+		int getX();
+		int getY();
 	private:
 		bool mIsInit = false;
 		int mCoorY;
