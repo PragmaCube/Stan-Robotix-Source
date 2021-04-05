@@ -83,7 +83,7 @@
     <ClInclude Include="Application\SnakeApp\pom.h">
       <Filter>Application\Snake</Filter>
     </ClInclude>
-    <ClInclude Include="LeuhCollisioneur.h">
+    <ClInclude Include="Application\SnakeApp\LeuhCollisioneur.h">
       <Filter>Application\Snake</Filter>
     </ClInclude>
   </ItemGroup>
@@ -124,7 +124,7 @@
     <ClCompile Include="Application\SnakeApp\pom.cpp">
       <Filter>Application\Snake</Filter>
     </ClCompile>
-    <ClCompile Include="LeuhCollisioneur.cpp">
+    <ClCompile Include="Application\SnakeApp\LeuhCollisioneur.cpp">
       <Filter>Application\Snake</Filter>
     </ClCompile>
   </ItemGroup>

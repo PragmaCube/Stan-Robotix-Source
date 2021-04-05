@@ -9,6 +9,7 @@ class pom
 		void paint(HDC ihdc);
 		int getX();
 		int getY();
+		void Teleportation(RECT iWindowRect);
 	private:
 		bool mIsInit = false;
 		int mCoorY;

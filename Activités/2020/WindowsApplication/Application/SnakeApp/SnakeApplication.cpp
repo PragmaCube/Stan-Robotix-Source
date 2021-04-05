@@ -30,6 +30,8 @@ void SnakeApplication::paint(HDC ihdc, RECT& iPaintArea)
 	mRond.paint(ihdc);	
 	mPomme.updateDrawingArea(iPaintArea);
 	mPomme.paint(ihdc);
+	CollisionEngine.manger(iPaintArea);
+	CollisionEngine.score(ihdc);
 
 	if (ProchaineDir == 1)
 	{

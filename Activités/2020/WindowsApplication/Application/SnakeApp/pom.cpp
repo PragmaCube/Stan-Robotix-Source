@@ -48,3 +48,9 @@ int  pom::getY()
 {
 	return mCoorY;
 }
+
+void pom::Teleportation(RECT iWindowRect)
+{
+	mCoorX = iWindowRect.left + (double)(rand() % (iWindowRect.right - iWindowRect.left));
+	mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
+}

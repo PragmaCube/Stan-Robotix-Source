@@ -1,7 +1,6 @@
 
 #include "BoutteDeSerpent.h"
-#include <stdlib.h>     
-#include <time.h>       
+#include <stdlib.h>           
 #include <math.h>
 #include <string>
 #include "SnakeApplication.h"
@@ -132,5 +131,5 @@ int BoutteDeSerpent::getX()
 
 int  BoutteDeSerpent::getY()
 {
-	return mCoorX;
+	return mCoorY;
 }
