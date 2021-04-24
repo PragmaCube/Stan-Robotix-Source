@@ -77,10 +77,22 @@
     <ClInclude Include="Framework\IApplication.h">
       <Filter>Framework sources</Filter>
     </ClInclude>
-    <ClInclude Include="Application\PacmanApp\MazeFloor.h">
-      <Filter>Application\Pacman</Filter>
+    <ClInclude Include="Application\BattleshipApp\BoatsPosition.h">
+      <Filter>Application\Battleship</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\BattleshipApp\GameBoard.h">
+      <Filter>Application\Battleship</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Application\PingpongApp\CollisionEngine.h">
+      <Filter>Application\PingPong</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PingpongApp\PingPongBall.h">
+      <Filter>Application\PingPong</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PingpongApp\PingPongPad.h">
+      <Filter>Application\PingPong</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\WindowsApp.cpp">
@@ -113,8 +125,20 @@
     <ClCompile Include="Application\DessinApp\DessinApplication.cpp">
       <Filter>Application\Dessin</Filter>
     </ClCompile>
-    <ClCompile Include="Application\PacmanApp\MazeFloor.cpp">
-      <Filter>Application\Pacman</Filter>
+    <ClCompile Include="Application\BattleshipApp\BoatsPosition.cpp">
+      <Filter>Application\Battleship</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\BattleshipApp\GameBoard.cpp">
+      <Filter>Application\Battleship</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PingpongApp\PingPongBall.cpp">
+      <Filter>Application\PingPong</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PingpongApp\PingPongPad.cpp">
+      <Filter>Application\PingPong</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PingpongApp\CollisionEngine.cpp">
+      <Filter>Application\PingPong</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

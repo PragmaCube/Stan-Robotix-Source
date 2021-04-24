@@ -3,7 +3,7 @@
 #include <stdlib.h>     
 #include <time.h>   
 
-DemoApplication::DemoApplication()
+DemoApplication::DemoApplication() : mTime(true)
 {
 	srand(time(NULL));
 
@@ -81,6 +81,11 @@ void DemoApplication::onChar(char iChar, short iDetail)
 }
 
 void DemoApplication::onKeyDown(char iChar, short iDetail)
+{
+
+}
+
+void DemoApplication::onMouseMove(int iPosX, int iPosY)
 {
 
 }
