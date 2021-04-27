@@ -5,7 +5,7 @@
 
 class Token
 {
-public:
+ public:
 
 	enum { eNothing, eRed, eBlue };
 
@@ -16,7 +16,7 @@ public:
 
 	HBRUSH mRedBrush, mBlueBrush;
 
-private:
+ private:
 
 	int mPosX, mPosY;
 	int mType;

@@ -11,30 +11,31 @@ void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 {	
 	mDrawingRect = iPaintArea;
 
+	// dessiner les lignes horizontales
 	for (int i = iPaintArea.top+kTopBorder; i < iPaintArea.bottom; i += kSizeSideCell) 
 	{
 
 		::MoveToEx(ihdc, iPaintArea.left, i, nullptr);
 		::LineTo(ihdc, iPaintArea.right, i);
 
-	} // dessiner les lignes horizontales
+	} 
 
+	//dessiner les lignes verticales
 	for (int j = iPaintArea.left; j < iPaintArea.right; j += kSizeTopCell)
 	{
 		::MoveToEx(ihdc, j, iPaintArea.top + kTopBorder, nullptr);
 		::LineTo(ihdc, j, iPaintArea.bottom);
 
-	} //dessiner les lignes verticales
+	} 
 
 	int wNbToken = mTokenList.size();
 	for (int i = 0; i < wNbToken; i++)
 	{
      	Token wToken = mTokenList[i];
 		wToken.draw(ihdc);
-
 	}
 
-	if (mWinner == Token::eRed)
+	if (Token::eRed == mWinner)
 	{
 		std::wstring wWinner = L"Les rouges sont les gagnants !!";
 		::DrawText(
@@ -46,7 +47,8 @@ void BoardGame::paint(HDC ihdc, RECT& iPaintArea)
 
 		mClick = false;
 
-	} else if (mWinner == Token::eBlue)
+	} 
+	else if (Token::eBlue == mWinner)
 	{
 		std::wstring wWinner = L"Les bleus sont les gagnants !!";
 		::DrawText(
@@ -82,7 +84,6 @@ void BoardGame::addToken(int iPosX, int iColor)
 	int wSelectedColumn = getColumn(iPosX);
 	int wSelectedRow = getRow(wSelectedColumn, iColor);
 
-
 	if (wSelectedRow != -1 && wSelectedColumn != -1)
 	{
 		int wCenterX = (wSelectedColumn * kSizeTopCell) + mDrawingRect.left + kSizeTopCell / 2;
@@ -96,105 +97,65 @@ void BoardGame::addToken(int iPosX, int iColor)
 	}
 }
 
-void BoardGame::rowConnect(int iColor)
+void BoardGame::rowConnect(int iColor)  // alignement sur une ligne 
 {
-	for (int j = 6; j >= 0; j--)
+	for (int j = 3; j >= 0; j--)
 	{
 		for (int h = 5; h >= 0; h--)
 		{
-			if (mGridState[j][h] == iColor)
+			if (mGridState[j][h] == iColor && mGridState[j + 1][h] == iColor && mGridState[j + 2][h] == iColor && mGridState[j + 3][h] == iColor)
 			{
-				if (mGridState[j + 1][h] == iColor)
-				{
-					if (mGridState[j + 2][h] == iColor)
-					{
-						if (mGridState[j + 3][h] == iColor)
-						{
-							mWinner = iColor;
-						}
-					}
-				}
-			}
-
+					mWinner = iColor;
+		    }
 		}
-
-	} // alignement sur une ligne 
+	} 
 }
 
 
-void BoardGame::columnConnect(int iColor)
+void BoardGame::columnConnect(int iColor)   // alignement sur une colonne
 {
 	for (int j = 6; j >= 0; j--)
 	{
-		for (int h = 5; h >= 0; h--)
+		for (int h = 2; h >= 0; h--)
 		{
-			if (mGridState[j][h] == iColor)
+			if (mGridState[j][h] == iColor && mGridState[j][h + 1] == iColor && mGridState[j][h + 2] == iColor && mGridState[j][h + 3] == iColor)
 			{
-				if (mGridState[j][h + 1] == iColor)
-				{
-					if (mGridState[j][h + 2] == iColor)
-					{
-						if (mGridState[j][h + 3] == iColor)
-						{
-							mWinner = iColor;
-						}
-					}
-				}
+		
+			    mWinner = iColor;
+	
 			}
-
 		}
 
-	}// alignement sur une colonne
+	}
 }
 
-void BoardGame::diagonalUpConnect(int iColor)
+void BoardGame::diagonalUpConnect(int iColor)   // alignement sur une diagonale 
 {
-	for (int j = 0; j <= 6; j++)
+	for (int j = 0; j <= 3; j++)
 	{
-		for (int h = 5; h >= 0; h--)
+		for (int h = 2; h >= 0; h--)
 		{
-			if (mGridState[j][h] == iColor)
+			if (mGridState[j][h] == iColor && mGridState[j + 1][h - 1] == iColor && mGridState[j + 2][h - 2] == iColor && mGridState[j + 3][h - 3] == iColor)
 			{
-				if (mGridState[j + 1][h - 1] == iColor)
-				{
-					if (mGridState[j + 2][h - 2] == iColor)
-					{
-						if (mGridState[j + 3][h - 3] == iColor)
-						{
-							mWinner = iColor;
-						}
-					}
-				}
+				mWinner = iColor;
 			}
-
 		}
-
-	} // alignement sur une diagonale 
+	}
 }
 
-void BoardGame::diagonalDownConnect(int iColor)
+void BoardGame::diagonalDownConnect(int iColor)   // alignement diagnole qui dessans
 {
-	for (int j = 6; j >= 0; j--)
+	for (int j = 3; j >= 0; j--)
 	{
-		for (int h = 5; h >= 0; h--)
+		for (int h = 2; h >= 0; h--)
 		{
-			if (mGridState[j][h] == iColor)
+			if (mGridState[j][h] == iColor && mGridState[j - 1][h - 1] == iColor && mGridState[j - 2][h - 2] == iColor && mGridState[j - 3][h - 3] == iColor)
 			{
-				if (mGridState[j - 1][h - 1] == iColor)
-				{
-					if (mGridState[j - 2][h - 2] == iColor)
-					{
-						if (mGridState[j - 3][h - 3] == iColor)
-						{
-							mWinner = iColor;
-						}
-					}
-				}
+				mWinner = iColor;
+		
 			}
-
 		}
-
-	} // alignement diagnole qui dessans
+	} 
 }
 
 int BoardGame::getColumn(int iPosX)
@@ -202,7 +163,6 @@ int BoardGame::getColumn(int iPosX)
 	int wColumn = -1; 
 
 	if ((mDrawingRect.left < iPosX) && (iPosX < mDrawingRect.left + (kSizeTopCell * 7))) // click dans l'espace de jeu
-
 	{
 		wColumn = (iPosX-mDrawingRect.left) / kSizeTopCell;
 	}

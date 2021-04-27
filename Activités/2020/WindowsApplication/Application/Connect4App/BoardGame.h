@@ -28,6 +28,8 @@ private:
 	void diagonalUpConnect(int iColor);
 	void diagonalDownConnect(int iColor);
 
+	bool mClick = true;
+
 public:
 	BoardGame();
 
@@ -36,7 +38,7 @@ public:
 
 	void addRedToken(int iPosX);
 	void addBlueToken(int iPosX);
-	bool mClick = true;
+	
 	
 	
 };
