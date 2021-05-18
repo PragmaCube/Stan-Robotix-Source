@@ -29,6 +29,11 @@ void SnakeApplication::onKeyDown(char iChar, short iDetail)
 
 }
 
+void SnakeApplication::onMouseMove(int iPosX, int iPosY)
+{
+
+}
+
 void SnakeApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 {
 

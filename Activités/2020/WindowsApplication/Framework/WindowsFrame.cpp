@@ -110,6 +110,14 @@ void DemoWindowsFrame::onMouseLeftClick(int iPosX, int iPosY)
 	}
 }
 
+void DemoWindowsFrame::onMouseMove(int iPosX, int iPosY)
+{
+	if (nullptr != mCurrentApplication)
+	{
+		mCurrentApplication->onMouseMove(iPosX, iPosY);
+	}
+}
+
 void DemoWindowsFrame::onMouseRightClick(int iPosX, int iPosY)
 {
 	if (nullptr != mCurrentApplication)
@@ -145,6 +153,9 @@ void DemoWindowsFrame::switchApp(int iAppId)
 		break;
 	case ID_APPLICATION_DESSIN:
 		mCurrentApplication = new DessinApplication();
+		break;
+	case ID_APPLICATION_PACMAN:
+		mCurrentApplication = new PacmanApplication();
 		break;
 	};
 

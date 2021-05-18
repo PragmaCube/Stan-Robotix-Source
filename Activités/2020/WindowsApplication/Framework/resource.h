@@ -18,6 +18,7 @@
 #define ID_APPLICATION_PINGPONG         32776
 #define ID_APPLICATION_CONNECTFOUR      32777
 #define ID_APPLICATION_DESSIN           32778
+#define ID_APPLICATION_PACMAN           32779
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
