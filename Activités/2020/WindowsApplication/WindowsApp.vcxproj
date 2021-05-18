@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -141,9 +141,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application\BattleshipApp\BattleshipApplication.h" />
+    <ClInclude Include="Application\Connect4App\BoardGame.h" />
     <ClInclude Include="Application\BattleshipApp\BoatsPosition.h" />
     <ClInclude Include="Application\BattleshipApp\GameBoard.h" />
     <ClInclude Include="Application\Connect4App\ConnectFourApplication.h" />
+    <ClInclude Include="Application\Connect4App\Token.h" />
     <ClInclude Include="Application\DemoApp\DemoAppBall.h" />
     <ClInclude Include="Application\DemoApp\DemoApplication.h" />
     <ClInclude Include="Application\DessinApp\DessinApplication.h" />
@@ -163,9 +165,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\BattleshipApp\BattleshipApplication.cpp" />
+    <ClCompile Include="Application\Connect4App\BoardGame.cpp" />
     <ClCompile Include="Application\BattleshipApp\BoatsPosition.cpp" />
     <ClCompile Include="Application\BattleshipApp\GameBoard.cpp" />
     <ClCompile Include="Application\Connect4App\ConnectFourApplication.cpp" />
+    <ClCompile Include="Application\Connect4App\Token.cpp" />
     <ClCompile Include="Application\DemoApp\DemoAppBall.cpp" />
     <ClCompile Include="Application\DemoApp\DemoApplication.cpp" />
     <ClCompile Include="Application\DessinApp\DessinApplication.cpp" />

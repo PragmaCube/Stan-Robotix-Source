@@ -1,9 +1,13 @@
 #pragma once
 #include "../../Framework/IApplication.h"
+#include "BoardGame.h"
+#include "Token.h"
+
 
 class ConnectFourApplication :
     public IApplication
 {
+
 public:
 	ConnectFourApplication();
 
@@ -20,5 +24,8 @@ protected:
 	void onMouseMove(int iPosX, int iPosY);
 
 	void onTimer();
+
+
+	BoardGame mBoardGame;
 };
 
