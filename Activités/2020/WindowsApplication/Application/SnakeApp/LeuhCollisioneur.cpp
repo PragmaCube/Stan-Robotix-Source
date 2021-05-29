@@ -20,31 +20,22 @@ void LeuhCollisionneur::setSerpent(BoutteDeSerpent* iSerpent)
 
 void LeuhCollisionneur::manger(RECT iWindowRect)
 {
-	if (nullptr != mPommePtr && nullptr != mSerpentPtr)
+		
+	if (mSerpentPtr->getX() <= mPommePtr->getX() + 30 &&
+		mSerpentPtr->getX() >= mPommePtr->getX() - 30 &&
+		mSerpentPtr->getY() <= mPommePtr->getY() + 30 &&
+		mSerpentPtr->getY() >= mPommePtr->getY() - 30)
 	{
-		if (mSerpentPtr->getX() <= mPommePtr->getX() + 30 &&
-			mSerpentPtr->getX() >= mPommePtr->getX() - 30 &&
-			mSerpentPtr->getY() <= mPommePtr->getY() + 30 &&
-			mSerpentPtr->getY() >= mPommePtr->getY() - 30)
-		{
-			mPommePtr->Teleportation(iWindowRect);
-			mScore++;
-		}
+		mPommePtr->Teleportation(iWindowRect);
+		mScore++;
 	}
+
 }
 
-void LeuhCollisionneur::score(HDC ihdc)
+std::wstring LeuhCollisionneur::getStringToDisplay(const std::wstring & iText, int iNumber, HDC ihdc, RECT& iPaintArea, int iNumber)
 {
-
-		std::string wMessage = "Vous avez mangé " + std::to_string(mScore) + " pomme(s)";
-		std::wstring wChar = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(wMessage);
-		RECT wTextArea = { 500, 20, 2000, 2000 };
-		::DrawText(
-			ihdc,
-			wChar.c_str(),
-			wChar.length(),
-			&wTextArea,
-			((int)DT_LEFT | DT_BOTTOM));
-
+	std::wstring wBoats = getStringToDisplay(L"Boats remaining : ",
+		mBoatsPosition.getBoatsRemaining());
+	displayText(170, 105, wBoats, 0, 30, ihdc, iPaintArea);
 }
 
