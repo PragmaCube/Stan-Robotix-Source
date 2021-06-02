@@ -1,14 +1,18 @@
+<p align="center">
+  <img width="256" height="226" src="https://stanrobotix.files.wordpress.com/2017/01/cropped-cropped-equipe-stan-logo2.jpg">
+</p>
+
 # Stan-Robotix-Source
-Code source des compétitions auxquelles Stan Robotix a participé, les autres activités et la documentation.
+Code source des compétitions auxquelles [Stan Robotix](https://stanrobotix.com/) a participé, les autres activités et la documentation.
 2019-2020
 
-## Pourquoi créer une repository globale?
-Elle a été créé pour éviter de multiplier le nombre de repository. En effet, à chaque compétition ou à chaque projet, Programmation en créait une, faisant en sorte qu'il fallait chercher
+## Pourquoi créer un repositoire global?
+Il a été créé pour éviter de multiplier le nombre de repositoires. En effet, à chaque compétition ou à chaque projet, Programmation en créait un, faisant en sorte qu'il fallait chercher
 longtemps pour retrouver dans un programme déjà fait des morceaux de codes réutilisables.
-Cette repository sera donc globale et les autres codes se feront dans les sous-dossiers.
+Ce repositoire sera donc global et les autres codes se feront dans les sous-dossiers.
 
 ## Qui a le droit de commit?
-Tout le monde dans l'équipe programmation tant que cela est pertinant. Les mentors peuvent modifier le code mais on privilégie les élèves pour qu'ils apprennent à le faire eux-même.
+Tout le monde dans l'équipe programmation (si vous n'êtes pas dans l'équipe vous pouvez proposer une modification mais pas commit pour que les étudiants apprenent par eux-mêmes) tant que cela est pertinant. Les mentors peuvent modifier le code mais on privilégie les élèves pour qu'ils apprennent à le faire eux-même.
 
 **IL EST DÉFENDU DE FAIRE DES MODIFICATIONS MANUELLES.**  
 **TOUTES DOIVENT ÊTRE FAITES SOIT PAR COMMANDES, SOIT PAR UNE INTERFACE DE TYPE TURTOISEGIT.**
@@ -47,3 +51,15 @@ git checkout NomDeLaBranche
 git rm "NomDuFichier"
 git pull
 ```
+## Gestion
+La gestion du repositoire (modification du README ou modifications majeures) est laissée au chef de l'équipe et aux mentors.
+
+
+Chef d'équipe : Raphaël Pothier <br>
+Mentors : Cyril Jacob et Philippe Ducas
+
+Contacts :
+
+raphael.pothier@stanislas.qc.ca <br>
+ cyril.jacob@stanislas.qc.ca <br>
+ philippe.ducas@stanislas.qc.ca <br>
