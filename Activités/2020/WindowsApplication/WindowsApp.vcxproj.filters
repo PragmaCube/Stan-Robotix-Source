@@ -77,11 +77,6 @@
     <ClInclude Include="Framework\IApplication.h">
       <Filter>Framework sources</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Connect4App\Token.h">
-      <Filter>Application\ConnectFour</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Connect4App\BoardGame.h">
-      <Filter>Application\ConnectFour</Filter>
     <ClInclude Include="Application\BattleshipApp\BoatsPosition.h">
       <Filter>Application\Battleship</Filter>
     </ClInclude>
@@ -130,11 +125,6 @@
     <ClCompile Include="Application\DessinApp\DessinApplication.cpp">
       <Filter>Application\Dessin</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Connect4App\BoardGame.cpp">
-      <Filter>Application\ConnectFour</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\Connect4App\Token.cpp">
-      <Filter>Application\ConnectFour</Filter>
     <ClCompile Include="Application\BattleshipApp\BoatsPosition.cpp">
       <Filter>Application\Battleship</Filter>
     </ClCompile>
