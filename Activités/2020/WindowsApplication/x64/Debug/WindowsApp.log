@@ -1,0 +1,5 @@
+﻿  BoardGame.cpp
+C:\Users\pragm\OneDrive\Bureau\Stan Robotix\Programmation\Stan-Robotix-Source\Activités\2020\WindowsApplication\Application\Connect4App\BoardGame.cpp(31,34): warning C4267: 'initialisation' : conversion de 'size_t' en 'int', perte possible de données
+C:\Users\pragm\OneDrive\Bureau\Stan Robotix\Programmation\Stan-Robotix-Source\Activités\2020\WindowsApplication\Application\Connect4App\BoardGame.cpp(46,25): warning C4267: 'argument' : conversion de 'size_t' en 'int', perte possible de données
+C:\Users\pragm\OneDrive\Bureau\Stan Robotix\Programmation\Stan-Robotix-Source\Activités\2020\WindowsApplication\Application\Connect4App\BoardGame.cpp(59,25): warning C4267: 'argument' : conversion de 'size_t' en 'int', perte possible de données
+  WindowsApp.vcxproj -> C:\Users\pragm\OneDrive\Bureau\Stan Robotix\Programmation\Stan-Robotix-Source\Activités\2020\WindowsApplication\x64\Debug\WindowsApp.exe
