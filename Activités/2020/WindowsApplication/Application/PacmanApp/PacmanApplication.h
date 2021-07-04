@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Framework/IApplication.h"
+#include "PacmanPlayer.h"
 
 class PacmanApplication :
     public IApplication
@@ -20,5 +21,9 @@ protected:
 	void onMouseMove(int iPosX, int iPosY);
 
 	void onTimer();
+
+private:
+	PacmanPlayer Pacman;
+	char prochaineDir = 'l';
 };
 
