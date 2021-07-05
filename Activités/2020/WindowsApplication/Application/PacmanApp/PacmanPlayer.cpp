@@ -23,14 +23,14 @@ void PacmanPlayer::initialise(RECT iWindowRect)
 		mCoorXMax = iWindowRect.right;
 
 		mIsInit = true;
-	}/*
-	else
+	}
+	else                             // ce else permet de résoudre le pb de redimensionnement de l'écran
 	{
 		mCoorYMin = iWindowRect.bottom;
 		mCoorYMax = iWindowRect.top;
 		mCoorXMin = iWindowRect.left;
 		mCoorXMax = iWindowRect.right;
-	}*/
+	}
 }
 
 void PacmanPlayer::movePacmanUp()

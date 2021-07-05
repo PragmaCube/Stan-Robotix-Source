@@ -18,7 +18,7 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 		&iPaintArea,
 		DT_CENTER | DT_TOP);
 
-	Pacman.initialise(iPaintArea); // initialiser la valeur de certaines constantes
+	Pacman.initialise(iPaintArea); // initialiser les valeurs de certaines constantes
 	Pacman.paint(ihdc);
 }
 
