@@ -23,7 +23,14 @@ void PacmanPlayer::initialise(RECT iWindowRect)
 		mCoorXMax = iWindowRect.right;
 
 		mIsInit = true;
-	}
+	}/*
+	else
+	{
+		mCoorYMin = iWindowRect.bottom;
+		mCoorYMax = iWindowRect.top;
+		mCoorXMin = iWindowRect.left;
+		mCoorXMax = iWindowRect.right;
+	}*/
 }
 
 void PacmanPlayer::movePacmanUp()

@@ -24,6 +24,7 @@ protected:
 
 private:
 	PacmanPlayer Pacman;
-	char prochaineDir = 'l';
+	char mNextDir = 'l'; //  permet à pacman de conserver son mouvement 
+					    // ('l' = left, 'r' = right, 'd' = down, 'u' = up). va à gauche par défaut
 };
 

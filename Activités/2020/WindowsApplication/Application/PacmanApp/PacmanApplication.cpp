@@ -18,25 +18,8 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 		&iPaintArea,
 		DT_CENTER | DT_TOP);
 
-	Pacman.initialise(iPaintArea);
+	Pacman.initialise(iPaintArea); // initialiser la valeur de certaines constantes
 	Pacman.paint(ihdc);
-
-	if (prochaineDir == 'l') 
-	{
-		Pacman.movePacmanLeft();
-	}
-	else if (prochaineDir == 'u')
-	{
-		Pacman.movePacmanUp();
-	}
-	else if (prochaineDir == 'r')
-	{
-		Pacman.movePacmanRight();
-	}
-	else if (prochaineDir == 'd')
-	{
-		Pacman.movePacmanDown();
-	}
 }
 
 void PacmanApplication::onChar(char iChar, short iDetail)
@@ -45,19 +28,19 @@ void PacmanApplication::onChar(char iChar, short iDetail)
 	{
 	case 'a':
 	case 'A':
-		prochaineDir = 'l';
+		mNextDir = 'l';
 		break;
 	case 'w':
 	case 'W':
-		prochaineDir = 'u';
+		mNextDir = 'u';
 		break;
 	case 'd':
 	case 'D':
-		prochaineDir = 'r';
+		mNextDir = 'r';
 		break;
 	case 's':
 	case 'S':
-		prochaineDir = 'd';
+		mNextDir = 'd';
 		break;
 	}
 }
@@ -89,6 +72,22 @@ void PacmanApplication::onMouseRightClick(int iPosX, int iPosY)
 
 void PacmanApplication::onTimer()
 {
+	if (mNextDir == 'l')
+	{
+		Pacman.movePacmanLeft();
+	}
+	else if (mNextDir == 'u')
+	{
+		Pacman.movePacmanUp();
+	}
+	else if (mNextDir == 'r')
+	{
+		Pacman.movePacmanRight();
+	}
+	else if (mNextDir == 'd')
+	{
+		Pacman.movePacmanDown();
+	}
 
 	IApplication::onTimer(); // Pour redessiner l'ecran
 }
