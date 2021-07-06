@@ -93,6 +93,20 @@
     <ClInclude Include="Application\PingpongApp\PingPongPad.h">
       <Filter>Application\PingPong</Filter>
     </ClInclude>
+    <ClInclude Include="Application\Connect4App\BoardGame.h" />
+    <ClInclude Include="Application\Connect4App\Token.h" />
+    <ClInclude Include="Application\PacmanApp\PacmanGameBoard.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\PacmanMonster.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\PacmanPlayer.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\PacmanPoint.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\WindowsApp.cpp">
@@ -139,6 +153,24 @@
     </ClCompile>
     <ClCompile Include="Application\PingpongApp\CollisionEngine.cpp">
       <Filter>Application\PingPong</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Connect4App\BoardGame.cpp">
+      <Filter>Framework sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Connect4App\Token.cpp">
+      <Filter>Framework sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\PacmanGameBoard.cpp">
+      <Filter>Application\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\PacmanMonster.cpp">
+      <Filter>Application\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\PacmanPlayer.cpp">
+      <Filter>Application\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\PacmanPoint.cpp">
+      <Filter>Application\Pacman</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
