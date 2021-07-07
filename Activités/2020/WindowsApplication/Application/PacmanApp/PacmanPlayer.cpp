@@ -24,6 +24,7 @@ void PacmanPlayer::initialise(RECT iWindowRect)
 
 		mIsInit = true;
 	}
+
 	else                             // ce else permet de résoudre le pb de redimensionnement de l'écran
 	{
 		mCoorYMin = iWindowRect.bottom;
