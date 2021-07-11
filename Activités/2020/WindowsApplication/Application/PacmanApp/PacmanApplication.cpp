@@ -4,7 +4,7 @@
 
 PacmanApplication::PacmanApplication()
 {
-
+	mPacmanGameBorad.initializeMap();
 }
 
 void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
@@ -18,6 +18,8 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 		&iPaintArea,
 		DT_CENTER | DT_TOP);
 
+	
+	mPacmanGameBorad.drawMap(ihdc, iPaintArea);
 	Pacman.initialise(iPaintArea); // initialiser les valeurs de certaines constantes
 	Pacman.paint(ihdc);
 }
@@ -62,7 +64,7 @@ void PacmanApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 
 void PacmanApplication::onMouseLeftClick(int iPosX, int iPosY)
 {
-
+	//160 59      975 540
 }
 
 void PacmanApplication::onMouseRightClick(int iPosX, int iPosY)

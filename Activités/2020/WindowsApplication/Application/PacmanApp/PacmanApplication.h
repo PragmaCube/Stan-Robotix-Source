@@ -1,6 +1,7 @@
 #pragma once
 #include "../../Framework/IApplication.h"
 #include "PacmanPlayer.h"
+#include "PacmanGameBoard.h"
 
 class PacmanApplication :
     public IApplication
@@ -26,5 +27,6 @@ private:
 	PacmanPlayer Pacman;
 	char mNextDir = 'l'; //  permet à pacman de conserver son mouvement 
 					    // ('l' = left, 'r' = right, 'd' = down, 'u' = up). va à gauche par défaut
+	PacmanGameBoard mPacmanGameBorad;
 };
 
