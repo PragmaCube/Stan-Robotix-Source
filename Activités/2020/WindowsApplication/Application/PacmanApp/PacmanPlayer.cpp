@@ -78,3 +78,8 @@ void PacmanPlayer::paint(HDC ihdc)
 
 	::SelectObject(ihdc, wOldBrush);
 }
+
+void PacmanPlayer::setBoard(PacmanGameBoard* iGameBoard)
+{
+	mGameBoard = iGameBoard;
+}

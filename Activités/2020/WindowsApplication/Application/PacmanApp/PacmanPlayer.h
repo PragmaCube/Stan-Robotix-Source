@@ -1,5 +1,6 @@
 #pragma once
 #include <Windows.h>
+#include "PacmanGameBoard.h"
 
 class PacmanPlayer
 {
@@ -16,6 +17,8 @@ public:
 
 	void paint(HDC ihdc);
 
+	void setBoard(PacmanGameBoard* iGameBoard);
+
 
 private:
 	double kSpeed = 5;
@@ -25,5 +28,6 @@ private:
 	const int mRadius = 20; // rayon du cercle (pour l'instant, cercle = pacman)
 	bool mIsInit;
 
+	PacmanGameBoard* mGameBoard;
 };
 

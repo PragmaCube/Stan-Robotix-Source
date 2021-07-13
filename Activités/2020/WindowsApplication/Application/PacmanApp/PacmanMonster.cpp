@@ -100,3 +100,13 @@ void PacmanMonster::paint(HDC ihdc)
 
 	::SelectObject(ihdc, wOldBrush);
 }
+
+void PacmanMonster::setBoard(PacmanGameBoard* iGameBoard)
+{
+	mGameBoard = iGameBoard;
+}
+
+void PacmanMonster::setPlayer(PacmanPlayer* iPlayer)
+{
+	mPlayer = iPlayer;
+}

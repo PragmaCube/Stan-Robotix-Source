@@ -1,6 +1,8 @@
 #pragma once
 
 #include <Windows.h>
+#include "PacmanPlayer.h"
+#include "PacmanGameBoard.h"
 
 enum Monster
 {
@@ -25,6 +27,9 @@ class PacmanMonster
 
 	Monster mMonsterType;
 
+	PacmanGameBoard* mGameBoard;
+	PacmanPlayer* mPlayer;
+
 public:
 	PacmanMonster();
 
@@ -40,5 +45,8 @@ public:
 	void moveMonsterLeft(int iModifier);
 
 	void paint(HDC ihdc);
+
+	void setBoard(PacmanGameBoard* iGameBoard);
+	void setPlayer(PacmanPlayer* iPlayer);
 };
 
