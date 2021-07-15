@@ -5,8 +5,11 @@ PacmanMonster::PacmanMonster(): mIsInit(false)
 	
 }
 
-void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType)
+void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType, PacmanGameBoard* iGameBoard, PacmanPlayer* iPlayer)
 {
+	mGameBoard = iGameBoard;
+	mPlayer = iPlayer;
+
 	int wRed = 0;
 	int wGreen = 0;
 	int wBlue = 0;
@@ -36,8 +39,11 @@ void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType)
 
 	if (!mIsInit)
 	{
-		mCoorX = ((iWindowRect.left + iWindowRect.right) / 2);
-		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
+		// Valeurs arbitraires pour que le monstre s'affiche à
+		// un endroit en particulier
+
+		mCoorX = ((iWindowRect.left + iWindowRect.right) / 4) + 107;
+		mCoorY = iWindowRect.bottom / 4 + 9;
 
 		mCoorYMin = iWindowRect.bottom;
 		mCoorYMax = iWindowRect.top;
@@ -56,36 +62,79 @@ void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType)
 	}
 }
 
-void PacmanMonster::moveMonsterUp(int iModifier)
+void PacmanMonster::moveMonsterUp()
 {
-	if (mCoorY - kSpeed - iModifier > mCoorYMax)
+	if (mCoorY - kSpeed >= mCoorYMax)
 	{
-		mCoorY -= (kSpeed + iModifier);
+		mCoorY -= kSpeed;
+		mBoardCoordY--;
 	}
 }
 
-void PacmanMonster::moveMonsterDown(int iModifier)
+void PacmanMonster::moveMonsterDown()
 {
-	if (mCoorY + kSpeed + iModifier < mCoorYMin)
+	if (mCoorY + kSpeed <= mCoorYMin)
 	{
-		mCoorY += kSpeed + iModifier;
+		mCoorY += kSpeed;
+		mBoardCoordY++;
 	}
 }
 
-void PacmanMonster::moveMonsterRight(int iModifier)
+void PacmanMonster::moveMonsterRight()
 {
-	if (mCoorX + kSpeed + iModifier < mCoorXMax)
+	if (mCoorX + kSpeed <= mCoorXMax)
 	{
-		mCoorX += kSpeed + iModifier;
+		mCoorX += kSpeed;
+		mBoardCoordX++;
 	}
 }
 
-void PacmanMonster::moveMonsterLeft(int iModifier)
+void PacmanMonster::moveMonsterLeft()
 {
-	if (mCoorX - kSpeed - iModifier > mCoorXMin)
+	if (mCoorX - kSpeed >= mCoorXMin)
 	{
-		mCoorX -= (kSpeed + iModifier);
+		mCoorX -= kSpeed;
+		mBoardCoordX--;
 	}
+}
+
+void PacmanMonster::move()
+{
+	if (1 == mBoardCoordX && 1 == mBoardCoordY)
+	{
+		mWay = 'd';
+	}
+
+	else if (1 == mBoardCoordX && 9 == mBoardCoordY)
+	{
+		mWay = 'r';
+	}
+
+	else if (9 == mBoardCoordX && 1 == mBoardCoordY)
+	{
+		mWay = 'l';
+	}
+
+	else if (9 == mBoardCoordX && 9 == mBoardCoordY)
+	{
+		mWay = 'u';
+	}
+
+	switch (mWay)
+	{
+	case 'u':
+		moveMonsterUp();
+		break;
+	case 'd':
+		moveMonsterDown();
+		break;
+	case 'l':
+		moveMonsterLeft();
+		break;
+	case 'r':
+		moveMonsterRight();
+		break;
+	}	
 }
 
 void PacmanMonster::paint(HDC ihdc)
@@ -101,12 +150,7 @@ void PacmanMonster::paint(HDC ihdc)
 	::SelectObject(ihdc, wOldBrush);
 }
 
-void PacmanMonster::setBoard(PacmanGameBoard* iGameBoard)
-{
-	mGameBoard = iGameBoard;
-}
-
-void PacmanMonster::setPlayer(PacmanPlayer* iPlayer)
+void PacmanMonster::updatePlayer(PacmanPlayer* iPlayer)
 {
 	mPlayer = iPlayer;
 }

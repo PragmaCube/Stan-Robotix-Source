@@ -16,8 +16,13 @@ class PacmanMonster
 {
 	// Copie du code d'Antoine
 
-	double kSpeed = 5;
+	double kSpeed = 40;
 	double mCoorX, mCoorY;
+	
+	int mBoardCoordX = 1;
+	int mBoardCoordY = 1;
+
+	char mWay = 'd';
 
 	// À revoir
 	int mCoorYMax, mCoorYMin, mCoorXMax, mCoorXMin;
@@ -33,20 +38,21 @@ class PacmanMonster
 public:
 	PacmanMonster();
 
-	void initialise(RECT iWindowRect, Monster iMonsterType);
+	void initialise(RECT iWindowRect, Monster iMonsterType, PacmanGameBoard* iGameBoard, PacmanPlayer* iPlayer);
 
 	// Pas d'intelligence artificielle
 	// Seulement des modifieurs pour que l'on puisse
 	// voir les différents monstres
 
-	void moveMonsterUp(int iModifier);
-	void moveMonsterDown(int iModifier);
-	void moveMonsterRight(int iModifier);
-	void moveMonsterLeft(int iModifier);
+	void moveMonsterUp();
+	void moveMonsterDown();
+	void moveMonsterRight();
+	void moveMonsterLeft();
+
+	void move();
 
 	void paint(HDC ihdc);
 
-	void setBoard(PacmanGameBoard* iGameBoard);
-	void setPlayer(PacmanPlayer* iPlayer);
+	void updatePlayer(PacmanPlayer* iPlayer);
 };
 

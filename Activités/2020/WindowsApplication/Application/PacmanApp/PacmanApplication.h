@@ -26,7 +26,7 @@ protected:
 	void onTimer();
 
 private:
-	PacmanPlayer Pacman;
+	PacmanPlayer mPacman;
 
 	PacmanMonster mBlinky;
 	PacmanMonster mPinky;

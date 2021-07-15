@@ -82,6 +82,7 @@ bool PacmanGameBoard::isWall(unsigned int x, unsigned int y)
 	{
 		wIsWall = mMap[y][x] == eWall;
 	}
+
 	return wIsWall;
 }
 

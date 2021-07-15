@@ -20,17 +20,22 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 
 
 	mPacmanGameBorad.drawMap(ihdc, iPaintArea);
-	mBlinky.initialise(iPaintArea, eBlinky);
-	mBlinky.paint(ihdc);
-	mPinky.initialise(iPaintArea, ePinky);
-	mPinky.paint(ihdc);
-	mInky.initialise(iPaintArea, eInky);
-	mInky.paint(ihdc);
-	mClyde.initialise(iPaintArea, eClyde);
-	mClyde.paint(ihdc);
 
-	Pacman.initialise(iPaintArea); // initialiser les valeurs de certaines constantes
-	Pacman.paint(ihdc);
+	mBlinky.initialise(iPaintArea, eBlinky, &mPacmanGameBorad, &mPacman);
+	
+	/*mPinky.initialise(iPaintArea, ePinky);
+	mInky.initialise(iPaintArea, eInky);
+	mClyde.initialise(iPaintArea, eClyde);*/
+
+	mBlinky.paint(ihdc);
+	
+	/* Pas besoin d'eux pour le moment
+	mPinky.paint(ihdc);
+	mInky.paint(ihdc);
+	mClyde.paint(ihdc);*/
+
+	mPacman.initialise(iPaintArea); // initialiser les valeurs de certaines constantes
+	mPacman.paint(ihdc);
 }
 
 void PacmanApplication::onChar(char iChar, short iDetail)
@@ -83,37 +88,39 @@ void PacmanApplication::onMouseRightClick(int iPosX, int iPosY)
 
 void PacmanApplication::onTimer()
 {
+	mBlinky.move();
+
 	if (mNextDir == 'l')
 	{
-		Pacman.movePacmanLeft();
-		mBlinky.moveMonsterLeft(1);
+		mPacman.movePacmanLeft();
+		/*mBlinky.moveMonsterLeft(1);
 		mPinky.moveMonsterLeft(2);
 		mInky.moveMonsterLeft(3);
-		mClyde.moveMonsterLeft(4);
+		mClyde.moveMonsterLeft(4);*/
 	}
 	else if (mNextDir == 'u')
 	{
-		Pacman.movePacmanUp();
-		mBlinky.moveMonsterUp(1);
+		mPacman.movePacmanUp();
+		/*mBlinky.moveMonsterUp(1);
 		mPinky.moveMonsterUp(2);
 		mInky.moveMonsterUp(3);
-		mClyde.moveMonsterUp(4);
+		mClyde.moveMonsterUp(4);*/
 	}
 	else if (mNextDir == 'r')
 	{
-		Pacman.movePacmanRight();
-		mBlinky.moveMonsterRight(1);
+		mPacman.movePacmanRight();
+		/*mBlinky.moveMonsterRight(1);
 		mPinky.moveMonsterRight(2);
 		mInky.moveMonsterRight(3);
-		mClyde.moveMonsterRight(4);
+		mClyde.moveMonsterRight(4);*/
 	}
 	else if (mNextDir == 'd')
 	{
-		Pacman.movePacmanDown();
-		mBlinky.moveMonsterDown(1);
+		mPacman.movePacmanDown();
+		/*mBlinky.moveMonsterDown(1);
 		mPinky.moveMonsterDown(2);
 		mInky.moveMonsterDown(3);
-		mClyde.moveMonsterDown(4);
+		mClyde.moveMonsterDown(4);*/
 	}
 
 	IApplication::onTimer(); // Pour redessiner l'ecran
