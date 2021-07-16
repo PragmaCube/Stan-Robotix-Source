@@ -16,11 +16,12 @@ class PacmanMonster
 {
 	// Copie du code d'Antoine
 
-	double kSpeed = 40;
+	double kSpeed = 5;
 	double mCoorX, mCoorY;
 	
 	int mBoardCoordX = 1;
 	int mBoardCoordY = 1;
+	int mStep = 1; // 1 ---> 8
 
 	char mWay = 'd';
 

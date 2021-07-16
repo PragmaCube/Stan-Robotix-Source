@@ -67,7 +67,6 @@ void PacmanMonster::moveMonsterUp()
 	if (mCoorY - kSpeed >= mCoorYMax)
 	{
 		mCoorY -= kSpeed;
-		mBoardCoordY--;
 	}
 }
 
@@ -76,7 +75,6 @@ void PacmanMonster::moveMonsterDown()
 	if (mCoorY + kSpeed <= mCoorYMin)
 	{
 		mCoorY += kSpeed;
-		mBoardCoordY++;
 	}
 }
 
@@ -85,7 +83,6 @@ void PacmanMonster::moveMonsterRight()
 	if (mCoorX + kSpeed <= mCoorXMax)
 	{
 		mCoorX += kSpeed;
-		mBoardCoordX++;
 	}
 }
 
@@ -94,30 +91,56 @@ void PacmanMonster::moveMonsterLeft()
 	if (mCoorX - kSpeed >= mCoorXMin)
 	{
 		mCoorX -= kSpeed;
-		mBoardCoordX--;
 	}
 }
 
 void PacmanMonster::move()
 {
-	if (1 == mBoardCoordX && 1 == mBoardCoordY)
-	{
-		mWay = 'd';
-	}
+	// Il y a conservation du mouvement (pour le moment)
+	// Le déplacement se fait en 8 étapes (8 x 5 = 40 --> épaisseur des blocs)
+	// Le mouvement ne change pas pendant ces étapes
 
-	else if (1 == mBoardCoordX && 9 == mBoardCoordY)
+	if (8 < mStep)
 	{
-		mWay = 'r';
-	}
+		mStep = 1;
 
-	else if (9 == mBoardCoordX && 1 == mBoardCoordY)
-	{
-		mWay = 'l';
-	}
+		switch (mWay)
+		{
+		case 'u':
+			mBoardCoordY--;
+			break;
+		case 'd':
+			mBoardCoordY++;
+			break;
+		case 'l':
+			mBoardCoordX--;
+			break;
+		case 'r':
+			mBoardCoordX++;
+			break;
+		default:
+			break;
+		}
 
-	else if (9 == mBoardCoordX && 9 == mBoardCoordY)
-	{
-		mWay = 'u';
+		if (1 == mBoardCoordX && 1 == mBoardCoordY)
+		{
+			mWay = 'd';
+		}
+
+		else if (1 == mBoardCoordX && 9 == mBoardCoordY)
+		{
+			mWay = 'r';
+		}
+
+		else if (9 == mBoardCoordX && 1 == mBoardCoordY)
+		{
+			mWay = 'l';
+		}
+
+		else if (9 == mBoardCoordX && 9 == mBoardCoordY)
+		{
+			mWay = 'u';
+		}
 	}
 
 	switch (mWay)
@@ -134,7 +157,9 @@ void PacmanMonster::move()
 	case 'r':
 		moveMonsterRight();
 		break;
-	}	
+	}
+
+	mStep++;
 }
 
 void PacmanMonster::paint(HDC ihdc)
