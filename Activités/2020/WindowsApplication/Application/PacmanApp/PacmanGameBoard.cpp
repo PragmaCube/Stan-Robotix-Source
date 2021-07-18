@@ -1,21 +1,10 @@
 #include "PacmanGameBoard.h"
-#include "../../resource.h"
-#include <windowsx.h>
-
-extern HINSTANCE hInst;                                // instance actuelle;
-
-PacmanGameBoard::PacmanGameBoard() : mIsInit(false)
-{
-
-}
 
 void PacmanGameBoard::initializeMap()
 {
 	reset();
 	buildMap();
 	extraTrails();
-
-	
 }
 
 void PacmanGameBoard::reset()
@@ -99,67 +88,27 @@ bool PacmanGameBoard::isWall(unsigned int x, unsigned int y)
 
 void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 {
-	static bool wDevelopMaze = true;
-	if (wDevelopMaze)
+	int x = 350;
+	int y = 100;
+	for (int kX = 0; kX < 11; kX++)
 	{
-		if (!mIsInit)
+		for (int kY = 0; kY < 11; kY++)
 		{
-			HBITMAP wInitialMazeBitmap = LoadBitmap(hInst, L"IDB_BITMAPMAZE");
-			mIsInit = true;
-
-			mMazeInCache = ::CreateCompatibleDC(ihdc);
-			HBITMAP hOldBmp = (HBITMAP)::SelectObject(mMazeInCache, wInitialMazeBitmap);
-
-			BITMAP wBitmap;
-			GetObject(wInitialMazeBitmap, sizeof(BITMAP), reinterpret_cast<LPVOID>(&wBitmap));
-
-			StretchBlt(ihdc,
-				0,
-				0,
-				iPaintArea.right - iPaintArea.left,
-				iPaintArea.bottom - iPaintArea.top,
-				mMazeInCache, 0, 0, wBitmap.bmWidth, wBitmap.bmHeight, SRCCOPY);
-
-			BitBlt(mMazeInCache,
-				0,
-				0,
-				iPaintArea.right - iPaintArea.left,
-				iPaintArea.bottom - iPaintArea.top,
-				ihdc, 0, 0, SRCCOPY);
-
-			mIsInit = true;
-		}
-		BitBlt(ihdc,
-			iPaintArea.left,
-			iPaintArea.top,
-			iPaintArea.right - iPaintArea.left,
-			iPaintArea.bottom - iPaintArea.top,
-			mMazeInCache, 0, 0, SRCCOPY);
-	}
-	else
-	{
-		int x = 350;
-		int y = 100;
-		for (int kX = 0; kX < 11; kX++)
-		{
-			for (int kY = 0; kY < 11; kY++)
+			if (mMap[kY][kX] == eVoid)
 			{
-				if (mMap[kY][kX] == eVoid)
-				{
-					::SelectObject(ihdc, mBlackBrush);
-				}
-				else
-				{
-					::SelectObject(ihdc, mBlueBrush);
-				}
-
-				::Rectangle(
-					ihdc,
-					(x + kX * 40) - 20,
-					(y + kY * 40) - 20,
-					(x + kX * 40) + 20,
-					(y + kY * 40) + 20);
+				::SelectObject(ihdc, mBlackBrush);
 			}
+			else
+			{
+				::SelectObject(ihdc, mBlueBrush);
+			}
+
+			::Rectangle(
+				ihdc,
+				(x + kX * 40) - 20,
+				(y + kY * 40) - 20,
+				(x + kX * 40) + 20,
+				(y + kY * 40) + 20);
 		}
 	}
 }

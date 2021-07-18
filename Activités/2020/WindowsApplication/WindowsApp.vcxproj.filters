@@ -185,8 +185,5 @@
     <Image Include="WindowsApp.ico">
       <Filter>Fichiers de ressources</Filter>
     </Image>
-    <Image Include="Application\PacmanApp\maze16.bmp">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
   </ItemGroup>
 </Project>
