@@ -194,9 +194,6 @@
     <ResourceCompile Include="WindowsApp.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Application\PacmanApp\maze16.bmp">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
     <Image Include="small.ico" />
     <Image Include="WindowsApp.ico" />
   </ItemGroup>
