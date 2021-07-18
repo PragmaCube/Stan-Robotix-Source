@@ -4,7 +4,7 @@
 
 extern HINSTANCE hInst;                                // instance actuelle;
 
-PacmanGameBoard::PacmanGameBoard() : hInitialMazeBitmap(0), mIsInit(false)
+PacmanGameBoard::PacmanGameBoard() : mIsInit(false)
 {
 
 }
@@ -104,26 +104,23 @@ void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 	{
 		if (!mIsInit)
 		{
-			hInitialMazeBitmap = LoadBitmap(hInst, L"IDB_BITMAPMAZE");
+			HBITMAP wInitialMazeBitmap = LoadBitmap(hInst, L"IDB_BITMAPMAZE");
 			mIsInit = true;
 
-			mLocalDC = ::CreateCompatibleDC(ihdc);
-			HBITMAP hOldBmp = (HBITMAP)::SelectObject(mLocalDC, hInitialMazeBitmap);
+			mMazeInCache = ::CreateCompatibleDC(ihdc);
+			HBITMAP hOldBmp = (HBITMAP)::SelectObject(mMazeInCache, wInitialMazeBitmap);
 
 			BITMAP wBitmap;
-			GetObject(hInitialMazeBitmap, sizeof(BITMAP), reinterpret_cast<LPVOID>(&wBitmap));
-
-			mBitmapWidth = wBitmap.bmWidth;
-			mBitmapHeight = wBitmap.bmHeight;
+			GetObject(wInitialMazeBitmap, sizeof(BITMAP), reinterpret_cast<LPVOID>(&wBitmap));
 
 			StretchBlt(ihdc,
 				0,
 				0,
 				iPaintArea.right - iPaintArea.left,
 				iPaintArea.bottom - iPaintArea.top,
-				mLocalDC, 0, 0, mBitmapWidth, mBitmapHeight, SRCCOPY);
+				mMazeInCache, 0, 0, wBitmap.bmWidth, wBitmap.bmHeight, SRCCOPY);
 
-			BitBlt(mLocalDC,
+			BitBlt(mMazeInCache,
 				0,
 				0,
 				iPaintArea.right - iPaintArea.left,
@@ -137,7 +134,7 @@ void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 			iPaintArea.top,
 			iPaintArea.right - iPaintArea.left,
 			iPaintArea.bottom - iPaintArea.top,
-			mLocalDC, 0, 0, SRCCOPY);
+			mMazeInCache, 0, 0, SRCCOPY);
 	}
 	else
 	{

@@ -27,8 +27,7 @@ private:
 	void extraTrails();
 
 	bool mIsInit;
-	HBITMAP hInitialMazeBitmap;
-	HDC mLocalDC;
-	int mBitmapWidth, mBitmapHeight;
+	HDC mMazeInCache;
+	
 };
 
