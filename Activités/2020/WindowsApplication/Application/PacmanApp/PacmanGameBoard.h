@@ -1,10 +1,13 @@
 #pragma once
 
 #include <Windows.h>
+#include <windowsx.h>
 
 class PacmanGameBoard
 {
 public:
+	PacmanGameBoard();
+
 	void drawMap(HDC ihdc, RECT& iPaintArea);
 	void initializeMap();
 
@@ -22,5 +25,9 @@ private:
 	void defineBorders();
 	void buildBloc(int X, int Y);
 	void extraTrails();
+
+	bool mIsInit;
+	HDC mMazeInCache;
+	
 };
 
