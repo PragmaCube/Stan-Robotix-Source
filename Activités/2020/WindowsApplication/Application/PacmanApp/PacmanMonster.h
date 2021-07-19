@@ -50,10 +50,9 @@ public:
 	void moveMonsterRight();
 	void moveMonsterLeft();
 
-	void move();
+	virtual void move();
 
 	void paint(HDC ihdc);
 
 	void updatePlayer(PacmanPlayer* iPlayer);
 };
-

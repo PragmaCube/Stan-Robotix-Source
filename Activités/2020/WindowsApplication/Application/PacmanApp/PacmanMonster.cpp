@@ -96,6 +96,8 @@ void PacmanMonster::moveMonsterLeft()
 
 void PacmanMonster::move()
 {
+	/*
+
 	// Il y a conservation du mouvement (pour le moment)
 	// Le déplacement se fait en 8 étapes (8 x 5 = 40 --> épaisseur des blocs)
 	// Le mouvement ne change pas pendant ces étapes
@@ -160,6 +162,7 @@ void PacmanMonster::move()
 	}
 
 	mStep++;
+	*/
 }
 
 void PacmanMonster::paint(HDC ihdc)
@@ -173,9 +176,4 @@ void PacmanMonster::paint(HDC ihdc)
 		(int)(mCoorY)+mRadius);
 
 	::SelectObject(ihdc, wOldBrush);
-}
-
-void PacmanMonster::updatePlayer(PacmanPlayer* iPlayer)
-{
-	mPlayer = iPlayer;
 }
