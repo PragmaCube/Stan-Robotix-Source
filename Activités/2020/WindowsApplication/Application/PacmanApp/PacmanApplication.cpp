@@ -95,9 +95,6 @@ void PacmanApplication::onTimer()
 	mCoorBlocX = (mCoorPacX - 350 + 20) / 40;
 	mCoorBlocY = (mCoorPacY - 100 + 20) / 40;
 
-	//
-	//
-
 	if (mNextDir == 'l' && !mPacmanGameBorad.isWall(((mCoorPacX - 18 - 350 + 20) - 5) / 40, (mCoorPacY - 100 + 20 - 18) / 40) 
 		&& !mPacmanGameBorad.isWall(((mCoorPacX - 18 - 350 + 20) - 5) / 40, (mCoorPacY - 100 + 20 + 18) / 40))
 	{
