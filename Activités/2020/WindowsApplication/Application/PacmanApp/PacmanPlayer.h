@@ -15,6 +15,9 @@ public:
 	void movePacmanRight();
 	void movePacmanLeft();
 
+	int getX();
+	int getY();
+
 	void paint(HDC ihdc);
 
 	void setBoard(PacmanGameBoard* iGameBoard);

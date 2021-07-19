@@ -14,24 +14,26 @@ void PacmanPlayer::initialise(RECT iWindowRect)
 {
 	if (!mIsInit)
 	{
-		mCoorX = ((iWindowRect.left + iWindowRect.right) / 2);
-		mCoorY = iWindowRect.top + (double)(rand() % (iWindowRect.bottom - iWindowRect.top));
+		mCoorX = 350 + 5 * 40; // coordonées du 5e bloc 
+		mCoorY = 100 + 9 * 40; // de la 2e rangée 
 
-		mCoorYMin = iWindowRect.bottom;
-		mCoorYMax = iWindowRect.top;
-		mCoorXMin = iWindowRect.left;
-		mCoorXMax = iWindowRect.right;
+		mCoorYMin = 100 + 9 * 40 + 2;  // + et - 2 car lors de création des carrés/ronds, il y a 1 pixel de bordure dans laquelle est dessinée la forme. 
+		mCoorYMax = 100 + 40 - 2;      // il faut donc compensser en enlevant/ajoutant 2 (pixel du carré + pixel de pacman)
+		mCoorXMin = 350 + 40 - 2;
+		mCoorXMax = 350 + 9 * 40 + 2;
 
 		mIsInit = true;
 	}
+}
 
-	else                             // ce else permet de résoudre le pb de redimensionnement de l'écran
-	{
-		mCoorYMin = iWindowRect.bottom;
-		mCoorYMax = iWindowRect.top;
-		mCoorXMin = iWindowRect.left;
-		mCoorXMax = iWindowRect.right;
-	}
+int PacmanPlayer::getX()
+{
+	return mCoorX;
+}
+
+int PacmanPlayer::getY()
+{
+	return mCoorY;
 }
 
 void PacmanPlayer::movePacmanUp()

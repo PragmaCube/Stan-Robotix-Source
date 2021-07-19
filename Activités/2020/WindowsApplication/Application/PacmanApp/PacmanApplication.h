@@ -33,8 +33,14 @@ private:
 	PacmanMonster mInky;
 	PacmanMonster mClyde;
 
-	char mNextDir = 'l'; //  permet à pacman de conserver son mouvement 
-					    // ('l' = left, 'r' = right, 'd' = down, 'u' = up). va à gauche par défaut
+	char mDir = 'l'; //  permet à pacman de conserver son mouvement 
+					// ('l' = left, 'r' = right, 'd' = down, 'u' = up). va à gauche par défaut
+	char mNextDir;
+
+	int mCoorPacX, mCoorPacY;
+	int mCoorBlocX = 5;
+	int mCoorBlocY = 1;
+
 	PacmanGameBoard mPacmanGameBorad;
 };
 
