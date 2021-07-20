@@ -4,83 +4,64 @@
 
 extern HINSTANCE hInst;                                // instance actuelle;
 
-PacmanGameBoard::PacmanGameBoard() : mIsInit(false)
+static int mInitialMap[31][28] = 
+{   
+ //     1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,    
+/*01*/{eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW},
+/*02*/{eW,eB,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eW,eW,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eB,eW},
+/*03*/{eW,eP,eW,eW,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eF,eW,eW,eW,eW,eW,eP,eW,eW,eW,eW,eP,eW},
+/*04*/{eW,eP,eW,eW,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eW,eW,eP,eW},
+/*05*/{eW,eP,eW,eW,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eW,eW,eP,eW},
+/*06*/{eW,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eW},
+/*07*/{eW,eP,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eP,eW},
+/*08*/{eW,eP,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eP,eW},
+/*09*/{eW,eP,eP,eP,eP,eP,eP,eW,eW,eP,eP,eP,eP,eW,eW,eP,eP,eP,eP,eW,eW,eP,eP,eP,eF,eP,eP,eW},
+/*10*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eW,eW,eW,eW},
+/*11*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eW,eW,eW,eW},
+/*12*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
+/*13*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eS,eS,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
+/*14*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eS,eS,eS,eS,eS,eS,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
+/*15*/{eW,eT,eP,eP,eP,eP,eP,eP,eP,eP,eW,eS,eS,eS,eS,eS,eS,eW,eP,eP,eP,eP,eP,eP,eP,eP,eT,eW},
+/*16*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eS,eS,eS,eS,eS,eS,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
+/*17*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
+/*18*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
+/*19*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
+/*20*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
+/*21*/{eW,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eW,eW,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eW},
+/*22*/{eW,eP,eW,eW,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eW,eW,eP,eW},
+/*23*/{eW,eP,eW,eW,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eP,eW,eW,eW,eW,eP,eW},
+/*24*/{eW,eP,eP,eP,eW,eW,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eW,eW,eP,eP,eP,eW},
+/*25*/{eW,eW,eW,eP,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eP,eW,eW,eW},
+/*26*/{eW,eW,eW,eP,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eP,eW,eW,eW},
+/*27*/{eW,eP,eP,eP,eP,eP,eP,eW,eW,eP,eP,eP,eP,eW,eW,eP,eP,eP,eP,eW,eW,eP,eP,eP,eP,eP,eP,eW},
+/*28*/{eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW},
+/*29*/{eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW},
+/*30*/{eW,eB,eP,eP,eP,eP,eF,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eB,eW},
+/*31*/{eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW},
+};
+
+PacmanGameBoard::PacmanGameBoard() : mIsInit(false), mIsDebuggingLayout(false)
 {
 
 }
 
 void PacmanGameBoard::initializeMap()
 {
-	reset();
-	buildMap();
-	extraTrails();
+	reset();	
+}
 
-	
+void PacmanGameBoard::toggleDebugging()
+{
+	mIsDebuggingLayout = !mIsDebuggingLayout;
 }
 
 void PacmanGameBoard::reset()
 {
-	for (int x = 0; x < 11; x++)
+	for (int x = 0; x < mNbRows; x++)
 	{
-		for (int y = 0; y < 11; y++)
+		for (int y = 0; y < mNbColumns; y++)
 		{
-			mMap[y][x] = eVoid;
-		}
-	}
-}
-
-void PacmanGameBoard::buildMap()
-{
-	defineBorders();
-	buildBloc(2,2);
-	buildBloc(6,2);
-	buildBloc(6,6);
-	buildBloc(2,6);
-}
-
-void PacmanGameBoard::defineBorders()
-{
-	for (int x = 0; x < 11; x++)
-	{
-		mMap[0][x] = eWall;
-	}
-	for (int x2 = 0; x2 < 11; x2++)
-	{
-		mMap[10][x2] = eWall;
-	}
-	for (int y = 0; y < 11; y++)
-	{
-		mMap[y][0] = eWall;
-	}
-	for (int y2 = 0; y2 < 11; y2++)
-	{
-		mMap[y2][10] = eWall;
-	}
-}
-
-void PacmanGameBoard::buildBloc(int X, int Y)
-{
-	for (int x = 0; x < 3; x++)
-	{
-		for (int y = 0; y < 3; y++)
-		{
-			mMap[Y + y][X + x] = eWall;
-		}
-	}
-}
-
-void PacmanGameBoard::extraTrails()
-{
-	for (int y = 0; y < 7; y++)
-	{
-		mMap[2+y][3] = eVoid;
-	}
-
-	for (int y2 = 3; y2 < 8; y2+=4 )
-	{
-		for (int x = 6; x < 9; x++)
-		{
-			mMap[y2][x] = eVoid;
+			mMap[y][x] = mInitialMap[y][x];
 		}
 	}
 }
@@ -89,7 +70,7 @@ bool PacmanGameBoard::isWall(unsigned int x, unsigned int y)
 {
 	bool wIsWall = true;
 
-	if ((x < 11) && (y < 11))
+	if ((x < mNbRows) && (y < mNbColumns))
 	{
 		wIsWall = mMap[y][x] == eWall;
 	}
@@ -135,31 +116,55 @@ void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 			iPaintArea.right - iPaintArea.left,
 			iPaintArea.bottom - iPaintArea.top,
 			mMazeInCache, 0, 0, SRCCOPY);
-	}
-	else
-	{
-		int x = 350;
-		int y = 100;
-		for (int kX = 0; kX < 11; kX++)
-		{
-			for (int kY = 0; kY < 11; kY++)
-			{
-				if (mMap[kY][kX] == eVoid)
-				{
-					::SelectObject(ihdc, mBlackBrush);
-				}
-				else
-				{
-					::SelectObject(ihdc, mBlueBrush);
-				}
 
-				::Rectangle(
-					ihdc,
-					(x + kX * 40) - 20,
-					(y + kY * 40) - 20,
-					(x + kX * 40) + 20,
-					(y + kY * 40) + 20);
+		if (mIsDebuggingLayout)
+		{
+			drawMemory(ihdc, iPaintArea);
+		}
+	}
+}
+
+void PacmanGameBoard::drawMemory(HDC ihdc, RECT& iPaintArea)
+{
+	const float wSideX = (iPaintArea.right-iPaintArea.left)/mNbRows;
+	const float wSideY = (iPaintArea.bottom - iPaintArea.top) /mNbColumns;
+	int x = iPaintArea.left;
+	int y = iPaintArea.top;
+
+	for (int kX = 0; kX < mNbRows; kX++)
+	{
+		for (int kY = 0; kY < mNbColumns; kY++)
+		{
+			switch (mMap[kY][kX])
+			{
+			case eVoid:
+				::SelectObject(ihdc, mBlackBrush);
+				break;
+			case eWall:
+				::SelectObject(ihdc, mBlueBrush);
+				break;
+			case ePoint:
+				::SelectObject(ihdc, mYellowBrush);
+				break;
+			case eBonus:
+				::SelectObject(ihdc, mOrangeBrush);
+				break;
+			case eFruit:
+				::SelectObject(ihdc, mRedBrush);
+				break;
+			case eSpawn:
+				::SelectObject(ihdc, mGreenBrush);
+				break;
+			case eTP:
+				::SelectObject(ihdc, mPurpleBrush);
 			}
+
+			::Rectangle(
+				ihdc,
+				(x + kX * wSideX),
+				(y + kY * wSideY),
+				(x + (kX+1) * wSideX),
+				(y + (kY+1) * wSideY));
 		}
 	}
 }
