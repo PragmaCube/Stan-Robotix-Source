@@ -151,6 +151,7 @@
     <ClInclude Include="Application\DessinApp\DessinApplication.h" />
     <ClInclude Include="Application\PacmanApp\Blinky.h" />
     <ClInclude Include="Application\PacmanApp\Clyde.h" />
+    <ClInclude Include="Application\PacmanApp\Constants.h" />
     <ClInclude Include="Application\PacmanApp\Inky.h" />
     <ClInclude Include="Application\PacmanApp\PacmanGameBoard.h" />
     <ClInclude Include="Application\PacmanApp\PacmanMonster.h" />

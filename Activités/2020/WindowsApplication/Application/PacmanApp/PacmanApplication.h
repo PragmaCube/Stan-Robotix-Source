@@ -2,7 +2,7 @@
 
 #include "../../Framework/IApplication.h"
 #include "PacmanPlayer.h"
-#include "PacmanMonster.h"
+#include "Blinky.h"
 #include "PacmanGameBoard.h"
 
 class PacmanApplication :
@@ -28,10 +28,7 @@ protected:
 private:
 	PacmanPlayer mPacman;
 
-	PacmanMonster mBlinky;
-	PacmanMonster mPinky;
-	PacmanMonster mInky;
-	PacmanMonster mClyde;
+	Blinky mBlinky;
 
 	char mDir = 'l'; //  permet à pacman de conserver son mouvement 
 					// ('l' = left, 'r' = right, 'd' = down, 'u' = up). va à gauche par défaut
