@@ -58,6 +58,8 @@ void PacmanApplication::onChar(char iChar, short iDetail)
 	case 'S':
 		mNextDir = 'd';
 		break;
+	case ' ': 
+		mPacmanGameBorad.toggleDebugging(); // drawMemorie(ihdc, iPaintArea);
 	}
 }
 
