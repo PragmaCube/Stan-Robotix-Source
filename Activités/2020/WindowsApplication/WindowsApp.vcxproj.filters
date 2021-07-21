@@ -122,6 +122,9 @@
     <ClInclude Include="Application\PacmanApp\Inky.h">
       <Filter>Application\Pacman\Monsters</Filter>
     </ClInclude>
+    <ClInclude Include="Application\PacmanApp\Constants.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\WindowsApp.cpp">
