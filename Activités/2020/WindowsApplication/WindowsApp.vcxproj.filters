@@ -104,9 +104,6 @@
     <ClInclude Include="Application\PacmanApp\PacmanPlayer.h">
       <Filter>Application\Pacman</Filter>
     </ClInclude>
-    <ClInclude Include="Application\PacmanApp\PacmanPoint.h">
-      <Filter>Application\Pacman</Filter>
-    </ClInclude>
     <ClInclude Include="Application\PacmanApp\Blinky.h">
       <Filter>Application\Pacman\Monsters</Filter>
     </ClInclude>
@@ -125,7 +122,11 @@
     <ClInclude Include="Application\PacmanApp\Constants.h">
       <Filter>Application\Pacman</Filter>
     </ClInclude>
-  </ItemGroup>
+    <ClInclude Include="Application\PacmanApp\PacmanGameEngine.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>    <ClInclude Include="Application\PacmanApp\Constants.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\WindowsApp.cpp">
       <Filter>Framework sources</Filter>
@@ -184,9 +185,6 @@
     <ClCompile Include="Application\PacmanApp\PacmanPlayer.cpp">
       <Filter>Application\Pacman</Filter>
     </ClCompile>
-    <ClCompile Include="Application\PacmanApp\PacmanPoint.cpp">
-      <Filter>Application\Pacman</Filter>
-    </ClCompile>
     <ClCompile Include="Application\PacmanApp\Blinky.cpp">
       <Filter>Application\Pacman\Monsters</Filter>
     </ClCompile>
@@ -201,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="Application\PacmanApp\Inky.cpp">
       <Filter>Application\Pacman\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\PacmanGameEngine.cpp">
+      <Filter>Application\Pacman</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

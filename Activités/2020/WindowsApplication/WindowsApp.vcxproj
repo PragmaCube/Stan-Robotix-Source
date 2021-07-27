@@ -156,7 +156,7 @@
     <ClInclude Include="Application\PacmanApp\PacmanGameBoard.h" />
     <ClInclude Include="Application\PacmanApp\PacmanMonster.h" />
     <ClInclude Include="Application\PacmanApp\PacmanPlayer.h" />
-    <ClInclude Include="Application\PacmanApp\PacmanPoint.h" />
+    <ClInclude Include="Application\PacmanApp\PacmanGameEngine.h" />
     <ClInclude Include="Application\PacmanApp\Pinky.h" />
     <ClInclude Include="Application\PingpongApp\CollisionEngine.h" />
     <ClInclude Include="Application\PingpongApp\PingPongBall.h" />
@@ -189,7 +189,7 @@
     <ClCompile Include="Application\PacmanApp\PacmanGameBoard.cpp" />
     <ClCompile Include="Application\PacmanApp\PacmanMonster.cpp" />
     <ClCompile Include="Application\PacmanApp\PacmanPlayer.cpp" />
-    <ClCompile Include="Application\PacmanApp\PacmanPoint.cpp" />
+    <ClCompile Include="Application\PacmanApp\PacmanGameEngine.cpp" />
     <ClCompile Include="Application\PacmanApp\Pinky.cpp" />
     <ClCompile Include="Application\PingpongApp\CollisionEngine.cpp" />
     <ClCompile Include="Application\PingpongApp\PingPongApplication.cpp" />

@@ -5,6 +5,8 @@
 #include "Blinky.h"
 #include "PacmanGameBoard.h"
 
+class PacmanGameEngine;
+
 class PacmanApplication :
     public IApplication
 {
@@ -30,6 +32,9 @@ private:
 
 	Blinky mBlinky;
 
+	PacmanGameBoard mPacmanGameBoard;
+	PacmanGameEngine* mPacmanGameEngine;
+
 	char mDir = 'l'; //  permet à pacman de conserver son mouvement 
 					// ('l' = left, 'r' = right, 'd' = down, 'u' = up). va à gauche par défaut
 	char mNextDir;
@@ -37,7 +42,5 @@ private:
 	int mCoorPacX, mCoorPacY;
 	int mCoorBlocX = 5;
 	int mCoorBlocY = 1;
-
-	PacmanGameBoard mPacmanGameBorad;
 };
 

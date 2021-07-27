@@ -9,6 +9,7 @@ public:
 	PacmanPlayer();
 
 	void initialise(RECT iWindowRect);
+	void initializeGameEngine(PacmanGameEngine* iPacmanGameEngine);
 
 	void movePacmanUp();
 	void movePacmanDown();
@@ -32,4 +33,6 @@ private:
 	bool mIsInit;
 
 	PacmanGameBoard* mGameBoard;
+
+	PacmanGameEngine* mPacmanGameEngine;
 };
