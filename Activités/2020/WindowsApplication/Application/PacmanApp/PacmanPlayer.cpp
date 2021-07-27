@@ -1,4 +1,5 @@
 #include "PacmanPlayer.h"
+#include "PacmanGameEngine.h"
 
 PacmanPlayer::PacmanPlayer():
 mIsInit(false)
@@ -8,6 +9,11 @@ mIsInit(false)
 	int wBlue = 0;
 	COLORREF wColor = RGB(wRed, wGreen, wBlue);
 	mBrush = CreateSolidBrush(wColor);
+}
+
+void PacmanPlayer::initializeGameEngine(PacmanGameEngine* iPacmanGameEngine)
+{
+	mPacmanGameEngine = iPacmanGameEngine;
 }
 
 void PacmanPlayer::initialise(RECT iWindowRect)
@@ -79,6 +85,8 @@ void PacmanPlayer::paint(HDC ihdc)
 		(int)(mCoorY)+mRadius);
 
 	::SelectObject(ihdc, wOldBrush);
+
+	mPacmanGameEngine->setPacmanPos(mCoorX, mCoorY);
 }
 
 void PacmanPlayer::setBoard(PacmanGameBoard* iGameBoard)
