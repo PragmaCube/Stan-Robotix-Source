@@ -1,6 +1,9 @@
 #include "PacmanGameBoard.h"
+#include "PacmanGameEngine.h"
 #include "../../resource.h"
 #include <windowsx.h>
+#include <string>
+#include <sstream>
 
 extern HINSTANCE hInst;                                // instance actuelle;
 
@@ -21,7 +24,7 @@ static int mInitialMap[31][28] =
 /*12*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
 /*13*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eS,eS,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
 /*14*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eS,eS,eS,eS,eS,eS,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
-/*15*/{eW,eT,eP,eP,eP,eP,eP,eP,eP,eP,eW,eS,eS,eS,eS,eS,eS,eW,eP,eP,eP,eP,eP,eP,eP,eP,eT,eW},
+/*15*/{eT,eP,eP,eP,eP,eP,eP,eP,eP,eP,eW,eS,eS,eS,eS,eS,eS,eW,eP,eP,eP,eP,eP,eP,eP,eP,eP,eT},
 /*16*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eS,eS,eS,eS,eS,eS,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
 /*17*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
 /*18*/{eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW},
@@ -37,12 +40,17 @@ static int mInitialMap[31][28] =
 /*28*/{eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW},
 /*29*/{eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW,eW,eP,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eP,eW},
 /*30*/{eW,eB,eP,eP,eP,eP,eF,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eP,eB,eW},
-/*31*/{eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW},
+/*31*/{eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW,eW}
 };
 
 PacmanGameBoard::PacmanGameBoard() : mIsInit(false), mIsDebuggingLayout(false)
 {
 
+}
+
+void PacmanGameBoard::initializeGameEngine(PacmanGameEngine* iPacmanGameEngine)
+{
+	mPacmanGameEngine = iPacmanGameEngine;
 }
 
 void PacmanGameBoard::initializeMap()
@@ -57,9 +65,9 @@ void PacmanGameBoard::toggleDebugging()
 
 void PacmanGameBoard::reset()
 {
-	for (int x = 0; x < mNbRows; x++)
+	for (int x = 0; x < mNbColumns; x++)
 	{
-		for (int y = 0; y < mNbColumns; y++)
+		for (int y = 0; y < mNbRows; y++)
 		{
 			mMap[y][x] = mInitialMap[y][x];
 		}
@@ -70,7 +78,7 @@ bool PacmanGameBoard::isWall(unsigned int x, unsigned int y)
 {
 	bool wIsWall = true;
 
-	if ((x < mNbRows) && (y < mNbColumns))
+	if ((x < mNbColumns) && (y < mNbRows))
 	{
 		wIsWall = mMap[y][x] == eWall;
 	}
@@ -81,6 +89,10 @@ bool PacmanGameBoard::isWall(unsigned int x, unsigned int y)
 void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 {
 	static bool wDevelopMaze = true;
+
+	const float wSideX = float(iPaintArea.right - iPaintArea.left) / float(mNbColumns); // mNbRows;
+	const float wSideY = float(iPaintArea.bottom - iPaintArea.top) / float(mNbRows); // mNbColumns;
+
 	if (wDevelopMaze)
 	{
 		if (!mIsInit)
@@ -117,23 +129,44 @@ void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 			iPaintArea.bottom - iPaintArea.top,
 			mMazeInCache, 0, 0, SRCCOPY);
 
+		::SelectObject(ihdc, mRedPen);
+		::SelectObject(ihdc, mBlackBrush);
+
+		for (int X = 0; X < mNbColumns; X++) // mNbColumns, mNbRows
+		{
+			for (int Y = 0; Y < mNbRows; Y++)
+			{
+				if (mMap[Y][X] != eWall)
+				{
+					::Rectangle(ihdc,
+						(iPaintArea.left + float(X) * float(wSideX)),
+						(iPaintArea.top + float(Y) * float(wSideY)),
+						(iPaintArea.left + (float(float(X) + 1.0)) * float(wSideX)),
+						(iPaintArea.top + (float(float(Y) + 1.0)) * float(wSideY)));
+				}
+			}
+		}
+
 		if (mIsDebuggingLayout)
 		{
 			drawMemory(ihdc, iPaintArea);
 		}
+
+		scoreBoard(ihdc, iPaintArea);
+
 	}
 }
 
 void PacmanGameBoard::drawMemory(HDC ihdc, RECT& iPaintArea)
 {
-	const float wSideX = (iPaintArea.right-iPaintArea.left)/mNbRows;
-	const float wSideY = (iPaintArea.bottom - iPaintArea.top) /mNbColumns;
+	const float wSideX = float(iPaintArea.right - iPaintArea.left)/float(mNbColumns);
+	const float wSideY = float(iPaintArea.bottom - iPaintArea.top)/float (mNbRows);
 	int x = iPaintArea.left;
 	int y = iPaintArea.top;
 
-	for (int kX = 0; kX < mNbRows; kX++)
+	for (int kX = 0; kX < mNbColumns; kX++)
 	{
-		for (int kY = 0; kY < mNbColumns; kY++)
+		for (int kY = 0; kY < mNbRows; kY++)
 		{
 			switch (mMap[kY][kX])
 			{
@@ -159,12 +192,64 @@ void PacmanGameBoard::drawMemory(HDC ihdc, RECT& iPaintArea)
 				::SelectObject(ihdc, mPurpleBrush);
 			}
 
-			::Rectangle(
-				ihdc,
-				(x + kX * wSideX),
-				(y + kY * wSideY),
-				(x + (kX+1) * wSideX),
-				(y + (kY+1) * wSideY));
+			::Rectangle(ihdc,
+				(iPaintArea.left + float(kX) * float(wSideX)),
+				(iPaintArea.top + float(kY) * float(wSideY)),
+				(iPaintArea.left + (float(float(kX) + 1.0)) * float(wSideX)),
+				(iPaintArea.top + (float(float(kY) + 1.0)) * float(wSideY)));
 		}
 	}
+}
+
+void PacmanGameBoard::hidePoints(RECT& iPaintArea)
+{
+	const POINT& wPacmanPos = mPacmanGameEngine->getPacmanPos();
+
+	const int mUnitX = ((iPaintArea.right - wPacmanPos.x)% ((iPaintArea.right - iPaintArea.left) / (mNbColumns)));
+	const int mUnitY = ((iPaintArea.bottom - wPacmanPos.y)% ((iPaintArea.bottom - iPaintArea.top) / (mNbRows)));
+
+	if ((mMap[mUnitY][mUnitX] == ePoint) ||
+		(mMap[mUnitY][mUnitX] == eBonus) ||
+		(mMap[mUnitY][mUnitX] == eFruit))
+	{
+		mMap[mUnitY][mUnitX] = eVoid;
+		scoreManagement(mMap[mUnitY][mUnitX]);
+	}
+}
+
+void PacmanGameBoard::scoreManagement(int iPointType)
+{
+	switch (iPointType)
+	{
+	case ePoint: mScore += 10;
+		break;
+	case eBonus: mScore += 50;
+		break;
+	case eFruit: mScore += 100;
+		break;
+	}
+}
+
+void PacmanGameBoard::scoreBoard(HDC ihdc, RECT& iPaintArea)
+{
+	::SelectObject(ihdc, mBlueBrush);
+	std::wstring wScore = getStringToDisplay(L"Score : ", mScore);
+	std::wstring wChar;
+	wChar = wScore.substr(0, 20);
+	RECT wTextArea = { 190, 180, 5000, 5000 };
+	::DrawText(
+		ihdc,
+		wChar.c_str(),
+		wChar.length(),
+		&wTextArea,
+		(int)(DT_LEFT | DT_BOTTOM));
+}
+
+std::wstring PacmanGameBoard::getStringToDisplay(const std::wstring& iText, int iNumber)
+{
+	std::wostringstream wText;
+
+	wText << iText << iNumber;
+
+	return wText.str();
 }
