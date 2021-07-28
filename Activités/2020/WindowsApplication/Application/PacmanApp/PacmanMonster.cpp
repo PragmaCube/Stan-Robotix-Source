@@ -1,4 +1,5 @@
 #include "PacmanMonster.h"
+#include "Constants.h"
 
 PacmanMonster::PacmanMonster(): mIsInit(false)
 {
@@ -42,8 +43,8 @@ void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType, PacmanGam
 		// Valeurs arbitraires pour que le monstre s'affiche à
 		// un endroit en particulier
 
-		mCoorX = ((iWindowRect.left + iWindowRect.right) / 4) + 107;
-		mCoorY = iWindowRect.bottom / 4 + 9;
+		mCoorX = ((iWindowRect.left + iWindowRect.right) / 2) - 20;
+		mCoorY = iWindowRect.bottom / 2 - 20;
 
 		mCoorYMin = iWindowRect.bottom;
 		mCoorYMax = iWindowRect.top;
@@ -64,33 +65,33 @@ void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType, PacmanGam
 
 void PacmanMonster::moveMonsterUp()
 {
-	if (mCoorY - kSpeed >= mCoorYMax)
+	if (mCoorY - kSpeedY >= mCoorYMax)
 	{
-		mCoorY -= kSpeed;
+		mCoorY -= kSpeedY;
 	}
 }
 
 void PacmanMonster::moveMonsterDown()
 {
-	if (mCoorY + kSpeed <= mCoorYMin)
+	if (mCoorY + kSpeedY <= mCoorYMin)
 	{
-		mCoorY += kSpeed;
+		mCoorY += kSpeedY;
 	}
 }
 
 void PacmanMonster::moveMonsterRight()
 {
-	if (mCoorX + kSpeed <= mCoorXMax)
+	if (mCoorX + kSpeedX <= mCoorXMax)
 	{
-		mCoorX += kSpeed;
+		mCoorX += kSpeedX;
 	}
 }
 
 void PacmanMonster::moveMonsterLeft()
 {
-	if (mCoorX - kSpeed >= mCoorXMin)
+	if (mCoorX - kSpeedX >= mCoorXMin)
 	{
-		mCoorX -= kSpeed;
+		mCoorX -= kSpeedX;
 	}
 }
 
@@ -170,10 +171,10 @@ void PacmanMonster::paint(HDC ihdc)
 	HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBrush);
 
 	::Ellipse(ihdc,
-		(int)(mCoorX)-mRadius,
-		(int)(mCoorY)-mRadius,
-		(int)(mCoorX)+mRadius,
-		(int)(mCoorY)+mRadius);
+		(int)(mCoorX) - kRadius,
+		(int)(mCoorY) - kRadius,
+		(int)(mCoorX) + kRadius,
+		(int)(mCoorY) + kRadius);
 
 	::SelectObject(ihdc, wOldBrush);
 }

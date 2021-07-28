@@ -2,7 +2,7 @@
 
 #include "../../Framework/IApplication.h"
 #include "PacmanPlayer.h"
-#include "PacmanMonster.h"
+#include "Blinky.h"
 #include "PacmanGameBoard.h"
 
 class PacmanGameEngine;
@@ -30,10 +30,7 @@ protected:
 private:
 	PacmanPlayer mPacman;
 
-	PacmanMonster mBlinky;
-	PacmanMonster mPinky;
-	PacmanMonster mInky;
-	PacmanMonster mClyde;
+	Blinky mBlinky;
 
 	PacmanGameBoard mPacmanGameBoard;
 	PacmanGameEngine* mPacmanGameEngine;

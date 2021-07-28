@@ -98,63 +98,6 @@ void PacmanApplication::onTimer()
 {
 	mBlinky.move();
 	mPacman.move(mNextDir);
-	/*
-	mCoorBlocX = (mCoorPacX - 350 + 20) / 40;
-	mCoorBlocY = (mCoorPacY - 100 + 20) / 40;
-
-	if (mNextDir == 'l' && !mPacmanGameBorad.isWall(((mCoorPacX - 18 - 350 + 20) - 5) / 40, (mCoorPacY - 100 + 20 - 18) / 40)
-		&& !mPacmanGameBorad.isWall(((mCoorPacX - 18 - 350 + 20) - 5) / 40, (mCoorPacY - 100 + 20 + 18) / 40))
-	{
-		mDir = 'l';
-	}
-	else if (mNextDir == 'r' && !mPacmanGameBorad.isWall(((mCoorPacX + 18 - 350 + 20) + 5) / 40, (mCoorPacY - 100 + 20 - 18) / 40)
-		&& !mPacmanGameBorad.isWall(((mCoorPacX + 18 - 350 + 20) + 5) / 40, (mCoorPacY - 100 + 20 + 18) / 40))
-	{
-		mDir = 'r';
-	}
-	else if (mNextDir == 'u' && !mPacmanGameBorad.isWall((mCoorPacX - 350 + 20 - 18) / 40, ((mCoorPacY - 18 - 100 + 20) - 5) / 40)
-		&& !mPacmanGameBorad.isWall((mCoorPacX - 350 + 20 + 18) / 40, ((mCoorPacY - 18 - 100 + 20) - 5) / 40))
-	{
-		mDir = 'u';
-	}
-	else if (mNextDir == 'd' && !mPacmanGameBorad.isWall((mCoorPacX - 350 + 20 - 18) / 40, ((mCoorPacY + 18 - 100 + 20) + 5) / 40)
-		&& !mPacmanGameBorad.isWall((mCoorPacX - 350 + 20 + 18) / 40, ((mCoorPacY + 18 - 100 + 20) + 5) / 40))
-	{
-		mDir = 'd';
-	}
-
-	if (mDir == 'l' && !mPacmanGameBorad.isWall(((mCoorPacX - 18 - 350 + 20) - 5) / 40, mCoorBlocY))
-	{
-		mPacman.movePacmanLeft();
-		/*mBlinky.moveMonsterLeft(1);
-		mPinky.moveMonsterLeft(2);
-		mInky.moveMonsterLeft(3);
-		mClyde.moveMonsterLeft(4);
-	}
-	else if (mDir == 'u' && !mPacmanGameBorad.isWall(mCoorBlocX, ((mCoorPacY - 18 - 100 + 20) - 5) / 40))
-	{
-		mPacman.movePacmanUp();
-		/*mBlinky.moveMonsterUp(1);
-		mPinky.moveMonsterUp(2);
-		mInky.moveMonsterUp(3);
-		mClyde.moveMonsterUp(4);
-	}
-	else if (mDir == 'r' && !mPacmanGameBorad.isWall(((mCoorPacX + 18 - 350 + 20) + 5) / 40, mCoorBlocY))
-	{
-		mPacman.movePacmanRight();
-		/*mBlinky.moveMonsterRight(1);
-		mPinky.moveMonsterRight(2);
-		mInky.moveMonsterRight(3);
-		mClyde.moveMonsterRight(4);
-	}
-	else if (mDir == 'd' && !mPacmanGameBorad.isWall(mCoorBlocX, ((mCoorPacY + 18 - 100 + 20) + 5) / 40))
-	{
-		mPacman.movePacmanDown();
-		/*mBlinky.moveMonsterDown(1);
-		mPinky.moveMonsterDown(2);
-		mInky.moveMonsterDown(3);
-		mClyde.moveMonsterDown(4);
-	}*/
 
 	IApplication::onTimer(); // Pour redessiner l'ecran
 }
