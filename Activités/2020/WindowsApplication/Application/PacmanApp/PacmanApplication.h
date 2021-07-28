@@ -8,7 +8,7 @@
 class PacmanGameEngine;
 
 class PacmanApplication :
-    public IApplication
+	public IApplication
 {
 public:
 	PacmanApplication();
@@ -42,7 +42,7 @@ private:
 					// ('l' = left, 'r' = right, 'd' = down, 'u' = up). va à gauche par défaut
 	char mNextDir;
 
-	int mCoorPacX, mCoorPacY;
+	int mCoorX, mCoorY;
 	int mCoorBlocX = 5;
 	int mCoorBlocY = 1;
 };
