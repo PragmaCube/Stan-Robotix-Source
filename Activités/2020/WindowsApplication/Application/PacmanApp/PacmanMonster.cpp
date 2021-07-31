@@ -63,6 +63,43 @@ void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType, PacmanGam
 	}
 }
 
+bool PacmanMonster::isWallByWay(char iWay)
+{
+	switch (iWay)
+	{
+	case 'u':
+		if (mGameBoard->isWall(mBoardCoordX, mBoardCoordY - 1))
+		{
+			return true;
+		}
+
+		return false;
+	case 'd':
+		if (mGameBoard->isWall(mBoardCoordX, mBoardCoordY + 1))
+		{
+			return true;
+		}
+
+		return false;
+	case 'l':
+		if (mGameBoard->isWall(mBoardCoordX - 1, mBoardCoordY))
+		{
+			return true;
+		}
+
+		return false;
+	case 'r':
+		if (mGameBoard->isWall(mBoardCoordX + 1, mBoardCoordY))
+		{
+			return true;
+		}
+
+		return false;
+	default:
+		return false;
+	}
+}
+
 void PacmanMonster::moveMonsterUp()
 {
 	if (mCoorY - kSpeedY >= mCoorYMax)

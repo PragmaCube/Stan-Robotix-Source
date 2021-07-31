@@ -45,6 +45,8 @@ public:
 	// Seulement des modifieurs pour que l'on puisse
 	// voir les différents monstres
 
+	bool isWallByWay(char iWay);
+
 	void moveMonsterUp();
 	void moveMonsterDown();
 	void moveMonsterRight();

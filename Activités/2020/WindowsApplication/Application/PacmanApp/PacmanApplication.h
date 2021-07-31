@@ -3,6 +3,7 @@
 #include "../../Framework/IApplication.h"
 #include "PacmanPlayer.h"
 #include "Blinky.h"
+#include "Clyde.h"
 #include "PacmanGameBoard.h"
 
 class PacmanGameEngine;
@@ -31,6 +32,7 @@ private:
 	PacmanPlayer mPacman;
 
 	Blinky mBlinky;
+	Clyde mClyde;
 
 	PacmanGameBoard mPacmanGameBoard;
 	PacmanGameEngine* mPacmanGameEngine;
