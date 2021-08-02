@@ -129,14 +129,14 @@ void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 			iPaintArea.bottom - iPaintArea.top,
 			mMazeInCache, 0, 0, SRCCOPY);
 
-		::SelectObject(ihdc, mRedPen);
+		::SelectObject(ihdc, mBlackPen);
 		::SelectObject(ihdc, mBlackBrush);
 
 		for (int X = 0; X < mNbColumns; X++) // mNbColumns, mNbRows
 		{
 			for (int Y = 0; Y < mNbRows; Y++)
 			{
-				if (mMap[Y][X] != eWall)
+				if (mMap[Y][X] == eVoid)
 				{
 					::Rectangle(ihdc,
 						(iPaintArea.left + float(X) * float(wSideX)),
@@ -205,15 +205,15 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 {
 	const POINT& wPacmanPos = mPacmanGameEngine->getPacmanPos();
 
-	const int mUnitX = ((iPaintArea.right - wPacmanPos.x)% ((iPaintArea.right - iPaintArea.left) / (mNbColumns)));
-	const int mUnitY = ((iPaintArea.bottom - wPacmanPos.y)% ((iPaintArea.bottom - iPaintArea.top) / (mNbRows)));
+	const int wUnitX = ((iPaintArea.right - wPacmanPos.x)% ((iPaintArea.right - iPaintArea.left) / (mNbColumns)));
+	const int wUnitY = ((iPaintArea.bottom - wPacmanPos.y)% ((iPaintArea.bottom - iPaintArea.top) / (mNbRows)));
 
-	if ((mMap[mUnitY][mUnitX] == ePoint) ||
-		(mMap[mUnitY][mUnitX] == eBonus) ||
-		(mMap[mUnitY][mUnitX] == eFruit))
+	if ((mMap[wUnitY][wUnitX] == ePoint) ||
+		(mMap[wUnitY][wUnitX] == eBonus) ||
+		(mMap[wUnitY][wUnitX] == eFruit))
 	{
-		mMap[mUnitY][mUnitX] = eVoid;
-		scoreManagement(mMap[mUnitY][mUnitX]);
+		scoreManagement(mMap[wUnitY][wUnitX]);
+		mMap[wUnitY][wUnitX] = eVoid;
 	}
 }
 
