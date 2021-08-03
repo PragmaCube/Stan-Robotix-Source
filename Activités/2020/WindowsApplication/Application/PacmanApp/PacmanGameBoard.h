@@ -34,7 +34,9 @@ private:
 	const HBRUSH mRedBrush = CreateSolidBrush(RGB(255, 0, 0));
 	const HBRUSH mGreenBrush = CreateSolidBrush(RGB(0, 255, 0));
 	const HBRUSH mPurpleBrush = CreateSolidBrush(RGB(127, 0, 255));
+
 	const HPEN   mRedPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
+	const HPEN   mBlackPen = CreatePen(PS_SOLID, 2, RGB(0, 0, 0));
 
 	void reset();
 
