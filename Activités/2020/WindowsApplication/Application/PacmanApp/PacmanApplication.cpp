@@ -29,6 +29,7 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 
 	mBlinky.initialise(iPaintArea, eBlinky, &mPacmanGameBoard, &mPacman);
 	mClyde.initialise(iPaintArea, eClyde, &mPacmanGameBoard, &mPacman);
+	mInky.initialise(iPaintArea, eInky, &mPacmanGameBoard, &mPacman);
 
 	/*mPinky.initialise(iPaintArea, ePinky);
 	mInky.initialise(iPaintArea, eInky);
@@ -36,6 +37,7 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 
 	mBlinky.paint(ihdc);
 	mClyde.paint(ihdc);
+	mInky.paint(ihdc);
 
 	/* Pas besoin d'eux pour le moment
 	mPinky.paint(ihdc);
@@ -100,6 +102,7 @@ void PacmanApplication::onTimer()
 {
 	mBlinky.move();
 	mClyde.move();
+	mInky.move();
 	mPacman.move(mNextDir);
 
 	IApplication::onTimer(); // Pour redessiner l'ecran

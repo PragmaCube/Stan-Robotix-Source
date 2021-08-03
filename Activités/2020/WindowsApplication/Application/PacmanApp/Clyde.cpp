@@ -67,6 +67,12 @@ void Clyde::move()
 			mCoorY -= kDeltaY;
 
 			updateMovement();
+
+			if (mYFix == 31)
+			{
+				mCoorY += 9;
+				mYFix = 0;
+			}
 			
 		}
 
@@ -81,6 +87,12 @@ void Clyde::move()
 			mCoorY += kDeltaY;
 
 			updateMovement();
+
+			if (mYFix == 31)
+			{
+				mCoorY += 9;
+				mYFix = 0;
+			}
 		}
 
 		break;

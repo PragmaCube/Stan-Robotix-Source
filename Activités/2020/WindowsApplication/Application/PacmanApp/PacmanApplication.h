@@ -4,6 +4,7 @@
 #include "PacmanPlayer.h"
 #include "Blinky.h"
 #include "Clyde.h"
+#include "Inky.h"
 #include "PacmanGameBoard.h"
 
 class PacmanGameEngine;
@@ -33,6 +34,7 @@ private:
 
 	Blinky mBlinky;
 	Clyde mClyde;
+	Inky mInky;
 
 	PacmanGameBoard mPacmanGameBoard;
 	PacmanGameEngine* mPacmanGameEngine;
