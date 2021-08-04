@@ -152,6 +152,7 @@ void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 			drawMemory(ihdc, iPaintArea);
 		}
 
+		hidePoints(iPaintArea);
 		scoreBoard(ihdc, iPaintArea);
 
 	}
@@ -205,8 +206,8 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 {
 	const POINT& wPacmanPos = mPacmanGameEngine->getPacmanPos();
 
-	const int wUnitX = ((iPaintArea.right - wPacmanPos.x)% ((iPaintArea.right - iPaintArea.left) / (mNbColumns)));
-	const int wUnitY = ((iPaintArea.bottom - wPacmanPos.y)% ((iPaintArea.bottom - iPaintArea.top) / (mNbRows)));
+	const int wUnitX = (wPacmanPos.x - iPaintArea.left) / ((iPaintArea.right - iPaintArea.left) / (mNbColumns));
+	const int wUnitY = wPacmanPos.y / ((iPaintArea.bottom - iPaintArea.top) / (mNbRows));
 
 	if ((mMap[wUnitY][wUnitX] == ePoint) ||
 		(mMap[wUnitY][wUnitX] == eBonus) ||
