@@ -30,6 +30,9 @@ public:
 	int mStepX = 1; // 1 ---> 7
 	int mStepY = 1; // 1 ---> 8
 
+	int mXFix = 1; // 1 ---> 28
+	int mYFix = 1; // 1 ---> 31
+
 	double mCoorX, mCoorY;
 
 	char mWay = 'u';
@@ -44,6 +47,8 @@ public:
 	// Pas d'intelligence artificielle
 	// Seulement des modifieurs pour que l'on puisse
 	// voir les différents monstres
+
+	bool isWallByWay(char iWay);
 
 	void moveMonsterUp();
 	void moveMonsterDown();
