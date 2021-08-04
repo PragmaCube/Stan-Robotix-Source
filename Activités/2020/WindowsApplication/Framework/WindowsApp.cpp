@@ -155,15 +155,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         break;
     case WM_PAINT:
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
+        if (ps.rcPaint.right > 0 && ps.rcPaint.bottom > 0)
         {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-
-            mFrameWindows.paint(hdc, ps.rcPaint);
-            
-            EndPaint(hWnd, &ps);
+          mFrameWindows.paint(hdc, ps.rcPaint);
         }
-        break;
+            
+        EndPaint(hWnd, &ps);
+    }
+    break;
+
     case WM_TIMER:
         mFrameWindows.onTimer();
         break;

@@ -19,7 +19,7 @@ void Blinky::move()
 
 			mCoorY -= kDeltaY;
 
-			if (isWallByWay(mWay))
+			if ((mGameBoard != nullptr) && isWallByWay(mWay))
 			{
 				mWay = 'l';
 			}
@@ -35,7 +35,7 @@ void Blinky::move()
 
 			mCoorY += kDeltaY;
 
-			if (isWallByWay(mWay))
+			if ((mGameBoard != nullptr) && isWallByWay(mWay))
 			{
 				mWay = 'r';
 			}
@@ -51,7 +51,7 @@ void Blinky::move()
 
 			mCoorX -= kDeltaX;
 
-			if (isWallByWay(mWay))
+			if ((mGameBoard != nullptr) && isWallByWay(mWay))
 			{
 				mWay = 'd';
 			}
@@ -67,11 +67,11 @@ void Blinky::move()
 
 			mCoorX += kDeltaX;
 
-			if (isWallByWay(mWay))
+			if ((mGameBoard != nullptr) && isWallByWay(mWay))
 			{
 				mWay = 'u';
 
-				if (mGameBoard->isWall(mBoardCoordX, mBoardCoordY - 1))
+				if ((mGameBoard != nullptr) && mGameBoard->isWall(mBoardCoordX, mBoardCoordY - 1))
 				{
 					mWay = 'd';
 				}
