@@ -19,7 +19,7 @@ void Blinky::move()
 
 			mCoorY -= kDeltaY;
 
-			if (mGameBoard->isWall(mBoardCoordX, mBoardCoordY - 1))
+			if ((mGameBoard != nullptr) && mGameBoard->isWall(mBoardCoordX, mBoardCoordY - 1))
 			{
 				mWay = 'l';
 			}
