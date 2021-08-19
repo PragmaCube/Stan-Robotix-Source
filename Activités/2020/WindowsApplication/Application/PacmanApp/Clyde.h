@@ -27,4 +27,6 @@ public:
 	// lui dit de changer de direction et si ce changement est possible
 	void updateMovement();
 	void move();
+
+	void initializeBitmap(HDC ihdc);
 };

@@ -27,24 +27,27 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 
 	mPacmanGameBoard.drawMap(ihdc, iPaintArea);
 
-	mBlinky.initialise(iPaintArea, eBlinky, &mPacmanGameBoard, &mPacman);
-	mClyde.initialise(iPaintArea, eClyde, &mPacmanGameBoard, &mPacman);
-	mInky.initialise(iPaintArea, eInky, &mPacmanGameBoard, &mPacman);
+	if (!mIsInit)
+	{
+		mBlinky.initialise(iPaintArea, eBlinky, &mPacmanGameBoard, &mPacman);
+		mClyde.initialise(iPaintArea, eClyde, &mPacmanGameBoard, &mPacman);
+		mInky.initialise(iPaintArea, eInky, &mPacmanGameBoard, &mPacman);
 
-	/*mPinky.initialise(iPaintArea, ePinky);
-	mInky.initialise(iPaintArea, eInky);
-	*/
+		mPacman.initialise(iPaintArea);
+
+		mBlinky.initializeBitmap(ihdc);
+		mClyde.initializeBitmap(ihdc);
+		mInky.initializeBitmap(ihdc);
+
+		mIsInit = true;
+	}
 
 	mBlinky.paint(ihdc);
 	mClyde.paint(ihdc);
 	mInky.paint(ihdc);
 
-	/* Pas besoin d'eux pour le moment
-	mPinky.paint(ihdc);
-	mInky.paint(ihdc);
-	*/
+	// mPinky.paint(ihdc); TODO: a activer plus tard
 
-	mPacman.initialise(iPaintArea); // initialiser les valeurs de certaines constantes
 	mPacman.paint(ihdc);
 }
 

@@ -9,3 +9,8 @@ void Pinky::move()
 {
 
 }
+
+void Pinky::initializeBitmap(HDC ihdc)
+{
+
+}
