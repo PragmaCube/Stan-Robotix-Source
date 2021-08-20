@@ -15,4 +15,6 @@ public:
 	Pinky();
 
 	void move();
+
+	void initializeBitmap(HDC ihdc);
 };

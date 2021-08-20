@@ -6,6 +6,15 @@ Blinky::Blinky()
 	
 }
 
+void Blinky::initializeBitmap(HDC ihdc)
+{
+	mMonsterUpDC    = createBitmap(ihdc, L"IDB_PACMAN_BLINKY_UP");
+	mMonsterDownDC  = createBitmap(ihdc, L"IDB_PACMAN_BLINKY_DOWN");
+	mMonsterLeftDC  = createBitmap(ihdc, L"IDB_PACMAN_BLINKY_LEFT");
+	mMonsterRightDC = createBitmap(ihdc, L"IDB_PACMAN_BLINKY_RIGHT");
+	mMonsterWeakDC  = createBitmap(ihdc, L"IDB_PACMAN_WEAKMONSTER");
+}
+
 void Blinky::move()
 {
 	switch (mWay)
