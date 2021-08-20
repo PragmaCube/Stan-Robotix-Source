@@ -6,6 +6,11 @@ Inky::Inky()
 
 }
 
+void Inky::initializeBitmap(HDC ihdc)
+{
+
+}
+
 void Inky::path()
 {
 	if (mInBox)

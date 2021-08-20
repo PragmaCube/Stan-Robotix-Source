@@ -1,6 +1,8 @@
 #include "PacmanMonster.h"
 #include "Constants.h"
 
+extern HINSTANCE hInst;                                // instance actuelle;
+
 PacmanMonster::PacmanMonster(): mIsInit(false)
 {
 	
@@ -14,6 +16,8 @@ void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType, PacmanGam
 	int wRed = 0;
 	int wGreen = 0;
 	int wBlue = 0;
+
+	mMonsterType = iMonsterType;
 
 	switch (iMonsterType)
 	{
@@ -203,15 +207,63 @@ void PacmanMonster::move()
 	*/
 }
 
+HDC PacmanMonster::createBitmap(HDC ihdc, const LPCWSTR lpBitmapName)
+{
+	HBITMAP wInitialMazeBitmap = LoadBitmap(hInst, lpBitmapName);
+
+	HDC wCacheBitmapDC = ::CreateCompatibleDC(ihdc);
+	HBITMAP hOldBmp = (HBITMAP)::SelectObject(wCacheBitmapDC, wInitialMazeBitmap);
+
+	BITMAP wBitmap;
+	GetObject(wInitialMazeBitmap, sizeof(BITMAP), reinterpret_cast<LPVOID>(&wBitmap));
+
+	StretchBlt(ihdc,
+		0,
+		0,
+		2 * kRadius,
+		2 * kRadius,
+		wCacheBitmapDC, 0, 0, wBitmap.bmWidth, wBitmap.bmHeight, SRCCOPY);
+
+	BitBlt(wCacheBitmapDC,
+		0,
+		0,
+		2 * kRadius,
+		2 * kRadius,
+		ihdc, 0, 0, SRCCOPY);
+
+	return wCacheBitmapDC;
+}
+
 void PacmanMonster::paint(HDC ihdc)
 {
-	HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBrush);
+	if (mMonsterType == eBlinky)
+	{
+		HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBrush);
+		::Rectangle(ihdc,
+			(int)(mCoorX)-kRadius,
+			(int)(mCoorY)-kRadius,
+			(int)(mCoorX)+kRadius,
+			(int)(mCoorY)+kRadius);
 
-	::Ellipse(ihdc,
-		(int)(mCoorX) - kRadius,
-		(int)(mCoorY) - kRadius,
-		(int)(mCoorX) + kRadius,
-		(int)(mCoorY) + kRadius);
+		BitBlt(ihdc,
+			(int)(mCoorX)-kRadius,
+			(int)(mCoorY)-kRadius,
+			2 * kRadius,
+			2 * kRadius,
+			mMonsterWeakDC, 0, 0, SRCCOPY); // TODO: Changer l<image en fonction de la direction
 
-	::SelectObject(ihdc, wOldBrush);
+		//HDC mMonsterWeakDC, mMonsterDownDC, mMonsterLeftDC, mMonsterRightDC, mMonsterWeakDC;
+	}
+	else
+	{
+		HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBrush);
+
+		::Ellipse(ihdc,
+			(int)(mCoorX)-kRadius,
+			(int)(mCoorY)-kRadius,
+			(int)(mCoorX)+kRadius,
+			(int)(mCoorY)+kRadius);
+
+		::SelectObject(ihdc, wOldBrush);
+	}
 }

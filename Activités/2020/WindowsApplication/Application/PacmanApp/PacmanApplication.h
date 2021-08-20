@@ -39,6 +39,8 @@ private:
 	PacmanGameBoard mPacmanGameBoard;
 	PacmanGameEngine* mPacmanGameEngine;
 
+	bool mIsInit = false;
+
 	char mDir = 'l'; //  permet à pacman de conserver son mouvement 
 					// ('l' = left, 'r' = right, 'd' = down, 'u' = up). va à gauche par défaut
 	char mNextDir;

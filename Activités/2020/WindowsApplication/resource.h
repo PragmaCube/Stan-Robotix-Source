@@ -12,9 +12,8 @@
 #define IDI_SMALL                       108
 #define IDC_WINDOWSAPP                  109
 #define IDR_MAINFRAME                   128
-#define IDB_BITMAPMAZE                  129
-#define IDB_BITMAP2                     130
-#define IDB_BITMAPDUMMY                 130
+#define IDB_BITMAP21                    150
+#define IDB_BITMAP22                    151
 #define ID_APPLICATION_DEMO             32771
 #define ID_APPLICATION_BATTLESHIP       32772
 #define ID_APPLICATION_SNAKE            32773
@@ -28,7 +27,8 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        131
+#define _APS_NO_MFC                     1
+#define _APS_NEXT_RESOURCE_VALUE        152
 #define _APS_NEXT_COMMAND_VALUE         32779
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           110

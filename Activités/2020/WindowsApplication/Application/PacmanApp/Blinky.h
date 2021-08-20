@@ -15,4 +15,7 @@ public:
 	Blinky();
 
 	void move();
+
+	void initializeBitmap(HDC ihdc);
+
 };

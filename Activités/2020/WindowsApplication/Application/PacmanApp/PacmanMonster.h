@@ -23,6 +23,11 @@ class PacmanMonster
 
 	Monster mMonsterType;
 
+protected:
+	HDC mMonsterUpDC, mMonsterDownDC, mMonsterLeftDC, mMonsterRightDC, mMonsterWeakDC;
+
+	HDC createBitmap(HDC ihdc, LPCWSTR lpBitmapName);
+
 public:
 	int mBoardCoordX = 13;
 	int mBoardCoordY = 14;
@@ -43,6 +48,7 @@ public:
 	PacmanMonster();
 
 	void initialise(RECT iWindowRect, Monster iMonsterType, PacmanGameBoard* iGameBoard, PacmanPlayer* iPlayer);
+	virtual void initializeBitmap(HDC ihdc) = 0;
 
 	// Pas d'intelligence artificielle
 	// Seulement des modifieurs pour que l'on puisse

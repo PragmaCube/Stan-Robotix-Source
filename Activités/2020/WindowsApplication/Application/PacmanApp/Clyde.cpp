@@ -9,6 +9,11 @@ Clyde::Clyde()
 	std::srand(std::time(0));
 }
 
+void Clyde::initializeBitmap(HDC ihdc)
+{
+
+}
+
 char Clyde::randomMove()
 {
 	int wRandomMove = std::rand() % 4;
