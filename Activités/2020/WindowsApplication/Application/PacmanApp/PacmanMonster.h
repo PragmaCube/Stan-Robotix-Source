@@ -55,6 +55,7 @@ public:
 	// voir les différents monstres
 
 	bool isWallByWay(char iWay);
+	bool checkPlayerPos();
 
 	void moveMonsterUp();
 	void moveMonsterDown();

@@ -32,12 +32,14 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 		mBlinky.initialise(iPaintArea, eBlinky, &mPacmanGameBoard, &mPacman);
 		mClyde.initialise(iPaintArea, eClyde, &mPacmanGameBoard, &mPacman);
 		mInky.initialise(iPaintArea, eInky, &mPacmanGameBoard, &mPacman);
+		mPinky.initialise(iPaintArea, ePinky, &mPacmanGameBoard, &mPacman);
 
 		mPacman.initialise(iPaintArea);
 
 		mBlinky.initializeBitmap(ihdc);
 		mClyde.initializeBitmap(ihdc);
 		mInky.initializeBitmap(ihdc);
+		mPinky.initializeBitmap(ihdc);
 
 		mIsInit = true;
 	}
@@ -45,6 +47,7 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 	mBlinky.paint(ihdc);
 	mClyde.paint(ihdc);
 	mInky.paint(ihdc);
+	mPinky.paint(ihdc);
 
 	// mPinky.paint(ihdc); TODO: a activer plus tard
 
@@ -106,7 +109,14 @@ void PacmanApplication::onTimer()
 	mBlinky.move();
 	mClyde.move();
 	mInky.move();
+	mPinky.move();
+
 	mPacman.move(mNextDir);
+
+	mBlinky.updatePlayer(&mPacman);
+	mClyde.updatePlayer(&mPacman);
+	mInky.updatePlayer(&mPacman);
+	mPinky.updatePlayer(&mPacman);
 
 	IApplication::onTimer(); // Pour redessiner l'ecran
 }

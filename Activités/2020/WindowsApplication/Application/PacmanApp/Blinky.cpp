@@ -15,8 +15,33 @@ void Blinky::initializeBitmap(HDC ihdc)
 	mMonsterWeakDC  = createBitmap(ihdc, L"IDB_PACMAN_WEAKMONSTER");
 }
 
+void Blinky::path()
+{
+	if (mInBox)
+	{
+		mWay = mExitPath[mExitPos];
+		mExitPos++;
+	}
+
+	else
+	{
+		mWay = mLoopPath[mLoopPos];
+		mLoopPos++;
+
+		if (mLoopPos > 156)
+		{
+			mLoopPos = 0;
+		}
+	}
+}
+
 void Blinky::move()
 {
+	if (mExitPos == 16)
+	{
+		mInBox = false;
+	}
+
 	switch (mWay)
 	{
 	case 'u':
@@ -25,13 +50,11 @@ void Blinky::move()
 			mStepY = 1;
 
 			mBoardCoordY--;
+			mYFix++;
 
 			mCoorY -= kDeltaY;
 
-			if ((mGameBoard != nullptr) && isWallByWay(mWay))
-			{
-				mWay = 'l';
-			}
+			path();
 		}
 
 		break;
@@ -41,13 +64,11 @@ void Blinky::move()
 			mStepY = 1;
 
 			mBoardCoordY++;
+			mYFix++;
 
 			mCoorY += kDeltaY;
 
-			if ((mGameBoard != nullptr) && isWallByWay(mWay))
-			{
-				mWay = 'r';
-			}
+			path();
 		}
 
 		break;
@@ -60,10 +81,7 @@ void Blinky::move()
 
 			mCoorX -= kDeltaX;
 
-			if ((mGameBoard != nullptr) && isWallByWay(mWay))
-			{
-				mWay = 'd';
-			}
+			path();
 		}
 
 		break;
@@ -76,17 +94,12 @@ void Blinky::move()
 
 			mCoorX += kDeltaX;
 
-			if ((mGameBoard != nullptr) && isWallByWay(mWay))
-			{
-				mWay = 'u';
-
-				if ((mGameBoard != nullptr) && mGameBoard->isWall(mBoardCoordX, mBoardCoordY - 1))
-				{
-					mWay = 'd';
-				}
-			}
+			path();
 		}
 
+		break;
+	default:
+		path();
 		break;
 	}
 
@@ -107,6 +120,8 @@ void Blinky::move()
 	case 'r':
 		moveMonsterRight();
 		mStepX++;
+		break;
+	default:
 		break;
 	}
 }

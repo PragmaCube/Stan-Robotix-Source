@@ -104,6 +104,19 @@ bool PacmanMonster::isWallByWay(char iWay)
 	}
 }
 
+bool PacmanMonster::checkPlayerPos()
+{
+	if ((mPlayer->getX() == mBoardCoordX) && (mPlayer->getY() == mBoardCoordY))
+	{
+		return true;
+	}
+
+	else
+	{
+		return false;
+	}
+}
+
 void PacmanMonster::moveMonsterUp()
 {
 	if (mCoorY - kSpeedY >= mCoorYMax)
@@ -266,4 +279,9 @@ void PacmanMonster::paint(HDC ihdc)
 
 		::SelectObject(ihdc, wOldBrush);
 	}
+}
+
+void PacmanMonster::updatePlayer(PacmanPlayer* iPlayer)
+{
+	mPlayer = iPlayer;
 }
