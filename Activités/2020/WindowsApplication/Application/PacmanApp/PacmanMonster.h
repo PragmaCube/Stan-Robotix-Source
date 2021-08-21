@@ -62,7 +62,7 @@ public:
 	void moveMonsterRight();
 	void moveMonsterLeft();
 
-	virtual void move();
+	virtual void move() = 0;
 
 	void paint(HDC ihdc);
 

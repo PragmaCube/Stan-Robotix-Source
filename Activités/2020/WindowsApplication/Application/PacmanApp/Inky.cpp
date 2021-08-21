@@ -8,7 +8,11 @@ Inky::Inky()
 
 void Inky::initializeBitmap(HDC ihdc)
 {
-
+	mMonsterUpDC = createBitmap(ihdc, L"IDB_PACMAN_INKY_UP");
+	mMonsterDownDC = createBitmap(ihdc, L"IDB_PACMAN_INKY_DOWN");
+	mMonsterLeftDC = createBitmap(ihdc, L"IDB_PACMAN_INKY_LEFT");
+	mMonsterRightDC = createBitmap(ihdc, L"IDB_PACMAN_INKY_RIGHT");
+	mMonsterWeakDC = createBitmap(ihdc, L"IDB_PACMAN_WEAKMONSTER");
 }
 
 void Inky::path()

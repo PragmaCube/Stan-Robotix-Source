@@ -11,7 +11,11 @@ Clyde::Clyde()
 
 void Clyde::initializeBitmap(HDC ihdc)
 {
-
+	mMonsterUpDC = createBitmap(ihdc, L"IDB_PACMAN_CLYDE_UP");
+	mMonsterDownDC = createBitmap(ihdc, L"IDB_PACMAN_CLYDE_DOWN");
+	mMonsterLeftDC = createBitmap(ihdc, L"IDB_PACMAN_CLYDE_LEFT");
+	mMonsterRightDC = createBitmap(ihdc, L"IDB_PACMAN_CLYDE_RIGHT");
+	mMonsterWeakDC = createBitmap(ihdc, L"IDB_PACMAN_WEAKMONSTER");
 }
 
 char Clyde::randomMove()

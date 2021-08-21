@@ -44,7 +44,7 @@ void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType, PacmanGam
 
 	if (!mIsInit)
 	{
-		// Valeurs arbitraires pour que le monstre s'affiche à
+		// Valeurs arbitraires pour que le monstre s'affiche Ã 
 		// un endroit en particulier
 
 		mCoorX = ((iWindowRect.left + iWindowRect.right) / 2) - 20;
@@ -57,8 +57,7 @@ void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType, PacmanGam
 
 		mIsInit = true;
 	}
-
-	else                             // ce else permet de résoudre le pb de redimensionnement de l'écran
+	else                             // ce else permet de rÃ©soudre le pb de redimensionnement de l'Ã©cran
 	{
 		mCoorYMin = iWindowRect.bottom;
 		mCoorYMax = iWindowRect.top;
@@ -149,77 +148,6 @@ void PacmanMonster::moveMonsterLeft()
 	}
 }
 
-void PacmanMonster::move()
-{
-	/*
-
-	// Il y a conservation du mouvement (pour le moment)
-	// Le déplacement se fait en 8 étapes (8 x 5 = 40 --> épaisseur des blocs)
-	// Le mouvement ne change pas pendant ces étapes
-
-	if (8 < mStep)
-	{
-		mStep = 1;
-
-		switch (mWay)
-		{
-		case 'u':
-			mBoardCoordY--;
-			break;
-		case 'd':
-			mBoardCoordY++;
-			break;
-		case 'l':
-			mBoardCoordX--;
-			break;
-		case 'r':
-			mBoardCoordX++;
-			break;
-		default:
-			break;
-		}
-
-		if (1 == mBoardCoordX && 1 == mBoardCoordY)
-		{
-			mWay = 'd';
-		}
-
-		else if (1 == mBoardCoordX && 9 == mBoardCoordY)
-		{
-			mWay = 'r';
-		}
-
-		else if (9 == mBoardCoordX && 1 == mBoardCoordY)
-		{
-			mWay = 'l';
-		}
-
-		else if (9 == mBoardCoordX && 9 == mBoardCoordY)
-		{
-			mWay = 'u';
-		}
-	}
-
-	switch (mWay)
-	{
-	case 'u':
-		moveMonsterUp();
-		break;
-	case 'd':
-		moveMonsterDown();
-		break;
-	case 'l':
-		moveMonsterLeft();
-		break;
-	case 'r':
-		moveMonsterRight();
-		break;
-	}
-
-	mStep++;
-	*/
-}
-
 HDC PacmanMonster::createBitmap(HDC ihdc, const LPCWSTR lpBitmapName)
 {
 	HBITMAP wInitialMazeBitmap = LoadBitmap(hInst, lpBitmapName);
@@ -249,36 +177,25 @@ HDC PacmanMonster::createBitmap(HDC ihdc, const LPCWSTR lpBitmapName)
 
 void PacmanMonster::paint(HDC ihdc)
 {
-	if (mMonsterType == eBlinky)
-	{
-		HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBrush);
-		::Rectangle(ihdc,
-			(int)(mCoorX)-kRadius,
-			(int)(mCoorY)-kRadius,
-			(int)(mCoorX)+kRadius,
-			(int)(mCoorY)+kRadius);
+	HDC wCurrentWay = 0;
 
-		BitBlt(ihdc,
-			(int)(mCoorX)-kRadius,
-			(int)(mCoorY)-kRadius,
-			2 * kRadius,
-			2 * kRadius,
-			mMonsterWeakDC, 0, 0, SRCCOPY); // TODO: Changer l<image en fonction de la direction
-
-		//HDC mMonsterWeakDC, mMonsterDownDC, mMonsterLeftDC, mMonsterRightDC, mMonsterWeakDC;
+	switch(mWay)
+	{ 
+	case 'u': wCurrentWay = mMonsterUpDC;
+		break;
+	case 'd': wCurrentWay = mMonsterDownDC;
+		break;
+	case 'l': wCurrentWay = mMonsterLeftDC;
+		break;
+	case 'r': wCurrentWay = mMonsterRightDC;
 	}
-	else
-	{
-		HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBrush);
 
-		::Ellipse(ihdc,
-			(int)(mCoorX)-kRadius,
-			(int)(mCoorY)-kRadius,
-			(int)(mCoorX)+kRadius,
-			(int)(mCoorY)+kRadius);
-
-		::SelectObject(ihdc, wOldBrush);
-	}
+	BitBlt(ihdc,
+		(int)(mCoorX)-kRadius,
+		(int)(mCoorY)-kRadius,
+		2 * kRadius,
+		2 * kRadius,
+		wCurrentWay, 0, 0, SRCCOPY);
 }
 
 void PacmanMonster::updatePlayer(PacmanPlayer* iPlayer)
