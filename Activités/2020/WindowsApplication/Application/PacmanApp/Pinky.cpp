@@ -88,7 +88,11 @@ void Pinky::exSwitch()
 
 void Pinky::initializeBitmap(HDC ihdc)
 {
-
+	mMonsterUpDC = createBitmap(ihdc, L"IDB_PACMAN_PINKY_UP");
+	mMonsterDownDC = createBitmap(ihdc, L"IDB_PACMAN_PINKY_DOWN");
+	mMonsterLeftDC = createBitmap(ihdc, L"IDB_PACMAN_PINKY_LEFT");
+	mMonsterRightDC = createBitmap(ihdc, L"IDB_PACMAN_PINKY_RIGHT");
+	mMonsterWeakDC = createBitmap(ihdc, L"IDB_PACMAN_WEAKMONSTER");
 }
 
 char Pinky::randomMove()
