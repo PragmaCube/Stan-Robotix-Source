@@ -1,5 +1,8 @@
 #include "PacmanPlayer.h"
 #include "PacmanGameEngine.h"
+#include "Constants.h"
+
+extern HINSTANCE hInst;
 
 PacmanPlayer::PacmanPlayer() :
 	mIsInit(false)
@@ -9,6 +12,15 @@ PacmanPlayer::PacmanPlayer() :
 	int wBlue = 0;
 	COLORREF wColor = RGB(wRed, wGreen, wBlue);
 	mBrush = CreateSolidBrush(wColor);
+}
+
+void PacmanPlayer::initializeBitmap(HDC ihdc)
+{
+	mPacmanUpDC = createBitmap(ihdc, L"IDB_PACMAN_PLAYER_UP");
+	mPacmanDownDC = createBitmap(ihdc, L"IDB_PACMAN_PLAYER_DOWN");
+	mPacmanLeftDC = createBitmap(ihdc, L"IDB_PACMAN_PLAYER_LEFT");
+	mPacmanRightDC = createBitmap(ihdc, L"IDB_PACMAN_PLAYER_RIGHT");
+	mPacmanPointDC = createBitmap(ihdc, L"IDB_PACMAN_PLAYER_CLOSE");
 }
 
 void PacmanPlayer::initializeGameEngine(PacmanGameEngine* iPacmanGameEngine)
@@ -61,6 +73,7 @@ void PacmanPlayer::movePacmanUp()
 	{
 		mCoorY -= kSpeed;
 	}
+	mWay = 'u';
 }
 
 void PacmanPlayer::movePacmanDown()
@@ -69,6 +82,7 @@ void PacmanPlayer::movePacmanDown()
 	{
 		mCoorY += kSpeed;
 	}
+	mWay = 'd';
 }
 
 void PacmanPlayer::movePacmanRight()
@@ -77,6 +91,7 @@ void PacmanPlayer::movePacmanRight()
 	{
 		mCoorX += kSpeed;
 	}
+	mWay = 'r';
 }
 
 void PacmanPlayer::movePacmanLeft()
@@ -85,6 +100,7 @@ void PacmanPlayer::movePacmanLeft()
 	{
 		mCoorX -= kSpeed;
 	}
+	mWay = 'l';
 }
 
 void PacmanPlayer::move(char way)
@@ -152,17 +168,66 @@ char PacmanPlayer::getWay()
 	return mDir;
 }
 
+HDC PacmanPlayer::createBitmap(HDC ihdc, const LPCWSTR lpBitmapName)
+{
+	HBITMAP wInitialMazeBitmap = LoadBitmap(hInst, lpBitmapName);
+
+	HDC wCacheBitmapDC = ::CreateCompatibleDC(ihdc);
+	HBITMAP hOldBmp = (HBITMAP)::SelectObject(wCacheBitmapDC, wInitialMazeBitmap);
+
+	BITMAP wBitmap;
+	GetObject(wInitialMazeBitmap, sizeof(BITMAP), reinterpret_cast<LPVOID>(&wBitmap));
+
+	StretchBlt(ihdc,
+		0,
+		0,
+		2 * kRadius,
+		2 * kRadius,
+		wCacheBitmapDC, 0, 0, wBitmap.bmWidth, wBitmap.bmHeight, SRCCOPY);
+
+	BitBlt(wCacheBitmapDC,
+		0,
+		0,
+		2 * kRadius,
+		2 * kRadius,
+		ihdc, 0, 0, SRCCOPY);
+
+	return wCacheBitmapDC;
+}
+
 void PacmanPlayer::paint(HDC ihdc)
 {
-	HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBrush);
-
-	::Ellipse(ihdc,
-		(int)(mCoorX)-mRadius,
-		(int)(mCoorY)-mRadius,
-		(int)(mCoorX)+mRadius,
-		(int)(mCoorY)+mRadius);
-
-	::SelectObject(ihdc, wOldBrush);
+	mTimeSwitch++;
 
 	mPacmanGameEngine->setPacmanPos(mCoorX, mCoorY);
+
+	HDC wCurrentWay = 0;
+	if(mTimeSwitch > 1)
+	{ 
+		wCurrentWay = mPacmanPointDC;
+		if (mTimeSwitch ==  2)
+		{
+			mTimeSwitch = 0;
+		}
+	}
+	else
+	{
+		switch (mWay)
+		{
+		case 'u': wCurrentWay = mPacmanUpDC;
+			break;
+		case 'd': wCurrentWay = mPacmanDownDC;
+			break;
+		case 'l': wCurrentWay = mPacmanLeftDC;
+			break;
+		case 'r': wCurrentWay = mPacmanRightDC;
+		}
+	}
+
+	BitBlt(ihdc,
+		(int)(mCoorX)-kRadius,
+		(int)(mCoorY)-kRadius,
+		2 * kRadius,
+		2 * kRadius,
+		wCurrentWay, 0, 0, SRCCOPY);
 }

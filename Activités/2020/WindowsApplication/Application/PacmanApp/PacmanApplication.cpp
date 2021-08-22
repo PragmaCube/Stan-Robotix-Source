@@ -41,6 +41,8 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 		mInky.initializeBitmap(ihdc);
 		mPinky.initializeBitmap(ihdc);
 
+		mPacman.initializeBitmap(ihdc);
+
 		mIsInit = true;
 	}
 
@@ -48,8 +50,6 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 	mClyde.paint(ihdc);
 	mInky.paint(ihdc);
 	mPinky.paint(ihdc);
-
-	// mPinky.paint(ihdc); TODO: a activer plus tard
 
 	mPacman.paint(ihdc);
 }
