@@ -44,7 +44,7 @@ void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType, PacmanGam
 
 	if (!mIsInit)
 	{
-		// Valeurs arbitraires pour que le monstre s'affiche à
+		// Valeurs arbitraires pour que le monstre s'affiche Ã 
 		// un endroit en particulier
 
 		mCoorX = ((iWindowRect.left + iWindowRect.right) / 2) - 20;
@@ -57,7 +57,7 @@ void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType, PacmanGam
 
 		mIsInit = true;
 	}
-	else                             // ce else permet de résoudre le pb de redimensionnement de l'écran
+	else                             // ce else permet de rÃ©soudre le pb de redimensionnement de l'Ã©cran
 	{
 		mCoorYMin = iWindowRect.bottom;
 		mCoorYMax = iWindowRect.top;
@@ -99,6 +99,19 @@ bool PacmanMonster::isWallByWay(char iWay)
 
 		return false;
 	default:
+		return false;
+	}
+}
+
+bool PacmanMonster::checkPlayerPos()
+{
+	if ((mPlayer->getX() == mBoardCoordX) && (mPlayer->getY() == mBoardCoordY))
+	{
+		return true;
+	}
+
+	else
+	{
 		return false;
 	}
 }
@@ -183,4 +196,9 @@ void PacmanMonster::paint(HDC ihdc)
 		2 * kRadius,
 		2 * kRadius,
 		wCurrentWay, 0, 0, SRCCOPY);
+}
+
+void PacmanMonster::updatePlayer(PacmanPlayer* iPlayer)
+{
+	mPlayer = iPlayer;
 }
