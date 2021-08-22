@@ -52,6 +52,8 @@ private:
 
 	char mWay = 'l';
 
+	int mTimeSwitch = 0;
+
 	PacmanGameBoard mGameBoard;
 	PacmanGameEngine* mPacmanGameEngine;
 };

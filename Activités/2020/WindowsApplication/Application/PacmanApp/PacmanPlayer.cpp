@@ -197,29 +197,31 @@ HDC PacmanPlayer::createBitmap(HDC ihdc, const LPCWSTR lpBitmapName)
 
 void PacmanPlayer::paint(HDC ihdc)
 {
-	/*HGDIOBJ wOldBrush = ::SelectObject(ihdc, mBrush);
-
-	::Ellipse(ihdc,
-		(int)(mCoorX)-mRadius,
-		(int)(mCoorY)-mRadius,
-		(int)(mCoorX)+mRadius,
-		(int)(mCoorY)+mRadius);
-
-	::SelectObject(ihdc, wOldBrush);*/
+	mTimeSwitch++;
 
 	mPacmanGameEngine->setPacmanPos(mCoorX, mCoorY);
 
 	HDC wCurrentWay = 0;
-
-	switch (mWay)
+	if(mTimeSwitch > 1)
+	{ 
+		wCurrentWay = mPacmanPointDC;
+		if (mTimeSwitch ==  2)
+		{
+			mTimeSwitch = 0;
+		}
+	}
+	else
 	{
-	case 'u': wCurrentWay = mPacmanUpDC;
-		break;
-	case 'd': wCurrentWay = mPacmanDownDC;
-		break;
-	case 'l': wCurrentWay = mPacmanLeftDC;
-		break;
-	case 'r': wCurrentWay = mPacmanRightDC;
+		switch (mWay)
+		{
+		case 'u': wCurrentWay = mPacmanUpDC;
+			break;
+		case 'd': wCurrentWay = mPacmanDownDC;
+			break;
+		case 'l': wCurrentWay = mPacmanLeftDC;
+			break;
+		case 'r': wCurrentWay = mPacmanRightDC;
+		}
 	}
 
 	BitBlt(ihdc,
