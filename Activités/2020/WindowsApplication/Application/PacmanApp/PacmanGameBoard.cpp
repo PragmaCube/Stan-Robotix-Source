@@ -88,74 +88,53 @@ bool PacmanGameBoard::isWall(unsigned int x, unsigned int y)
 
 void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 {
-	static bool wDevelopMaze = true;
-
-	const float wSideX = float(iPaintArea.right - iPaintArea.left) / float(mNbColumns); // mNbRows;
-	const float wSideY = float(iPaintArea.bottom - iPaintArea.top) / float(mNbRows); // mNbColumns;
-
-	if (wDevelopMaze)
+	if (!mIsInit)
 	{
-		if (!mIsInit)
-		{
-			HBITMAP wInitialMazeBitmap = LoadBitmap(hInst, L"IDB_BITMAPMAZE");
-			mIsInit = true;
+		HBITMAP wInitialMazeBitmap = LoadBitmap(hInst, L"IDB_BITMAPMAZE");
+		mIsInit = true;
 
-			mMazeInCache = ::CreateCompatibleDC(ihdc);
-			HBITMAP hOldBmp = (HBITMAP)::SelectObject(mMazeInCache, wInitialMazeBitmap);
+		mMazeInCache = ::CreateCompatibleDC(ihdc);
+		HBITMAP hOldBmp = (HBITMAP)::SelectObject(mMazeInCache, wInitialMazeBitmap);
 
-			BITMAP wBitmap;
-			GetObject(wInitialMazeBitmap, sizeof(BITMAP), reinterpret_cast<LPVOID>(&wBitmap));
+		BITMAP wBitmap;
+		GetObject(wInitialMazeBitmap, sizeof(BITMAP), reinterpret_cast<LPVOID>(&wBitmap));
 
-			StretchBlt(ihdc,
-				0,
-				0,
-				iPaintArea.right - iPaintArea.left,
-				iPaintArea.bottom - iPaintArea.top,
-				mMazeInCache, 0, 0, wBitmap.bmWidth, wBitmap.bmHeight, SRCCOPY);
-
-			BitBlt(mMazeInCache,
-				0,
-				0,
-				iPaintArea.right - iPaintArea.left,
-				iPaintArea.bottom - iPaintArea.top,
-				ihdc, 0, 0, SRCCOPY);
-
-			mIsInit = true;
-		}
-		BitBlt(ihdc,
-			iPaintArea.left,
-			iPaintArea.top,
+		StretchBlt(ihdc,
+			0,
+			0,
 			iPaintArea.right - iPaintArea.left,
 			iPaintArea.bottom - iPaintArea.top,
-			mMazeInCache, 0, 0, SRCCOPY);
+			mMazeInCache, 0, 0, wBitmap.bmWidth, wBitmap.bmHeight, SRCCOPY);
 
-		::SelectObject(ihdc, mBlackPen);
-		::SelectObject(ihdc, mBlackBrush);
+		BitBlt(mMazeInCache,
+			0,
+			0,
+			iPaintArea.right - iPaintArea.left,
+			iPaintArea.bottom - iPaintArea.top,
+			ihdc, 0, 0, SRCCOPY);
 
-		for (int X = 0; X < mNbColumns; X++) // mNbColumns, mNbRows
-		{
-			for (int Y = 0; Y < mNbRows; Y++)
-			{
-				if (mMap[Y][X] == eVoid)
-				{
-					::Rectangle(ihdc,
-						(iPaintArea.left + float(X) * float(wSideX)),
-						(iPaintArea.top + float(Y) * float(wSideY)),
-						(iPaintArea.left + (float(float(X) + 1.0)) * float(wSideX)),
-						(iPaintArea.top + (float(float(Y) + 1.0)) * float(wSideY)));
-				}
-			}
-		}
-
-		if (mIsDebuggingLayout)
-		{
-			drawMemory(ihdc, iPaintArea);
-		}
-
-		hidePoints(iPaintArea);
-		scoreBoard(ihdc, iPaintArea);
-
+		mIsInit = true;
 	}
+	
+	BitBlt(ihdc,
+		iPaintArea.left,
+		iPaintArea.top,
+		iPaintArea.right - iPaintArea.left,
+		iPaintArea.bottom - iPaintArea.top,
+		mMazeInCache, 0, 0, SRCCOPY);
+
+	//::SelectObject(ihdc, mBlackPen);
+	//::SelectObject(ihdc, mBlackBrush);
+
+	if (mIsDebuggingLayout)
+	{
+		drawMemory(ihdc, iPaintArea);
+	}
+
+	hidePoints(iPaintArea);
+
+	scoreBoard(ihdc, iPaintArea);
+
 }
 
 void PacmanGameBoard::drawMemory(HDC ihdc, RECT& iPaintArea)
@@ -208,6 +187,8 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 
 	const int wUnitX = (wPacmanPos.x - iPaintArea.left) / ((iPaintArea.right - iPaintArea.left) / (mNbColumns));
 	const int wUnitY = wPacmanPos.y / ((iPaintArea.bottom - iPaintArea.top) / (mNbRows));
+	const float wSideX = float(iPaintArea.right - iPaintArea.left) / float(mNbColumns);
+	const float wSideY = float(iPaintArea.bottom - iPaintArea.top) / float(mNbRows);
 
 	if ((mMap[wUnitY][wUnitX] == ePoint) ||
 		(mMap[wUnitY][wUnitX] == eBonus) ||
@@ -215,6 +196,15 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 	{
 		scoreManagement(mMap[wUnitY][wUnitX]);
 		mMap[wUnitY][wUnitX] = eVoid;
+
+		::SelectObject(mMazeInCache, mBlackBrush);
+	
+        ::Rectangle(mMazeInCache,
+			(iPaintArea.left + float(wUnitX) * float(wSideX))- 160,
+			(iPaintArea.top + float(wUnitY) * float(wSideY)),
+			(iPaintArea.left + (float(float(wUnitX) + 1.0)) * float(wSideX)) - 160,
+			(iPaintArea.top + (float(float(wUnitY) + 1.0)) * float(wSideY)));
+
 	}
 }
 
