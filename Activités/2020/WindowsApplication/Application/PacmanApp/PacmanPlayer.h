@@ -24,8 +24,15 @@ public:
 	int getX();
 	int getY();
 
+	void initializeBitmap(HDC ihdc);
+
 	void paint(HDC ihdc);
 
+protected:
+
+	HDC mPacmanUpDC, mPacmanDownDC, mPacmanLeftDC, mPacmanRightDC, mPacmanPointDC;
+
+	HDC createBitmap(HDC ihdc, const LPCWSTR lpBitmapName);
 
 
 private:
@@ -43,6 +50,7 @@ private:
 
 	double wSideX, wSideY;
 
+	char mWay = 'l';
 
 	PacmanGameBoard mGameBoard;
 	PacmanGameEngine* mPacmanGameEngine;
