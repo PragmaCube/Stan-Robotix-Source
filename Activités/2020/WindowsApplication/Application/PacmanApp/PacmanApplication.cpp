@@ -34,7 +34,7 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 		mInky.initialise(iPaintArea, eInky, &mPacmanGameBoard, &mPacman);
 		mPinky.initialise(iPaintArea, ePinky, &mPacmanGameBoard, &mPacman);
 
-		mPacman.initialise(iPaintArea);
+		mPacman.initialise(iPaintArea, &mPacmanGameBoard);
 
 		mBlinky.initializeBitmap(ihdc);
 		mClyde.initializeBitmap(ihdc);
@@ -96,7 +96,7 @@ void PacmanApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 
 void PacmanApplication::onMouseLeftClick(int iPosX, int iPosY)
 {
-	//160 59      975 540
+	
 }
 
 void PacmanApplication::onMouseRightClick(int iPosX, int iPosY)

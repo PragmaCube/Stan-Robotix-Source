@@ -8,7 +8,7 @@ public:
 
 	PacmanPlayer();
 
-	void initialise(RECT iWindowRect);
+	void initialise(RECT iWindowRect, PacmanGameBoard* iPacmanGameBoard);
 
 	void initializeGameEngine(PacmanGameEngine* iPacmanGameEngine);
 
@@ -28,7 +28,7 @@ public:
 
 	void paint(HDC ihdc);
 
-protected:
+protected:	
 
 	HDC mPacmanUpDC, mPacmanDownDC, mPacmanLeftDC, mPacmanRightDC, mPacmanPointDC;
 
@@ -39,8 +39,7 @@ private:
 	double kSpeed = 5;
 	double mCoorX, mCoorY;
 	int mCoorYMax, mCoorYMin, mCoorXMax, mCoorXMin; // coordonnées des extrémités du plateau de jeu
-	HBRUSH mBrush;
-	const int mRadius = 20; // rayon du cercle (pour l'instant, cercle = pacman)
+
 	bool mIsInit;
 	int mCoorBlocX, mCoorBlocY;
 	char mDir = 'l';
@@ -54,6 +53,6 @@ private:
 
 	int mTimeSwitch = 0;
 
-	PacmanGameBoard mGameBoard;
+	PacmanGameBoard *mGameBoard;
 	PacmanGameEngine* mPacmanGameEngine;
 };
