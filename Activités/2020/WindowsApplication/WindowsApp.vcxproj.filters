@@ -128,6 +128,9 @@
     <ClInclude Include="Application\PacmanApp\Constants.h">
       <Filter>Application\Pacman</Filter>
     </ClInclude>
+    <ClInclude Include="Application\PacmanApp\PacmanMultimedia.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\WindowsApp.cpp">
@@ -203,6 +206,9 @@
       <Filter>Application\Pacman\Monsters</Filter>
     </ClCompile>
     <ClCompile Include="Application\PacmanApp\PacmanGameEngine.cpp">
+      <Filter>Application\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\PacmanMultimedia.cpp">
       <Filter>Application\Pacman</Filter>
     </ClCompile>
   </ItemGroup>
