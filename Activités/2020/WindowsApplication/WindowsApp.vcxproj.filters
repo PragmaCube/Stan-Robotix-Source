@@ -128,6 +128,9 @@
     <ClInclude Include="Application\PacmanApp\Constants.h">
       <Filter>Application\Pacman</Filter>
     </ClInclude>
+    <ClInclude Include="Application\PacmanApp\PacmanMultimedia.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\WindowsApp.cpp">
@@ -203,6 +206,9 @@
       <Filter>Application\Pacman\Monsters</Filter>
     </ClCompile>
     <ClCompile Include="Application\PacmanApp\PacmanGameEngine.cpp">
+      <Filter>Application\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\PacmanMultimedia.cpp">
       <Filter>Application\Pacman</Filter>
     </ClCompile>
   </ItemGroup>
@@ -287,5 +293,31 @@
     <Image Include="Application\PacmanApp\Graphics\Player\PlayerUp.bmp">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Application\PacmanApp\sound\pacman_beginning.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_bonus.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_cherry.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_chomp.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_death.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_eatghost.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_extrapac.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_intermission.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
   </ItemGroup>
 </Project>
