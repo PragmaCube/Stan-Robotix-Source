@@ -231,6 +231,16 @@
     <Image Include="small.ico" />
     <Image Include="WindowsApp.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="Application\PacmanApp\sound\pacman_beginning.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_bonus.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_cherry.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_chomp.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_death.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_eatghost.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_extrapac.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_intermission.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
