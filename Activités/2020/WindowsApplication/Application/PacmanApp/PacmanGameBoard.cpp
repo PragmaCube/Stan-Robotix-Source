@@ -123,8 +123,6 @@ void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 		iPaintArea.bottom - iPaintArea.top,
 		mMazeInCache, 0, 0, SRCCOPY);
 
-	//::SelectObject(ihdc, mBlackPen);
-	//::SelectObject(ihdc, mBlackBrush);
 
 	if (mIsDebuggingLayout)
 	{
@@ -187,6 +185,7 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 
 	const int wUnitX = (wPacmanPos.x - iPaintArea.left) / ((iPaintArea.right - iPaintArea.left) / (mNbColumns));
 	const int wUnitY = wPacmanPos.y / ((iPaintArea.bottom - iPaintArea.top) / (mNbRows));
+
 	const float wSideX = float(iPaintArea.right - iPaintArea.left) / float(mNbColumns);
 	const float wSideY = float(iPaintArea.bottom - iPaintArea.top) / float(mNbRows);
 

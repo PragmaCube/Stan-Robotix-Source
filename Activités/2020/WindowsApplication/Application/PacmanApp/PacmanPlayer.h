@@ -47,7 +47,7 @@ private:
 	const double mNbRows = 28.0;
 	const double mNbColumns = 31.0;
 
-	double wSideX, wSideY;
+	double mSideX, mSideY;
 
 	char mWay = 'l';
 

@@ -29,11 +29,11 @@ void PacmanPlayer::initialise(RECT iWindowRect, PacmanGameBoard* iPacmanGameBoar
 	if (!mIsInit)
 	{
 		mGameBoard = iPacmanGameBoard;
-		wSideX = (iWindowRect.right - iWindowRect.left) / mNbRows;
-		wSideY = (iWindowRect.bottom - iWindowRect.top) / mNbColumns;
+		mSideX = (iWindowRect.right - iWindowRect.left) / mNbRows;
+		mSideY = (iWindowRect.bottom - iWindowRect.top) / mNbColumns;
 
-		mCoorX = iWindowRect.left + 14 * wSideX;
-		mCoorY = 23 * wSideY + wSideY/2; 
+		mCoorX = iWindowRect.left + 1 * mSideX + mSideX / 2; //14
+		mCoorY = 1 * mSideY + mSideY /2 ; //23
 
 		mCoorYMin = iWindowRect.bottom;  // + et - 2 car lors de création des carrés/ronds, il y a 1 pixel de bordure dans laquelle est dessinée la forme. 
 		mCoorYMax = iWindowRect.top;      // il faut donc compensser en enlevant/ajoutant 2 (pixel du carré + pixel de pacman)
@@ -49,8 +49,8 @@ void PacmanPlayer::initialise(RECT iWindowRect, PacmanGameBoard* iPacmanGameBoar
 		mCoorXMin = iWindowRect.left;
 		mCoorXMax = iWindowRect.right;
 
-		wSideX = (iWindowRect.right - iWindowRect.left) / mNbRows;
-		wSideY = (iWindowRect.bottom - iWindowRect.top) / mNbColumns;
+		mSideX = (iWindowRect.right - iWindowRect.left) / mNbRows;
+		mSideY = (iWindowRect.bottom - iWindowRect.top) / mNbColumns;
 	}
 }
 
@@ -102,37 +102,53 @@ void PacmanPlayer::movePacmanLeft()
 
 void PacmanPlayer::move(char way)
 {
-	const int wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
-	const int wCoorBlocY = mCoorY / ((mCoorYMin - mCoorYMax) / (mNbRows));
+	/*const int wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+	const int wCoorBlocY = mCoorY / ((mCoorYMin - mCoorYMax) / (mNbRows));*/
 
 	switch (way)
 	{
 	case 'u': 
-		if (mGameBoard->isWall(wCoorBlocX, (wCoorBlocY - 1)) == false)
+	{
+		const float wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+		const float wCoorBlocY = (mCoorY + (mSideY / 2.0)) / ((mCoorYMin - mCoorYMax) / (mNbRows));
+		if (mGameBoard->isWall(static_cast<int>(wCoorBlocX), (static_cast<int>(wCoorBlocY) - 1)) == false)
 		{
 			movePacmanUp();
 		}
+	}
 		break;
 
     case 'd':
-		if (mGameBoard->isWall(wCoorBlocX, (wCoorBlocY + 1)) == false)
 		{
-			movePacmanDown();
+			const float wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+			const float wCoorBlocY = (mCoorY - mSideY / 2) / ((mCoorYMin - mCoorYMax) / (mNbRows));
+			if (mGameBoard->isWall(static_cast<int>(wCoorBlocX), (static_cast<int>(wCoorBlocY) + 1)) == false)
+			{
+				movePacmanDown();
+			}
 		}
 	    break;
 
 	case 'l':
-		if (mGameBoard->isWall((wCoorBlocX - 1), wCoorBlocY) == false)
+	{
+		const float wCoorBlocX = ((mCoorX + mSideX / 2) - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+		const float wCoorBlocY = mCoorY / ((mCoorYMin - mCoorYMax) / (mNbRows));
+		if (mGameBoard->isWall((static_cast<int>(wCoorBlocX) - 1), static_cast<int>(wCoorBlocY)) == false)
 		{
 			movePacmanLeft();
 		}
+	}
 		break;
 
 	case 'r':
-		if (mGameBoard->isWall((wCoorBlocX + 1), wCoorBlocY) == false)
+	{
+		const float wCoorBlocX = ((mCoorX + mSideX / 2) - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+		const float wCoorBlocY = mCoorY / ((mCoorYMin - mCoorYMax) / (mNbRows));
+		if (mGameBoard->isWall((static_cast<int>(wCoorBlocX) + 1), static_cast<int>(wCoorBlocY)) == false)
 		{
 			movePacmanRight();
 		}
+	}
 	}
 }
 
