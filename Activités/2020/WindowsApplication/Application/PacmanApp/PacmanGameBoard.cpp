@@ -193,39 +193,38 @@ void PacmanGameBoard::drawMemory(HDC ihdc, RECT& iPaintArea)
 	}
 }
 
+void setPacmanPos(unsigned int x, unsigned int y)
+{
+
+}
+
 void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 {
 	const POINT& wPacmanPos = mPacmanGameEngine->getPacmanPos();
 
-	/*const int wUnitX = (wPacmanPos.x - iPaintArea.left) / ((iPaintArea.right - iPaintArea.left) / (mNbColumns));
-	const int wUnitY = (wPacmanPos.y) / ((iPaintArea.bottom - iPaintArea.top) / (mNbRows));*/
-
 	const float wSideX = float(iPaintArea.right - iPaintArea.left) / float(mNbColumns);
 	const float wSideY = float(iPaintArea.bottom - iPaintArea.top) / float(mNbRows);
-	for (int i = 0; i < 20; i+=10)
+
+	int wPacmanPosX = round(wPacmanPos.x);
+	int wPacmanPosY = round(wPacmanPos.y);
+	if ((mMap[wPacmanPosY][wPacmanPosX] == ePoint) ||
+		(mMap[wPacmanPosY][wPacmanPosX] == eBonus) ||
+		(mMap[wPacmanPosY][wPacmanPosX] == eFruit))
 	{
-		int wUnitX = (wPacmanPos.x - iPaintArea.left) / ((iPaintArea.right - iPaintArea.left) / (mNbColumns));
-		int wUnitY = (wPacmanPos.y - i) / ((iPaintArea.bottom - iPaintArea.top) / (mNbRows));
-		if ((mMap[wUnitY][wUnitX] == ePoint) ||
-			(mMap[wUnitY][wUnitX] == eBonus) ||
-			(mMap[wUnitY][wUnitX] == eFruit))
-		{
-			scoreManagement(mMap[wUnitY][wUnitX]);
-			mMap[wUnitY][wUnitX] = eVoid;
+		scoreManagement(mMap[wPacmanPosY][wPacmanPosX]);
+		mMap[wPacmanPosY][wPacmanPosX] = eVoid;
 
-			mPointsEaten++;
+		mPointsEaten++;
 
-			::SelectObject(mMazeInCache, mBlackBrush);
+		::SelectObject(mMazeInCache, mBlackBrush);
+		
+		::Rectangle(mMazeInCache,
+			(iPaintArea.left -97 + float(wPacmanPosX + 0) * float(wSideX)), // -97 car la cache comme a la coordonnee 0,0. Sur le jeu
+			(iPaintArea.top  + float(wPacmanPosY + 0) * float(wSideY)),     // Le point (0,0) correspond a une certaine position
+			(iPaintArea.left -97 + float(wPacmanPosX + 1) * float(wSideX)),
+			(iPaintArea.top  + float(wPacmanPosY + 1) * float(wSideY)));
 
-			::Rectangle(mMazeInCache,
-				(iPaintArea.left + float(wUnitX) * float(wSideX)) - 160,
-				(iPaintArea.top + float(wUnitY) * float(wSideY)),
-				(iPaintArea.left + (float(float(wUnitX) + 1.0)) * float(wSideX)) - 160,
-				(iPaintArea.top + (float(float(wUnitY) + 1.0)) * float(wSideY)));
-
-            PacmanMultimedia::getInstance().playResource(L"IDR_PACMAN_CHOMP");
-			break;
-		}
+        PacmanMultimedia::getInstance().playResource(L"IDR_PACMAN_CHOMP");
 	}
 }
 

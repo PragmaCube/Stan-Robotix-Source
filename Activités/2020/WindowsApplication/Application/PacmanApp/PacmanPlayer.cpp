@@ -103,15 +103,12 @@ void PacmanPlayer::movePacmanLeft()
 
 void PacmanPlayer::move(char iWay)
 {
-	/*const int wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
-	const int wCoorBlocY = mCoorY / ((mCoorYMin - mCoorYMax) / (mNbRows));*/
-
+	float wCoorBlocX = 0.0, wCoorBlocY = 0.0;
 	switch (iWay)
 	{
-	case 'u': 
-	{
-		float wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
-		float wCoorBlocY = (mCoorY + (mSideY / 2)) / ((mCoorYMax - mCoorYMin) / (mNbRows));
+	case 'u':
+		wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+		wCoorBlocY = (mCoorY + (mSideY / 2)) / ((mCoorYMax - mCoorYMin) / (mNbRows));
 		if (mGameBoard->isWall(wCoorBlocX, (wCoorBlocY - 1)) == false)
 		{
 			mApplication->setOldDirect(mWay);
@@ -121,13 +118,11 @@ void PacmanPlayer::move(char iWay)
 		{
 			mApplication->resetDirect();
 		}
-	}
 		break;
 
-    case 'd':
-	{
-		float wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
-		float wCoorBlocY = (mCoorY - mSideY / 2) / ((mCoorYMax - mCoorYMin) / (mNbRows));
+	case 'd':
+		wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+		wCoorBlocY = (mCoorY - mSideY / 2) / ((mCoorYMax - mCoorYMin) / (mNbRows));
 		if (mGameBoard->isWall(wCoorBlocX, (wCoorBlocY + 1)) == false && mGameBoard->isSpawn(wCoorBlocX, (wCoorBlocY + 1)) == false)
 		{
 			mApplication->setOldDirect(mWay);
@@ -137,13 +132,11 @@ void PacmanPlayer::move(char iWay)
 		{
 			mApplication->resetDirect();
 		}
-	}
-	break;
+		break;
 
 	case 'l':
-	{
-		float wCoorBlocX = ((mCoorX + mSideX / 2) - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
-		float wCoorBlocY = mCoorY / ((mCoorYMax - mCoorYMin) / (mNbRows));
+		wCoorBlocX = ((mCoorX + mSideX / 2) - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+		wCoorBlocY = mCoorY / ((mCoorYMax - mCoorYMin) / (mNbRows));
 		if (mGameBoard->isWall((wCoorBlocX - 1), wCoorBlocY) == false)
 		{
 			mApplication->setOldDirect(mWay);
@@ -153,13 +146,11 @@ void PacmanPlayer::move(char iWay)
 		{
 			mApplication->resetDirect();
 		}
-	}
 		break;
 
 	case 'r':
-	{
-		float wCoorBlocX = ((mCoorX - mSideX / 2) - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
-		float wCoorBlocY = mCoorY / ((mCoorYMax - mCoorYMin) / (mNbRows));
+		wCoorBlocX = ((mCoorX - mSideX / 2) - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+		wCoorBlocY = mCoorY / ((mCoorYMax - mCoorYMin) / (mNbRows));
 		if (mGameBoard->isWall((wCoorBlocX + 1), wCoorBlocY) == false)
 		{
 			mApplication->setOldDirect(mWay);
@@ -169,8 +160,9 @@ void PacmanPlayer::move(char iWay)
 		{
 			mApplication->resetDirect();
 		}
-	}
-	}
+	};
+
+	mPacmanGameEngine->setPacmanPos(wCoorBlocX, wCoorBlocY);
 
 	TpPacman(iWay);
 }
@@ -234,7 +226,7 @@ void PacmanPlayer::paint(HDC ihdc)
 {
 	mTimeSwitch++;
 
-	mPacmanGameEngine->setPacmanPos(mCoorX, mCoorY);
+	
 
 	HDC wCurrentWay = 0;
 	if(mTimeSwitch > 1)
