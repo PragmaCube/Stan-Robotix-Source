@@ -14,11 +14,6 @@ class PacmanGameBoard
 public:
 	PacmanGameBoard();
 
-	void setApplication(PacmanApplication* iApplication)
-	{
-		mApplication = iApplication;
-	}
-
 	void drawMap(HDC ihdc, RECT& iPaintArea);
 	void drawMemory(HDC ihdc, RECT& iPaintArea);
 	void initializeMap();

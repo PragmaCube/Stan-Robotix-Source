@@ -214,11 +214,6 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 
 			mPointsEaten++;
 
-			if (mPointsEaten == 298)
-			{
-				while(0==0){ }
-			}
-
 			::SelectObject(mMazeInCache, mBlackBrush);
 
 			::Rectangle(mMazeInCache,
