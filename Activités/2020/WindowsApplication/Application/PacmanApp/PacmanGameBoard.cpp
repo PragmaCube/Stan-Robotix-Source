@@ -184,7 +184,7 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 	const POINT& wPacmanPos = mPacmanGameEngine->getPacmanPos();
 
 	const int wUnitX = (wPacmanPos.x - iPaintArea.left) / ((iPaintArea.right - iPaintArea.left) / (mNbColumns));
-	const int wUnitY = wPacmanPos.y / ((iPaintArea.bottom - iPaintArea.top) / (mNbRows));
+	const int wUnitY = (wPacmanPos.y) / ((iPaintArea.bottom - iPaintArea.top) / (mNbRows));
 
 	const float wSideX = float(iPaintArea.right - iPaintArea.left) / float(mNbColumns);
 	const float wSideY = float(iPaintArea.bottom - iPaintArea.top) / float(mNbRows);
