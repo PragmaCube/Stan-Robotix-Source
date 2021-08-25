@@ -128,7 +128,7 @@ void PacmanPlayer::move(char iway)
 		{
 			float wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
 			float wCoorBlocY = (mCoorY - mSideY / 2) / ((mCoorYMax - mCoorYMin) / (mNbRows));
-			if (mGameBoard->isWall(wCoorBlocX, (wCoorBlocY + 1)) == false)
+			if (mGameBoard->isWall(wCoorBlocX, (wCoorBlocY + 1)) == false && mGameBoard->isSpawn(wCoorBlocX, (wCoorBlocY + 1)) == false)
 			{
 				mApplication->setOldDirect(mWay);
 				movePacmanDown();

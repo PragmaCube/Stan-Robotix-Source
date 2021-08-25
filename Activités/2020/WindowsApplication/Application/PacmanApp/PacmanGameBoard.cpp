@@ -86,6 +86,18 @@ bool PacmanGameBoard::isWall(unsigned int x, unsigned int y)
 	return wIsWall;
 }
 
+bool PacmanGameBoard::isSpawn(unsigned int x, unsigned int y)
+{
+	bool wIsWall = true;
+
+	if ((x < mNbColumns) && (y < mNbRows))
+	{
+		wIsWall = mMap[y][x] == eSpawn;
+	}
+
+	return wIsWall;
+}
+
 void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 {
 	if (!mIsInit)
@@ -183,27 +195,31 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 {
 	const POINT& wPacmanPos = mPacmanGameEngine->getPacmanPos();
 
-	const int wUnitX = (wPacmanPos.x - iPaintArea.left) / ((iPaintArea.right - iPaintArea.left) / (mNbColumns));
-	const int wUnitY = (wPacmanPos.y) / ((iPaintArea.bottom - iPaintArea.top) / (mNbRows));
+	/*const int wUnitX = (wPacmanPos.x - iPaintArea.left) / ((iPaintArea.right - iPaintArea.left) / (mNbColumns));
+	const int wUnitY = (wPacmanPos.y) / ((iPaintArea.bottom - iPaintArea.top) / (mNbRows));*/
 
 	const float wSideX = float(iPaintArea.right - iPaintArea.left) / float(mNbColumns);
 	const float wSideY = float(iPaintArea.bottom - iPaintArea.top) / float(mNbRows);
-
-	if ((mMap[wUnitY][wUnitX] == ePoint) ||
-		(mMap[wUnitY][wUnitX] == eBonus) ||
-		(mMap[wUnitY][wUnitX] == eFruit))
+	for (int i = 0; i < 20; i+=10)
 	{
-		scoreManagement(mMap[wUnitY][wUnitX]);
-		mMap[wUnitY][wUnitX] = eVoid;
+		int wUnitX = (wPacmanPos.x - iPaintArea.left) / ((iPaintArea.right - iPaintArea.left) / (mNbColumns));
+		int wUnitY = (wPacmanPos.y - i) / ((iPaintArea.bottom - iPaintArea.top) / (mNbRows));
+		if ((mMap[wUnitY][wUnitX] == ePoint) ||
+			(mMap[wUnitY][wUnitX] == eBonus) ||
+			(mMap[wUnitY][wUnitX] == eFruit))
+		{
+			scoreManagement(mMap[wUnitY][wUnitX]);
+			mMap[wUnitY][wUnitX] = eVoid;
 
-		::SelectObject(mMazeInCache, mBlackBrush);
-	
-        ::Rectangle(mMazeInCache,
-			(iPaintArea.left + float(wUnitX) * float(wSideX))- 160,
-			(iPaintArea.top + float(wUnitY) * float(wSideY)),
-			(iPaintArea.left + (float(float(wUnitX) + 1.0)) * float(wSideX)) - 160,
-			(iPaintArea.top + (float(float(wUnitY) + 1.0)) * float(wSideY)));
+			::SelectObject(mMazeInCache, mBlackBrush);
 
+			::Rectangle(mMazeInCache,
+				(iPaintArea.left + float(wUnitX) * float(wSideX)) - 160,
+				(iPaintArea.top + float(wUnitY) * float(wSideY)),
+				(iPaintArea.left + (float(float(wUnitX) + 1.0)) * float(wSideX)) - 160,
+				(iPaintArea.top + (float(float(wUnitY) + 1.0)) * float(wSideY)));
+			break;
+		}
 	}
 }
 
