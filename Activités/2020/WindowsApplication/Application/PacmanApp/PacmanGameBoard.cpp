@@ -205,24 +205,22 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 	const float wSideX = float(iPaintArea.right - iPaintArea.left) / float(mNbColumns);
 	const float wSideY = float(iPaintArea.bottom - iPaintArea.top) / float(mNbRows);
 
-	int wPacmanPosX = round(wPacmanPos.x);
-	int wPacmanPosY = round(wPacmanPos.y);
-	if ((mMap[wPacmanPosY][wPacmanPosX] == ePoint) ||
-		(mMap[wPacmanPosY][wPacmanPosX] == eBonus) ||
-		(mMap[wPacmanPosY][wPacmanPosX] == eFruit))
+	if ((mMap[wPacmanPos.y][wPacmanPos.x] == ePoint) ||
+		(mMap[wPacmanPos.y][wPacmanPos.x] == eBonus) ||
+		(mMap[wPacmanPos.y][wPacmanPos.x] == eFruit))
 	{
-		scoreManagement(mMap[wPacmanPosY][wPacmanPosX]);
-		mMap[wPacmanPosY][wPacmanPosX] = eVoid;
+		scoreManagement(mMap[wPacmanPos.y][wPacmanPos.x]);
+		mMap[wPacmanPos.y][wPacmanPos.x] = eVoid;
 
 		mPointsEaten++;
 
 		::SelectObject(mMazeInCache, mBlackBrush);
 		
 		::Rectangle(mMazeInCache,
-			(iPaintArea.left -97 + float(wPacmanPosX + 0) * float(wSideX)), // -97 car la cache comme a la coordonnee 0,0. Sur le jeu
-			(iPaintArea.top  + float(wPacmanPosY + 0) * float(wSideY)),     // Le point (0,0) correspond a une certaine position
-			(iPaintArea.left -97 + float(wPacmanPosX + 1) * float(wSideX)),
-			(iPaintArea.top  + float(wPacmanPosY + 1) * float(wSideY)));
+			(iPaintArea.left -97 + float(wPacmanPos.x + 0) * float(wSideX)), // -97 car la cache comme a la coordonnee 0,0. Sur le jeu
+			(iPaintArea.top      + float(wPacmanPos.y + 0) * float(wSideY)),     // Le point (0,0) correspond a une certaine position
+			(iPaintArea.left -97 + float(wPacmanPos.x + 1) * float(wSideX)),
+			(iPaintArea.top      + float(wPacmanPos.y + 1) * float(wSideY)));
 
         PacmanMultimedia::getInstance().playResource(L"IDR_PACMAN_CHOMP");
 	}
