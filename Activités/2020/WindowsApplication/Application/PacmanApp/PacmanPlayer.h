@@ -2,11 +2,18 @@
 #include <Windows.h>
 #include "PacmanGameBoard.h"
 
+class PacmanApplication;
+
 class PacmanPlayer
 {
 public:
 
 	PacmanPlayer();
+
+	void setApplication(PacmanApplication* iApplication) 
+	{
+		mApplication = iApplication;
+	}
 
 	void initialise(RECT iWindowRect, PacmanGameBoard* iPacmanGameBoard);
 
@@ -19,7 +26,7 @@ public:
 
 	char getWay();
 
-	void move(char way);
+	void move(char iway);
 
 	int getX();
 	int getY();
@@ -44,8 +51,8 @@ private:
 	int mCoorBlocX, mCoorBlocY;
 	char mDir = 'l';
 
-	const double mNbRows = 28.0;
-	const double mNbColumns = 31.0;
+	const double mNbRows = 31.0;
+	const double mNbColumns = 28.0;
 
 	double mSideX, mSideY;
 
@@ -55,4 +62,7 @@ private:
 
 	PacmanGameBoard *mGameBoard;
 	PacmanGameEngine* mPacmanGameEngine;
+	PacmanApplication* mApplication;
+
+	HBRUSH brush = CreateSolidBrush(RGB(255, 0, 0));
 };

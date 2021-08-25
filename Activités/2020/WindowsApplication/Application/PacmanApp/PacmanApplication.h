@@ -9,12 +9,17 @@
 #include "PacmanGameBoard.h"
 
 class PacmanGameEngine;
+class PacmanPlayer;
 
 class PacmanApplication :
 	public IApplication
 {
 public:
 	PacmanApplication();
+
+	void setOldDirect(char OldDirect);
+
+	void resetDirect();
 
 protected:
 	void paint(HDC ihdc, RECT& iPaintArea);
@@ -46,6 +51,7 @@ private:
 	char mDir = 'l'; //  permet à pacman de conserver son mouvement 
 					// ('l' = left, 'r' = right, 'd' = down, 'u' = up). va à gauche par défaut
 	char mNextDir;
+	char mOldWay = 'l';
 
 	int mCoorX, mCoorY;
 	int mCoorBlocX = 5;

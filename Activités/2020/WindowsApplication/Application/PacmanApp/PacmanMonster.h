@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Windows.h>
-#include "PacmanPlayer.h"
 #include "PacmanGameBoard.h"
 
 enum Monster
@@ -11,6 +10,8 @@ enum Monster
 	eInky,
 	eClyde
 };
+
+class PacmanPlayer;
 
 class PacmanMonster
 {

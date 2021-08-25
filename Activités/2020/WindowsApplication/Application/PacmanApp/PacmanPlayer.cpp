@@ -1,6 +1,7 @@
 #include "PacmanPlayer.h"
 #include "PacmanGameEngine.h"
 #include "Constants.h"
+#include "PacmanApplication.h"
 
 extern HINSTANCE hInst;
 
@@ -35,8 +36,8 @@ void PacmanPlayer::initialise(RECT iWindowRect, PacmanGameBoard* iPacmanGameBoar
 		mCoorX = iWindowRect.left + 1 * mSideX + mSideX / 2; //14
 		mCoorY = 1 * mSideY + mSideY /2 ; //23
 
-		mCoorYMin = iWindowRect.bottom;  // + et - 2 car lors de création des carrés/ronds, il y a 1 pixel de bordure dans laquelle est dessinée la forme. 
-		mCoorYMax = iWindowRect.top;      // il faut donc compensser en enlevant/ajoutant 2 (pixel du carré + pixel de pacman)
+		mCoorYMin = iWindowRect.top;  // + et - 2 car lors de création des carrés/ronds, il y a 1 pixel de bordure dans laquelle est dessinée la forme. 
+		mCoorYMax = iWindowRect.bottom;      // il faut donc compensser en enlevant/ajoutant 2 (pixel du carré + pixel de pacman)
 		mCoorXMin = iWindowRect.left;
 		mCoorXMax = iWindowRect.right;
 
@@ -66,7 +67,7 @@ int PacmanPlayer::getY()
 
 void PacmanPlayer::movePacmanUp()
 {
-	if (mCoorY - kSpeed > mCoorYMax)
+	if (mCoorY - kSpeed > mCoorYMin)
 	{
 		mCoorY -= kSpeed;
 	}
@@ -75,7 +76,7 @@ void PacmanPlayer::movePacmanUp()
 
 void PacmanPlayer::movePacmanDown()
 {
-	if (mCoorY + kSpeed < mCoorYMin)
+	if (mCoorY + kSpeed < mCoorYMax)
 	{
 		mCoorY += kSpeed;
 	}
@@ -100,53 +101,73 @@ void PacmanPlayer::movePacmanLeft()
 	mWay = 'l';
 }
 
-void PacmanPlayer::move(char way)
+void PacmanPlayer::move(char iway)
 {
 	/*const int wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
 	const int wCoorBlocY = mCoorY / ((mCoorYMin - mCoorYMax) / (mNbRows));*/
 
-	switch (way)
+	switch (iway)
 	{
 	case 'u': 
 	{
-		const float wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
-		const float wCoorBlocY = (mCoorY + (mSideY / 2.0)) / ((mCoorYMin - mCoorYMax) / (mNbRows));
-		if (mGameBoard->isWall(static_cast<int>(wCoorBlocX), (static_cast<int>(wCoorBlocY) - 1)) == false)
+		float wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+		float wCoorBlocY = (mCoorY + (mSideY / 2)) / ((mCoorYMax - mCoorYMin) / (mNbRows));
+		if (mGameBoard->isWall(wCoorBlocX, (wCoorBlocY - 1)) == false)
 		{
+			mApplication->setOldDirect(mWay);
 			movePacmanUp();
+		}
+		else
+		{
+			mApplication->resetDirect();
 		}
 	}
 		break;
 
     case 'd':
 		{
-			const float wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
-			const float wCoorBlocY = (mCoorY - mSideY / 2) / ((mCoorYMin - mCoorYMax) / (mNbRows));
-			if (mGameBoard->isWall(static_cast<int>(wCoorBlocX), (static_cast<int>(wCoorBlocY) + 1)) == false)
+			float wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+			float wCoorBlocY = (mCoorY - mSideY / 2) / ((mCoorYMax - mCoorYMin) / (mNbRows));
+			if (mGameBoard->isWall(wCoorBlocX, (wCoorBlocY + 1)) == false)
 			{
+				mApplication->setOldDirect(mWay);
 				movePacmanDown();
+			}
+			else
+			{
+				mApplication->resetDirect();
 			}
 		}
 	    break;
 
 	case 'l':
 	{
-		const float wCoorBlocX = ((mCoorX + mSideX / 2) - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
-		const float wCoorBlocY = mCoorY / ((mCoorYMin - mCoorYMax) / (mNbRows));
-		if (mGameBoard->isWall((static_cast<int>(wCoorBlocX) - 1), static_cast<int>(wCoorBlocY)) == false)
+		float wCoorBlocX = ((mCoorX + mSideX / 2) - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+		float wCoorBlocY = mCoorY / ((mCoorYMax - mCoorYMin) / (mNbRows));
+		if (mGameBoard->isWall((wCoorBlocX - 1), wCoorBlocY) == false)
 		{
+			mApplication->setOldDirect(mWay);
 			movePacmanLeft();
+		}
+		else
+		{
+			mApplication->resetDirect();
 		}
 	}
 		break;
 
 	case 'r':
 	{
-		const float wCoorBlocX = ((mCoorX + mSideX / 2) - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
-		const float wCoorBlocY = mCoorY / ((mCoorYMin - mCoorYMax) / (mNbRows));
-		if (mGameBoard->isWall((static_cast<int>(wCoorBlocX) + 1), static_cast<int>(wCoorBlocY)) == false)
+		float wCoorBlocX = ((mCoorX - mSideX / 2) - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+		float wCoorBlocY = mCoorY / ((mCoorYMax - mCoorYMin) / (mNbRows));
+		if (mGameBoard->isWall((wCoorBlocX + 1), wCoorBlocY) == false)
 		{
+			mApplication->setOldDirect(mWay);
 			movePacmanRight();
+		}
+		else
+		{
+			mApplication->resetDirect();
 		}
 	}
 	}

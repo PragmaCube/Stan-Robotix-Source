@@ -11,6 +11,8 @@ PacmanApplication::PacmanApplication()
 
 	mPacmanGameBoard.initializeGameEngine(mPacmanGameEngine);
 	mPacman.initializeGameEngine(mPacmanGameEngine);
+
+	mPacman.setApplication(this);
 }
 
 void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
@@ -119,4 +121,14 @@ void PacmanApplication::onTimer()
 	mPinky.updatePlayer(&mPacman);
 
 	IApplication::onTimer(); // Pour redessiner l'ecran
+}
+
+void PacmanApplication::setOldDirect(char iOldDirect)
+{
+	mOldWay = iOldDirect;
+}
+
+void PacmanApplication::resetDirect()
+{
+	mNextDir = mOldWay;
 }
