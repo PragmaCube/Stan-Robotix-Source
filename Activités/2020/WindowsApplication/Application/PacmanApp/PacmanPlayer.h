@@ -26,7 +26,8 @@ public:
 
 	char getWay();
 
-	void move(char iway);
+	void move(char iWay);
+	void TpPacman(char iWay);
 
 	int getX();
 	int getY();

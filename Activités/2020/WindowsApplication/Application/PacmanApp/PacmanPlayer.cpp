@@ -30,11 +30,11 @@ void PacmanPlayer::initialise(RECT iWindowRect, PacmanGameBoard* iPacmanGameBoar
 	if (!mIsInit)
 	{
 		mGameBoard = iPacmanGameBoard;
-		mSideX = (iWindowRect.right - iWindowRect.left) / mNbRows;
-		mSideY = (iWindowRect.bottom - iWindowRect.top) / mNbColumns;
+		mSideX = (iWindowRect.right - iWindowRect.left) / mNbColumns;
+		mSideY = (iWindowRect.bottom - iWindowRect.top) / mNbRows;
 
-		mCoorX = iWindowRect.left + 1 * mSideX + mSideX / 2; //14
-		mCoorY = 1 * mSideY + mSideY /2 ; //23
+		mCoorX = iWindowRect.left + 14 * mSideX + mSideX / 2; //14
+		mCoorY = 23 * mSideY + mSideY /2 ; //23
 
 		mCoorYMin = iWindowRect.top;  // + et - 2 car lors de création des carrés/ronds, il y a 1 pixel de bordure dans laquelle est dessinée la forme. 
 		mCoorYMax = iWindowRect.bottom;      // il faut donc compensser en enlevant/ajoutant 2 (pixel du carré + pixel de pacman)
@@ -101,12 +101,12 @@ void PacmanPlayer::movePacmanLeft()
 	mWay = 'l';
 }
 
-void PacmanPlayer::move(char iway)
+void PacmanPlayer::move(char iWay)
 {
 	/*const int wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
 	const int wCoorBlocY = mCoorY / ((mCoorYMin - mCoorYMax) / (mNbRows));*/
 
-	switch (iway)
+	switch (iWay)
 	{
 	case 'u': 
 	{
@@ -125,20 +125,20 @@ void PacmanPlayer::move(char iway)
 		break;
 
     case 'd':
+	{
+		float wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
+		float wCoorBlocY = (mCoorY - mSideY / 2) / ((mCoorYMax - mCoorYMin) / (mNbRows));
+		if (mGameBoard->isWall(wCoorBlocX, (wCoorBlocY + 1)) == false && mGameBoard->isSpawn(wCoorBlocX, (wCoorBlocY + 1)) == false)
 		{
-			float wCoorBlocX = (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
-			float wCoorBlocY = (mCoorY - mSideY / 2) / ((mCoorYMax - mCoorYMin) / (mNbRows));
-			if (mGameBoard->isWall(wCoorBlocX, (wCoorBlocY + 1)) == false && mGameBoard->isSpawn(wCoorBlocX, (wCoorBlocY + 1)) == false)
-			{
-				mApplication->setOldDirect(mWay);
-				movePacmanDown();
-			}
-			else
-			{
-				mApplication->resetDirect();
-			}
+			mApplication->setOldDirect(mWay);
+			movePacmanDown();
 		}
-	    break;
+		else
+		{
+			mApplication->resetDirect();
+		}
+	}
+	break;
 
 	case 'l':
 	{
@@ -169,6 +169,31 @@ void PacmanPlayer::move(char iway)
 		{
 			mApplication->resetDirect();
 		}
+	}
+	}
+
+	TpPacman(iWay);
+}
+
+void PacmanPlayer::TpPacman(char iWay)
+{
+	switch (iWay)
+	{
+	case 'l':
+	{
+		if (mCoorX < (mCoorXMin + 5))
+		{
+			mCoorX = mCoorXMax;
+		}
+	}
+		break;
+	case 'r':
+	{
+		if (mCoorX > (mCoorXMax - 20))
+		{
+			mCoorX = mCoorXMin;
+		}
+
 	}
 	}
 }
