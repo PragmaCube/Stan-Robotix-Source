@@ -11,6 +11,8 @@ PacmanApplication::PacmanApplication()
 
 	mPacmanGameBoard.initializeGameEngine(mPacmanGameEngine);
 	mPacman.initializeGameEngine(mPacmanGameEngine);
+
+	mPacman.setApplication(this);
 }
 
 void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
@@ -34,7 +36,7 @@ void PacmanApplication::paint(HDC ihdc, RECT& iPaintArea)
 		mInky.initialise(iPaintArea, eInky, &mPacmanGameBoard, &mPacman);
 		mPinky.initialise(iPaintArea, ePinky, &mPacmanGameBoard, &mPacman);
 
-		mPacman.initialise(iPaintArea);
+		mPacman.initialise(iPaintArea, &mPacmanGameBoard);
 
 		mBlinky.initializeBitmap(ihdc);
 		mClyde.initializeBitmap(ihdc);
@@ -96,7 +98,7 @@ void PacmanApplication::onMouseLeftDoubleClick(int iPosX, int iPosY)
 
 void PacmanApplication::onMouseLeftClick(int iPosX, int iPosY)
 {
-	//160 59      975 540
+	
 }
 
 void PacmanApplication::onMouseRightClick(int iPosX, int iPosY)
@@ -119,4 +121,14 @@ void PacmanApplication::onTimer()
 	mPinky.updatePlayer(&mPacman);
 
 	IApplication::onTimer(); // Pour redessiner l'ecran
+}
+
+void PacmanApplication::setOldDirect(char iOldDirect)
+{
+	mOldWay = iOldDirect;
+}
+
+void PacmanApplication::resetDirect()
+{
+	mNextDir = mOldWay;
 }

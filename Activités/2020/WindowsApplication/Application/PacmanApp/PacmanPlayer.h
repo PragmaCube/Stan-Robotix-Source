@@ -2,13 +2,20 @@
 #include <Windows.h>
 #include "PacmanGameBoard.h"
 
+class PacmanApplication;
+
 class PacmanPlayer
 {
 public:
 
 	PacmanPlayer();
 
-	void initialise(RECT iWindowRect);
+	void setApplication(PacmanApplication* iApplication) 
+	{
+		mApplication = iApplication;
+	}
+
+	void initialise(RECT iWindowRect, PacmanGameBoard* iPacmanGameBoard);
 
 	void initializeGameEngine(PacmanGameEngine* iPacmanGameEngine);
 
@@ -19,7 +26,8 @@ public:
 
 	char getWay();
 
-	void move(char way);
+	void move(char iWay);
+	void TpPacman(char iWay);
 
 	int getX();
 	int getY();
@@ -28,7 +36,7 @@ public:
 
 	void paint(HDC ihdc);
 
-protected:
+protected:	
 
 	HDC mPacmanUpDC, mPacmanDownDC, mPacmanLeftDC, mPacmanRightDC, mPacmanPointDC;
 
@@ -39,21 +47,22 @@ private:
 	double kSpeed = 5;
 	double mCoorX, mCoorY;
 	int mCoorYMax, mCoorYMin, mCoorXMax, mCoorXMin; // coordonnées des extrémités du plateau de jeu
-	HBRUSH mBrush;
-	const int mRadius = 20; // rayon du cercle (pour l'instant, cercle = pacman)
+
 	bool mIsInit;
 	int mCoorBlocX, mCoorBlocY;
 	char mDir = 'l';
 
-	const double mNbRows = 28.0;
-	const double mNbColumns = 31.0;
+	const double mNbRows = 31.0;
+	const double mNbColumns = 28.0;
 
-	double wSideX, wSideY;
+	double mSideX, mSideY;
 
 	char mWay = 'l';
 
 	int mTimeSwitch = 0;
 
-	PacmanGameBoard mGameBoard;
+	PacmanGameBoard *mGameBoard;
 	PacmanGameEngine* mPacmanGameEngine;
+	PacmanApplication* mApplication;
+
 };

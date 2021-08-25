@@ -1,4 +1,5 @@
 #include "PacmanMonster.h"
+#include "PacmanPlayer.h"
 #include "Constants.h"
 
 extern HINSTANCE hInst;                                // instance actuelle;

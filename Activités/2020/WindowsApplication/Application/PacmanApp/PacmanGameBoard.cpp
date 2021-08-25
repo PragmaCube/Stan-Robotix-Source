@@ -1,6 +1,7 @@
 #include "PacmanMultimedia.h"
 #include "PacmanGameBoard.h"
 #include "PacmanGameEngine.h"
+#include "PacmanApplication.h"
 #include "../../resource.h"
 #include <windowsx.h>
 #include <string>
@@ -87,6 +88,18 @@ bool PacmanGameBoard::isWall(unsigned int x, unsigned int y)
 	return wIsWall;
 }
 
+bool PacmanGameBoard::isSpawn(unsigned int x, unsigned int y)
+{
+	bool wIsWall = true;
+
+	if ((x < mNbColumns) && (y < mNbRows))
+	{
+		wIsWall = mMap[y][x] == eSpawn;
+	}
+
+	return wIsWall;
+}
+
 void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 {
 	if (!mIsInit)
@@ -124,8 +137,6 @@ void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 		iPaintArea.bottom - iPaintArea.top,
 		mMazeInCache, 0, 0, SRCCOPY);
 
-	//::SelectObject(ihdc, mBlackPen);
-	//::SelectObject(ihdc, mBlackBrush);
 
 	if (mIsDebuggingLayout)
 	{
@@ -182,31 +193,36 @@ void PacmanGameBoard::drawMemory(HDC ihdc, RECT& iPaintArea)
 	}
 }
 
+void setPacmanPos(unsigned int x, unsigned int y)
+{
+
+}
+
 void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 {
 	const POINT& wPacmanPos = mPacmanGameEngine->getPacmanPos();
 
-	const int wUnitX = (wPacmanPos.x - iPaintArea.left) / ((iPaintArea.right - iPaintArea.left) / (mNbColumns));
-	const int wUnitY = wPacmanPos.y / ((iPaintArea.bottom - iPaintArea.top) / (mNbRows));
 	const float wSideX = float(iPaintArea.right - iPaintArea.left) / float(mNbColumns);
 	const float wSideY = float(iPaintArea.bottom - iPaintArea.top) / float(mNbRows);
 
-	if ((mMap[wUnitY][wUnitX] == ePoint) ||
-		(mMap[wUnitY][wUnitX] == eBonus) ||
-		(mMap[wUnitY][wUnitX] == eFruit))
+	if ((mMap[wPacmanPos.y][wPacmanPos.x] == ePoint) ||
+		(mMap[wPacmanPos.y][wPacmanPos.x] == eBonus) ||
+		(mMap[wPacmanPos.y][wPacmanPos.x] == eFruit))
 	{
-		scoreManagement(mMap[wUnitY][wUnitX]);
-		mMap[wUnitY][wUnitX] = eVoid;
+		scoreManagement(mMap[wPacmanPos.y][wPacmanPos.x]);
+		mMap[wPacmanPos.y][wPacmanPos.x] = eVoid;
+
+		mPointsEaten++;
 
 		::SelectObject(mMazeInCache, mBlackBrush);
-	
-        ::Rectangle(mMazeInCache,
-			(iPaintArea.left + float(wUnitX) * float(wSideX))- 160,
-			(iPaintArea.top + float(wUnitY) * float(wSideY)),
-			(iPaintArea.left + (float(float(wUnitX) + 1.0)) * float(wSideX)) - 160,
-			(iPaintArea.top + (float(float(wUnitY) + 1.0)) * float(wSideY)));
+		
+		::Rectangle(mMazeInCache,
+			(iPaintArea.left -97 + float(wPacmanPos.x + 0) * float(wSideX)), // -97 car la cache comme a la coordonnee 0,0. Sur le jeu
+			(iPaintArea.top      + float(wPacmanPos.y + 0) * float(wSideY)),     // Le point (0,0) correspond a une certaine position
+			(iPaintArea.left -97 + float(wPacmanPos.x + 1) * float(wSideX)),
+			(iPaintArea.top      + float(wPacmanPos.y + 1) * float(wSideY)));
 
-		PacmanMultimedia::getInstance().playResource(L"IDR_PACMAN_CHOMP");
+        PacmanMultimedia::getInstance().playResource(L"IDR_PACMAN_CHOMP");
 	}
 }
 
