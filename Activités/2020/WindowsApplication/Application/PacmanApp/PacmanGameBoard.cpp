@@ -193,11 +193,6 @@ void PacmanGameBoard::drawMemory(HDC ihdc, RECT& iPaintArea)
 	}
 }
 
-void setPacmanPos(unsigned int x, unsigned int y)
-{
-
-}
-
 void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 {
 	const POINT& wPacmanPos = mPacmanGameEngine->getPacmanPos();
@@ -217,10 +212,10 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 		::SelectObject(mMazeInCache, mBlackBrush);
 		
 		::Rectangle(mMazeInCache,
-			(iPaintArea.left -97 + float(wPacmanPos.x + 0) * float(wSideX)), // -97 car la cache comme a la coordonnee 0,0. Sur le jeu
-			(iPaintArea.top      + float(wPacmanPos.y + 0) * float(wSideY)),     // Le point (0,0) correspond a une certaine position
-			(iPaintArea.left -97 + float(wPacmanPos.x + 1) * float(wSideX)),
-			(iPaintArea.top      + float(wPacmanPos.y + 1) * float(wSideY)));
+			(float(wPacmanPos.x + 0) * float(wSideX)), 
+			(float(wPacmanPos.y + 0) * float(wSideY)), 
+			(float(wPacmanPos.x + 1) * float(wSideX)),
+			(float(wPacmanPos.y + 1) * float(wSideY)));
 
         PacmanMultimedia::getInstance().playResource(L"IDR_PACMAN_CHOMP");
 	}

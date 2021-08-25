@@ -172,21 +172,17 @@ void PacmanPlayer::TpPacman(char iWay)
 	switch (iWay)
 	{
 	case 'l':
-	{
-		if (mCoorX < (mCoorXMin + 5))
+		if (mCoorX < (mCoorXMin + 10))
 		{
 			mCoorX = mCoorXMax;
 		}
-	}
 		break;
 	case 'r':
-	{
 		if (mCoorX > (mCoorXMax - 20))
 		{
 			mCoorX = mCoorXMin;
 		}
 
-	}
 	}
 }
 
