@@ -65,5 +65,4 @@ private:
 	PacmanGameEngine* mPacmanGameEngine;
 	PacmanApplication* mApplication;
 
-	HBRUSH brush = CreateSolidBrush(RGB(255, 0, 0));
 };

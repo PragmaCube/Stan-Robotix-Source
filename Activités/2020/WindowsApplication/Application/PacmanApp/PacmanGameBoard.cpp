@@ -1,5 +1,6 @@
 #include "PacmanGameBoard.h"
 #include "PacmanGameEngine.h"
+#include "PacmanApplication.h"
 #include "../../resource.h"
 #include <windowsx.h>
 #include <string>
@@ -210,6 +211,13 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 		{
 			scoreManagement(mMap[wUnitY][wUnitX]);
 			mMap[wUnitY][wUnitX] = eVoid;
+
+			mPointsEaten++;
+
+			if (mPointsEaten == 298)
+			{
+				while(0==0){ }
+			}
 
 			::SelectObject(mMazeInCache, mBlackBrush);
 

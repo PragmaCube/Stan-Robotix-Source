@@ -5,6 +5,7 @@
 #include <string>
 class PacmanGameEngine;
 
+
 enum { eVoid, eWall, ePoint, eBonus, eFruit, eSpawn, eTP};
 enum { eV, eW, eP, eB, eF, eS, eT}; //pour la carte memoire
 	
@@ -12,6 +13,11 @@ class PacmanGameBoard
 {
 public:
 	PacmanGameBoard();
+
+	void setApplication(PacmanApplication* iApplication)
+	{
+		mApplication = iApplication;
+	}
 
 	void drawMap(HDC ihdc, RECT& iPaintArea);
 	void drawMemory(HDC ihdc, RECT& iPaintArea);
@@ -50,6 +56,7 @@ private:
 	const int mNbColumns = 28;
 	
 	void hidePoints(RECT& iPaintArea);
+	int mPointsEaten = 0;
 	void scoreManagement(int  iPointType);
 	int mScore;
 	void scoreBoard(HDC ihdc, RECT& iPaintArea);
