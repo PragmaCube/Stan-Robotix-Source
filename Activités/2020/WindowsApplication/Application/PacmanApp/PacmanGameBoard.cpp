@@ -1,3 +1,4 @@
+#include "PacmanMultimedia.h"
 #include "PacmanGameBoard.h"
 #include "PacmanGameEngine.h"
 #include "PacmanApplication.h"
@@ -221,6 +222,8 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 				(iPaintArea.top + float(wUnitY) * float(wSideY)),
 				(iPaintArea.left + (float(float(wUnitX) + 1.0)) * float(wSideX)) - 160,
 				(iPaintArea.top + (float(float(wUnitY) + 1.0)) * float(wSideY)));
+
+            PacmanMultimedia::getInstance().playResource(L"IDR_PACMAN_CHOMP");
 			break;
 		}
 	}
