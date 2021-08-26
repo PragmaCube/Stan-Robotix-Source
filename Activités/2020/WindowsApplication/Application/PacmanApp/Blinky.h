@@ -4,7 +4,7 @@
 
 /*
 
-Personnalité : suit le joueur par derrière (la 2e case devant le joueur est sa cible)
+Personnalité : suit un parcours définis
 
 */
 
@@ -35,5 +35,4 @@ public:
 	void reset();
 
 	void initializeBitmap(HDC ihdc);
-
 };

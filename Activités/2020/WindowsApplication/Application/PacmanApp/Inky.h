@@ -4,7 +4,7 @@
 
 /*
 
-Personnalité : on double le vecteur Blinky-Cible et on obtient la cible d'Inky
+Personnalité : suit un parcours définis, différent de celui de Blinky
 
 */
 

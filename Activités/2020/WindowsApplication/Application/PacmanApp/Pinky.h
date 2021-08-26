@@ -4,7 +4,7 @@
 
 /*
 
-Personnalité : essaie de passer devant le joueur (la 4e case devant la direction du joueur est sa cible)
+Personnalité : aléatoire mais peut garder son mouvement sur 3 blocs
 
 */
 

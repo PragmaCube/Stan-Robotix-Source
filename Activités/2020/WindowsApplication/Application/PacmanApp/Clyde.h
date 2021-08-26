@@ -4,11 +4,8 @@
 
 /*
 
-Personnalité :
-	À plus de 8 cases de Pacman : suit le joueur par derrière
-	À moins de 8 cases de Pacman : tourne en rond
+Personnalité : aléatoire mais peut garder son mouvement sur 5 blocs
 
-	Pour l'instant : aléatoire
 */
 
 class Clyde :

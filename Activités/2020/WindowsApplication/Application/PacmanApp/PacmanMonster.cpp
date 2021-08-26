@@ -48,8 +48,8 @@ void PacmanMonster::initialise(RECT iWindowRect, Monster iMonsterType, PacmanGam
 		// Valeurs arbitraires pour que le monstre s'affiche à
 		// un endroit en particulier
 
-		mCoorX = ((iWindowRect.left + iWindowRect.right) / 2) - 20;
-		mCoorY = iWindowRect.bottom / 2 - 20;
+		mCoorX = ((static_cast<double>(iWindowRect.left) + iWindowRect.right) / 2) - 20;
+		mCoorY = (static_cast<double>(iWindowRect.bottom) / 2) - 20;
 
 		mCoorYMin = iWindowRect.bottom;
 		mCoorYMax = iWindowRect.top;
@@ -119,17 +119,14 @@ bool PacmanMonster::checkPlayerPos()
 
 void PacmanMonster::tpMonster()
 {
-	mCoorX = ((mCoorXMin + mCoorXMax) / 2) - 20;
-	mCoorY = mCoorYMin / 2 - 20;
+	mCoorX = (static_cast<double>(mCoorXMin) + static_cast<double>(mCoorXMax) / 2) - 20;
+	mCoorY = static_cast<double>(mCoorYMin) / 2 - 20;
 
 	mBoardCoordX = 13;
 	mBoardCoordY = 14;
 
 	mStepX = 1; // 1 ---> 7
 	mStepY = 1; // 1 ---> 8
-
-	mXFix = 1; // 1 ---> 28
-	mYFix = 1; // 1 ---> 31
 }
 
 void PacmanMonster::moveMonsterUp()

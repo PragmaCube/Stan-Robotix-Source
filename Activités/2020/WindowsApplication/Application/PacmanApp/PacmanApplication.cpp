@@ -132,26 +132,26 @@ void PacmanApplication::onTimer()
 		{
 			if (mBlinky.checkPlayerPos())
 			{
-				mBlinky.tpMonster();
 				mBlinky.reset();
+				mBlinky.tpMonster();
 			}
 
 			if (mClyde.checkPlayerPos())
 			{
-				mClyde.tpMonster();
 				mClyde.reset();
+				mClyde.tpMonster();
 			}
 
 			if (mInky.checkPlayerPos())
 			{
-				mInky.tpMonster();
 				mInky.reset();
+				mInky.tpMonster();
 			}
 
 			if (mPinky.checkPlayerPos())
 			{
-				mPinky.tpMonster();
 				mPinky.reset();
+				mPinky.tpMonster();
 			}
 		}
 
