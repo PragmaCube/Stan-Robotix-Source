@@ -57,12 +57,22 @@ void PacmanPlayer::initialise(RECT iWindowRect, PacmanGameBoard* iPacmanGameBoar
 
 int PacmanPlayer::getX()
 {
-	return mCoorX;
+	return (mCoorX - mCoorXMin) / ((mCoorXMax - mCoorXMin) / (mNbColumns));
 }
 
 int PacmanPlayer::getY()
 {
-	return mCoorY;
+	return (mCoorY + (mSideY / 2)) / ((mCoorYMax - mCoorYMin) / (mNbRows));
+}
+
+bool PacmanPlayer::getWeak()
+{
+	return mWeak;
+}
+
+void PacmanPlayer::setWeak(bool iState)
+{
+	mWeak = iState;
 }
 
 void PacmanPlayer::movePacmanUp()

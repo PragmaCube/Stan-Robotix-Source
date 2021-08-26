@@ -117,6 +117,21 @@ bool PacmanMonster::checkPlayerPos()
 	}
 }
 
+void PacmanMonster::tpMonster()
+{
+	mCoorX = ((mCoorXMin + mCoorXMax) / 2) - 20;
+	mCoorY = mCoorYMin / 2 - 20;
+
+	mBoardCoordX = 13;
+	mBoardCoordY = 14;
+
+	mStepX = 1; // 1 ---> 7
+	mStepY = 1; // 1 ---> 8
+
+	mXFix = 1; // 1 ---> 28
+	mYFix = 1; // 1 ---> 31
+}
+
 void PacmanMonster::moveMonsterUp()
 {
 	if (mCoorY - kSpeedY >= mCoorYMax)

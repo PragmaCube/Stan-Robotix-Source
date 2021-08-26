@@ -22,6 +22,7 @@ public:
 
 	bool isWall(unsigned int x, unsigned int y);
 	bool isSpawn(unsigned int x, unsigned int y);
+	bool isPowerUp(unsigned int x, unsigned int y);
 
 	void toggleDebugging();
 

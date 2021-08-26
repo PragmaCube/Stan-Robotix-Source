@@ -32,6 +32,10 @@ public:
 	int getX();
 	int getY();
 
+	bool getWeak();
+
+	void setWeak(bool iState);
+
 	void initializeBitmap(HDC ihdc);
 
 	void paint(HDC ihdc);
@@ -61,8 +65,9 @@ private:
 
 	int mTimeSwitch = 0;
 
+	bool mWeak = true;
+
 	PacmanGameBoard *mGameBoard;
 	PacmanGameEngine* mPacmanGameEngine;
 	PacmanApplication* mApplication;
-
 };

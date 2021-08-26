@@ -245,3 +245,11 @@ void Pinky::move()
 
 	mKeepWay = true;
 }
+
+void Pinky::reset()
+{
+	mExitPos = 0;
+
+	mInBox = true;
+	mKeepWay = true;
+}

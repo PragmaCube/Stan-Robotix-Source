@@ -100,6 +100,18 @@ bool PacmanGameBoard::isSpawn(unsigned int x, unsigned int y)
 	return wIsWall;
 }
 
+bool PacmanGameBoard::isPowerUp(unsigned int x, unsigned int y)
+{
+	bool wIsWall = true;
+
+	if ((x < mNbColumns) && (y < mNbRows))
+	{
+		wIsWall = mMap[y][x] == eBonus || mMap[y][x] == eFruit;
+	}
+
+	return wIsWall;
+}
+
 void PacmanGameBoard::drawMap(HDC ihdc, RECT& iPaintArea)
 {
 	if (!mIsInit)

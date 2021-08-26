@@ -58,12 +58,15 @@ public:
 	bool isWallByWay(char iWay);
 	bool checkPlayerPos();
 
+	void tpMonster();
+
 	void moveMonsterUp();
 	void moveMonsterDown();
 	void moveMonsterRight();
 	void moveMonsterLeft();
 
 	virtual void move() = 0;
+	virtual void reset() = 0;
 
 	void paint(HDC ihdc);
 

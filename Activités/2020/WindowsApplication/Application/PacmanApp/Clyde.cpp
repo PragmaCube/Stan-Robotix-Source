@@ -155,3 +155,8 @@ void Clyde::move()
 
 	mKeepWay = true;
 }
+
+void Clyde::reset()
+{
+	mKeepWay = true;
+}

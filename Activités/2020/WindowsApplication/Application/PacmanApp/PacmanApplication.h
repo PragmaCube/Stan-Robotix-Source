@@ -8,6 +8,8 @@
 #include "Pinky.h"
 #include "PacmanGameBoard.h"
 
+#include <ctime>
+
 class PacmanGameEngine;
 class PacmanPlayer;
 
@@ -45,6 +47,8 @@ private:
 
 	PacmanGameBoard mPacmanGameBoard;
 	PacmanGameEngine* mPacmanGameEngine;
+
+	clock_t mClock;
 
 	bool mIsInit = false;
 

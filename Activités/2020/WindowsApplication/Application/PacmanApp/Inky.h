@@ -30,6 +30,7 @@ public:
 
 	void path();
 	void move();
+	void reset();
 
 	void initializeBitmap(HDC ihdc);
 };

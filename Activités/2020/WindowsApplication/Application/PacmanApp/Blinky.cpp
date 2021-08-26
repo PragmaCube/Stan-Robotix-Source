@@ -125,3 +125,11 @@ void Blinky::move()
 		break;
 	}
 }
+
+void Blinky::reset()
+{
+	mExitPos = 0;
+	mLoopPos = 0;
+
+	mInBox = true;
+}

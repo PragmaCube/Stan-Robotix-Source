@@ -108,19 +108,60 @@ void PacmanApplication::onMouseRightClick(int iPosX, int iPosY)
 
 void PacmanApplication::onTimer()
 {
-	mBlinky.move();
-	mClyde.move();
-	mInky.move();
-	mPinky.move();
+	if (!(mBlinky.checkPlayerPos() || mClyde.checkPlayerPos() || mInky.checkPlayerPos() || mPinky.checkPlayerPos()) || !mPacman.getWeak()) 
+	{
+		if ((float)(clock() - mClock) / CLOCKS_PER_SEC >= 8)
+		{
+			mPacman.setWeak(true);
+		}
 
-	mPacman.move(mNextDir);
+		mBlinky.move();
+		mClyde.move();
+		mInky.move();
+		mPinky.move();
 
-	mBlinky.updatePlayer(&mPacman);
-	mClyde.updatePlayer(&mPacman);
-	mInky.updatePlayer(&mPacman);
-	mPinky.updatePlayer(&mPacman);
+		mPacman.move(mNextDir);
 
-	IApplication::onTimer(); // Pour redessiner l'ecran
+		if (mPacmanGameBoard.isPowerUp(mPacman.getX(), mPacman.getY()))
+		{
+			mPacman.setWeak(false);
+			mClock = clock();
+		}
+
+		if (!mPacman.getWeak())
+		{
+			if (mBlinky.checkPlayerPos())
+			{
+				mBlinky.tpMonster();
+				mBlinky.reset();
+			}
+
+			if (mClyde.checkPlayerPos())
+			{
+				mClyde.tpMonster();
+				mClyde.reset();
+			}
+
+			if (mInky.checkPlayerPos())
+			{
+				mInky.tpMonster();
+				mInky.reset();
+			}
+
+			if (mPinky.checkPlayerPos())
+			{
+				mPinky.tpMonster();
+				mPinky.reset();
+			}
+		}
+
+		mBlinky.updatePlayer(&mPacman);
+		mClyde.updatePlayer(&mPacman);
+		mInky.updatePlayer(&mPacman);
+		mPinky.updatePlayer(&mPacman);
+
+		IApplication::onTimer(); // Pour redessiner l'ecran
+	}
 }
 
 void PacmanApplication::setOldDirect(char iOldDirect)

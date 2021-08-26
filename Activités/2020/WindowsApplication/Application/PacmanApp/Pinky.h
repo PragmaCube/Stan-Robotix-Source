@@ -34,6 +34,8 @@ public:
 	void updateMovement();
 	void path();
 
+	void reset();
+
 	void exSwitch();
 
 	void initializeBitmap(HDC ihdc);
