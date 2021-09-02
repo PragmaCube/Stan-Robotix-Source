@@ -44,7 +44,7 @@ protected:
 
 
 private:
-	double kSpeed = 5;
+	double kSpeed = 4;
 	double mCoorX, mCoorY;
 	int mCoorYMax, mCoorYMin, mCoorXMax, mCoorXMin; // coordonnées des extrémités du plateau de jeu
 

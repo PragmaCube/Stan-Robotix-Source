@@ -204,6 +204,7 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 		(mMap[wPacmanPos.y][wPacmanPos.x] == eBonus) ||
 		(mMap[wPacmanPos.y][wPacmanPos.x] == eFruit))
 	{
+		pointsSound(mMap[wPacmanPos.y][wPacmanPos.x]);
 		scoreManagement(mMap[wPacmanPos.y][wPacmanPos.x]);
 		mMap[wPacmanPos.y][wPacmanPos.x] = eVoid;
 
@@ -216,8 +217,18 @@ void PacmanGameBoard::hidePoints(RECT& iPaintArea)
 			(float(wPacmanPos.y + 0) * float(wSideY)), 
 			(float(wPacmanPos.x + 1) * float(wSideX)),
 			(float(wPacmanPos.y + 1) * float(wSideY)));
+	}
+}
 
-        PacmanMultimedia::getInstance().playResource(L"IDR_PACMAN_CHOMP");
+void PacmanGameBoard::pointsSound(int iEaten)
+{
+	switch (iEaten)
+	{
+	case ePoint : PacmanMultimedia::getInstance().playResource(L"IDR_PACMAN_CHOMP");
+		break;
+	case eBonus: PacmanMultimedia::getInstance().playResource(L"IDR_PACMAN_BONUS");
+		break;
+	case eFruit: PacmanMultimedia::getInstance().playResource(L"IDR_PACMAN_CHERRY");
 	}
 }
 
