@@ -4,7 +4,12 @@
 
 #include "subsystems/DriveTrain.h"
 
-DriveTrain::DriveTrain() = default;
+SubDriveTrain::SubDriveTrain() = default;
 
 // This method will be called once per scheduler run
-void DriveTrain::Periodic() {}
+void SubDriveTrain::Periodic() {}
+
+void SubDriveTrain::TankDrive(double iLeft, double iRight)
+{
+    mTankDrive.TankDrive(iLeft, iRight, false);
+}

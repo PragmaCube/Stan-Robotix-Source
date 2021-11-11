@@ -19,3 +19,10 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return &m_autonomousCommand;
 }
+
+void RobotContainer::Drive()
+{
+  mSubDriveTrain.TankDrive(
+        - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
+        - mController.GetY(frc::GenericHID::JoystickHand::kRightHand));
+}
