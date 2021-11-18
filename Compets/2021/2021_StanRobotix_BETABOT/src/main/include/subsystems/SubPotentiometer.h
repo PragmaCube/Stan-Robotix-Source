@@ -23,6 +23,8 @@ class SubPotentiometer : public frc2::SubsystemBase {
    */
   void SimulationPeriodic() override;
 
+  double getDistance();
+
  private:
   frc::AnalogPotentiometer pot{kPotentiometerPort, 180, 30};
 };

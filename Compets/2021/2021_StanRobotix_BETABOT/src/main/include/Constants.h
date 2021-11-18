@@ -21,4 +21,4 @@ constexpr int kMotorL1Port = 1;
 constexpr int kMotorR2Port = 2;
 constexpr int kMotorR1Port = 3; 
 
-constexpr int kPotentiometerPort = 4;
+constexpr int kPotentiometerPort = 0;

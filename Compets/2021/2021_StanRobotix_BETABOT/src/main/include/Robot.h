@@ -8,6 +8,8 @@
 #include <frc2/command/Command.h>
 #include <frc/Joystick.h>
 
+#include "subsystems/SubPotentiometer.h"
+
 #include "RobotContainer.h"
 #include "subsystems/DriveTrain.h"
 
@@ -30,4 +32,5 @@ class Robot : public frc::TimedRobot {
 
   RobotContainer m_container;
   frc::DigitalInput toplimitSwitch{0};
+  SubPotentiometer m_potentiometer;
 };

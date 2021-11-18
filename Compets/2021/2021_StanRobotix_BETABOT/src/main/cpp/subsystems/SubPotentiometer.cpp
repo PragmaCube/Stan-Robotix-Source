@@ -9,7 +9,9 @@ SubPotentiometer::SubPotentiometer() = default;
 // This method will be called once per scheduler run
 void SubPotentiometer::Periodic() {}
 
-void SubPotentiometer::SimulationPeriodic()
+void SubPotentiometer::SimulationPeriodic() {}
+
+double SubPotentiometer::getDistance()
 {
-    
+    return pot.Get();
 }
