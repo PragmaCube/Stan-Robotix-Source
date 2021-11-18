@@ -1,4 +1,4 @@
-#include "Camera.h"
+#include "subsystems/Camera.h"
 
 namespace grip {
 
@@ -36,6 +36,7 @@ std::vector<Line>* Camera::GetFindLinesOutput(){
 std::vector<Line>* Camera::GetFilterLinesOutput(){
 	return &(this->filterLinesOutput);
 }
+#define LSD_REFINE_STD 100
 	/**
 	 * Finds all line segments in an image.
 	 *

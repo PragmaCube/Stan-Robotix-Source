@@ -7,17 +7,41 @@
 
 #pragma once
 
-#include <frc/commands/Subsystem.h>
-#include <frc/cameraserver/CameraServer.h>
+#include <frc2/command/SubsystemBase.h>
+#include <cameraserver/CameraServer.h>
 #include "Camera.h"
+#include <opencv2/objdetect/objdetect.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/features2d.hpp>
 
-class SubsystemCamera : public frc::Subsystem {
- private:
-  grip::Camera mCamera;
-  frc::UsbCamera mCameraInput;
-
+class SubsystemCamera : public frc2::SubsystemBase {
  public:
   SubsystemCamera();
-  void InitDefaultCommand() override;
+
+  /**
+   * Will be called periodically whenever the CommandScheduler runs.
+   */
+  void Periodic() override;
+
+  /**
+   * Will be called periodically whenever the CommandScheduler runs during
+   * simulation.
+   */
+  void SimulationPeriodic() override;
+
   std::vector<grip::Line> getLines();
+
+  void captureImage();
+
+
+ private:
+  // Components (e.g. motor controllers and sensors) should generally be
+  // declared private and exposed only through public methods.
+  //frc::CameraServer mCameraServer;
+  grip::Camera mCameraFilter;
+
+  cv::Mat mMat;
+  cv::VideoCapture* mCameraCapture;
 };

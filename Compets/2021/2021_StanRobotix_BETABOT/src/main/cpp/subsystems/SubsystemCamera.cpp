@@ -7,19 +7,33 @@
 
 #include "subsystems/SubsystemCamera.h"
 
-SubsystemCamera::SubsystemCamera() : Subsystem("ExampleSubsystem") {}
+//SubsystemCamera::SubsystemCamera() : SubsystemBase("ExampleSubsystem") {}
 
+/*
 void SubsystemCamera::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
-  mCameraInput = frc::CameraServer.getInstance().startAutomaticCapture();
-  mCameraInput.setResolution(320, 240);
+  //frc::CameraServer::GetInstance().StartAutomaticCapture();
+}
+*/
+
+SubsystemCamera::SubsystemCamera()
+{
+  mCameraCapture = new cv::VideoCapture(0);
+}
+
+void SubsystemCamera::captureImage()
+{
+  *mCameraCapture >> mMat;
+  mCameraFilter.Process(mMat);
+  for (grip::Line wCurrentLine : *mCameraFilter.GetFilterLinesOutput())
+  {
+    std::cout << wCurrentLine.length() << std::endl;
+  }
 }
 
 std::vector<grip::Line> SubsystemCamera::getLines()
 {
-  mCamera.process(mCameraInput);
-  return mCamera.GetFilterLinesOutput();
 }
 
 // Put methods for controlling this subsystem
