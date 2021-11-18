@@ -8,14 +8,16 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
+#include <frc/cameraserver/CameraServer.h>
 #include "Camera.h"
 
 class SubsystemCamera : public frc::Subsystem {
  private:
   grip::Camera mCamera;
+  frc::UsbCamera mCameraInput;
 
  public:
   SubsystemCamera();
   void InitDefaultCommand() override;
-  std::vector<grip::Line>* getLines();
+  std::vector<grip::Line> getLines();
 };

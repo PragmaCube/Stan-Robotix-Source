@@ -8,6 +8,7 @@
 #include <frc2/command/Command.h>
 
 #include "RobotContainer.h"
+#include "SubsystemCamera.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -25,6 +26,7 @@ class Robot : public frc::TimedRobot {
   // Have it null by default so that if testing teleop it
   // doesn't have undefined behavior and potentially crash.
   frc2::Command* m_autonomousCommand = nullptr;
-  SubsystemCamera mSubsystemCamera;
   RobotContainer m_container;
+  SubsystemCamera mSubsystemCamera;
+
 };

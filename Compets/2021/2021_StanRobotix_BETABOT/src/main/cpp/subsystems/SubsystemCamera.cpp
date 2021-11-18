@@ -12,10 +12,13 @@ SubsystemCamera::SubsystemCamera() : Subsystem("ExampleSubsystem") {}
 void SubsystemCamera::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
+  mCameraInput = frc::CameraServer.getInstance().startAutomaticCapture();
+  mCameraInput.setResolution(500, 500);
 }
 
 std::vector<grip::Line> SubsystemCamera::getLines()
 {
+  mCamera.process(mCameraInput);
   return mCamera.GetFilterLinesOutput();
 }
 
