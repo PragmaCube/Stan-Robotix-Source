@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Robot.h"
+#include "subsystems/Camera.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
@@ -58,7 +59,14 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+  for (grip::Line currentLine : wSubsystemCamera.getLines)
+  {
+    std::cout << currentLine.lenght() << std::endl;
+    std::cout << currentLine.angle() << std::endl;
+
+  }
+}
 
 /**
  * This function is called periodically during test mode.
