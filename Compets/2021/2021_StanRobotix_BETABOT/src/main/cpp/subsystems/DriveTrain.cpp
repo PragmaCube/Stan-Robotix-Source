@@ -14,11 +14,11 @@ void SubDriveTrain::TankDrive(double iLeft, double iRight, MotorSpeed iMotorSpee
     switch (iMotorSpeed)
     {
     case eSlow:
-        mTankDrive.TankDrive(0.5 * iLeft, 0.5 * iRight, false);
+        mTankDrive.TankDrive(0.3 * iLeft, 0.3 * iRight, false);
         break;
 
     case eMedium:
-        mTankDrive.TankDrive(0.75 * iLeft, 0.75 * iRight, false);
+        mTankDrive.TankDrive(0.65 * iLeft, 0.65 * iRight, false);
         break;
 
     case eFast:

@@ -21,21 +21,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  if (mController.GetPOV(0) == 0)
-  {
-    if (mMotorIndex < 2)
-    {
-      mMotorIndex++;
-    }
-  }
-
-  if (mController.GetPOV(180) == 180)
-  {
-    if (mMotorIndex > 0)
-    {
-      mMotorIndex--;
-    }
-  }
+  
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
@@ -45,9 +31,20 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::Drive()
 {
-  if (mController.GetPOV(0) == 0)
+  if (mController.GetPOV() == 0)
   {
-    std::cout << "Victoire\n";
+    if (mMotorIndex < 2)
+    {
+      mMotorIndex++;
+    }
+  }
+
+  if (mController.GetPOV() == 180)
+  {
+    if (mMotorIndex > 0)
+    {
+      mMotorIndex--;
+    }
   }
 
   mSubDriveTrain->TankDrive(
