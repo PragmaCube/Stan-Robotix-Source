@@ -60,7 +60,7 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  for (grip::Line currentLine : wSubsystemCamera.getLines)
+  for (grip::Line currentLine : mSubsystemCamera.getLines())
   {
     std::cout << currentLine.lenght() << std::endl;
     std::cout << currentLine.angle() << std::endl;

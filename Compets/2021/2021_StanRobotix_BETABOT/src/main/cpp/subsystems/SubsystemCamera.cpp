@@ -14,9 +14,9 @@ void SubsystemCamera::InitDefaultCommand() {
   // SetDefaultCommand(new MySpecialCommand());
 }
 
-std::vector<grip::Line> Camera::getLines()
+std::vector<grip::Line> SubsystemCamera::getLines()
 {
-  return wCamera->GetFilterLinesOutput();
+  return mCamera.GetFilterLinesOutput();
 }
 
 // Put methods for controlling this subsystem
