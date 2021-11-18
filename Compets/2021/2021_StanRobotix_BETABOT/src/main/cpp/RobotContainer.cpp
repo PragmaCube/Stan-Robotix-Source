@@ -19,3 +19,9 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return &m_autonomousCommand;
 }
+
+void RobotContainer::Drive()
+{
+  mDriveTrain.Periodic();
+  mIMU.Periodic();
+}

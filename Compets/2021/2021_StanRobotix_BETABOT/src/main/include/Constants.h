@@ -13,10 +13,10 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
-
-// À modifier si besoin
-
-constexpr int kMotorR1Port = 0;
-constexpr int kMotorR2Port = 1;
-constexpr int kMotorL1Port = 2;
-constexpr int kMotorL2Port = 3;
+const float robotUpdateTime = 0.02;
+const int kMotorL1Port = 0;
+const int kMotorL2Port = 1;
+const int kMotorR1Port = 2;
+const int kMotorR2Port = 3;
+const int kXboxControllerPort = 0;
+const float kMotorPower = 0.5;
