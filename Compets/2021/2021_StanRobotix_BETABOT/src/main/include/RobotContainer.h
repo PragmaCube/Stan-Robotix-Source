@@ -35,7 +35,10 @@ class RobotContainer {
   ExampleCommand m_autonomousCommand;
 
   frc::XboxController mController{0};
-  SubDriveTrain mSubDriveTrain;
+
+  SubDriveTrain* mSubDriveTrain;
+  SubDriveTrain::MotorSpeed mMotorSpeed[3];
+  int mMotorIndex;
 
   void ConfigureButtonBindings();
 };

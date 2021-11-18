@@ -21,11 +21,13 @@ class SubDriveTrain : public frc2::SubsystemBase {
  public:
   SubDriveTrain();
 
+  enum MotorSpeed { eSlow = 0, eMedium = 1, eFast = 2 };
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-  void TankDrive(double iLeft, double iRight);
+  void TankDrive(double iLeft, double iRight, MotorSpeed iMotorSpeed);
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be

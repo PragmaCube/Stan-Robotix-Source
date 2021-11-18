@@ -9,7 +9,24 @@ SubDriveTrain::SubDriveTrain() = default;
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
 
-void SubDriveTrain::TankDrive(double iLeft, double iRight)
+void SubDriveTrain::TankDrive(double iLeft, double iRight, MotorSpeed iMotorSpeed)
 {
-    mTankDrive.TankDrive(iLeft, iRight, false);
+    switch (iMotorSpeed)
+    {
+    case eSlow:
+        mTankDrive.TankDrive(0.5 * iLeft, 0.5 * iRight, false);
+        break;
+
+    case eMedium:
+        mTankDrive.TankDrive(0.75 * iLeft, 0.75 * iRight, false);
+        break;
+
+    case eFast:
+        mTankDrive.TankDrive(iLeft, iRight, false);
+        break;
+
+    default:
+        mTankDrive.TankDrive(0.75 * iLeft, 0.75 * iRight, false);
+        break;
+    }
 }
