@@ -13,7 +13,7 @@ void SubsystemCamera::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
   mCameraInput = frc::CameraServer.getInstance().startAutomaticCapture();
-  mCameraInput.setResolution(500, 500);
+  mCameraInput.setResolution(320, 240);
 }
 
 std::vector<grip::Line> SubsystemCamera::getLines()
