@@ -36,7 +36,7 @@ std::vector<Line>* Camera::GetFindLinesOutput(){
 std::vector<Line>* Camera::GetFilterLinesOutput(){
 	return &(this->filterLinesOutput);
 }
-#define LSD_REFINE_STD 100
+#define LSD_REFINE_STD true
 	/**
 	 * Finds all line segments in an image.
 	 *
