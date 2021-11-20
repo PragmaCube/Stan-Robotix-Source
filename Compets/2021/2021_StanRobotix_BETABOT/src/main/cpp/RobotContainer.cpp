@@ -14,6 +14,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mMotorSpeed[1] = SubDriveTrain::MotorSpeed::eMedium;
   mMotorSpeed[2] = SubDriveTrain::MotorSpeed::eFast;
   mDriveMode = SubDriveTrain::DriveMode::eTankDrive;
+  mDriveController = SubDriveTrain::DriveController::eXBox;
   mMotorIndex = 1;
 
   // Configure the button bindings
@@ -32,7 +33,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::HandlePOV()
 {
-  switch (mController->GetPOV())
+  switch (mController.GetPOV())
   {
   case 0:
     if (mMotorIndex < 2)
@@ -64,20 +65,36 @@ void RobotContainer::HandlePOV()
 
 void RobotContainer::Drive()
 {
-  HandlePOV();
+  if(mDriveController == SubDriveTrain::DriveController::eXBox)
+  {
+    HandlePOV();
+  }
+
+ 
 
   switch (mDriveMode)
   {
   case SubDriveTrain::DriveMode::eTankDrive:
     mSubDriveTrain->TankDrive(
-        - mController->GetY(frc::GenericHID::JoystickHand::kLeftHand),
-        - mController->GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
+        - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
+        - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
     break;
   
   case SubDriveTrain::DriveMode::eArcadeDrive:
-    mSubDriveTrain->ArcadeDrive(
-          mController->GetY(frc::GenericHID::JoystickHand::kLeftHand),
-          mController->GetX(frc::GenericHID::JoystickHand::kLeftHand), mMotorSpeed[mMotorIndex]);
+    if(mDriveController == SubDriveTrain::DriveController::eJoystick)
+    {
+      mSubDriveTrain->ArcadeDrive(
+           - mJoystick.GetY(),
+          mJoystick.GetZ(), mMotorSpeed[mMotorIndex]);
+    }
+
+    else
+    {
+      mSubDriveTrain->ArcadeDrive(
+           - mController.GetY(frc::GenericHID::JoystickHand::kRightHand),
+          mController.GetX(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
+    }
+    
     break;
   }
 }

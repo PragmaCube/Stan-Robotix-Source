@@ -18,6 +18,7 @@
  */
 
 #include <frc/XboxController.h>
+#include <frc/Joystick.h>
 
 #include "subsystems/DriveTrain.h"
 
@@ -35,11 +36,13 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
 
-  frc::XboxController* mController{0};
+  frc::XboxController mController{0};
+  frc::Joystick mJoystick{0};
 
   SubDriveTrain* mSubDriveTrain;
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
   SubDriveTrain::DriveMode mDriveMode;
+  SubDriveTrain::DriveController mDriveController;
   int mMotorIndex;
 
   void ConfigureButtonBindings();
