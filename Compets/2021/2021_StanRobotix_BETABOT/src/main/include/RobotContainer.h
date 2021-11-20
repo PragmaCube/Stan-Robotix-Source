@@ -27,6 +27,7 @@ class RobotContainer {
 
   frc2::Command* GetAutonomousCommand();
 
+  void HandlePOV();
   void Drive();
 
  private:
@@ -34,10 +35,11 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
 
-  frc::XboxController mController{0};
+  frc::XboxController* mController{0};
 
   SubDriveTrain* mSubDriveTrain;
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
+  SubDriveTrain::DriveMode mDriveMode;
   int mMotorIndex;
 
   void ConfigureButtonBindings();
