@@ -22,6 +22,9 @@ SubsystemCamera::SubsystemCamera()
   mCameraCapture = new cv::VideoCapture(0);
 }
 
+SubsystemCamera::~SubsystemCamera()
+{ }
+
 void SubsystemCamera::captureImage()
 {
   *mCameraCapture >> mMat;
@@ -32,9 +35,7 @@ void SubsystemCamera::captureImage()
   }
 }
 
-std::vector<grip::Line> SubsystemCamera::getLines()
-{
-}
+
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

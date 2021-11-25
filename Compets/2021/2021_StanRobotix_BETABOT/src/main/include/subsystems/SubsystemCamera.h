@@ -19,19 +19,23 @@
 class SubsystemCamera : public frc2::SubsystemBase {
  public:
   SubsystemCamera();
+  ~SubsystemCamera();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
-  void Periodic() override;
+
+  //A Commenter ?
+  //void Periodic() override;
 
   /**
    * Will be called periodically whenever the CommandScheduler runs during
    * simulation.
    */
-  void SimulationPeriodic() override;
 
-  std::vector<grip::Line> getLines();
+  // A commenter ?
+  //void SimulationPeriodic() override;
+
 
   void captureImage();
 
