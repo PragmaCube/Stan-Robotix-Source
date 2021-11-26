@@ -59,7 +59,9 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {
+void Robot::TeleopPeriodic()
+{
+  m_container.Drive();
   std::cout << mSubsystemCamera.getAverageLine().lenght() << std::endl;
 }
 
