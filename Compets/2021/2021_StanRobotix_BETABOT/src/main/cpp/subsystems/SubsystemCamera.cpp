@@ -19,6 +19,7 @@ void SubsystemCamera::InitDefaultCommand() {
 
 SubsystemCamera::SubsystemCamera()
 {
+  //Pourrait ne pas fonctionner, à voir...
   mCameraCapture = new cv::VideoCapture(0);
   *mCameraCapture >> mMat;
   mCameraFilter.Process(mMat);
@@ -40,12 +41,27 @@ void SubsystemCamera::streamLinesLenght()
 grip::Line SubsystemCamera::getAverageLine()
 {
   grip::Line wAverageLine(0, 0, 0, 0);
+  int wLineCount = 0;
   for (grip::Line wCurrentLine : *mCameraFilter.getFilterLinesOutput())
   {
+    //Somme algébrique des coordonnées
+
     wAverageLine.x1 += wCurrentLine.x1; 
     wAverageLine.x2 += wCurrentLine.x2;
     wAverageLine.y1 += wCurrentLine.y1;
     wAverageLine.y2 += wCurrentLine.y2;
+    wLineCount ++;
+  }
+
+  //On ne veut pas de divisions par 0 :)
+  if (wLineCount)
+  {
+    //Calcul de moyenne
+
+    wAverageLine.x1 /= wLineCount;
+    wAverageLine.x2 /= wLineCount;
+    wAverageLine.y1 /= wLineCount;
+    wAverageLine.y2 /= wLineCount;
   }
 
   return wAverageLine;
