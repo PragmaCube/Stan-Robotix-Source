@@ -19,13 +19,15 @@
 class SubsystemCamera : public frc2::SubsystemBase {
  public:
   SubsystemCamera();
+
+  // Le deconstructeur doit être explicite sinon le code va juste pas compiler
   ~SubsystemCamera();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
 
-  //A Commenter ?
+  //A Commenter pour le moment :
   //void Periodic() override;
 
   /**
@@ -33,11 +35,13 @@ class SubsystemCamera : public frc2::SubsystemBase {
    * simulation.
    */
 
-  // A commenter ?
+  // A commenter pour le moment :
   //void SimulationPeriodic() override;
 
+  //Tester voir si il voit les lignes
+  void streamLinesLenght();
 
-  void captureImage();
+  grip::Line getAverageLine();
 
 
  private:
@@ -45,7 +49,6 @@ class SubsystemCamera : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
   //frc::CameraServer mCameraServer;
   grip::Camera mCameraFilter;
-
   cv::Mat mMat;
   cv::VideoCapture* mCameraCapture;
 };

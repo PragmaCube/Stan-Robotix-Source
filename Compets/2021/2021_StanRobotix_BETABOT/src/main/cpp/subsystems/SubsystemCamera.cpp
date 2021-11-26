@@ -20,19 +20,35 @@ void SubsystemCamera::InitDefaultCommand() {
 SubsystemCamera::SubsystemCamera()
 {
   mCameraCapture = new cv::VideoCapture(0);
+  *mCameraCapture >> mMat;
+  mCameraFilter.Process(mMat);
 }
 
 SubsystemCamera::~SubsystemCamera()
-{ }
+{ 
+  delete mCameraCapture;
+}
 
-void SubsystemCamera::captureImage()
+void SubsystemCamera::streamLinesLenght()
 {
-  *mCameraCapture >> mMat;
-  mCameraFilter.Process(mMat);
   for (grip::Line wCurrentLine : *mCameraFilter.GetFilterLinesOutput())
   {
     std::cout << wCurrentLine.length() << std::endl;
   }
+}
+
+grip::Line SubsystemCamera::getAverageLine()
+{
+  grip::Line wAverageLine(0, 0, 0, 0);
+  for (grip::Line wCurrentLine : *mCameraFilter.getFilterLinesOutput())
+  {
+    wAverageLine.x1 += wCurrentLine.x1; 
+    wAverageLine.x2 += wCurrentLine.x2;
+    wAverageLine.y1 += wCurrentLine.y1;
+    wAverageLine.y2 += wCurrentLine.y2;
+  }
+
+  return wAverageLine;
 }
 
 
