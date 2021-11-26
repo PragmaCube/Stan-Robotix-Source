@@ -21,6 +21,8 @@
 #include <frc/Joystick.h>
 
 #include "subsystems/DriveTrain.h"
+#include "commands/PistonPulse.h"
+
 
 class RobotContainer {
  public:
@@ -35,6 +37,7 @@ class RobotContainer {
   // The robot's subsystems and commands are defined here...
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
+  PistonPulse mPistonPulse;
 
   frc::XboxController mController{0};
   frc::Joystick mJoystick{0};
@@ -43,6 +46,7 @@ class RobotContainer {
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
   SubDriveTrain::DriveMode mDriveMode;
   SubDriveTrain::DriveController mDriveController;
+  SubSolenoid *mPiston;
   int mMotorIndex;
 
   void ConfigureButtonBindings();

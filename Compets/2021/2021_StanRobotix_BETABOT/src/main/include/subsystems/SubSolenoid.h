@@ -6,8 +6,8 @@
 
 #include <frc2/command/SubsystemBase.h>
 
-#include <frc/SolenoidBase.h>
-#include <frc/Solenoid.h>
+#include <frc/Compressor.h>
+#include <frc/DoubleSolenoid.h>
 #include <frc/AnalogPotentiometer.h>
 
 
@@ -20,13 +20,18 @@ class SubSolenoid : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  void SwitchState();
+  void SwitchCompressorState();
+  void SwitchPistonState();
+  void SetInactive();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-  frc::Solenoid mPiston{0};
+  frc::DoubleSolenoid mPiston{2, 3};
+  frc::Compressor mCompressor;
   frc::AnalogPotentiometer mPressureTransducer{1, 250, -25};
+
   double mPressure;
+  bool mCompressorState = true;
 };

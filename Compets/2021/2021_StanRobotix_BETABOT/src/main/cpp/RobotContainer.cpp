@@ -6,6 +6,8 @@
 
 #include "RobotContainer.h"
 
+#include <frc2/command/button/JoystickButton.h>
+
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   // Initialize all of your commands and subsystems here
 
@@ -23,6 +25,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
+  frc2::JoystickButton(&mController, 6).WhenPressed(PistonPulse(mPiston, false));
   
 }
 
@@ -70,7 +73,10 @@ void RobotContainer::Drive()
     HandlePOV();
   }
 
- 
+  if(mController.GetBumperPressed(frc::GenericHID::JoystickHand::kLeftHand))
+  {
+    mPiston->SwitchCompressorState();
+  }
 
   switch (mDriveMode)
   {

@@ -9,7 +9,27 @@ SubSolenoid::SubSolenoid() = default;
 // This method will be called once per scheduler run
 void SubSolenoid::Periodic() {}
 
-void SubSolenoid::SwitchState()
+void SubSolenoid::SwitchCompressorState()
 {
-    mPiston.Set(!mPiston.Get());
+    if(mCompressorState)
+    {
+        mCompressor.Start();
+    }
+
+    else
+    {
+        mCompressor.Stop();
+    }
+
+    mCompressorState = !mCompressorState;   
+}
+
+void SubSolenoid::SwitchPistonState()
+{
+    mPiston.Toggle();
+}
+
+void SubSolenoid::SetInactive()
+{
+    mPiston.Set(frc::DoubleSolenoid::kOff);
 }
