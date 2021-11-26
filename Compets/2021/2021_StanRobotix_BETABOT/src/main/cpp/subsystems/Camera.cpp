@@ -18,7 +18,7 @@ void Camera::Process(cv::Mat& source0){
 
 	// Changer ces valeurs pour changer les valeurs de filtration
 	double filterLinesMinLength = 100.0;  // default Double
-	double filterLinesAngle[] = {0, 360.0};
+	double filterLinesAngle[] = {0, 360.0}; // L'angle
 	filterLines(filterLinesLines, filterLinesMinLength, filterLinesAngle, this->filterLinesOutput);
 }
 
