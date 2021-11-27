@@ -21,7 +21,6 @@ class SubsystemCamera : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   //frc::CameraServer mCameraServer;
-  cv::VideoCapture m_camerac_apture;
   cv::Mat* m_mat;
   bbot_cv::CameraProcessing m_camera_processing;
 
