@@ -88,12 +88,12 @@ void RobotContainer::Drive()
     mPiston->SwitchPistonState();
   }
 
-  if(mController.GetStickButtonPressed(frc::GenericHID::JoystickHand::kRightHand))
+  if(mController.GetXButtonPressed())
   {
     mPulley->Up();
   }
 
-  if(mController.GetStickButtonPressed(frc::GenericHID::JoystickHand::kLeftHand))
+  if(mController.GetYButtonPressed())
   {
     mPulley->Down();
   }
