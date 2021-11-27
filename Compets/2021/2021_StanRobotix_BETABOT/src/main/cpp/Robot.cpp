@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Robot.h"
-#include "subsystems/Camera.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
@@ -60,7 +59,7 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  m_subsystem_camera.stremLinesLenght();
+  m_subsystem_camera.streamLinesLenght();
 }
 
 /**

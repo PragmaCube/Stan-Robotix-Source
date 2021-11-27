@@ -28,33 +28,31 @@ SubsystemCamera::~SubsystemCamera()
   delete m_mat;
 }
 
-void SubsystemCamera::streamLinesLenght()
+void SubsystemCamera::snatchImage()
 {
   cv::VideoCapture w_camera(0);
   w_camera >> *m_mat;
   m_camera_processing.setImage(*m_mat);
   m_camera_processing.setParameters(7, 80, 5, 0, 0);
   m_camera_processing.Process();
+
+}
+
+void SubsystemCamera::streamLinesLenght()
+{
+  snatchImage();
   std::cout << m_camera_processing.getAverageLine().getLineLenght();
 }
 
-double getAverageAngle()
+double SubsystemCamera::getAverageAngle()
 {
-  cv::VideoCapture w_camera(0);
-  w_camera >> *m_mat;
-  m_camera_processing.setImage(*m_mat);
-  m_camera_processing.setParameters(7, 80, 5, 0, 0);
-  m_camera_processing.Process();
+  snatchImage();
   return m_camera_processing.getAverageLine().getLineAngle();
 }
 
-double getAverageLenght()
+double SubsystemCamera::getAverageLenght()
 {
-  cv::VideoCapture w_camera(0);
-  w_camera >> *m_mat;
-  m_camera_processing.setImage(*m_mat);
-  m_camera_processing.setParameters(7, 80, 5, 0, 0);
-  m_camera_processing.Process();
+  snatchImage();
   return m_camera_processing.getAverageLine().getLineLenght();
 }
 

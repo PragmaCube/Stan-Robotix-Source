@@ -23,6 +23,7 @@ class SubsystemCamera : public frc2::SubsystemBase {
   //frc::CameraServer mCameraServer;
   cv::Mat* m_mat;
   bbot_cv::CameraProcessing m_camera_processing;
+  void snatchImage();
 
  public:
   SubsystemCamera();
