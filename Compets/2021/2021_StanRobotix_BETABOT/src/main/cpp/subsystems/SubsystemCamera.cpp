@@ -20,51 +20,42 @@ void SubsystemCamera::InitDefaultCommand() {
 SubsystemCamera::SubsystemCamera()
 {
   //Pourrait ne pas fonctionner, à voir...
-  mCameraCapture = new cv::VideoCapture(0);
-  *mCameraCapture >> mMat;
-  mCameraFilter.Process(mMat);
+  m_mat = new cv::Mat;
 }
 
 SubsystemCamera::~SubsystemCamera()
 { 
-  delete mCameraCapture;
+  delete m_mat;
 }
 
 void SubsystemCamera::streamLinesLenght()
 {
-  for (grip::Line wCurrentLine : *mCameraFilter.GetFilterLinesOutput())
-  {
-    std::cout << wCurrentLine.length() << std::endl;
-  }
+  cv::VideoCapture w_camera(0);
+  w_camera >> *m_mat;
+  m_camera_processing.setImage(*m_mat);
+  m_camera_processing.setParameters(7, 80, 5, 0, 0);
+  m_camera_processing.Process();
+  std::cout << m_camera_processing.getAverageLine().getLineLenght();
 }
 
-grip::Line SubsystemCamera::getAverageLine()
+double getAverageAngle()
 {
-  grip::Line wAverageLine(0, 0, 0, 0);
-  int wLineCount = 0;
-  for (grip::Line wCurrentLine : *mCameraFilter.getFilterLinesOutput())
-  {
-    //Somme algébrique des coordonnées
+  cv::VideoCapture w_camera(0);
+  w_camera >> *m_mat;
+  m_camera_processing.setImage(*m_mat);
+  m_camera_processing.setParameters(7, 80, 5, 0, 0);
+  m_camera_processing.Process();
+  return m_camera_processing.getAverageLine().getLineAngle();
+}
 
-    wAverageLine.x1 += wCurrentLine.x1; 
-    wAverageLine.x2 += wCurrentLine.x2;
-    wAverageLine.y1 += wCurrentLine.y1;
-    wAverageLine.y2 += wCurrentLine.y2;
-    wLineCount ++;
-  }
-
-  //On ne veut pas de divisions par 0 :)
-  if (wLineCount)
-  {
-    //Calcul de moyenne
-
-    wAverageLine.x1 /= wLineCount;
-    wAverageLine.x2 /= wLineCount;
-    wAverageLine.y1 /= wLineCount;
-    wAverageLine.y2 /= wLineCount;
-  }
-
-  return wAverageLine;
+double getAverageLenght()
+{
+  cv::VideoCapture w_camera(0);
+  w_camera >> *m_mat;
+  m_camera_processing.setImage(*m_mat);
+  m_camera_processing.setParameters(7, 80, 5, 0, 0);
+  m_camera_processing.Process();
+  return m_camera_processing.getAverageLine().getLineLenght();
 }
 
 

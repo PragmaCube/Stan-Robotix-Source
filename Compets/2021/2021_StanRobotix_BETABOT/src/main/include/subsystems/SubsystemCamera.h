@@ -9,7 +9,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <cameraserver/CameraServer.h>
-#include "Camera.h"
+#include "camera_find_lines.h"
 #include <opencv2/objdetect/objdetect.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -17,6 +17,14 @@
 #include <opencv2/features2d.hpp>
 
 class SubsystemCamera : public frc2::SubsystemBase {
+ private:
+  // Components (e.g. motor controllers and sensors) should generally be
+  // declared private and exposed only through public methods.
+  //frc::CameraServer mCameraServer;
+  cv::VideoCapture m_camerac_apture;
+  cv::Mat* m_mat;
+  bbot_cv::CameraProcessing m_camera_processing;
+
  public:
   SubsystemCamera();
 
@@ -41,14 +49,6 @@ class SubsystemCamera : public frc2::SubsystemBase {
   //Tester voir si il voit les lignes
   void streamLinesLenght();
 
-  grip::Line getAverageLine();
-
-
- private:
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
-  //frc::CameraServer mCameraServer;
-  grip::Camera mCameraFilter;
-  cv::Mat mMat;
-  cv::VideoCapture* mCameraCapture;
+  double getAverageAngle();
+  double getAverageLenght();
 };
