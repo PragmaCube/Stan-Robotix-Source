@@ -21,7 +21,9 @@
 #include <frc/Joystick.h>
 
 #include "subsystems/DriveTrain.h"
+#include "subsystems/Pulley.h"
 #include "commands/PistonPulse.h"
+#include <frc/DigitalInput.h>
 
 
 class RobotContainer {
@@ -46,8 +48,11 @@ class RobotContainer {
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
   SubDriveTrain::DriveMode mDriveMode;
   SubDriveTrain::DriveController mDriveController;
-  SubSolenoid *mPiston;
   int mMotorIndex;
+
+  SubSolenoid *mPiston;
+
+  Pulley *mPulley;
 
   void ConfigureButtonBindings();
 };

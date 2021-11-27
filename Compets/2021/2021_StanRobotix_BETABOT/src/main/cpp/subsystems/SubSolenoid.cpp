@@ -26,10 +26,20 @@ void SubSolenoid::SwitchCompressorState()
 
 void SubSolenoid::SwitchPistonState()
 {
-    mPiston.Toggle();
+    if(mState)
+    {
+        mPiston.Set(frc::DoubleSolenoid::kForward);
+    }
+
+    else
+    {
+        mPiston.Set(frc::DoubleSolenoid::kReverse);   
+    }
+    
+    mState = !mState;    
 }
 
 void SubSolenoid::SetInactive()
 {
-    mPiston.Set(frc::DoubleSolenoid::kOff);
+    mCompressor.Stop();
 }

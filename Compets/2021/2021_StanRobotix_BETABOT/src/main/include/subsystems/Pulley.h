@@ -5,34 +5,25 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
+#include <frc/Spark.h>
+#include <frc/DigitalInput.h>
 
-#include <frc/Compressor.h>
-#include <frc/DoubleSolenoid.h>
-#include <frc/AnalogPotentiometer.h>
-
-
-class SubSolenoid : public frc2::SubsystemBase {
+class Pulley : public frc2::SubsystemBase {
  public:
-  SubSolenoid();
+  Pulley();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-
-  void SwitchCompressorState();
-  void SwitchPistonState();
-  void SetInactive();
+  void Up();
+  void Down();
 
  private:
+  frc::Spark mMotor{5};
+  frc::DigitalInput mTopSwitch{0};
+  frc::DigitalInput mBottomSwitch{1};
+  
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-
-  frc::DoubleSolenoid mPiston{0, 1};
-  frc::Compressor mCompressor;
-  bool mState = false;
-  //frc::AnalogPotentiometer mPressureTransducer{1, 250, -25};
-
-  double mPressure;
-  bool mCompressorState = true;
 };

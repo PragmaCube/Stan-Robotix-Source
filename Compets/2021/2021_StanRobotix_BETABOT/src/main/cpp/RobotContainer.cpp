@@ -7,11 +7,14 @@
 #include "RobotContainer.h"
 
 #include <frc2/command/button/JoystickButton.h>
+#include "commands/MoveStraightXSeconds.h"
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   // Initialize all of your commands and subsystems here
-
   mSubDriveTrain = new SubDriveTrain;
+  mPiston = new SubSolenoid;
+  mPulley = new Pulley;
+
   mMotorSpeed[0] = SubDriveTrain::MotorSpeed::eSlow;
   mMotorSpeed[1] = SubDriveTrain::MotorSpeed::eMedium;
   mMotorSpeed[2] = SubDriveTrain::MotorSpeed::eFast;
@@ -21,12 +24,14 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
   // Configure the button bindings
   ConfigureButtonBindings();
+
+  mPiston->SetInactive();
 }
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
   frc2::JoystickButton(&mController, 6).WhenPressed(PistonPulse(mPiston, false));
-  
+ // frc2::JoystickButton(&mController, 1).WhenPressed(&MoveStraightXSeconds(mSubDriveTrain).WithTimeout(2.0_s));
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
@@ -76,6 +81,21 @@ void RobotContainer::Drive()
   if(mController.GetBumperPressed(frc::GenericHID::JoystickHand::kLeftHand))
   {
     mPiston->SwitchCompressorState();
+  }
+
+  if(mController.GetBumperPressed(frc::GenericHID::JoystickHand::kRightHand))
+  {
+    mPiston->SwitchPistonState();
+  }
+
+  if(mController.GetStickButtonPressed(frc::GenericHID::JoystickHand::kRightHand))
+  {
+    mPulley->Up();
+  }
+
+  if(mController.GetStickButtonPressed(frc::GenericHID::JoystickHand::kLeftHand))
+  {
+    mPulley->Down();
   }
 
   switch (mDriveMode)
