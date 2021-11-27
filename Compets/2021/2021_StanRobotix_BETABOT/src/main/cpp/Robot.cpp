@@ -59,8 +59,11 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
+  std::cout << "Average line lenght : \n";
   m_subsystem_camera.streamLinesLenght();
+  std::cout <<"\n bottom text \n";
 }
+
 
 /**
  * This function is called periodically during test mode.
