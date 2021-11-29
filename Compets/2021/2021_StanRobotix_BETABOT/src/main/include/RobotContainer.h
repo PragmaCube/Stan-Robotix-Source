@@ -6,9 +6,9 @@
 
 #include <frc2/command/Command.h>
 
-#include "subsystems/DriveTrain.h"
 #include "subsystems/IMU.h"
-
+#include "subsystems/ExampleSubsystem.h"
+#include "commands/ExampleCommand.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -17,16 +17,32 @@
  * scheduler calls).  Instead, the structure of the robot (including subsystems,
  * commands, and button mappings) should be declared here.
  */
+
+#include <frc/XboxController.h>
+
+#include "subsystems/DriveTrain.h"
+
 class RobotContainer {
  public:
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
+
   void Drive();
+  double getX();
+  double getY();
  private:
   // The robot's subsystems and commands are defined here...
-  DriveTrain mDriveTrain;
+  ExampleSubsystem m_subsystem;
+  ExampleCommand m_autonomousCommand;
+  frc::XboxController mController{0};
+
+  SubDriveTrain* mSubDriveTrain;
+  SubDriveTrain::MotorSpeed mMotorSpeed[3];
+  int mMotorIndex;
+
+  void ConfigureButtonBindings();
+
   IMU mIMU;
   
-  void ConfigureButtonBindings();
 };

@@ -42,7 +42,10 @@ void Robot::AutonomousInit() {
   }
 }
 
-void Robot::AutonomousPeriodic() {}
+void Robot::AutonomousPeriodic() 
+{
+  std::cout << "X accel : " << m_container.getX()  << "  //   Y accel : " << m_container.getY() << std::endl;
+}
 
 void Robot::TeleopInit() {
   // This makes sure that the autonomous stops running when
@@ -53,7 +56,6 @@ void Robot::TeleopInit() {
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
-  mDriveTrain.Init();
 }
 
 /**
@@ -62,6 +64,7 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic()
 {
   m_container.Drive();
+  std::cout << "X accel : " << m_container.getX()  << "  //   Y accel : " << m_container.getY() << std::endl;
 }
 
 /**

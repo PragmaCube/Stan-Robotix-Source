@@ -3,13 +3,30 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/DriveTrain.h"
-DriveTrain::DriveTrain() = default;
-// This method will be called once per scheduler run
-void DriveTrain::Periodic()
-{
-    mTankDrive.TankDrive(-mXboxController.GetY(frc::GenericHID::JoystickHand::kLeftHand)*kMotorPower,-mXboxController.GetY(frc::GenericHID::JoystickHand::kRightHand)*kMotorPower);
-}
 
-void DriveTrain::Init()
+SubDriveTrain::SubDriveTrain() = default;
+
+// This method will be called once per scheduler run
+void SubDriveTrain::Periodic() {}
+
+void SubDriveTrain::TankDrive(double iLeft, double iRight, MotorSpeed iMotorSpeed)
 {
+    switch (iMotorSpeed)
+    {
+    case eSlow:
+        mTankDrive.TankDrive(0.3 * iLeft, 0.3 * iRight, false);
+        break;
+
+    case eMedium:
+        mTankDrive.TankDrive(0.65 * iLeft, 0.65 * iRight, false);
+        break;
+
+    case eFast:
+        mTankDrive.TankDrive(iLeft, iRight, false);
+        break;
+
+    default:
+        mTankDrive.TankDrive(0.75 * iLeft, 0.75 * iRight, false);
+        break;
+    }
 }
