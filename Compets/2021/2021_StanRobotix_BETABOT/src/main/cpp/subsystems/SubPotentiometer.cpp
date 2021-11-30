@@ -12,6 +12,15 @@ void SubPotentiometer::Periodic() {}
 void SubPotentiometer::SimulationPeriodic() {}
 
 double SubPotentiometer::getDistance()
-{
-    return pot.Get();
+{/*
+    double mDistance = 0;
+    for (int i = 0; i < 4 ; i++)
+    {
+        mDistance += ultrasonic.GetValue()
+    }
+    return mDistance/4;*/
+    double raw_value = ultrasonic.GetValue();
+    double voltage_scale_factor = 5/mRobotController.GetVoltage5V();
+    double currentDistanceCentimeters = raw_value * voltage_scale_factor * 0.125;
+    double currentDistanceInches = raw_value * voltage_scale_factor * 0.0492;
 }

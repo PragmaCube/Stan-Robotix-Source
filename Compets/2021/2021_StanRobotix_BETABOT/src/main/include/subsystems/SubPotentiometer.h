@@ -5,8 +5,9 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/AnalogPotentiometer.h>
+#include <frc/AnalogInput.h>
 #include "Constants.h"
+#include <frc/RobotController.h>
 
 class SubPotentiometer : public frc2::SubsystemBase {
  public:
@@ -26,5 +27,6 @@ class SubPotentiometer : public frc2::SubsystemBase {
   double getDistance();
 
  private:
-  frc::AnalogPotentiometer pot{kPotentiometerPort, 180, 30};
+  frc::AnalogInput ultrasonic{kPotentiometerPort};
+  frc::RobotController mRobotController;
 };

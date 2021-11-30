@@ -43,7 +43,10 @@ void Robot::AutonomousInit() {
   }
 }
 
-void Robot::AutonomousPeriodic() {}
+void Robot::AutonomousPeriodic() 
+{
+  std::cout << m_potentiometer.getDistance() << std::endl;
+}
 
 void Robot::TeleopInit() {
   // This makes sure that the autonomous stops running when
@@ -62,7 +65,7 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic()
 {
   m_container.Drive();
-  std::cout << m_potentiometer.getDistance();
+  std::cout << m_potentiometer.getDistance() << std::endl;
 }
 
 /**
