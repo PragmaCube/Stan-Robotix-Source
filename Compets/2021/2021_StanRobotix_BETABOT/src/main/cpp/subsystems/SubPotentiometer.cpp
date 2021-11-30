@@ -23,4 +23,5 @@ double SubPotentiometer::getDistance()
     double voltage_scale_factor = 5/mRobotController.GetVoltage5V();
     double currentDistanceCentimeters = raw_value * voltage_scale_factor * 0.125;
     double currentDistanceInches = raw_value * voltage_scale_factor * 0.0492;
+    return currentDistanceInches;
 }
