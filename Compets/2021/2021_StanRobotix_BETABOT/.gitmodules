@@ -1,0 +1,6 @@
+[submodule "Activités/2020_Formation_Github/Formation-Github"]
+	path = Activités/2020_Formation_Github/Formation-Github
+	url = https://github.com/QuantaHD/Formation-Github.git
+[submodule "Activités/2020/Formation-Github"]
+	path = Activités/2020/Formation-Github
+	url = https://github.com/QuantaHD/Formation-Github.git
