@@ -9,11 +9,13 @@
 #include <frc2/command/button/JoystickButton.h>
 #include "commands/MoveStraightXSeconds.h"
 
+
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   // Initialize all of your commands and subsystems here
   mSubDriveTrain = new SubDriveTrain;
   mPiston = new SubSolenoid;
   mPulley = new Pulley;
+  mUnder10Inch = new under_10_inch(mSubDriveTrain);
 
   mMotorSpeed[0] = SubDriveTrain::MotorSpeed::eSlow;
   mMotorSpeed[1] = SubDriveTrain::MotorSpeed::eMedium;
@@ -36,7 +38,8 @@ void RobotContainer::ConfigureButtonBindings() {
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  return &m_autonomousCommand;
+  //return &m_autonomousCommand;
+  return mUnder10Inch;
 }
 
 void RobotContainer::HandlePOV()

@@ -8,6 +8,7 @@
 
 #include "commands/ExampleCommand.h"
 #include "subsystems/ExampleSubsystem.h"
+#include "commands/under_10_inch.h"
 
 
 /**
@@ -41,6 +42,7 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
   PistonPulse mPistonPulse;
+  under_10_inch* mUnder10Inch;
 
   frc::XboxController mController{0};
   frc::Joystick mJoystick{0};
