@@ -44,7 +44,7 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() 
 {
-  std::cout << "X accel : " << m_container.getX()  << "  //   Y accel : " << m_container.getY() << std::endl;
+  std::cout << "X accel : " << m_container.acceleroGetX()  << "  //   Y accel : " << m_container.acceleroGetY() << "   //   Z Turning Value" << m_container.getZTurning() << std::endl;
 }
 
 void Robot::TeleopInit() {
@@ -64,7 +64,7 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic()
 {
   m_container.Drive();
-  std::cout << "X accel : " << m_container.getX()  << "  //   Y accel : " << m_container.getY() << std::endl;
+  std::cout << "X accel : " << m_container.acceleroGetX()  << "  //   Y accel : " << m_container.acceleroGetY() << "   //   Z Turning Value" << m_container.getZTurning() << std::endl;
 }
 
 /**

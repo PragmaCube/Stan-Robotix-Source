@@ -17,6 +17,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
   // Configure the button bindings
   ConfigureButtonBindings();
+  mIMU.Init();
 }
 
 void RobotContainer::ConfigureButtonBindings() {
@@ -52,11 +53,17 @@ void RobotContainer::Drive()
         - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
 
 }
-double RobotContainer::getX()
+
+double RobotContainer::acceleroGetX()
 {
   return mIMU.getXAccel();
 }
-double RobotContainer::getY()
+double RobotContainer::acceleroGetY()
 {
   return mIMU.getYAccel();
+}
+
+double RobotContainer::getZTurning()
+{
+  return mIMU.getZTurningValue();
 }
