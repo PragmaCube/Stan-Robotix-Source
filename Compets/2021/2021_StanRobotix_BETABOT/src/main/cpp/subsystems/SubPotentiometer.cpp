@@ -21,7 +21,7 @@ double SubPotentiometer::getDistance()
     return mDistance/4;*/
     double raw_value = ultrasonic.GetValue();
     double voltage_scale_factor = 5/frc::RobotController::GetVoltage5V();
-    double currentDistanceCentimeters = raw_value * voltage_scale_factor * 0.125;
+    //double currentDistanceCentimeters = raw_value * voltage_scale_factor * 0.125;
     double currentDistanceInches = raw_value * voltage_scale_factor * 0.0492;
     return currentDistanceInches;
 }
