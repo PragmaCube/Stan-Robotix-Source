@@ -28,5 +28,4 @@ class SubPotentiometer : public frc2::SubsystemBase {
 
  private:
   frc::AnalogInput ultrasonic{kPotentiometerPort};
-  frc::RobotController mRobotController;
 };
