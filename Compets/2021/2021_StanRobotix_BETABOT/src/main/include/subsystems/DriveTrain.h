@@ -6,7 +6,6 @@
 
 #include <frc2/command/SubsystemBase.h>
 
-#include <frc/Spark.h>
 #include <frc/Talon.h>
 
 #include <frc/SpeedController.h>
@@ -31,6 +30,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
   void Periodic() override;
   void TankDrive(double iLeft, double iRight, MotorSpeed iMotorSpeed);
   void ArcadeDrive(double iSpeed, double iRotation, MotorSpeed iMotorSpeed);
+  void SetInactive();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be

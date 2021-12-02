@@ -8,9 +8,9 @@
 #include <frc/Spark.h>
 #include <frc/DigitalInput.h>
 
-class Pulley : public frc2::SubsystemBase {
+class SubPulley : public frc2::SubsystemBase {
  public:
-  Pulley();
+  SubPulley();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -18,6 +18,7 @@ class Pulley : public frc2::SubsystemBase {
   void Periodic() override;
   void Up();
   void Down();
+  void setInactive();
 
  private:
   frc::Spark mMotor{5};

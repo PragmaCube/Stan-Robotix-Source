@@ -18,15 +18,15 @@ void SubDriveTrain::TankDrive(double iLeft, double iRight, MotorSpeed iMotorSpee
         break;
 
     case eMedium:
-        mDriveTrain.TankDrive(0.75 * iLeft, 0.65 * iRight, false);
+        mDriveTrain.TankDrive(0.45 * iLeft, 0.45 * iRight, false);
         break;
 
     case eFast:
-        mDriveTrain.TankDrive(iLeft, 0.9 * iRight, false);
+        mDriveTrain.TankDrive(0.9 * iLeft, 0.9 * iRight, false);
         break;
 
     default:
-        mDriveTrain.TankDrive(0.75 * iLeft, 0.65 * iRight, false);
+        mDriveTrain.TankDrive(0.65 * iLeft, 0.65 * iRight, false);
         break;
     }
 }
@@ -51,4 +51,9 @@ void SubDriveTrain::ArcadeDrive(double iSpeed, double iRotation, MotorSpeed iMot
         mDriveTrain.ArcadeDrive(0.75 * iSpeed, 0.75 * iRotation);
         break;
     }
+}
+
+void SubDriveTrain::SetInactive()
+{
+    mDriveTrain.TankDrive(0, 0);
 }
