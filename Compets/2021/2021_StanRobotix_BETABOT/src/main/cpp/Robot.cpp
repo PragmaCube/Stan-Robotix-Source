@@ -43,8 +43,8 @@ void Robot::AutonomousInit() {
   }
 }
 
-void Robot::AutonomousPeriodic() 
-{
+void Robot::AutonomousPeriodic() {
+  //m_container.Auto();
   std::cout << m_potentiometer.getDistance() << std::endl;
 }
 

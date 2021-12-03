@@ -24,9 +24,11 @@
 
 #include "subsystems/DriveTrain.h"
 #include "subsystems/Pulley.h"
-#include "commands/PistonPulse.h"
-#include <frc/DigitalInput.h>
 
+#include "commands/MoveStraightXSeconds.h"
+
+#include "commands/PistonPulse.h"
+#include "commands/Parallel.h"
 
 class RobotContainer {
  public:
@@ -36,11 +38,16 @@ class RobotContainer {
 
   void HandlePOV();
   void Drive();
+  void Auto();
 
  private:
   // The robot's subsystems and commands are defined here...
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
+
+  //Parallel mAutonomous;
+  MoveStraightXSeconds* mAuto;
+
   PistonPulse mPistonPulse;
   under_10_inch* mUnder10Inch;
 
@@ -53,9 +60,9 @@ class RobotContainer {
   SubDriveTrain::DriveController mDriveController;
   int mMotorIndex;
 
-  SubSolenoid *mPiston;
+  SubSolenoid* mPiston;
 
-  Pulley *mPulley;
+  SubPulley* mPulley;
 
   
 

@@ -4,23 +4,28 @@
 
 #include "subsystems/Pulley.h"
 
-Pulley::Pulley() = default;
+SubPulley::SubPulley() = default;
 
 // This method will be called once per scheduler run
-void Pulley::Periodic() {}
+void SubPulley::Periodic() {}
 
-void Pulley::Up()
+void SubPulley::Up()
 {
-    if(!mTopSwitch.Get())
-    {
-        mMotor.Set(0.1);
-    }
+    //if(!mTopSwitch.Get())
+    //{
+        mMotor.Set(0.35);
+    //}
 }
 
-void Pulley::Down()
+void SubPulley::Down()
 {
-    if(!mBottomSwitch.Get())
-    {
-        mMotor.Set(- 0.1);
-    }
+    //if(!mBottomSwitch.Get())
+    //{
+        mMotor.Set(- 0.25);
+    //}
+}
+
+void SubPulley::setInactive()
+{
+    mMotor.Set(0);
 }

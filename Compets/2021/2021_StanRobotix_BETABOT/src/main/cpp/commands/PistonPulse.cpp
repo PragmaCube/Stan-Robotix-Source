@@ -28,7 +28,7 @@ void PistonPulse::Initialize()
 void PistonPulse::Execute()
 {
   mPiston->SwitchPistonState();
-  frc2::Wait(2.0_s);
+  frc2::Wait(2.5_s);
   mPiston->SwitchPistonState();
 }
 

@@ -30,6 +30,5 @@ class Robot : public frc::TimedRobot {
   frc2::Command* m_autonomousCommand = nullptr;
 
   RobotContainer m_container;
-  frc::DigitalInput toplimitSwitch{0};
   SubPotentiometer m_potentiometer;
 };
