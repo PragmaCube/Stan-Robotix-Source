@@ -28,8 +28,10 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   ConfigureButtonBindings();
 
   mPiston->SetInactive();
+  mPiston->SwitchCompressorState();
   mSubDriveTrain->SetInactive();
 
+  mAutoTimer.Start();
 }
 
 void RobotContainer::ConfigureButtonBindings() {
@@ -42,7 +44,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   //return &MoveStraightXSeconds(mSubDriveTrain);
   return mAuto;
-  //return &PistonPulse(mPiston, false).WithTimeout(2.4_s);
+  //return PistonPulse(mPiston, false).WithTimeout(2.4_s);
 }
 
 void RobotContainer::HandlePOV()
@@ -140,5 +142,58 @@ void RobotContainer::Drive()
 
 void RobotContainer::Auto()
 {
-  mSubDriveTrain->TankDrive(1, 0.75, SubDriveTrain::MotorSpeed::eFast);
+  if(mAutoTimer.Get() <= 1.3)
+  {
+    mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
+  }
+
+  else if(mAutoTimer.Get() >= 1.7 && mAutoTimer.Get() <= 2.1)
+  {
+    mSubDriveTrain->TankDrive(1, -1, SubDriveTrain::MotorSpeed::eFast);
+  }
+
+  else if(mAutoTimer.Get() >= 4.5 && mAutoTimer.Get() <= 6.9)
+  {
+    mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
+  }
+
+  else if(mAutoTimer.Get() >= 6.9 && mAutoTimer.Get() <= 7.6)
+  {
+    mSubDriveTrain->TankDrive(1, -1, SubDriveTrain::MotorSpeed::eFast);
+  }
+
+  else if(mAutoTimer.Get() >= 8 && mAutoTimer.Get() <= 9.2)
+  {
+    mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
+  }
+
+  else if(mAutoTimer.Get() >= 10 && mAutoTimer.Get() <= 13)
+  {
+    if(mAutoCompressor)
+    {
+      mPiston->SwitchCompressorState();
+      mAutoCompressor = false;
+    }
+
+    mPulley->Up();
+  }
+
+  else if(mAutoTimer.Get() >= 13)
+  {
+    if(!mAutoPulley)
+    {
+      mPulley->setInactive();
+      mAutoPulley = true;
+    }
+    
+  }
+  
+  
+
+  std::cout << mAutoTimer.Get() << std::endl;
+}
+
+void RobotContainer::ResetAuto()
+{
+  mAutoTimer.Reset();
 }

@@ -20,7 +20,7 @@ void MoveStraightXSeconds::Initialize() {}
 // Called repeatedly  when this Command is scheduled to run
 void MoveStraightXSeconds::Execute()
 {
-  mDriveTrain->TankDrive(0.25, 0.25, SubDriveTrain::MotorSpeed::eSlow);
+  mDriveTrain->TankDrive(0.31, 0.25, SubDriveTrain::MotorSpeed::eSlow);
 }
 
 // Called once the command ends or is interrupted.

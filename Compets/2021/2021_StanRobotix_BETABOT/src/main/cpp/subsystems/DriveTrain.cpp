@@ -22,11 +22,11 @@ void SubDriveTrain::TankDrive(double iLeft, double iRight, MotorSpeed iMotorSpee
         break;
 
     case eFast:
-        mDriveTrain.TankDrive(0.9 * iLeft, 0.9 * iRight, false);
+        mDriveTrain.TankDrive(0.65 * iLeft, 0.65 * iRight, false);
         break;
 
     default:
-        mDriveTrain.TankDrive(0.65 * iLeft, 0.65 * iRight, false);
+        mDriveTrain.TankDrive(0.45 * iLeft, 0.45 * iRight, false);
         break;
     }
 }

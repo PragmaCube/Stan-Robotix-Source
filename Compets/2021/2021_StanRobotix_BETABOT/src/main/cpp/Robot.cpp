@@ -36,14 +36,15 @@ void Robot::DisabledPeriodic() {}
  */
 void Robot::AutonomousInit() {
   m_autonomousCommand = m_container.GetAutonomousCommand();
+  m_container.ResetAuto();
 
   if (m_autonomousCommand != nullptr) {
-    m_autonomousCommand->Schedule();
+    //m_autonomousCommand->Schedule();
   }
 }
 
 void Robot::AutonomousPeriodic() {
-  //m_container.Auto();
+  m_container.Auto();
 }
 
 void Robot::TeleopInit() {

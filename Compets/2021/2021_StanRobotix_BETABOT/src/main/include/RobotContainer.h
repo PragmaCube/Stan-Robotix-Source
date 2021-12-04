@@ -28,6 +28,8 @@
 #include "commands/PistonPulse.h"
 #include "commands/Parallel.h"
 
+#include <frc/Timer.h>
+
 class RobotContainer {
  public:
   RobotContainer();
@@ -37,6 +39,7 @@ class RobotContainer {
   void HandlePOV();
   void Drive();
   void Auto();
+  void ResetAuto();
 
  private:
   // The robot's subsystems and commands are defined here...
@@ -46,7 +49,7 @@ class RobotContainer {
   //Parallel mAutonomous;
   MoveStraightXSeconds* mAuto;
 
-  PistonPulse mPistonPulse;
+  PistonPulse* mPistonPulse;
 
   frc::XboxController mController{0};
   frc::Joystick mJoystick{0};
@@ -60,6 +63,10 @@ class RobotContainer {
   SubSolenoid* mPiston;
 
   SubPulley* mPulley;
+
+  frc::Timer mAutoTimer;
+  bool mAutoCompressor = true;
+  bool mAutoPulley = false;
 
   void ConfigureButtonBindings();
 };
