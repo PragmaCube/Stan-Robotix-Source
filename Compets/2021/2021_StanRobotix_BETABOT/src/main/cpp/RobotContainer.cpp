@@ -28,7 +28,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   ConfigureButtonBindings();
 
   mPiston->SetInactive();
-  mPiston->SwitchCompressorState();
+  //mPiston->SwitchCompressorState();
   mSubDriveTrain->SetInactive();
 
   mAutoTimer.Start();
@@ -140,57 +140,134 @@ void RobotContainer::Drive()
   std::cout << mController.GetY(frc::GenericHID::JoystickHand::kLeftHand) << std:: endl << mController.GetY(frc::GenericHID::JoystickHand::kLeftHand) << std::endl;
 }
 
-void RobotContainer::Auto()
+void RobotContainer::Auto(Side iSide)
 {
-  if(mAutoTimer.Get() <= 1.3)
+  switch(iSide)
   {
-    mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
-  }
+    case Side::eRight:
 
-  else if(mAutoTimer.Get() >= 1.7 && mAutoTimer.Get() <= 2.1)
-  {
-    mSubDriveTrain->TankDrive(1, -1, SubDriveTrain::MotorSpeed::eFast);
-  }
-
-  else if(mAutoTimer.Get() >= 4.5 && mAutoTimer.Get() <= 6.9)
-  {
-    mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
-  }
-
-  else if(mAutoTimer.Get() >= 6.9 && mAutoTimer.Get() <= 7.6)
-  {
-    mSubDriveTrain->TankDrive(1, -1, SubDriveTrain::MotorSpeed::eFast);
-  }
-
-  else if(mAutoTimer.Get() >= 8 && mAutoTimer.Get() <= 9.2)
-  {
-    mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
-  }
-
-  else if(mAutoTimer.Get() >= 10 && mAutoTimer.Get() <= 13)
-  {
-    if(mAutoCompressor)
+    if(mAutoTimer.Get() <= 1.3)
     {
-      mPiston->SwitchCompressorState();
-      mAutoCompressor = false;
+      mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
     }
 
-    mPulley->Up();
-  }
-
-  else if(mAutoTimer.Get() >= 13)
-  {
-    if(!mAutoPulley)
+    else if(mAutoTimer.Get() >= 1.7 && mAutoTimer.Get() <= 2.1)
     {
-      mPulley->setInactive();
-      mAutoPulley = true;
+      mSubDriveTrain->TankDrive(1, -1, SubDriveTrain::MotorSpeed::eFast);
     }
-    
-  }
-  
-  
 
-  std::cout << mAutoTimer.Get() << std::endl;
+    else if(mAutoTimer.Get() >= 4.5 && mAutoTimer.Get() <= 7)
+    {
+      mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
+    }
+
+    else if(mAutoTimer.Get() >= 7 && mAutoTimer.Get() <= 7.62)
+    {
+      mSubDriveTrain->TankDrive(1, -1, SubDriveTrain::MotorSpeed::eFast);
+    }
+
+    else if(mAutoTimer.Get() >= 8 && mAutoTimer.Get() <= 8.9)
+    {
+      mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
+    }
+
+    else if(mAutoTimer.Get() >= 10 && mAutoTimer.Get() <= 13)
+    {
+      if(mAutoCompressor)
+      {
+        mPiston->SwitchCompressorState();
+        mAutoCompressor = false;
+      }
+
+      mPulley->Up();
+    }
+
+    else if(mAutoTimer.Get() >= 13)
+    {
+      if(!mAutoPulley)
+      {
+        mPulley->setInactive();
+        mAutoPulley = true;
+      }
+      
+    }
+
+    break;
+
+    case Side::eLeft:
+    if(mAutoTimer.Get() <= 1.3)
+    {
+      mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
+    }
+
+    else if(mAutoTimer.Get() >= 1.7 && mAutoTimer.Get() <= 2.1)
+    {
+      mSubDriveTrain->TankDrive(-1, 1, SubDriveTrain::MotorSpeed::eFast);
+    }
+
+    else if(mAutoTimer.Get() >= 4.5 && mAutoTimer.Get() <= 6.9)
+    {
+      mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
+    }
+
+    else if(mAutoTimer.Get() >= 6.9 && mAutoTimer.Get() <= 7.6)
+    {
+      mSubDriveTrain->TankDrive(- 1, 1, SubDriveTrain::MotorSpeed::eFast);
+    }
+
+    else if(mAutoTimer.Get() >= 8 && mAutoTimer.Get() <= 9.1)
+    {
+      mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
+    }
+
+    else if(mAutoTimer.Get() >= 10 && mAutoTimer.Get() <= 13)
+    {
+      if(mAutoCompressor)
+      {
+        mPiston->SwitchCompressorState();
+        mAutoCompressor = false;
+      }
+
+      mPulley->Up();
+    }
+
+    else if(mAutoTimer.Get() >= 13)
+    {
+      if(!mAutoPulley)
+      {
+        mPulley->setInactive();
+        mAutoPulley = true;
+      }
+      
+    }
+
+    break;
+
+    case Side::eForward:
+
+    if(mAutoTimer.Get() <= 3)
+    {
+      mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
+    }
+
+    break;
+
+    case Side::e90deg:
+
+    if(mAutoTimer.Get() <= 2.5)
+    {
+      mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
+    }
+
+    else if(mAutoTimer.Get() >= 2.5 && mAutoTimer.Get() <= 2.9)
+    {
+      mSubDriveTrain->TankDrive(1, -1, SubDriveTrain::MotorSpeed::eFast);
+    }
+
+    break;
+  }
+
+  
 }
 
 void RobotContainer::ResetAuto()

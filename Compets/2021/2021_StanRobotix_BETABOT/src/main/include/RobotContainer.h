@@ -32,13 +32,14 @@
 
 class RobotContainer {
  public:
+  enum Side { eLeft, eRight, eForward, e90deg };
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
 
   void HandlePOV();
   void Drive();
-  void Auto();
+  void Auto(Side iSide);
   void ResetAuto();
 
  private:

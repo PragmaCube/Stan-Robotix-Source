@@ -44,7 +44,7 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-  m_container.Auto();
+  m_container.Auto(RobotContainer::Side::eForward);
 }
 
 void Robot::TeleopInit() {
