@@ -43,8 +43,8 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
 
-  frc::XboxController mController{0};
-  frc::Joystick mJoystick{0};
+  frc::XboxController mController{kJoystickPort};
+  frc::Joystick mJoystick{kJoystickPort};
 
   SubDriveTrain* mSubDriveTrain;
 

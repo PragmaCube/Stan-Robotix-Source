@@ -10,6 +10,7 @@
 #include <frc/DoubleSolenoid.h>
 #include <frc/AnalogPotentiometer.h>
 
+#include "Constants.h"
 
 class SubSolenoid : public frc2::SubsystemBase {
  public:
@@ -28,10 +29,9 @@ class SubSolenoid : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-  frc::DoubleSolenoid mPiston{6, 7};
+  frc::DoubleSolenoid mPiston{kSolenoid1Port, kSolenoid2Port};
   frc::Compressor mCompressor;
   bool mState = false;
-  //frc::AnalogPotentiometer mPressureTransducer{1, 250, -25};
 
   double mPressure;
   bool mCompressorState = true;

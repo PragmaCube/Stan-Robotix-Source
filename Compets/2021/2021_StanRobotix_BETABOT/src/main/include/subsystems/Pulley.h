@@ -6,7 +6,8 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/Spark.h>
-#include <frc/DigitalInput.h>
+
+#include "Constants.h"
 
 class SubPulley : public frc2::SubsystemBase {
  public:
@@ -21,9 +22,7 @@ class SubPulley : public frc2::SubsystemBase {
   void setInactive();
 
  private:
-  frc::Spark mMotor{5};
-  frc::DigitalInput mTopSwitch{0};
-  frc::DigitalInput mBottomSwitch{1};
+  frc::Spark mMotor{kMotorPulley};
   
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

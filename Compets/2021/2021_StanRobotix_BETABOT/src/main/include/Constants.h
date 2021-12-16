@@ -19,4 +19,11 @@
 constexpr int kMotorL2Port = 0;
 constexpr int kMotorL1Port = 1;
 constexpr int kMotorR2Port = 2;
-constexpr int kMotorR1Port = 3; 
+constexpr int kMotorR1Port = 3;
+
+constexpr int kMotorPulley = 5;
+
+constexpr int kJoystickPort = 0;
+
+constexpr int kSolenoid1Port = 6;
+constexpr int kSolenoid2Port = 7;
