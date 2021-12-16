@@ -7,15 +7,12 @@
 #include "RobotContainer.h"
 
 #include <frc2/command/button/JoystickButton.h>
-#include "commands/MoveStraightXSeconds.h"
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   // Initialize all of your commands and subsystems here
   mSubDriveTrain = new SubDriveTrain;
   mPiston = new SubSolenoid;
   mPulley = new SubPulley;
-
-  mAuto = new MoveStraightXSeconds(mSubDriveTrain);
 
   mMotorSpeed[0] = SubDriveTrain::MotorSpeed::eSlow;
   mMotorSpeed[1] = SubDriveTrain::MotorSpeed::eMedium;
@@ -36,15 +33,11 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  //frc2::JoystickButton(&mController, 6).WhenPressed(PistonPulse(mPiston, false));
- // frc2::JoystickButton(&mController, 1).WhenPressed(&MoveStraightXSeconds(mSubDriveTrain).WithTimeout(2.0_s));
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  //return &MoveStraightXSeconds(mSubDriveTrain);
-  return mAuto;
-  //return PistonPulse(mPiston, false).WithTimeout(2.4_s);
+  return &m_autonomousCommand;
 }
 
 void RobotContainer::HandlePOV()
@@ -248,20 +241,6 @@ void RobotContainer::Auto(Side iSide)
     if(mAutoTimer.Get() <= 3)
     {
       mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
-    }
-
-    break;
-
-    case Side::e90deg:
-
-    if(mAutoTimer.Get() <= 2.5)
-    {
-      mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
-    }
-
-    else if(mAutoTimer.Get() >= 2.5 && mAutoTimer.Get() <= 2.9)
-    {
-      mSubDriveTrain->TankDrive(1, -1, SubDriveTrain::MotorSpeed::eFast);
     }
 
     break;

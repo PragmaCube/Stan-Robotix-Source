@@ -20,19 +20,15 @@
 #include <frc/XboxController.h>
 #include <frc/Joystick.h>
 
+#include <frc/Timer.h>
+
 #include "subsystems/DriveTrain.h"
 #include "subsystems/Pulley.h"
-
-#include "commands/MoveStraightXSeconds.h"
-
-#include "commands/PistonPulse.h"
-#include "commands/Parallel.h"
-
-#include <frc/Timer.h>
+#include "subsystems/Solenoid.h"
 
 class RobotContainer {
  public:
-  enum Side { eLeft, eRight, eForward, e90deg };
+  enum Side { eLeft, eRight, eForward };
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
@@ -47,18 +43,15 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
 
-  //Parallel mAutonomous;
-  MoveStraightXSeconds* mAuto;
-
-  PistonPulse* mPistonPulse;
-
   frc::XboxController mController{0};
   frc::Joystick mJoystick{0};
 
   SubDriveTrain* mSubDriveTrain;
+
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
   SubDriveTrain::DriveMode mDriveMode;
   SubDriveTrain::DriveController mDriveController;
+
   int mMotorIndex;
 
   SubSolenoid* mPiston;

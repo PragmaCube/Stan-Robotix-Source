@@ -11,18 +11,12 @@ void SubPulley::Periodic() {}
 
 void SubPulley::Up()
 {
-    //if(!mTopSwitch.Get())
-    //{
-        mMotor.Set(0.35);
-    //}
+    mMotor.Set(0.35);
 }
 
 void SubPulley::Down()
 {
-    //if(!mBottomSwitch.Get())
-    //{
-        mMotor.Set(- 0.25);
-    //}
+    mMotor.Set(- 0.25);
 }
 
 void SubPulley::setInactive()
