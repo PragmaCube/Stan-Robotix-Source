@@ -36,13 +36,16 @@ void Robot::DisabledPeriodic() {}
  */
 void Robot::AutonomousInit() {
   m_autonomousCommand = m_container.GetAutonomousCommand();
+  m_container.ResetAuto();
 
   if (m_autonomousCommand != nullptr) {
-    m_autonomousCommand->Schedule();
+    //m_autonomousCommand->Schedule();
   }
 }
 
-void Robot::AutonomousPeriodic() {}
+void Robot::AutonomousPeriodic() {
+  m_container.Auto(RobotContainer::Side::eForward);
+}
 
 void Robot::TeleopInit() {
   // This makes sure that the autonomous stops running when
@@ -58,7 +61,10 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic()
+{
+  m_container.Drive();
+}
 
 /**
  * This function is called periodically during test mode.
