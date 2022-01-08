@@ -42,6 +42,10 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::HandlePOV()
 {
+  ////////////////////
+  // 0 = haut, 90 = droite, 180 = bas, 270 = gauche
+  // Haut / bas = vitesse
+  // Droite / gauche = mode de conduite
   switch (mController.GetPOV())
   {
   case 0:
@@ -70,10 +74,14 @@ void RobotContainer::HandlePOV()
 
     break;
   }
+  ////////////////////
 }
 
 void RobotContainer::Drive()
 {
+
+  ////////////////////
+  // Mapper le controlleur
   if(mDriveController == SubDriveTrain::DriveController::eXBox)
   {
     HandlePOV();
@@ -103,6 +111,7 @@ void RobotContainer::Drive()
   {
     mPulley->setInactive();
   }
+  ////////////////////
   
   switch (mDriveMode)
   {
@@ -135,6 +144,10 @@ void RobotContainer::Drive()
 
 void RobotContainer::Auto(Side iSide)
 {
+  /*
+    Avance - Tourne à droite - Avance - Tourne à droite - Avance - Actionne le piston (mettre un cylindre)
+  */
+
   switch(iSide)
   {
     case Side::eRight:
@@ -237,6 +250,7 @@ void RobotContainer::Auto(Side iSide)
     break;
 
     case Side::eForward:
+    // Avance tout droit
 
     if(mAutoTimer.Get() <= 3)
     {
@@ -251,5 +265,7 @@ void RobotContainer::Auto(Side iSide)
 
 void RobotContainer::ResetAuto()
 {
+  // Pas utilisé
+  // Réinitialise la période autonome
   mAutoTimer.Reset();
 }
