@@ -23,3 +23,6 @@ constexpr int kMotorR1Port = 3;
 constexpr double kAngleSetPoint = 0.0;
 constexpr double kPGyro = 0.005;
 
+
+
+constexpr int kPotentiometerPort = 0;

@@ -6,7 +6,6 @@
 
 #include <frc2/command/SubsystemBase.h>
 
-#include <frc/Spark.h>
 #include <frc/Talon.h>
 
 #include <frc/SpeedController.h>
@@ -22,12 +21,16 @@ class SubDriveTrain : public frc2::SubsystemBase {
   SubDriveTrain();
 
   enum MotorSpeed { eSlow = 0, eMedium = 1, eFast = 2 };
+  enum DriveMode { eArcadeDrive = 0, eTankDrive = 1};
+  enum DriveController { eXBox = 0, eJoystick = 1 };
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
   void TankDrive(double iLeft, double iRight, MotorSpeed iMotorSpeed);
+  void ArcadeDrive(double iSpeed, double iRotation, MotorSpeed iMotorSpeed);
+  void SetInactive();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -43,5 +46,5 @@ class SubDriveTrain : public frc2::SubsystemBase {
   frc::SpeedControllerGroup mLeftSide{mMotorL1, mMotorL2};
 	frc::SpeedControllerGroup mRightSide{mMotorR1, mMotorR2};
 
-  frc::DifferentialDrive mTankDrive{mLeftSide, mRightSide};
+  frc::DifferentialDrive mDriveTrain{mLeftSide, mRightSide};
 };

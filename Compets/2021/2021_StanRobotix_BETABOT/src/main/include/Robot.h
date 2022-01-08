@@ -8,6 +8,7 @@
 #include <frc2/command/Command.h>
 #include <frc/Joystick.h>
 
+#include "subsystems/SubPotentiometer.h"
 #include "RobotContainer.h"
 #include "subsystems/DriveTrain.h"
 
@@ -28,5 +29,6 @@ class Robot : public frc::TimedRobot {
   // doesn't have undefined behavior and potentially crash.
   frc2::Command* m_autonomousCommand = nullptr;
   RobotContainer m_container;
-  
+
+  SubPotentiometer m_potentiometer;
 };
