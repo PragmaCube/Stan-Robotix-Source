@@ -6,10 +6,10 @@
 
 #include <frc2/command/Command.h>
 
-#include "commands/ExampleCommand.h"
+#include "subsystems/IMU.h"
 #include "subsystems/ExampleSubsystem.h"
+#include "commands/ExampleCommand.h"
 #include "commands/under_10_inch.h"
-
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -38,12 +38,18 @@ class RobotContainer {
 
   void HandlePOV();
   void Drive();
+  double acceleroGetX();
+  double acceleroGetY();
+  double getZTurning();
+  
+
   void Auto();
 
  private:
   // The robot's subsystems and commands are defined here...
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
+
 
   //Parallel mAutonomous;
   MoveStraightXSeconds* mAuto;
@@ -68,4 +74,7 @@ class RobotContainer {
 
 
   void ConfigureButtonBindings();
+
+  IMU mIMU;
+  
 };

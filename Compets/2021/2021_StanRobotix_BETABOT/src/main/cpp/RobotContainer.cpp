@@ -28,10 +28,10 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
   // Configure the button bindings
   ConfigureButtonBindings();
+  mIMU.Init();
 
   mPiston->SetInactive();
   mSubDriveTrain->SetInactive();
-
 }
 
 void RobotContainer::ConfigureButtonBindings() {
@@ -142,4 +142,18 @@ void RobotContainer::Drive()
 void RobotContainer::Auto()
 {
   mSubDriveTrain->TankDrive(1, 0.75, SubDriveTrain::MotorSpeed::eFast);
+}
+
+double RobotContainer::acceleroGetX()
+{
+  return mIMU.getXAccel();
+}
+double RobotContainer::acceleroGetY()
+{
+  return mIMU.getYAccel();
+}
+
+double RobotContainer::getZTurning()
+{
+  return mIMU.getZTurningValue();
 }
