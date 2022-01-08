@@ -6,8 +6,11 @@
 
 #include <frc/TimedRobot.h>
 #include <frc2/command/Command.h>
+#include <frc/Joystick.h>
 
+#include "subsystems/SubPotentiometer.h"
 #include "RobotContainer.h"
+#include "subsystems/DriveTrain.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -27,4 +30,5 @@ class Robot : public frc::TimedRobot {
   frc2::Command* m_autonomousCommand = nullptr;
 
   RobotContainer m_container;
+  SubPotentiometer m_potentiometer;
 };

@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Robot.h"
+#include <iostream>
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
@@ -42,7 +43,10 @@ void Robot::AutonomousInit() {
   }
 }
 
-void Robot::AutonomousPeriodic() {}
+void Robot::AutonomousPeriodic() {
+  //m_container.Auto();
+  std::cout << m_potentiometer.getDistance() << std::endl;
+}
 
 void Robot::TeleopInit() {
   // This makes sure that the autonomous stops running when
@@ -58,7 +62,11 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic()
+{
+  m_container.Drive();
+  std::cout << m_potentiometer.getDistance() << std::endl;
+}
 
 /**
  * This function is called periodically during test mode.
