@@ -19,3 +19,13 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return &m_autonomousCommand;
 }
+
+void RobotContainer::Drive()
+{
+mSubDriveTrain->TankDrive(
+        - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
+        - mController.GetY(frc::GenericHID::JoystickHand::kRightHand));
+
+
+  std::cout << mController.GetY(frc::GenericHID::JoystickHand::kLeftHand) << std:: endl << mController.GetY(frc::GenericHID::JoystickHand::kLeftHand) << std::endl;
+}

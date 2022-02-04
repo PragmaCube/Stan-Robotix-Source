@@ -6,6 +6,12 @@
 
 #include <frc2/command/Command.h>
 
+#include <frc/XboxController.h>
+#include <frc/Joystick.h>
+
+#include <frc/Timer.h>
+
+#include "subsystems/DriveTrain.h"
 #include "commands/ExampleCommand.h"
 #include "subsystems/ExampleSubsystem.h"
 
@@ -19,13 +25,24 @@
 class RobotContainer {
  public:
   RobotContainer();
+  enum Side { eLeft, eRight, eForward };
 
   frc2::Command* GetAutonomousCommand();
 
+  void HandlePOV();
+  void Drive();
+    
+
  private:
   // The robot's subsystems and commands are defined here...
+  frc::XboxController mController{kJoystickPort};
+  frc::Joystick mJoystick{kJoystickPort};
+
+  SubDriveTrain* mSubDriveTrain;
+
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
+  SubDriveTrain mDriveTrain;
 
   void ConfigureButtonBindings();
 };
