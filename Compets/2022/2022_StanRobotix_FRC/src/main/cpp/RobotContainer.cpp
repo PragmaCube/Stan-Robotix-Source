@@ -46,8 +46,22 @@ void RobotContainer::Drive()
       mMotorIndex--;
     }
   }
+  
+
+  if (mController.GetPOV() == 90)
+  {
+    mLauncherIndex = 3;
+  }
+  if (mController.GetPOV() == 270)
+  {
+    mLauncherIndex = 4;
+  }
+
 
   mSubDriveTrain->TankDrive(
         - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
         - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
+      
+  mLaunchSystem.Run(mController.GetBumper(frc::GenericHID::JoystickHand::kRightHand), mLauncherSpeed),
+  mLaunchSystem.SetSpeedLauncher(mLauncherIndex);
 }

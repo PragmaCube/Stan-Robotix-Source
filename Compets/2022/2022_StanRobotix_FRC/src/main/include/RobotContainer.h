@@ -21,6 +21,8 @@
 
 #include "subsystems/DriveTrain.h"
 
+#include "subsystems/LaunchSystem.h"
+
 class RobotContainer {
  public:
   RobotContainer();
@@ -39,6 +41,10 @@ class RobotContainer {
   SubDriveTrain* mSubDriveTrain;
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
   int mMotorIndex;
+  double mLauncherSpeed;
+  int mLauncherIndex;
 
   void ConfigureButtonBindings();
+
+  LaunchSystem mLaunchSystem;  
 };
