@@ -16,16 +16,29 @@
  * scheduler calls).  Instead, the structure of the robot (including subsystems,
  * commands, and button mappings) should be declared here.
  */
+
+#include <frc/XboxController.h>
+
+#include "subsystems/DriveTrain.h"
+
 class RobotContainer {
  public:
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
 
+  void Drive();
+
  private:
   // The robot's subsystems and commands are defined here...
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
+
+  frc::XboxController mController{0};
+
+  SubDriveTrain* mSubDriveTrain;
+  SubDriveTrain::MotorSpeed mMotorSpeed[3];
+  int mMotorIndex;
 
   void ConfigureButtonBindings();
 };
