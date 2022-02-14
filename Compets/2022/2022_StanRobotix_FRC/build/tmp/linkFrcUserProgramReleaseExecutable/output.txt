@@ -1,0 +1,4 @@
+See file:///C:/Users/15147/Desktop/git/Stan-Robotix-Source/Compets/2022/2022_StanRobotix_FRC/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt for all output for linkFrcUserProgramReleaseExecutable.
+linking frcUserProgram successful.
+
+Finished linkFrcUserProgramReleaseExecutable, see full log file:///C:/Users/15147/Desktop/git/Stan-Robotix-Source/Compets/2022/2022_StanRobotix_FRC/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt.

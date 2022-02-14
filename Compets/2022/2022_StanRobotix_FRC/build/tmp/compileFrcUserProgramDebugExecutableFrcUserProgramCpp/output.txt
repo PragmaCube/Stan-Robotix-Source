@@ -1,0 +1,14 @@
+See file:///C:/Users/15147/Desktop/git/Stan-Robotix-Source/Compets/2022/2022_StanRobotix_FRC/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramDebugExecutableFrcUserProgramCpp.
+compiling ExampleSubsystem.cpp successful.
+
+compiling ExampleCommand.cpp successful.
+
+compiling SubElevator.cpp successful.
+
+compiling DriveTrain.cpp successful.
+
+compiling RobotContainer.cpp successful.
+
+compiling Robot.cpp successful.
+
+Finished compileFrcUserProgramDebugExecutableFrcUserProgramCpp, see full log file:///C:/Users/15147/Desktop/git/Stan-Robotix-Source/Compets/2022/2022_StanRobotix_FRC/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt.
