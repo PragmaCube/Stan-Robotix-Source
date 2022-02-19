@@ -40,8 +40,8 @@ class RobotContainer {
 
   SubDriveTrain* mSubDriveTrain;
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
+  LaunchSystem::LauncherSpeed mLauncherSpeed[2];
   int mMotorIndex;
-  double mLauncherSpeed;
   int mLauncherIndex;
 
   void ConfigureButtonBindings();

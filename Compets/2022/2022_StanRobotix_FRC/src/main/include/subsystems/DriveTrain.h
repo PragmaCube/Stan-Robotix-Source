@@ -19,8 +19,8 @@
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
   SubDriveTrain();
-
   enum MotorSpeed { eSlow = 0, eMedium = 1, eFast = 2 };
+  
   enum DriveMode { eArcadeDrive = 0, eTankDrive = 1};
   enum DriveController { eXBox = 0, eJoystick = 1 };
 

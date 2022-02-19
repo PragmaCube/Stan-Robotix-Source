@@ -13,8 +13,10 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mMotorSpeed[0] = SubDriveTrain::MotorSpeed::eSlow;
   mMotorSpeed[1] = SubDriveTrain::MotorSpeed::eMedium;
   mMotorSpeed[2] = SubDriveTrain::MotorSpeed::eFast;
+  mLauncherSpeed[0] = LaunchSystem::LauncherSpeed::eSlow;
+  mLauncherSpeed[1] = LaunchSystem::LauncherSpeed::eFast;
   mMotorIndex = 1;
-
+  mLauncherIndex = 1;
   // Configure the button bindings
   ConfigureButtonBindings();
 }
@@ -50,11 +52,11 @@ void RobotContainer::Drive()
 
   if (mController.GetPOV() == 90)
   {
-    mLauncherIndex = 3;
+    mLauncherIndex = 0;
   }
   if (mController.GetPOV() == 270)
   {
-    mLauncherIndex = 4;
+    mLauncherIndex = 1;
   }
 
 
@@ -62,6 +64,5 @@ void RobotContainer::Drive()
         - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
         - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
       
-  mLaunchSystem.Run(mController.GetBumper(frc::GenericHID::JoystickHand::kRightHand), mLauncherSpeed),
-  mLaunchSystem.SetSpeedLauncher(mLauncherIndex);
+  mLaunchSystem.Run(mController.GetBumper(frc::GenericHID::JoystickHand::kRightHand), mLauncherSpeed[mLauncherIndex]);
 }

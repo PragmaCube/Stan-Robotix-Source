@@ -14,9 +14,9 @@
  * they are needed.
  */
 
-constexpr int kMotorL2Port = 0;
-constexpr int kMotorL1Port = 1;
-constexpr int kMotorR2Port = 2;
-constexpr int kMotorR1Port = 3;
+constexpr int kMotorL2Port = 2;
+constexpr int kMotorL1Port = 3;
+constexpr int kMotorR2Port = 0;
+constexpr int kMotorR1Port = 1;
 
-constexpr int kLaunchMotorPort = 6;
+constexpr int kLaunchMotorPort = 9;

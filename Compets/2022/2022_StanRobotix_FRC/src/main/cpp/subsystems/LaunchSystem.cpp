@@ -9,29 +9,29 @@ LaunchSystem::LaunchSystem() = default;
 // This method will be called once per scheduler run
 void LaunchSystem::Periodic() {}
 
-void LaunchSystem::Run(bool iButton, double iLauncherSpeed)
+void LaunchSystem::Run(bool iButton, LauncherSpeed iMotorSpeed)
 {
     if (iButton)
     {
-        mLaunchMotor.Set(iLauncherSpeed);
-        std::cout << "on" << std::endl;
+        switch (iMotorSpeed)
+        {
+        case eSlow:
+            mLaunchMotor.Set(0.85);
+            break;
+
+        case eFast:
+            mLaunchMotor.Set(1);
+            break;
+
+        default:
+            mLaunchMotor.Set(0);
+            break;
+        }
     }
 
     else
     {
-        mLaunchMotor.Set(0);
-        std::cout << "off" << std::endl;
+      mLaunchMotor.Set(0);
     }
-}
-
-void LaunchSystem::SetSpeedLauncher(int iLauncherIndex)
-{
-if (iLauncherIndex == 3)
-  {
-    double mLauncherSpeed = 0.7;
-  }
-  if (iLauncherIndex == 4)
-  {
-    double mLauncherSpeed =0.3;
-  }
+    
 }

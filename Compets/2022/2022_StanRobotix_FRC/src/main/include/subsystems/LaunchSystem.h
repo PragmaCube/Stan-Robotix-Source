@@ -12,13 +12,12 @@ class LaunchSystem : public frc2::SubsystemBase {
  public:
   LaunchSystem();
 
+  enum LauncherSpeed { eSlow = 0, eFast = 1 };
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-  void Run(bool iButton, double iLauncherSpeed);
-  void SetSpeedLauncher(int iMotorIndex);
-
+  void Run(bool iButton, LauncherSpeed iMotorSpeed);
  private:
  frc::Spark mLaunchMotor{kLaunchMotorPort};
   // Components (e.g. motor controllers and sensors) should generally be
