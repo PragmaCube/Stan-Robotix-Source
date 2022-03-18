@@ -26,6 +26,7 @@ class DylanAzeradSubsystem : public frc2::SubsystemBase {
   void SimulationPeriodic() override;
 
   void pidSetPoint(float iSetPoint);
+  void setStartTime();
   float GetOutput();
 
  private:

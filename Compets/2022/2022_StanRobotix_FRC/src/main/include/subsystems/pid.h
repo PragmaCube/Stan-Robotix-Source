@@ -25,8 +25,10 @@ namespace rbtxpid
 			pidController(float iKproportional, float iKintegral, float iKderivative);
 			~pidController();
 
-			// Setup du setPoint
+			// Setup du PID
 			void setPoint(float iSetPoint);
+			void startTime();
+
 
 			// Retour d'un ouput attendu
 			float getOutput(float iError);

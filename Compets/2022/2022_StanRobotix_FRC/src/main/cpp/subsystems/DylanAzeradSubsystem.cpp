@@ -6,7 +6,6 @@
 #include <cmath>
 
 DylanAzeradSubsystem::DylanAzeradSubsystem(float iKproportional, float iKintegral, float iKderivative) {
-  m_last_time = std::chrono::steady_clock::now();
   m_distance_so_far = 0;
   m_pid_controller = new rbtx::pidController(float iKproportional, float iKintegral, float iKderivative);
 }
@@ -14,6 +13,12 @@ DylanAzeradSubsystem::DylanAzeradSubsystem(float iKproportional, float iKintegra
 DylanAzeradSubsystem::~DylanAzeradSubsystem()
 {
   delete m_pid_controller;
+}
+
+void DylanAzeradSubsystem::setStartTime()
+{
+  m_last_time = std::chrono::steady_clock::now();
+  m_pid_controller->startTime();
 }
 
 void DylanAzeradSubsystem::pidSetPoint(float iSetPoint)
@@ -27,7 +32,7 @@ void DylanAzeradSubsystem::_update_distance()
   w_current_time = std::chrono::steady_clock::now();
   float wDt = std::chrono::duration_cast<std::chrono::microseconds>(w_current_time - m_last_time).count();
   m_total_time += wDt;
-  m_last_time = std::chrono::steady_clock::now();
+  m_last_time = w_current_time;
 
   // Calculs
   // TODO : trouver comment prendre les valeurs d'accélération

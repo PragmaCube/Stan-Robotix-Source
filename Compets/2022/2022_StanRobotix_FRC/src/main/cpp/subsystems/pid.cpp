@@ -17,9 +17,13 @@ namespace rbtxpid
     {
         // Initialisation des variables
         mSetPoint = iSetPoint;
-        mLastTime = std::chrono::steady_clock::now();
         mIntegralError = 0;
         mLastError = 0;
+    }
+
+    void pidController::startTime()
+    {
+      mLastTime = std::chrono::steady_clock::now();
     }
 
     // Mise à juor des variables
