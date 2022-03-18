@@ -14,54 +14,58 @@
     "systemCMacros": [],
     "systemCArgs": [],
     "allLibFiles": [
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\75247820ba6f9975dbf727ed8ed72364\\wpilibNewCommands-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\977db693aef7f308816bb68f112c9cfd\\wpilibc-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4b295f286659153ded8605de92a56203\\ntcore-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\9bbe97b28e512e431841d19729011f32\\hal-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\7f282b7e28b8ee1e11a7f9ca1c86c786\\wpiutil-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\74db976e3e15a55704607b47c9aa9748\\wpimath-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4b6192c384cf8473a9d086e6adb4b937\\chipobject-2020.10.1-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\cd1da3a238ebc04371ef638a62a8c4a8\\netcomm-2020.10.1-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\cca00724dbd9d228d2bdefb7d7faaa8d\\visa-2020.10.1-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6b0b73ad7efdc0eb77b61f28a4a2a755\\cameraserver-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6872e27a17984b53ca3e71ff070eabb7\\cscore-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\67a79c1c661a84cbc99042d108434bbc\\opencv-cpp-3.4.7-5-headers\\",
-      "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4e8cb968f5c30a702a8653424303307b\\wpilibNewCommands-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6b98980c0e4fddb3c9aec0f854e733ea\\wpilibc-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\3d7e84ca3eb43131d0fbcff6cc2ab0c4\\ntcore-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\fe41b6155fa338bfb428a96400ae52b1\\hal-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\2cd6184ae2a74bccb8896015c43d0e7f\\wpiutil-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\1eb090155e38efff627c1a2038f29ee4\\wpimath-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\01e4d941f8b2f4fd27e73e2871b77c20\\cameraserver-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\2fe1a6e380a4a9e2fcfb9ebcc4a2c531\\cscore-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\c16b0dc01f031b98b7869bbe788c74e4\\opencv-cpp-3.4.7-5-sources\\"
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\665d819523ca3b85d7f0d96a3e0a10f1\\SparkMax-cpp-1.5.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\2b474b52f76e3b421277b7177f0407be\\SparkMax-driver-1.5.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\59c7393c6394e46896e2caca4753e025\\wpilibNewCommands-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\ffcc625d3cd927e2e6548df9c18aaedb\\wpilibc-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\2820acd8b2e6a1a3258fc8c59db22465\\ntcore-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5e0a0c859ad5f726d1b25560ffdc7f91\\hal-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5afa2ae28766718f3dfc37ae032f1d1c\\wpiutil-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\80462673e9800873ab8f7d4a3b1fd562\\wpimath-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\4b6192c384cf8473a9d086e6adb4b937\\chipobject-2020.10.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\cd1da3a238ebc04371ef638a62a8c4a8\\netcomm-2020.10.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\cca00724dbd9d228d2bdefb7d7faaa8d\\visa-2020.10.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\4d7bddc4d1ff43d20f3b2c034ab3996e\\cameraserver-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\d131638b19780990540c830b010cdd09\\cscore-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\67a79c1c661a84cbc99042d108434bbc\\opencv-cpp-3.4.7-5-headers\\",
+      "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\70f955e718decdb09faba4b7c264eeda\\wpilibNewCommands-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\1921ef043492bcff9f21866b8a9963e0\\wpilibc-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\ccab10f65f37359b318eb55c2dcb38c1\\ntcore-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\a0b96ee41f33b3660077246e259245ba\\hal-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\baad3519d252e8f582904ea37184c6c5\\wpiutil-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\324a689b414cfcc29fa4f68e4839844d\\wpimath-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\e85b8c19a3e58cb4e4f70721aeb730bc\\cameraserver-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\299e790f1ef68d9de7d73350a7118670\\cscore-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\c16b0dc01f031b98b7869bbe788c74e4\\opencv-cpp-3.4.7-5-sources\\"
     ],
     "allLibSources": [
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4e8cb968f5c30a702a8653424303307b\\wpilibNewCommands-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6b98980c0e4fddb3c9aec0f854e733ea\\wpilibc-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\3d7e84ca3eb43131d0fbcff6cc2ab0c4\\ntcore-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\fe41b6155fa338bfb428a96400ae52b1\\hal-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\2cd6184ae2a74bccb8896015c43d0e7f\\wpiutil-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\1eb090155e38efff627c1a2038f29ee4\\wpimath-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\01e4d941f8b2f4fd27e73e2871b77c20\\cameraserver-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\2fe1a6e380a4a9e2fcfb9ebcc4a2c531\\cscore-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\c16b0dc01f031b98b7869bbe788c74e4\\opencv-cpp-3.4.7-5-sources\\"
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\70f955e718decdb09faba4b7c264eeda\\wpilibNewCommands-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\1921ef043492bcff9f21866b8a9963e0\\wpilibc-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\ccab10f65f37359b318eb55c2dcb38c1\\ntcore-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\a0b96ee41f33b3660077246e259245ba\\hal-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\baad3519d252e8f582904ea37184c6c5\\wpiutil-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\324a689b414cfcc29fa4f68e4839844d\\wpimath-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\e85b8c19a3e58cb4e4f70721aeb730bc\\cameraserver-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\299e790f1ef68d9de7d73350a7118670\\cscore-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\c16b0dc01f031b98b7869bbe788c74e4\\opencv-cpp-3.4.7-5-sources\\"
     ],
     "allLibHeaders": [
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\75247820ba6f9975dbf727ed8ed72364\\wpilibNewCommands-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\977db693aef7f308816bb68f112c9cfd\\wpilibc-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4b295f286659153ded8605de92a56203\\ntcore-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\9bbe97b28e512e431841d19729011f32\\hal-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\7f282b7e28b8ee1e11a7f9ca1c86c786\\wpiutil-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\74db976e3e15a55704607b47c9aa9748\\wpimath-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4b6192c384cf8473a9d086e6adb4b937\\chipobject-2020.10.1-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\cd1da3a238ebc04371ef638a62a8c4a8\\netcomm-2020.10.1-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\cca00724dbd9d228d2bdefb7d7faaa8d\\visa-2020.10.1-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6b0b73ad7efdc0eb77b61f28a4a2a755\\cameraserver-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6872e27a17984b53ca3e71ff070eabb7\\cscore-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\67a79c1c661a84cbc99042d108434bbc\\opencv-cpp-3.4.7-5-headers\\",
-      "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\665d819523ca3b85d7f0d96a3e0a10f1\\SparkMax-cpp-1.5.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\2b474b52f76e3b421277b7177f0407be\\SparkMax-driver-1.5.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\59c7393c6394e46896e2caca4753e025\\wpilibNewCommands-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\ffcc625d3cd927e2e6548df9c18aaedb\\wpilibc-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\2820acd8b2e6a1a3258fc8c59db22465\\ntcore-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5e0a0c859ad5f726d1b25560ffdc7f91\\hal-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5afa2ae28766718f3dfc37ae032f1d1c\\wpiutil-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\80462673e9800873ab8f7d4a3b1fd562\\wpimath-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\4b6192c384cf8473a9d086e6adb4b937\\chipobject-2020.10.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\cd1da3a238ebc04371ef638a62a8c4a8\\netcomm-2020.10.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\cca00724dbd9d228d2bdefb7d7faaa8d\\visa-2020.10.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\4d7bddc4d1ff43d20f3b2c034ab3996e\\cameraserver-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\d131638b19780990540c830b010cdd09\\cscore-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\67a79c1c661a84cbc99042d108434bbc\\opencv-cpp-3.4.7-5-headers\\",
+      "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
     ],
     "binaries": [
       {
@@ -70,7 +74,7 @@
           {
             "source": {
               "srcDirs": [
-                "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\cpp\\"
+                "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\cpp\\"
               ],
               "includes": [
                 "**/*.cpp",
@@ -80,7 +84,7 @@
             },
             "exportedHeaders": {
               "srcDirs": [
-                "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
+                "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
               ],
               "includes": [
                 "**/*.cpp",
@@ -108,19 +112,21 @@
           }
         ],
         "libHeaders": [
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\75247820ba6f9975dbf727ed8ed72364\\wpilibNewCommands-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\977db693aef7f308816bb68f112c9cfd\\wpilibc-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4b295f286659153ded8605de92a56203\\ntcore-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\9bbe97b28e512e431841d19729011f32\\hal-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\7f282b7e28b8ee1e11a7f9ca1c86c786\\wpiutil-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\74db976e3e15a55704607b47c9aa9748\\wpimath-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4b6192c384cf8473a9d086e6adb4b937\\chipobject-2020.10.1-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\cd1da3a238ebc04371ef638a62a8c4a8\\netcomm-2020.10.1-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\cca00724dbd9d228d2bdefb7d7faaa8d\\visa-2020.10.1-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6b0b73ad7efdc0eb77b61f28a4a2a755\\cameraserver-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6872e27a17984b53ca3e71ff070eabb7\\cscore-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\67a79c1c661a84cbc99042d108434bbc\\opencv-cpp-3.4.7-5-headers\\",
-          "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\665d819523ca3b85d7f0d96a3e0a10f1\\SparkMax-cpp-1.5.1-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\2b474b52f76e3b421277b7177f0407be\\SparkMax-driver-1.5.1-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\59c7393c6394e46896e2caca4753e025\\wpilibNewCommands-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\ffcc625d3cd927e2e6548df9c18aaedb\\wpilibc-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\2820acd8b2e6a1a3258fc8c59db22465\\ntcore-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5e0a0c859ad5f726d1b25560ffdc7f91\\hal-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5afa2ae28766718f3dfc37ae032f1d1c\\wpiutil-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\80462673e9800873ab8f7d4a3b1fd562\\wpimath-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\4b6192c384cf8473a9d086e6adb4b937\\chipobject-2020.10.1-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\cd1da3a238ebc04371ef638a62a8c4a8\\netcomm-2020.10.1-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\cca00724dbd9d228d2bdefb7d7faaa8d\\visa-2020.10.1-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\4d7bddc4d1ff43d20f3b2c034ab3996e\\cameraserver-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\d131638b19780990540c830b010cdd09\\cscore-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\67a79c1c661a84cbc99042d108434bbc\\opencv-cpp-3.4.7-5-headers\\",
+          "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
         ],
         "sharedLibrary": false,
         "executable": true
@@ -130,7 +136,7 @@
       {
         "source": {
           "srcDirs": [
-            "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\cpp\\"
+            "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\cpp\\"
           ],
           "includes": [
             "**/*.cpp",
@@ -162,7 +168,7 @@
       {
         "source": {
           "srcDirs": [
-            "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
+            "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
           ],
           "includes": [
             "**/*.cpp",
@@ -211,54 +217,58 @@
     "systemCMacros": [],
     "systemCArgs": [],
     "allLibFiles": [
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\75247820ba6f9975dbf727ed8ed72364\\wpilibNewCommands-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\977db693aef7f308816bb68f112c9cfd\\wpilibc-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4b295f286659153ded8605de92a56203\\ntcore-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\9bbe97b28e512e431841d19729011f32\\hal-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\7f282b7e28b8ee1e11a7f9ca1c86c786\\wpiutil-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\74db976e3e15a55704607b47c9aa9748\\wpimath-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4b6192c384cf8473a9d086e6adb4b937\\chipobject-2020.10.1-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\cd1da3a238ebc04371ef638a62a8c4a8\\netcomm-2020.10.1-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\cca00724dbd9d228d2bdefb7d7faaa8d\\visa-2020.10.1-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6b0b73ad7efdc0eb77b61f28a4a2a755\\cameraserver-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6872e27a17984b53ca3e71ff070eabb7\\cscore-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\67a79c1c661a84cbc99042d108434bbc\\opencv-cpp-3.4.7-5-headers\\",
-      "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4e8cb968f5c30a702a8653424303307b\\wpilibNewCommands-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6b98980c0e4fddb3c9aec0f854e733ea\\wpilibc-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\3d7e84ca3eb43131d0fbcff6cc2ab0c4\\ntcore-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\fe41b6155fa338bfb428a96400ae52b1\\hal-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\2cd6184ae2a74bccb8896015c43d0e7f\\wpiutil-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\1eb090155e38efff627c1a2038f29ee4\\wpimath-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\01e4d941f8b2f4fd27e73e2871b77c20\\cameraserver-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\2fe1a6e380a4a9e2fcfb9ebcc4a2c531\\cscore-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\c16b0dc01f031b98b7869bbe788c74e4\\opencv-cpp-3.4.7-5-sources\\"
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\665d819523ca3b85d7f0d96a3e0a10f1\\SparkMax-cpp-1.5.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\2b474b52f76e3b421277b7177f0407be\\SparkMax-driver-1.5.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\59c7393c6394e46896e2caca4753e025\\wpilibNewCommands-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\ffcc625d3cd927e2e6548df9c18aaedb\\wpilibc-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\2820acd8b2e6a1a3258fc8c59db22465\\ntcore-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5e0a0c859ad5f726d1b25560ffdc7f91\\hal-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5afa2ae28766718f3dfc37ae032f1d1c\\wpiutil-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\80462673e9800873ab8f7d4a3b1fd562\\wpimath-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\4b6192c384cf8473a9d086e6adb4b937\\chipobject-2020.10.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\cd1da3a238ebc04371ef638a62a8c4a8\\netcomm-2020.10.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\cca00724dbd9d228d2bdefb7d7faaa8d\\visa-2020.10.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\4d7bddc4d1ff43d20f3b2c034ab3996e\\cameraserver-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\d131638b19780990540c830b010cdd09\\cscore-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\67a79c1c661a84cbc99042d108434bbc\\opencv-cpp-3.4.7-5-headers\\",
+      "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\70f955e718decdb09faba4b7c264eeda\\wpilibNewCommands-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\1921ef043492bcff9f21866b8a9963e0\\wpilibc-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\ccab10f65f37359b318eb55c2dcb38c1\\ntcore-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\a0b96ee41f33b3660077246e259245ba\\hal-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\baad3519d252e8f582904ea37184c6c5\\wpiutil-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\324a689b414cfcc29fa4f68e4839844d\\wpimath-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\e85b8c19a3e58cb4e4f70721aeb730bc\\cameraserver-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\299e790f1ef68d9de7d73350a7118670\\cscore-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\c16b0dc01f031b98b7869bbe788c74e4\\opencv-cpp-3.4.7-5-sources\\"
     ],
     "allLibSources": [
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4e8cb968f5c30a702a8653424303307b\\wpilibNewCommands-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6b98980c0e4fddb3c9aec0f854e733ea\\wpilibc-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\3d7e84ca3eb43131d0fbcff6cc2ab0c4\\ntcore-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\fe41b6155fa338bfb428a96400ae52b1\\hal-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\2cd6184ae2a74bccb8896015c43d0e7f\\wpiutil-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\1eb090155e38efff627c1a2038f29ee4\\wpimath-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\01e4d941f8b2f4fd27e73e2871b77c20\\cameraserver-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\2fe1a6e380a4a9e2fcfb9ebcc4a2c531\\cscore-cpp-2021.2.2-sources\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\c16b0dc01f031b98b7869bbe788c74e4\\opencv-cpp-3.4.7-5-sources\\"
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\70f955e718decdb09faba4b7c264eeda\\wpilibNewCommands-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\1921ef043492bcff9f21866b8a9963e0\\wpilibc-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\ccab10f65f37359b318eb55c2dcb38c1\\ntcore-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\a0b96ee41f33b3660077246e259245ba\\hal-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\baad3519d252e8f582904ea37184c6c5\\wpiutil-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\324a689b414cfcc29fa4f68e4839844d\\wpimath-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\e85b8c19a3e58cb4e4f70721aeb730bc\\cameraserver-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\299e790f1ef68d9de7d73350a7118670\\cscore-cpp-2021.2.2-sources\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\c16b0dc01f031b98b7869bbe788c74e4\\opencv-cpp-3.4.7-5-sources\\"
     ],
     "allLibHeaders": [
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\75247820ba6f9975dbf727ed8ed72364\\wpilibNewCommands-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\977db693aef7f308816bb68f112c9cfd\\wpilibc-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4b295f286659153ded8605de92a56203\\ntcore-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\9bbe97b28e512e431841d19729011f32\\hal-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\7f282b7e28b8ee1e11a7f9ca1c86c786\\wpiutil-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\74db976e3e15a55704607b47c9aa9748\\wpimath-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4b6192c384cf8473a9d086e6adb4b937\\chipobject-2020.10.1-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\cd1da3a238ebc04371ef638a62a8c4a8\\netcomm-2020.10.1-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\cca00724dbd9d228d2bdefb7d7faaa8d\\visa-2020.10.1-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6b0b73ad7efdc0eb77b61f28a4a2a755\\cameraserver-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6872e27a17984b53ca3e71ff070eabb7\\cscore-cpp-2021.2.2-headers\\",
-      "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\67a79c1c661a84cbc99042d108434bbc\\opencv-cpp-3.4.7-5-headers\\",
-      "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\665d819523ca3b85d7f0d96a3e0a10f1\\SparkMax-cpp-1.5.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\2b474b52f76e3b421277b7177f0407be\\SparkMax-driver-1.5.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\59c7393c6394e46896e2caca4753e025\\wpilibNewCommands-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\ffcc625d3cd927e2e6548df9c18aaedb\\wpilibc-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\2820acd8b2e6a1a3258fc8c59db22465\\ntcore-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5e0a0c859ad5f726d1b25560ffdc7f91\\hal-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5afa2ae28766718f3dfc37ae032f1d1c\\wpiutil-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\80462673e9800873ab8f7d4a3b1fd562\\wpimath-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\4b6192c384cf8473a9d086e6adb4b937\\chipobject-2020.10.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\cd1da3a238ebc04371ef638a62a8c4a8\\netcomm-2020.10.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\cca00724dbd9d228d2bdefb7d7faaa8d\\visa-2020.10.1-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\4d7bddc4d1ff43d20f3b2c034ab3996e\\cameraserver-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\d131638b19780990540c830b010cdd09\\cscore-cpp-2021.2.2-headers\\",
+      "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\67a79c1c661a84cbc99042d108434bbc\\opencv-cpp-3.4.7-5-headers\\",
+      "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
     ],
     "binaries": [
       {
@@ -267,7 +277,7 @@
           {
             "source": {
               "srcDirs": [
-                "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\cpp\\"
+                "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\cpp\\"
               ],
               "includes": [
                 "**/*.cpp",
@@ -277,7 +287,7 @@
             },
             "exportedHeaders": {
               "srcDirs": [
-                "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
+                "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
               ],
               "includes": [
                 "**/*.cpp",
@@ -304,19 +314,21 @@
           }
         ],
         "libHeaders": [
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\75247820ba6f9975dbf727ed8ed72364\\wpilibNewCommands-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\977db693aef7f308816bb68f112c9cfd\\wpilibc-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4b295f286659153ded8605de92a56203\\ntcore-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\9bbe97b28e512e431841d19729011f32\\hal-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\7f282b7e28b8ee1e11a7f9ca1c86c786\\wpiutil-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\74db976e3e15a55704607b47c9aa9748\\wpimath-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\4b6192c384cf8473a9d086e6adb4b937\\chipobject-2020.10.1-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\cd1da3a238ebc04371ef638a62a8c4a8\\netcomm-2020.10.1-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\cca00724dbd9d228d2bdefb7d7faaa8d\\visa-2020.10.1-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6b0b73ad7efdc0eb77b61f28a4a2a755\\cameraserver-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\6872e27a17984b53ca3e71ff070eabb7\\cscore-cpp-2021.2.2-headers\\",
-          "C:\\Users\\15147\\.gradle\\caches\\transforms-2\\files-2.1\\67a79c1c661a84cbc99042d108434bbc\\opencv-cpp-3.4.7-5-headers\\",
-          "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\665d819523ca3b85d7f0d96a3e0a10f1\\SparkMax-cpp-1.5.1-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\2b474b52f76e3b421277b7177f0407be\\SparkMax-driver-1.5.1-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\59c7393c6394e46896e2caca4753e025\\wpilibNewCommands-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\ffcc625d3cd927e2e6548df9c18aaedb\\wpilibc-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\2820acd8b2e6a1a3258fc8c59db22465\\ntcore-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5e0a0c859ad5f726d1b25560ffdc7f91\\hal-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5afa2ae28766718f3dfc37ae032f1d1c\\wpiutil-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\80462673e9800873ab8f7d4a3b1fd562\\wpimath-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\4b6192c384cf8473a9d086e6adb4b937\\chipobject-2020.10.1-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\cd1da3a238ebc04371ef638a62a8c4a8\\netcomm-2020.10.1-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\cca00724dbd9d228d2bdefb7d7faaa8d\\visa-2020.10.1-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\4d7bddc4d1ff43d20f3b2c034ab3996e\\cameraserver-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\d131638b19780990540c830b010cdd09\\cscore-cpp-2021.2.2-headers\\",
+          "C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\67a79c1c661a84cbc99042d108434bbc\\opencv-cpp-3.4.7-5-headers\\",
+          "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
         ],
         "sharedLibrary": false,
         "executable": true
@@ -326,7 +338,7 @@
       {
         "source": {
           "srcDirs": [
-            "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\cpp\\"
+            "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\cpp\\"
           ],
           "includes": [
             "**/*.cpp",
@@ -357,7 +369,7 @@
       {
         "source": {
           "srcDirs": [
-            "C:\\Users\\15147\\Desktop\\git\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
+            "C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\src\\main\\include\\"
           ],
           "includes": [
             "**/*.cpp",

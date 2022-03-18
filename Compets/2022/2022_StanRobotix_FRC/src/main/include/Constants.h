@@ -24,7 +24,6 @@ constexpr int kJoystickPort = 0;
 constexpr int kSolenoid1Port = 6;
 constexpr int kSolenoid2Port = 7;
 
-constexpr int kElevator1Port = 8;
-constexpr int kElevator2Port = 9;
+constexpr int kMotorElevatorPort = 8;
 constexpr float speedUp = 0.35; 
 constexpr float speedDown = -0.25;
