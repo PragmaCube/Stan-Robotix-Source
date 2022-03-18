@@ -1,4 +1,4 @@
-#include "include/subsystems/image_processing.h"
+#include "image_processing.h"
 
 namespace rbtxcm
 {
