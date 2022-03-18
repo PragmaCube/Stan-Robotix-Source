@@ -6,12 +6,6 @@
 
 #include <frc2/command/Command.h>
 
-#include <frc/XboxController.h>
-#include <frc/Joystick.h>
-
-#include <frc/Timer.h>
-
-#include "subsystems/DriveTrain.h"
 #include "commands/ExampleCommand.h"
 #include "subsystems/ExampleSubsystem.h"
 
@@ -22,27 +16,35 @@
  * scheduler calls).  Instead, the structure of the robot (including subsystems,
  * commands, and button mappings) should be declared here.
  */
+
+#include <frc/XboxController.h>
+
+#include "subsystems/DriveTrain.h"
+
+#include "subsystems/LaunchSystem.h"
+
 class RobotContainer {
  public:
   RobotContainer();
-  enum Side { eLeft, eRight, eForward };
 
   frc2::Command* GetAutonomousCommand();
 
-  void HandlePOV();
   void Drive();
-    
 
  private:
   // The robot's subsystems and commands are defined here...
-  frc::XboxController mController{kJoystickPort};
-  frc::Joystick mJoystick{kJoystickPort};
-
-  SubDriveTrain* mSubDriveTrain;
-
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
-  SubDriveTrain mDriveTrain;
+
+  frc::XboxController mController{0};
+
+  SubDriveTrain* mSubDriveTrain;
+  SubDriveTrain::MotorSpeed mMotorSpeed[3];
+  LaunchSystem::LauncherSpeed mLauncherSpeed[2];
+  int mMotorIndex;
+  int mLauncherIndex;
 
   void ConfigureButtonBindings();
+
+  LaunchSystem mLaunchSystem;  
 };
