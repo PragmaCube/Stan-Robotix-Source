@@ -65,4 +65,15 @@ void RobotContainer::Drive()
         - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
       
   mLaunchSystem.Run(mController.GetBumper(frc::GenericHID::JoystickHand::kRightHand), mLauncherSpeed[mLauncherIndex]);
+
+  if(mController.GetAButton())
+  {
+    motor.Set(0.5);
+  }
+
+  else
+  {
+    motor.Set(0);
+  }
+  
 }

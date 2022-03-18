@@ -22,6 +22,8 @@
 #include "subsystems/DriveTrain.h"
 
 #include "subsystems/LaunchSystem.h"
+#include "rev/CANSparkMax.h"
+
 
 class RobotContainer {
  public:
@@ -37,6 +39,8 @@ class RobotContainer {
   ExampleCommand m_autonomousCommand;
 
   frc::XboxController mController{0};
+
+  rev::CANSparkMax motor{2, rev::CANSparkMax::MotorType::kBrushless};
 
   SubDriveTrain* mSubDriveTrain;
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
