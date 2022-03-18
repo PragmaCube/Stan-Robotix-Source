@@ -5,15 +5,20 @@
 #include "DylanAzeradSubsystem.h"
 #include <cmath>
 
-DylanAzeradSubsystem::DylanAzeradSubsystem(float iSetPoint, float iKproportional, float iKintegral, float iKderivative) {
+DylanAzeradSubsystem::DylanAzeradSubsystem(float iKproportional, float iKintegral, float iKderivative) {
   m_last_time = std::chrono::steady_clock::now();
   m_distance_so_far = 0;
-  m_pid_controller = new rbtx::pidController(float iSetPoint, float iKproportional, float iKintegral, float iKderivative);
+  m_pid_controller = new rbtx::pidController(float iKproportional, float iKintegral, float iKderivative);
 }
 
 DylanAzeradSubsystem::~DylanAzeradSubsystem()
 {
   delete m_pid_controller;
+}
+
+void DylanAzeradSubsystem::pidSetPoint(float iSetPoint)
+{
+  m_pid_controller->setPoint(iSetPoint);
 }
 
 void DylanAzeradSubsystem::_update_distance()

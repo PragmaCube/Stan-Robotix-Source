@@ -11,7 +11,7 @@
 // Utilise l'accéléromètre
 class DylanAzeradSubsystem : public frc2::SubsystemBase {
  public:
-  DylanAzeradSubsystem(float iSetPoint, float iKproportional, float iKintegral, float iKderivative);
+  DylanAzeradSubsystem(float iKproportional, float iKintegral, float iKderivative);
   ~DylanAzeradSubsystem();
 
   /**
@@ -25,6 +25,7 @@ class DylanAzeradSubsystem : public frc2::SubsystemBase {
    */
   void SimulationPeriodic() override;
 
+  void pidSetPoint(float iSetPoint);
   float GetOutput();
 
  private:

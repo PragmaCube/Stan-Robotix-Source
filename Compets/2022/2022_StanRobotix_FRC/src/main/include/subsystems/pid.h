@@ -22,8 +22,11 @@ namespace rbtxpid
 
 		public:
 			// Initialisation du point attendu, et des constantes
-			pidController(float iSetPoint, float iKproportional, float iKintegral, float iKderivative);
+			pidController(float iKproportional, float iKintegral, float iKderivative);
 			~pidController();
+
+			// Setup du setPoint
+			void setPoint(float iSetPoint);
 
 			// Retour d'un ouput attendu
 			float getOutput(float iError);

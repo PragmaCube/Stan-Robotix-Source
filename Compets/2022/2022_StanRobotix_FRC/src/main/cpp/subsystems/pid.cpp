@@ -2,20 +2,25 @@
 
 namespace rbtxpid
 {
-    pidController::pidController(float iSetPoint, float iKproportional, float iKintegral, float iKderivative)
+    pidController::pidController(float iKproportional, float iKintegral, float iKderivative)
     {
         // Initialisation des variables
-        mSetPoint = iSetPoint;
         mKproportional = iKproportional;
         mKintegral = iKintegral;
         mKderivative = iKderivative;
-        mLastTime = std::chrono::steady_clock::now();
-        mIntegralError = 0;
-        mLastError = 0;
     }
 
     // Destructeur inutile
     pidController::~pidController() { }
+
+    void pidController::setPoint(float iSetPoint)
+    {
+        // Initialisation des variables
+        mSetPoint = iSetPoint;
+        mLastTime = std::chrono::steady_clock::now();
+        mIntegralError = 0;
+        mLastError = 0;
+    }
 
     // Mise à juor des variables
     void pidController::_update(float iError)
