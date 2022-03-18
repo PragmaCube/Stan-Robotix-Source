@@ -11,6 +11,11 @@ DylanAzeradSubsystem::DylanAzeradSubsystem(float iSetPoint, float iKproportional
   m_pid_controller = new rbtx::pidController(float iSetPoint, float iKproportional, float iKintegral, float iKderivative);
 }
 
+DylanAzeradSubsystem::~DylanAzeradSubsystem()
+{
+  delete m_pid_controller;
+}
+
 void DylanAzeradSubsystem::_update_distance()
 {
   // Mise à jour des variables

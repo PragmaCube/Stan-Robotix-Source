@@ -12,6 +12,7 @@
 class DylanAzeradSubsystem : public frc2::SubsystemBase {
  public:
   DylanAzeradSubsystem(float iSetPoint, float iKproportional, float iKintegral, float iKderivative);
+  ~DylanAzeradSubsystem();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
