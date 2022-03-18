@@ -26,8 +26,8 @@ void DylanAzeradSubsystem::_update_distance()
 
   // Calculs
   // TODO : trouver comment prendre les valeurs d'accélération
-  float w_acceleration_x;
-  float w_acceleration_y;
+  float w_acceleration_x = m_accelerometer.getX();
+  float w_acceleration_y = m_accelerometer.getY();
   float w_acceleration = sqrt(pow(w_acceleration_x, 2) + pow(w_acceleration_y, 2));
   m_distance_so_far += w_acceleration * w_dt * (1/2 * w_dt + m_total_time);
 }
