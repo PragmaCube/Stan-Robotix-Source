@@ -18,6 +18,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mMotorIndex = 1;
   mLauncherIndex = 1;
   // Configure the button bindings
+  mElevator = new SubElevator;
   ConfigureButtonBindings();
 }
 
