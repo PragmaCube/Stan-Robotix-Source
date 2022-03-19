@@ -20,5 +20,5 @@ class SubElevator : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  rev::CANSparkMax mMotorElevator{3, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax mMotorElevator{kCanIdElevator, rev::CANSparkMax::MotorType::kBrushless};
 };

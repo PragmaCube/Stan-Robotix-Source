@@ -17,13 +17,9 @@ constexpr int kMotorL1Port = 1;
 constexpr int kMotorR2Port = 2;
 constexpr int kMotorR1Port = 3;
 
-constexpr int kMotorPulley = 5;
-
 constexpr int kJoystickPort = 0;
 
-constexpr int kSolenoid1Port = 6;
-constexpr int kSolenoid2Port = 7;
-
-constexpr int kMotorElevatorPort = 8;
+constexpr int kCanIdElevator = 0;
 constexpr float speedUp = 0.35; 
 constexpr float speedDown = -0.25;
+
