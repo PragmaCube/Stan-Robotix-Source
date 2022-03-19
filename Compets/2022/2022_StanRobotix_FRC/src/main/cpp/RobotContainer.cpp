@@ -8,6 +8,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings
+  mElevator = new SubElevator;
   ConfigureButtonBindings();
 }
 
@@ -22,10 +23,23 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::Drive()
 {
-mSubDriveTrain->TankDrive(
+  mSubDriveTrain->TankDrive(
         - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
         - mController.GetY(frc::GenericHID::JoystickHand::kRightHand));
-
-
   std::cout << mController.GetY(frc::GenericHID::JoystickHand::kLeftHand) << std:: endl << mController.GetY(frc::GenericHID::JoystickHand::kLeftHand) << std::endl;
+  
+  if(mController.GetYButton())
+  {
+    mElevator->Up();
+  }
+  
+  else if(mController.GetXButton())
+  {
+    mElevator->Down();
+  }
+  
+  else
+  {
+    mElevator->Stop();
+  }
 }
