@@ -1,49 +1,50 @@
 -o
-C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\exe\\frcUserProgram\\debug\\frcUserProgram
-C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\29o7tgkj7ib6umvafuge85rle\\DriveTrain.o
-C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\3bg5a77l7vd4edmrxq5jco6ri\\Robot.o
-C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\45vqxio4pi9nbs4dcvmcpqo1r\\RobotContainer.o
-C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\5iqfx1ejx75cdd54yfot8edwp\\ExampleCommand.o
-C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\6rbxktw9eh1nty0op7hl3p58v\\SubElevator.o
-C:\\Users\\StanRobotix6622\\Documents\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\e9khynllkm0mknb0l32iok6gn\\ExampleSubsystem.o
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\8647fa76f2edfdff30c2395c4a09599f\\SparkMax-cpp-1.5.1-linuxathenastaticdebug\\linux\\athena\\static\\libSparkMax.a
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\59c8ddc84d5c4272a4671e5a74fd8dfb\\SparkMax-driver-1.5.1-linuxathenastaticdebug\\linux\\athena\\static\\libSparkMaxDriver.a
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\c27ddc0e5cbb4dab6294b79b025741e3\\wpilibNewCommands-cpp-2021.2.2-linuxathenadebug\\linux\\athena\\shared\\libwpilibNewCommandsd.so
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\0c8f0a24b7c381e5f4ae6b7bf7de0040\\wpilibc-cpp-2021.2.2-linuxathenadebug\\linux\\athena\\shared\\libwpilibcd.so
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\375935f8c1692d574f8538dc8b4b7572\\ntcore-cpp-2021.2.2-linuxathenadebug\\linux\\athena\\shared\\libntcored.so
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\7061c835acfbb7815a79ce1bac7d787e\\hal-cpp-2021.2.2-linuxathenadebug\\linux\\athena\\shared\\libwpiHald.so
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\02a494c58deee921b0064e3182ed964a\\wpiutil-cpp-2021.2.2-linuxathenadebug\\linux\\athena\\shared\\libwpiutild.so
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\3c6fa8a7c63d00105dfd5d8985094253\\wpimath-cpp-2021.2.2-linuxathenadebug\\linux\\athena\\shared\\libwpimathd.so
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\3c6fa8a7c63d00105dfd5d8985094253\\wpimath-cpp-2021.2.2-linuxathenadebug\\linux\\athena\\shared\\libwpimathjni.so
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\c5666d4539c4315e8bbe496a1bb16b0f\\chipobject-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libRoboRIO_FRC_ChipObject.so.20.0.0
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9831674169f182213cff16c621bdb585\\netcomm-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libFRC_NetworkCommunication.so.20.0.0
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\34d90a40a8c1982747e001aba49d17a4\\visa-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libvisa.so
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libNiFpga.so.19.0.0
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libNiFpgaLv.so.19.0.0
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libniriodevenum.so.19.0.0
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libniriosession.so.18.0.0
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libNiRioSrv.so.19.0.0
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libnirio_emb_can.so.16.0.0
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libni_emb.so.12.0.0
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libni_rtlog.so.2.8.0
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\5b5b83bffc48a069b4704ece6dce309f\\cameraserver-cpp-2021.2.2-linuxathenadebug\\linux\\athena\\shared\\libcameraserverd.so
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\c9d3848afcd86b290a1434a1e54c24aa\\cscore-cpp-2021.2.2-linuxathenadebug\\linux\\athena\\shared\\libcscored.so
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_calib3dd.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_cored.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_features2dd.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_flannd.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_highguid.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_imgcodecsd.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_imgprocd.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_mld.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_objdetectd.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_photod.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_shaped.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_stitchingd.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_superresd.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_videod.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_videoiod.so.3.4
-C:\\Users\\StanRobotix6622\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_videostabd.so.3.4
+"C:\\Users\\FIRST i5 1\\Desktop\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\exe\\frcUserProgram\\debug\\frcUserProgram"
+"C:\\Users\\FIRST i5 1\\Desktop\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\29o7tgkj7ib6umvafuge85rle\\DriveTrain.o"
+"C:\\Users\\FIRST i5 1\\Desktop\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\3bg5a77l7vd4edmrxq5jco6ri\\Robot.o"
+"C:\\Users\\FIRST i5 1\\Desktop\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\45vqxio4pi9nbs4dcvmcpqo1r\\RobotContainer.o"
+"C:\\Users\\FIRST i5 1\\Desktop\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\4aw1h3mcp7bm795so2kebgu34\\LaunchSystem.o"
+"C:\\Users\\FIRST i5 1\\Desktop\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\5iqfx1ejx75cdd54yfot8edwp\\ExampleCommand.o"
+"C:\\Users\\FIRST i5 1\\Desktop\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\6rbxktw9eh1nty0op7hl3p58v\\SubElevator.o"
+"C:\\Users\\FIRST i5 1\\Desktop\\Stan-Robotix-Source\\Compets\\2022\\2022_StanRobotix_FRC\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\e9khynllkm0mknb0l32iok6gn\\ExampleSubsystem.o"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\8647fa76f2edfdff30c2395c4a09599f\\SparkMax-cpp-1.5.1-linuxathenastaticdebug\\linux\\athena\\static\\libSparkMax.a"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\59c8ddc84d5c4272a4671e5a74fd8dfb\\SparkMax-driver-1.5.1-linuxathenastaticdebug\\linux\\athena\\static\\libSparkMaxDriver.a"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\2c5ae0132d6415ba2c32007112f74a1c\\wpilibNewCommands-cpp-2021.3.1-linuxathenadebug\\linux\\athena\\shared\\libwpilibNewCommandsd.so"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\f64004a140eb56c63b88090b5a5d8e42\\wpilibc-cpp-2021.3.1-linuxathenadebug\\linux\\athena\\shared\\libwpilibcd.so"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\0e74f165517c1f83608ac6713d36379c\\ntcore-cpp-2021.3.1-linuxathenadebug\\linux\\athena\\shared\\libntcored.so"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\a3f499b429e3a7b7af3c6bf2c2f0f0da\\hal-cpp-2021.3.1-linuxathenadebug\\linux\\athena\\shared\\libwpiHald.so"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\3bac56e69fa5f899b966f617d0ab59b0\\wpiutil-cpp-2021.3.1-linuxathenadebug\\linux\\athena\\shared\\libwpiutild.so"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\64f3be85e52aede48f19bc315e3de7a7\\wpimath-cpp-2021.3.1-linuxathenadebug\\linux\\athena\\shared\\libwpimathd.so"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\64f3be85e52aede48f19bc315e3de7a7\\wpimath-cpp-2021.3.1-linuxathenadebug\\linux\\athena\\shared\\libwpimathjni.so"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\c5666d4539c4315e8bbe496a1bb16b0f\\chipobject-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libRoboRIO_FRC_ChipObject.so.20.0.0"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9831674169f182213cff16c621bdb585\\netcomm-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libFRC_NetworkCommunication.so.20.0.0"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\34d90a40a8c1982747e001aba49d17a4\\visa-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libvisa.so"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libNiFpga.so.19.0.0"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libNiFpgaLv.so.19.0.0"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libniriodevenum.so.19.0.0"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libniriosession.so.18.0.0"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libNiRioSrv.so.19.0.0"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libnirio_emb_can.so.16.0.0"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libni_emb.so.12.0.0"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\55c4378917b01b1c9be454f2defed417\\runtime-2020.10.1-linuxathenadebug\\linux\\athena\\shared\\libni_rtlog.so.2.8.0"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9f6284ce2c78d341c7ac80bd4b115a58\\cameraserver-cpp-2021.3.1-linuxathenadebug\\linux\\athena\\shared\\libcameraserverd.so"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\a53f79612a9d9ec98f0668d18d4ab291\\cscore-cpp-2021.3.1-linuxathenadebug\\linux\\athena\\shared\\libcscored.so"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_calib3dd.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_cored.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_features2dd.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_flannd.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_highguid.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_imgcodecsd.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_imgprocd.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_mld.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_objdetectd.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_photod.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_shaped.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_stitchingd.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_superresd.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_videod.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_videoiod.so.3.4"
+"C:\\Users\\FIRST i5 1\\.gradle\\caches\\transforms-2\\files-2.1\\9dc0112420340bc0565c4cb3cb58f822\\opencv-cpp-3.4.7-5-linuxathenadebug\\linux\\athena\\shared\\libopencv_videostabd.so.3.4"
 -rdynamic
 -pthread
 -ldl

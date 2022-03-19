@@ -43,14 +43,11 @@ class RobotContainer {
   frc::XboxController mController{kJoystickPort};
   frc::Joystick mJoystick{kJoystickPort};
 
-  SubDriveTrain* mSubDriveTrain;
-
   ExampleSubsystem m_subsystem;
 
   ExampleCommand m_autonomousCommand;
   SubDriveTrain mDriveTrain;
 
-  frc::XboxController mController{0};
 
   rev::CANSparkMax motor{2, rev::CANSparkMax::MotorType::kBrushless};
 
