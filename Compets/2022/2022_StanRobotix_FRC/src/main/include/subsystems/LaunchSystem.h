@@ -6,6 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include "rev/CANSparkMax.h"
+#include "Constants.h"
 
 class LaunchSystem : public frc2::SubsystemBase {
  public:
@@ -18,7 +19,7 @@ class LaunchSystem : public frc2::SubsystemBase {
   void Periodic() override;
   void Run(bool iButton, LauncherSpeed iMotorSpeed);
  private:
-  rev::CANSparkMax mLaunchMotor{2, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax mLaunchMotor{kCanIdLauncher, rev::CANSparkMax::MotorType::kBrushless};
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.  
 };

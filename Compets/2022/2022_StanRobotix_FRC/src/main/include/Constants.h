@@ -19,4 +19,4 @@ constexpr int kMotorL1Port = 3;
 constexpr int kMotorR2Port = 0;
 constexpr int kMotorR1Port = 1;
 
-constexpr int kLaunchMotorPort = 9;
+constexpr int kCanIdLauncher = 1;
