@@ -1,16 +1,4 @@
 See file:///C:/Users/FIRST%20i5%201/Desktop/Stan-Robotix-Source/Compets/2022/2022_StanRobotix_FRC/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
-compiling ExampleCommand.cpp successful.
-
-compiling Robot.cpp successful.
-
-compiling ExampleSubsystem.cpp successful.
-
-compiling LaunchSystem.cpp successful.
-
 compiling RobotContainer.cpp successful.
-
-compiling SubElevator.cpp successful.
-
-compiling DriveTrain.cpp successful.
 
 Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///C:/Users/FIRST%20i5%201/Desktop/Stan-Robotix-Source/Compets/2022/2022_StanRobotix_FRC/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.

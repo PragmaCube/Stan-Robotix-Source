@@ -46,10 +46,8 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
 
   ExampleCommand m_autonomousCommand;
-  SubDriveTrain mDriveTrain;
 
 
-  rev::CANSparkMax motor{2, rev::CANSparkMax::MotorType::kBrushless};
 
   SubDriveTrain* mSubDriveTrain;
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
@@ -60,5 +58,5 @@ class RobotContainer {
 
   void ConfigureButtonBindings();
 
-  LaunchSystem mLaunchSystem;  
+  LaunchSystem* mLaunchSystem;  
 };

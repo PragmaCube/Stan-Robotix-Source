@@ -1,21 +1,40 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-#include "subsystems/SubElevator.h"
+#include "subsystems\SubElevator.h"
 SubElevator::SubElevator() { }
 // This method will be called once per scheduler run
 void SubElevator::Periodic() {}
 void SubElevator::Down()
 {
-    mMotorElevator.Set(speedDown);
+    mMotorElevatorR.Set(speedDown);
+    mMotorElevatorL.Set(speedDown);
 }
 
 void SubElevator::Up()
 {
-    mMotorElevator.Set(speedUp);
+    mMotorElevatorR.Set(speedUp);
+    mMotorElevatorL.Set(speedUp);
 }
 
 void SubElevator::Stop()
 {
-    mMotorElevator.Set(0);
+    mMotorElevatorR.Set(0);
+    mMotorElevatorL.Set(0);
+}
+
+void SubElevator::Run(bool iUpButton, bool iDownButton)
+{
+    if (iUpButton)
+    {
+        Up();
+    }
+    else if (iDownButton)
+    {
+        Down();
+    }
+    else
+    {
+        Stop();
+    }
 }

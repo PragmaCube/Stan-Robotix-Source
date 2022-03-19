@@ -17,9 +17,12 @@ class LaunchSystem : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-  void Run(bool iButton, LauncherSpeed iMotorSpeed);
+  void Launch(bool iButton, LauncherSpeed iMotorSpeed);
+  void Collect(bool iButton);
  private:
+  rev::CANSparkMax mCollectMotor{kCanIdCollect, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax mLaunchMotor{kCanIdLauncher, rev::CANSparkMax::MotorType::kBrushless};
+  
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.  
 };

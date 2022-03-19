@@ -11,7 +11,9 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
-constexpr int kCanIdLauncher = 1;
+constexpr int kCanIdLauncher = 0;
+constexpr int kCanIdCollect = 1;
+
 // À modifier si besoin
 constexpr int kMotorL2Port = 0;
 constexpr int kMotorL1Port = 1;
@@ -20,6 +22,8 @@ constexpr int kMotorR1Port = 3;
 
 constexpr int kJoystickPort = 0;
 
-constexpr int kCanIdElevator = 0;
+constexpr int kCanIdElevatorR = 2;
+constexpr int kCanIdElevatorL = 3;
 constexpr float speedUp = 0.35; 
 constexpr float speedDown = -0.25;
+constexpr float kCollectSpeed = 0.1;

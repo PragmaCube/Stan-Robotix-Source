@@ -6,7 +6,7 @@ LaunchSystem::LaunchSystem() = default;
 // This method will be called once per scheduler run
 void LaunchSystem::Periodic() {}
 
-void LaunchSystem::Run(bool iButton, LauncherSpeed iMotorSpeed)
+void LaunchSystem::Launch(bool iButton, LauncherSpeed iMotorSpeed)
 {
 
     if (iButton)
@@ -32,4 +32,16 @@ void LaunchSystem::Run(bool iButton, LauncherSpeed iMotorSpeed)
       mLaunchMotor.Set(0);
     }
     
+}
+
+void LaunchSystem::Collect(bool iButton)
+{
+    if (iButton)
+    {
+        mCollectMotor.Set(kCollectSpeed);
+    }
+    else
+    {
+        mLaunchMotor.Set(0);
+    }
 }
