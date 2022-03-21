@@ -41,7 +41,6 @@ class RobotContainer {
   private:
   // The robot's subsystems and commands are defined here...
   frc::XboxController mController{kJoystickPort};
-  frc::Joystick mJoystick{kJoystickPort};
 
   ExampleSubsystem m_subsystem;
 

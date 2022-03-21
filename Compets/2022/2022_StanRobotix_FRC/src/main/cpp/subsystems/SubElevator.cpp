@@ -23,18 +23,3 @@ void SubElevator::Stop()
     mMotorElevatorL.Set(0);
 }
 
-void SubElevator::Run(bool iUpButton, bool iDownButton)
-{
-    if (iUpButton)
-    {
-        Up();
-    }
-    else if (iDownButton)
-    {
-        Down();
-    }
-    else
-    {
-        Stop();
-    }
-}

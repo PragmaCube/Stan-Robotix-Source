@@ -6,42 +6,27 @@ LaunchSystem::LaunchSystem() = default;
 // This method will be called once per scheduler run
 void LaunchSystem::Periodic() {}
 
-void LaunchSystem::Launch(bool iButton, LauncherSpeed iMotorSpeed)
+void LaunchSystem::Launch()
 {
-
-    if (iButton)
-    {
-        switch (iMotorSpeed)
-        {
-        case eSlow:
-            mLaunchMotor.Set(0.85);
-            break;
-
-        case eFast:
-            mLaunchMotor.Set(1);
-            break;
-
-        default:
-            mLaunchMotor.Set(0);
-            break;
-        }
-    }
-
-    else
-    {
-      mLaunchMotor.Set(0);
-    }
-    
+    mLaunchMotor.Set(1.00);
 }
 
-void LaunchSystem::Collect(bool iButton)
+void LaunchSystem::LaunchStop()
 {
-    if (iButton)
-    {
-        mCollectMotor.Set(kCollectSpeed);
-    }
-    else
-    {
-        mLaunchMotor.Set(0);
-    }
+    mLaunchMotor.Set(0);
+}
+
+void LaunchSystem::Collect()
+{
+    mCollectMotor.Set(-0.90);
+}
+
+void LaunchSystem::CollectReverse()
+{
+    mCollectMotor.Set(0.50);
+}
+
+void LaunchSystem::CollectStop()
+{
+    mCollectMotor.Set(0);
 }

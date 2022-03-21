@@ -13,7 +13,6 @@ class SubElevator : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs.
    * 
    */
-  void Run(bool iUpButton, bool iDownButton);
   void Periodic() override;
  private:
   // Components (e.g. motor controllers and sensors) should generally be

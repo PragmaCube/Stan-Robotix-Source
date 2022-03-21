@@ -18,7 +18,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mMotorIndex = 1;
   mLauncherIndex = 1;
   // Configure the button bindings
-  mElevator = new SubElevator;
+  //mElevator = new SubElevator;
   mLaunchSystem = new LaunchSystem;
   ConfigureButtonBindings();
 }
@@ -62,12 +62,33 @@ void RobotContainer::Drive()
   }
 
 
-  mSubDriveTrain->TankDrive(
-        - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
-        - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
-      
-  mLaunchSystem->Launch(mController.GetBumper(frc::GenericHID::JoystickHand::kRightHand), mLauncherSpeed[mLauncherIndex]);
-  mLaunchSystem->Collect(mController.GetAButton());
+  //mSubDriveTrain->TankDrive(
+        //- mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
+        //- mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
+  
+  if(mController.GetAButton())
+  {
+    mLaunchSystem->Launch();
+  }
+  else
+  {
+    mLaunchSystem->LaunchStop();
+  }
 
-  mElevator->Run(mController.GetYButton(),mController.GetXButton());
+
+
+  if(mController.GetBButton())
+  {
+    mLaunchSystem->Collect();
+  }
+  else if(mController.GetYButton())
+  {
+    mLaunchSystem->CollectReverse();
+  }
+  else
+  {
+    mLaunchSystem->CollectStop();
+  }
+  
+  //mElevator->Run(mController.GetYButton(),mController.GetXButton());
 }

@@ -17,8 +17,11 @@ class LaunchSystem : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-  void Launch(bool iButton, LauncherSpeed iMotorSpeed);
-  void Collect(bool iButton);
+  void Launch();
+  void LaunchStop();
+  void Collect();
+  void CollectReverse();
+  void CollectStop();
  private:
   rev::CANSparkMax mCollectMotor{kCanIdCollect, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax mLaunchMotor{kCanIdLauncher, rev::CANSparkMax::MotorType::kBrushless};
