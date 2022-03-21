@@ -77,7 +77,7 @@ void RobotContainer::Drive()
 
 
 
-  if(mController.GetBButton())
+  if(mController.GetXButton())
   {
     mLaunchSystem->Collect();
   }
