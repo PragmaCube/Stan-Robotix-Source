@@ -36,6 +36,8 @@ class RobotContainer {
 
   void HandlePOV();
   void Drive();
+  void ResetAuto();
+  void Auto();
 
   
   private:
@@ -46,7 +48,7 @@ class RobotContainer {
 
   ExampleCommand m_autonomousCommand;
 
-
+  frc::Timer mAutoTimer;
 
   SubDriveTrain* mSubDriveTrain;
   SubDriveTrain::MotorSpeed mMotorSpeed[3];

@@ -13,13 +13,14 @@ class SubElevator : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs.
    * 
    */
+  void Up();
+  void Down();
+  void Stop();
   void Periodic() override;
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  void Up();
-  void Down();
-  void Stop();
+
   rev::CANSparkMax mMotorElevatorR{kCanIdElevatorR, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax mMotorElevatorL{kCanIdElevatorL, rev::CANSparkMax::MotorType::kBrushless};
 };

@@ -8,13 +8,13 @@ void SubElevator::Periodic() {}
 void SubElevator::Down()
 {
     mMotorElevatorR.Set(speedDown);
-    mMotorElevatorL.Set(speedDown);
+    mMotorElevatorL.Set(-speedDown);
 }
 
 void SubElevator::Up()
 {
     mMotorElevatorR.Set(speedUp);
-    mMotorElevatorL.Set(speedUp);
+    mMotorElevatorL.Set(-speedUp);
 }
 
 void SubElevator::Stop()

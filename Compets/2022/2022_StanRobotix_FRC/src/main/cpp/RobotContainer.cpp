@@ -21,6 +21,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   //mElevator = new SubElevator;
   mLaunchSystem = new LaunchSystem;
   ConfigureButtonBindings();
+  mAutoTimer.Start();
 }
 
 void RobotContainer::ConfigureButtonBindings() {
@@ -56,6 +57,7 @@ void RobotContainer::Drive()
   {
     mLauncherIndex = 0;
   }
+
   if (mController.GetPOV() == 270)
   {
     mLauncherIndex = 1;
@@ -90,5 +92,46 @@ void RobotContainer::Drive()
     mLaunchSystem->CollectStop();
   }
   
-  //mElevator->Run(mController.GetYButton(),mController.GetXButton());
+  
+  if(mController.GetBumperPressed(frc::GenericHID::JoystickHand::kLeftHand))
+  {
+    mElevator->Down();
+  }
+  else if(mController.GetBumperPressed(frc::GenericHID::JoystickHand::kRightHand))
+  {
+    mElevator->Up();
+  }
+
+  else
+  {
+    mElevator->Stop();
+  }
 }
+  //mElevator->Run(mControlaer.GetYButton(),mController.GetXButton());
+  void RobotContainer::ResetAuto()
+  {
+  // Pas utilisé
+  // Réinitialise la période autonome
+    mAutoTimer.Reset();
+  }
+  
+  void RobotContainer::Auto()
+  {
+  /* Avance 2s - Stop - Activer Lanceur */
+
+    if(mAutoTimer.Get() <= 2)
+    {
+      mSubDriveTrain->TankDrive(0.5, 0.5, SubDriveTrain::MotorSpeed::eFast);
+    }
+
+    else if(mAutoTimer.Get() >= 2 && mAutoTimer.Get() <= 4)
+    {
+      mSubDriveTrain->SetInactive();
+      mLaunchSystem->Launch();
+    }
+    else 
+    {
+      mLaunchSystem->LaunchStop();
+    }
+  }
+
