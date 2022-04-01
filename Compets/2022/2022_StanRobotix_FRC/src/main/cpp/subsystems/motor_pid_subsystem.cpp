@@ -47,7 +47,7 @@ double MotorPIDSubsystem::_updateDistanceTraveled()
   m_last_time = w_current_time;
 
   // Calculs
-  // TODO : trouver comment prendre les valeurs d'accélération
+  // TODO : voir comment faire pour reculer
   float w_acceleration_x = m_accelerometer.getX();
   float w_acceleration_y = m_accelerometer.getY();
   float w_acceleration = sqrt(pow(w_acceleration_x, 2) + pow(w_acceleration_y, 2));
@@ -57,6 +57,7 @@ double MotorPIDSubsystem::_updateDistanceTraveled()
 void MotorPIDSubsystem::UseOutput()
 {
   _updateDistanceTraveled();
+  std::cout << "Distance parcourue : " << m_distance << std::endl;
 
   // Regarder dans le constructeur pour changer la tolérance
   if (!mPid->AtSetpoint())
