@@ -52,6 +52,18 @@ double MotorPIDSubsystem::_updateDistanceTraveled()
   float w_acceleration_y = m_accelerometer.GetY();
   float w_acceleration = sqrt(pow(w_acceleration_x, 2) + pow(w_acceleration_y, 2));
   m_distance += w_acceleration * w_dt * (1/2 * w_dt + m_total_time);
+
+  /*
+  Pour le côté maths, soit a l'accélération, v la vitesse, x la distance et t le temps
+  x(t) = (at^2)/2 + v(0)t + x(0) <=> x(t+dt) = a(t^2+2tdt+dt^2)/2 + v(0)(t+dt) + x(0)
+                                 <=> x(t+dt) = a(t^2)/2 + a(2tdt+dt^2)/2 + v(0)t + v(0)dt + x(0)
+                                 <=> x(t+dt) = x(t) + a(2tdt+dt^2)/2 + v(0)dt
+  En supposant que v(0) = 0:
+  => x(t+dt) = a(2tdt + dt^2)/2
+             = atdt + (adt^2)/2
+             = adt (t+dt/2)
+  C'est une intégration numérique de la position  
+  */
 }
 
 void MotorPIDSubsystem::UseOutput()
