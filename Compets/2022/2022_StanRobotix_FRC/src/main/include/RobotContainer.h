@@ -55,6 +55,9 @@ class RobotContainer {
   int mLauncherIndex;
   SubElevator* mElevator;
 
+  bool isCollecting;
+  bool isLaunching;
+
   void ConfigureButtonBindings();
 
   LaunchSystem* mLaunchSystem;  

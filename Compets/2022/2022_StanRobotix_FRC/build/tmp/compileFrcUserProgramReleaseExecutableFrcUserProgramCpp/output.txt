@@ -1,4 +1,6 @@
 See file:///C:/Users/StanRobotix6622/Documents/Stan-Robotix-Source/Compets/2022/2022_StanRobotix_FRC/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+compiling Robot.cpp successful.
+
 compiling RobotContainer.cpp successful.
 
 Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///C:/Users/StanRobotix6622/Documents/Stan-Robotix-Source/Compets/2022/2022_StanRobotix_FRC/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.

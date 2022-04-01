@@ -9,17 +9,23 @@
 class SubElevator : public frc2::SubsystemBase {
  public:
   SubElevator();
+
+  enum Climber { eRightClimber, eLeftClimber };
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    * 
    */
+
+  void Up(Climber iPosition);
+  void Down(Climber iPosition);
+  void Stop(Climber iPosition);
+
   void Periodic() override;
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  void Up();
-  void Down();
-  void Stop();
-  rev::CANSparkMax mMotorElevatorR{kCanIdElevatorR, rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax mMotorElevatorL{kCanIdElevatorL, rev::CANSparkMax::MotorType::kBrushless};
+
+  rev::CANSparkMax mRMotorElevator{kCanIdElevatorR, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax mLMotorElevator{kCanIdElevatorL, rev::CANSparkMax::MotorType::kBrushless};
 };

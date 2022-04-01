@@ -7,6 +7,7 @@
 #include "RobotContainer.h"
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
+
   // Initialize all of your commands and subsystems here
 
   mSubDriveTrain = new SubDriveTrain;
@@ -18,9 +19,13 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mMotorIndex = 1;
   mLauncherIndex = 1;
   // Configure the button bindings
-  //mElevator = new SubElevator;
+  mElevator = new SubElevator;
   mLaunchSystem = new LaunchSystem;
   ConfigureButtonBindings();
+
+  isCollecting = false;
+  isLaunching = false;
+
 }
 
 void RobotContainer::ConfigureButtonBindings() {
@@ -61,12 +66,24 @@ void RobotContainer::Drive()
     mLauncherIndex = 1;
   }
 
-
-  //mSubDriveTrain->TankDrive(
-        //- mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
-        //- mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
+  // mSubDriveTrain->TankDrive(
+  //       - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
+  //       - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
   
-  if(mController.GetAButton())
+
+  if(mController.GetAButtonPressed())
+  {
+    if(isLaunching)
+    {
+      isLaunching = false;
+    }
+    else
+    {
+      isLaunching = true;
+    }
+  }
+
+  if(isLaunching)
   {
     mLaunchSystem->Launch();
   }
@@ -76,8 +93,19 @@ void RobotContainer::Drive()
   }
 
 
+  if(mController.GetBButtonPressed())
+  {
+    if(isCollecting)
+    {
+      isCollecting = false;
+    }
+    else
+    {
+      isCollecting = true;
+    }    
+  }
 
-  if(mController.GetBButton())
+  if(isCollecting)
   {
     mLaunchSystem->Collect();
   }
@@ -89,6 +117,33 @@ void RobotContainer::Drive()
   {
     mLaunchSystem->CollectStop();
   }
-  
-  //mElevator->Run(mController.GetYButton(),mController.GetXButton());
+
+  if(mController.GetBumper(frc::GenericHID::JoystickHand::kRightHand))
+  {
+    mElevator->Up(SubElevator::eRightClimber);
+  }
+  else if(mController.GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand)>=0.5)
+  {
+    mElevator->Down(SubElevator::eRightClimber);
+  }
+  else
+  {
+    mElevator->Stop(SubElevator::eRightClimber);
+
+  }
+
+  if(mController.GetBumper(frc::GenericHID::JoystickHand::kLeftHand))
+  {
+    mElevator->Up(SubElevator::eLeftClimber);
+  } 
+  else if(mController.GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand)>=0.5)
+  {
+    mElevator->Down(SubElevator::eLeftClimber);
+  }
+  else
+  {
+    mElevator->Stop(SubElevator::eLeftClimber);
+  }
+
+
 }

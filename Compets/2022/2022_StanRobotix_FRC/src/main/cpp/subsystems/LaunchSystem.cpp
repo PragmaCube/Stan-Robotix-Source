@@ -8,7 +8,7 @@ void LaunchSystem::Periodic() {}
 
 void LaunchSystem::Launch()
 {
-    mLaunchMotor.Set(1.00);
+    mLaunchMotor.Set(0.6);
 }
 
 void LaunchSystem::LaunchStop()
