@@ -36,13 +36,16 @@ void Robot::DisabledPeriodic() {}
  */
 void Robot::AutonomousInit() {
   m_autonomousCommand = m_container.GetAutonomousCommand();
+  m_container.setupPID(10, 5, 0.001, 0.001);
 
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Schedule();
   }
 }
 
-void Robot::AutonomousPeriodic() {}
+void Robot::AutonomousPeriodic() {
+  m_container.PIDDrive();
+}
 
 void Robot::TeleopInit() {
   // This makes sure that the autonomous stops running when

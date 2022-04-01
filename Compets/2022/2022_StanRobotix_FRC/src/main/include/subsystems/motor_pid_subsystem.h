@@ -7,11 +7,12 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/PIDSubsystem.h>
 #include "Constants.h"
+#include <chrono>
 
-class PidSubsystem : public frc2::SubsystemBase {
+class MotorPIDSubsystem : public frc2::SubsystemBase {
  public:
-  PidSubsystem(double kP, double kI, double kD);
-  ~PidSubsystem();
+  MotorPIDSubsystem(double kP, double kI, double kD);
+  ~MotorPIDSubsystem();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -25,8 +26,9 @@ class PidSubsystem : public frc2::SubsystemBase {
   void SimulationPeriodic() override;
 
   void SetPoint(double iSetPoint);
+  void StartTimer();
 
-  void UseOutput(double iError);
+  void UseOutput();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -34,12 +36,14 @@ class PidSubsystem : public frc2::SubsystemBase {
 
   // Utilisation PID
   frc2::PIDController* mPid;
-  double _getOutput(double iError);
   double mSetPoint;
 
   // Accéléromètre
   frc::BuiltInAccelerometer m_accelerometer;
   std::chrono::steady_clock::time_point m_last_time;
+  double m_distance;
+  double m_total_time;
+  double _updateDistanceTraveled();
 
   // Création des moteurs
   frc::Talon mMotorL1{kMotorL1Port};

@@ -51,3 +51,15 @@ void RobotContainer::Drive()
         - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
         - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
 }
+
+void RobotContainer::setupPID(float iSetPoint, double kP, double kI, double kD)
+{
+  m_motorPIDsubsystem = new MotorPIDSubsystem(kP, kI, kD);
+  m_motorPIDsubsystem->SetPoint(iSetPoint);
+  m_motorPIDsubsystem->StartTimer;
+}
+
+void RobotContainer::PIDDrive()
+{
+  m_motorPIDsubsystem->UseOutput();
+}

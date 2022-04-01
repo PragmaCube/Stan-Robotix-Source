@@ -8,6 +8,7 @@
 #include <frc2/command/Command.h>
 
 #include "RobotContainer.h"
+#include "subsystems/motor_pid_subsystem.h"
 
 class Robot : public frc::TimedRobot {
  public:
