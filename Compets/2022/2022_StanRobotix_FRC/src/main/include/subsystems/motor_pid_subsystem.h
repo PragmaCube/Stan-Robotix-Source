@@ -18,6 +18,8 @@
 #include <algorithm>
 #include <iostream>
 
+#include "subsystems/DriveTrain.h"
+
 class MotorPIDSubsystem : public frc2::SubsystemBase {
  public:
   MotorPIDSubsystem(double kP, double kI, double kD);
@@ -43,6 +45,10 @@ class MotorPIDSubsystem : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
+  // Implementation DriveTrain
+  SubDriveTrain* mSubDriveTrain;
+  SubDriveTrain::MotorSpeed mMotorSpeed[3];
+
   // Utilisation PID
   frc2::PIDController* mPid;
   double mSetPoint;
@@ -55,13 +61,13 @@ class MotorPIDSubsystem : public frc2::SubsystemBase {
   double _updateDistanceTraveled();
 
   // Création des moteurs
-  frc::Talon mMotorL1{kMotorL1Port};
-  frc::Talon mMotorL2{kMotorL2Port};
-  frc::Talon mMotorR1{kMotorR1Port};
-  frc::Talon mMotorR2{kMotorR2Port}; 
+  // frc::Talon mMotorL1{kMotorL1Port};
+  // frc::Talon mMotorL2{kMotorL2Port};
+  // frc::Talon mMotorR1{kMotorR1Port};
+  // frc::Talon mMotorR2{kMotorR2Port}; 
 
-  frc::SpeedControllerGroup mLeftSide{mMotorL1, mMotorL2};
-	frc::SpeedControllerGroup mRightSide{mMotorR1, mMotorR2};
+  // frc::SpeedControllerGroup mLeftSide{mMotorL1, mMotorL2};
+	// frc::SpeedControllerGroup mRightSide{mMotorR1, mMotorR2};
 
-  frc::DifferentialDrive m_drive_train{mLeftSide, mRightSide};
+  // frc::DifferentialDrive m_drive_train{mLeftSide, mRightSide};
 };

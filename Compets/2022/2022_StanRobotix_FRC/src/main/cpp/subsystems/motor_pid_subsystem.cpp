@@ -9,6 +9,11 @@ MotorPIDSubsystem::MotorPIDSubsystem(double kP, double kI, double kD) {
   mPid = new frc2::PIDController(kP, kI, kD);
   mPid->SetIntegratorRange(-0.5, 0.5);
   mPid->SetTolerance(5, 10);
+
+  mSubDriveTrain = new SubDriveTrain;
+  mMotorSpeed[0] = SubDriveTrain::MotorSpeed::eSlow;
+  mMotorSpeed[1] = SubDriveTrain::MotorSpeed::eMedium;
+  mMotorSpeed[2] = SubDriveTrain::MotorSpeed::eFast;
 }
 
 MotorPIDSubsystem::~MotorPIDSubsystem() {
@@ -43,6 +48,7 @@ double MotorPIDSubsystem::_updateDistanceTraveled()
   float w_dt = std::chrono::duration_cast<std::chrono::milliseconds>(w_current_time - m_last_time).count();
   // Diviser par 10^3 car nous avons compté des millisecondes
   w_dt /= 1000;
+  //std::cout << "elapsed time is " << w_dt << std::endl;
   m_total_time += w_dt;
   m_last_time = w_current_time;
 
@@ -69,14 +75,17 @@ double MotorPIDSubsystem::_updateDistanceTraveled()
 void MotorPIDSubsystem::UseOutput()
 {
   _updateDistanceTraveled();
-  std::cout << "Distance parcourue : " << m_distance << std::endl;
+  //std::cout << "Distance parcourue : " << m_distance << std::endl;
 
   // Regarder dans le constructeur pour changer la tolérance
-  if (!mPid->AtSetpoint())
-  {
+  //if (!mPid->AtSetpoint())
+  //{
     // Les valeurs doivent être entre -1 et 1 pour le moteur
     double w_output = std::clamp(mPid->Calculate(m_distance, mSetPoint), -0.2, 0.2);
-    m_drive_train.TankDrive(w_output, w_output, false);
-  }
+    //std::cout << "Output is : " << w_output << std::endl;
+    //m_drive_train.TankDrive(0.2, 0.2, false);
+    mSubDriveTrain->TankDrive(0.2, 0.2, mMotorSpeed[0]);
+    std::cout << "drive train should work \n";
+  //}
 }
 

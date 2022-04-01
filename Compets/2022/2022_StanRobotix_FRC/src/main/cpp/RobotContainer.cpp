@@ -30,7 +30,7 @@ void RobotContainer::ConfigureButtonBindings() {
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   
-  m_motorPIDsubsystem->SetPoint(10);
+  m_motorPIDsubsystem->SetPoint(3);
   // Commence le temps ici
   m_motorPIDsubsystem->StartTimer();
   return &m_autonomousCommand;
