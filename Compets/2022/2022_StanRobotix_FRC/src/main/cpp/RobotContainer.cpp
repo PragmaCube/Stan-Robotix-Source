@@ -16,7 +16,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mMotorIndex = 1;
 
   // Initialisation du PID
-  m_motorPIDsubsystem = new MotorPIDSubsystem(5, 0.001, 0.001);
+  m_motorPIDsubsystem = new MotorPIDSubsystem(0.1, 0.001, 0.001);
 
   // Configure the button bindings
   ConfigureButtonBindings();

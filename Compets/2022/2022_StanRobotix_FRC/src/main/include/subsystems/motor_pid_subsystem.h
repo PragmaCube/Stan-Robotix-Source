@@ -8,6 +8,7 @@
 #include <frc2/command/PIDSubsystem.h>
 #include "Constants.h"
 #include <chrono>
+#include <algorithm>
 
 class MotorPIDSubsystem : public frc2::SubsystemBase {
  public:
