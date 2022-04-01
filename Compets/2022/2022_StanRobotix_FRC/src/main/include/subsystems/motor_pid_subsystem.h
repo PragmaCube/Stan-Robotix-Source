@@ -6,6 +6,12 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/PIDSubsystem.h>
+#include <frc/BuiltInAccelerometer.h>
+
+#include <frc/Talon.h>
+#include <frc/SpeedController.h>
+#include <frc/SpeedControllerGroup.h>
+#include <frc/drive/DifferentialDrive.h>
 
 #include "Constants.h"
 #include <chrono>
@@ -42,7 +48,7 @@ class MotorPIDSubsystem : public frc2::SubsystemBase {
   double mSetPoint;
 
   // Accéléromètre
-  frc::BuiltInAccelerometer m_accelerometer;
+  frc::BuiltInAccelerometer m_accelerometer {};
   std::chrono::steady_clock::time_point m_last_time;
   double m_distance;
   double m_total_time;
@@ -57,5 +63,5 @@ class MotorPIDSubsystem : public frc2::SubsystemBase {
   frc::SpeedControllerGroup mLeftSide{mMotorL1, mMotorL2};
 	frc::SpeedControllerGroup mRightSide{mMotorR1, mMotorR2};
 
-  frc::DifferentialDrive mDriveTrain{mLeftSide, mRightSide};
+  frc::DifferentialDrive m_drive_train{mLeftSide, mRightSide};
 };
