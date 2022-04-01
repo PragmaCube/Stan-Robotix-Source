@@ -29,7 +29,6 @@ class RobotContainer {
   frc2::Command* GetAutonomousCommand();
 
   void Drive();
-  void setupPID(float iSetPoint, double kP, double kI, double kD);
   void PIDDrive();
 
  private:
@@ -43,6 +42,7 @@ class RobotContainer {
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
   int mMotorIndex;
 
+  // Pid est ici
   MotorPIDSubsystem* m_motorPIDsubsystem;
 
   void ConfigureButtonBindings();

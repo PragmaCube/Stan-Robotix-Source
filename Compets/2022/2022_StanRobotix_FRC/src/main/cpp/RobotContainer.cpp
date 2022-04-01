@@ -15,6 +15,9 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mMotorSpeed[2] = SubDriveTrain::MotorSpeed::eFast;
   mMotorIndex = 1;
 
+  // Initialisation du PID
+  m_motorPIDsubsystem = new MotorPIDSubsystem(5, 0.001, 0.001);
+
   // Configure the button bindings
   ConfigureButtonBindings();
 }
@@ -26,6 +29,10 @@ void RobotContainer::ConfigureButtonBindings() {
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
+  
+  m_motorPIDsubsystem->SetPoint(10);
+  // Commence le temps ici
+  m_motorPIDsubsystem->StartTimer();
   return &m_autonomousCommand;
 }
 
@@ -50,13 +57,6 @@ void RobotContainer::Drive()
   mSubDriveTrain->TankDrive(
         - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
         - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
-}
-
-void RobotContainer::setupPID(float iSetPoint, double kP, double kI, double kD)
-{
-  m_motorPIDsubsystem = new MotorPIDSubsystem(kP, kI, kD);
-  m_motorPIDsubsystem->SetPoint(iSetPoint);
-  m_motorPIDsubsystem->StartTimer;
 }
 
 void RobotContainer::PIDDrive()

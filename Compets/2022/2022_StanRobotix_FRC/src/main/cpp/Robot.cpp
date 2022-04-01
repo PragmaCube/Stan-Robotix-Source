@@ -36,7 +36,6 @@ void Robot::DisabledPeriodic() {}
  */
 void Robot::AutonomousInit() {
   m_autonomousCommand = m_container.GetAutonomousCommand();
-  m_container.setupPID(10, 5, 0.001, 0.001);
 
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Schedule();
