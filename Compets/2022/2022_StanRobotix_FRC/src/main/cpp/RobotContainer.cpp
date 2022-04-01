@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include <iostream>
+#include <cameraserver/CameraServer.h>
 
 #include "RobotContainer.h"
 
@@ -25,6 +26,10 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
   isCollecting = false;
   isLaunching = false;
+
+  frc::CameraServer* mCamera = frc::CameraServer::GetInstance();
+  mCamera->StartAutomaticCapture();
+  mCamera->PutVideo("Video In", 720, 480);
 
 }
 
@@ -66,9 +71,9 @@ void RobotContainer::Drive()
     mLauncherIndex = 1;
   }
 
-  // mSubDriveTrain->TankDrive(
-  //       - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
-  //       - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
+  mSubDriveTrain->TankDrive(
+        - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
+        - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
   
 
   if(mController.GetAButtonPressed())

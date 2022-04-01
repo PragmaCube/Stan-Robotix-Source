@@ -25,6 +25,6 @@ constexpr int kJoystickPort = 0;
 
 constexpr int kCanIdElevatorR = 4;
 constexpr int kCanIdElevatorL = 3;
-constexpr float kSpeedUp = 0.15; 
-constexpr float kSpeedDown = -0.15;
+constexpr float kSpeedUp = 0.30; 
+constexpr float kSpeedDown = -0.30;
 constexpr float kCollectSpeed = 0.25;
