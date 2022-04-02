@@ -1,16 +1,47 @@
 See file:///C:/Users/FIRST%20i5%201/Desktop/Stan-Robotix-Source/Compets/2022/2022_StanRobotix_FRC/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramDebugExecutableFrcUserProgramCpp.
+compiling RobotContainer.cpp failed.
+In file included from C:\Users\FIRST i5 1\.gradle\caches\transforms-2\files-2.1\882abe7071f509f055cf407c9d993759\REVLib-cpp-2022.1.1-headers/rev/CANSparkMax.h:53:0,
+                 from C:\Users\FIRST i5 1\Desktop\Stan-Robotix-Source\Compets\2022\2022_StanRobotix_FRC\src\main\include/subsystems/SubElevator.h:6,
+                 from C:\Users\FIRST i5 1\Desktop\Stan-Robotix-Source\Compets\2022\2022_StanRobotix_FRC\src\main\include/RobotContainer.h:12,
+                 from C:\Users\FIRST i5 1\Desktop\Stan-Robotix-Source\Compets\2022\2022_StanRobotix_FRC\src\main\cpp\RobotContainer.cpp:8:
+C:\Users\FIRST i5 1\.gradle\caches\transforms-2\files-2.1\882abe7071f509f055cf407c9d993759\REVLib-cpp-2022.1.1-headers/rev/CANSparkMaxLowLevel.h:36:10: fatal error: frc/motorcontrol/MotorController.h: No such file or directory
+ #include <frc/motorcontrol/MotorController.h>
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+
+compiling Robot.cpp failed.
+In file included from C:\Users\FIRST i5 1\.gradle\caches\transforms-2\files-2.1\882abe7071f509f055cf407c9d993759\REVLib-cpp-2022.1.1-headers/rev/CANSparkMax.h:53:0,
+                 from C:\Users\FIRST i5 1\Desktop\Stan-Robotix-Source\Compets\2022\2022_StanRobotix_FRC\src\main\include/subsystems/SubElevator.h:6,
+                 from C:\Users\FIRST i5 1\Desktop\Stan-Robotix-Source\Compets\2022\2022_StanRobotix_FRC\src\main\include/RobotContainer.h:12,
+                 from C:\Users\FIRST i5 1\Desktop\Stan-Robotix-Source\Compets\2022\2022_StanRobotix_FRC\src\main\include/Robot.h:11,
+                 from C:\Users\FIRST i5 1\Desktop\Stan-Robotix-Source\Compets\2022\2022_StanRobotix_FRC\src\main\cpp\Robot.cpp:5:
+C:\Users\FIRST i5 1\.gradle\caches\transforms-2\files-2.1\882abe7071f509f055cf407c9d993759\REVLib-cpp-2022.1.1-headers/rev/CANSparkMaxLowLevel.h:36:10: fatal error: frc/motorcontrol/MotorController.h: No such file or directory
+ #include <frc/motorcontrol/MotorController.h>
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+
+compiling LaunchSystem.cpp failed.
+In file included from C:\Users\FIRST i5 1\.gradle\caches\transforms-2\files-2.1\882abe7071f509f055cf407c9d993759\REVLib-cpp-2022.1.1-headers/rev/CANSparkMax.h:53:0,
+                 from C:\Users\FIRST i5 1\Desktop\Stan-Robotix-Source\Compets\2022\2022_StanRobotix_FRC\src\main\include/subsystems/LaunchSystem.h:8,
+                 from C:\Users\FIRST i5 1\Desktop\Stan-Robotix-Source\Compets\2022\2022_StanRobotix_FRC\src\main\cpp\subsystems\LaunchSystem.cpp:1:
+C:\Users\FIRST i5 1\.gradle\caches\transforms-2\files-2.1\882abe7071f509f055cf407c9d993759\REVLib-cpp-2022.1.1-headers/rev/CANSparkMaxLowLevel.h:36:10: fatal error: frc/motorcontrol/MotorController.h: No such file or directory
+ #include <frc/motorcontrol/MotorController.h>
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+
+compiling SubElevator.cpp failed.
+In file included from C:\Users\FIRST i5 1\.gradle\caches\transforms-2\files-2.1\882abe7071f509f055cf407c9d993759\REVLib-cpp-2022.1.1-headers/rev/CANSparkMax.h:53:0,
+                 from C:\Users\FIRST i5 1\Desktop\Stan-Robotix-Source\Compets\2022\2022_StanRobotix_FRC\src\main\include/subsystems\SubElevator.h:6,
+                 from C:\Users\FIRST i5 1\Desktop\Stan-Robotix-Source\Compets\2022\2022_StanRobotix_FRC\src\main\cpp\subsystems\SubElevator.cpp:4:
+C:\Users\FIRST i5 1\.gradle\caches\transforms-2\files-2.1\882abe7071f509f055cf407c9d993759\REVLib-cpp-2022.1.1-headers/rev/CANSparkMaxLowLevel.h:36:10: fatal error: frc/motorcontrol/MotorController.h: No such file or directory
+ #include <frc/motorcontrol/MotorController.h>
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+
 compiling ExampleCommand.cpp successful.
 
-compiling RobotContainer.cpp successful.
-
-compiling Robot.cpp successful.
-
-compiling LaunchSystem.cpp successful.
-
-compiling SubElevator.cpp successful.
+compiling DriveTrain.cpp successful.
 
 compiling ExampleSubsystem.cpp successful.
-
-compiling DriveTrain.cpp successful.
 
 Finished compileFrcUserProgramDebugExecutableFrcUserProgramCpp, see full log file:///C:/Users/FIRST%20i5%201/Desktop/Stan-Robotix-Source/Compets/2022/2022_StanRobotix_FRC/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt.

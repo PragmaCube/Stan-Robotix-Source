@@ -127,7 +127,7 @@ void RobotContainer::Drive()
   {
     mElevator->Up(SubElevator::eRightClimber);
   }
-  else if(mController.GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand)>=0.5)
+  else if(mController.GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand) >= 0.5)
   {
     mElevator->Down(SubElevator::eRightClimber);
   }
@@ -141,7 +141,7 @@ void RobotContainer::Drive()
   {
     mElevator->Up(SubElevator::eLeftClimber);
   } 
-  else if(mController.GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand)>=0.5)
+  else if(mController.GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand) >= 0.5)
   {
     mElevator->Down(SubElevator::eLeftClimber);
   }
@@ -149,6 +149,5 @@ void RobotContainer::Drive()
   {
     mElevator->Stop(SubElevator::eLeftClimber);
   }
-
 
 }
