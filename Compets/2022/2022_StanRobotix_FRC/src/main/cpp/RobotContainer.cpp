@@ -3,10 +3,12 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include <iostream>
+#include <cameraserver/CameraServer.h>
 
 #include "RobotContainer.h"
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
+
   // Initialize all of your commands and subsystems here
 
   mSubDriveTrain = new SubDriveTrain;
@@ -18,9 +20,17 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mMotorIndex = 1;
   mLauncherIndex = 1;
   // Configure the button bindings
-  //mElevator = new SubElevator;
+  mElevator = new SubElevator;
   mLaunchSystem = new LaunchSystem;
   ConfigureButtonBindings();
+
+  isCollecting = false;
+  isLaunching = false;
+
+  frc::CameraServer* mCamera = frc::CameraServer::GetInstance();
+  mCamera->StartAutomaticCapture();
+  mCamera->PutVideo("Video In", 720, 480);
+
 }
 
 void RobotContainer::ConfigureButtonBindings() {
@@ -61,12 +71,24 @@ void RobotContainer::Drive()
     mLauncherIndex = 1;
   }
 
-
-  //mSubDriveTrain->TankDrive(
-        //- mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
-        //- mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
+  mSubDriveTrain->TankDrive(
+        - mController.GetLeftY(),
+        - mController.GetRightY(), mMotorSpeed[mMotorIndex]);
   
-  if(mController.GetAButton())
+
+  if(mController.GetAButtonPressed())
+  {
+    if(isLaunching)
+    {
+      isLaunching = false;
+    }
+    else
+    {
+      isLaunching = true;
+    }
+  }
+
+  if(isLaunching)
   {
     mLaunchSystem->Launch();
   }
@@ -76,8 +98,19 @@ void RobotContainer::Drive()
   }
 
 
+  if(mController.GetBButtonPressed())
+  {
+    if(isCollecting)
+    {
+      isCollecting = false;
+    }
+    else
+    {
+      isCollecting = true;
+    }    
+  }
 
-  if(mController.GetXButton())
+  if(isCollecting)
   {
     mLaunchSystem->Collect();
   }
@@ -89,6 +122,32 @@ void RobotContainer::Drive()
   {
     mLaunchSystem->CollectStop();
   }
-  
-  //mElevator->Run(mController.GetYButton(),mController.GetXButton());
+
+  if(mController.GetRightBumper())
+  {
+    mElevator->Up(SubElevator::eRightClimber);
+  }
+  else if(mController.GetRightTriggerAxis() >= 0.5)
+  {
+    mElevator->Down(SubElevator::eRightClimber);
+  }
+  else
+  {
+    mElevator->Stop(SubElevator::eRightClimber);
+
+  }
+
+  if(mController.GetLeftBumper())
+  {
+    mElevator->Up(SubElevator::eLeftClimber);
+  } 
+  else if(mController.GetLeftTriggerAxis() >= 0.5)
+  {
+    mElevator->Down(SubElevator::eLeftClimber);
+  }
+  else
+  {
+    mElevator->Stop(SubElevator::eLeftClimber);
+  }
+
 }

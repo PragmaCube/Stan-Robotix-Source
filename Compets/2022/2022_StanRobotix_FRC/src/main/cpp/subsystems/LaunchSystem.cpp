@@ -8,7 +8,7 @@ void LaunchSystem::Periodic() {}
 
 void LaunchSystem::Launch()
 {
-    mLaunchMotor.Set(.4);
+    mLaunchMotor.Set(0.6);
 }
 
 void LaunchSystem::LaunchStop()
@@ -18,12 +18,12 @@ void LaunchSystem::LaunchStop()
 
 void LaunchSystem::Collect()
 {
-    mCollectMotor.Set(-0.5);
+    mCollectMotor.Set(-0.40);
 }
 
 void LaunchSystem::CollectReverse()
 {
-    mCollectMotor.Set(0.5);
+    mCollectMotor.Set(0.30);
 }
 
 void LaunchSystem::CollectStop()

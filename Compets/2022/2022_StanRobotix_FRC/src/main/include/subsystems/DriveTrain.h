@@ -6,7 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 
-#include <frc/Talon.h>
+#include <frc/motorcontrol/Talon.h>
 
 #include <frc/SpeedController.h>
 #include <frc/SpeedControllerGroup.h>
