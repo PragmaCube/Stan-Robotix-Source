@@ -15,6 +15,7 @@ class SubElevator : public frc2::SubsystemBase {
 
   enum Climber { eRightClimber, eLeftClimber };
   enum Encoder { eRightEncoder, eLeftEncoder } ;
+  enum ClimbingContext { eUp, eDown };
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -26,6 +27,7 @@ class SubElevator : public frc2::SubsystemBase {
   void Stop(Climber iPosition);
 
   double GetEncoderPosition(Encoder iSide);
+  bool canClimb(Encoder iSide, ClimbingContext iContext);
 
   void Periodic() override;
  private:

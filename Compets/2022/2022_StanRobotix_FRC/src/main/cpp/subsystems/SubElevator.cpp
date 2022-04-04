@@ -89,4 +89,37 @@ double SubElevator::GetEncoderPosition(Encoder iSide)
     }
 }
 
+bool SubElevator::canClimb(Encoder iSide, ClimbingContext iContext)
+{
+    switch (iSide)
+    {
+    case eRightEncoder:
+        if (iContext == ClimbingContext::eUp)
+        {
+            return std::abs(GetEncoderPosition(iSide)) > kMaxHeight ? false : true;
+        }
 
+        else if(iContext == ClimbingContext::eDown)
+        {
+            return std::abs(GetEncoderPosition(iSide)) < kMinHeight ? false : true;
+        }
+
+        break;
+    
+    case eLeftEncoder:
+        if (iContext == ClimbingContext::eUp)
+        {
+            return std::abs(GetEncoderPosition(iSide)) > kMaxHeight ? false : true;
+        }
+
+        else if(iContext == ClimbingContext::eDown)
+        {
+            return std::abs(GetEncoderPosition(iSide)) < kMinHeight ? false : true;
+        }        
+
+        break;
+
+    default:
+        break;
+    }
+}

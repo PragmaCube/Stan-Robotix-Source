@@ -36,6 +36,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mCamera.SetResolution(852, 480);
   mCamera.SetFPS(20);
   frc::CameraServer::StartAutomaticCapture(mCamera);
+  frc::CameraServer::StartAutomaticCapture();
 
 }
 
@@ -129,11 +130,11 @@ void RobotContainer::Drive()
     mLaunchSystem->CollectStop();
   }
 
-  if(mController.GetRightBumper())
+  if(mController.GetRightBumper() && (std::abs(mElevator->GetEncoderPosition(SubElevator::Encoder::eRightEncoder)) > kMinHeight))
   {
     mElevator->Up(SubElevator::eRightClimber);
   }
-  else if(mController.GetRightTriggerAxis() >= 0.5)
+  else if(mController.GetRightTriggerAxis() >= 0.5 && (std::abs(mElevator->GetEncoderPosition(SubElevator::Encoder::eRightEncoder)) < kMaxHeight))
   {
     mElevator->Down(SubElevator::eRightClimber);
   }
@@ -143,11 +144,11 @@ void RobotContainer::Drive()
 
   }
 
-  if(mController.GetLeftBumper())
+  if(mController.GetLeftBumper() && (std::abs(mElevator->GetEncoderPosition(SubElevator::Encoder::eLeftEncoder)) > kMinHeight))
   {
     mElevator->Up(SubElevator::eLeftClimber);
   } 
-  else if(mController.GetLeftTriggerAxis() >= 0.5)
+  else if(mController.GetLeftTriggerAxis() >= 0.5 && (std::abs(mElevator->GetEncoderPosition(SubElevator::Encoder::eLeftEncoder)) < kMaxHeight))
   {
     mElevator->Down(SubElevator::eLeftClimber);
   }
@@ -158,5 +159,13 @@ void RobotContainer::Drive()
 
   std::cout << "L-Encoder Value : " << mElevator->GetEncoderPosition(SubElevator::eLeftEncoder) << std::endl;
   std::cout << "R-Encoder Value : " << mElevator->GetEncoderPosition(SubElevator::eRightEncoder) << std::endl;
+
+  std::cout << "kMax : " << kMaxHeight << std::endl;
+  std::cout << "kMin : " << kMinHeight << std::endl;
+  std::cout << "R Up condition" << (std::abs(mElevator->GetEncoderPosition(SubElevator::Encoder::eRightEncoder)) < kMaxHeight) << std::endl;
+  std::cout << "L Up condition" << (std::abs(mElevator->GetEncoderPosition(SubElevator::Encoder::eLeftEncoder)) < kMaxHeight) << std::endl;
+  std::cout << "R Down condition" << (std::abs(mElevator->GetEncoderPosition(SubElevator::Encoder::eRightEncoder)) > kMinHeight) << std::endl;
+  std::cout << "L Down condition" << (std::abs(mElevator->GetEncoderPosition(SubElevator::Encoder::eLeftEncoder)) > kMinHeight) << std::endl;
+
 
 }
