@@ -12,24 +12,30 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   // Initialize all of your commands and subsystems here
 
   mSubDriveTrain = new SubDriveTrain;
+
   mMotorSpeed[0] = SubDriveTrain::MotorSpeed::eSlow;
   mMotorSpeed[1] = SubDriveTrain::MotorSpeed::eMedium;
   mMotorSpeed[2] = SubDriveTrain::MotorSpeed::eFast;
+
   mLauncherSpeed[0] = LaunchSystem::LauncherSpeed::eSlow;
   mLauncherSpeed[1] = LaunchSystem::LauncherSpeed::eFast;
+
   mMotorIndex = 1;
   mLauncherIndex = 1;
-  // Configure the button bindings
+
   mElevator = new SubElevator;
   mLaunchSystem = new LaunchSystem;
+
+  // Configure the button bindings
+
   ConfigureButtonBindings();
 
   isCollecting = false;
   isLaunching = false;
 
-  frc::CameraServer* mCamera = frc::CameraServer::GetInstance();
-  mCamera->StartAutomaticCapture();
-  mCamera->PutVideo("Video In", 720, 480);
+  mCamera.SetResolution(852, 480);
+  mCamera.SetFPS(20);
+  frc::CameraServer::StartAutomaticCapture(mCamera);
 
 }
 

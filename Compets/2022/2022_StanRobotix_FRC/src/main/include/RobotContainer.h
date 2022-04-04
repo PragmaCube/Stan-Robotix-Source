@@ -19,6 +19,7 @@
  */
 
 #include <frc/XboxController.h>
+#include <cameraserver/CameraServer.h>
 
 #include "subsystems/DriveTrain.h"
 
@@ -33,10 +34,10 @@ class RobotContainer {
 
   frc2::Command* GetAutonomousCommand();
 
-
   void HandlePOV();
   void Drive();
 
+  cs::UsbCamera mCamera;
   
   private:
   // The robot's subsystems and commands are defined here...
@@ -46,13 +47,13 @@ class RobotContainer {
 
   ExampleCommand m_autonomousCommand;
 
-
-
   SubDriveTrain* mSubDriveTrain;
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
   LaunchSystem::LauncherSpeed mLauncherSpeed[2];
+
   int mMotorIndex;
   int mLauncherIndex;
+
   SubElevator* mElevator;
 
   bool isCollecting;
