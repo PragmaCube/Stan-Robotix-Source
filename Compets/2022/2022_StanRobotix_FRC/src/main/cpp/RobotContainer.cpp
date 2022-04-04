@@ -73,7 +73,7 @@ void RobotContainer::Drive()
 
   mSubDriveTrain->TankDrive(
         - mController.GetLeftY(),
-        - mController.GetRightY(), mMotorSpeed[mMotorIndex]);
+        mController.GetRightY(), mMotorSpeed[mMotorIndex]);
   
 
   if(mController.GetAButtonPressed())
@@ -149,5 +149,8 @@ void RobotContainer::Drive()
   {
     mElevator->Stop(SubElevator::eLeftClimber);
   }
+
+  std::cout << "L-Encoder Value : " << mElevator->GetEncoderPosition(SubElevator::eLeftEncoder) << std::endl;
+  std::cout << "R-Encoder Value : " << mElevator->GetEncoderPosition(SubElevator::eRightEncoder) << std::endl;
 
 }

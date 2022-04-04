@@ -4,6 +4,8 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
+#include <rev/SparkMaxRelativeEncoder.h>
+
 #include "rev/CANSparkMax.h"
 #include "Constants.h"
 
@@ -12,6 +14,7 @@ class SubElevator : public frc2::SubsystemBase {
   SubElevator();
 
   enum Climber { eRightClimber, eLeftClimber };
+  enum Encoder { eRightEncoder, eLeftEncoder } ;
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -22,6 +25,8 @@ class SubElevator : public frc2::SubsystemBase {
   void Down(Climber iPosition);
   void Stop(Climber iPosition);
 
+  double GetEncoderPosition(Encoder iSide);
+
   void Periodic() override;
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -29,4 +34,7 @@ class SubElevator : public frc2::SubsystemBase {
 
   rev::CANSparkMax mRMotorElevator{kCanIdElevatorR, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax mLMotorElevator{kCanIdElevatorL, rev::CANSparkMax::MotorType::kBrushless};
+
+  rev::SparkMaxRelativeEncoder mRMotorEncoder = mRMotorElevator.GetEncoder();
+  rev::SparkMaxRelativeEncoder mLMotorEncoder = mLMotorElevator.GetEncoder();
 };

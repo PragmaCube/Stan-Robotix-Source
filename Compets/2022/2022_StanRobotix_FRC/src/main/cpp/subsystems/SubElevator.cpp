@@ -3,7 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 #include "subsystems\SubElevator.h"
 
-SubElevator::SubElevator() { }
+SubElevator::SubElevator() {}
+
 // This method will be called once per scheduler run
 void SubElevator::Periodic() {}
 
@@ -70,4 +71,22 @@ void SubElevator::Stop(Climber iPosition)
         break;
     }
 }
+
+double SubElevator::GetEncoderPosition(Encoder iSide)
+{
+    switch (iSide)
+    {
+    case eRightEncoder:
+        return mRMotorEncoder.GetPosition();
+        break;
+    
+    case eLeftEncoder:
+        return mLMotorEncoder.GetPosition();
+        break;
+
+    default:
+        break;
+    }
+}
+
 
