@@ -15,6 +15,7 @@
 #include <frc/drive/MecanumDrive.h>
 
 #include <Constants.h>
+#include "subsystems/motor_pid_subsystem.h"
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
@@ -31,6 +32,11 @@ class SubDriveTrain : public frc2::SubsystemBase {
   void TankDrive(double iLeft, double iRight, MotorSpeed iMotorSpeed);
   void ArcadeDrive(double iSpeed, double iRotation, MotorSpeed iMotorSpeed);
   void SetInactive();
+  
+  // Implémentation PID
+  void PidStartTime();
+  void PidSetPoint(double iSetPoint);
+  void PidDrive();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -47,4 +53,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
 	frc::SpeedControllerGroup mRightSide{mMotorR1, mMotorR2};
 
   frc::DifferentialDrive mDriveTrain{mLeftSide, mRightSide};
+
+  // Ajout du pid
+  MotorPIDSubsystem mPid(5, 0.1, 0.1);
 };

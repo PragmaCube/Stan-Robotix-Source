@@ -9,11 +9,6 @@ MotorPIDSubsystem::MotorPIDSubsystem(double kP, double kI, double kD) {
   mPid = new frc2::PIDController(kP, kI, kD);
   mPid->SetIntegratorRange(-0.5, 0.5);
   mPid->SetTolerance(5, 10);
-
-  mSubDriveTrain = new SubDriveTrain;
-  mMotorSpeed[0] = SubDriveTrain::MotorSpeed::eSlow;
-  mMotorSpeed[1] = SubDriveTrain::MotorSpeed::eMedium;
-  mMotorSpeed[2] = SubDriveTrain::MotorSpeed::eFast;
 }
 
 MotorPIDSubsystem::~MotorPIDSubsystem() {
@@ -53,7 +48,7 @@ double MotorPIDSubsystem::_updateDistanceTraveled()
   m_last_time = w_current_time;
 
   // Calculs
-  // TODO : voir comment faire pour reculer
+  // TODO : voir comment faire pour reculer, accélération sera toujours positive
   float w_acceleration_x = m_accelerometer.GetX();
   float w_acceleration_y = m_accelerometer.GetY();
   float w_acceleration = sqrt(pow(w_acceleration_x, 2) + pow(w_acceleration_y, 2));
@@ -72,20 +67,10 @@ double MotorPIDSubsystem::_updateDistanceTraveled()
   */
 }
 
-void MotorPIDSubsystem::UseOutput()
+double MotorPIDSubsystem::GetOutput()
 {
   _updateDistanceTraveled();
-  //std::cout << "Distance parcourue : " << m_distance << std::endl;
-
-  // Regarder dans le constructeur pour changer la tolérance
-  //if (!mPid->AtSetpoint())
-  //{
-    // Les valeurs doivent être entre -1 et 1 pour le moteur
-    double w_output = std::clamp(mPid->Calculate(m_distance, mSetPoint), -0.2, 0.2);
-    //std::cout << "Output is : " << w_output << std::endl;
-    //m_drive_train.TankDrive(0.2, 0.2, false);
-    mSubDriveTrain->TankDrive(0.2, 0.2, mMotorSpeed[0]);
-    std::cout << "drive train should work \n";
-  //}
+  double w_output = std::clamp(mPid->Calculate(m_distance, mSetPoint), 0.0, 0.2);
+  return w_output;
 }
 
