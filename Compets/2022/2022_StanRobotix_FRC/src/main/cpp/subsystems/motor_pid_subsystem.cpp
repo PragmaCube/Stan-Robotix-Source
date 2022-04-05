@@ -52,6 +52,8 @@ double MotorPIDSubsystem::_updateDistanceTraveled()
   float w_acceleration_x = m_accelerometer.GetX();
   float w_acceleration_y = m_accelerometer.GetY();
   float w_acceleration = sqrt(pow(w_acceleration_x, 2) + pow(w_acceleration_y, 2));
+  std::cout << "Acceleration is " << w_acceleration << "\n";
+
   m_distance += w_acceleration * w_dt * (1/2 * w_dt + m_total_time);
 
   /*
@@ -71,6 +73,8 @@ double MotorPIDSubsystem::GetOutput()
 {
   _updateDistanceTraveled();
   double w_output = std::clamp(mPid->Calculate(m_distance, mSetPoint), 0.0, 0.2);
+  std::cout << "Output is " << w_output << "\n";
+  std::cout << "Total distance traveled is " << m_distance << "\n\n";
   return w_output;
 }
 
