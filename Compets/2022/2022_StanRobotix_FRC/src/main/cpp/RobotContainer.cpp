@@ -27,6 +27,7 @@ void RobotContainer::ConfigureButtonBindings() {
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   
+  std::cout << 'Pid setup complete\n';
   mSubDriveTrain->PidSetPoint(3);
   // Commence le temps ici
   mSubDriveTrain->PidStartTimer();
