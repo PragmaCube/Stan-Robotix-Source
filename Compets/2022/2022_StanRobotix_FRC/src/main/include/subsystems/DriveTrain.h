@@ -34,7 +34,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
   void SetInactive();
   
   // Implémentation PID
-  void PidStartTime();
+  void PidStartTimer();
   void PidSetPoint(double iSetPoint);
   void PidDrive();
 
@@ -55,5 +55,5 @@ class SubDriveTrain : public frc2::SubsystemBase {
   frc::DifferentialDrive mDriveTrain{mLeftSide, mRightSide};
 
   // Ajout du pid
-  MotorPIDSubsystem mPid(5, 0.1, 0.1);
+  MotorPIDSubsystem mPid {5, 0.1, 0.1};
 };

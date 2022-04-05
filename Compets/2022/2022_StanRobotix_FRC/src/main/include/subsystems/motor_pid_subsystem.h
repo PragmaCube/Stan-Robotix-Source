@@ -37,7 +37,7 @@ class MotorPIDSubsystem : public frc2::SubsystemBase {
   void SetPoint(double iSetPoint);
   void StartTimer();
 
-  double UseOutput();
+  double GetOutput();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be

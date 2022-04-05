@@ -60,7 +60,7 @@ void SubDriveTrain::SetInactive()
 
 void SubDriveTrain::PidSetPoint(double iSetPoint)
 {
-    mPid.setPoint(iSetPoint);
+    mPid.SetPoint(iSetPoint);
 }
 
 void SubDriveTrain::PidStartTimer()
@@ -70,6 +70,6 @@ void SubDriveTrain::PidStartTimer()
 
 void SubDriveTrain::PidDrive()
 {
-    w_output = mPid.GetOutput();
+    double w_output = mPid.GetOutput();
     mDriveTrain.TankDrive(w_output, w_output, false);
 }
