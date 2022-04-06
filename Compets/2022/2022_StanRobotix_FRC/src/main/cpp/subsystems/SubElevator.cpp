@@ -13,13 +13,25 @@ void SubElevator::Down(Climber iPosition)
     switch (iPosition)
     {
     case eLeftClimber:
-        mLMotorElevator.Set(-kSpeedDown);
-
+        if (SubElevator::GetEncoderPosition(SubElevator::Encoder::eLeftEncoder) > kMinHeight)
+        {
+            mLMotorElevator.Set(-kSpeedDown);   
+        }
+        else
+        {
+            mLMotorElevator.Set(0);
+        }
         break;
 
     case eRightClimber:
-        mRMotorElevator.Set(kSpeedDown);
-
+        if (SubElevator::GetEncoderPosition(SubElevator::Encoder::eRightEncoder) > kMinHeight)
+        {
+            mRMotorElevator.Set(kSpeedDown);
+        }
+        else
+        {
+            mRMotorElevator.Set(0);
+        }
         break;
     
     default:
@@ -36,13 +48,25 @@ void SubElevator::Up(Climber iPosition)
     switch (iPosition)
     {
     case eLeftClimber:
-        mLMotorElevator.Set(-kSpeedUp);
-
+        if (SubElevator::GetEncoderPosition(SubElevator::Encoder::eLeftEncoder) < kMaxHeight)
+        {
+            mLMotorElevator.Set(-kSpeedUp);
+        }
+        else
+        {
+            mLMotorElevator.Set(0);
+        }
         break;
 
     case eRightClimber:
-        mRMotorElevator.Set(kSpeedUp);
-
+        if (SubElevator::GetEncoderPosition(SubElevator::Encoder::eRightEncoder) < kMaxHeight)
+        {
+            mRMotorElevator.Set(kSpeedUp);
+        }
+        else
+        {
+            mRMotorElevator.Set(0);
+        }
         break;
     
     default:
@@ -72,54 +96,21 @@ void SubElevator::Stop(Climber iPosition)
     }
 }
 
-double SubElevator::GetEncoderPosition(Encoder iSide)
+int SubElevator::GetEncoderPosition(Encoder iSide)
 {
     switch (iSide)
     {
     case eRightEncoder:
-        return mRMotorEncoder.GetPosition();
+        return (int(mRMotorEncoder.GetPosition()));
         break;
     
     case eLeftEncoder:
-        return mLMotorEncoder.GetPosition();
+        return -(int(mLMotorEncoder.GetPosition()));
         break;
 
     default:
+        return 0;
         break;
     }
 }
 
-bool SubElevator::canClimb(Encoder iSide, ClimbingContext iContext)
-{
-    switch (iSide)
-    {
-    case eRightEncoder:
-        if (iContext == ClimbingContext::eUp)
-        {
-            return std::abs(GetEncoderPosition(iSide)) > kMaxHeight ? false : true;
-        }
-
-        else if(iContext == ClimbingContext::eDown)
-        {
-            return std::abs(GetEncoderPosition(iSide)) < kMinHeight ? false : true;
-        }
-
-        break;
-    
-    case eLeftEncoder:
-        if (iContext == ClimbingContext::eUp)
-        {
-            return std::abs(GetEncoderPosition(iSide)) > kMaxHeight ? false : true;
-        }
-
-        else if(iContext == ClimbingContext::eDown)
-        {
-            return std::abs(GetEncoderPosition(iSide)) < kMinHeight ? false : true;
-        }        
-
-        break;
-
-    default:
-        break;
-    }
-}

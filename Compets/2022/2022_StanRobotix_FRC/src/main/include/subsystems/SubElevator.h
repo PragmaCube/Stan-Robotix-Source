@@ -26,8 +26,7 @@ class SubElevator : public frc2::SubsystemBase {
   void Down(Climber iPosition);
   void Stop(Climber iPosition);
 
-  double GetEncoderPosition(Encoder iSide);
-  bool canClimb(Encoder iSide, ClimbingContext iContext);
+  int GetEncoderPosition(Encoder iSide);
 
   void Periodic() override;
  private:
