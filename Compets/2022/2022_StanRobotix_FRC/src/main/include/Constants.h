@@ -12,8 +12,6 @@
  * they are needed.
  */
 
-constexpr int kCanIdLauncher = 2;
-constexpr int kCanIdCollect = 1;
 
 // À modifier si besoin
 constexpr int kMotorL2Port = 0;
@@ -23,10 +21,20 @@ constexpr int kMotorR1Port = 3;
 
 constexpr int kJoystickPort = 0;
 
+/// All Can ID used in the project
+constexpr int kCanIdLauncher = 2;
+constexpr int kCanIdCollect = 1;
 constexpr int kCanIdElevatorR = 4;
 constexpr int kCanIdElevatorL = 3;
+
+/// Speed for the climbers
 constexpr float kSpeedUp = 0.50F; 
 constexpr float kSpeedDown = -0.50F;
-constexpr float kCollectSpeed = 0.25F;
+
+constexpr float kCollectSpeed = - 0.80F;
+constexpr float kCollectReverseSpeed = 0.40F; 
+
+
+/// Maximum / minium value for the climbers
 constexpr float kMaxHeight = 200;
 constexpr float kMinHeight = 0;

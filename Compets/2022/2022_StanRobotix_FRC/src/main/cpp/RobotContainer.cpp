@@ -157,7 +157,8 @@ void RobotContainer::Drive()
     mElevator->Stop(SubElevator::eLeftClimber);
   }
 
-  std::cout << "L-Encoder Value : " << mElevator->GetEncoderPosition(SubElevator::eLeftEncoder) << std::endl;
+  /// Code for debugging climbers
+  /*std::cout << "L-Encoder Value : " << mElevator->GetEncoderPosition(SubElevator::eLeftEncoder) << std::endl;
   std::cout << "R-Encoder Value : " << mElevator->GetEncoderPosition(SubElevator::eRightEncoder) << std::endl;
 
   std::cout << "R Up condition" << (mElevator->GetEncoderPosition(SubElevator::Encoder::eRightEncoder) < kMaxHeight) << std::endl;
@@ -165,5 +166,5 @@ void RobotContainer::Drive()
 
   std::cout << "R Down condition : " << (mElevator->GetEncoderPosition(SubElevator::Encoder::eRightEncoder) > kMinHeight) << std::endl;
   std::cout << "L Down condition : " << (mElevator->GetEncoderPosition(SubElevator::Encoder::eRightEncoder) > kMinHeight) << std::endl;
-
+  */
 }

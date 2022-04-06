@@ -18,12 +18,12 @@ void LaunchSystem::LaunchStop()
 
 void LaunchSystem::Collect()
 {
-    mCollectMotor.Set(-0.80);
+    mCollectMotor.Set(kCollectSpeed);
 }
 
 void LaunchSystem::CollectReverse()
 {
-    mCollectMotor.Set(0.40);
+    mCollectMotor.Set(kCollectReverseSpeed);
 }
 
 void LaunchSystem::CollectStop()
