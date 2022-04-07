@@ -36,12 +36,15 @@ class RobotContainer {
 
   void HandlePOV();
   void Drive();
+  void Auto();
+  void ResetAuto();
 
   cs::UsbCamera mCamera;
   
   private:
   // The robot's subsystems and commands are defined here...
   frc::XboxController mController{kJoystickPort};
+  frc::Timer mAutoTimer;
 
   ExampleSubsystem m_subsystem;
 
@@ -62,4 +65,7 @@ class RobotContainer {
   void ConfigureButtonBindings();
 
   LaunchSystem* mLaunchSystem;  
+
+  bool mLaunch;
+  bool mShoot;
 };

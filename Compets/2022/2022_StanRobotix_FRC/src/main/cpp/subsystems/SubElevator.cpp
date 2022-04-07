@@ -26,7 +26,7 @@ void SubElevator::Down(Climber iPosition)
     case eRightClimber:
         if (SubElevator::GetEncoderPosition(SubElevator::Encoder::eRightEncoder) > kMinHeight)
         {
-            mRMotorElevator.Set(kSpeedDown);
+            mRMotorElevator.Set(-kSpeedDown);
         }
         else
         {
@@ -61,7 +61,7 @@ void SubElevator::Up(Climber iPosition)
     case eRightClimber:
         if (SubElevator::GetEncoderPosition(SubElevator::Encoder::eRightEncoder) < kMaxHeight)
         {
-            mRMotorElevator.Set(kSpeedUp);
+            mRMotorElevator.Set(-kSpeedUp);
         }
         else
         {
@@ -101,7 +101,7 @@ int SubElevator::GetEncoderPosition(Encoder iSide)
     switch (iSide)
     {
     case eRightEncoder:
-        return (int(mRMotorEncoder.GetPosition()));
+        return -(int(mRMotorEncoder.GetPosition()));
         break;
     
     case eLeftEncoder:

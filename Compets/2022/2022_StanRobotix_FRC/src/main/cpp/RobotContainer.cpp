@@ -13,6 +13,9 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
   mSubDriveTrain = new SubDriveTrain;
 
+  mLaunch = true;
+  mShoot = true;
+
   mMotorSpeed[0] = SubDriveTrain::MotorSpeed::eSlow;
   mMotorSpeed[1] = SubDriveTrain::MotorSpeed::eMedium;
   mMotorSpeed[2] = SubDriveTrain::MotorSpeed::eFast;
@@ -37,6 +40,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mCamera.SetFPS(20);
   frc::CameraServer::StartAutomaticCapture(mCamera);
   frc::CameraServer::StartAutomaticCapture();
+  mAutoTimer.Start();
 
 }
 
@@ -156,15 +160,52 @@ void RobotContainer::Drive()
   {
     mElevator->Stop(SubElevator::eLeftClimber);
   }
-
-  /// Code for debugging climbers
-  /*std::cout << "L-Encoder Value : " << mElevator->GetEncoderPosition(SubElevator::eLeftEncoder) << std::endl;
-  std::cout << "R-Encoder Value : " << mElevator->GetEncoderPosition(SubElevator::eRightEncoder) << std::endl;
-
-  std::cout << "R Up condition" << (mElevator->GetEncoderPosition(SubElevator::Encoder::eRightEncoder) < kMaxHeight) << std::endl;
-  std::cout << "L Up condition" << (mElevator->GetEncoderPosition(SubElevator::Encoder::eRightEncoder) < kMaxHeight) << std::endl;
-
-  std::cout << "R Down condition : " << (mElevator->GetEncoderPosition(SubElevator::Encoder::eRightEncoder) > kMinHeight) << std::endl;
-  std::cout << "L Down condition : " << (mElevator->GetEncoderPosition(SubElevator::Encoder::eRightEncoder) > kMinHeight) << std::endl;
-  */
 }
+
+void RobotContainer::Auto()
+  {
+  /* Avance 2s - Stop - Activer Lanceur */
+
+    if(mShoot)
+    {
+       mLaunchSystem->Launch();
+       mShoot = false;
+    }
+
+    if(mAutoTimer.Get().value() <= 1.4)
+    {
+      mSubDriveTrain->TankDrive(-0.6, 0.6, SubDriveTrain::MotorSpeed::eFast);
+    }    
+
+    else if(mAutoTimer.Get().value() >= 2 && mAutoTimer.Get().value() <= 4)
+    {
+      mSubDriveTrain->SetInactive();
+
+      if(mLaunch)
+      {
+        mLaunchSystem->Collect();
+        mLaunch = false;
+      }
+      
+    }
+  
+  else if(mAutoTimer.Get().value() >= 4 && mAutoTimer.Get().value() <= 5.2)
+  {
+    mLaunchSystem->LaunchStop();
+    mLaunchSystem->CollectStop();
+    mSubDriveTrain->TankDrive(-0.6, 0.6, SubDriveTrain::MotorSpeed::eFast);
+  }
+
+  else
+  {
+    mSubDriveTrain->SetInactive();
+  }
+    
+}
+
+  void RobotContainer::ResetAuto()
+  {
+    mAutoTimer.Reset();
+    mShoot = true;
+    mLaunch = true;
+  }
