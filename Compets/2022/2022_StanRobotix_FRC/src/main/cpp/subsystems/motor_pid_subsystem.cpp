@@ -50,8 +50,9 @@ double MotorPIDSubsystem::_updateDistanceTraveled()
   // Calculs
   // TODO : voir comment faire pour reculer, accélération sera toujours positive
   // Les composantes a extraire dependent de l'orientation du RoboRIO
-  float w_acceleration_x = m_accelerometer.GetX();
-  float w_acceleration_y = m_accelerometer.GetZ();
+  // l'accéléromètre renvoie l'accélération en G, et 1G = 9.80665 ms^-2
+  float w_acceleration_x = m_accelerometer.GetX() / 9.80665;
+  float w_acceleration_y = m_accelerometer.GetZ() / 9.80665;
   float w_acceleration = sqrt(pow(w_acceleration_x, 2) + pow(w_acceleration_y, 2));
   std::cout << "Acceleration is " << w_acceleration << "\n";
 
