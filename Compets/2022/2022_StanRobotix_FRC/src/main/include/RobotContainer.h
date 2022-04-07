@@ -30,7 +30,7 @@ class RobotContainer {
   frc2::Command* GetAutonomousCommand();
 
   void Drive();
-  void PIDDrive();
+  void Auto();
 
  private:
   // The robot's subsystems and commands are defined here...

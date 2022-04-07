@@ -37,6 +37,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
   void PidStartTimer();
   void PidSetPoint(double iSetPoint);
   void PidDrive();
+  bool PidAtsetpoint();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be

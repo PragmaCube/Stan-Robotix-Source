@@ -43,7 +43,7 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-  m_container.PIDDrive();
+  m_container.Auto();
 }
 
 void Robot::TeleopInit() {

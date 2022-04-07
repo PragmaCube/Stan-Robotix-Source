@@ -73,3 +73,8 @@ void SubDriveTrain::PidDrive()
     double w_output = mPid.GetOutput();
     mDriveTrain.TankDrive(w_output, w_output, false);
 }
+
+double SubDriveTrain::PidAtsetpoint()
+{
+    return mPid.atSetpoint();
+}

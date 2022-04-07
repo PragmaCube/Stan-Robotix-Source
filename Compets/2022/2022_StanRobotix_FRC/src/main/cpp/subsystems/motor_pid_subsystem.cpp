@@ -79,3 +79,7 @@ double MotorPIDSubsystem::GetOutput()
   return w_output;
 }
 
+bool MotorPIDSubsystem::atSetpoint()
+{
+  return mPid->atSetpoint();
+}

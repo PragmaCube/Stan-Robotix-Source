@@ -57,7 +57,11 @@ void RobotContainer::Drive()
         - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
 }
 
-void RobotContainer::PIDDrive()
+void RobotContainer::Auto()
 {
-  mSubDriveTrain->PidDrive();
+  if (!mSubDriveTrain->PidAtsetpoint)
+  {
+    mSubDriveTrain->PidDrive();
+  }
+  else {}
 }
