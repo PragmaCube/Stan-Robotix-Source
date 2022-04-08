@@ -49,6 +49,7 @@ double MotorPIDSubsystem::_updateDistanceTraveled()
 
   // Calculs
   // TODO : voir comment faire pour reculer, accélération sera toujours positive
+  // FIX ? : Peut-être utiliser l'opposé du output pour aller à reculons. 
   // Les composantes a extraire dependent de l'orientation du RoboRIO
   // l'accéléromètre renvoie l'accélération en G, et 1G = 9.80665 ms^-2
   float w_acceleration_x = m_accelerometer.GetX() / 9.80665;
