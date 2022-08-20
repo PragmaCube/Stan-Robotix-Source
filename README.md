@@ -55,11 +55,12 @@ git pull
 La gestion du repositoire (modification du README ou modifications majeures) est laissée au chef de l'équipe et aux mentors.
 
 
-Chef d'équipe : Raphaël Pothier <br>
-Mentors : Cyril Jacob et Philippe Ducas
+Chef d'équipe : Nahuel Duquéroy-Roldán<br>
+Mentors : Cyril Jacob, Philippe Ducas et Raphaël Pothier
 
 Contacts :
 
-raphael.pothier@stanislas.qc.ca <br>
- cyril.jacob@stanislas.qc.ca <br>
- philippe.ducas@stanislas.qc.ca <br>
+raphael.pothier@umontreal.ca <br>
+cyril.jacob@stanislas.qc.ca <br>
+philippe.ducas@stanislas.qc.ca <br>
+nahuel.duqueroy-roldan@stanislas.qc.ca <br>
