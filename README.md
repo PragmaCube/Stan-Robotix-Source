@@ -56,11 +56,12 @@ La gestion du repositoire (modification du README ou modifications majeures) est
 
 
 Chef d'équipe : Nahuel Duquéroy-Roldán<br>
-Mentors : Cyril Jacob, Philippe Ducas et Raphaël Pothier
+Mentors : Cyril Jacob, Philippe Ducas, Raphaël Pothier et Martin Le Gallic
 
 Contacts :
 
 raphael.pothier@umontreal.ca <br>
+martin.le.gallic@usherbrooke.ca
 cyril.jacob@stanislas.qc.ca <br>
 philippe.ducas@stanislas.qc.ca <br>
-nahuel.duqueroy-roldan@stanislas.qc.ca <br>
+nahuel.duqueroy-roldan@stanislas.qc.ca<br>
