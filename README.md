@@ -65,3 +65,4 @@ martin.le.gallic@usherbrooke.ca
 cyril.jacob@stanislas.qc.ca <br>
 philippe.ducas@stanislas.qc.ca <br>
 nahuel.duqueroy-roldan@stanislas.qc.ca<br>
+
