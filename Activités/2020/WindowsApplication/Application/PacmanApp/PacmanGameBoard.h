@@ -51,6 +51,8 @@ private:
 	const int mNbColumns = 28;
 	
 	void hidePoints(RECT& iPaintArea);
+	void pointsSound(int iEaten);
+
 	int mPointsEaten = 0;
 	void scoreManagement(int  iPointType);
 	int mScore;
