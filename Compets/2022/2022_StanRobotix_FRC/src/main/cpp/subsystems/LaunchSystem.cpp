@@ -1,37 +1,32 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 #include "subsystems/LaunchSystem.h"
+
 #include <iostream>
 LaunchSystem::LaunchSystem() = default;
 
 // This method will be called once per scheduler run
 void LaunchSystem::Periodic() {}
 
-void LaunchSystem::Run(bool iButton, LauncherSpeed iMotorSpeed)
+void LaunchSystem::Launch()
 {
-    if (iButton)
-    {
-        switch (iMotorSpeed)
-        {
-        case eSlow:
-            mLaunchMotor.Set(0.85);
-            break;
+    mLaunchMotor.Set(0.52);
+}
 
-        case eFast:
-            mLaunchMotor.Set(1);
-            break;
+void LaunchSystem::LaunchStop()
+{
+    mLaunchMotor.Set(0);
+}
 
-        default:
-            mLaunchMotor.Set(0);
-            break;
-        }
-    }
+void LaunchSystem::Collect()
+{
+    mCollectMotor.Set(kCollectSpeed);
+}
 
-    else
-    {
-      mLaunchMotor.Set(0);
-    }
-    
+void LaunchSystem::CollectReverse()
+{
+    mCollectMotor.Set(kCollectReverseSpeed);
+}
+
+void LaunchSystem::CollectStop()
+{
+    mCollectMotor.Set(0);
 }

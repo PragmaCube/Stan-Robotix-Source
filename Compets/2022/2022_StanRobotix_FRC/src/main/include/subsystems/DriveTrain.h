@@ -6,15 +6,17 @@
 
 #include <frc2/command/SubsystemBase.h>
 
-#include <frc/Talon.h>
+#include <frc/motorcontrol/Talon.h>
+#include <frc/motorcontrol/Spark.h>
 
-#include <frc/SpeedController.h>
-#include <frc/SpeedControllerGroup.h>
+#include <frc/motorcontrol/MotorController.h>
+#include <frc/motorcontrol/MotorControllerGroup.h>
 
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/drive/MecanumDrive.h>
 
-#include <Constants.h>
+
+#include "Constants.h"
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
@@ -38,13 +40,13 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
   frc::Talon mMotorL1{kMotorL1Port};
   frc::Talon mMotorL2{kMotorL2Port};
-  frc::Talon mMotorR1{kMotorR1Port};
+  frc::Spark mMotorR1{kMotorR1Port};
   frc::Talon mMotorR2{kMotorR2Port}; 
 
   //frc::MecanumDrive mMecanumDrive{mMotorL1, mMotorL2, mMotorR1, mMotorR2};
 
-  frc::SpeedControllerGroup mLeftSide{mMotorL1, mMotorL2};
-	frc::SpeedControllerGroup mRightSide{mMotorR1, mMotorR2};
+  frc::MotorControllerGroup mLeftSide{mMotorL1, mMotorL2};
+	frc::MotorControllerGroup mRightSide{mMotorR1, mMotorR2};
 
   frc::DifferentialDrive mDriveTrain{mLeftSide, mRightSide};
 };

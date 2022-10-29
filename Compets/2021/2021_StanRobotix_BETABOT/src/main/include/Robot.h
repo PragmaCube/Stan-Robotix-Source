@@ -9,7 +9,11 @@
 #include <frc/Joystick.h>
 
 #include "RobotContainer.h"
+<<<<<<< HEAD
+#include "subsystems/SubsystemCamera.h"
+=======
 #include "subsystems/DriveTrain.h"
+>>>>>>> origin/2021-Betabots
 
 class Robot : public frc::TimedRobot {
  public:
@@ -27,6 +31,7 @@ class Robot : public frc::TimedRobot {
   // Have it null by default so that if testing teleop it
   // doesn't have undefined behavior and potentially crash.
   frc2::Command* m_autonomousCommand = nullptr;
+  SubsystemCamera mSubsystemCamera;
 
   RobotContainer m_container;
 };

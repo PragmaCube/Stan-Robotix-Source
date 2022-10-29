@@ -5,7 +5,7 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include "frc/Spark.h"
+#include "rev/CANSparkMax.h"
 #include "Constants.h"
 
 class LaunchSystem : public frc2::SubsystemBase {
@@ -17,9 +17,16 @@ class LaunchSystem : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-  void Run(bool iButton, LauncherSpeed iMotorSpeed);
+  void Launch();
+  void LaunchStop();
+  void Collect();
+  void CollectReverse();
+  void CollectStop();
+
  private:
- frc::Spark mLaunchMotor{kLaunchMotorPort};
+  rev::CANSparkMax mCollectMotor{kCanIdCollect, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax mLaunchMotor{kCanIdLauncher, rev::CANSparkMax::MotorType::kBrushless};
+  
   // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
+  // declared private and exposed only through public methods.  
 };
