@@ -31,13 +31,14 @@ void CollisionEngine::rebound(RECT iWindowRect)
 		if (!mInit)
 		{
 			mLeftPadPtr->initialiser(iWindowRect);
+			mRightPadPtr->initialiser(iWindowRect);
 			mInit = true;
 		}
 
 		if (mBallPtr->getX() <= 250                                      && 
 			mBallPtr->getX() >= 250 + mBallPtr->getSpeedX()              && // + getSpeedX() parce que la vitesse est négative
-			mLeftPadPtr->getY() - mPadHeight / 2 <= mRightPadPtr->getY() &&
-			mRightPadPtr->getY() <= mLeftPadPtr->getY() + mPadHeight / 2)
+			mLeftPadPtr->getY() - mPadHeight / 2 <= mBallPtr->getY()     &&
+			mBallPtr->getY() <= mLeftPadPtr->getY() + mPadHeight / 2)
 		{
 			mBallPtr->flipXSpeed();
 			//PlaySound(TEXT("Ping_Pong.wav"), NULL, SND_ASYNC);
@@ -45,12 +46,22 @@ void CollisionEngine::rebound(RECT iWindowRect)
 			mNbEchanges++;
 		}
 
-		else if (mBallPtr->getX() >= 880)
+		if (mBallPtr->getX() >= 880 && mBallPtr->getX() <= 880 + mBallPtr->getSpeedX() && mRightPadPtr->getY() - mPadHeight / 2 <= mBallPtr->getY() &&
+			mBallPtr->getY() <= mRightPadPtr->getY() + mPadHeight / 2)
 		{
 			mBallPtr->flipXSpeed();
+			mBallPtr->increaseSpeed();
+			mNbEchanges++;
 		}
 
 		if (mBallPtr->getX() < iWindowRect.left)
+		{
+			Sleep(1000);
+			mNbEchanges = 0;
+			mBallPtr->restart(iWindowRect);
+		}
+
+		if (mBallPtr->getX() > iWindowRect.right)
 		{
 			Sleep(1000);
 			mNbEchanges = 0;

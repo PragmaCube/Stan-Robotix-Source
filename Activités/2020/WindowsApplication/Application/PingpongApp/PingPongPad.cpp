@@ -36,6 +36,7 @@ PingPongPad::PingPongPad(int iId) :
 	{
 		mCoorX = 900;
 		mCoorY = mCoorYMin + 300;
+		mSpeed = 30;
 
 		wColor = RGB(0/*Red*/, 255/*wGreen*/, 0 /*wBlue*/);
 	}
