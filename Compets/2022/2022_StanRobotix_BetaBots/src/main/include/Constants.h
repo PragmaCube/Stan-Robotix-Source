@@ -13,3 +13,8 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+constexpr int kCanIdElevatorR = 4;
+constexpr int kCanIdElevatorL = 3;
+
+constexpr float kSpeedPush = 0.50F;
+constexpr float kSpeedPull = 0.90F; 
