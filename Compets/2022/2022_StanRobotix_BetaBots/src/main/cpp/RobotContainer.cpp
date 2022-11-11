@@ -11,6 +11,22 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   ConfigureButtonBindings();
 }
 
+void RobotContainer::Drive()
+{
+  if (mController.GetAButton())
+  {
+    mEjector->Push();
+  }
+  else if (mController.GetBButton())
+  {
+    mEjector->Pull();
+  }
+  else
+  {
+    mEjector->Stop();
+  }
+}
+
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
 }

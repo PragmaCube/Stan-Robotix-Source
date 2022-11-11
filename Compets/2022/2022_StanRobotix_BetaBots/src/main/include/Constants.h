@@ -14,7 +14,9 @@
  * they are needed.
  */
 constexpr int kCanIdElevatorR = 4;
-constexpr int kCanIdElevatorL = 3;
+constexpr int kCanIdElevatorL = 5;
 
 constexpr float kSpeedPush = 0.50F;
-constexpr float kSpeedPull = 0.90F; 
+constexpr float kSpeedPull = -0.90F; 
+
+constexpr int kJoystickPort = 0;
