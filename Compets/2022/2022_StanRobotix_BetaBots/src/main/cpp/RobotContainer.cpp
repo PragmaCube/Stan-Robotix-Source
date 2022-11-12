@@ -5,14 +5,42 @@
 #include "RobotContainer.h"
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
+  mDriveTrain = new DriveTrain;
   // Initialize all of your commands and subsystems here
-
+  mMotorSpeed[0] = DriveTrain::MotorSpeed::eSlow;
+  mMotorSpeed[1] = DriveTrain::MotorSpeed::eMedium;
+  mMotorSpeed[2] = DriveTrain::MotorSpeed::eFast;
   // Configure the button bindings
+  mMotorIndex = 0;
   ConfigureButtonBindings();
 }
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
+}
+
+void RobotContainer::Drive()
+{
+  if (mController.GetPOV() == 0)
+  {
+    if (mMotorIndex < 2)
+    {
+      mMotorIndex++;
+    }
+  }
+
+  if (mController.GetPOV() == 180)
+  {
+    if (mMotorIndex > 0)
+    {
+      mMotorIndex--;
+    }
+  }
+  
+
+  mDriveTrain->TankDrive(
+        - mController.GetLeftY(),
+        - mController.GetRightY(), mMotorSpeed[mMotorIndex]);
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

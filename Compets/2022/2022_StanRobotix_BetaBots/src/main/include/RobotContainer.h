@@ -8,6 +8,8 @@
 
 #include "commands/ExampleCommand.h"
 #include "subsystems/ExampleSubsystem.h"
+#include <frc/XboxController.h>
+#include "subsystems/DriveTrain.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -20,6 +22,8 @@ class RobotContainer {
  public:
   RobotContainer();
 
+  void Drive();
+
   frc2::Command* GetAutonomousCommand();
 
  private:
@@ -27,5 +31,14 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
 
+  
+  DriveTrain* mDriveTrain;
+
+  DriveTrain::MotorSpeed mMotorSpeed[3];
+
+  frc::XboxController mController{kJoystickPort};
+
   void ConfigureButtonBindings();
+
+  int mMotorIndex;
 };
