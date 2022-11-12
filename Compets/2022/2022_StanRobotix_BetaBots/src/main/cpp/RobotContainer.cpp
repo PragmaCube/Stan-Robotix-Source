@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "RobotContainer.h"
+#include <iostream>
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mDriveTrain = new DriveTrain;
@@ -11,7 +12,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mMotorSpeed[1] = DriveTrain::MotorSpeed::eMedium;
   mMotorSpeed[2] = DriveTrain::MotorSpeed::eFast;
   // Configure the button bindings
-  mMotorIndex = 0;
+  mMotorIndex = 1;
   ConfigureButtonBindings();
 }
 
@@ -36,7 +37,7 @@ void RobotContainer::Drive()
       mMotorIndex--;
     }
   }
-  
+  std::cout<<mMotorIndex<<std::endl;
 
   mDriveTrain->TankDrive(
         - mController.GetLeftY(),

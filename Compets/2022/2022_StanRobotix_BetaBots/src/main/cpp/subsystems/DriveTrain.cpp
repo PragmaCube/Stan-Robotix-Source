@@ -13,15 +13,15 @@ void DriveTrain::TankDrive(double iLeftHand, double iRightHand, MotorSpeed iMoto
     switch (iMotorSpeed)
     {
     case eSlow:
-        mDriveTrain.TankDrive(0.30 * iLeftHand, -0.30 * iRightHand);
+        mDriveTrain.TankDrive(0.55 * iLeftHand, -0.55 * iRightHand);
         break;
 
     case eMedium:
-        mDriveTrain.TankDrive(0.45 * iLeftHand, -0.45 * iRightHand);
+        mDriveTrain.TankDrive(0.65 * iLeftHand, -0.65 * iRightHand);
         break;
 
     case eFast:
-        mDriveTrain.TankDrive(0.65 * iLeftHand, -0.65 * iRightHand);
+        mDriveTrain.TankDrive(0.80 * iLeftHand, -0.80 * iRightHand);
         break;
 
     default:
