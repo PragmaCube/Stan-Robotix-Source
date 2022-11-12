@@ -13,3 +13,20 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+//le CanId normalement le 6 est pas pris
+constexpr int kCanIdClimber = 6;
+
+
+/// Speed for the climbers
+constexpr float kSpeedUp = 0.50F; 
+constexpr float kSpeedDown = -0.40F;
+
+//hauteur max et min pour le climber
+constexpr float kHeightS3 = 200;
+constexpr float kHeightS2 = 132;
+constexpr float kHeightS1 = 66;
+constexpr float kMinHeight = 0;
+
+constexpr float threeinch = 10; 
+
+constexpr int kJoystickPort = 0;

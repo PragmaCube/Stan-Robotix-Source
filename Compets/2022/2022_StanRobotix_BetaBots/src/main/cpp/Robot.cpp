@@ -58,7 +58,10 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() 
+{
+  m_container.Drive();
+}
 
 /**
  * This function is called periodically during test mode.
