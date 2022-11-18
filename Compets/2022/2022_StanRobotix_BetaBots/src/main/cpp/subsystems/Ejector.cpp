@@ -4,7 +4,7 @@
 
 #include "subsystems/Ejector.h"
 
-Ejector::Ejector() = default;
+Ejector::Ejector() {}
 
 // This method will be called once per scheduler run
 void Ejector::Periodic() {}

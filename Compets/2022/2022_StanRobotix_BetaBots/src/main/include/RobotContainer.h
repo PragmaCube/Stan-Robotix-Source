@@ -9,7 +9,7 @@
 #include "commands/ExampleCommand.h"
 #include "subsystems/ExampleSubsystem.h"
 #include <frc/XboxController.h>
-
+#include <frc/Timer.h>
 #include "Constants.h"
 
 #include "subsystems/Ejector.h"
@@ -39,4 +39,7 @@ class RobotContainer {
   void ConfigureButtonBindings();
 
   Ejector* mEjector;
+  frc::Timer mAutoTimer;
+
+  bool ejector_in_use = false;
 };

@@ -5,25 +5,37 @@
 #include "RobotContainer.h"
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
-  // Initialize all of your commands and subsystems here
 
-  // Configure the button bindings
+  mEjector = new Ejector;
+  mAutoTimer.Start();
   ConfigureButtonBindings();
+
 }
 
 void RobotContainer::Drive()
 {
-  if (mController.GetAButton())
+  if (mController.GetAButton() && !ejector_in_use)
   {
-    mEjector->Push();
+    ejector_in_use = true;
+    mAutoTimer.Start();
   }
-  else if (mController.GetBButton())
+
+  if (ejector_in_use)
   {
-    mEjector->Pull();
-  }
-  else
-  {
-    mEjector->Stop();
+    if (mAutoTimer.Get().value()<=2)
+    {
+      mEjector->Push();
+    }
+    else if (mAutoTimer.Get().value()<=4)
+    {
+      mEjector->Pull();
+    }
+    else
+    {
+      mEjector->Stop();
+      ejector_in_use = false;
+      mAutoTimer.Stop();
+    }
   }
 }
 
