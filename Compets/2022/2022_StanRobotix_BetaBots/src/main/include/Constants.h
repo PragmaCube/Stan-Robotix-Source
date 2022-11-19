@@ -16,7 +16,7 @@
 constexpr int kCanIdElevatorR = 1;
 constexpr int kCanIdElevatorL = 4;
 
-constexpr float kSpeedPush = 0.20F;
+constexpr float kSpeedPush = 0.40F;
 constexpr float kSpeedPull = -0.20F; 
 
 constexpr int kJoystickPort = 0;

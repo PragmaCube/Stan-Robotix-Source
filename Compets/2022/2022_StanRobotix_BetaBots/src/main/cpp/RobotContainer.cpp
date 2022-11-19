@@ -3,30 +3,36 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "RobotContainer.h"
+#include <iostream>
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
   mEjector = new Ejector;
-  mAutoTimer.Start();
+  // mAutoTimer.Start();
+  mAutoTimer.Reset();
   ConfigureButtonBindings();
 
 }
 
 void RobotContainer::Drive()
 {
+  
   if (mController.GetAButton() && !ejector_in_use)
   {
     ejector_in_use = true;
     mAutoTimer.Start();
+    std::cout << "Pressed A Button" << std::endl;
   }
+
+  std::cout << mAutoTimer.Get().value() << std::endl;
 
   if (ejector_in_use)
   {
-    if (mAutoTimer.Get().value()<=2)
+    if (mAutoTimer.Get().value()<=0.5)
     {
       mEjector->Push();
     }
-    else if (mAutoTimer.Get().value()<=4)
+    else if (mAutoTimer.Get().value()<=1.65) 
     {
       mEjector->Pull();
     }
@@ -35,6 +41,7 @@ void RobotContainer::Drive()
       mEjector->Stop();
       ejector_in_use = false;
       mAutoTimer.Stop();
+      mAutoTimer.Reset();
     }
   }
 }
