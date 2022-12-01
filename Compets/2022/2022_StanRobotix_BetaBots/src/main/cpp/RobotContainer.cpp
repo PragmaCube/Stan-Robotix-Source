@@ -6,7 +6,7 @@
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   // Initialize all of your commands and subsystems here
-
+  frc::CameraServer::StartAutomaticCapture();
   // Configure the button bindings
   ConfigureButtonBindings();
 }

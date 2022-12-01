@@ -5,7 +5,7 @@
 #pragma once
 
 #include <frc2/command/Command.h>
-
+#include <cameraserver/CameraServer.h>
 #include "commands/ExampleCommand.h"
 #include "subsystems/ExampleSubsystem.h"
 
