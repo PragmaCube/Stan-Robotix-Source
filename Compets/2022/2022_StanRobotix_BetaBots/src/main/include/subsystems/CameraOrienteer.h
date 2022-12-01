@@ -5,23 +5,22 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
+#include <frc/Servo.h>
 
-class ExampleSubsystem : public frc2::SubsystemBase {
+#include "Constants.h"
+
+
+class CameraOrienteer : public frc2::SubsystemBase {
  public:
-  ExampleSubsystem();
+  CameraOrienteer();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-
-  /**
-   * Will be called periodically whenever the CommandScheduler runs during
-   * simulation.
-   */
-  void SimulationPeriodic() override;
-
+  void setAngle(double iAngle);
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+  frc::Servo mServo{kCameraOrienteerPort};
 };
