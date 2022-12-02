@@ -25,7 +25,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 }
 
 void RobotContainer::Drive()
-{
+{/* voir plus tard
   if (mController.GetPOV() == 0)
   {
     mClimber->Stage(mHeight[0]);
@@ -41,6 +41,19 @@ void RobotContainer::Drive()
   else if (mController.GetPOV() == 270)
   {
     mClimber->Down();
-  }
+  }*/
   
+
+  if(mController.GetRightTriggerAxis()>0.5)
+  {
+    mClimber->UpHold();
+  } 
+  else if(mController.GetRightTriggerAxis()>0.5)
+  {
+    mClimber->DownHold();
+  }
+  else
+  {
+    mClimber->Stop();
+  }
 }

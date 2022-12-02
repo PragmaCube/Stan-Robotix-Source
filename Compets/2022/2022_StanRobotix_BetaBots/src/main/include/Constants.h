@@ -14,12 +14,12 @@
  * they are needed.
  */
 //le CanId normalement le 6 est pas pris
-constexpr int kCanIdClimber = 6;
+constexpr int kCanIdClimber = 1;
 
 
 /// Speed for the climbers
-constexpr float kSpeedUp = 0.50F; 
-constexpr float kSpeedDown = -0.40F;
+constexpr float kSpeedUp = 0.25F; 
+constexpr float kSpeedDown = -0.20F;
 
 //hauteur max et min pour le climber
 constexpr float kHeightS3 = 200;

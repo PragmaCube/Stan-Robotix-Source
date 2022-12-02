@@ -30,6 +30,16 @@ void SubClimber::Stop()
     mMotorClimber.Set(0);
 };
 
+void SubClimber::UpHold()
+{
+    mMotorClimber.Set(kSpeedUp);
+};
+
+void SubClimber::DownHold()
+{
+    mMotorClimber.Set(kSpeedDown);
+};
+
 
 void SubClimber::Stage(Height iHeight)
 {

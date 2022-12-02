@@ -19,6 +19,8 @@ class SubClimber : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Stage(Height iHeight);
+  void UpHold();
+  void DownHold();
   void Down();
   void Stop();
   
