@@ -4,24 +4,29 @@
 
 #include "subsystems/IMU.h"
 
-#include "subsystems/ExampleSubsystem.h"
+frc::ADIS16448_IMU mIMU;
 
-IMU::IMU() = default;
+IMU::IMU() 
+{
+  //  mIMU.SetSubsystem();
 
-// This method will be called once per scheduler run
-void IMU::Periodic() {}
-
- float getAccelX() {
-     return static_cast<float>(mIMU.GetAccelX());
- }
-
- float getAccelY(){
-     return static_cast<float>(mIMU.GetAccelY());
- }
-
- float getAngle(){
-     return static_cast<float>(mIMU.GetAngle());
- }
+}
 
 
- 
+void IMU::Periodic() {
+
+}
+
+float IMU::getAccelX() {
+    return 0;//mIMU.GetAccelX().m_value;
+
+}
+
+float IMU::getAccelY() {
+    return 0;//mIMU.GetAccelY().m_value;
+
+}
+
+float IMU::getAngle() {
+    return 0; //mIMU.GetAngle().m_value;
+}

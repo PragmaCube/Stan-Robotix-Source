@@ -9,8 +9,6 @@
 #include <frc/ADIS16448_IMU.h>
 
 
-frc::ADIS16448_IMU mIMU;
-
 class IMU : public frc2::SubsystemBase {
  public:
 

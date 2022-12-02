@@ -26,10 +26,11 @@ class RobotContainer {
  public:
   RobotContainer();
 
-  void Drive();
-
   frc2::Command* GetAutonomousCommand();
   void Drive();
+  void DriveClimber();
+  void DriveDisplacement();
+  void DriveEjector();
 
  private:
   // The robot's subsystems and commands are defined here...
@@ -42,16 +43,12 @@ class RobotContainer {
 
   DriveTrain::MotorSpeed mMotorSpeed[3];
 
-  frc::XboxController mController{kJoystickPort};
-
   void ConfigureButtonBindings();
 
   SubClimber* mClimber;
   SubClimber::Height mHeight[3];
 
-  frc::XboxController mController{kJoystickPort};
-
-  int mMotorIndex;
+    int mMotorIndex;
   Ejector* mEjector;
   frc::Timer mAutoTimer;
 

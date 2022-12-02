@@ -25,10 +25,39 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   ConfigureButtonBindings();
 }
 
-void RobotContainer::Drive()
+frc2::Command* RobotContainer::GetAutonomousCommand() {
+  // An example command will be run in autonomous
+  return &m_autonomousCommand;
+}
+
+
+void RobotContainer::DriveDisplacement()
 {
-  
-  if (mController.GetAButton() && !ejector_in_use)
+   if (mController.GetPOV() == 0)
+  {
+    if (mMotorIndex < 2)
+    {
+      mMotorIndex++;
+    }
+  }
+
+  if (mController.GetPOV() == 180)
+  {
+    if (mMotorIndex > 0)
+    {
+      mMotorIndex--;
+    }
+  }
+  std::cout<<mMotorIndex<<std::endl;
+
+  mDriveTrain->TankDrive(
+        - mController.GetLeftY(),
+        - mController.GetRightY(), mMotorSpeed[mMotorIndex]);
+}
+
+void RobotContainer::DriveEjector()
+{
+if (mController.GetAButton() && !ejector_in_use)
   {
     ejector_in_use = true;
     mAutoTimer.Start();
@@ -63,34 +92,13 @@ void RobotContainer::ConfigureButtonBindings() {
 
 void RobotContainer::Drive()
 {
-  if (mController.GetPOV() == 0)
-  {
-    if (mMotorIndex < 2)
-    {
-      mMotorIndex++;
-    }
-  }
+  DriveClimber();
 
-  if (mController.GetPOV() == 180)
-  {
-    if (mMotorIndex > 0)
-    {
-      mMotorIndex--;
-    }
-  }
-  std::cout<<mMotorIndex<<std::endl;
+  DriveDisplacement();
 
-  mDriveTrain->TankDrive(
-        - mController.GetLeftY(),
-        - mController.GetRightY(), mMotorSpeed[mMotorIndex]);
+  DriveEjector();
 }
-
-frc2::Command* RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous
-  return &m_autonomousCommand;
-}
-
-void RobotContainer::Drive()
+void RobotContainer::DriveClimber()
 {/* voir plus tard
   if (mController.GetPOV() == 0)
   {
