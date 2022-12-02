@@ -8,6 +8,8 @@
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mDriveTrain = new DriveTrain;
   // Initialize all of your commands and subsystems here
+  frc::CameraServer::StartAutomaticCapture();
+
   mMotorSpeed[0] = DriveTrain::MotorSpeed::eSlow;
   mMotorSpeed[1] = DriveTrain::MotorSpeed::eMedium;
   mMotorSpeed[2] = DriveTrain::MotorSpeed::eFast;
@@ -16,7 +18,6 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mAutoTimer.Reset();
   mMotorIndex = 1;
   ConfigureButtonBindings();
-
   // Configure the button bindings
   mClimber = new SubClimber;
   mHeight[0] = SubClimber::Height::h1;

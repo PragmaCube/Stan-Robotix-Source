@@ -6,7 +6,7 @@
 
 #include <frc2/command/Command.h>
 #include <frc/XboxController.h>
-
+#include <cameraserver/CameraServer.h>
 #include "commands/ExampleCommand.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubClimber.h"

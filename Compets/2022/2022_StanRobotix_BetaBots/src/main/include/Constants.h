@@ -13,7 +13,7 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
-//le CanId normalement le 6 est pas pris
+constexpr int kCameraOrienteerPort = 9;
 constexpr int kCanIdClimber = 1;constexpr int kCanIdElevatorR = 1;
 constexpr int kCanIdElevatorL = 4;
 
