@@ -13,7 +13,13 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
-constexpr int kMotorL2Port = 0;
+constexpr int kCanIdElevatorR = 1;
+constexpr int kCanIdElevatorL = 4;
+
+constexpr float kSpeedPush = 0.40F;
+constexpr float kSpeedPull = -0.20F; 
+
+constexpr int kJoystickPort = 0;constexpr int kMotorL2Port = 0;
 constexpr int kMotorL1Port = 1;
 constexpr int kMotorR2Port = 2;
 constexpr int kMotorR1Port = 3;

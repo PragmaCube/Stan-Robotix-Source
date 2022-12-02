@@ -11,9 +11,44 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mMotorSpeed[0] = DriveTrain::MotorSpeed::eSlow;
   mMotorSpeed[1] = DriveTrain::MotorSpeed::eMedium;
   mMotorSpeed[2] = DriveTrain::MotorSpeed::eFast;
-  // Configure the button bindings
+  mEjector = new Ejector;
+  // mAutoTimer.Start();
+  mAutoTimer.Reset();
   mMotorIndex = 1;
   ConfigureButtonBindings();
+
+}
+
+void RobotContainer::Drive()
+{
+  
+  if (mController.GetAButton() && !ejector_in_use)
+  {
+    ejector_in_use = true;
+    mAutoTimer.Start();
+    std::cout << "Pressed A Button" << std::endl;
+  }
+
+  std::cout << mAutoTimer.Get().value() << std::endl;
+
+  if (ejector_in_use)
+  {
+    if (mAutoTimer.Get().value()<=0.5)
+    {
+      mEjector->Push();
+    }
+    else if (mAutoTimer.Get().value()<=1.65) 
+    {
+      mEjector->Pull();
+    }
+    else
+    {
+      mEjector->Stop();
+      ejector_in_use = false;
+      mAutoTimer.Stop();
+      mAutoTimer.Reset();
+    }
+  }
 }
 
 void RobotContainer::ConfigureButtonBindings() {
