@@ -5,16 +5,16 @@
 #pragma once
 
 #include <frc2/command/Command.h>
+#include <frc/XboxController.h>
 
 #include "commands/ExampleCommand.h"
 #include "subsystems/ExampleSubsystem.h"
-#include <frc/XboxController.h>
+#include "subsystems/SubClimber.h"
+#include "Constants.h"#include <frc/XboxController.h>
 #include <frc/Timer.h>
-#include "Constants.h"
 #include "subsystems/DriveTrain.h"
 
 #include "subsystems/Ejector.h"
-
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -29,6 +29,7 @@ class RobotContainer {
   void Drive();
 
   frc2::Command* GetAutonomousCommand();
+  void Drive();
 
  private:
   // The robot's subsystems and commands are defined here...
@@ -44,6 +45,12 @@ class RobotContainer {
   frc::XboxController mController{kJoystickPort};
 
   void ConfigureButtonBindings();
+
+  SubClimber* mClimber;
+  SubClimber::Height mHeight[3];
+
+  frc::XboxController mController{kJoystickPort};
+
   int mMotorIndex;
   Ejector* mEjector;
   frc::Timer mAutoTimer;

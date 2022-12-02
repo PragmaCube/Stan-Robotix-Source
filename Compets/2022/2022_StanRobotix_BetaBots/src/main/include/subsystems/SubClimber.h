@@ -4,17 +4,31 @@
 
 #pragma once
 
+#include <rev/SparkMaxRelativeEncoder.h>
+#include "rev/CANSparkMax.h"
+
+#include "Constants.h"
 #include <frc2/command/SubsystemBase.h>
 
-class ExampleSubsystem : public frc2::SubsystemBase {
+class SubClimber : public frc2::SubsystemBase {
  public:
-  ExampleSubsystem();
-
+  SubClimber();
+  enum Height{h1 = 0, h2 = 1 , h3 = 2}; 
+  
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
-  void Periodic() override;
+  void Stage(Height iHeight);
+  void UpHold();
+  void DownHold();
+  void Down();
+  void Stop();
+  
 
+  int GetEncoderPosition();
+
+  void Periodic();
+  
   /**
    * Will be called periodically whenever the CommandScheduler runs during
    * simulation.
@@ -22,7 +36,9 @@ class ExampleSubsystem : public frc2::SubsystemBase {
   void SimulationPeriodic() override;
 
  private:
- 
+  
+    rev::CANSparkMax mMotorClimber{kCanIdClimber, rev::CANSparkMax::MotorType::kBrushless};
+    rev::SparkMaxRelativeEncoder mMotorEncoder = mMotorClimber.GetEncoder();
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };
