@@ -8,16 +8,13 @@
 
 #include <frc/ADIS16448_IMU.h>
 
+class IMU : public frc2::SubsystemBase
+{
+public:
+  float getAccelX();
+  float getAccelY();
 
-class IMU : public frc2::SubsystemBase {
- public:
-
- float getAccelX();
- float getAccelY();
-
- float getAngle();
-
-
+  float getAngle();
 
   IMU();
 
@@ -26,7 +23,7 @@ class IMU : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
- private:
+private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

@@ -6,15 +6,16 @@
 
 #include <frc2/command/Command.h>
 #include <frc/XboxController.h>
-#include <cameraserver/CameraServer.h>
-#include "commands/ExampleCommand.h"
-#include "subsystems/ExampleSubsystem.h"
-#include "subsystems/SubClimber.h"
-#include "Constants.h"#include <frc/XboxController.h>
+#include <frc/XboxController.h>
 #include <frc/Timer.h>
-#include "subsystems/DriveTrain.h"
 
+#include <cameraserver/CameraServer.h>
+#include "commands/AutonomousCommand.h"
+#include "subsystems/SubClimber.h"
+#include "subsystems/DriveTrain.h"
 #include "subsystems/Ejector.h"
+
+#include "Constants.h" 
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -22,35 +23,32 @@
  * scheduler calls).  Instead, the structure of the robot (including subsystems,
  * commands, and button mappings) should be declared here.
  */
-class RobotContainer {
- public:
+class RobotContainer
+{
+public:
   RobotContainer();
 
-  frc2::Command* GetAutonomousCommand();
+  frc2::Command *GetAutonomousCommand();
   void Drive();
   void DriveClimber();
   void DriveDisplacement();
   void DriveEjector();
 
- private:
-  // The robot's subsystems and commands are defined here...
-  ExampleSubsystem m_subsystem;
-  ExampleCommand m_autonomousCommand;
+private:
+  AutonomousCommand m_autonomousCommand;
 
-  
   frc::XboxController mController{kJoystickPort};
-  DriveTrain* mDriveTrain;
-
+  DriveTrain *mDriveTrain;
+  SubClimber *mClimber;
   DriveTrain::MotorSpeed mMotorSpeed[3];
 
-  void ConfigureButtonBindings();
-
-  SubClimber* mClimber;
   SubClimber::Height mHeight[3];
 
-    int mMotorIndex;
-  Ejector* mEjector;
+  int mMotorIndex;
+  Ejector *mEjector;
   frc::Timer mAutoTimer;
 
   bool ejector_in_use = false;
+
+  void ConfigureButtonBindings();
 };

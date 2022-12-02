@@ -24,7 +24,6 @@ class SubClimber : public frc2::SubsystemBase {
   void Down();
   void Stop();
   
-
   int GetEncoderPosition();
 
   void Periodic();

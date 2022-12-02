@@ -5,7 +5,8 @@
 #include "RobotContainer.h"
 #include <iostream>
 
-RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
+RobotContainer::RobotContainer()
+{
   mDriveTrain = new DriveTrain;
   // Initialize all of your commands and subsystems here
   frc::CameraServer::StartAutomaticCapture();
@@ -13,28 +14,29 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   mMotorSpeed[0] = DriveTrain::MotorSpeed::eSlow;
   mMotorSpeed[1] = DriveTrain::MotorSpeed::eMedium;
   mMotorSpeed[2] = DriveTrain::MotorSpeed::eFast;
+
   mEjector = new Ejector;
-  // mAutoTimer.Start();
   mAutoTimer.Reset();
-  mMotorIndex = 1;
-  ConfigureButtonBindings();
-  // Configure the button bindings
+  mMotorIndex = 1;  
+  
   mClimber = new SubClimber;
   mHeight[0] = SubClimber::Height::h1;
   mHeight[1] = SubClimber::Height::h2;
   mHeight[2] = SubClimber::Height::h3;
+
+  m_autonomousCommand.setSubsystem(mEjector, mDriveTrain, mClimber);
+
   ConfigureButtonBindings();
 }
 
-frc2::Command* RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous
-  return &m_autonomousCommand;
+frc2::Command *RobotContainer::GetAutonomousCommand()
+{
+   return &m_autonomousCommand;
 }
-
 
 void RobotContainer::DriveDisplacement()
 {
-   if (mController.GetPOV() == 0)
+  if (mController.GetPOV() == 0)
   {
     if (mMotorIndex < 2)
     {
@@ -49,16 +51,16 @@ void RobotContainer::DriveDisplacement()
       mMotorIndex--;
     }
   }
-  std::cout<<mMotorIndex<<std::endl;
+  std::cout << mMotorIndex << std::endl;
 
   mDriveTrain->TankDrive(
-        - mController.GetLeftY(),
-        - mController.GetRightY(), mMotorSpeed[mMotorIndex]);
+      -mController.GetLeftY(),
+      -mController.GetRightY(), mMotorSpeed[mMotorIndex]);
 }
 
 void RobotContainer::DriveEjector()
 {
-if (mController.GetAButton() && !ejector_in_use)
+  if (mController.GetAButton() && !ejector_in_use)
   {
     ejector_in_use = true;
     mAutoTimer.Start();
@@ -69,11 +71,11 @@ if (mController.GetAButton() && !ejector_in_use)
 
   if (ejector_in_use)
   {
-    if (mAutoTimer.Get().value()<=0.5)
+    if (mAutoTimer.Get().value() <= 0.5)
     {
       mEjector->Push();
     }
-    else if (mAutoTimer.Get().value()<=1.65) 
+    else if (mAutoTimer.Get().value() <= 1.65)
     {
       mEjector->Pull();
     }
@@ -87,7 +89,8 @@ if (mController.GetAButton() && !ejector_in_use)
   }
 }
 
-void RobotContainer::ConfigureButtonBindings() {
+void RobotContainer::ConfigureButtonBindings()
+{
   // Configure your button bindings here
 }
 
@@ -100,30 +103,29 @@ void RobotContainer::Drive()
   DriveEjector();
 }
 void RobotContainer::DriveClimber()
-{/* voir plus tard
-  if (mController.GetPOV() == 0)
-  {
-    mClimber->Stage(mHeight[0]);
-  }
-  else if (mController.GetPOV() == 90)
-  {
-    mClimber->Stage(mHeight[1]);
-  }
-  else if (mController.GetPOV() == 180)
-  {
-    mClimber->Stage(mHeight[2]);
-  }
-  else if (mController.GetPOV() == 270)
-  {
-    mClimber->Down();
-  }*/
-  
+{ /* voir plus tard
+   if (mController.GetPOV() == 0)
+   {
+     mClimber->Stage(mHeight[0]);
+   }
+   else if (mController.GetPOV() == 90)
+   {
+     mClimber->Stage(mHeight[1]);
+   }
+   else if (mController.GetPOV() == 180)
+   {
+     mClimber->Stage(mHeight[2]);
+   }
+   else if (mController.GetPOV() == 270)
+   {
+     mClimber->Down();
+   }*/
 
-  if(mController.GetRightTriggerAxis()>0.5)
+  if (mController.GetRightTriggerAxis() > 0.5)
   {
     mClimber->UpHold();
-  } 
-  else if(mController.GetRightTriggerAxis()>0.5)
+  }
+  else if (mController.GetRightTriggerAxis() > 0.5)
   {
     mClimber->DownHold();
   }
