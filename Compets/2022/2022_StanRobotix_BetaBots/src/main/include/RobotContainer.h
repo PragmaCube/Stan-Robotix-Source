@@ -12,8 +12,8 @@
 #include <cameraserver/CameraServer.h>
 #include "commands/AutonomousCommand.h"
 #include "subsystems/SubClimber.h"
-#include "subsystems/DriveTrain.h"
-#include "subsystems/Ejector.h"
+#include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubEjector.h"
 
 #include "Constants.h" 
 /**

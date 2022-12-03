@@ -7,8 +7,8 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "subsystems/Ejector.h"
-#include "subsystems/DriveTrain.h"
+#include "subsystems/SubEjector.h"
+#include "subsystems/SubDriveTrain.h"
 #include "subsystems/subClimber.h"
 
 class AutonomousCommand
