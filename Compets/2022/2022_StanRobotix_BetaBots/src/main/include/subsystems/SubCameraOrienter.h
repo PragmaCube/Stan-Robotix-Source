@@ -10,9 +10,9 @@
 #include "Constants.h"
 
 
-class CameraOrienteer : public frc2::SubsystemBase {
+class SubCameraOrienter : public frc2::SubsystemBase {
  public:
-  CameraOrienteer();
+  SubCameraOrienter();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.

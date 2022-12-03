@@ -4,24 +4,24 @@
 
 #include "subsystems/SubEjector.h"
 
-Ejector::Ejector() {}
+SubEjector::SubEjector() {}
 
 // This method will be called once per scheduler run
-void Ejector::Periodic() {}
+void SubEjector::Periodic() {}
 
-void Ejector::Push()
+void SubEjector::Push()
 {
     mRMotorElevator.Set(kSpeedPush);
     mLMotorElevator.Set(-kSpeedPush);
 }
 
-void Ejector::Pull()
+void SubEjector::Pull()
 {
     mRMotorElevator.Set(kSpeedPull);
     mLMotorElevator.Set(-kSpeedPull);
 }
 
-void Ejector::Stop()
+void SubEjector::Stop()
 {
     mRMotorElevator.Set(0);
     mLMotorElevator.Set(0);

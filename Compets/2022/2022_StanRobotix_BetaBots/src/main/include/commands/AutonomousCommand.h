@@ -21,10 +21,10 @@ class AutonomousCommand
    */
   explicit AutonomousCommand();
   
-  void setSubsystem(Ejector* pEjector, DriveTrain * pDriveTrain, SubClimber * pClimber);
+  void setSubsystem(SubEjector* pEjector, SubDriveTrain * pDriveTrain, SubClimber * pClimber);
 
  private:
-   Ejector* m_pEjectorSubsystem;
-   DriveTrain * m_pDriveTrain;
+   SubEjector* m_pEjectorSubsystem;
+   SubDriveTrain * m_pDriveTrain;
    SubClimber * m_pClimber;
 };

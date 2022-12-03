@@ -9,7 +9,7 @@ AutonomousCommand::AutonomousCommand()
 
 }
 
-void AutonomousCommand::setSubsystem(Ejector* pEjector, DriveTrain * pDriveTrain, SubClimber * pClimber)
+void AutonomousCommand::setSubsystem(SubEjector* pEjector, SubDriveTrain * pDriveTrain, SubClimber * pClimber)
 {
      m_pEjectorSubsystem = pEjector;
      m_pDriveTrain = pDriveTrain;

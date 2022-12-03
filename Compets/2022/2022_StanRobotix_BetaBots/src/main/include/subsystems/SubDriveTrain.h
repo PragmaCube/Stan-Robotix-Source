@@ -12,9 +12,9 @@
 #include <frc/SpeedControllerGroup.h>
 
 
-class DriveTrain : public frc2::SubsystemBase {
+class SubDriveTrain : public frc2::SubsystemBase {
  public:
-  DriveTrain();
+  SubDriveTrain();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.

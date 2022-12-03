@@ -6,23 +6,23 @@
 
 frc::ADIS16448_IMU mIMU;
 
-ImuSubsystem::ImuSubsystem() 
+SubIMU::SubIMU() 
 {
   m_Imu.Calibrate();
 }
 
-void ImuSubsystem::Periodic() {
+void SubIMU::Periodic() {
     units::angle::degree_t turningValue = m_Imu.GetAngle();  
     
 	mTurningValue = turningValue.value();
 }
 
-void ImuSubsystem::Start() {
+void SubIMU::Start() {
     units::angle::degree_t turningValue = m_Imu.GetAngle();  
     
 	mTurningValue = turningValue.value();
 }
 
-float ImuSubsystem::getAngle() {
+float SubIMU::getAngle() {
     return mTurningValue;
 }

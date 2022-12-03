@@ -7,15 +7,15 @@
 
 RobotContainer::RobotContainer()
 {
-  mDriveTrain = new DriveTrain;
+  mDriveTrain = new SubDriveTrain;
   // Initialize all of your commands and subsystems here
   frc::CameraServer::StartAutomaticCapture();
 
-  mMotorSpeed[0] = DriveTrain::MotorSpeed::eSlow;
-  mMotorSpeed[1] = DriveTrain::MotorSpeed::eMedium;
-  mMotorSpeed[2] = DriveTrain::MotorSpeed::eFast;
+  mMotorSpeed[0] = SubDriveTrain::MotorSpeed::eSlow;
+  mMotorSpeed[1] = SubDriveTrain::MotorSpeed::eMedium;
+  mMotorSpeed[2] = SubDriveTrain::MotorSpeed::eFast;
 
-  mEjector = new Ejector;
+  mEjector = new SubEjector;
   mAutoTimer.Reset();
   mMotorIndex = 1;  
   

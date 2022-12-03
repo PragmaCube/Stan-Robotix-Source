@@ -8,7 +8,7 @@
 
 #include <frc/ADIS16448_IMU.h>
 
-class ImuSubsystem : public frc2::SubsystemBase
+class SubIMU : public frc2::SubsystemBase
 {
 private:
    frc::ADIS16448_IMU m_Imu{};
@@ -18,7 +18,7 @@ private:
     static constexpr double kP = 0.005;
 
 public:
-  ImuSubsystem();
+  SubIMU();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.

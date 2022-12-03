@@ -4,12 +4,12 @@
 
 #include "subsystems/SubCameraOrienter.h"
 
-CameraOrienteer::CameraOrienteer() = default;
+SubCameraOrienter::SubCameraOrienter() = default;
 
 // This method will be called once per scheduler run
-void CameraOrienteer::Periodic() {}
+void SubCameraOrienter::Periodic() {}
 
-void CameraOrienteer::setAngle(double iAngle)
+void SubCameraOrienter::setAngle(double iAngle)
 {
     mServo.SetAngle(iAngle);
 }

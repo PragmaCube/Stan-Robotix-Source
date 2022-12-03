@@ -38,14 +38,14 @@ private:
   AutonomousCommand m_autonomousCommand;
 
   frc::XboxController mController{kJoystickPort};
-  DriveTrain *mDriveTrain;
+  SubDriveTrain *mDriveTrain;
   SubClimber *mClimber;
-  DriveTrain::MotorSpeed mMotorSpeed[3];
+  SubDriveTrain::MotorSpeed mMotorSpeed[3];
 
   SubClimber::Height mHeight[3];
 
   int mMotorIndex;
-  Ejector *mEjector;
+  SubEjector *mEjector;
   frc::Timer mAutoTimer;
 
   bool ejector_in_use = false;

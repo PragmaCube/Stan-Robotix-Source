@@ -10,9 +10,9 @@
 #include "rev/CANSparkMax.h"
 #include "Constants.h"
 
-class Ejector : public frc2::SubsystemBase {
+class SubEjector : public frc2::SubsystemBase {
  public:
-  Ejector();
+  SubEjector();
 
   void Push();
   void Pull();
