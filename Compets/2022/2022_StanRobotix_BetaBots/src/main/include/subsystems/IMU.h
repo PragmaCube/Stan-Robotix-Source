@@ -8,22 +8,22 @@
 
 #include <frc/ADIS16448_IMU.h>
 
-class IMU : public frc2::SubsystemBase
+class ImuSubsystem : public frc2::SubsystemBase
 {
+private:
+   frc::ADIS16448_IMU m_Imu{};
+   double mTurningValue = 0;
+
+   	static constexpr double kAngleSetpoint = 0.0;
+    static constexpr double kP = 0.005;
+
 public:
-  float getAccelX();
-  float getAccelY();
-
-  float getAngle();
-
-  IMU();
+  ImuSubsystem();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-
-private:
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
+  void Start();
+  float getAngle();
 };
