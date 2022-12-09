@@ -35,12 +35,19 @@ void SubClimber::Stop()
 
 void SubClimber::UpHold()
 {
-    mMotorClimber.Set(kSpeedUp);
+    if (mHeight_ > kHeightS3)
+    {
+        mHeight_ -= 1;
+    }
+    
 };
 
 void SubClimber::DownHold()
 {
-    mMotorClimber.Set(kSpeedDown);
+    if (mHeight_ < 0)
+    {
+        mHeight_ += 1;
+    }
 };
 
 

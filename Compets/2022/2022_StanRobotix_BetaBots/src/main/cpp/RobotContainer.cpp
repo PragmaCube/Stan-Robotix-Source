@@ -132,21 +132,16 @@ void RobotContainer::DriveClimber()
 
    
   //std::cout<<mClimber->GetEncoderPosition();
-/*
+
   if (mController.GetRightTriggerAxis() > 0.5)
   {
-    mSmart = 0;
     mClimber->UpHold();
   }
   else if (mController.GetLeftTriggerAxis() > 0.5)
   {
-    mSmart = 0;
     mClimber->DownHold();
   }
-  else
-  {
-    mClimber->Stop();
-  }*/
+
 
   if (mSmart)
   {
