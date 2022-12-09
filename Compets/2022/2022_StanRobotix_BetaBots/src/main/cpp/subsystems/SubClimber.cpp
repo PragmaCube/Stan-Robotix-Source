@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SubClimber.h"
-
+#include <iostream>
 
 
 
@@ -11,12 +11,15 @@
 SubClimber::SubClimber() 
 {
   // Implementation of subsystem constructor goes here.
+  frc::SmartDashboard::PutNumber("Offset", mOffset);
 }
 
 void SubClimber::Periodic() 
 {
   // Implementation of subsystem periodic method goes here.
-
+  //mOffset = frc::SmartDashboard::GetNumber("Offset : ",0);
+  mPidController.SetReference(mHeight_, rev::ControlType::kSmartMotion);
+  //std::cout<<mHeight_<<std::endl;
 }
 
 void SubClimber::SimulationPeriodic() 
@@ -45,42 +48,24 @@ void SubClimber::Stage(Height iHeight)
 {
     switch(iHeight)
     {
+        case h0:
+            mHeight_ = kMinHeight;
+        break;
+
         case h1:
-        if (kHeightS1-1 < SubClimber::GetEncoderPosition() < kHeightS1+1)
-        {
-            mMotorClimber.Set(kSpeedUp);   
-        }
-        else if ( kHeightS1+1 > SubClimber::GetEncoderPosition() > kHeightS1-1)
-        {
-            mMotorClimber.Set(-kSpeedUp);
-        }
+            mHeight_ = kHeightS1;
         break;
         
         case h2:
-        if (kHeightS2-1 < SubClimber::GetEncoderPosition() < kHeightS2 +1)
-        {
-            mMotorClimber.Set(kSpeedUp);   
-        }
-        else if (kHeightS2+1 > SubClimber::GetEncoderPosition() > kHeightS2-1 )
-        {
-            mMotorClimber.Set(-kSpeedUp);
-        }
+            mHeight_ = kHeightS2;
         break;
         
         case h3:
-       
-        if ( kHeightS3 -1 < SubClimber::GetEncoderPosition() < kHeightS3 + 1)
-        {
-            mMotorClimber.Set(kSpeedUp);   
-        }
-        else if ( kHeightS3 +1 > SubClimber::GetEncoderPosition() > kHeightS3-1)
-        {
-            mMotorClimber.Set(-kSpeedUp);
-        }
+            mHeight_ = kHeightS3;
         break;
         
         default:
-        mMotorClimber.Set(0);
+            mMotorClimber.Set(0);
         
     }
 

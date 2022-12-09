@@ -30,9 +30,7 @@ public:
 
   frc2::Command *GetAutonomousCommand();
   void Drive();
-  void DriveClimber();
-  void DriveDisplacement();
-  void DriveEjector();
+
 
 private:
   AutonomousCommand m_autonomousCommand;
@@ -42,13 +40,16 @@ private:
   SubClimber *mClimber;
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
 
-  SubClimber::Height mHeight[3];
+  SubClimber::Height mHeight[4];
 
   int mMotorIndex;
   SubEjector *mEjector;
   frc::Timer mAutoTimer;
 
   bool ejector_in_use = false;
-
+  bool mSmart = 0 ;
   void ConfigureButtonBindings();
+  void DriveClimber();
+  void DriveDisplacement();
+  void DriveEjector();
 };

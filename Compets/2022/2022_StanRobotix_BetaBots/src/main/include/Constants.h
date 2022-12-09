@@ -14,18 +14,19 @@
  * they are needed.
  */
 constexpr int kCameraOrienteerPort = 9;
-constexpr int kCanIdClimber = 1;constexpr int kCanIdElevatorR = 1;
+constexpr int kCanIdClimber = 1;
+constexpr int kCanIdElevatorR = 3;
 constexpr int kCanIdElevatorL = 4;
 
 /// Speed for the climbers
-constexpr float kSpeedUp = 0.25F; 
-constexpr float kSpeedDown = -0.20F;
+constexpr float kSpeedUp = -0.50F; 
+constexpr float kSpeedDown = 0.50F;
 
 //hauteur max et min pour le climber
-constexpr float kHeightS3 = 200;
-constexpr float kHeightS2 = 132;
-constexpr float kHeightS1 = 66;
-constexpr float kMinHeight = 0;
+constexpr double kHeightS3 = -420;
+constexpr double kHeightS2 = -270;
+constexpr double kHeightS1 =-140;
+constexpr double kMinHeight = 0;
 
 constexpr float threeinch = 10; 
 
@@ -37,3 +38,12 @@ constexpr int kJoystickPort = 0;
 
 constexpr float kSpeedPush = 0.40F;
 constexpr float kSpeedPull = -0.20F; 
+
+// default PID coefficients
+constexpr double kP = 5e-5, kI = 1e-6, kD = 0, kIz = 0, kFF = 0.000156, kMaxOutput = 1, kMinOutput = -1;
+
+// default smart motion coefficients
+constexpr double kMaxVel = 2000, kMinVel = 0, kMaxAcc = 1500, kAllErr = 0;
+
+// motor max RPM
+constexpr double MaxRPM = 5700;

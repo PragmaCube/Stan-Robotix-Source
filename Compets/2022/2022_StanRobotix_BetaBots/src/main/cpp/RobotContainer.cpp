@@ -20,13 +20,15 @@ RobotContainer::RobotContainer()
   mMotorIndex = 1;  
   
   mClimber = new SubClimber;
-  mHeight[0] = SubClimber::Height::h1;
-  mHeight[1] = SubClimber::Height::h2;
-  mHeight[2] = SubClimber::Height::h3;
+  mHeight[0] = SubClimber::Height::h0;
+  mHeight[1] = SubClimber::Height::h1;
+  mHeight[2] = SubClimber::Height::h2;
+  mHeight[3] = SubClimber::Height::h3;
 
   m_autonomousCommand.setSubsystem(mEjector, mDriveTrain, mClimber);
 
   ConfigureButtonBindings();
+  
 }
 
 frc2::Command *RobotContainer::GetAutonomousCommand()
@@ -98,39 +100,56 @@ void RobotContainer::Drive()
 {
   DriveClimber();
 
-  DriveDisplacement();
+  //DriveDisplacement();
 
-  DriveEjector();
+  //DriveEjector();
+
 }
 void RobotContainer::DriveClimber()
-{ /* voir plus tard
+{ 
+   frc::SmartDashboard::PutBoolean("smart",mSmart);
+   frc::SmartDashboard::PutNumber("POV",mController.GetPOV());
    if (mController.GetPOV() == 0)
    {
-     mClimber->Stage(mHeight[0]);
+     mSmart = 1;
+     mClimber->Stage(mHeight[3]);
    }
    else if (mController.GetPOV() == 90)
    {
+     mSmart = 1;
      mClimber->Stage(mHeight[1]);
    }
    else if (mController.GetPOV() == 180)
    {
-     mClimber->Stage(mHeight[2]);
+     mSmart = 1;
+     mClimber->Stage(mHeight[0]);
    }
    else if (mController.GetPOV() == 270)
    {
-     mClimber->Down();
-   }*/
+     mSmart = 1;
+     mClimber->Stage(mHeight[2]);
+   }
 
+   
+  //std::cout<<mClimber->GetEncoderPosition();
+/*
   if (mController.GetRightTriggerAxis() > 0.5)
   {
+    mSmart = 0;
     mClimber->UpHold();
   }
-  else if (mController.GetRightTriggerAxis() > 0.5)
+  else if (mController.GetLeftTriggerAxis() > 0.5)
   {
+    mSmart = 0;
     mClimber->DownHold();
   }
   else
   {
     mClimber->Stop();
+  }*/
+
+  if (mSmart)
+  {
+    mClimber->Periodic();
   }
 }
