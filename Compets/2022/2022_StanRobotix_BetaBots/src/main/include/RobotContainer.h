@@ -30,7 +30,7 @@ public:
 
   frc2::Command *GetAutonomousCommand();
   void Drive();
-
+  void Auto();
 
 private:
   AutonomousCommand m_autonomousCommand;
@@ -52,4 +52,5 @@ private:
   void DriveClimber();
   void DriveDisplacement();
   void DriveEjector();
+
 };

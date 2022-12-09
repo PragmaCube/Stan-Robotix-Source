@@ -38,7 +38,7 @@ frc2::Command *RobotContainer::GetAutonomousCommand()
 
 void RobotContainer::DriveDisplacement()
 {
-  if (mController.GetPOV() == 0)
+  if (mController.GetRightBumperPressed())
   {
     if (mMotorIndex < 2)
     {
@@ -46,7 +46,7 @@ void RobotContainer::DriveDisplacement()
     }
   }
 
-  if (mController.GetPOV() == 180)
+  if (mController.GetLeftBumperPressed())
   {
     if (mMotorIndex > 0)
     {
@@ -147,4 +147,9 @@ void RobotContainer::DriveClimber()
   {
     mClimber->Periodic();
   }
+}
+
+void RobotContainer::Auto()
+{
+
 }
