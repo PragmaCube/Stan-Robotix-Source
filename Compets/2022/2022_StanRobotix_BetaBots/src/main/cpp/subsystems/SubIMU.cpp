@@ -4,7 +4,7 @@
 
 #include "subsystems/SubIMU.h"
 
-frc::ADIS16448_IMU mIMU;
+//frc::ADIS16448_IMU mIMU;
 
 SubIMU::SubIMU() 
 {
@@ -12,9 +12,7 @@ SubIMU::SubIMU()
 }
 
 SubIMU::~SubIMU()
-{
-   m_Imu.Calibrate();
-}
+{}
 
 void SubIMU::Periodic() {
     units::angle::degree_t turningValue = m_Imu.GetAngle();  

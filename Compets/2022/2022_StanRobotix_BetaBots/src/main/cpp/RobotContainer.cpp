@@ -25,8 +25,8 @@ RobotContainer::RobotContainer()
   mHeight[2] = SubClimber::Height::h2;
   mHeight[3] = SubClimber::Height::h3;
 
-  //mImu = new SubIMU;
-  //mImu->Start();
+  mImu = new SubIMU;
+  mImu->Start();
   m_autonomousCommand.setSubsystem(mEjector, mDriveTrain, mClimber);
 
   ConfigureButtonBindings();
@@ -55,7 +55,7 @@ void RobotContainer::DriveDisplacement()
       mMotorIndex--;
     }
   }
-  std::cout << mMotorIndex << std::endl;
+  //std::cout << mMotorIndex << std::endl;
 
   mDriveTrain->TankDrive(
       -mController.GetLeftY(),
@@ -71,7 +71,7 @@ void RobotContainer::DriveEjector()
     std::cout << "Pressed A Button" << std::endl;
   }
 
-  std::cout << mAutoTimer.Get().value() << std::endl;
+  //std::cout << mAutoTimer.Get().value() << std::endl;
 
   if (ejector_in_use)
   {
@@ -106,8 +106,13 @@ void RobotContainer::Drive()
   DriveDisplacement();
 
   DriveEjector();
-  //mImu->Periodic();
-  //std::cout<<mImu->getAngle()<<std::endl;
+  mImu->Periodic();
+  static int i = 0;
+
+  if (i ++ % 500)
+  {
+    std::cout<< "Angle :" << mImu->getAngle()<<std::endl;
+  }
 }
 void RobotContainer::DriveClimber()
 { 
