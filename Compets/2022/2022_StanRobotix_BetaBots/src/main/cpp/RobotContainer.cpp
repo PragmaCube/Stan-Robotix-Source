@@ -20,14 +20,14 @@ RobotContainer::RobotContainer()
   mMotorIndex = 1;  
   
   mClimber = new SubClimber;
-  mHeight[0] = SubClimber::Height::h0;
-  mHeight[1] = SubClimber::Height::h1;
-  mHeight[2] = SubClimber::Height::h2;
-  mHeight[3] = SubClimber::Height::h3;
+  mHeight[0] = SubClimber::eHeight::h0;
+  mHeight[1] = SubClimber::eHeight::h1;
+  mHeight[2] = SubClimber::eHeight::h2;
+  mHeight[3] = SubClimber::eHeight::h3;
 
   mImu = new SubIMU;
   mImu->Start();
-  m_autonomousCommand.setSubsystem(mEjector, mDriveTrain, mClimber);
+  m_autonomousCommand.setSubsystem(mEjector, mDriveTrain, mClimber, mImu);
 
   ConfigureButtonBindings();
   

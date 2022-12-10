@@ -41,7 +41,7 @@ private:
   SubClimber *mClimber;
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
 
-  SubClimber::Height mHeight[4];
+  SubClimber::eHeight mHeight[4];
 
   SubIMU *mImu;
 

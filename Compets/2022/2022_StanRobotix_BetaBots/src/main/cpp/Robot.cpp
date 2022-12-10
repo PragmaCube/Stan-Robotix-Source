@@ -41,13 +41,13 @@ void Robot::AutonomousInit() {
   m_autonomousCommand = m_container.GetAutonomousCommand();
 
   if (m_autonomousCommand != nullptr) {
-    m_autonomousCommand->Schedule();
+    m_autonomousCommand->Initialize();
   }
 }
 
 void Robot::AutonomousPeriodic() 
 {
-  m_container.Auto();
+  m_autonomousCommand->Execute();
 }
 
 void Robot::TeleopInit() {
@@ -56,7 +56,7 @@ void Robot::TeleopInit() {
   // continue until interrupted by another command, remove
   // this line or comment it out.
   if (m_autonomousCommand != nullptr) {
-    m_autonomousCommand->Cancel();
+    m_autonomousCommand->End(true);
     m_autonomousCommand = nullptr;
   }
 }

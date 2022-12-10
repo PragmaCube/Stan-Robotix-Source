@@ -52,7 +52,7 @@ void SubClimber::DownHold()
 };
 
 
-void SubClimber::Stage(Height iHeight)
+void SubClimber::Stage(eHeight iHeight)
 {
     switch(iHeight)
     {

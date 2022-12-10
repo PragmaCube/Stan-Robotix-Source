@@ -15,12 +15,12 @@
 class SubClimber : public frc2::SubsystemBase {
  public:
   SubClimber();
-  enum Height{h0 = 0 ,h1 = 1, h2 = 2 , h3 = 3}; 
+  enum eHeight{h0 = 0 ,h1 = 1, h2 = 2 , h3 = 3}; 
   
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
-  void Stage(Height iHeight);
+  void Stage(eHeight iHeight);
   void UpHold();
   void DownHold();
   void Down();
