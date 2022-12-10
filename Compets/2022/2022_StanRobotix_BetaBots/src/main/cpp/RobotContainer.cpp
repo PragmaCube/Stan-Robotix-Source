@@ -67,28 +67,19 @@ void RobotContainer::DriveEjector()
   if (mController.GetAButton() && !ejector_in_use)
   {
     ejector_in_use = true;
-    mAutoTimer.Start();
     std::cout << "Pressed A Button" << std::endl;
   }
 
-  //std::cout << mAutoTimer.Get().value() << std::endl;
-
   if (ejector_in_use)
   {
-    if (mAutoTimer.Get().value() <= 0.5)
+    if (mEjector->GetEncoder() < kPosOut)
     {
       mEjector->Push();
     }
-    else if (mAutoTimer.Get().value() <= 1.65)
-    {
-      mEjector->Pull();
-    }
     else
     {
-      mEjector->Stop();
+      mEjector->Pull();
       ejector_in_use = false;
-      mAutoTimer.Stop();
-      mAutoTimer.Reset();
     }
   }
 }

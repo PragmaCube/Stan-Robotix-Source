@@ -37,13 +37,16 @@ constexpr int kMotorR1Port = 3;
 constexpr int kJoystickPort = 0;
 
 constexpr float kSpeedPush = 0.40F;
-constexpr float kSpeedPull = -0.20F; 
+constexpr float kSpeedPull = -0.20F;
+
+constexpr double kPosOut = 14;
+constexpr double kPosIn = 0;
 
 // default PID coefficients
-constexpr double kP = 5e-5, kI = 1e-6, kD = 0, kIz = 0, kFF = 0.000156, kMaxOutput = 1, kMinOutput = -1;
+constexpr double kP = 2.5e-4, kI = 2.6e-6, kD = 1e-3, kIz = 0, kFF = 0.000156, kMaxOutput = 1, kMinOutput = -1;
 
 // default smart motion coefficients
-constexpr double kMaxVel = 2000, kMinVel = 0, kMaxAcc = 1500, kAllErr = 0;
+constexpr double kMaxVel = 10000, kMinVel = 0, kMaxAcc = 8000, kAllErr = 0;
 
 // motor max RPM
 constexpr double MaxRPM = 5700;

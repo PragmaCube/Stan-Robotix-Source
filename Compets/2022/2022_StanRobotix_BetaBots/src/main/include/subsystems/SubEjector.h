@@ -6,6 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMaxRelativeEncoder.h>
+#include <rev/SparkMaxPIDController.h>
 
 #include "rev/CANSparkMax.h"
 #include "Constants.h"
@@ -17,6 +18,7 @@ class SubEjector : public frc2::SubsystemBase {
   void Push();
   void Pull();
   void Stop();
+  double GetEncoder();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -31,4 +33,7 @@ class SubEjector : public frc2::SubsystemBase {
 
   rev::SparkMaxRelativeEncoder mRMotorEncoder = mRMotorElevator.GetEncoder();
   rev::SparkMaxRelativeEncoder mLMotorEncoder = mLMotorElevator.GetEncoder();
+
+  rev::SparkMaxPIDController mRPIDController = mRMotorElevator.GetPIDController();
+  rev::SparkMaxPIDController mLPIDController = mLMotorElevator.GetPIDController();
 };
