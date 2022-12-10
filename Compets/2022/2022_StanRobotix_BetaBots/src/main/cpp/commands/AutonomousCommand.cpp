@@ -14,4 +14,6 @@ void AutonomousCommand::setSubsystem(SubEjector* pEjector, SubDriveTrain * pDriv
      m_pEjectorSubsystem = pEjector;
      m_pDriveTrain = pDriveTrain;
      m_pClimber = pClimber;
+
+     
 }

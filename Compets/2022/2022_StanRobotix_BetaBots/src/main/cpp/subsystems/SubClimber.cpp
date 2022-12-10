@@ -48,6 +48,7 @@ void SubClimber::DownHold()
     {
         mHeight_ += 1;
     }
+    //mHeight_ += 1;
 };
 
 

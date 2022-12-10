@@ -14,6 +14,7 @@
 #include "subsystems/SubClimber.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubEjector.h"
+#include "subsystems/SubIMU.h"
 
 #include "Constants.h" 
 /**
@@ -41,6 +42,8 @@ private:
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
 
   SubClimber::Height mHeight[4];
+
+  SubIMU *mImu;
 
   int mMotorIndex;
   SubEjector *mEjector;

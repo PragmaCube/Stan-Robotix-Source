@@ -19,6 +19,7 @@ private:
 
 public:
   SubIMU();
+  ~SubIMU();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.

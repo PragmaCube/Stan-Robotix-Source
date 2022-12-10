@@ -11,6 +11,11 @@ SubIMU::SubIMU()
   m_Imu.Calibrate();
 }
 
+SubIMU::~SubIMU()
+{
+   m_Imu.Calibrate();
+}
+
 void SubIMU::Periodic() {
     units::angle::degree_t turningValue = m_Imu.GetAngle();  
     

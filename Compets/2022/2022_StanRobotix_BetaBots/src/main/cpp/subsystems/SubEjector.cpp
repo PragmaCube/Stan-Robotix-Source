@@ -11,14 +11,14 @@ void SubEjector::Periodic() {}
 
 void SubEjector::Push()
 {
-    mRMotorElevator.Set(kSpeedPush);
-    mLMotorElevator.Set(-kSpeedPush);
+    mRMotorElevator.Set(-kSpeedPush);
+    mLMotorElevator.Set(kSpeedPush);
 }
 
 void SubEjector::Pull()
 {
-    mRMotorElevator.Set(kSpeedPull);
-    mLMotorElevator.Set(-kSpeedPull);
+    mRMotorElevator.Set(-kSpeedPull);
+    mLMotorElevator.Set(kSpeedPull);
 }
 
 void SubEjector::Stop()

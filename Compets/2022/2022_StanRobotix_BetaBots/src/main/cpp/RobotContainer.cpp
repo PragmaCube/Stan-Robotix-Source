@@ -25,6 +25,8 @@ RobotContainer::RobotContainer()
   mHeight[2] = SubClimber::Height::h2;
   mHeight[3] = SubClimber::Height::h3;
 
+  //mImu = new SubIMU;
+  //mImu->Start();
   m_autonomousCommand.setSubsystem(mEjector, mDriveTrain, mClimber);
 
   ConfigureButtonBindings();
@@ -98,12 +100,14 @@ void RobotContainer::ConfigureButtonBindings()
 
 void RobotContainer::Drive()
 {
+  
   DriveClimber();
 
-  //DriveDisplacement();
+  DriveDisplacement();
 
-  //DriveEjector();
-
+  DriveEjector();
+  //mImu->Periodic();
+  //std::cout<<mImu->getAngle()<<std::endl;
 }
 void RobotContainer::DriveClimber()
 { 
