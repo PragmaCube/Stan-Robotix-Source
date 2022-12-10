@@ -23,9 +23,9 @@ constexpr float kSpeedUp = -0.50F;
 constexpr float kSpeedDown = 0.50F;
 
 //hauteur max et min pour le climber
-constexpr double kHeightS3 = -420;
-constexpr double kHeightS2 = -270;
-constexpr double kHeightS1 =-140;
+constexpr double kHeightS3 = -360;
+constexpr double kHeightS2 = -220;
+constexpr double kHeightS1 =-80;
 constexpr double kMinHeight = 0;
 
 constexpr float threeinch = 10; 
