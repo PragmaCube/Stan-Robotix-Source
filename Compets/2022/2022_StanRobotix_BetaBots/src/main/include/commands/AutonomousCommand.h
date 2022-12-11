@@ -50,4 +50,6 @@ class AutonomousCommand
    SubDriveTrain * m_pDriveTrain;
    SubClimber * m_pClimber;
    SubIMU * m_pIMU;
+
+    frc::Timer mGenericTimer;
 };

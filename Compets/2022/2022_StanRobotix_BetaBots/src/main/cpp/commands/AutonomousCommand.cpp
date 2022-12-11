@@ -7,6 +7,8 @@
 AutonomousCommand::AutonomousCommand()
 {
    mCurrentStep = Phase1_;
+
+   mGenericTimer.Reset();
 }
 
 void AutonomousCommand::setSubsystem(SubEjector* pEjector, SubDriveTrain * pDriveTrain, SubClimber * pClimber, SubIMU * pIMU)
@@ -79,6 +81,7 @@ void AutonomousCommand::End(bool interrupted)
   
 void AutonomousCommand::doExecutePhase1()
 {
+   static bool executeTimerOnce = true;
    static bool didEjectorExecuted = false;
 
    static int StartAngle = 0; // note explicative: on pourrait creer aussi une propriete mStartAngle dans le .h.... mais elle serait accessible
@@ -88,9 +91,8 @@ void AutonomousCommand::doExecutePhase1()
                               // elle n est visible que pour la fonction doExecutePhase1. Et surtout, le fait qu elle soit statique, on ne perd pas
                               // l valeur de la variable a chaque fois que doExecutePhase1 est appelle.
 
-   m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
    
-   // Tourne robot avec IMU
+   
    // avance drive train avec timer
    //m_pClimber->Stage(m_Height[2]);
    //m_pClimber->Periodic();
@@ -103,26 +105,37 @@ void AutonomousCommand::doExecutePhase1()
       m_pEjectorSubsystem->Periodic(true);
       didEjectorExecuted = true;
    }*/
-
+   if (executeTimerOnce)
+   {
+      mGenericTimer.Start();
+   }
 }
 
 bool AutonomousCommand::isPhase1Finished()
 {
-     static float startAngle = m_pIMU->getAngle();
-     if (fabs(startAngle-m_pIMU->getAngle()) > 90)
-     {
-        m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
-        return true;
-     }
-     else
-     {
-     return false;
-     }
+   if (mGenericTimer.Get().value()>10)
+   {
+     mGenericTimer.Reset();
+     return true; 
+   }
+   return false;
 }
 
 void AutonomousCommand::doExecutePhase2()
 {
+   static bool executeTimerOnce = true;
 
+   m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
+
+   if (executeTimerOnce)
+   {
+      mGenericTimer.Start();
+   }
+}
+
+bool AutonomousCommand::isPhase2Finished()
+{
+     return (mGenericTimer.Get().value()>2);
 }
 
 void AutonomousCommand::doExecutePhase3()
@@ -130,24 +143,19 @@ void AutonomousCommand::doExecutePhase3()
 
 }
 
+bool AutonomousCommand::isPhase3Finished()
+{
+     return true;
+}
+
 void AutonomousCommand::doExecutePhase4()
 {
 
 }
 
-bool AutonomousCommand::isPhase2Finished()
-{
-     return false;
-}
-
-bool AutonomousCommand::isPhase3Finished()
-{
-     return false;
-}
-
 bool AutonomousCommand::isPhase4Finished()
 {
-     return false;
+     return true;
 }
 
 void AutonomousCommand::doFinish()
@@ -156,7 +164,7 @@ void AutonomousCommand::doFinish()
 }
 
 // List of example for autonomous period
-/*
+/*  Example 1: Turn right for 90 degrees
 void doExecutePhase1_TurnRight()
 {
    m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
@@ -175,3 +183,47 @@ bool isPhase1_TurnRight_Finished()
      return false;
 }
 */
+
+/* Example 2: Attend 10 secondes, tourne le robot pendant deux secondes et arrete.
+void doExecutePhase1()
+{
+   static bool executeTimerOnce = true;
+   if (executeTimerOnce)
+   {
+      mGenericTimer.Start();
+   }
+}
+
+bool isPhase1Finished()
+{
+   if (mGenericTimer.Get().value()>10)
+   {
+     mGenericTimer.Reset();
+     return true; 
+   }
+   return false;
+}
+
+void doExecutePhase2()
+{
+   static bool executeTimerOnce = true;
+
+   m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
+
+   if (executeTimerOnce)
+   {
+      mGenericTimer.Start();
+   }
+}
+
+bool isPhase2Finished()
+{
+     return (mGenericTimer.Get().value()>2);
+}
+
+void doExecutePhase3()
+{
+   m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
+}
+*/
+
