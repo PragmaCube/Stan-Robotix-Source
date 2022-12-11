@@ -8,6 +8,7 @@ SubDriveTrain::SubDriveTrain() = default;
 
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
+
 void SubDriveTrain::TankDrive(double iLeftHand, double iRightHand, MotorSpeed iMotorSpeed)
 {
     switch (iMotorSpeed)

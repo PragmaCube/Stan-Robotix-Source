@@ -88,26 +88,36 @@ void AutonomousCommand::doExecutePhase1()
                               // elle n est visible que pour la fonction doExecutePhase1. Et surtout, le fait qu elle soit statique, on ne perd pas
                               // l valeur de la variable a chaque fois que doExecutePhase1 est appelle.
 
-  // m_pDriveTrain->TankDrive(-1,1, SubDriveTrain::MotorSpeed::eSlow);
+   m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
    
    // Tourne robot avec IMU
    // avance drive train avec timer
-   m_pClimber->Stage(m_Height[2]);
-   m_pClimber->Periodic();
+   //m_pClimber->Stage(m_Height[2]);
+   //m_pClimber->Periodic();
 
    // Tourne robot avec IMU
    //m_pClimber->Periodic();
-
+/*
    if (!didEjectorExecuted)
    {
       m_pEjectorSubsystem->Periodic(true);
       didEjectorExecuted = true;
-   }
+   }*/
+
 }
 
 bool AutonomousCommand::isPhase1Finished()
 {
-     return true;
+     static float startAngle = m_pIMU->getAngle();
+     if (fabs(startAngle-m_pIMU->getAngle()) > 90)
+     {
+        m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
+        return true;
+     }
+     else
+     {
+     return false;
+     }
 }
 
 void AutonomousCommand::doExecutePhase2()
@@ -144,3 +154,24 @@ void AutonomousCommand::doFinish()
 {
    m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow); // Stop the robot
 }
+
+// List of example for autonomous period
+/*
+void doExecutePhase1_TurnRight()
+{
+   m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
+}
+
+bool isPhase1_TurnRight_Finished()
+{
+     static float startAngle = m_pIMU->getAngle();
+
+     if (fabs(startAngle-m_pIMU->getAngle()) > 90)
+     {
+        m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
+        return true;
+     }
+     
+     return false;
+}
+*/
