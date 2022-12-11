@@ -64,24 +64,7 @@ void RobotContainer::DriveDisplacement()
 
 void RobotContainer::DriveEjector()
 {
-  if (mController.GetAButton() && !ejector_in_use)
-  {
-    ejector_in_use = true;
-    std::cout << "Pressed A Button" << std::endl;
-  }
-
-  if (ejector_in_use)
-  {
-    if (mEjector->GetEncoder() < kPosOut)
-    {
-      mEjector->Push();
-    }
-    else
-    {
-      mEjector->Pull();
-      ejector_in_use = false;
-    }
-  }
+  mEjector->Periodic(mController.GetAButton());
 }
 
 void RobotContainer::ConfigureButtonBindings()
@@ -130,7 +113,6 @@ void RobotContainer::DriveClimber()
      mClimber->Stage(mHeight[2]);
    }
 
-   
   //std::cout<<mClimber->GetEncoderPosition();
 
   if (mController.GetRightTriggerAxis() > 0.5)

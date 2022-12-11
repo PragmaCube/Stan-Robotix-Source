@@ -79,6 +79,8 @@ void AutonomousCommand::End(bool interrupted)
   
 void AutonomousCommand::doExecutePhase1()
 {
+   static bool didEjectorExecuted = false;
+
    static int StartAngle = 0; // note explicative: on pourrait creer aussi une propriete mStartAngle dans le .h.... mais elle serait accessible
                               // a toutes les fonctions membres de la classe.... Si vous avez besoin d'une variables angle dans deux phases
                               // differente.... votre .h deviendra un gros fouilli.
@@ -86,24 +88,28 @@ void AutonomousCommand::doExecutePhase1()
                               // elle n est visible que pour la fonction doExecutePhase1. Et surtout, le fait qu elle soit statique, on ne perd pas
                               // l valeur de la variable a chaque fois que doExecutePhase1 est appelle.
 
-   m_pDriveTrain->TankDrive(-1,1, SubDriveTrain::MotorSpeed::eSlow);
+  // m_pDriveTrain->TankDrive(-1,1, SubDriveTrain::MotorSpeed::eSlow);
+   
    // Tourne robot avec IMU
    // avance drive train avec timer
-   //m_pClimber->Stage(m_Height[2]);
+   m_pClimber->Stage(m_Height[2]);
+   m_pClimber->Periodic();
+
    // Tourne robot avec IMU
    //m_pClimber->Periodic();
-   /*
-   if (m_pEjectorSubsystem->GetEncoder() < kPosOut)
-    {
-      m_pEjectorSubsystem->Push();
-    }
-    else
-    {
-      m_pEjectorSubsystem->Pull();
- 
-    }
-    */
+
+   if (!didEjectorExecuted)
+   {
+      m_pEjectorSubsystem->Periodic(true);
+      didEjectorExecuted = true;
+   }
 }
+
+bool AutonomousCommand::isPhase1Finished()
+{
+     return true;
+}
+
 void AutonomousCommand::doExecutePhase2()
 {
 
@@ -117,11 +123,6 @@ void AutonomousCommand::doExecutePhase3()
 void AutonomousCommand::doExecutePhase4()
 {
 
-}
-
-bool AutonomousCommand::isPhase1Finished()
-{
-     return false;
 }
 
 bool AutonomousCommand::isPhase2Finished()

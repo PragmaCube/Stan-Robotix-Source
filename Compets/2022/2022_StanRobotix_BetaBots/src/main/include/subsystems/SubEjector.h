@@ -20,6 +20,8 @@ class SubEjector : public frc2::SubsystemBase {
   void Stop();
   double GetEncoder();
 
+  void Periodic(const bool iButtonPressed);
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */

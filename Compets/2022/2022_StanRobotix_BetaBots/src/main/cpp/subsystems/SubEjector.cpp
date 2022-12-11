@@ -4,6 +4,8 @@
 
 #include "subsystems/SubEjector.h"
 
+#include <iostream>
+
 SubEjector::SubEjector()
 {
     mRPIDController.SetP(kP);
@@ -39,6 +41,30 @@ void SubEjector::Push()
     mRPIDController.SetReference(-kPosOut,rev::ControlType::kSmartMotion);
     mLPIDController.SetReference(kPosOut,rev::ControlType::kSmartMotion);
     
+}
+
+void SubEjector::Periodic(const bool iButtonPressed)
+{
+  static bool ejector_in_use = false;
+  
+  if (iButtonPressed && !ejector_in_use)
+  {
+    ejector_in_use = true;
+    std::cout << "Pressed A Button" << std::endl;
+  }
+
+  if (ejector_in_use)
+  {
+    if (GetEncoder() < kPosOut)
+    {
+      this->Push();
+    }
+    else
+    {
+      Pull();
+      ejector_in_use = false;
+    }
+  }   
 }
 
 void SubEjector::Pull()

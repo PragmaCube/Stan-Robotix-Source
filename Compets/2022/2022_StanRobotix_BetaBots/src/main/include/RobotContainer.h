@@ -49,7 +49,7 @@ private:
   SubEjector *mEjector;
   frc::Timer mAutoTimer;
 
-  bool ejector_in_use = false;
+
   bool mSmart = 0 ;
   void ConfigureButtonBindings();
   void DriveClimber();
