@@ -21,6 +21,7 @@ constexpr int kCanIdElevatorL = 4;
 /// Speed for the climbers
 constexpr float kSpeedUp = -0.50F; 
 constexpr float kSpeedDown = 0.50F;
+constexpr float kCoeffFriction = 0.83;
 
 //hauteur max et min pour le climber
 constexpr double kHeightS3 = -360;
@@ -40,11 +41,11 @@ constexpr int kJoystickPort = 0;
 constexpr float kSpeedPush = 0.40F;
 constexpr float kSpeedPull = -0.20F;
 
-constexpr double kPosOut = 14;
+constexpr double kPosOut = 18;
 constexpr double kPosIn = 0;
 
 // default PID coefficients
-constexpr double kP = 2.5e-4, kI = 2.6e-6, kD = 1e-3, kIz = 0, kFF = 0.000156, kMaxOutput = 1, kMinOutput = -1;
+constexpr double kP = 2.6e-4, kI = 2.8e-6, kD = 1e-3, kIz = 0, kFF = 0.000156, kMaxOutput = 1, kMinOutput = -1;
 
 // default smart motion coefficients
 constexpr double kMaxVel = 10000, kMinVel = 0, kMaxAcc = 8000, kAllErr = 0;
