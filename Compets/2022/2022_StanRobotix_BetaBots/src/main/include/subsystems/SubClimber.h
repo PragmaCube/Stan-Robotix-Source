@@ -23,8 +23,6 @@ class SubClimber : public frc2::SubsystemBase {
   void Stage(eHeight iHeight);
   void UpHold();
   void DownHold();
-  void Down();
-  void Stop();
   
   int GetEncoderPosition();
 
@@ -42,19 +40,4 @@ class SubClimber : public frc2::SubsystemBase {
     rev::SparkMaxRelativeEncoder mMotorEncoder = mMotorClimber.GetEncoder();
     rev::SparkMaxPIDController mPidController = mMotorClimber.GetPIDController();
     double mHeight_ = kMinHeight;
-    double mOffset = 0;
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
-  // set PID coefficients
-    /*mPidController.SetP(kP);
-    mPidController.SetI(kI);
-    mPidController.SetD(kD);
-    mPidController.SetIZone(kIz);
-    mPidController.SetFF(kFF);
-    mPidController.SetOutputRange(kMinOutput, kMaxOutput);
-    mPidController.SetSmartMotionMaxVelocity(kMaxVel);
-    mPidController.SetSmartMotionMinOutputVelocity(kMinVel);
-    mPidController.SetSmartMotionMaxAccel(kMaxAcc);
-    mPidController.SetSmartMotionAllowedClosedLoopError(kAllErr);
-*/
 };

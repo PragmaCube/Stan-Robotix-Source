@@ -5,13 +5,10 @@
 #include "subsystems/SubClimber.h"
 #include <iostream>
 
-
-
-
 SubClimber::SubClimber() 
 {
   // Implementation of subsystem constructor goes here.
-  frc::SmartDashboard::PutNumber("Offset", mOffset);
+ // frc::SmartDashboard::PutNumber("Offset", mOffset);
 }
 
 void SubClimber::Periodic() 
@@ -28,18 +25,12 @@ void SubClimber::SimulationPeriodic()
   // Implementation of subsystem simulation periodic method goes here.
 }
 
-void SubClimber::Stop()
-{
-    mMotorClimber.Set(0);
-};
-
 void SubClimber::UpHold()
 {
     if (mHeight_ > kHeightS3)
     {
         mHeight_ -= 1;
     }
-    
 };
 
 void SubClimber::DownHold()
@@ -48,9 +39,7 @@ void SubClimber::DownHold()
     {
         mHeight_ += 1;
     }
-    //mHeight_ += 1;
 };
-
 
 void SubClimber::Stage(eHeight iHeight)
 {
@@ -76,20 +65,6 @@ void SubClimber::Stage(eHeight iHeight)
             mMotorClimber.Set(0);
         
     }
-
-    
-
-};
-//mMotorClimber.Set(kSpeedDown);
-void SubClimber::Down()
-{
-    int hauteur = SubClimber::GetEncoderPosition();
-    while (hauteur-SubClimber::GetEncoderPosition() < threeinch)
-    {
-        mMotorClimber.Set(kSpeedDown);
-    }
-    mMotorClimber.Set(0);
-
 };
 
 int SubClimber::GetEncoderPosition()
