@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/AutonomousCommand.h"
+#include <iostream>
 
 AutonomousCommand::AutonomousCommand()
 {
@@ -11,20 +12,20 @@ AutonomousCommand::AutonomousCommand()
    mGenericTimer.Reset();
 }
 
-void AutonomousCommand::setSubsystem(SubEjector* pEjector, SubDriveTrain * pDriveTrain, SubClimber * pClimber, SubIMU * pIMU)
+void AutonomousCommand::setSubsystem(SubEjector *pEjector, SubDriveTrain *pDriveTrain, SubClimber *pClimber, SubIMU *pIMU)
 {
-     m_pEjectorSubsystem = pEjector;
-     m_pDriveTrain = pDriveTrain;
-     m_pClimber = pClimber;
-     m_pIMU = pIMU;
+   m_pEjectorSubsystem = pEjector;
+   m_pDriveTrain = pDriveTrain;
+   m_pClimber = pClimber;
+   m_pIMU = pIMU;
 }
 /**
-   * The initial subroutine of a command.  Called once when the command is
-   * initially scheduled.
-   */
+ * The initial subroutine of a command.  Called once when the command is
+ * initially scheduled.
+ */
 void AutonomousCommand::Initialize()
 {
-  mCurrentStep = Phase1_;
+   mCurrentStep = Phase1_;
 }
 
 /**
@@ -33,39 +34,39 @@ void AutonomousCommand::Initialize()
  */
 void AutonomousCommand::Execute()
 {
-     bool wIsFinished = true;
-     step_t wNextPhase = mCurrentStep;
-     switch (mCurrentStep)
-     {
-        case Phase1_:
-           doExecutePhase1();
-           wIsFinished = isPhase1Finished();
-           wNextPhase = step_t::Phase2_;
-           break;
+   bool wIsFinished = true;
+   step_t wNextPhase = mCurrentStep;
+   switch (mCurrentStep)
+   {
+   case Phase1_:
+      doExecutePhase1();
+      wIsFinished = isPhase1Finished();
+      wNextPhase = step_t::Phase2_;
+      break;
 
-        case Phase2_:
-           doExecutePhase2();
-           wIsFinished = isPhase2Finished();
-           wNextPhase = step_t::phase3_;
-           break;
+   case Phase2_:
+      doExecutePhase2();
+      wIsFinished = isPhase2Finished();
+      wNextPhase = step_t::phase3_;
+      break;
 
-        case phase3_:
-           doExecutePhase3();
-           wIsFinished = isPhase3Finished();
-           wNextPhase = step_t::Phase4_;
-           break;
+   case phase3_:
+      doExecutePhase3();
+      wIsFinished = isPhase3Finished();
+      wNextPhase = step_t::Phase4_;
+      break;
 
-        case Phase4_:
-           doExecutePhase4();
-           wIsFinished = isPhase4Finished();
-           wNextPhase = step_t::PhaseFinish;
-           break;          
-     };
+   case Phase4_:
+      doExecutePhase4();
+      wIsFinished = isPhase4Finished();
+      wNextPhase = step_t::PhaseFinish;
+      break;
+   };
 
-     if (wIsFinished)
-     {
-        mCurrentStep = wNextPhase;
-     }
+   if (wIsFinished)
+   {
+      mCurrentStep = wNextPhase;
+   }
 }
 
 /**
@@ -78,11 +79,12 @@ void AutonomousCommand::End(bool interrupted)
 {
    doFinish();
 }
-  
+
 void AutonomousCommand::doExecutePhase1()
 {
    static bool executeTimerOnce = true;
-   static bool didEjectorExecuted = false;
+   static bool didEjectorExecuted = true;
+
 
    static int StartAngle = 0; // note explicative: on pourrait creer aussi une propriete mStartAngle dans le .h.... mais elle serait accessible
                               // a toutes les fonctions membres de la classe.... Si vous avez besoin d'une variables angle dans deux phases
@@ -91,34 +93,25 @@ void AutonomousCommand::doExecutePhase1()
                               // elle n est visible que pour la fonction doExecutePhase1. Et surtout, le fait qu elle soit statique, on ne perd pas
                               // l valeur de la variable a chaque fois que doExecutePhase1 est appelle.
 
-   
-   
    // avance drive train avec timer
-   //m_pClimber->Stage(m_Height[2]);
-   //m_pClimber->Periodic();
+   // m_pClimber->Stage(m_Height[2]);
+   // m_pClimber->Periodic();
 
    // Tourne robot avec IMU
-   //m_pClimber->Periodic();
-/*
-   if (!didEjectorExecuted)
-   {
-      m_pEjectorSubsystem->Periodic(true);
-      didEjectorExecuted = true;
-   }*/
-   if (executeTimerOnce)
-   {
-      mGenericTimer.Start();
-   }
+   // m_pClimber->Periodic();
+
+   m_pEjectorSubsystem->Periodic(didEjectorExecuted);
+   didEjectorExecuted = false;
+
 }
 
 bool AutonomousCommand::isPhase1Finished()
 {
-   if (mGenericTimer.Get().value()>10)
+   if (m_pEjectorSubsystem->isOperationCompleted())
    {
-     mGenericTimer.Reset();
-     return true; 
+      return false;
    }
-   return false;
+   return true;
 }
 
 void AutonomousCommand::doExecutePhase2()
@@ -135,7 +128,7 @@ void AutonomousCommand::doExecutePhase2()
 
 bool AutonomousCommand::isPhase2Finished()
 {
-     return (mGenericTimer.Get().value()>2);
+   return (mGenericTimer.Get().value() > 2);
 }
 
 void AutonomousCommand::doExecutePhase3()
@@ -145,22 +138,21 @@ void AutonomousCommand::doExecutePhase3()
 
 bool AutonomousCommand::isPhase3Finished()
 {
-     return true;
+   return true;
 }
 
 void AutonomousCommand::doExecutePhase4()
 {
-
 }
 
 bool AutonomousCommand::isPhase4Finished()
 {
-     return true;
+   return true;
 }
 
 void AutonomousCommand::doFinish()
 {
-   m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow); // Stop the robot
+   m_pDriveTrain->TankDrive(0, 0, SubDriveTrain::MotorSpeed::eSlow); // Stop the robot
 }
 
 // List of example for autonomous period
@@ -179,7 +171,7 @@ bool isPhase1_TurnRight_Finished()
         m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
         return true;
      }
-     
+
      return false;
 }
 */
@@ -199,7 +191,7 @@ bool isPhase1Finished()
    if (mGenericTimer.Get().value()>10)
    {
      mGenericTimer.Reset();
-     return true; 
+     return true;
    }
    return false;
 }
@@ -227,3 +219,20 @@ void doExecutePhase3()
 }
 */
 
+/* Example 3: Exemple pour utiliser l'ejecteur en periode autonome.
+void doExecutePhase1()
+{
+   static bool didEjectorExecuted = true;
+   m_pEjectorSubsystem->Periodic(didEjectorExecuted);
+   didEjectorExecuted = false;
+
+}
+
+bool isPhase1Finished()
+{
+   if (m_pEjectorSubsystem->isOperationCompleted())
+   {
+      return false;
+   }
+   return true;
+}*/

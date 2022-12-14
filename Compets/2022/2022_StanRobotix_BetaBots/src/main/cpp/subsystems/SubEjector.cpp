@@ -5,7 +5,7 @@
 #include "subsystems/SubEjector.h"
 
 #include <iostream>
-
+//#define DISPLAY_EJECTOR_LOG 1
 SubEjector::SubEjector()
 {
     mRPIDController.SetP(kP);
@@ -36,8 +36,6 @@ void SubEjector::Periodic() {}
 
 void SubEjector::Push()
 {
-    //mRMotorElevator.Set(-kSpeedPush);
-    //mLMotorElevator.Set(kSpeedPush);
     mRPIDController.SetReference(-kPosOut,rev::ControlType::kSmartMotion);
     mLPIDController.SetReference(kPosOut,rev::ControlType::kSmartMotion);
     
@@ -45,41 +43,50 @@ void SubEjector::Push()
 
 void SubEjector::Periodic(const bool iButtonPressed)
 {
-  static bool ejector_in_use = false;
-  
-  if (iButtonPressed && !ejector_in_use)
+  if ((mCurrentState == inactive ) && iButtonPressed)
   {
-    ejector_in_use = true;
-    std::cout << "Pressed A Button" << std::endl;
+  #ifdef DISPLAY_EJECTOR_LOG
+    std::cout << "Inactive" << std::endl;
+  #endif
+    Push();
+     mCurrentState = pushing;
   }
 
-  if (ejector_in_use)
+  if ((mCurrentState == pushing) && (GetEncoder() > kPosOut))
   {
-    if (GetEncoder() < kPosOut)
-    {
-      this->Push();
-    }
-    else
-    {
-      Pull();
-      ejector_in_use = false;
-    }
-  }   
+  #ifdef DISPLAY_EJECTOR_LOG
+    std::cout << "pushing" << std::endl;
+  #endif
+    mCurrentState = pulling;
+  } 
+
+  if (mCurrentState == pulling)
+  {
+  #ifdef DISPLAY_EJECTOR_LOG
+    std::cout << "pulling" << std::endl;
+  #endif
+    Pull();
+    mCurrentState = WaitingButtonReleased;
+  }
+
+  if (mCurrentState == WaitingButtonReleased && !iButtonPressed)
+  {
+  #ifdef DISPLAY_EJECTOR_LOG
+    std::cout << "WaitingButtonReleased" << std::endl;
+  #endif
+    mCurrentState = inactive;
+  }
+}
+
+bool SubEjector::isOperationCompleted()
+{
+    return mCurrentState == inactive;
 }
 
 void SubEjector::Pull()
 {
-    //mRMotorElevator.Set(-kSpeedPull);
-    //mLMotorElevator.Set(kSpeedPull);
     mRPIDController.SetReference(-kPosIn,rev::ControlType::kSmartMotion);
-    mLPIDController.SetReference(kPosIn,rev::ControlType::kSmartMotion);
-    
-}
-
-void SubEjector::Stop()
-{
-    mRMotorElevator.Set(0);
-    mLMotorElevator.Set(0);
+    mLPIDController.SetReference(kPosIn,rev::ControlType::kSmartMotion);  
 }
 
 double SubEjector::GetEncoder()
