@@ -99,31 +99,29 @@ void AutonomousCommand::doExecutePhase1()
 
    // Tourne robot avec IMU
    // m_pClimber->Periodic();
-
-   m_pEjectorSubsystem->Periodic(didEjectorExecuted);
-   didEjectorExecuted = false;
-
+   m_pClimber->Stage(SubClimber::eHeight::h2);
+   m_pClimber->Periodic();
 }
 
 bool AutonomousCommand::isPhase1Finished()
 {
-   if (m_pEjectorSubsystem->isOperationCompleted())
-   {
-      return false;
-   }
-   return true;
+   return m_pClimber->isOperationCompleted();
 }
 
 void AutonomousCommand::doExecutePhase2()
 {
-   static bool executeTimerOnce = true;
+   static bool didEjectorExecuted = true;
+   m_pEjectorSubsystem->Periodic(didEjectorExecuted);
+   didEjectorExecuted = false;
 
-   m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
+   // static bool executeTimerOnce = true;
 
-   if (executeTimerOnce)
-   {
-      mGenericTimer.Start();
-   }
+   // m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
+
+   // if (executeTimerOnce)
+   // {
+   //    mGenericTimer.Start();
+   // }
 }
 
 bool AutonomousCommand::isPhase2Finished()
@@ -235,4 +233,23 @@ bool isPhase1Finished()
       return false;
    }
    return true;
+}*/
+
+/* Example 4: Exemple pour utiliser le climber. A la fin de la montee, l ejector s active
+void doExecutePhase1()
+{
+   m_pClimber->Stage(SubClimber::eHeight::h2);
+   m_pClimber->Periodic();
+}
+
+bool isPhase1Finished()
+{
+   return m_pClimber->isOperationCompleted();
+}
+
+void doExecutePhase2()
+{
+   static bool didEjectorExecuted = true;
+   m_pEjectorSubsystem->Periodic(didEjectorExecuted);
+   didEjectorExecuted = false;
 }*/

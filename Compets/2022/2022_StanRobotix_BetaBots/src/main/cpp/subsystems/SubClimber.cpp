@@ -67,6 +67,11 @@ void SubClimber::Stage(eHeight iHeight)
     }
 };
 
+bool SubClimber::isOperationCompleted()
+{
+   return abs(mHeight_ - mMotorEncoder.GetPosition()) < 5.0;
+}
+
 int SubClimber::GetEncoderPosition()
 {
     return -(int(mMotorEncoder.GetPosition()));
