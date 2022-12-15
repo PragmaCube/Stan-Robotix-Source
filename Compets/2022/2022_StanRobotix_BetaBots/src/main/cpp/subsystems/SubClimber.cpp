@@ -39,6 +39,7 @@ void SubClimber::DownHold()
     {
         mHeight_ += 1;
     }
+    mHeight_ += 1; // NE PAS ENLEVER, POUR RECALIBRER
 };
 
 void SubClimber::Stage(eHeight iHeight)

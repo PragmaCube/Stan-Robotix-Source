@@ -18,8 +18,10 @@ class SubEjector : public frc2::SubsystemBase {
   void Push();
   void Pull();
   double GetEncoder();
-
+  
+  enum EjectorSpeed { eSlow = 0, eFast = 1 };
   bool isOperationCompleted();
+  void SpeedChange(EjectorSpeed iEjectorSpeed);
 
   void Periodic(const bool iButtonPressed);
 
@@ -31,6 +33,11 @@ class SubEjector : public frc2::SubsystemBase {
  private:
   typedef enum ejectorState_t { inactive, pushing, pulling, WaitingButtonReleased };
   ejectorState_t mCurrentState = inactive;
+
+  double kMaxVel = 10000, 
+         kMinVel = 0, 
+         kMaxAcc = 8000, 
+         kAllErr = 0;
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

@@ -45,10 +45,16 @@ constexpr double kPosOut = 18;
 constexpr double kPosIn = 0;
 
 // default PID coefficients
-constexpr double kP = 2.6e-4, kI = 2.8e-6, kD = 1e-3, kIz = 0, kFF = 0.000156, kMaxOutput = 1, kMinOutput = -1;
+constexpr double kP = 2.6e-4, 
+                 kI = 2.8e-6, 
+                 kD = 1e-3, 
+                 kIz = 0, 
+                 kFF = 0.000156, 
+                 kMaxOutput = 1, 
+                 kMinOutput = -1;
 
 // default smart motion coefficients
-constexpr double kMaxVel = 10000, kMinVel = 0, kMaxAcc = 8000, kAllErr = 0;
+
 
 // motor max RPM
 constexpr double MaxRPM = 5700;

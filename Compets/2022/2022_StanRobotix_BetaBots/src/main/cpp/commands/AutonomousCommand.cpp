@@ -59,6 +59,16 @@ void AutonomousCommand::Execute()
    case Phase4_:
       doExecutePhase4();
       wIsFinished = isPhase4Finished();
+      wNextPhase = step_t::Phase5_;
+      break;
+   case Phase5_:
+      doExecutePhase5();
+      wIsFinished = isPhase5Finished();
+      wNextPhase = step_t::Phase6_;
+      break;
+   case Phase6_:
+      doExecutePhase6();
+      wIsFinished = isPhase6Finished();
       wNextPhase = step_t::PhaseFinish;
       break;
    };
@@ -82,71 +92,145 @@ void AutonomousCommand::End(bool interrupted)
 
 void AutonomousCommand::doExecutePhase1()
 {
-   static bool executeTimerOnce = true;
-   static bool didEjectorExecuted = true;
+   // Tourne avec IMU de 90 degrees
+   m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
 
-
-   static int StartAngle = 0; // note explicative: on pourrait creer aussi une propriete mStartAngle dans le .h.... mais elle serait accessible
-                              // a toutes les fonctions membres de la classe.... Si vous avez besoin d'une variables angle dans deux phases
-                              // differente.... votre .h deviendra un gros fouilli.
-                              // l<avantage de declarer statique fait en sorte que c est comme une propriete de l objet AutonomousCommand, mais
-                              // elle n est visible que pour la fonction doExecutePhase1. Et surtout, le fait qu elle soit statique, on ne perd pas
-                              // l valeur de la variable a chaque fois que doExecutePhase1 est appelle.
-
-   // avance drive train avec timer
-   // m_pClimber->Stage(m_Height[2]);
-   // m_pClimber->Periodic();
-
-   // Tourne robot avec IMU
-   // m_pClimber->Periodic();
-   m_pClimber->Stage(SubClimber::eHeight::h2);
-   m_pClimber->Periodic();
 }
 
 bool AutonomousCommand::isPhase1Finished()
 {
-   return m_pClimber->isOperationCompleted();
+   static float startAngle = m_pIMU->getAngle();
+
+     if (fabs(startAngle-m_pIMU->getAngle()) > 90)
+     {
+        std::cout << "Leaving phase 1 " << std::endl;
+        m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
+        mGenericTimer.Reset();
+        return true;
+     }
+
+     return false;
+   
 }
 
 void AutonomousCommand::doExecutePhase2()
 {
-   static bool didEjectorExecuted = true;
-   m_pEjectorSubsystem->Periodic(didEjectorExecuted);
-   didEjectorExecuted = false;
+   // //On avance pendant 2 sec avec le timer
+   static bool executeTimerOnce = true;
+   bool wRetVal = mGenericTimer.Get().value() < 2;
+   m_pClimber->Stage(SubClimber::eHeight::h2);
+   m_pClimber->Periodic();
+   if (wRetVal)
+   {
+      m_pDriveTrain->TankDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
+   }
 
-   // static bool executeTimerOnce = true;
 
-   // m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
-
-   // if (executeTimerOnce)
-   // {
-   //    mGenericTimer.Start();
-   // }
+   if (executeTimerOnce)
+   {
+       mGenericTimer.Start();
+   }
 }
 
 bool AutonomousCommand::isPhase2Finished()
 {
-   return (mGenericTimer.Get().value() > 2);
+   
+   bool wRetVal = mGenericTimer.Get().value() > 2;
+   bool wRetVal2 = m_pClimber->isOperationCompleted();
+
+   if (wRetVal && wRetVal2)
+   {
+      std::cout << "Leaving phase 2 " << std::endl;
+   }
+   return (wRetVal && wRetVal2);
+   
 }
 
 void AutonomousCommand::doExecutePhase3()
 {
-
+   // Tourne avec IMU de 90 degrees
+   m_pDriveTrain->TankDrive(-1,1, SubDriveTrain::MotorSpeed::eSlow);
 }
 
 bool AutonomousCommand::isPhase3Finished()
 {
-   return true;
+   
+   static float startAngle = m_pIMU->getAngle();
+
+     if (fabs(startAngle-m_pIMU->getAngle()) > 90)
+     {
+        std::cout << "Leaving phase 3 " << std::endl;
+        m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
+        mGenericTimer.Reset();
+        return true;
+     }
+
+     return false;
+     
 }
 
 void AutonomousCommand::doExecutePhase4()
 {
+   //m_pClimber->Stage(SubClimber::eHeight::h2);
+   //m_pClimber->Periodic();
 }
 
 bool AutonomousCommand::isPhase4Finished()
 {
-   return true;
+   /*bool wRetVal = m_pClimber->isOperationCompleted();
+   if (wRetVal)
+   {
+      std::cout << "Leaving phase 4 " << std::endl;
+      
+   }
+   return wRetVal; 
+   */
+  return true;
 }
+
+void AutonomousCommand::doExecutePhase5()
+{
+   // On avance pendant 2 sec avec le timer
+   static bool executeTimerOnce = true;
+
+   m_pDriveTrain->TankDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
+
+   if (executeTimerOnce)
+   {
+      
+      mGenericTimer.Start();
+   }
+}
+
+bool AutonomousCommand::isPhase5Finished()
+{
+   bool wRetVal = mGenericTimer.Get().value() > 2;
+   if (wRetVal)
+   {
+      std::cout << "Leaving phase 5 " << std::endl;
+   }
+   return wRetVal;
+   
+}
+
+void AutonomousCommand::doExecutePhase6()
+{
+   static bool didEjectorExecuted = true;
+   m_pEjectorSubsystem->Periodic(didEjectorExecuted);
+   std::cout<<m_pEjectorSubsystem->GetEncoder() << "SALUT CA MARCHE " << std::endl;
+   didEjectorExecuted = false;
+}
+
+bool AutonomousCommand::isPhase6Finished()
+{
+   if (m_pEjectorSubsystem->isOperationCompleted())
+   {
+      std::cout << "Leaving phase 6 " << std::endl;
+      return true;
+   }
+   return false;
+}
+
 
 void AutonomousCommand::doFinish()
 {
@@ -230,9 +314,9 @@ bool isPhase1Finished()
 {
    if (m_pEjectorSubsystem->isOperationCompleted())
    {
-      return false;
+      return true;
    }
-   return true;
+   return false;
 }*/
 
 /* Example 4: Exemple pour utiliser le climber. A la fin de la montee, l ejector s active

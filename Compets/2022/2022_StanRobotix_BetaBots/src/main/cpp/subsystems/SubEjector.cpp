@@ -93,3 +93,21 @@ double SubEjector::GetEncoder()
 {
     return (mLMotorEncoder.GetPosition() - mRMotorEncoder.GetPosition())/2;
 }
+
+void SubEjector::SpeedChange(EjectorSpeed iEjectorSpeed)
+{
+  if (iEjectorSpeed == eSlow)
+  {
+    double kMaxVel = 5000, 
+           kMinVel = 0, 
+           kMaxAcc = 7000, 
+           kAllErr = 0;
+  }
+  else
+  {
+    double kMaxVel = 10000, 
+           kMinVel = 0, 
+           kMaxAcc = 8000, 
+           kAllErr = 0;
+  }
+}

@@ -65,6 +65,7 @@ void RobotContainer::DriveDisplacement()
 void RobotContainer::DriveEjector()
 {
   mEjector->Periodic(mController.GetAButton());
+  std::cout << mEjector->GetEncoder() << " JE SUIS L EJECTOR " << std::endl;
 }
 
 void RobotContainer::ConfigureButtonBindings()
