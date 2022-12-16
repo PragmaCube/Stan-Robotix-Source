@@ -18,6 +18,8 @@ class AutonomousCommand
    typedef enum step_t { Phase1_, Phase2_, phase3_, Phase4_, Phase5_, Phase6_, PhaseFinish };
    step_t mCurrentStep;
 
+
+
  public:
   /**
    * Creates a new ExampleCommand.
@@ -27,7 +29,8 @@ class AutonomousCommand
   explicit AutonomousCommand();
   
   void setSubsystem(SubEjector* pEjector, SubDriveTrain * pDriveTrain, SubClimber * pClimber, SubIMU * pIMU);
-
+  enum eSpeed{eFast,eMedium,eSlow};
+  
    void Initialize();
    void Execute();
    void End(bool interrupted);
@@ -39,6 +42,9 @@ class AutonomousCommand
    void doExecutePhase5();
    void doExecutePhase6();
    void doFinish();
+
+   float FeetToTime(float mFeet, eSpeed iSpeed );
+
 
    bool isPhase1Finished();
    bool isPhase2Finished();
@@ -54,6 +60,6 @@ class AutonomousCommand
    SubDriveTrain * m_pDriveTrain;
    SubClimber * m_pClimber;
    SubIMU * m_pIMU;
-
-    frc::Timer mGenericTimer;
+   
+   frc::Timer mGenericTimer;
 };

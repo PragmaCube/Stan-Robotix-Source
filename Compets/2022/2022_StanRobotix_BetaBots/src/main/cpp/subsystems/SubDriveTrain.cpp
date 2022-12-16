@@ -3,31 +3,40 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SubDriveTrain.h"
+#include <iostream>
 
 SubDriveTrain::SubDriveTrain() = default;
 
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
 
-void SubDriveTrain::TankDrive(double iLeftHand, double iRightHand, MotorSpeed iMotorSpeed)
+void SubDriveTrain::MoveDrive(double iLeftHand, double iRightHand, MotorSpeed iMotorSpeed)  
 {
+    double wLeftSpeed = 0.0, wRightSpeed = 0.0;
+
     switch (iMotorSpeed)
     {
     case eSlow:
-        mDriveTrain.TankDrive(0.55 * iLeftHand, -0.55 * iRightHand);
+        wLeftSpeed = 0.60 * iLeftHand;
+        wRightSpeed = -0.60 * iRightHand * kCoeffFriction;
         break;
 
     case eMedium:
-        mDriveTrain.TankDrive(0.65 * iLeftHand, -0.65 * iRightHand);
+        wLeftSpeed = 0.70 * iLeftHand;
+        wRightSpeed = -0.70 * iRightHand * kCoeffFriction;
         break;
 
     case eFast:
-        mDriveTrain.TankDrive(0.80 * iLeftHand, -0.80 * iRightHand);
+        wLeftSpeed = 0.90 * iLeftHand;
+        wRightSpeed= -0.90 * iRightHand * kCoeffFriction;
         break;
 
     default:
-        mDriveTrain.TankDrive(0.45 * iLeftHand, -0.45
-        * iRightHand);
+        wLeftSpeed = 0.45 * iLeftHand;
+        wRightSpeed= -0.45 * iRightHand * kCoeffFriction;
         break;
     }
+    mDriveTrain.TankDrive(wLeftSpeed, wRightSpeed);
+
+  //  std::cout << "Speed Left " << wLeftSpeed << "Speed Left " << wRightSpeed << std::endl; 
 }

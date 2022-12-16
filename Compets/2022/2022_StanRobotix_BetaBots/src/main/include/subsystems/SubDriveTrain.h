@@ -22,9 +22,8 @@ class SubDriveTrain : public frc2::SubsystemBase {
   void Periodic() override;
 
   enum MotorSpeed { eSlow = 0, eMedium = 1, eFast = 2 };
-  void TankDrive(double iLeft, double iRight, MotorSpeed iMotorSpeed);
 
-
+  void MoveDrive(double iLeft, double iRight, MotorSpeed iMotorSpeed);
 
  private:
 

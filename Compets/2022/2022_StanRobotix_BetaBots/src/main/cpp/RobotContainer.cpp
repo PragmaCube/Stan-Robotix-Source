@@ -55,9 +55,9 @@ void RobotContainer::DriveDisplacement()
       mMotorIndex--;
     }
   }
-  //std::cout << mMotorIndex << std::endl;
+ // std::cout << mMotorIndex << std::endl;
 
-  mDriveTrain->TankDrive(
+  mDriveTrain->MoveDrive(
       -mController.GetLeftY(),
       -mController.GetRightY(), mMotorSpeed[mMotorIndex]);
 }

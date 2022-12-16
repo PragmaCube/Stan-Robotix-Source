@@ -93,7 +93,7 @@ void AutonomousCommand::End(bool interrupted)
 void AutonomousCommand::doExecutePhase1()
 {
    // Tourne avec IMU de 90 degrees
-   m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
+   m_pDriveTrain->MoveDrive(1,-1, SubDriveTrain::MotorSpeed::eMedium);
 
 }
 
@@ -104,7 +104,7 @@ bool AutonomousCommand::isPhase1Finished()
      if (fabs(startAngle-m_pIMU->getAngle()) > 90)
      {
         std::cout << "Leaving phase 1 " << std::endl;
-        m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
+        m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
         mGenericTimer.Reset();
         return true;
      }
@@ -117,12 +117,12 @@ void AutonomousCommand::doExecutePhase2()
 {
    // //On avance pendant 2 sec avec le timer
    static bool executeTimerOnce = true;
-   bool wRetVal = mGenericTimer.Get().value() < 2;
+   bool wRetVal = mGenericTimer.Get().value() < 2 ;
    m_pClimber->Stage(SubClimber::eHeight::h2);
    m_pClimber->Periodic();
    if (wRetVal)
    {
-      m_pDriveTrain->TankDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
+      m_pDriveTrain->MoveDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
    }
 
 
@@ -149,7 +149,7 @@ bool AutonomousCommand::isPhase2Finished()
 void AutonomousCommand::doExecutePhase3()
 {
    // Tourne avec IMU de 90 degrees
-   m_pDriveTrain->TankDrive(-1,1, SubDriveTrain::MotorSpeed::eSlow);
+   m_pDriveTrain->MoveDrive(-1,1, SubDriveTrain::MotorSpeed::eMedium);
 }
 
 bool AutonomousCommand::isPhase3Finished()
@@ -160,7 +160,7 @@ bool AutonomousCommand::isPhase3Finished()
      if (fabs(startAngle-m_pIMU->getAngle()) > 90)
      {
         std::cout << "Leaving phase 3 " << std::endl;
-        m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
+        m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
         mGenericTimer.Reset();
         return true;
      }
@@ -193,7 +193,7 @@ void AutonomousCommand::doExecutePhase5()
    // On avance pendant 2 sec avec le timer
    static bool executeTimerOnce = true;
 
-   m_pDriveTrain->TankDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
+   m_pDriveTrain->MoveDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
 
    if (executeTimerOnce)
    {
@@ -204,7 +204,7 @@ void AutonomousCommand::doExecutePhase5()
 
 bool AutonomousCommand::isPhase5Finished()
 {
-   bool wRetVal = mGenericTimer.Get().value() > 2;
+   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(5,eSlow);
    if (wRetVal)
    {
       std::cout << "Leaving phase 5 " << std::endl;
@@ -217,7 +217,7 @@ void AutonomousCommand::doExecutePhase6()
 {
    static bool didEjectorExecuted = true;
    m_pEjectorSubsystem->Periodic(didEjectorExecuted);
-   std::cout<<m_pEjectorSubsystem->GetEncoder() << "SALUT CA MARCHE " << std::endl;
+   // std::cout<<m_pEjectorSubsystem->GetEncoder() << "SALUT CA MARCHE " << std::endl;
    didEjectorExecuted = false;
 }
 
@@ -234,14 +234,38 @@ bool AutonomousCommand::isPhase6Finished()
 
 void AutonomousCommand::doFinish()
 {
-   m_pDriveTrain->TankDrive(0, 0, SubDriveTrain::MotorSpeed::eSlow); // Stop the robot
+   m_pDriveTrain->MoveDrive(0, 0, SubDriveTrain::MotorSpeed::eSlow); // Stop the robot
+}
+
+
+float AutonomousCommand::FeetToTime(float mFeet, eSpeed iSpeed)
+{
+// 18 ft pour 7.03 secondes
+ float mTime;
+
+switch(iSpeed){ 
+
+case eFast:
+
+mTime = (2.85* mFeet)/18 ;
+case eMedium:
+mTime = (5.5* mFeet)/18 ;
+
+case eSlow:
+
+ mTime = (12.77* mFeet)/18 ;
+
+}
+
+ return mTime;
+
 }
 
 // List of example for autonomous period
 /*  Example 1: Turn right for 90 degrees
 void doExecutePhase1_TurnRight()
 {
-   m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
+   m_pDriveTrain->MoveDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
 }
 
 bool isPhase1_TurnRight_Finished()
@@ -250,7 +274,7 @@ bool isPhase1_TurnRight_Finished()
 
      if (fabs(startAngle-m_pIMU->getAngle()) > 90)
      {
-        m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
+        m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
         return true;
      }
 
@@ -282,7 +306,7 @@ void doExecutePhase2()
 {
    static bool executeTimerOnce = true;
 
-   m_pDriveTrain->TankDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
+   m_pDriveTrain->MoveDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
 
    if (executeTimerOnce)
    {
@@ -297,7 +321,7 @@ bool isPhase2Finished()
 
 void doExecutePhase3()
 {
-   m_pDriveTrain->TankDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
+   m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
 }
 */
 
@@ -337,3 +361,5 @@ void doExecutePhase2()
    m_pEjectorSubsystem->Periodic(didEjectorExecuted);
    didEjectorExecuted = false;
 }*/
+
+

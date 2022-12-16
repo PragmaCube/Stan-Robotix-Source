@@ -21,7 +21,7 @@ constexpr int kCanIdElevatorL = 4;
 /// Speed for the climbers
 constexpr float kSpeedUp = -0.50F; 
 constexpr float kSpeedDown = 0.50F;
-constexpr float kCoeffFriction = 0.83;
+constexpr double kCoeffFriction = 0.95f;
 
 //hauteur max et min pour le climber
 constexpr double kHeightS3 = -360;
