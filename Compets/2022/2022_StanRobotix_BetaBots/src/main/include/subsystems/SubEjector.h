@@ -19,9 +19,11 @@ class SubEjector : public frc2::SubsystemBase {
   void Pull();
   double GetEncoder();
   
-  enum EjectorSpeed { eSlow = 0, eFast = 1 };
+  
   bool isOperationCompleted();
-  void SpeedChange(EjectorSpeed iEjectorSpeed);
+  void SpeedChange(int vitesse);
+
+  void resetPidData();
 
   void Periodic(const bool iButtonPressed);
 

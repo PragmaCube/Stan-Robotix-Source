@@ -64,8 +64,21 @@ void RobotContainer::DriveDisplacement()
 
 void RobotContainer::DriveEjector()
 {
+  int EjectorSpeed = -1;
+  
+  if (mController.GetXButton()){
+    EjectorSpeed = 1;
+  }
+  if (mController.GetBButton()){
+     EjectorSpeed = 2;  
+  }
+
+  if (EjectorSpeed != -1)
+  {
+     mEjector->SpeedChange(EjectorSpeed);
+  }
+  
   mEjector->Periodic(mController.GetAButton());
-  std::cout << mEjector->GetEncoder() << " JE SUIS L EJECTOR " << std::endl;
 }
 
 void RobotContainer::ConfigureButtonBindings()
@@ -124,7 +137,6 @@ void RobotContainer::DriveClimber()
   {
     mClimber->DownHold();
   }
-
 
   if (mSmart)
   {

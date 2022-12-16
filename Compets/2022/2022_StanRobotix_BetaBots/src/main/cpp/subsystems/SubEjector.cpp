@@ -8,6 +8,11 @@
 //#define DISPLAY_EJECTOR_LOG 1
 SubEjector::SubEjector()
 {
+   resetPidData();
+}
+
+void SubEjector::resetPidData()
+{
     mRPIDController.SetP(kP);
     mLPIDController.SetP(kP);
     mRPIDController.SetI(kI);
@@ -94,20 +99,22 @@ double SubEjector::GetEncoder()
     return (mLMotorEncoder.GetPosition() - mRMotorEncoder.GetPosition())/2;
 }
 
-void SubEjector::SpeedChange(EjectorSpeed iEjectorSpeed)
+void SubEjector::SpeedChange(int vitesse)
 {
-  if (iEjectorSpeed == eSlow)
+  if (vitesse == 1)
   {
-    double kMaxVel = 5000, 
-           kMinVel = 0, 
-           kMaxAcc = 7000, 
-           kAllErr = 0;
+    kMaxVel = 2500, 
+    kMinVel = 0, 
+    kMaxAcc = 5000, 
+    kAllErr = 0;
   }
-  else
+  else if (vitesse == 2)
   {
-    double kMaxVel = 10000, 
-           kMinVel = 0, 
-           kMaxAcc = 8000, 
-           kAllErr = 0;
+    kMaxVel = 10000, 
+    kMinVel = 0, 
+    kMaxAcc = 8000, 
+    kAllErr = 0;
   }
+
+  resetPidData();
 }
