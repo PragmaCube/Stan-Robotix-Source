@@ -69,6 +69,21 @@ void AutonomousCommand::Execute()
    case Phase6_:
       doExecutePhase6();
       wIsFinished = isPhase6Finished();
+      wNextPhase = step_t::Phase7_;
+      break;
+   case Phase7_:
+      doExecutePhase7();
+      wIsFinished = isPhase7Finished();
+      wNextPhase = step_t::Phase8_;
+      break;
+   case Phase8_:
+      doExecutePhase8();
+      wIsFinished = isPhase8Finished();
+      wNextPhase = step_t::Phase9_;
+      break;
+   case Phase9_:
+      doExecutePhase9();
+      wIsFinished = isPhase9Finished();
       wNextPhase = step_t::PhaseFinish;
       break;
    };
@@ -92,8 +107,8 @@ void AutonomousCommand::End(bool interrupted)
 
 void AutonomousCommand::doExecutePhase1()
 {
-   // Tourne avec IMU de 90 degrees
-   m_pDriveTrain->MoveDrive(1,-1, SubDriveTrain::MotorSpeed::eMedium);
+   // Tourne avec IMU de 130 degrees vers la gauche
+   m_pDriveTrain->MoveDrive(-1,1, SubDriveTrain::MotorSpeed::eMedium);
 
 }
 
@@ -101,7 +116,7 @@ bool AutonomousCommand::isPhase1Finished()
 {
    static float startAngle = m_pIMU->getAngle();
 
-     if (fabs(startAngle-m_pIMU->getAngle()) > 90)
+     if (fabs(startAngle-m_pIMU->getAngle()) > 130)
      {
         std::cout << "Leaving phase 1 " << std::endl;
         m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
@@ -115,14 +130,14 @@ bool AutonomousCommand::isPhase1Finished()
 
 void AutonomousCommand::doExecutePhase2()
 {
-   // //On avance pendant 2 sec avec le timer
+   // On avance de 5 pieds et on active le climber a la hauteur h2
    static bool executeTimerOnce = true;
-   bool wRetVal = mGenericTimer.Get().value() < 2 ;
+   bool wRetVal = mGenericTimer.Get().value() < FeetToTime(5,eMedium) ;
    m_pClimber->Stage(SubClimber::eHeight::h2);
    m_pClimber->Periodic();
    if (wRetVal)
    {
-      m_pDriveTrain->MoveDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
+      m_pDriveTrain->MoveDrive(1,1, SubDriveTrain::MotorSpeed::eMedium);
    }
 
 
@@ -135,7 +150,7 @@ void AutonomousCommand::doExecutePhase2()
 bool AutonomousCommand::isPhase2Finished()
 {
    
-   bool wRetVal = mGenericTimer.Get().value() > 2;
+   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(5,eMedium);
    bool wRetVal2 = m_pClimber->isOperationCompleted();
 
    if (wRetVal && wRetVal2)
@@ -148,8 +163,8 @@ bool AutonomousCommand::isPhase2Finished()
 
 void AutonomousCommand::doExecutePhase3()
 {
-   // Tourne avec IMU de 90 degrees
-   m_pDriveTrain->MoveDrive(-1,1, SubDriveTrain::MotorSpeed::eMedium);
+   // Tourne avec IMU de 130 degrees vers la droite
+   m_pDriveTrain->MoveDrive(1,-1, SubDriveTrain::MotorSpeed::eMedium);
 }
 
 bool AutonomousCommand::isPhase3Finished()
@@ -157,7 +172,7 @@ bool AutonomousCommand::isPhase3Finished()
    
    static float startAngle = m_pIMU->getAngle();
 
-     if (fabs(startAngle-m_pIMU->getAngle()) > 90)
+     if (fabs(startAngle-m_pIMU->getAngle()) > 130)
      {
         std::cout << "Leaving phase 3 " << std::endl;
         m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
@@ -171,26 +186,7 @@ bool AutonomousCommand::isPhase3Finished()
 
 void AutonomousCommand::doExecutePhase4()
 {
-   //m_pClimber->Stage(SubClimber::eHeight::h2);
-   //m_pClimber->Periodic();
-}
-
-bool AutonomousCommand::isPhase4Finished()
-{
-   /*bool wRetVal = m_pClimber->isOperationCompleted();
-   if (wRetVal)
-   {
-      std::cout << "Leaving phase 4 " << std::endl;
-      
-   }
-   return wRetVal; 
-   */
-  return true;
-}
-
-void AutonomousCommand::doExecutePhase5()
-{
-   // On avance pendant 2 sec avec le timer
+   // On avance de 10 pieds
    static bool executeTimerOnce = true;
 
    m_pDriveTrain->MoveDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
@@ -202,26 +198,121 @@ void AutonomousCommand::doExecutePhase5()
    }
 }
 
-bool AutonomousCommand::isPhase5Finished()
+
+bool AutonomousCommand::isPhase4Finished()
 {
-   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(5,eSlow);
+   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(10,eSlow);
    if (wRetVal)
    {
       std::cout << "Leaving phase 5 " << std::endl;
    }
    return wRetVal;
+}
+
+void AutonomousCommand::doExecutePhase5()
+{
+   // Tourne avec IMU de 50 degrees vers la gauche
+   m_pDriveTrain->MoveDrive(-1,1, SubDriveTrain::MotorSpeed::eMedium);
+}
+
+bool AutonomousCommand::isPhase5Finished()
+{
+   static float startAngle = m_pIMU->getAngle();
+
+     if (fabs(startAngle-m_pIMU->getAngle()) > 50)
+     {
+        std::cout << "Leaving phase 3 " << std::endl;
+        m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
+        mGenericTimer.Reset();
+        return true;
+     }
+
+     return false;
    
 }
 
 void AutonomousCommand::doExecutePhase6()
 {
+   // On avance de 10 pieds
+   static bool executeTimerOnce = true;
+
+   m_pDriveTrain->MoveDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
+
+   if (executeTimerOnce)
+   {
+      
+      mGenericTimer.Start();
+   }
+}
+
+
+bool AutonomousCommand::isPhase6Finished()
+{
+   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(10,eSlow);
+   if (wRetVal)
+   {
+      std::cout << "Leaving phase 5 " << std::endl;
+   }
+   return wRetVal;
+}
+
+void AutonomousCommand::doExecutePhase7()
+{
+   // Tourne avec IMU de 50 degrees vers la droite
+   m_pDriveTrain->MoveDrive(1,-1, SubDriveTrain::MotorSpeed::eMedium);
+}
+
+
+bool AutonomousCommand::isPhase7Finished()
+{
+   static float startAngle = m_pIMU->getAngle();
+
+     if (fabs(startAngle-m_pIMU->getAngle()) > 50)
+     {
+        std::cout << "Leaving phase 3 " << std::endl;
+        m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
+        mGenericTimer.Reset();
+        return true;
+     }
+
+     return false;
+}
+
+void AutonomousCommand::doExecutePhase8()
+{
+   // On avance de 2 pieds
+   static bool executeTimerOnce = true;
+
+   m_pDriveTrain->MoveDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
+
+   if (executeTimerOnce)
+   {
+      
+      mGenericTimer.Start();
+   }
+}
+
+
+bool AutonomousCommand::isPhase8Finished()
+{
+   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(2,eSlow);
+   if (wRetVal)
+   {
+      std::cout << "Leaving phase 5 " << std::endl;
+   }
+   return wRetVal;
+}
+
+void AutonomousCommand::doExecutePhase9()
+{
+   // On utilise l ejector a valeur de vitesse par defaut
    static bool didEjectorExecuted = true;
    m_pEjectorSubsystem->Periodic(didEjectorExecuted);
    // std::cout<<m_pEjectorSubsystem->GetEncoder() << "SALUT CA MARCHE " << std::endl;
    didEjectorExecuted = false;
 }
 
-bool AutonomousCommand::isPhase6Finished()
+bool AutonomousCommand::isPhase9Finished()
 {
    if (m_pEjectorSubsystem->isOperationCompleted())
    {
@@ -240,19 +331,21 @@ void AutonomousCommand::doFinish()
 
 float AutonomousCommand::FeetToTime(float mFeet, eSpeed iSpeed)
 {
-// 18 ft pour 7.03 secondes
+// Pour convertir un distqnce en pieds en temps
  float mTime;
 
 switch(iSpeed){ 
 
 case eFast:
-
+// 18 ft pour 2.85 secondes
 mTime = (2.85* mFeet)/18 ;
+
 case eMedium:
+// 18 ft pour 5.5 secondes
 mTime = (5.5* mFeet)/18 ;
 
 case eSlow:
-
+// 18 ft pour 12.77 secondes
  mTime = (12.77* mFeet)/18 ;
 
 }
