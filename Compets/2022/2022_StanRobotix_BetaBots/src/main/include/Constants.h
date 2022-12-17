@@ -13,36 +13,45 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+///////////////////////////////////////////////////////
+// IMU
+constexpr int kNumberOfSamples = 3;
+
+///////////////////////////////////////////////////////
+// Camera
 constexpr int kCameraOrienteerPort = 9;
 constexpr int kCanIdClimber = 1;
 constexpr int kCanIdElevatorR = 3;
 constexpr int kCanIdElevatorL = 4;
 
+///////////////////////////////////////////////////////
 /// Speed for the climbers
 constexpr float kSpeedUp = -0.50F; 
 constexpr float kSpeedDown = 0.50F;
-constexpr double kCoeffFriction = 0.95f;  // coef a changer selon les differents parametres du sol
-
 //hauteur max et min pour le climber
 constexpr double kHeightS3 = -360;
 constexpr double kHeightS2 = -220;
 constexpr double kHeightS1 =-80;
 constexpr double kMinHeight = 0;
+// TODO: coef a changer selon les differents parametres du sol
+constexpr double kCoeffFriction = 1.02;  
 
-// Port pour les moteurs sans Encodeur (Spark)
+///////////////////////////////////////////////////////
+// Drive Train
 constexpr int kMotorL2Port = 0;
 constexpr int kMotorL1Port = 1;
 constexpr int kMotorR2Port = 2;
 constexpr int kMotorR1Port = 3;
 
-// Port pour la manette Xbox
+///////////////////////////////////////////////////////
+// Joystick
 constexpr int kJoystickPort = 0;
 
+///////////////////////////////////////////////////////
 // Position rentree et sortie pour l'ejector
 constexpr double kPosOut = 18;
 constexpr double kPosIn = 0;
-
-// default PID coefficients
+// default PID coefficients for ejector
 constexpr double kP = 2.6e-4, 
                  kI = 2.8e-6, 
                  kD = 1e-3, 
@@ -50,8 +59,3 @@ constexpr double kP = 2.6e-4,
                  kFF = 0.000156, 
                  kMaxOutput = 1, 
                  kMinOutput = -1;
-
-
-
-// motor max RPM
-constexpr double MaxRPM = 5700;

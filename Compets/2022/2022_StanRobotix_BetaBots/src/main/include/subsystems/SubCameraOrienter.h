@@ -9,18 +9,15 @@
 
 #include "Constants.h"
 
-
 class SubCameraOrienter : public frc2::SubsystemBase {
  public:
   SubCameraOrienter();
 
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
   void Periodic() override;
+
   void setAngle(double iAngle);
+    
  private:
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
+  
   frc::Servo mServo{kCameraOrienteerPort};
 };
