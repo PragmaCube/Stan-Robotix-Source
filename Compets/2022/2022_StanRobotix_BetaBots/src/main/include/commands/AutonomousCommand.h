@@ -15,7 +15,7 @@
 class AutonomousCommand
     : public frc2::CommandHelper<frc2::CommandBase, AutonomousCommand> {
  private:
-   typedef enum step_t { Phase1_, Phase2_, phase3_, Phase4_, Phase5_, Phase6_, PhaseFinish };
+   typedef enum step_t { Phase1_, Phase2_, phase3_, Phase4_, Phase5_, Phase6_, Phase7_, Phase8_, Phase9_, PhaseFinish };
    step_t mCurrentStep;
 
 
@@ -41,6 +41,9 @@ class AutonomousCommand
    void doExecutePhase4();
    void doExecutePhase5();
    void doExecutePhase6();
+   void doExecutePhase7();
+   void doExecutePhase8();
+   void doExecutePhase9();
    void doFinish();
 
    float FeetToTime(float mFeet, eSpeed iSpeed );
@@ -52,6 +55,9 @@ class AutonomousCommand
    bool isPhase4Finished();
    bool isPhase5Finished();
    bool isPhase6Finished();
+   bool isPhase7Finished();
+   bool isPhase8Finished();
+   bool isPhase9Finished();
 
  private:
    SubClimber::eHeight m_Height[4];

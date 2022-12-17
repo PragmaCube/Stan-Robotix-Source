@@ -116,7 +116,7 @@ bool AutonomousCommand::isPhase1Finished()
 {
    static float startAngle = m_pIMU->getAngle();
 
-     if (fabs(startAngle-m_pIMU->getAngle()) > 130)
+     if (fabs(startAngle-m_pIMU->getAngle()) > 128)
      {
         std::cout << "Leaving phase 1 " << std::endl;
         m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
@@ -130,14 +130,14 @@ bool AutonomousCommand::isPhase1Finished()
 
 void AutonomousCommand::doExecutePhase2()
 {
-   // On avance de 5 pieds et on active le climber a la hauteur h2
+   // On avance de 2.61 pieds et on active le climber a la hauteur h2
    static bool executeTimerOnce = true;
-   bool wRetVal = mGenericTimer.Get().value() < FeetToTime(5,eMedium) ;
+   bool wRetVal = mGenericTimer.Get().value() < FeetToTime(2.61,eSlow   ) ;
    m_pClimber->Stage(SubClimber::eHeight::h2);
    m_pClimber->Periodic();
    if (wRetVal)
    {
-      m_pDriveTrain->MoveDrive(1,1, SubDriveTrain::MotorSpeed::eMedium);
+      m_pDriveTrain->MoveDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
    }
 
 
@@ -150,7 +150,7 @@ void AutonomousCommand::doExecutePhase2()
 bool AutonomousCommand::isPhase2Finished()
 {
    
-   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(5,eMedium);
+   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(2.61,eSlow);
    bool wRetVal2 = m_pClimber->isOperationCompleted();
 
    if (wRetVal && wRetVal2)
@@ -169,10 +169,9 @@ void AutonomousCommand::doExecutePhase3()
 
 bool AutonomousCommand::isPhase3Finished()
 {
-   
    static float startAngle = m_pIMU->getAngle();
 
-     if (fabs(startAngle-m_pIMU->getAngle()) > 130)
+     if (fabs(startAngle-m_pIMU->getAngle()) > 135)
      {
         std::cout << "Leaving phase 3 " << std::endl;
         m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
@@ -186,7 +185,7 @@ bool AutonomousCommand::isPhase3Finished()
 
 void AutonomousCommand::doExecutePhase4()
 {
-   // On avance de 10 pieds
+   // On avance de 5.6 pieds
    static bool executeTimerOnce = true;
 
    m_pDriveTrain->MoveDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
@@ -201,7 +200,7 @@ void AutonomousCommand::doExecutePhase4()
 
 bool AutonomousCommand::isPhase4Finished()
 {
-   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(10,eSlow);
+   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(6.1,eSlow);
    if (wRetVal)
    {
       std::cout << "Leaving phase 5 " << std::endl;
@@ -211,7 +210,7 @@ bool AutonomousCommand::isPhase4Finished()
 
 void AutonomousCommand::doExecutePhase5()
 {
-   // Tourne avec IMU de 50 degrees vers la gauche
+   // Tourne avec IMU de 16.9 degrees vers la gauche
    m_pDriveTrain->MoveDrive(-1,1, SubDriveTrain::MotorSpeed::eMedium);
 }
 
@@ -219,7 +218,7 @@ bool AutonomousCommand::isPhase5Finished()
 {
    static float startAngle = m_pIMU->getAngle();
 
-     if (fabs(startAngle-m_pIMU->getAngle()) > 50)
+     if (fabs(startAngle-m_pIMU->getAngle()) > 20.0)
      {
         std::cout << "Leaving phase 3 " << std::endl;
         m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
@@ -233,7 +232,7 @@ bool AutonomousCommand::isPhase5Finished()
 
 void AutonomousCommand::doExecutePhase6()
 {
-   // On avance de 10 pieds
+   // On avance de 5.2 pieds
    static bool executeTimerOnce = true;
 
    m_pDriveTrain->MoveDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
@@ -248,7 +247,7 @@ void AutonomousCommand::doExecutePhase6()
 
 bool AutonomousCommand::isPhase6Finished()
 {
-   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(10,eSlow);
+   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(5.2,eSlow);
    if (wRetVal)
    {
       std::cout << "Leaving phase 5 " << std::endl;
@@ -258,7 +257,7 @@ bool AutonomousCommand::isPhase6Finished()
 
 void AutonomousCommand::doExecutePhase7()
 {
-   // Tourne avec IMU de 50 degrees vers la droite
+   // Tourne avec IMU de 16.9 degrees vers la droite
    m_pDriveTrain->MoveDrive(1,-1, SubDriveTrain::MotorSpeed::eMedium);
 }
 
@@ -267,7 +266,7 @@ bool AutonomousCommand::isPhase7Finished()
 {
    static float startAngle = m_pIMU->getAngle();
 
-     if (fabs(startAngle-m_pIMU->getAngle()) > 50)
+     if (fabs(startAngle-m_pIMU->getAngle()) > 18.0)
      {
         std::cout << "Leaving phase 3 " << std::endl;
         m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
@@ -280,7 +279,7 @@ bool AutonomousCommand::isPhase7Finished()
 
 void AutonomousCommand::doExecutePhase8()
 {
-   // On avance de 2 pieds
+   // On avance de 0.7 pieds
    static bool executeTimerOnce = true;
 
    m_pDriveTrain->MoveDrive(1,1, SubDriveTrain::MotorSpeed::eSlow);
@@ -295,7 +294,7 @@ void AutonomousCommand::doExecutePhase8()
 
 bool AutonomousCommand::isPhase8Finished()
 {
-   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(2,eSlow);
+   bool wRetVal = mGenericTimer.Get().value() > FeetToTime(1.0,eSlow);
    if (wRetVal)
    {
       std::cout << "Leaving phase 5 " << std::endl;
