@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <vector>
 #include <frc2/command/SubsystemBase.h>
 
 #include <frc/ADIS16448_IMU.h>
@@ -12,10 +13,10 @@ class SubIMU : public frc2::SubsystemBase
 {
 private:
    frc::ADIS16448_IMU m_Imu{};
-   double mTurningValue = 0;
 
    	static constexpr double kAngleSetpoint = 0.0;
     static constexpr double kP = 0.005;
+    std::vector<double> m_gyroVals; 
 
 public:
   SubIMU();

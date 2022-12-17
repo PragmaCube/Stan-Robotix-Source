@@ -3,29 +3,35 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SubIMU.h"
-
-//frc::ADIS16448_IMU mIMU;
+#include "Constants.h"
 
 SubIMU::SubIMU() 
 {
   m_Imu.Calibrate();
 }
 
-SubIMU::~SubIMU()
-{}
+SubIMU::~SubIMU(){}
 
 void SubIMU::Periodic() {
-    units::angle::degree_t turningValue = m_Imu.GetAngle();  
-    
-	mTurningValue = turningValue.value();
+    if (m_gyroVals.size() == kNumberOfSamples)
+    {
+        m_gyroVals.pop_back();
+    }
+
+    units::angle::degree_t turningValue = m_Imu.GetAngle();
+    m_gyroVals.insert(m_gyroVals.begin(), turningValue.value());
 }
 
 void SubIMU::Start() {
-    units::angle::degree_t turningValue = m_Imu.GetAngle();  
-    
-	mTurningValue = turningValue.value();
+  m_gyroVals.reserve(kNumberOfSamples);
+  Periodic();   
 }
 
 float SubIMU::getAngle() {
-    return mTurningValue;
+    double wMoyenne = 0.0;
+    for (int i = 0; i < m_gyroVals.size(); i++)
+    {
+        wMoyenne += m_gyroVals[i];
+    }
+    return wMoyenne/m_gyroVals.size();
 }
