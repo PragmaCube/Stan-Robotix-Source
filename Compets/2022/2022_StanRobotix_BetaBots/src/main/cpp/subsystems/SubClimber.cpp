@@ -35,11 +35,11 @@ void SubClimber::UpHold()
 
 void SubClimber::DownHold()
 {
-    if (mHeight_ < 0)
+   if (mHeight_ < 0)
     {
         mHeight_ += 1;
     }
-    // mHeight_ += 1; // NE PAS ENLEVER, POUR RECALIBRER
+    //mHeight_ += 1; // NE PAS ENLEVER, POUR RECALIBRER
 };
 
 void SubClimber::Stage(eHeight iHeight)
