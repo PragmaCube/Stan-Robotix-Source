@@ -15,6 +15,9 @@ RobotContainer::RobotContainer()
   mMotorSpeed[1] = SubDriveTrain::MotorSpeed::eMedium;
   mMotorSpeed[2] = SubDriveTrain::MotorSpeed::eFast;
 
+  mEjectorSpeed[0] = SubEjector::EjectorSpeed::eSlow;
+  mEjectorSpeed[1] = SubEjector::EjectorSpeed::eFast;
+
   mEjector = new SubEjector;
   mAutoTimer.Reset();
   mMotorIndex = 1;  
@@ -67,15 +70,15 @@ void RobotContainer::DriveEjector()
   int EjectorSpeed = -1;
   
   if (mController.GetXButton()){
-    EjectorSpeed = 1;
+    EjectorSpeed = 0;
   }
   if (mController.GetBButton()){
-     EjectorSpeed = 2;  
+     EjectorSpeed = 1;  
   }
 
   if (EjectorSpeed != -1)
   {
-     mEjector->SpeedChange(EjectorSpeed);
+     mEjector->SpeedChange(mEjectorSpeed[EjectorSpeed]);
   }
   
   mEjector->Periodic(mController.GetAButton());

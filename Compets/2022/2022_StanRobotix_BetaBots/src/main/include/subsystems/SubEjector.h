@@ -15,13 +15,16 @@ class SubEjector : public frc2::SubsystemBase {
  public:
   SubEjector();
 
+  enum EjectorSpeed { eSlow = 0 , eFast = 1 };
+
+
   void Push();
   void Pull();
   double GetEncoder();
   
   
   bool isOperationCompleted();
-  void SpeedChange(int vitesse);
+  void SpeedChange(EjectorSpeed iEjectorSpeed);
 
   void resetPidData();
 

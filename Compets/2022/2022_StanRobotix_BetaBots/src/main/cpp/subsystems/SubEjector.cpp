@@ -99,21 +99,23 @@ double SubEjector::GetEncoder()
     return (mLMotorEncoder.GetPosition() - mRMotorEncoder.GetPosition())/2;
 }
 
-void SubEjector::SpeedChange(int vitesse)
+void SubEjector::SpeedChange(EjectorSpeed iEjectorSpeed)
 {
-  if (vitesse == 1)
+  switch (iEjectorSpeed)
   {
-    kMaxVel = 2500, 
-    kMinVel = 0, 
-    kMaxAcc = 5000, 
-    kAllErr = 0;
-  }
-  else if (vitesse == 2)
-  {
-    kMaxVel = 10000, 
-    kMinVel = 0, 
-    kMaxAcc = 8000, 
-    kAllErr = 0;
+    case eSlow:
+      kMaxVel = 2500, 
+      kMinVel = 0, 
+      kMaxAcc = 5000, 
+      kAllErr = 0;
+      break;
+    case eFast:
+      kMaxVel = 10000, 
+      kMinVel = 0, 
+      kMaxAcc = 8000, 
+      kAllErr = 0;
+      break;
+    
   }
 
   resetPidData();

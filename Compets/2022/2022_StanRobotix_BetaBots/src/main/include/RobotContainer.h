@@ -40,6 +40,7 @@ private:
   SubDriveTrain *mDriveTrain;
   SubClimber *mClimber;
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
+  SubEjector::EjectorSpeed mEjectorSpeed[2];
 
   SubClimber::eHeight mHeight[4];
 
