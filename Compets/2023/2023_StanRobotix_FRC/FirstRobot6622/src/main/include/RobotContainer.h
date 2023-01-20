@@ -6,7 +6,7 @@
 
 #include <frc2/command/Command.h>
 #include <frc/XboxController.h>
-#include <frc/XboxController.h>
+#include <frc/Joystick.h>
 #include <frc/Timer.h>
 
 #include "subsystems/SubDriveTrain.h"
@@ -30,7 +30,9 @@ public:
 
 private:
 
-  frc::XboxController mController{kJoystickPort};
+  frc::Joystick mJoystick{ kJoystickPort};
+  
+  // mController{kJoystickPort};
   SubDriveTrain *mDriveTrain;
   SubDriveTrain::MotorSpeed mMotorSpeed[3];
 

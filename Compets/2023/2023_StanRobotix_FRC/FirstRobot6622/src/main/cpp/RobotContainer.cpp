@@ -21,26 +21,19 @@ RobotContainer::RobotContainer()
 
 void RobotContainer::DriveDisplacement()
 {
-  if (mController.GetRightBumperPressed())
-  {
-    if (mMotorIndex < 2)
-    {
-      mMotorIndex++;
-    }
-  }
+  static int x = 0;
 
-  if (mController.GetLeftBumperPressed())
-  {
-    if (mMotorIndex > 0)
-    {
-      mMotorIndex--;
-    }
-  }
- // std::cout << mMotorIndex << std::endl;
+ // if (x++ % 10 == 0)
+  /*{
+  std::cout << "Joystick X" << mJoystick.GetX() << std::endl;
+  std::cout << "Joystick Y" << mJoystick.GetY() << std::endl;
+  std::cout << "Joystick Twist" << mJoystick.GetTwist() << std::endl; 
+  }*/
+  mDriveTrain->MoveMeca(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetTwist());
 
-  mDriveTrain->MoveDrive(
+ /* mDriveTrain->MoveDrive(
       -mController.GetLeftY(),
-      -mController.GetRightY(), mMotorSpeed[mMotorIndex]);
+      -mController.GetRightY(), mMotorSpeed[mMotorIndex]);*/
 }
 
 void RobotContainer::ConfigureButtonBindings()

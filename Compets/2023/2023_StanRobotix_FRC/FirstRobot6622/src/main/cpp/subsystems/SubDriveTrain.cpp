@@ -10,9 +10,14 @@ SubDriveTrain::SubDriveTrain() = default;
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
 
+void SubDriveTrain::MoveMeca(double x, double y, double twist)
+{
+   m_robotDrive.DriveCartesian(y, x, twist);
+}
+
 void SubDriveTrain::MoveDrive(double iLeftHand, double iRightHand, MotorSpeed iMotorSpeed)  
 {
-    std::cout<<"iLeftHand :" << iLeftHand <<std::endl;
+   /* std::cout<<"iLeftHand :" << iLeftHand <<std::endl;
     std::cout<<"iLeftHand :" << iRightHand <<std::endl;
 
     iMotorSpeed = eSlow;
@@ -40,7 +45,7 @@ void SubDriveTrain::MoveDrive(double iLeftHand, double iRightHand, MotorSpeed iM
         wRightSpeed= -0.45 * iRightHand * kCoeffFriction;
         break;
     }
-    mDriveTrain.TankDrive(wLeftSpeed, wRightSpeed);
+    mDriveTrain.TankDrive(wLeftSpeed, wRightSpeed);*/
 
   //  std::cout << "Speed Left " << wLeftSpeed << "Speed Left " << wRightSpeed << std::endl; 
 }
