@@ -34,10 +34,6 @@ private:
   
   // mController{kJoystickPort};
   SubDriveTrain *mDriveTrain;
-  SubDriveTrain::MotorSpeed mMotorSpeed[3];
-
-
-  int mMotorIndex;
 
   bool mSmart = 0 ;
   void ConfigureButtonBindings();
