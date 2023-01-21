@@ -9,8 +9,8 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc/motorcontrol/Spark.h>
 #include <frc/drive/MecanumDrive.h>
-#include <frc/motorcontrol/MotorControllerGroup.h>
 
+// Référence: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
@@ -21,11 +21,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  enum MotorSpeed { eSlow = 0, eMedium = 1, eFast = 2 };
-
-  void MoveDrive(double iLeft, double iRight, MotorSpeed iMotorSpeed);
-
-  void MoveMeca(double x, double y, double twist);
+  void MoveMeca(const double iX, const double iY, const double iTwist);
 
  private:
 
@@ -33,7 +29,6 @@ class SubDriveTrain : public frc2::SubsystemBase {
   frc::Spark m_rearLeft{kMotorL2Port};
   frc::Spark m_frontRight{kMotorR1Port};
   frc::Spark m_rearRight{kMotorR2Port};
-  frc::MecanumDrive m_robotDrive{m_frontLeft, m_rearLeft, m_frontRight,
-                                 m_rearRight};
-  
+
+  frc::MecanumDrive m_robotDrive{m_frontLeft, m_rearLeft, m_frontRight, m_rearRight};
 };

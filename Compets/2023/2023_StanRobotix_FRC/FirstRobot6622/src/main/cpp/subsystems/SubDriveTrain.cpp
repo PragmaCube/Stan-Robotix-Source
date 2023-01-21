@@ -2,50 +2,25 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Date       Auteur     Description                                               Test
+// 21jan2023  Andre W.   mecanum operationel en robot-oriented-drive sans IMU      Deplacement omni-directionnel
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Référence: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
+
 #include "subsystems/SubDriveTrain.h"
 #include <iostream>
 
-SubDriveTrain::SubDriveTrain() = default;
+SubDriveTrain::SubDriveTrain() 
+{
+  m_frontLeft.SetInverted(true);         // Le filage est inverse pour ce moteur dans le robot.
+  m_rearRight.SetInverted(true);         // Le filage est inverse pour ce moteur dans le robot.
+}
 
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
 
-void SubDriveTrain::MoveMeca(double x, double y, double twist)
+void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwist)   // le prefix i est necessaire, pour specifier que c est une entree.
 {
-   m_robotDrive.DriveCartesian(y, x, twist);
-}
-
-void SubDriveTrain::MoveDrive(double iLeftHand, double iRightHand, MotorSpeed iMotorSpeed)  
-{
-   /* std::cout<<"iLeftHand :" << iLeftHand <<std::endl;
-    std::cout<<"iLeftHand :" << iRightHand <<std::endl;
-
-    iMotorSpeed = eSlow;
-    double wLeftSpeed = 0.0, wRightSpeed = 0.0;
-
-    switch (iMotorSpeed)
-    {
-    case eSlow:
-        wLeftSpeed = 0.60 * iLeftHand;
-        wRightSpeed = -0.60 * iRightHand * kCoeffFriction;
-        break;
-
-    case eMedium:
-        wLeftSpeed = 0.70 * iLeftHand;
-        wRightSpeed = -0.70 * iRightHand * kCoeffFriction;
-        break;
-
-    case eFast:
-        wLeftSpeed = 0.90 * iLeftHand;
-        wRightSpeed= -0.90 * iRightHand * kCoeffFriction;
-        break;
-
-    default:
-        wLeftSpeed = 0.45 * iLeftHand;
-        wRightSpeed= -0.45 * iRightHand * kCoeffFriction;
-        break;
-    }
-    mDriveTrain.TankDrive(wLeftSpeed, wRightSpeed);*/
-
-  //  std::cout << "Speed Left " << wLeftSpeed << "Speed Left " << wRightSpeed << std::endl; 
+   m_robotDrive.DriveCartesian(-iY, iX, iTwist);
 }
