@@ -4,10 +4,7 @@
 
 #include "RobotContainer.h"
 #include <iostream>
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Date       Auteur     Description                                               Test
-// 21jan2023  Andre W.   mecanum operationel en robot-oriented-drive sans IMU      Deplacement omni-directionnel   
+ 
 
 RobotContainer::RobotContainer()
 {
