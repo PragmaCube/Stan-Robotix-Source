@@ -9,14 +9,19 @@
 RobotContainer::RobotContainer()
 {
   mDriveTrain = new SubDriveTrain;
- 
-   ConfigureButtonBindings();
+
+	mImu = new SubIMU;
+	mImu->Start();
+  mDriveTrain->SetImuPointer(mImu);
+   	ConfigureButtonBindings();
 }
 
 
 void RobotContainer::DriveDisplacement()
 {
-  mDriveTrain->MoveMeca(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetTwist());
+  const double slider = (1-mJoystick.GetThrottle())/2;
+  mDriveTrain->MoveMeca(mJoystick.GetX()*slider, mJoystick.GetY()*slider, mJoystick.GetTwist()*slider,mJoystick.GetRawButton(0));
+  std::cout<<mJoystick.GetRawButton(0)<<std::endl;
 }
 
 void RobotContainer::ConfigureButtonBindings()
