@@ -13,6 +13,9 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+///////////////////////////////////////////////////////
+// IMU
+constexpr int kNumberOfSamples = 3;
 // TODO: coef a changer selon les differents parametres du sol
 constexpr double kCoeffFriction = 1.02;  
 ///////////////////////////////////////////////////////

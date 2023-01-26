@@ -22,7 +22,20 @@ SubDriveTrain::SubDriveTrain()
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
 
-void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwist)   // le prefix i est necessaire, pour specifier que c est une entree.
+void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented)   // le prefix i est necessaire, pour specifier que c est une entree.
 {
-   m_robotDrive.DriveCartesian(-iY, iX, iTwist);
+  frc::Rotation2d imuAngle = mImu->getRadian();
+  if (iFieldOriented)
+  {
+    m_robotDrive.DriveCartesian(-iY, iX, iTwist, imuAngle);
+  }
+  else
+  {
+    m_robotDrive.DriveCartesian(-iY, iX, iTwist);
+  }
+}
+
+void SubDriveTrain::SetImuPointer(SubIMU* iImu)
+{
+  mImu = iImu;
 }

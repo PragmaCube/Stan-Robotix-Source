@@ -11,6 +11,8 @@
 
 #include "subsystems/SubDriveTrain.h"
 
+#include "subsystems/SubIMU.h"
+
 #include "Constants.h" 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -35,6 +37,7 @@ private:
   // mController{kJoystickPort};
   SubDriveTrain *mDriveTrain;
 
+  SubIMU *mImu;
   bool mSmart = 0 ;
   void ConfigureButtonBindings();
   void DriveDisplacement();
