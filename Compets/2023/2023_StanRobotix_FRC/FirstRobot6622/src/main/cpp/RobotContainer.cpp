@@ -7,10 +7,20 @@
 RobotContainer::RobotContainer() {
   // Use addRequirements() here to declare subsystem dependencies.
   mUltrasonic = new SubUltrasonic;
+  vas_y = 0;
 }
 
 void RobotContainer::Drive() 
 {
-  std::cout << mUltrasonic->getDistance() << std::endl;
+  if (vas_y%5 == 0)
+  {
+    std::cout << mUltrasonic->getDistance() << std::endl;
+    vas_y=1;
+  }
+  else
+  {
+    vas_y++;
+  }
+  
 }
 

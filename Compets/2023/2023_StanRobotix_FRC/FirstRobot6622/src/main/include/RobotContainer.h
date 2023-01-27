@@ -31,5 +31,6 @@ class RobotContainer
 
  private:
   SubUltrasonic* mUltrasonic; 
+  int vas_y;
 
 };
