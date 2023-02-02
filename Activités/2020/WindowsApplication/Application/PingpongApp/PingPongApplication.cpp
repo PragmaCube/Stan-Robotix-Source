@@ -29,7 +29,7 @@ void PingPongApplication::paint(HDC ihdc, RECT& iPaintArea)
 	mBall.paint(ihdc);
 	mBall.applyTime();
 
-	mRightPad.UpdatePosition();
+	//mRightPad.UpdatePosition();
 	mLeftPad.paint(ihdc, iPaintArea);
 	mRightPad.paint(ihdc, iPaintArea);
 	mCollisionEngine.rebound(iPaintArea);
@@ -48,6 +48,16 @@ void PingPongApplication::onChar(char iChar, short iDetail)
 	case('a'):
 	case('A'):
 		mLeftPad.movePadDown();
+		break;
+
+	case('l'):
+	case('L'):
+		mRightPad.movePadDown();
+		break;
+
+	case('p'):
+	case('P'):
+		mRightPad.movePadUp();
 		break;
 
 	}

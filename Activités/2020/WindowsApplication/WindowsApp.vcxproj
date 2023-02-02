@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -120,6 +120,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -137,6 +138,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -149,6 +151,16 @@
     <ClInclude Include="Application\DemoApp\DemoAppBall.h" />
     <ClInclude Include="Application\DemoApp\DemoApplication.h" />
     <ClInclude Include="Application\DessinApp\DessinApplication.h" />
+    <ClInclude Include="Application\PacmanApp\Blinky.h" />
+    <ClInclude Include="Application\PacmanApp\Clyde.h" />
+    <ClInclude Include="Application\PacmanApp\Constants.h" />
+    <ClInclude Include="Application\PacmanApp\Inky.h" />
+    <ClInclude Include="Application\PacmanApp\PacmanGameBoard.h" />
+    <ClInclude Include="Application\PacmanApp\PacmanMonster.h" />
+    <ClInclude Include="Application\PacmanApp\PacmanMultimedia.h" />
+    <ClInclude Include="Application\PacmanApp\PacmanPlayer.h" />
+    <ClInclude Include="Application\PacmanApp\PacmanGameEngine.h" />
+    <ClInclude Include="Application\PacmanApp\Pinky.h" />
     <ClInclude Include="Application\PingpongApp\CollisionEngine.h" />
     <ClInclude Include="Application\PingpongApp\PingPongBall.h" />
     <ClInclude Include="Application\PingpongApp\PingPongPad.h" />
@@ -173,7 +185,16 @@
     <ClCompile Include="Application\DemoApp\DemoAppBall.cpp" />
     <ClCompile Include="Application\DemoApp\DemoApplication.cpp" />
     <ClCompile Include="Application\DessinApp\DessinApplication.cpp" />
+    <ClCompile Include="Application\PacmanApp\Blinky.cpp" />
+    <ClCompile Include="Application\PacmanApp\Clyde.cpp" />
+    <ClCompile Include="Application\PacmanApp\Inky.cpp" />
     <ClCompile Include="Application\PacmanApp\PacmanApplication.cpp" />
+    <ClCompile Include="Application\PacmanApp\PacmanGameBoard.cpp" />
+    <ClCompile Include="Application\PacmanApp\PacmanMonster.cpp" />
+    <ClCompile Include="Application\PacmanApp\PacmanMultimedia.cpp" />
+    <ClCompile Include="Application\PacmanApp\PacmanPlayer.cpp" />
+    <ClCompile Include="Application\PacmanApp\PacmanGameEngine.cpp" />
+    <ClCompile Include="Application\PacmanApp\Pinky.cpp" />
     <ClCompile Include="Application\PingpongApp\CollisionEngine.cpp" />
     <ClCompile Include="Application\PingpongApp\PingPongApplication.cpp" />
     <ClCompile Include="Application\PingpongApp\PingPongBall.cpp" />
@@ -186,8 +207,43 @@
     <ResourceCompile Include="WindowsApp.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Application\PacmanApp\Graphics\Monster\BlinkyDown.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\BlinkyLeft.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\BlinkyRight.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\BlinkyUp.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\ClydeDown.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\ClydeLeft.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\ClydeRight.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\ClydeUp.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\InkyDown.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\InkyLeft.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\InkyRight.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\InkyUp.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\PinkyDown.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\PinkyLeft.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\PinkyRight.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\PinkyUp.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Monster\WeakMonster.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Player\PlayerClose.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Player\PlayerDown.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Player\PlayerLeft.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Player\PlayerRight.bmp" />
+    <Image Include="Application\PacmanApp\Graphics\Player\PlayerUp.bmp" />
+    <Image Include="Application\PacmanApp\maze16.bmp">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
     <Image Include="small.ico" />
     <Image Include="WindowsApp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Application\PacmanApp\sound\pacman_beginning.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_bonus.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_cherry.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_chomp.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_death.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_eatghost.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_extrapac.wav" />
+    <Media Include="Application\PacmanApp\sound\pacman_intermission.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

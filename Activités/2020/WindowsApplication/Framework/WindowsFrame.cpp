@@ -12,7 +12,7 @@
 
 DemoWindowsFrame::DemoWindowsFrame() : mhWnd(NULL)
 {
-	mCurrentApplication = new DemoApplication();
+	mCurrentApplication = new PacmanApplication();
 
 	mWhiteBrush     = CreateSolidBrush(RGB(0xFF,0xFF,0xFF));
 	mLightGrayBrush = CreateSolidBrush(RGB(0x80, 0x80, 0x80));

@@ -6,8 +6,11 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
+#include <iostream>
 
-void Robot::RobotInit() {}
+void Robot::RobotInit()
+{
+}
 
 /**
  * This function is called every 20 ms, no matter the mode. Use
@@ -38,11 +41,14 @@ void Robot::AutonomousInit() {
   m_autonomousCommand = m_container.GetAutonomousCommand();
 
   if (m_autonomousCommand != nullptr) {
-    m_autonomousCommand->Schedule();
+    m_autonomousCommand->Initialize();
   }
 }
 
-void Robot::AutonomousPeriodic() {}
+void Robot::AutonomousPeriodic() 
+{
+  m_autonomousCommand->Execute();
+}
 
 void Robot::TeleopInit() {
   // This makes sure that the autonomous stops running when
@@ -50,7 +56,7 @@ void Robot::TeleopInit() {
   // continue until interrupted by another command, remove
   // this line or comment it out.
   if (m_autonomousCommand != nullptr) {
-    m_autonomousCommand->Cancel();
+    m_autonomousCommand->End(true);
     m_autonomousCommand = nullptr;
   }
 }
@@ -58,7 +64,10 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() 
+{
+  m_container.Drive();
+}
 
 /**
  * This function is called periodically during test mode.
