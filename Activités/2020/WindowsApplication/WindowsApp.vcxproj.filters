@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Fichiers de ressources">
@@ -32,6 +32,9 @@
     </Filter>
     <Filter Include="Application\Dessin">
       <UniqueIdentifier>{3095bb92-8646-46d9-b36d-6f12782b864a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Pacman\Monsters">
+      <UniqueIdentifier>{68d6c851-4170-4f2c-9720-10c9456d795b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +88,56 @@
     </ClInclude>
     <ClInclude Include="Application\SnakeApp\LeuhCollisioneur.h">
       <Filter>Application\Snake</Filter>
+    <ClInclude Include="Application\BattleshipApp\BoatsPosition.h">
+      <Filter>Application\Battleship</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\BattleshipApp\GameBoard.h">
+      <Filter>Application\Battleship</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Application\PingpongApp\CollisionEngine.h">
+      <Filter>Application\PingPong</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PingpongApp\PingPongBall.h">
+      <Filter>Application\PingPong</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PingpongApp\PingPongPad.h">
+      <Filter>Application\PingPong</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Connect4App\BoardGame.h" />
+    <ClInclude Include="Application\Connect4App\Token.h" />
+    <ClInclude Include="Application\PacmanApp\PacmanGameBoard.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\PacmanPlayer.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\Blinky.h">
+      <Filter>Application\Pacman\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\PacmanMonster.h">
+      <Filter>Application\Pacman\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\Pinky.h">
+      <Filter>Application\Pacman\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\Clyde.h">
+      <Filter>Application\Pacman\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\Inky.h">
+      <Filter>Application\Pacman\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\Constants.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\PacmanGameEngine.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\Constants.h">
+      <Filter>Application\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\PacmanApp\PacmanMultimedia.h">
+      <Filter>Application\Pacman</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +179,53 @@
     </ClCompile>
     <ClCompile Include="Application\SnakeApp\LeuhCollisioneur.cpp">
       <Filter>Application\Snake</Filter>
+    <ClCompile Include="Application\BattleshipApp\BoatsPosition.cpp">
+      <Filter>Application\Battleship</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\BattleshipApp\GameBoard.cpp">
+      <Filter>Application\Battleship</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PingpongApp\PingPongBall.cpp">
+      <Filter>Application\PingPong</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PingpongApp\PingPongPad.cpp">
+      <Filter>Application\PingPong</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PingpongApp\CollisionEngine.cpp">
+      <Filter>Application\PingPong</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Connect4App\BoardGame.cpp">
+      <Filter>Framework sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Connect4App\Token.cpp">
+      <Filter>Framework sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\PacmanGameBoard.cpp">
+      <Filter>Application\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\PacmanPlayer.cpp">
+      <Filter>Application\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\Blinky.cpp">
+      <Filter>Application\Pacman\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\PacmanMonster.cpp">
+      <Filter>Application\Pacman\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\Pinky.cpp">
+      <Filter>Application\Pacman\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\Clyde.cpp">
+      <Filter>Application\Pacman\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\Inky.cpp">
+      <Filter>Application\Pacman\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\PacmanGameEngine.cpp">
+      <Filter>Application\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\PacmanApp\PacmanMultimedia.cpp">
+      <Filter>Application\Pacman</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,5 +240,100 @@
     <Image Include="WindowsApp.ico">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="Application\PacmanApp\maze16.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\BlinkyDown.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\BlinkyLeft.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\BlinkyRight.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\BlinkyUp.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\ClydeDown.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\ClydeLeft.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\ClydeRight.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\ClydeUp.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\InkyDown.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\InkyLeft.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\InkyRight.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\InkyUp.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\PinkyDown.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\PinkyLeft.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\PinkyRight.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\PinkyUp.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Monster\WeakMonster.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Player\PlayerClose.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Player\PlayerDown.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Player\PlayerLeft.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Player\PlayerRight.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Application\PacmanApp\Graphics\Player\PlayerUp.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Application\PacmanApp\sound\pacman_beginning.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_bonus.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_cherry.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_chomp.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_death.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_eatghost.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_extrapac.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="Application\PacmanApp\sound\pacman_intermission.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
   </ItemGroup>
 </Project>

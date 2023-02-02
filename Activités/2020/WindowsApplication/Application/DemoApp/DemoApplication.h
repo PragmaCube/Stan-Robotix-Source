@@ -17,6 +17,8 @@ protected:
 	void onMouseLeftClick(int iPosX, int iPosY);
 	void onMouseRightClick(int iPosX, int iPosY);
 
+	void onMouseMove(int iPosX, int iPosY);
+
 	void onTimer();
 
 	DemoAppBall mDemoAppBall[8];
@@ -24,4 +26,5 @@ protected:
 private:
 	int mNbActiveBall;
 	int mCircleRadius;
+	bool mTime;
 };

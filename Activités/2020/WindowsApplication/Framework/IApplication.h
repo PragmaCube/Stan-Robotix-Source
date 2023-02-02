@@ -15,6 +15,8 @@ public:
 	virtual void onMouseLeftClick(int iPosX, int iPosY) = 0;
 	virtual void onMouseRightClick(int iPosX, int iPosY) = 0;
 
+	virtual void onMouseMove(int iPosX, int iPosY) = 0;
+
 	virtual void onTimer()
 	{
 		::InvalidateRect(mHwnd, nullptr, true);

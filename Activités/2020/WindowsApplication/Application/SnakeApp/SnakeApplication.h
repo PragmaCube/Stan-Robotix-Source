@@ -26,6 +26,8 @@ private:
 	pom mPomme;
 	LeuhCollisionneur CollisionEngine;
 
-	
-}; 
+	void onMouseMove(int iPosX, int iPosY);
+
+	void onTimer();
+};
 
