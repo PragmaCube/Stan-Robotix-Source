@@ -151,6 +151,9 @@
     <ClInclude Include="Application\DemoApp\DemoAppBall.h" />
     <ClInclude Include="Application\DemoApp\DemoApplication.h" />
     <ClInclude Include="Application\DessinApp\DessinApplication.h" />
+    <ClInclude Include="Application\SnakeApp\BoutteDeSerpent.h" />
+    <ClInclude Include="Application\SnakeApp\LeuhCollisioneur.h" />
+    <ClInclude Include="Application\SnakeApp\pom.h" />
     <ClInclude Include="Application\PacmanApp\Blinky.h" />
     <ClInclude Include="Application\PacmanApp\Clyde.h" />
     <ClInclude Include="Application\PacmanApp\Constants.h" />
@@ -197,6 +200,9 @@
     <ClCompile Include="Application\PacmanApp\Pinky.cpp" />
     <ClCompile Include="Application\PingpongApp\CollisionEngine.cpp" />
     <ClCompile Include="Application\PingpongApp\PingPongApplication.cpp" />
+    <ClCompile Include="Application\SnakeApp\BouttedeSerpent.cpp" />
+    <ClCompile Include="Application\SnakeApp\LeuhCollisioneur.cpp" />
+    <ClCompile Include="Application\SnakeApp\pom.cpp" />
     <ClCompile Include="Application\PingpongApp\PingPongBall.cpp" />
     <ClCompile Include="Application\PingpongApp\PingPongPad.cpp" />
     <ClCompile Include="Application\SnakeApp\SnakeApplication.cpp" />

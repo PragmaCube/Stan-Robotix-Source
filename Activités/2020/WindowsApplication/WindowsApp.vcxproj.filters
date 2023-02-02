@@ -80,6 +80,14 @@
     <ClInclude Include="Framework\IApplication.h">
       <Filter>Framework sources</Filter>
     </ClInclude>
+    <ClInclude Include="Application\SnakeApp\BoutteDeSerpent.h">
+      <Filter>Application\Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\SnakeApp\pom.h">
+      <Filter>Application\Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\SnakeApp\LeuhCollisioneur.h">
+      <Filter>Application\Snake</Filter>
     <ClInclude Include="Application\BattleshipApp\BoatsPosition.h">
       <Filter>Application\Battleship</Filter>
     </ClInclude>
@@ -163,6 +171,14 @@
     <ClCompile Include="Application\DessinApp\DessinApplication.cpp">
       <Filter>Application\Dessin</Filter>
     </ClCompile>
+    <ClCompile Include="Application\SnakeApp\BouttedeSerpent.cpp">
+      <Filter>Application\Snake</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\SnakeApp\pom.cpp">
+      <Filter>Application\Snake</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\SnakeApp\LeuhCollisioneur.cpp">
+      <Filter>Application\Snake</Filter>
     <ClCompile Include="Application\BattleshipApp\BoatsPosition.cpp">
       <Filter>Application\Battleship</Filter>
     </ClCompile>
