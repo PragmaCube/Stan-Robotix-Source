@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Robot.h"
+#include "subsystems/Camera.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
@@ -64,6 +65,7 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic()
 {
   m_container.Drive();
+  std::cout << mSubsystemCamera.getAverageLine().lenght() << std::endl;
 }
 
 /**

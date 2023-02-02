@@ -38,8 +38,10 @@ void Robot::AutonomousInit() {
   m_autonomousCommand = m_container.GetAutonomousCommand();
 
   if (m_autonomousCommand != nullptr) {
-    m_autonomousCommand->Schedule();
+    //m_autonomousCommand->Schedule();
   }
+
+  m_container.ResetAuto();
 }
 
 void Robot::AutonomousPeriodic() {
@@ -60,9 +62,9 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic()
+void Robot::TeleopPeriodic() 
 {
-  m_container.Drive();
+    m_container.Drive();
 }
 
 /**
