@@ -1,36 +1,53 @@
+
+
+
+
+
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
 
-
 #include <frc2/command/Command.h>
 #include <frc/XboxController.h>
 #include <frc/Joystick.h>
 #include <frc/Timer.h>
-#include <iostream>
 
+#include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubIMU.h"
 #include "subsystems/SubUltrasonic.h"
 
 #include "Constants.h" 
-
 /**
- * An example command.
- *
- * <p>Note that this extends CommandHelper, rather extending CommandBase
- * directly; this is crucially important, or else the decorator functions in
- * Command will *not* work!
+ * This class is where the bulk of the robot should be declared.  Since
+ * Command-based is a "declarative" paradigm, very little robot logic should
+ * actually be handled in the {@link Robot} periodic methods (other than the
+ * scheduler calls).  Instead, the structure of the robot (including subsystems,
+ * commands, and button mappings) should be declared here.
  */
-class RobotContainer 
+class RobotContainer
 {
- public:
+public:
   RobotContainer();
-  
-  void Drive();
 
- private:
+ 
+  void Drive();
+  void Auto();
+
+private:
+
+  frc::Joystick mJoystick{ kJoystickPort};
+  
+  // mController{kJoystickPort};
+  SubDriveTrain *mDriveTrain;
+
+  SubIMU *mImu;
   SubUltrasonic* mUltrasonic; 
-  int vas_y;
+
+  bool mSmart = 0 ;
+  void ConfigureButtonBindings();
+  void DriveDisplacement();
 
 };

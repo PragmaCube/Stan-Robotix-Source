@@ -13,15 +13,21 @@
 class SubUltrasonic : public frc2::SubsystemBase {
  public:
   SubUltrasonic();
+
   float getDistance();
+
+  void doExecute();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
+  void EnableImperialSystem() { mMetricSystem = false; }
+  void EnableMetricSystem() { mMetricSystem = true; }
+
  private:
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
-  frc::AnalogInput ultrasonic{kUltrasonicDIO};
+  frc::AnalogInput mUltrasonic{kUltrasonicDIO};
+
+  bool mMetricSystem = true;
 };

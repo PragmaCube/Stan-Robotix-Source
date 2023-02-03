@@ -3,24 +3,41 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "RobotContainer.h"
+#include <iostream>
 
-RobotContainer::RobotContainer() {
-  // Use addRequirements() here to declare subsystem dependencies.
-  mUltrasonic = new SubUltrasonic;
-  vas_y = 0;
-}
-
-void RobotContainer::Drive() 
+RobotContainer::RobotContainer()
 {
-  if (vas_y%5 == 0)
-  {
-    std::cout << mUltrasonic->getDistance() << std::endl;
-    vas_y=1;
-  }
-  else
-  {
-    vas_y++;
-  }
-  
+  mDriveTrain = new SubDriveTrain;
+
+	mImu = new SubIMU;
+	mImu->Start();
+    mDriveTrain->SetImuPointer(mImu);
+
+    mUltrasonic = new SubUltrasonic;
+    mUltrasonic->EnableImperialSystem();
+
+   	ConfigureButtonBindings();
 }
 
+void RobotContainer::DriveDisplacement()
+{
+  const double slider = (1-mJoystick.GetThrottle())/2;
+  mDriveTrain->MoveMeca(mJoystick.GetX()*slider, mJoystick.GetY()*slider, mJoystick.GetTwist()*slider,mJoystick.GetRawButton(0));
+}
+
+void RobotContainer::ConfigureButtonBindings()
+{
+  // Configure your button bindings here
+}
+
+void RobotContainer::Drive()
+{
+  DriveDisplacement();
+
+  mUltrasonic->doExecute();
+}
+
+void RobotContainer::Auto()
+{
+
+}

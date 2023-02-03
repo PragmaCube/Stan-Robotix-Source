@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "Robot.h"
+#include "../include/Robot.h"
 
 #include <fmt/core.h>
 
@@ -12,6 +12,7 @@ void Robot::RobotInit() {
   m_chooser.SetDefaultOption(kAutoNameDefault, kAutoNameDefault);
   m_chooser.AddOption(kAutoNameCustom, kAutoNameCustom);
   frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+  
 }
 
 /**
@@ -61,7 +62,6 @@ void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
   m_container.Drive();
 }
-
 void Robot::DisabledInit() {}
 
 void Robot::DisabledPeriodic() {}
