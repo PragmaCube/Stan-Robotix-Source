@@ -5,6 +5,7 @@
 #include "RobotContainer.h"
 #include <iostream>
 
+
 RobotContainer::RobotContainer()
 {
   mDriveTrain = new SubDriveTrain;
@@ -15,8 +16,9 @@ RobotContainer::RobotContainer()
 
     mUltrasonic = new SubUltrasonic;
     mUltrasonic->EnableImperialSystem();
-
-   	ConfigureButtonBindings();
+    mUltrasonic -> EnableLog(kEnableUltrasonLog);
+   	
+    ConfigureButtonBindings();
 }
 
 frc2::Command *RobotContainer::GetAutonomousCommand()
@@ -39,7 +41,8 @@ void RobotContainer::Drive()
 {
   DriveDisplacement();
 
-  mUltrasonic->doExecute();
+  mUltrasonic->Execute();
+
 }
 
 void RobotContainer::Auto()

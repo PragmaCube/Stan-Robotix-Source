@@ -9,14 +9,14 @@
 #include <frc/RobotController.h>
 
 #include "Constants.h"
+#include "PerformanceMonitor.h"
 
-class SubUltrasonic : public frc2::SubsystemBase {
- public:
+class SubUltrasonic : public frc2::SubsystemBase, public PerformanceMonitor
+{
+public:
   SubUltrasonic();
 
   float getDistance();
-
-  void doExecute();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -26,8 +26,12 @@ class SubUltrasonic : public frc2::SubsystemBase {
   void EnableImperialSystem() { mMetricSystem = false; }
   void EnableMetricSystem() { mMetricSystem = true; }
 
- private:
+private:
   frc::AnalogInput mUltrasonic{kUltrasonicDIO};
+
+  virtual void doExecute();
+
+  virtual std::string getName() { return "SubUltrasonic"; }
 
   bool mMetricSystem = true;
 };

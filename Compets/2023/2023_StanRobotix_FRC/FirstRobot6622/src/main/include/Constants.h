@@ -33,3 +33,8 @@ constexpr int kUltrasonicDIO = 0;
 ///////////////////////////////////////////////////////
 // Joystick
 constexpr int kJoystickPort = 0;
+
+///////////////////////////////////////////////////////
+// Activation des logs
+constexpr bool kEnableUltrasonLog = true;
+constexpr int  kNb
