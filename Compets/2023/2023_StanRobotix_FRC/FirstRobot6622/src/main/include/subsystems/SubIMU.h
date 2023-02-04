@@ -14,6 +14,8 @@ class SubIMU : public frc2::SubsystemBase
 private:
    frc::ADIS16448_IMU * m_Imu;
 
+   static SubIMU * mSingleton;
+
    	static constexpr double kAngleSetpoint = 0.0;
     static constexpr double kP = 0.005;
     std::vector<double> m_gyroVals; 
@@ -21,6 +23,8 @@ private:
 public:
   SubIMU();
   ~SubIMU();
+
+  static SubIMU * getInstance();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.

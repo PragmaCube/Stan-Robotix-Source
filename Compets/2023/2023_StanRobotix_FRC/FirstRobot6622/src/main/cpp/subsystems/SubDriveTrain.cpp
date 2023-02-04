@@ -9,6 +9,7 @@
 // Référence: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
 
 #include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubIMU.h"
 
 SubDriveTrain::SubDriveTrain() 
 {
@@ -22,7 +23,7 @@ void SubDriveTrain::Periodic() {}
 
 void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented)   // le prefix i est necessaire, pour specifier que c est une entree.
 {
-  frc::Rotation2d imuAngle = mImu->getRadian();
+  frc::Rotation2d imuAngle = SubIMU::getInstance()->getRadian();
   if (iFieldOriented)
   {
     m_robotDrive.DriveCartesian(-iY, iX, iTwist, imuAngle);
@@ -31,9 +32,4 @@ void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwi
   {
     m_robotDrive.DriveCartesian(-iY, iX, iTwist);
   }
-}
-
-void SubDriveTrain::SetImuPointer(SubIMU* iImu)
-{
-   mImu = iImu;
 }

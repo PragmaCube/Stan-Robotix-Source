@@ -5,12 +5,23 @@
 #include "subsystems/SubIMU.h"
 #include "Constants.h"
 
+SubIMU * SubIMU::mSingleton = nullptr;
+
 SubIMU::SubIMU() : m_Imu(nullptr)
 {
   
 }
 
 SubIMU::~SubIMU(){}
+
+SubIMU * SubIMU::getInstance()
+{
+    if (mSingleton == nullptr)
+    {
+        mSingleton = new SubIMU();
+    }
+    return mSingleton;
+}
 
 void SubIMU::Enable()
 {

@@ -9,11 +9,9 @@ RobotContainer::RobotContainer()
 {
   mDriveTrain = new SubDriveTrain;
 
-    mImu = new SubIMU;
-    // mImu->Enable();
-    mDriveTrain->SetImuPointer(mImu);
+  //sSubIMU::getInstance()->Enable();
 
-m_autonomousCommand.setSubsystem(mDriveTrain);
+  m_autonomousCommand.setSubsystem(mDriveTrain);
 
     mUltrasonic = new SubUltrasonic;
     mUltrasonic->EnableImperialSystem();
