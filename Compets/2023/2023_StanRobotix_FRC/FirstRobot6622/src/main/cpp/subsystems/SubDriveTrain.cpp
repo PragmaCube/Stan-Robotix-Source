@@ -14,6 +14,7 @@ SubDriveTrain::SubDriveTrain()
 {
   m_frontLeft.SetInverted(true);         // Le filage est inverse pour ce moteur dans le robot.
   m_rearRight.SetInverted(true);         // Le filage est inverse pour ce moteur dans le robot.
+  m_frontRight.SetInverted(true);        // Le filage est inverse pour ce moteur dans le robot.
 }
 
 // This method will be called once per scheduler run
@@ -34,5 +35,5 @@ void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwi
 
 void SubDriveTrain::SetImuPointer(SubIMU* iImu)
 {
-  mImu = iImu;
+   mImu = iImu;
 }

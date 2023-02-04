@@ -15,6 +15,7 @@
 #include <frc/Joystick.h>
 #include <frc/Timer.h>
 
+#include "commands/AutonomousCommand.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
 #include "subsystems/SubUltrasonic.h"
@@ -32,11 +33,12 @@ class RobotContainer
 public:
   RobotContainer();
 
- 
+  frc2::Command *GetAutonomousCommand();
   void Drive();
   void Auto();
 
 private:
+  AutonomousCommand m_autonomousCommand;
 
   frc::Joystick mJoystick{ kJoystickPort};
   

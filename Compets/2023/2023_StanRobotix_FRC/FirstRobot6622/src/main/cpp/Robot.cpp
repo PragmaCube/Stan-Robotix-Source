@@ -7,6 +7,8 @@
 #include <fmt/core.h>
 
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc2/command/CommandScheduler.h>
+#include <iostream>
 
 void Robot::RobotInit() {
   m_chooser.SetDefaultOption(kAutoNameDefault, kAutoNameDefault);
@@ -23,7 +25,9 @@ void Robot::RobotInit() {
  * <p> This runs after the mode specific periodic functions, but before
  * LiveWindow and SmartDashboard integrated updating.
  */
-void Robot::RobotPeriodic() {}
+void Robot::RobotPeriodic() {
+  //frc2::CommandScheduler::GetInstance().Run(); // TODO: a activer plus tard
+}
 
 /**
  * This autonomous (along with the chooser code above) shows how to select
@@ -37,27 +41,28 @@ void Robot::RobotPeriodic() {}
  * make sure to add them to the chooser code above as well.
  */
 void Robot::AutonomousInit() {
-  m_autoSelected = m_chooser.GetSelected();
-  // m_autoSelected = SmartDashboard::GetString("Auto Selector",
-  //     kAutoNameDefault);
-  fmt::print("Auto selected: {}\n", m_autoSelected);
+  m_autonomousCommand = m_container.GetAutonomousCommand();
 
-  if (m_autoSelected == kAutoNameCustom) {
-    // Custom Auto goes here
-  } else {
-    // Default Auto goes here
+  if (m_autonomousCommand != nullptr) {
+    m_autonomousCommand->Initialize();
   }
 }
 
-void Robot::AutonomousPeriodic() {
-  if (m_autoSelected == kAutoNameCustom) {
-    // Custom Auto goes here
-  } else {
-    // Default Auto goes here
-  }
+void Robot::AutonomousPeriodic() 
+{
+  m_autonomousCommand->Execute();
 }
 
-void Robot::TeleopInit() {}
+void Robot::TeleopInit() {
+  // This makes sure that the autonomous stops running when
+  // teleop starts running. If you want the autonomous to
+  // continue until interrupted by another command, remove
+  // this line or comment it out.
+  if (m_autonomousCommand != nullptr) {
+    m_autonomousCommand->End(true);
+    m_autonomousCommand = nullptr;
+  }
+}
 
 void Robot::TeleopPeriodic() {
   m_container.Drive();

@@ -9,14 +9,21 @@ RobotContainer::RobotContainer()
 {
   mDriveTrain = new SubDriveTrain;
 
-	mImu = new SubIMU;
-	mImu->Start();
+    mImu = new SubIMU;
+    // mImu->Enable();
     mDriveTrain->SetImuPointer(mImu);
+
+m_autonomousCommand.setSubsystem(mDriveTrain);
 
     mUltrasonic = new SubUltrasonic;
     mUltrasonic->EnableImperialSystem();
 
    	ConfigureButtonBindings();
+}
+
+frc2::Command *RobotContainer::GetAutonomousCommand()
+{
+   return &m_autonomousCommand;
 }
 
 void RobotContainer::DriveDisplacement()

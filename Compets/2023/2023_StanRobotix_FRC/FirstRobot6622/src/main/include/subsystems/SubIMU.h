@@ -12,7 +12,7 @@
 class SubIMU : public frc2::SubsystemBase
 {
 private:
-   frc::ADIS16448_IMU m_Imu{};
+   frc::ADIS16448_IMU * m_Imu;
 
    	static constexpr double kAngleSetpoint = 0.0;
     static constexpr double kP = 0.005;
@@ -26,7 +26,7 @@ public:
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-  void Start();
+  void Enable();
   float getAngle();
   units::radian_t getRadian();
 };

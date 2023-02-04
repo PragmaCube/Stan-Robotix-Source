@@ -5,29 +5,35 @@
 #include "subsystems/SubIMU.h"
 #include "Constants.h"
 
-SubIMU::SubIMU() 
+SubIMU::SubIMU() : m_Imu(nullptr)
 {
-  m_Imu.Calibrate();
+  
 }
 
 SubIMU::~SubIMU(){}
 
-void SubIMU::Periodic() {
+void SubIMU::Enable()
+{
+  m_Imu = new frc::ADIS16448_IMU();
+  m_Imu->Calibrate();
+  m_gyroVals.reserve(kNumberOfSamples);
+  Periodic();   
+}
+
+void SubIMU::Periodic() 
+{
     if (m_gyroVals.size() == kNumberOfSamples)
     {
         m_gyroVals.pop_back();
     }
 
-    units::angle::degree_t turningValue = m_Imu.GetAngle();
+    units::angle::degree_t turningValue = (m_Imu != nullptr)?m_Imu->GetAngle():
+                                                             units::degree_t(0);
     m_gyroVals.insert(m_gyroVals.begin(), turningValue.value());
 }
 
-void SubIMU::Start() {
-  m_gyroVals.reserve(kNumberOfSamples);
-  Periodic();   
-}
-
-float SubIMU::getAngle() {
+float SubIMU::getAngle() 
+{
     double wMoyenne = 0.0;
     for (int i = 0; i < m_gyroVals.size(); i++)
     {
@@ -38,6 +44,10 @@ float SubIMU::getAngle() {
 
 units::radian_t SubIMU::getRadian()
 {
-  units::radian_t angle{m_Imu.GetAngle()};
-  return angle;
+  if (m_Imu != nullptr)
+  {
+      units::radian_t angle{m_Imu->GetAngle()};
+      return angle;
+  }
+  return (units::radian_t)0;  
 }
