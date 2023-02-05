@@ -16,10 +16,9 @@ RobotContainer::RobotContainer()
 
     mUltrasonic = new SubUltrasonic;
     mUltrasonic->EnableImperialSystem();
-    mUltrasonic -> EnableLog(kEnableUltrasonLog);
+    mUltrasonic -> EnableLog(kLogUltrason_Enable);
    	
-    ConfigureButtonBindings();
-}
+    ConfigureButtonBindings();}
 
 frc2::Command *RobotContainer::GetAutonomousCommand()
 {

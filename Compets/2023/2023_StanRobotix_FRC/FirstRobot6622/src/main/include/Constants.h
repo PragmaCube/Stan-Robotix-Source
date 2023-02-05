@@ -36,5 +36,5 @@ constexpr int kJoystickPort = 0;
 
 ///////////////////////////////////////////////////////
 // Activation des logs
-constexpr bool kEnableUltrasonLog = true;
-constexpr int  kNb
+constexpr bool kLogUltrason_Enable = true;
+constexpr int  kLogUltrason_Nb = 5;             // TODO: ralentir les logs pour le Ultra-son
