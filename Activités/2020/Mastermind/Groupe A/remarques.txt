@@ -1,0 +1,12 @@
+Dans l'ensemble, c'est très bon! Continuez comme ça, j'ai hâte de voir le résultat final.
+
+Quelques remarques générales:
+- C'est étrange de voir tout le code indenté de deux espaces, même les #include. Tout ce qui n'est pas dans une fonction ou dans le main ne devrait pas être indenté.
+- Les commentaires doivent être indentés de la même manière que le reste du code (donc sur la même colonne).
+- Sinon, l'indentation est bien faite.
+- Dans rng_et_commentaires.cpp, j'ai rajouté des commentaires directement dans le code pour les remarques plus spécifiques! J'ai enlevé vos commentaires pour que mes remarques soient plus lisibles, je vous conseille donc de repartir de votre code dans RNG.cpp
+- Je vous conseille fortement d'aller un faire un tour sur le répertoire de Cyril pour nous normes de codage:
+  https://github.com/cyrjac/CppExample/blob/main/HowTo/CodingStandard/Main.cpp
+  Les points importants sont aussi dans le README de Stan-Robotix-Source
+
+Bonne chance pour la suite!
