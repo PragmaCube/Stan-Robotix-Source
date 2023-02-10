@@ -46,11 +46,12 @@ void SubIMU::Periodic()
 float SubIMU::getAngle() 
 {
     double wMoyenne = 0.0;
-    for (int i = 0; i < m_gyroVals.size(); i++)
+    int wSizeVectorMoy =  m_gyroVals.size();
+    for (int i = 0; i < wSizeVectorMoy ; i++)
     {
         wMoyenne += m_gyroVals[i];
     }
-    return wMoyenne/m_gyroVals.size();
+    return wMoyenne/wSizeVectorMoy ;
 }
 
 units::radian_t SubIMU::getRadian()
