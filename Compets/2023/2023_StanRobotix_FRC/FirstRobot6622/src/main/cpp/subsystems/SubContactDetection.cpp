@@ -8,7 +8,7 @@ SubContactDetection::SubContactDetection() = default;
 
 
 bool SubContactDetection::GetContactStatus () {
-    return ContactStatus.Get();
+    return mContactStatus.Get();
 }
 
 

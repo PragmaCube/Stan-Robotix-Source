@@ -21,9 +21,9 @@ class SubContactDetection : public frc2::SubsystemBase {
   void Periodic() override;
 
  private:
-  frc::DigitalInput toplimitSwitch {0};
-  frc::DigitalInput bottomlimitSwitch {1};
-  frc::DigitalInput ContactStatus {0}; 
+  frc::bool ContactList [10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0} ;
+
+  frc::DigitalInput mContactStatus {0}; 
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
