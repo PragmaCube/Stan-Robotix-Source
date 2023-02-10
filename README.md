@@ -24,6 +24,10 @@ Pour créer et nommer des sous-dossiers, veiller à respecter la convention suiv
 - Pour les activités : **NomDuProjet** (e.g. Formation-Github OU Mastermind --> On met des tirets entre les mots)
 - Pour la documentation : seuls le chef de Programmation et des mentors peuvent modifier/rajouter des documents
 
+## Les Branches
+Pour le nom des branches, respectez la convention suivante :
+Année-StanRobotix-Compétition-Subsystem
+
 ## Les conventions à respecter pour coder
 **À RESPECTER IMPÉRATIVEMENT POUR UN CODE UNIFORME**
 - Programmer en anglais
