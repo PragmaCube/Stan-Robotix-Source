@@ -7,31 +7,46 @@
 #include <vector>
 #include <frc2/command/SubsystemBase.h>
 
-#include <ctre/phoenix/sensors/WPI_PigeonIMU.h>
+#include <ctre/phoenix/sensors/WPI_Pigeon2.h>
+
 
 class SubIMU : public frc2::SubsystemBase
 {
+public:
+  typedef enum
+  {
+    eYaw,
+    ePitch,
+    e_roll
+  } DataType;
+
 private:
-  
-  ctre::phoenix::sensors::WPI_PigeonIMU gyro{0};
+  bool mIsEnable = true;
+  float mInitialValue[3] = {0.0, 0.0, 0.0};
+  ctre::phoenix::sensors::WPI_Pigeon2 * mGyro = nullptr; 
+  static SubIMU *mSingleton;
 
-   static SubIMU * mSingleton;
+  float mYawStart;
+  float mPitchStart;
+  float mRollStart;
 
-   	static constexpr double kAngleSetpoint = 0.0;
-    static constexpr double kP = 0.005;
-    std::vector<double> m_gyroVals; 
+  static constexpr double kAngleSetpoint = 0.0;
+  static constexpr double kP = 0.005;
+  std::vector<double> m_gyroVals;
 
 public:
   SubIMU();
   ~SubIMU();
 
-  static SubIMU * getInstance();
+  static SubIMU *getInstance();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-  void Enable();
-  float getAngle();
+  void Enable(bool aEnable);
+  void ResetYaw();
+  double getAngle();
   units::radian_t getRadian();
+  frc::Rotation2d getRotation2d();
 };

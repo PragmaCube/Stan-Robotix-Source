@@ -4,22 +4,26 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Date       Auteur       Description                                               Test
-// 09Fev2023  Antoine T.   IMU                                                       ...
+// 09Fev2023  Antoine T.   IMU Version initiale                                      ...
+// 11Fev2023  Andre W.     Remplacement avec Pigeon 2.0
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 #include "subsystems/SubIMU.h"
 #include "Constants.h"
 
-SubIMU * SubIMU::mSingleton = nullptr;
+#include <iostream>
+
+SubIMU *SubIMU::mSingleton = nullptr;
 
 SubIMU::SubIMU()
 {
-  
+   mGyro = new ctre::phoenix::sensors::WPI_Pigeon2(0);
+   mGyro->Calibrate();
+   mGyro->Reset();
 }
 
-SubIMU::~SubIMU(){}
+SubIMU::~SubIMU() {}
 
-SubIMU * SubIMU::getInstance()
+SubIMU *SubIMU::getInstance()
 {
     if (mSingleton == nullptr)
     {
@@ -28,25 +32,59 @@ SubIMU * SubIMU::getInstance()
     return mSingleton;
 }
 
-void SubIMU::Enable()
+void SubIMU::Enable(bool iEnable)
 {
+    mIsEnable = iEnable;
+}
+
+void SubIMU::Periodic()
+{
+    static int mNumberOfExecution = 0;
+    static bool wRunOnce = false;
+    if (!wRunOnce)
+    {
+          double ypr[3];
+          mGyro->GetYawPitchRoll(ypr);
+          mYawStart   = ypr[0];
+          mPitchStart = ypr[1];
+          mRollStart  = ypr[2];
+
+          wRunOnce = true;
+    }
+  
+    //ctre::phoenix::sensors::Pigeon2::GeneralStatus status;
+    //mGyro->GetGeneralStatus(status);
     
+    static double ypr[3];
+    mGyro->GetYawPitchRoll(ypr);
+    ypr[0] = ypr[0] - mYawStart;
+    ypr[1] = ypr[1] - mPitchStart;
+    ypr[2] = ypr[2] - mRollStart;
+
+    if (mNumberOfExecution % 25 == 0 and kLogIMU)
+    {
+        std::cout << "Yaw:" << ypr[0] << "    Pitch :" << ypr[1] << "   Roll " << ypr[2] << std::endl;
+    }
+    mNumberOfExecution++;
 }
 
-void SubIMU::Periodic() 
+double SubIMU::getAngle()
 {
-  
-}
-
-float SubIMU::getAngle() 
-{
-  
-    return 0.0;
-
+    return (mGyro->GetYaw()-mYawStart);
 }
 
 units::radian_t SubIMU::getRadian()
 {
-  
-  return (units::radian_t)0;  
+    units::radian_t mAngle{getAngle()};
+    return mAngle;
+}
+
+void SubIMU::ResetYaw()
+{
+    mGyro->Reset();
+}
+
+frc::Rotation2d SubIMU::getRotation2d()
+{
+    return mGyro->GetRotation2d();
 }

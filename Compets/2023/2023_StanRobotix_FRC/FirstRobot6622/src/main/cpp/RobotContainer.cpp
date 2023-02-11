@@ -5,10 +5,9 @@
 #include "RobotContainer.h"
 #include <iostream>
 
-
 RobotContainer::RobotContainer()
 {
-  mDriveTrain = new SubDriveTrain;
+   mDriveTrain = new SubDriveTrain;
 
   //sSubIMU::getInstance()->Enable();
 
@@ -16,9 +15,11 @@ RobotContainer::RobotContainer()
 
     mUltrasonic = new SubUltrasonic;
     mUltrasonic->EnableImperialSystem();
-    mUltrasonic -> EnableLog(kLogUltrason_Enable);
+     mUltrasonic -> EnableLog(kLogUltrason_Enable);
    	
-    ConfigureButtonBindings();}
+    ConfigureButtonBindings();
+    
+}
 
 frc2::Command *RobotContainer::GetAutonomousCommand()
 {
@@ -28,7 +29,11 @@ frc2::Command *RobotContainer::GetAutonomousCommand()
 void RobotContainer::DriveDisplacement()
 {
   const double slider = (1-mJoystick.GetThrottle())/2;
-  mDriveTrain->MoveMeca(mJoystick.GetX()*slider, mJoystick.GetY()*slider, mJoystick.GetTwist()*slider,mJoystick.GetRawButton(0));
+  mDriveTrain->MoveMeca(mJoystick.GetX()*slider, mJoystick.GetY()*slider, 0 , 1-mJoystick.GetRawButton(1));
+  if(mJoystick.GetRawButtonPressed(2))
+  {
+    SubIMU::getInstance()->ResetYaw();
+  }
 }
 
 void RobotContainer::ConfigureButtonBindings()
@@ -41,6 +46,8 @@ void RobotContainer::Drive()
   DriveDisplacement();
 
   mUltrasonic->Execute();
+
+  SubIMU::getInstance()->Periodic();
 
 }
 

@@ -11,6 +11,9 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
 
+#include <iostream>
+
+
 SubDriveTrain::SubDriveTrain() 
 {
   m_frontLeft.SetInverted(true);         // Le filage est inverse pour ce moteur dans le robot.
@@ -23,7 +26,22 @@ void SubDriveTrain::Periodic() {}
 
 void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented)   // le prefix i est necessaire, pour specifier que c est une entree.
 {
-  frc::Rotation2d imuAngle = SubIMU::getInstance()->getRadian();
+  static bool wIsFieldOrientedActive = false;
+  if (iFieldOriented != wIsFieldOrientedActive)  // TODO: rajouter un filtre
+  {
+    if (iFieldOriented)
+    {
+       std::cout << "In Field Oriented now Active " << std::endl;
+    }
+    else
+    {
+       std::cout << "In Field Oriented now InActive " << std::endl;
+    }
+
+    wIsFieldOrientedActive = iFieldOriented;
+  }
+
+  frc::Rotation2d imuAngle = SubIMU::getInstance()->getRotation2d();
   if (iFieldOriented)
   {
     m_robotDrive.DriveCartesian(-iY, iX, iTwist, imuAngle);
