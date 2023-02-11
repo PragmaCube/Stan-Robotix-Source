@@ -42,6 +42,8 @@ void RobotContainer::Drive()
 
   mUltrasonic->Execute();
 
+  SubIMU::getInstance()->Periodic();
+
 }
 
 void RobotContainer::Auto()

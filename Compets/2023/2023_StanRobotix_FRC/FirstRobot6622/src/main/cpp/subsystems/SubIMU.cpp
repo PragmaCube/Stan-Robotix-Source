@@ -10,6 +10,8 @@
 #include "subsystems/SubIMU.h"
 #include "Constants.h"
 
+#include <iostream>
+
 SubIMU * SubIMU::mSingleton = nullptr;
 
 SubIMU::SubIMU()
@@ -35,7 +37,20 @@ void SubIMU::Enable()
 
 void SubIMU::Periodic() 
 {
-  
+   ctre::phoenix::sensors::PigeonIMU::GeneralStatus status;
+
+   gyro.GetGeneralStatus(status);
+
+    static double ypr[3];
+    gyro.GetYawPitchRoll(ypr);
+    std::cout << "Yaw:" << ypr[0] << "Pitch :" << ypr[1] << "Roll " << ypr[2] <<std::endl;
+
+    
+
+
+
+
+
 }
 
 float SubIMU::getAngle() 
