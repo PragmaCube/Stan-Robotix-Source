@@ -7,12 +7,13 @@
 #include <vector>
 #include <frc2/command/SubsystemBase.h>
 
-#include <frc/ADIS16448_IMU.h>
+#include <ctre/phoenix/sensors/WPI_PigeonIMU.h>
 
 class SubIMU : public frc2::SubsystemBase
 {
 private:
-   frc::ADIS16448_IMU * m_Imu;
+  
+  ctre::phoenix::sensors::WPI_PigeonIMU gyro{0};
 
    static SubIMU * mSingleton;
 
