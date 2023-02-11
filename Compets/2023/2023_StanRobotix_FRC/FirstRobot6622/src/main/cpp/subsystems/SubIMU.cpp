@@ -21,8 +21,6 @@ SubIMU::SubIMU()
    mGyro->Reset();
 }
 
-SubIMU::~SubIMU() {}
-
 SubIMU *SubIMU::getInstance()
 {
     if (mSingleton == nullptr)
@@ -37,7 +35,7 @@ void SubIMU::Enable(bool iEnable)
     mIsEnable = iEnable;
 }
 
-void SubIMU::Periodic()
+void SubIMU::doExecute()
 {
     static int mNumberOfExecution = 0;
     static bool wRunOnce = false;
@@ -61,7 +59,7 @@ void SubIMU::Periodic()
     ypr[1] = ypr[1] - mPitchStart;
     ypr[2] = ypr[2] - mRollStart;
 
-    if (mNumberOfExecution % 25 == 0 and kLogIMU)
+    if (mNumberOfExecution % 25 == 0 &&  mSubsystemLogEnabled)
     {
         std::cout << "Yaw:" << ypr[0] << "    Pitch :" << ypr[1] << "   Roll " << ypr[2] << std::endl;
     }

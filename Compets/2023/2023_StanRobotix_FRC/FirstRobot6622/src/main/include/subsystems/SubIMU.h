@@ -5,12 +5,13 @@
 #pragma once
 
 #include <vector>
-#include <frc2/command/SubsystemBase.h>
 
+#include <frc2/command/SubsystemBase.h>
 #include <ctre/phoenix/sensors/WPI_Pigeon2.h>
 
+#include "PerformanceMonitor.h"
 
-class SubIMU : public frc2::SubsystemBase
+class SubIMU : public frc2::SubsystemBase, public PerformanceMonitor
 {
 public:
   typedef enum
@@ -25,6 +26,7 @@ private:
   float mInitialValue[3] = {0.0, 0.0, 0.0};
   ctre::phoenix::sensors::WPI_Pigeon2 * mGyro = nullptr; 
   static SubIMU *mSingleton;
+  bool mSubsystemLogEnabled = false;
 
   float mYawStart;
   float mPitchStart;
@@ -34,16 +36,20 @@ private:
   static constexpr double kP = 0.005;
   std::vector<double> m_gyroVals;
 
+  virtual void doExecute();
+
+  virtual std::string getName() { return "SubIMU"; }
+  
 public:
   SubIMU();
-  ~SubIMU();
 
+  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
+ 
   static SubIMU *getInstance();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
-  void Periodic() override;
   void Enable(bool aEnable);
   void ResetYaw();
   double getAngle();
