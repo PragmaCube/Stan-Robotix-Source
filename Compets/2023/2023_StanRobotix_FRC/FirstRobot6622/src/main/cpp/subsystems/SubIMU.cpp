@@ -49,9 +49,6 @@ void SubIMU::doExecute()
 
           wRunOnce = true;
     }
-  
-    //ctre::phoenix::sensors::Pigeon2::GeneralStatus status;
-    //mGyro->GetGeneralStatus(status);
     
     static double ypr[3];
     mGyro->GetYawPitchRoll(ypr);
@@ -84,5 +81,5 @@ void SubIMU::ResetYaw()
 
 frc::Rotation2d SubIMU::getRotation2d()
 {
-    return mGyro->GetRotation2d();
+    return -mGyro->GetRotation2d();
 }

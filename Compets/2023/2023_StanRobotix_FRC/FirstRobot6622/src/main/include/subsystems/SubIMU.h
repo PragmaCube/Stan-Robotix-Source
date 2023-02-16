@@ -7,7 +7,7 @@
 #include <vector>
 
 #include <frc2/command/SubsystemBase.h>
-#include <ctre/phoenix/sensors/WPI_Pigeon2.h>
+#include <ctre/Phoenix.h>
 
 #include "PerformanceMonitor.h"
 
@@ -24,7 +24,7 @@ public:
 private:
   bool mIsEnable = true;
   float mInitialValue[3] = {0.0, 0.0, 0.0};
-  ctre::phoenix::sensors::WPI_Pigeon2 * mGyro = nullptr; 
+  ctre::phoenix::sensors::WPI_Pigeon2 *mGyro /*= nullptr*/; 
   static SubIMU *mSingleton;
   bool mSubsystemLogEnabled = false;
 

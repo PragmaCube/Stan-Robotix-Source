@@ -26,8 +26,8 @@ void SubDriveTrain::Periodic() {}
 
 void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented)   // le prefix i est necessaire, pour specifier que c est une entree.
 {
-  static bool wIsFieldOrientedActive = false;
-  if (iFieldOriented != wIsFieldOrientedActive)  // TODO: rajouter un filtre
+  static bool wPreviFieldOriented = false;
+  if (kLogDrivetrain && (iFieldOriented != wPreviFieldOriented)) 
   {
     if (iFieldOriented)
     {
@@ -35,16 +35,16 @@ void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwi
     }
     else
     {
-       std::cout << "In Field Oriented now InActive " << std::endl;
+       std::cout << "In Field Oriented now Inactive " << std::endl;
     }
 
-    wIsFieldOrientedActive = iFieldOriented;
+    wPreviFieldOriented = iFieldOriented;
   }
 
   frc::Rotation2d imuAngle = SubIMU::getInstance()->getRotation2d();
   if (iFieldOriented)
   {
-    m_robotDrive.DriveCartesian(-iY, iX, iTwist, imuAngle);
+    m_robotDrive.DriveCartesian(-iY, iX, iTwist, SubIMU::getInstance()->getRotation2d());
   }
   else
   {
