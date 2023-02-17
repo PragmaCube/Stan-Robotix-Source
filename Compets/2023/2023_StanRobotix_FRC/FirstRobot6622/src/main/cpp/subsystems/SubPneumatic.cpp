@@ -8,7 +8,7 @@
 
 SubPneumatic::SubPneumatic()
 {
-  //mDoubleSolenoid = new frc::DoubleSolenoid(frc::PneumaticsModuleType::CTREPCM, 1, 2);
+  mDoubleSolenoid = new frc::DoubleSolenoid(0, frc::PneumaticsModuleType::CTREPCM, 1, 2);
   pcmCompressor = new frc::Compressor{0, frc::PneumaticsModuleType::CTREPCM};
   Enable();
 }
@@ -27,12 +27,12 @@ void SubPneumatic::Periodic()
     
 }
 
-void SubPneumatic::Extract() 
+void SubPneumatic::Extract()
 {
-  //  mDoubleSolenoid->Set(frc::DoubleSolenoid::Value::kForward);
+  mDoubleSolenoid->Set(frc::DoubleSolenoid::Value::kForward);
 }
 
 void SubPneumatic::Retract()
 {
- // mDoubleSolenoid->Set(frc::DoubleSolenoid::Value::kReverse);
+  mDoubleSolenoid->Set(frc::DoubleSolenoid::Value::kReverse);
 }
