@@ -14,11 +14,13 @@ RobotContainer::RobotContainer()
 
   m_autonomousCommand.setSubsystem(mDriveTrain);
 
-    mUltrasonic = new SubUltrasonic;
-    mUltrasonic->EnableImperialSystem();
-    mUltrasonic -> EnableLog(kLogUltrason_Enable);
-   	
-    ConfigureButtonBindings();}
+  mUltrasonic = new SubUltrasonic;
+  mUltrasonic->EnableImperialSystem();
+  mUltrasonic -> EnableLog(kLogUltrason_Enable);
+  
+  
+  ConfigureButtonBindings();
+}
 
 frc2::Command *RobotContainer::GetAutonomousCommand()
 {
