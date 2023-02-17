@@ -35,6 +35,11 @@ constexpr int kUltrasonicDIO = 0;
 constexpr int kJoystickPort = 0;
 
 ///////////////////////////////////////////////////////
+// Contact
+//                                    #1      #2     #3     #4     #5     #6     #
+constexpr bool kContactEnable[10] = {false, false, false, false, false, false, false, false, false, false} ;
+
+///////////////////////////////////////////////////////
 // Activation des logs
 constexpr bool kLogUltrason_Enable = true;
 constexpr int  kLogUltrason_Nb = 5;             // TODO: ralentir les logs pour le Ultra-son
