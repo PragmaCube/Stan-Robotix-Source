@@ -6,20 +6,29 @@
 #include "Constants.h"
 
 
+SubPneumatic * SubPneumatic::mSingleton = nullptr;
+
 SubPneumatic::SubPneumatic()
 {
-  mDoubleSolenoid = new frc::DoubleSolenoid(0, frc::PneumaticsModuleType::CTREPCM, 1, 2);
-  pcmCompressor = new frc::Compressor{0, frc::PneumaticsModuleType::CTREPCM};
+  // mDoubleSolenoid = new frc::DoubleSolenoid(0, frc::PneumaticsModuleType::CTREPCM, 1, 2);
+  // pcmCompressor = new frc::Compressor{0, frc::PneumaticsModuleType::CTREPCM};
   Enable();
 }
 
 SubPneumatic::~SubPneumatic(){}
 
-
+SubPneumatic * SubPneumatic::getInstance()
+{
+  if (mSingleton == nullptr)
+  {
+    mSingleton = new SubPneumatic();
+  }
+  return mSingleton;
+}
 
 void SubPneumatic::Enable()
 {
-  pcmCompressor->EnableDigital();
+  // pcmCompressor.EnableDigital();
 }
 
 void SubPneumatic::Periodic() 
@@ -29,10 +38,15 @@ void SubPneumatic::Periodic()
 
 void SubPneumatic::Extract()
 {
-  mDoubleSolenoid->Set(frc::DoubleSolenoid::Value::kForward);
+  mDoubleSolenoid.Set(frc::DoubleSolenoid::Value::kForward);
 }
 
 void SubPneumatic::Retract()
 {
-  mDoubleSolenoid->Set(frc::DoubleSolenoid::Value::kReverse);
+  mDoubleSolenoid.Set(frc::DoubleSolenoid::Value::kReverse);
+}
+
+void SubPneumatic::Toggle()
+{
+  mDoubleSolenoid.Toggle();
 }
