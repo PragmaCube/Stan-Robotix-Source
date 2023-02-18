@@ -7,19 +7,19 @@
 
 RobotContainer::RobotContainer()
 {
-   mDriveTrain = new SubDriveTrain;
+    mDriveTrain = new SubDriveTrain;
 
-  //sSubIMU::getInstance()->Enable();
-
-  m_autonomousCommand.setSubsystem(mDriveTrain);
+    m_autonomousCommand.setSubsystem(mDriveTrain);
 
     mUltrasonic = new SubUltrasonic;
     mUltrasonic->EnableImperialSystem();
-    mUltrasonic -> EnablePerformanceLog(kLogPerf_UltrasonEnable);
+    mUltrasonic->EnablePerformanceLog(kLogPerf_UltrasonEnable);
+
+    mElevator = new SubElevator;
 
     SubIMU::getInstance()->EnableSubsystemLog(kLogIMU);
     SubIMU::getInstance()->EnablePerformanceLog(kLogPerf_ImuEnable);
-   	
+	   	
     ConfigureButtonBindings();
     
 }
@@ -39,6 +39,23 @@ void RobotContainer::DriveDisplacement()
   }
 }
 
+void RobotContainer::Elevator()
+{
+  if(mJoystick.GetPOV()==180) 
+  {
+    mElevator->Stage(SubElevator::h0);
+  }
+  else if (mJoystick.GetPOV()==90) 
+  {
+    mElevator->Stage(SubElevator::h1);
+  }
+  else if (mJoystick.GetPOV()==0) 
+  {
+    mElevator->Stage(SubElevator::h2);
+  }
+
+}
+
 void RobotContainer::ConfigureButtonBindings()
 {
   // Configure your button bindings here
@@ -49,6 +66,8 @@ void RobotContainer::Drive()
   DriveDisplacement();
 
   mUltrasonic->Execute();
+  
+  Elevator();
   
   SubIMU::getInstance()->Execute();
 

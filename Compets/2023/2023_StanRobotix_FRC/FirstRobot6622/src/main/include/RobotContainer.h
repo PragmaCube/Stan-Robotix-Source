@@ -1,9 +1,3 @@
-
-
-
-
-
-
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -19,6 +13,7 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
 #include "subsystems/SubUltrasonic.h"
+#include "subsystems/SubElevator.h"
 #include "subsystems/SubPneumatic.h"
 
 #include "Constants.h" 
@@ -37,6 +32,7 @@ public:
   frc2::Command *GetAutonomousCommand();
   void Drive();
   void Auto();
+  void Elevator();
 
 private:
   AutonomousCommand m_autonomousCommand;
@@ -48,7 +44,7 @@ private:
 
   SubIMU *mImu;
   SubUltrasonic* mUltrasonic; 
-  
+  SubElevator* mElevator;
   SubPneumatic *mPneumatic;
 
   bool mSmart = 0 ;
