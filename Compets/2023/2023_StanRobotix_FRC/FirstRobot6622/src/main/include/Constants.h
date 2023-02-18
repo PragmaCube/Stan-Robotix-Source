@@ -25,18 +25,28 @@ constexpr int kMotorL2Port = 0;
 constexpr int kMotorL1Port = 1;
 constexpr int kMotorR2Port = 2;
 constexpr int kMotorR1Port = 3;
+constexpr bool kDriveTrainEnabled = false;
+
+///////////////////////////////////////////////////////
+// Pneumatic
+constexpr bool kPneumaticEnable = false;
 
 ///////////////////////////////////////////////////////
 // Ultra son 
 constexpr int kUltrasonicDIO = 0;
+constexpr bool kUltrasonEnable = false;
 
 ///////////////////////////////////////////////////////
 // Joystick
 constexpr int kJoystickPort = 0;
 
 ///////////////////////////////////////////////////////
+// Pneumatic
+constexpr int kSolenoid1Port = 1;
+constexpr int kSolenoid2Port = 0;
+
+///////////////////////////////////////////////////////
 // Activation des logs
-constexpr int  kLogUltrason_Nb = 5;             // TODO: ralentir les logs pour le Ultra-son
 
 constexpr bool kLogPerf_UltrasonEnable = false;
 constexpr bool kLogPerf_ImuEnable = true;

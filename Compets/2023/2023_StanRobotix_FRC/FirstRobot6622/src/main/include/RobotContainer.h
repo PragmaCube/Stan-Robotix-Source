@@ -19,6 +19,7 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
 #include "subsystems/SubUltrasonic.h"
+#include "subsystems/SubPneumatic.h"
 
 #include "Constants.h" 
 /**
@@ -47,9 +48,12 @@ private:
 
   SubIMU *mImu;
   SubUltrasonic* mUltrasonic; 
+  
+  SubPneumatic *mPneumatic;
 
   bool mSmart = 0 ;
   void ConfigureButtonBindings();
   void DriveDisplacement();
+  void DrivePneumatic();
 
 };
