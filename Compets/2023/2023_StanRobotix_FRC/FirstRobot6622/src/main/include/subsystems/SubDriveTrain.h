@@ -17,7 +17,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
  public:
   SubDriveTrain();
 
-
+  void Enable(const bool iIsEnabled);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -25,6 +25,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
   void MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented);
  private:
+  bool mIsEnabled = false;
 
   frc::Spark m_frontLeft{kMotorL1Port};
   frc::Spark m_rearLeft{kMotorL2Port};

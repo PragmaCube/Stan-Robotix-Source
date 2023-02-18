@@ -9,7 +9,26 @@ SubElevator::SubElevator()
     resetPidData();
 }
 
-// This method will be called once per scheduler run
+void SubElevator::Enable(const bool iEnable) 
+{ 
+    mIsEnabled = iEnable;
+}
+
+void SubElevator::setCommand(const int iPov)
+{
+  if(iPov==180) 
+  {
+    Stage(SubElevator::h0);
+  }
+  else if (iPov==90) 
+  {
+    Stage(SubElevator::h1);
+  }
+  else if (iPov==0) 
+  {
+    Stage(SubElevator::h2);
+  }
+}
 
 void SubElevator::resetPidData()
 {

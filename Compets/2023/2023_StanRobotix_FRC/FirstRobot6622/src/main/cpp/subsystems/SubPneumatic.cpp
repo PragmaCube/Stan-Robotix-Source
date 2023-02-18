@@ -46,7 +46,7 @@ void SubPneumatic::Retract()
 
 void SubPneumatic::Toggle()
 {
-  if (kPneumaticEnable)
+  if (kPneumaticEnabled)
   {
      mDoubleSolenoid.Toggle();
   }  

@@ -22,7 +22,12 @@ class SubElevator : public frc2::SubsystemBase {
   void Stage(eHeight iHeight);
   void Periodic() override;
 
+  void Enable(const bool iEnable);
+
+  void setCommand(const int iPov);
+
  private:
+  bool mIsEnabled = false;
 
   double kMaxVel = 10000, 
          kMinVel = 0, 

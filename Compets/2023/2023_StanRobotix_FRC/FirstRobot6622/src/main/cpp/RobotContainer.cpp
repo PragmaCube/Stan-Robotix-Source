@@ -7,53 +7,38 @@
 
 RobotContainer::RobotContainer()
 {
-    mDriveTrain = new SubDriveTrain;
+  mDriveTrain = new SubDriveTrain;
+  mDriveTrain->Enable(kDriveTrainEnabled);
 
-    m_autonomousCommand.setSubsystem(mDriveTrain);
+  m_autonomousCommand.setSubsystem(mDriveTrain);
 
-    mUltrasonic = new SubUltrasonic;
-    mUltrasonic->EnableImperialSystem();
-    mUltrasonic->EnablePerformanceLog(kLogPerf_UltrasonEnable);
+  mUltrasonic = new SubUltrasonic;
+  mUltrasonic->EnableImperialSystem();
+  mUltrasonic->EnablePerformanceLog(kLogPerf_UltrasonEnable);
 
-    mElevator = new SubElevator;
+  mElevator = new SubElevator;
+  mElevator->Enable(kElevatorEnabled);
 
-    SubIMU::getInstance()->EnableSubsystemLog(kLogIMU);
-    SubIMU::getInstance()->EnablePerformanceLog(kLogPerf_ImuEnable);
-	   	
-    ConfigureButtonBindings();
-    
+  SubIMU::getInstance()->EnableSubsystemLog(kLogIMU);
+  SubIMU::getInstance()->EnablePerformanceLog(kLogPerf_ImuEnable);
+  SubIMU::getInstance()->Enable(kImuEnabled);
+
+  ConfigureButtonBindings();
 }
 
 frc2::Command *RobotContainer::GetAutonomousCommand()
 {
-   return &m_autonomousCommand;
+  return &m_autonomousCommand;
 }
 
 void RobotContainer::DriveDisplacement()
 {
-  const double slider = (1-mJoystick.GetThrottle())/2;
-  mDriveTrain->MoveMeca(mJoystick.GetX()*slider, mJoystick.GetY()*slider, mJoystick.GetTwist()*slider, 1-mJoystick.GetRawButton(1));
-  if(mJoystick.GetRawButtonPressed(2))
+  const double slider = (1 - mJoystick.GetThrottle()) / 2;
+  mDriveTrain->MoveMeca(mJoystick.GetX() * slider, mJoystick.GetY() * slider, mJoystick.GetTwist() * slider, 1 - mJoystick.GetRawButton(1));
+  if (mJoystick.GetRawButtonPressed(2))
   {
     SubIMU::getInstance()->ResetYaw();
   }
-}
-
-void RobotContainer::Elevator()
-{
-  if(mJoystick.GetPOV()==180) 
-  {
-    mElevator->Stage(SubElevator::h0);
-  }
-  else if (mJoystick.GetPOV()==90) 
-  {
-    mElevator->Stage(SubElevator::h1);
-  }
-  else if (mJoystick.GetPOV()==0) 
-  {
-    mElevator->Stage(SubElevator::h2);
-  }
-
 }
 
 void RobotContainer::ConfigureButtonBindings()
@@ -66,14 +51,12 @@ void RobotContainer::Drive()
   DriveDisplacement();
 
   mUltrasonic->Execute();
-  
-  Elevator();
-  
-  SubIMU::getInstance()->Execute();
 
+  mElevator->setCommand(mJoystick.GetPOV());
+
+  SubIMU::getInstance()->Execute();
 }
 
 void RobotContainer::Auto()
 {
-
 }

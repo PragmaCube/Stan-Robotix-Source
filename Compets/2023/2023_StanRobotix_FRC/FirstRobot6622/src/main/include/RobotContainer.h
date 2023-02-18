@@ -32,7 +32,6 @@ public:
   frc2::Command *GetAutonomousCommand();
   void Drive();
   void Auto();
-  void Elevator();
 
 private:
   AutonomousCommand m_autonomousCommand;

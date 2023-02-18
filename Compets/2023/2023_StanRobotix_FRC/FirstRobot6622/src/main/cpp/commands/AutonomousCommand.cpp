@@ -83,6 +83,8 @@ void AutonomousCommand::Execute()
       wIsFinished = isPhase9Finished();
       wNextPhase = step_t::PhaseFinish;
       break;
+   case PhaseFinish:
+      break;
    };
 
    if (wIsFinished)

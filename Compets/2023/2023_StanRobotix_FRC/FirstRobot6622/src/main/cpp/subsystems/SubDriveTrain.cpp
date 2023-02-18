@@ -21,6 +21,11 @@ SubDriveTrain::SubDriveTrain()
   m_frontRight.SetInverted(true);        // Le filage est inverse pour ce moteur dans le robot.
 }
 
+void SubDriveTrain::Enable(const bool iIsEnabled)
+{
+   mIsEnabled = iIsEnabled;
+}
+
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
 
@@ -41,14 +46,16 @@ void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwi
     wPreviFieldOriented = iFieldOriented;
   }
 
-  
-  if (iFieldOriented)
+  if (mIsEnabled)
   {
-    frc::Rotation2d imuAngle = SubIMU::getInstance()->getRotation2d();
-    m_robotDrive.DriveCartesian(-iY, iX, iTwist, imuAngle);
-  }
-  else
-  {
-    m_robotDrive.DriveCartesian(-iY, iX, iTwist);
+    if (iFieldOriented)
+    {
+      frc::Rotation2d imuAngle = SubIMU::getInstance()->getRotation2d();
+      m_robotDrive.DriveCartesian(-iY, iX, iTwist, imuAngle);
+    }
+    else
+    {
+      m_robotDrive.DriveCartesian(-iY, iX, iTwist);
+    }
   }
 }

@@ -13,11 +13,18 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+
+///////////////////////////////////////////////////////
+// Activation indépendante des modules
+constexpr bool kDriveTrainEnabled = false;
+constexpr bool kElevatorEnabled = false;
+constexpr bool kImuEnabled = false;
+constexpr bool kPneumaticEnabled = false;
+constexpr bool kUltrasonEnable = false;
+
 ///////////////////////////////////////////////////////
 // IMU
 constexpr int kNumberOfSamples = 3;
-// TODO: coef a changer selon les differents parametres du sol
-constexpr double kCoeffFriction = 1.02;  
 
 ///////////////////////////////////////////////////////
 // Drive Train
@@ -25,16 +32,15 @@ constexpr int kMotorL2Port = 0;
 constexpr int kMotorL1Port = 1;
 constexpr int kMotorR2Port = 2;
 constexpr int kMotorR1Port = 3;
-constexpr bool kDriveTrainEnabled = false;
 
 ///////////////////////////////////////////////////////
 // Pneumatic
-constexpr bool kPneumaticEnable = false;
+
 
 ///////////////////////////////////////////////////////
 // Moteurs assenseur. 
-constexpr int kCanIdElevatorR = 4;   //Valeurs temporaires, à changer si besoin 
-constexpr int kCanIdElevatorL = 1; 
+constexpr int    kCanIdElevatorR = 4;   //Valeurs temporaires, à changer si besoin 
+constexpr int    kCanIdElevatorL = 1; 
 constexpr double kHeightS2 = -220; // valeurs arbitraires (certaines de betabot), faire des tests pour trouver les bonnes valeurs
 constexpr double kHeightS1 =-80;
 constexpr double kMinHeight = 0;
@@ -47,26 +53,26 @@ constexpr double kP = 2.7e-4,
                  kFF = 0.000156, 
                  kMaxOutput = 1, 
                  kMinOutput = -1;
-                 
+
 ///////////////////////////////////////////////////////
 // Ultra son 
-constexpr int kUltrasonicDIO = 0;
-constexpr bool kUltrasonEnable = false;
+constexpr int   kUltrasonicDIO = 0;
+
 
 ///////////////////////////////////////////////////////
 // Joystick
-constexpr int kJoystickPort = 0;
+constexpr int   kJoystickPort = 0;
 
 ///////////////////////////////////////////////////////
 // Pneumatic
-constexpr int kSolenoid1Port = 1;
-constexpr int kSolenoid2Port = 0;
+constexpr int   kSolenoid1Port = 1;
+constexpr int   kSolenoid2Port = 0;
 
 ///////////////////////////////////////////////////////
 // Activation des logs
 
 constexpr bool kLogPerf_UltrasonEnable = false;
-constexpr bool kLogPerf_ImuEnable = true;
+constexpr bool kLogPerf_ImuEnable = false;
 
 constexpr bool kLogIMU = true;
 constexpr bool kLogDrivetrain = true;
