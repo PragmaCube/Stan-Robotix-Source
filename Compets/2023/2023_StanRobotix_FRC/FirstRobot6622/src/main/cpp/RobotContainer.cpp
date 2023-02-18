@@ -55,6 +55,8 @@ void RobotContainer::Drive()
   mElevator->setCommand(mJoystick.GetPOV());
 
   SubIMU::getInstance()->Execute();
+
+  mColorSensor->Execute();
 }
 
 void RobotContainer::Auto()

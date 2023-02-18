@@ -8,8 +8,12 @@
 #include <frc/XboxController.h>
 #include <frc/Joystick.h>
 #include <frc/Timer.h>
+#include <frc/smartdashboard/smartdashboard.h>
+
+#include <string>
 
 #include "commands/AutonomousCommand.h"
+#include "subsystems/SubColorSensor.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
 #include "subsystems/SubUltrasonic.h"
@@ -41,6 +45,7 @@ private:
   // mController{kJoystickPort};
   SubDriveTrain *mDriveTrain;
 
+  SubColorSensor* mColorSensor;
   SubIMU *mImu;
   SubUltrasonic* mUltrasonic; 
   SubElevator* mElevator;
@@ -50,5 +55,4 @@ private:
   void ConfigureButtonBindings();
   void DriveDisplacement();
   void DrivePneumatic();
-
 };

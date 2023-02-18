@@ -17,6 +17,7 @@
 ///////////////////////////////////////////////////////
 // Activation indépendante des modules
 constexpr bool kDriveTrainEnabled = false;
+constexpr bool kColorDetectionEnabled = false;
 constexpr bool kElevatorEnabled = false;
 constexpr bool kImuEnabled = false;
 constexpr bool kPneumaticEnabled = false;
