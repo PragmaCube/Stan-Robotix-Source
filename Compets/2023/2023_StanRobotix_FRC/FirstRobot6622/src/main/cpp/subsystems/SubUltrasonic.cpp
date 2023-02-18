@@ -38,5 +38,9 @@ float SubUltrasonic::getDistance()
 
 void SubUltrasonic::doExecute()
 {
-    std::cout << "Ultrason: " << getDistance() << std::endl;
+    if (kUltrasonEnable)
+    {
+        std::cout << "Ultrason: " << getDistance() << std::endl;
+    }
+    
 }

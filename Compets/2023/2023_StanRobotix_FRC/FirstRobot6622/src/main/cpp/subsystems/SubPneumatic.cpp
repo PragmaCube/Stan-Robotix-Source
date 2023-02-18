@@ -10,8 +10,6 @@ SubPneumatic * SubPneumatic::mSingleton = nullptr;
 
 SubPneumatic::SubPneumatic()
 {
-  // mDoubleSolenoid = new frc::DoubleSolenoid(0, frc::PneumaticsModuleType::CTREPCM, 1, 2);
-  // pcmCompressor = new frc::Compressor{0, frc::PneumaticsModuleType::CTREPCM};
   Enable();
 }
 
@@ -28,7 +26,7 @@ SubPneumatic * SubPneumatic::getInstance()
 
 void SubPneumatic::Enable()
 {
-  // pcmCompressor.EnableDigital();
+  mDoubleSolenoid.Set(frc::DoubleSolenoid::Value::kReverse);
 }
 
 void SubPneumatic::Periodic() 
@@ -48,5 +46,8 @@ void SubPneumatic::Retract()
 
 void SubPneumatic::Toggle()
 {
-  mDoubleSolenoid.Toggle();
+  if (kPneumaticEnable)
+  {
+     mDoubleSolenoid.Toggle();
+  }  
 }

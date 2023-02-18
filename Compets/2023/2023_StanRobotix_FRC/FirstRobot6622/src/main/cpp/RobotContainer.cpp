@@ -18,7 +18,7 @@ RobotContainer::RobotContainer()
   mUltrasonic->EnableImperialSystem();
   mUltrasonic -> EnableLog(kLogUltrason_Enable);
   
-  
+  mPneumatic = new SubPneumatic;
   ConfigureButtonBindings();
 }
 
@@ -30,7 +30,15 @@ frc2::Command *RobotContainer::GetAutonomousCommand()
 void RobotContainer::DriveDisplacement()
 {
   const double slider = (1-mJoystick.GetThrottle())/2;
-  mDriveTrain->MoveMeca(mJoystick.GetX()*slider, mJoystick.GetY()*slider, mJoystick.GetTwist()*slider,mJoystick.GetRawButton(0));
+  mDriveTrain->MoveMeca(mJoystick.GetX()*slider, mJoystick.GetY()*slider, mJoystick.GetTwist()*slider,mJoystick.GetRawButton(2));
+}
+
+void RobotContainer::DrivePneumatic()
+{
+  if(mJoystick.GetRawButtonPressed(1))
+  {
+     mPneumatic->Toggle();
+  }
 }
 
 void RobotContainer::ConfigureButtonBindings()
@@ -41,7 +49,7 @@ void RobotContainer::ConfigureButtonBindings()
 void RobotContainer::Drive()
 {
   DriveDisplacement();
-
+  DrivePneumatic();
   mUltrasonic->Execute();
 
 }

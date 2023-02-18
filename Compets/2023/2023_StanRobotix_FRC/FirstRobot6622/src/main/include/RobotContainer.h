@@ -54,5 +54,6 @@ private:
   bool mSmart = 0 ;
   void ConfigureButtonBindings();
   void DriveDisplacement();
+  void DrivePneumatic();
 
 };
