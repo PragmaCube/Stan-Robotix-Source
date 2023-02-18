@@ -20,6 +20,7 @@ constexpr bool kDriveTrainEnabled = false;
 constexpr bool kColorDetectionEnabled = false;
 constexpr bool kElevatorEnabled = false;
 constexpr bool kImuEnabled = false;
+constexpr bool kLimelightEnabled = false;
 constexpr bool kPneumaticEnabled = false;
 constexpr bool kUltrasonEnable = false;
 
@@ -74,6 +75,9 @@ constexpr int   kSolenoid2Port = 0;
 
 constexpr bool kLogPerf_UltrasonEnable = false;
 constexpr bool kLogPerf_ImuEnable = false;
+constexpr bool kLogPerf_LimelightEnable = false;
 
-constexpr bool kLogIMU = true;
-constexpr bool kLogDrivetrain = true;
+constexpr bool kLogIMU = false;
+constexpr bool kLogDrivetrain = false;
+constexpr bool kLogLimelight = false;
+constexpr bool kLogColorDetection = false;

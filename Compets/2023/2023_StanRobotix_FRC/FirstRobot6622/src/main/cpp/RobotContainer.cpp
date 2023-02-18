@@ -12,6 +12,10 @@ RobotContainer::RobotContainer()
 
   m_autonomousCommand.setSubsystem(mDriveTrain);
 
+  mColorSensor = new SubColorSensor();
+  mColorSensor->Enable(kColorDetectionEnabled);
+  mColorSensor->EnableSubsystemLog(kLogColorDetection);
+
   mUltrasonic = new SubUltrasonic;
   mUltrasonic->EnableImperialSystem();
   mUltrasonic->EnablePerformanceLog(kLogPerf_UltrasonEnable);
@@ -22,6 +26,11 @@ RobotContainer::RobotContainer()
   SubIMU::getInstance()->EnableSubsystemLog(kLogIMU);
   SubIMU::getInstance()->EnablePerformanceLog(kLogPerf_ImuEnable);
   SubIMU::getInstance()->Enable(kImuEnabled);
+
+  mLimelight = new SubLimelight();
+  mLimelight->Enable(kLimelightEnabled);
+  mLimelight->EnablePerformanceLog(kLogPerf_LimelightEnable);
+  mLimelight->EnableSubsystemLog(kLogLimelight);  
 
   ConfigureButtonBindings();
 }
@@ -57,6 +66,8 @@ void RobotContainer::Drive()
   SubIMU::getInstance()->Execute();
 
   mColorSensor->Execute();
+
+  mLimelight->Execute();
 }
 
 void RobotContainer::Auto()

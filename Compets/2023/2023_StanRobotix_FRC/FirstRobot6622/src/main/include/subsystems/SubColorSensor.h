@@ -21,6 +21,7 @@ public:
   SubColorSensor();
 
   void Enable(const bool iEnable);
+  void EnableSubsystemLog(const bool iEnable);
 
   void Execute();
 
@@ -35,4 +36,5 @@ private:
   rev::ColorMatch mColorMatcher;
 
   bool mIsEnabled = false;
+  bool mSubsystemLogEnabled = false;
 };

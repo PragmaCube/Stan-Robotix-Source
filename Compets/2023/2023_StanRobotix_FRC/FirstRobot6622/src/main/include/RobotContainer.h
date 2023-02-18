@@ -13,12 +13,14 @@
 #include <string>
 
 #include "commands/AutonomousCommand.h"
+
 #include "subsystems/SubColorSensor.h"
 #include "subsystems/SubDriveTrain.h"
-#include "subsystems/SubIMU.h"
-#include "subsystems/SubUltrasonic.h"
 #include "subsystems/SubElevator.h"
+#include "subsystems/SubIMU.h"
+#include "subsystems/subLimelight.h"
 #include "subsystems/SubPneumatic.h"
+#include "subsystems/SubUltrasonic.h"
 
 #include "Constants.h" 
 /**
@@ -45,11 +47,12 @@ private:
   // mController{kJoystickPort};
   SubDriveTrain *mDriveTrain;
 
-  SubColorSensor* mColorSensor;
-  SubIMU *mImu;
-  SubUltrasonic* mUltrasonic; 
-  SubElevator* mElevator;
-  SubPneumatic *mPneumatic;
+  SubLimelight  * mLimelight   = nullptr;
+  SubColorSensor* mColorSensor = nullptr;
+  SubIMU        * mImu         = nullptr;
+  SubUltrasonic * mUltrasonic  = nullptr;
+  SubElevator   * mElevator    = nullptr;
+  SubPneumatic  * mPneumatic   = nullptr;
 
   bool mSmart = 0 ;
   void ConfigureButtonBindings();

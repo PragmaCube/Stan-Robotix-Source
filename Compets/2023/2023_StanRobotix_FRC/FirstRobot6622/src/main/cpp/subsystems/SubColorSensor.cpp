@@ -17,32 +17,42 @@ void SubColorSensor::Enable(const bool iEnable)
     mIsEnabled = iEnable;
 }
 
+void SubColorSensor::EnableSubsystemLog(const bool iEnable)
+{
+    mSubsystemLogEnabled = iEnable;
+}
+
 void SubColorSensor::Execute()
 {
     if (mIsEnabled)
     {
-        frc::Color mColor = GetColor();
-        double red = mColor.red;
-        double green = mColor.green;
-        double blue = mColor.blue;
+        frc::Color wColor = GetColor();
+        double wRed = wColor.red;
+        double wGreen = wColor.green;
+        double wBlue = wColor.blue;
 
-        std::string mColorString;
-        if (blue > green && green > red)
+        std::string wColorString;
+        if (wBlue > wGreen && wGreen > wRed)
         {
-            mColorString = "Cube";
+            wColorString = "Cube";
         }
-        else if (green > red && red > blue)
+        else if (wGreen > wRed && wRed > wBlue)
         {
-            mColorString = "Cone";
+            wColorString = "Cone";
         }
         else
         {
-            mColorString = "Nothing";
+            wColorString = "Nothing";
         }
-        frc::SmartDashboard::PutString("Color", mColorString);
-        frc::SmartDashboard::PutNumber("Red", mColor.red);
-        frc::SmartDashboard::PutNumber("Green", mColor.green);
-        frc::SmartDashboard::PutNumber("Blue", mColor.blue);
+        frc::SmartDashboard::PutString("Color", wColorString);
+        frc::SmartDashboard::PutNumber("Red", wRed);
+        frc::SmartDashboard::PutNumber("Green", wGreen);
+        frc::SmartDashboard::PutNumber("Blue", wBlue);
+    }
+
+    if (mSubsystemLogEnabled)
+    {
+        // TODO
     }
 }
 
