@@ -32,6 +32,9 @@ RobotContainer::RobotContainer()
   mLimelight->EnablePerformanceLog(kLogPerf_LimelightEnable);
   mLimelight->EnableSubsystemLog(kLogLimelight);  
 
+  mPneumatic = new SubPneumatic();
+  mPneumatic->Enable(kPneumaticEnabled);
+
   ConfigureButtonBindings();
 }
 
@@ -68,6 +71,11 @@ void RobotContainer::Drive()
   mColorSensor->Execute();
 
   mLimelight->Execute();
+
+if(mJoystick.GetRawButtonPressed(1))
+  {
+     mPneumatic->Toggle();
+  }
 }
 
 void RobotContainer::Auto()

@@ -5,9 +5,6 @@
 #include "subsystems/SubPneumatic.h"
 #include "Constants.h"
 
-
-SubPneumatic * SubPneumatic::mSingleton = nullptr;
-
 SubPneumatic::SubPneumatic()
 {
   Enable();
@@ -15,13 +12,9 @@ SubPneumatic::SubPneumatic()
 
 SubPneumatic::~SubPneumatic(){}
 
-SubPneumatic * SubPneumatic::getInstance()
+void SubPneumatic::Enable(const bool iEnable)
 {
-  if (mSingleton == nullptr)
-  {
-    mSingleton = new SubPneumatic();
-  }
-  return mSingleton;
+   mIsEnabled = iEnable;
 }
 
 void SubPneumatic::Enable()
@@ -46,7 +39,7 @@ void SubPneumatic::Retract()
 
 void SubPneumatic::Toggle()
 {
-  if (kPneumaticEnabled)
+  if (mIsEnabled)
   {
      mDoubleSolenoid.Toggle();
   }  
