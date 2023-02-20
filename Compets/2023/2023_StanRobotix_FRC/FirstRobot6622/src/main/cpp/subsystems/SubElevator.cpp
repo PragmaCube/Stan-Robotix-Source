@@ -4,9 +4,13 @@
 
 #include "subsystems/SubElevator.h"
 
-SubElevator::SubElevator()
+SubElevator::SubElevator(RobotContainer * iRobotContainer)
 {
-    resetPidData();
+  mRobotContainer = iRobotContainer;
+
+  resetPidData();
+
+  Enable(kElevatorEnabled);
 }
 
 void SubElevator::Enable(const bool iEnable) 

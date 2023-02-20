@@ -19,6 +19,10 @@ SubIMU::SubIMU()
    mGyro = new ctre::phoenix::sensors::WPI_Pigeon2(0);
    mGyro->Calibrate();
    mGyro->Reset();
+
+   EnableSubsystemLog(kLogIMU);
+   EnablePerformanceLog(kLogPerf_ImuEnable);
+   Enable(kImuEnabled);
 }
 
 SubIMU *SubIMU::getInstance()

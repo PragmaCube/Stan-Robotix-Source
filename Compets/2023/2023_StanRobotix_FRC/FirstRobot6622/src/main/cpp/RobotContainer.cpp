@@ -7,40 +7,50 @@
 
 RobotContainer::RobotContainer()
 {
-  mDriveTrain = new SubDriveTrain;
-  mDriveTrain->Enable(kDriveTrainEnabled);
+  // Liste des commandes automatises.
+  m_autonomousCommand = new AutonomousCommand(this);
 
-  m_autonomousCommand.setSubsystem(mDriveTrain);
+  // Liste des sorties
+  mDriveTrain = new SubDriveTrain(this);
+  mElevator = new SubElevator(this);
+  mPneumatic = new SubPneumatic(this);
 
-  mColorSensor = new SubColorSensor();
-  mColorSensor->Enable(kColorDetectionEnabled);
-  mColorSensor->EnableSubsystemLog(kLogColorDetection);
-
-  mUltrasonic = new SubUltrasonic;
-  mUltrasonic->EnableImperialSystem();
-  mUltrasonic->EnablePerformanceLog(kLogPerf_UltrasonEnable);
-
-  mElevator = new SubElevator;
-  mElevator->Enable(kElevatorEnabled);
-
-  SubIMU::getInstance()->EnableSubsystemLog(kLogIMU);
-  SubIMU::getInstance()->EnablePerformanceLog(kLogPerf_ImuEnable);
-  SubIMU::getInstance()->Enable(kImuEnabled);
-
+  // liste des entrees.
+  mImu = new SubIMU();
   mLimelight = new SubLimelight();
-  mLimelight->Enable(kLimelightEnabled);
-  mLimelight->EnablePerformanceLog(kLogPerf_LimelightEnable);
-  mLimelight->EnableSubsystemLog(kLogLimelight);  
-
-  mPneumatic = new SubPneumatic();
-  mPneumatic->Enable(kPneumaticEnabled);
+  mColorSensor = new SubColorSensor();
+  mUltrasonic = new SubUltrasonic();
+  mUltrasonic->EnableImperialSystem();
 
   ConfigureButtonBindings();
 }
 
-frc2::Command *RobotContainer::GetAutonomousCommand()
+void RobotContainer::AutonomousInit()
 {
-  return &m_autonomousCommand;
+  // Initialisation des subsystemes
+  mDriveTrain->Init();
+  mElevator->Init();
+  mPneumatic->Init();
+  mImu->Init();
+  mLimelight->Init();
+  mColorSensor->Init();
+  mUltrasonic->Init();
+
+  // Initialisation des commandes automatisees.
+  m_autonomousCommand->Init();
+}
+
+void RobotContainer::AutonomousPeriodic()
+{
+  m_autonomousCommand->Execute();
+}
+
+void RobotContainer::TeleopInit()
+{
+  // Initialisation des subsystemes
+
+  // Initialisation des commandes automatisees.
+  // TODO: ajouter chaque automatisation
 }
 
 void RobotContainer::DriveDisplacement()
@@ -72,9 +82,9 @@ void RobotContainer::Drive()
 
   mLimelight->Execute();
 
-if(mJoystick.GetRawButtonPressed(1))
+  if (mJoystick.GetRawButtonPressed(1))
   {
-     mPneumatic->Toggle();
+    mPneumatic->Toggle();
   }
 }
 

@@ -43,6 +43,8 @@ private:
 public:
   SubIMU();
 
+  void Init() { }
+
   void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
  
   static SubIMU *getInstance();

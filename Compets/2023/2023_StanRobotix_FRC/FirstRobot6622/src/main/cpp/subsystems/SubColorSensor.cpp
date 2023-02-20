@@ -8,61 +8,64 @@
 
 SubColorSensor::SubColorSensor() 
 {
-    mColorMatcher.AddColorMatch(kCube);
-    mColorMatcher.AddColorMatch(kCone);
+  mColorMatcher.AddColorMatch(kCube);
+  mColorMatcher.AddColorMatch(kCone);
+
+  Enable(kColorDetectionEnabled);
+  EnableSubsystemLog(kLogColorDetection);
 }
 
 void SubColorSensor::Enable(const bool iEnable)
 {
-    mIsEnabled = iEnable;
+  mIsEnabled = iEnable;
 }
 
 void SubColorSensor::EnableSubsystemLog(const bool iEnable)
 {
-    mSubsystemLogEnabled = iEnable;
+  mSubsystemLogEnabled = iEnable;
 }
 
 void SubColorSensor::Execute()
 {
-    if (mIsEnabled)
-    {
-        frc::Color wColor = GetColor();
-        double wRed = wColor.red;
-        double wGreen = wColor.green;
-        double wBlue = wColor.blue;
+  if (mIsEnabled)
+  {
+    frc::Color wColor = GetColor();
+    double wRed = wColor.red;
+    double wGreen = wColor.green;
+    double wBlue = wColor.blue;
 
-        std::string wColorString;
-        if (wBlue > wGreen && wGreen > wRed)
-        {
-            wColorString = "Cube";
-        }
-        else if (wGreen > wRed && wRed > wBlue)
-        {
-            wColorString = "Cone";
-        }
-        else
-        {
-            wColorString = "Nothing";
-        }
-        frc::SmartDashboard::PutString("Color", wColorString);
-        frc::SmartDashboard::PutNumber("Red", wRed);
-        frc::SmartDashboard::PutNumber("Green", wGreen);
-        frc::SmartDashboard::PutNumber("Blue", wBlue);
-    }
-
-    if (mSubsystemLogEnabled)
+    std::string wColorString;
+    if (wBlue > wGreen && wGreen > wRed)
     {
-        // TODO
+      wColorString = "Cube";
     }
+    else if (wGreen > wRed && wRed > wBlue)
+    {
+      wColorString = "Cone";
+    }
+    else
+    {
+      wColorString = "Nothing";
+    }
+    frc::SmartDashboard::PutString("Color", wColorString);
+    frc::SmartDashboard::PutNumber("Red", wRed);
+    frc::SmartDashboard::PutNumber("Green", wGreen);
+    frc::SmartDashboard::PutNumber("Blue", wBlue);
+  }
+
+  if (mSubsystemLogEnabled)
+  {
+      // TODO
+  }
 }
 
 frc::Color SubColorSensor::GetColor()
 {
-    return mColorSensor.GetColor();
+  return mColorSensor.GetColor();
 }
 
 frc::Color SubColorSensor::GetMatchedColor()
 {
-    double mConfidence = kColorConfidence;
-    return mColorMatcher.MatchClosestColor(GetColor(), mConfidence);
+  double mConfidence = kColorConfidence;
+  return mColorMatcher.MatchClosestColor(GetColor(), mConfidence);
 }

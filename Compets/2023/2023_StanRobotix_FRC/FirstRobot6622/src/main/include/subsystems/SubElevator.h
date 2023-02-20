@@ -11,10 +11,13 @@
 #include "Constants.h"
 #include <frc2/command/SubsystemBase.h>
 
+class RobotContainer;
 
 class SubElevator : public frc2::SubsystemBase {
  public:
-  SubElevator();
+  SubElevator(RobotContainer * iRobotContainer);
+
+  void Init() { }
 
   enum eHeight{h0 = 0 ,h1 = 1, h2 = 2};
   
@@ -28,6 +31,7 @@ class SubElevator : public frc2::SubsystemBase {
 
  private:
   bool mIsEnabled = false;
+  RobotContainer * mRobotContainer;
 
   double kMaxVel = 10000, 
          kMinVel = 0, 

@@ -10,12 +10,16 @@
 
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
+#include "RobotContainer.h"
 
 #include <iostream>
 
-
-SubDriveTrain::SubDriveTrain() 
+SubDriveTrain::SubDriveTrain(RobotContainer * iRobotContainer) 
 {
+  mRobotContainer = iRobotContainer;
+
+  Enable(kDriveTrainEnabled);
+
   m_frontLeft.SetInverted(true);         // Le filage est inverse pour ce moteur dans le robot.
   m_rearRight.SetInverted(true);         // Le filage est inverse pour ce moteur dans le robot.
   m_frontRight.SetInverted(true);        // Le filage est inverse pour ce moteur dans le robot.

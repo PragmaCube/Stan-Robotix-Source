@@ -22,7 +22,7 @@
 #include "subsystems/SubPneumatic.h"
 #include "subsystems/SubUltrasonic.h"
 
-#include "Constants.h" 
+#include "Constants.h"
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -35,26 +35,37 @@ class RobotContainer
 public:
   RobotContainer();
 
+  void AutonomousInit();
+  void TeleopInit();
+
+  void AutonomousPeriodic();
+
   frc2::Command *GetAutonomousCommand();
   void Drive();
   void Auto();
 
+  SubDriveTrain *getDriveTrain() { return mDriveTrain; }
+  SubLimelight *getLimelight() { return mLimelight; }
+  SubColorSensor *getColorSensor() { return mColorSensor; }
+  SubIMU *getImu() { return mImu; }
+  SubUltrasonic *getUltrasonic() { return mUltrasonic; }
+  SubElevator *getSubElevator() { return mElevator; }
+  SubPneumatic *getSubPneumatic() { return mPneumatic; }
+
 private:
-  AutonomousCommand m_autonomousCommand;
+  AutonomousCommand *m_autonomousCommand;
 
-  frc::Joystick mJoystick{ kJoystickPort};
-  
-  // mController{kJoystickPort};
+  frc::Joystick mJoystick{kJoystickPort};
+
   SubDriveTrain *mDriveTrain;
+  SubLimelight *mLimelight = nullptr;
+  SubColorSensor *mColorSensor = nullptr;
+  SubIMU *mImu = nullptr;
+  SubUltrasonic *mUltrasonic = nullptr;
+  SubElevator *mElevator = nullptr;
+  SubPneumatic *mPneumatic = nullptr;
 
-  SubLimelight  * mLimelight   = nullptr;
-  SubColorSensor* mColorSensor = nullptr;
-  SubIMU        * mImu         = nullptr;
-  SubUltrasonic * mUltrasonic  = nullptr;
-  SubElevator   * mElevator    = nullptr;
-  SubPneumatic  * mPneumatic   = nullptr;
-
-  bool mSmart = 0 ;
+  bool mSmart = 0;
   void ConfigureButtonBindings();
   void DriveDisplacement();
   void DrivePneumatic();

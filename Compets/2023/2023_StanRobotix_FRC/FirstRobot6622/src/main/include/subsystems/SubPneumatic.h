@@ -11,6 +11,8 @@
 #include <frc/DoubleSolenoid.h>
 #include "Constants.h"
 
+class RobotContainer;
+
 class SubPneumatic : public frc2::SubsystemBase
 {
 private:
@@ -18,11 +20,14 @@ private:
   // frc::Compressor pcmCompressor{0, frc::PneumaticsModuleType::CTREPCM};
   
   bool mIsEnabled = false;
+  RobotContainer * mRobotContainer;
 
 public:
-  SubPneumatic();
+  SubPneumatic(RobotContainer * iRobotContainer);
 
   ~SubPneumatic();
+
+  void Init() { }
 
   void Enable(const bool iEnable);
 
@@ -32,15 +37,7 @@ public:
   //Enables the reverse doublesolenoid's channel and retracts the pneumatic cylinder.
   void Retract();
 
-  //Disables the solenoid.
-  void Stop();
-
   //toggle le piston
   void Toggle();
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
-  void Periodic() override;
-  void Enable();
   
 };

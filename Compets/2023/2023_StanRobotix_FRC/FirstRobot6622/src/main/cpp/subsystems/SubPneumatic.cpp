@@ -5,9 +5,11 @@
 #include "subsystems/SubPneumatic.h"
 #include "Constants.h"
 
-SubPneumatic::SubPneumatic()
+SubPneumatic::SubPneumatic(RobotContainer * iRobotContainer)
 {
-  Enable();
+  Enable(kPneumaticEnabled);
+
+  mRobotContainer = iRobotContainer;
 }
 
 SubPneumatic::~SubPneumatic(){}
@@ -15,16 +17,11 @@ SubPneumatic::~SubPneumatic(){}
 void SubPneumatic::Enable(const bool iEnable)
 {
    mIsEnabled = iEnable;
-}
 
-void SubPneumatic::Enable()
-{
-  mDoubleSolenoid.Set(frc::DoubleSolenoid::Value::kReverse);
-}
-
-void SubPneumatic::Periodic() 
-{
-    
+   if (mIsEnabled)
+   {
+      Retract();
+   }
 }
 
 void SubPneumatic::Extract()

@@ -16,22 +16,21 @@ class SubUltrasonic : public frc2::SubsystemBase, public PerformanceMonitor
 public:
   SubUltrasonic();
 
+  void Init() { }
+
   float getDistance();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-
   void EnableImperialSystem() { mMetricSystem = false; }
   void EnableMetricSystem() { mMetricSystem = true; }
 
 private:
   frc::AnalogInput mUltrasonic{kUltrasonicDIO};
+  bool mMetricSystem = true;
 
   virtual void doExecute();
-
   virtual std::string getName() { return "SubUltrasonic"; }
-
-  bool mMetricSystem = true;
 };

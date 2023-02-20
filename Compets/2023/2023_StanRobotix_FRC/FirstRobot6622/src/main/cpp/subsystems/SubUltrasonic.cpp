@@ -6,13 +6,16 @@
 // Date       Auteur       Description                                               Test
 // 21jan2023  Antoine T.   Prototypage de ultra son                Distance avec plusieurs objets
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Référence: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/sensors/ultrasonics-software.html 
+// Référence: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/sensors/ultrasonics-software.html
 
 #include "subsystems/SubUltrasonic.h"
 
-#include <iostream> 
+#include <iostream>
 
-SubUltrasonic::SubUltrasonic() = default;
+SubUltrasonic::SubUltrasonic()
+{
+    EnablePerformanceLog(kLogPerf_UltrasonEnable);
+}
 
 // This method will be called once per scheduler run
 void SubUltrasonic::Periodic() {}
@@ -21,19 +24,19 @@ float SubUltrasonic::getDistance()
 {
     double wRawValue = mUltrasonic.GetValue();
 
-    double wVoltageScaleFactor = 5/frc::RobotController::GetVoltage5V();
+    double wVoltageScaleFactor = 5 / frc::RobotController::GetVoltage5V();
 
     double wDistance = 0.0f;
     if (mMetricSystem)
     {
-       wDistance = wRawValue * wVoltageScaleFactor * 0.125; // Distance in centimeter
+        wDistance = wRawValue * wVoltageScaleFactor * 0.125; // Distance in centimeter
     }
     else
     {
-       wDistance = wRawValue * wVoltageScaleFactor * 0.0492;      // Distance in Inch
+        wDistance = wRawValue * wVoltageScaleFactor * 0.0492; // Distance in Inch
     }
 
-    return wDistance; 
+    return wDistance;
 }
 
 void SubUltrasonic::doExecute()

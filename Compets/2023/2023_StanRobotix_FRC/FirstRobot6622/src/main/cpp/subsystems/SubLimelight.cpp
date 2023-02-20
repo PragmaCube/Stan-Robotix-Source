@@ -8,36 +8,37 @@
 
 #include <iostream>
 
-SubLimelight::SubLimelight() 
+SubLimelight::SubLimelight()
 {
-
+  Enable(kLimelightEnabled);
+  EnablePerformanceLog(kLogPerf_LimelightEnable);
+  EnableSubsystemLog(kLogLimelight);
 }
 
 void SubLimelight::Enable(const bool iEnable)
 {
-    mIsEnabled = iEnable;
+  mIsEnabled = iEnable;
 }
 
 void SubLimelight::doExecute()
 {
-    if (mIsEnabled)
+  if (mIsEnabled)
+  {
+    if (mIsInit)
     {
-        if (mIsInit)
-        {
-           mNetworkTable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-        }
-        
-        mTargetOffsetAngle_Horizontal = mNetworkTable->GetNumber("tx",0.0);
-        mTargetOffsetAngle_Vertical = mNetworkTable->GetNumber("ty",0.0);
-        mTargetArea = mNetworkTable->GetNumber("ta",0.0);
-        mTargetSkew = mNetworkTable->GetNumber("ts",0.0);
+        mNetworkTable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
     }
+    mTargetOffsetAngle_Horizontal = mNetworkTable->GetNumber("tx", 0.0);
+    mTargetOffsetAngle_Vertical = mNetworkTable->GetNumber("ty", 0.0);
+    mTargetArea = mNetworkTable->GetNumber("ta", 0.0);
+    mTargetSkew = mNetworkTable->GetNumber("ts", 0.0);
+  }
 
-    if (mSubsystemLogEnabled)
-    {
-       std::cout << "\nTargetOffsetAngle Hz(tx):" <<  mTargetOffsetAngle_Horizontal
-                 << "\nTargetOffsetAngle Vt(ty):" <<  mTargetOffsetAngle_Vertical
-                 << "\nTargetArea (ta):" <<  mTargetArea
-                 << "\nTargetSkew (ts):" <<  mTargetSkew << std::endl;
-    }
+  if (mSubsystemLogEnabled)
+  {
+    std::cout << "\nTargetOffsetAngle Hz(tx):" << mTargetOffsetAngle_Horizontal
+              << "\nTargetOffsetAngle Vt(ty):" << mTargetOffsetAngle_Vertical
+              << "\nTargetArea (ta):" << mTargetArea
+              << "\nTargetSkew (ts):" << mTargetSkew << std::endl;
+  }
 }

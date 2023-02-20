@@ -19,6 +19,8 @@ class SubLimelight : public PerformanceMonitor
 public:
   SubLimelight();
 
+  void Init() { }
+
   void Enable(const bool iEnable);
 
   void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }

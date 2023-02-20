@@ -20,6 +20,8 @@ public:
 public:
   SubColorSensor();
 
+  void Init() { }
+
   void Enable(const bool iEnable);
   void EnableSubsystemLog(const bool iEnable);
 
