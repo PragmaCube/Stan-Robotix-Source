@@ -21,7 +21,7 @@ constexpr bool kColorDetectionEnabled = false;
 constexpr bool kElevatorEnabled = false;
 constexpr bool kImuEnabled = false;
 constexpr bool kLimelightEnabled = false;
-constexpr bool kPneumaticEnabled = false;
+constexpr bool kPneumaticEnabled = true;
 constexpr bool kUltrasonEnable = false;
 
 ///////////////////////////////////////////////////////

@@ -16,13 +16,15 @@ class SubPneumatic : public frc2::SubsystemBase
 private:
   frc::DoubleSolenoid mDoubleSolenoid{frc::PneumaticsModuleType::CTREPCM, kSolenoid1Port, kSolenoid2Port};
   // frc::Compressor pcmCompressor{0, frc::PneumaticsModuleType::CTREPCM};
-  static SubPneumatic *mSingleton;
+  
+  bool mIsEnabled = false;
+
 public:
   SubPneumatic();
 
   ~SubPneumatic();
 
-  static SubPneumatic * getInstance();
+  void Enable(const bool iEnable);
 
   //Enables the forward doublesolenoid's channel and pushes the pneumatic cylinder forward.
   void Extract();
