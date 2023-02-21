@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
-
+#include <frc/DigitalInput.h>
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -36,8 +36,8 @@ constexpr int kJoystickPort = 0;
 
 ///////////////////////////////////////////////////////
 // Contact
-//                                    #1      #2     #3     #4     #5     #6     #
-constexpr bool kContactEnable[10] = {false, false, false, false, false, false, false, false, false, false} ;
+//                                         #1      #2     #3     #4     #5     #6     #7
+/*constexpr*/bool kContactEnable[10] = {false, false, false, false, false, false, false, false, false, false} ;
 
 ///////////////////////////////////////////////////////
 // Activation des logs

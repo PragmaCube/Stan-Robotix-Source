@@ -5,28 +5,17 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/DigitalInput.h>
-#include <Constants.h>
-#include <vector>
 
-class SubContactDetection : public frc2::SubsystemBase {
+class SubJumper : public frc2::SubsystemBase {
  public:
-  
-  SubContactDetection();
+  SubJumper();
 
-  bool GetContactStatus(int index);
-  
-  int mIndex=0;
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
  private:
-  // bool mContactStatus [10] = {false, false, false, false, false, false, false, false, false, false} ;
-   std::vector<frc::DigitalInput *> mTototo;
-
-  frc::DigitalInput mDigitalInput{mIndex};
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

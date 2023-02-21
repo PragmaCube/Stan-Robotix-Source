@@ -10,22 +10,16 @@ SubContactDetection::SubContactDetection() {
 
    // parcourir la liste kContactEnable[10] avec for (;;)
    // si l element index = true alors 
-   for(int i = 0; i < 10; i++)
-   {
-    if (mContactStatus[i] == true)
-    {
-        break;
-    }
-   } 
+ 
 
-   mTototo[index] = new frc::DigitalInput(index);
+   mTototo[mIndex] = new frc::DigitalInput(mIndex);
 
 }
 
 bool SubContactDetection::GetContactStatus (int index) {
    // return mContactStatus.Get();
 
-    return mContactStatus[index % 10] ;
+    return kContactEnable[index % 10] ;
    
 }
 
@@ -35,8 +29,7 @@ void SubContactDetection::Periodic()
 {
     for(int i=0;i<10 ; i++)
     {
-        mContactStatus [i]=;
-
+        kContactEnable [i]=mTototo[i]->Get(); 
     }
     // Pour chaque  kContactEnableîç == true
     // mContactStatus[index] = mContactSmTototo[index]->Get(); 
