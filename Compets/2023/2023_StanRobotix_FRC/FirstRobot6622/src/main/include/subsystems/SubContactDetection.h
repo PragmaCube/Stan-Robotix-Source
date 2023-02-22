@@ -20,12 +20,9 @@ class SubContactDetection : public frc2::SubsystemBase, public PerformanceMonito
   bool GetContactStatus(InputDetection_t index);
 
   void EnableLog(bool iEnable) {};
-  
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
-  
 
+  void Enable(const bool iIsEnabled);
+ 
   void Init();
 
  private:
@@ -38,6 +35,5 @@ class SubContactDetection : public frc2::SubsystemBase, public PerformanceMonito
    std::vector<frc::DigitalInput *> mDigitalInputVector;
 
   bool mContactCache[10];
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
+  bool mIsEnabled = false;
 };

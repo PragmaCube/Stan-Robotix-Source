@@ -10,12 +10,24 @@
 
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
+#include "RobotContainer.h"
 
-SubDriveTrain::SubDriveTrain() 
+#include <iostream>
+
+SubDriveTrain::SubDriveTrain(RobotContainer * iRobotContainer) 
 {
+  mRobotContainer = iRobotContainer;
+
+  Enable(kDriveTrainEnabled);
+
   m_frontLeft.SetInverted(true);         // Le filage est inverse pour ce moteur dans le robot.
   m_rearRight.SetInverted(true);         // Le filage est inverse pour ce moteur dans le robot.
   m_frontRight.SetInverted(true);        // Le filage est inverse pour ce moteur dans le robot.
+}
+
+void SubDriveTrain::Enable(const bool iIsEnabled)
+{
+   mIsEnabled = iIsEnabled;
 }
 
 // This method will be called once per scheduler run
@@ -23,13 +35,31 @@ void SubDriveTrain::Periodic() {}
 
 void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented)   // le prefix i est necessaire, pour specifier que c est une entree.
 {
-  frc::Rotation2d imuAngle = SubIMU::getInstance()->getRadian();
-  if (iFieldOriented)
+  static bool wPreviFieldOriented = false;
+  if (kLogDrivetrain && (iFieldOriented != wPreviFieldOriented)) 
   {
-    m_robotDrive.DriveCartesian(-iY, iX, iTwist, imuAngle);
+    if (iFieldOriented)
+    {
+       std::cout << "In Field Oriented now Active " << std::endl;
+    }
+    else
+    {
+       std::cout << "In Field Oriented now Inactive " << std::endl;
+    }
+
+    wPreviFieldOriented = iFieldOriented;
   }
-  else
+
+  if (mIsEnabled)
   {
-    m_robotDrive.DriveCartesian(-iY, iX, iTwist);
+    if (iFieldOriented)
+    {
+      frc::Rotation2d imuAngle = SubIMU::getInstance()->getRotation2d();
+      m_robotDrive.DriveCartesian(-iY, iX, iTwist, imuAngle);
+    }
+    else
+    {
+      m_robotDrive.DriveCartesian(-iY, iX, iTwist);
+    }
   }
 }

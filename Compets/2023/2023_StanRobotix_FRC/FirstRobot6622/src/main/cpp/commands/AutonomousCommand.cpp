@@ -3,26 +3,30 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "../../include/commands/AutonomousCommand.h"
+#include "../../include/RobotContainer.h"
+
 #include <iostream>
 
-AutonomousCommand::AutonomousCommand()
+AutonomousCommand::AutonomousCommand(RobotContainer * iRobotContainer)
 {
    mCurrentStep = Phase1_;
+
+   mRobotContainer = iRobotContainer;
 
    mGenericTimer.Reset();
 }
 
- void AutonomousCommand::setSubsystem( SubDriveTrain *pDriveTrain)
-{
-   m_pDriveTrain = pDriveTrain;
-}
 /**
  * The initial subroutine of a command.  Called once when the command is
  * initially scheduled.
  */
-void AutonomousCommand::Initialize()
+void AutonomousCommand::Init()
 {
    mCurrentStep = Phase1_;
+
+   m_pDriveTrain = mRobotContainer->getDriveTrain();
+   m_pUltrasonic = mRobotContainer->getUltrasonic();
+   m_pIMU        = mRobotContainer->getImu();
 }
 
 /**
@@ -83,6 +87,8 @@ void AutonomousCommand::Execute()
       doExecutePhase9();
       wIsFinished = isPhase9Finished();
       wNextPhase = step_t::PhaseFinish;
+      break;
+   case PhaseFinish:
       break;
    };
 

@@ -5,30 +5,64 @@
 #include "RobotContainer.h"
 #include <iostream>
 
-
 RobotContainer::RobotContainer()
 {
-  mDriveTrain = new SubDriveTrain;
+  // Liste des commandes automatises.
+  m_autonomousCommand = new AutonomousCommand(this);
 
-  //sSubIMU::getInstance()->Enable();
+  // Liste des sorties
+  mSubDriveTrain      = new SubDriveTrain(this);
+  mSubElevator        = new SubElevator(this);
+  mSubPneumatic       = new SubPneumatic(this);
 
-  m_autonomousCommand.setSubsystem(mDriveTrain);
+  // liste des entrees.
+  mSubColorSensor     = new SubColorSensor();
+  mSubImu             = new SubIMU();
+  mSubLimelight       = new SubLimelight();
+  mSubContactDetection= new SubContactDetection();
+  mSubUltrasonic      = new SubUltrasonic();
+  mSubUltrasonic->EnableImperialSystem();
+  
+  ConfigureButtonBindings();
+}
 
-    mUltrasonic = new SubUltrasonic;
-    mUltrasonic->EnableImperialSystem();
-    mUltrasonic -> EnableLog(kLogUltrason_Enable);
-   	
-    ConfigureButtonBindings();}
-
-frc2::Command *RobotContainer::GetAutonomousCommand()
+void RobotContainer::AutonomousInit()
 {
-   return &m_autonomousCommand;
+  // Initialisation des subsystemes
+  mSubDriveTrain->Init();
+  mSubElevator->Init();
+  mSubPneumatic->Init();
+  mSubImu->Init();
+  mSubLimelight->Init();
+  mSubColorSensor->Init();
+  mSubContactDetection->Init();
+  mSubUltrasonic->Init();
+
+  // Initialisation des commandes automatisees.
+  m_autonomousCommand->Init();
+}
+
+void RobotContainer::AutonomousPeriodic()
+{
+  m_autonomousCommand->Execute();
+}
+
+void RobotContainer::TeleopInit()
+{
+  // Initialisation des subsystemes
+
+  // Initialisation des commandes automatisees.
+  // TODO: ajouter chaque automatisation
 }
 
 void RobotContainer::DriveDisplacement()
 {
-  const double slider = (1-mJoystick.GetThrottle())/2;
-  mDriveTrain->MoveMeca(mJoystick.GetX()*slider, mJoystick.GetY()*slider, mJoystick.GetTwist()*slider,mJoystick.GetRawButton(0));
+  const double slider = (1 - mJoystick.GetThrottle()) / 2;
+  mSubDriveTrain->MoveMeca(mJoystick.GetX() * slider, mJoystick.GetY() * slider, mJoystick.GetTwist() * slider, 1 - mJoystick.GetRawButton(1));
+  if (mJoystick.GetRawButtonPressed(2))
+  {
+    SubIMU::getInstance()->ResetYaw();
+  }
 }
 
 void RobotContainer::ConfigureButtonBindings()
@@ -40,11 +74,22 @@ void RobotContainer::Drive()
 {
   DriveDisplacement();
 
-  mUltrasonic->Execute();
+  mSubUltrasonic->Execute();
 
+  mSubElevator->setCommand(mJoystick.GetPOV());
+
+  mSubImu->Execute();
+
+  mSubColorSensor->Execute();
+
+  mSubLimelight->Execute();
+
+  if (mJoystick.GetRawButtonPressed(1))
+  {
+    mSubPneumatic->Toggle();
+  }
 }
 
 void RobotContainer::Auto()
 {
-
 }

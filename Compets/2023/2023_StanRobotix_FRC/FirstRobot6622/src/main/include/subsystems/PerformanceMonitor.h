@@ -13,7 +13,7 @@ public:
 
   void Execute();
 
-  void EnableLog(bool iEnable) { mLog = iEnable; };
+  void EnablePerformanceLog(bool iEnable) { mPerformanceLogEnabled = iEnable; };
 
 protected:
   virtual void doExecute() = 0;
@@ -27,5 +27,5 @@ private:
   std::chrono::nanoseconds mAccumulDurationiNnS = std::chrono::nanoseconds::zero();
 
   unsigned long mNumberOfExecution = 1;
-  bool mLog = false;
+  bool mPerformanceLogEnabled = false;
 };

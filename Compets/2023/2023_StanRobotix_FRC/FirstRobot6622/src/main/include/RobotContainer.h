@@ -1,9 +1,3 @@
-
-
-
-
-
-
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -14,13 +8,22 @@
 #include <frc/XboxController.h>
 #include <frc/Joystick.h>
 #include <frc/Timer.h>
+#include <frc/smartdashboard/smartdashboard.h>
+
+#include <string>
 
 #include "commands/AutonomousCommand.h"
-#include "subsystems/SubDriveTrain.h"
-#include "subsystems/SubIMU.h"
-#include "subsystems/SubUltrasonic.h"
 
-#include "Constants.h" 
+#include "subsystems/SubColorSensor.h"
+#include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubElevator.h"
+#include "subsystems/SubIMU.h"
+#include "subsystems/subLimelight.h"
+#include "subsystems/SubPneumatic.h"
+#include "subsystems/SubUltrasonic.h"
+#include "subsystems/SubContactDetection.h"
+
+#include "Constants.h"
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -33,23 +36,40 @@ class RobotContainer
 public:
   RobotContainer();
 
+  void AutonomousInit();
+  void TeleopInit();
+
+  void AutonomousPeriodic();
+
   frc2::Command *GetAutonomousCommand();
   void Drive();
   void Auto();
 
+  SubDriveTrain *getDriveTrain()                 { return mSubDriveTrain; }
+  SubLimelight *getLimelight()                   { return mSubLimelight; }
+  SubColorSensor *getColorSensor()               { return mSubColorSensor; }
+  SubIMU *getImu()                               { return mSubImu; }
+  SubUltrasonic *getUltrasonic()                 { return mSubUltrasonic; }
+  SubElevator *getSubElevator()                  { return mSubElevator; }
+  SubPneumatic *getSubPneumatic()                { return mSubPneumatic; }
+  SubContactDetection * getSubContactDetection() { return mSubContactDetection; }
+
 private:
-  AutonomousCommand m_autonomousCommand;
+  AutonomousCommand *m_autonomousCommand;
 
-  frc::Joystick mJoystick{ kJoystickPort};
-  
-  // mController{kJoystickPort};
-  SubDriveTrain *mDriveTrain;
+  frc::Joystick mJoystick{kJoystickPort};
 
-  SubIMU *mImu;
-  SubUltrasonic* mUltrasonic; 
+  SubDriveTrain      * mSubDriveTrain;
+  SubLimelight       * mSubLimelight = nullptr;
+  SubColorSensor     * mSubColorSensor = nullptr;
+  SubIMU             * mSubImu = nullptr;
+  SubUltrasonic      * mSubUltrasonic = nullptr;
+  SubElevator        * mSubElevator = nullptr;
+  SubPneumatic       * mSubPneumatic = nullptr;
+  SubContactDetection*mSubContactDetection = nullptr;
 
-  bool mSmart = 0 ;
+  bool mSmart = 0;
   void ConfigureButtonBindings();
   void DriveDisplacement();
-
+  void DrivePneumatic();
 };

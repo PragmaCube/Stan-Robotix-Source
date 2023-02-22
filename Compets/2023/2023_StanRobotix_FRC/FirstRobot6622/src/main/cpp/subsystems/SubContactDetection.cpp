@@ -4,9 +4,18 @@
 
 #include "subsystems\SubContactDetection.h"
 
+#include <iostream>
+
 SubContactDetection::SubContactDetection()
 {
     mDigitalInputVector.reserve(inputMax);
+
+    Enable(kContactDetectionEnable);
+}
+
+void SubContactDetection::Enable(const bool iIsEnabled)
+{
+   mIsEnabled = iIsEnabled;
 }
 
 void SubContactDetection::Init()
@@ -37,7 +46,14 @@ void SubContactDetection::doExecute()
     {
         if (kContactEnable[i] == true)
         {
-            mContactCache[i] = mDigitalInputVector[i]->Get();
+            bool wCurrent =  mDigitalInputVector[i]->Get();
+
+            if (kLogContactDetection && mContactCache[i] != wCurrent)
+            {
+                std::string wNewState = (wCurrent)?"Active":"Inactive";
+                std::cout << "Changement d'etat pour le contact n# " << i << ": " << wNewState << std::endl;
+            }
+            mContactCache[i] = wCurrent;
         }
     }
 }
