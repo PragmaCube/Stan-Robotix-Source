@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
-#include <frc/DigitalInput.h>
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -13,11 +13,21 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+
+///////////////////////////////////////////////////////
+// Activation indépendante des modules
+constexpr bool kDriveTrainEnabled = false;
+constexpr bool kColorDetectionEnabled = false;
+constexpr bool kContactDetectionEnable = false;
+constexpr bool kElevatorEnabled = false;
+constexpr bool kImuEnabled = false;
+constexpr bool kLimelightEnabled = false;
+constexpr bool kPneumaticEnabled = true;
+constexpr bool kUltrasonEnable = false;
+
 ///////////////////////////////////////////////////////
 // IMU
 constexpr int kNumberOfSamples = 3;
-// TODO: coef a changer selon les differents parametres du sol
-constexpr double kCoeffFriction = 1.02;  
 
 ///////////////////////////////////////////////////////
 // Drive Train
@@ -27,20 +37,56 @@ constexpr int kMotorR2Port = 2;
 constexpr int kMotorR1Port = 3;
 
 ///////////////////////////////////////////////////////
-// Ultra son 
-constexpr int kUltrasonicDIO = 0;
+// Pneumatic
+
 
 ///////////////////////////////////////////////////////
-// Joystick
-constexpr int kJoystickPort = 0;
+// Moteurs assenseur. 
+constexpr int    kCanIdElevatorR = 4;   //Valeurs temporaires, à changer si besoin 
+constexpr int    kCanIdElevatorL = 1; 
+constexpr double kHeightS2 = -220; // valeurs arbitraires (certaines de betabot), faire des tests pour trouver les bonnes valeurs
+constexpr double kHeightS1 =-80;
+constexpr double kMinHeight = 0;
+
+// default PID coefficients for ejector
+constexpr double kP = 2.7e-4, 
+                 kI = 2.7e-6, 
+                 kD = 5e-4, 
+                 kIz = 0, 
+                 kFF = 0.000156, 
+                 kMaxOutput = 1, 
+                 kMinOutput = -1;
+
+///////////////////////////////////////////////////////
+// Ultra son 
+constexpr int   kUltrasonicDIO = 0;
+
+
 
 ///////////////////////////////////////////////////////
 // Contact
 //                                      #0     #1     #2     #3     #4     #5     #6     #7     #8     #9    
 constexpr bool kContactEnable[10] = {false, false, false, false, false, false, false, false, false, false} ;
 constexpr int kContactDetectionDIO=0;
+
+///////////////////////////////////////////////////////
+// Joystick
+constexpr int   kJoystickPort = 0;
+
+///////////////////////////////////////////////////////
+// Pneumatic
+constexpr int   kSolenoid1Port = 1;
+constexpr int   kSolenoid2Port = 0;
+
 ///////////////////////////////////////////////////////
 // Activation des logs
-constexpr bool kLogUltrason_Enable = true;
-constexpr int  kLogUltrason_Nb = 5;             // TODO: ralentir les logs pour le Ultra-son
-constexpr int kLogContactDetection_Enable=0;
+
+constexpr bool kLogPerf_UltrasonEnable = false;
+constexpr bool kLogPerf_ImuEnable = false;
+constexpr bool kLogPerf_LimelightEnable = false;
+
+constexpr bool kLogIMU = false;
+constexpr bool kLogDrivetrain = false;
+constexpr bool kLogLimelight = false;
+constexpr bool kLogColorDetection = false;
+constexpr bool kLogContactDetection = false;

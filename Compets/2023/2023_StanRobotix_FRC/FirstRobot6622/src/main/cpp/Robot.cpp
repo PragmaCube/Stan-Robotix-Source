@@ -10,11 +10,11 @@
 #include <frc2/command/CommandScheduler.h>
 #include <iostream>
 
-void Robot::RobotInit() {
+void Robot::RobotInit()
+{
   m_chooser.SetDefaultOption(kAutoNameDefault, kAutoNameDefault);
   m_chooser.AddOption(kAutoNameCustom, kAutoNameCustom);
   frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
-  
 }
 
 /**
@@ -25,8 +25,9 @@ void Robot::RobotInit() {
  * <p> This runs after the mode specific periodic functions, but before
  * LiveWindow and SmartDashboard integrated updating.
  */
-void Robot::RobotPeriodic() {
-  //frc2::CommandScheduler::GetInstance().Run(); // TODO: a activer plus tard
+void Robot::RobotPeriodic()
+{
+  // frc2::CommandScheduler::GetInstance().Run(); // TODO: a activer plus tard
 }
 
 /**
@@ -40,33 +41,36 @@ void Robot::RobotPeriodic() {
  * if-else structure below with additional strings. If using the SendableChooser
  * make sure to add them to the chooser code above as well.
  */
-void Robot::AutonomousInit() {
-  m_autonomousCommand = m_container.GetAutonomousCommand();
-
-  if (m_autonomousCommand != nullptr) {
-    m_autonomousCommand->Initialize();
-  }
-}
-
-void Robot::AutonomousPeriodic() 
+void Robot::AutonomousInit()
 {
-  m_autonomousCommand->Execute();
+  m_container.AutonomousInit();
 }
 
-void Robot::TeleopInit() {
+void Robot::AutonomousPeriodic()
+{
+  m_container.AutonomousPeriodic();
+}
+
+void Robot::TeleopInit()
+{
   // This makes sure that the autonomous stops running when
   // teleop starts running. If you want the autonomous to
   // continue until interrupted by another command, remove
   // this line or comment it out.
-  if (m_autonomousCommand != nullptr) {
+  if (m_autonomousCommand != nullptr)
+  {
     m_autonomousCommand->End(true);
     m_autonomousCommand = nullptr;
   }
+
+  m_container.TeleopInit();
 }
 
-void Robot::TeleopPeriodic() {
+void Robot::TeleopPeriodic()
+{
   m_container.Drive();
 }
+
 void Robot::DisabledInit() {}
 
 void Robot::DisabledPeriodic() {}
@@ -80,7 +84,8 @@ void Robot::SimulationInit() {}
 void Robot::SimulationPeriodic() {}
 
 #ifndef RUNNING_FRC_TESTS
-int main() {
+int main()
+{
   return frc::StartRobot<Robot>();
 }
 #endif

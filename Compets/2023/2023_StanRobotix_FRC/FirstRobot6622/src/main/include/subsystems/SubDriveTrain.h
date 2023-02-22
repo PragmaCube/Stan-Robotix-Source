@@ -12,18 +12,25 @@
 #include <units/angle.h>
 
 // Référence: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
+class RobotContainer;
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
-  SubDriveTrain();
+  SubDriveTrain(RobotContainer * iRobotContainer);
 
+  void Init() { }
+
+  void Enable(const bool iIsEnabled);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
   void MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented);
+
  private:
+  bool mIsEnabled = false;
+  RobotContainer * mRobotContainer = nullptr;
 
   frc::Spark m_frontLeft{kMotorL1Port};
   frc::Spark m_rearLeft{kMotorL2Port};

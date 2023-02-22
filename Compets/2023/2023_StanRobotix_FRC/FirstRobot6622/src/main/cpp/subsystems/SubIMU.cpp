@@ -2,19 +2,30 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Date       Auteur       Description                                               Test
+// 09Fev2023  Antoine T.   IMU Version initiale                                      ...
+// 11Fev2023  Andre W.     Remplacement avec Pigeon 2.0
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include "subsystems/SubIMU.h"
 #include "Constants.h"
 
-SubIMU * SubIMU::mSingleton = nullptr;
+#include <iostream>
 
-SubIMU::SubIMU() : m_Imu(nullptr)
+SubIMU *SubIMU::mSingleton = nullptr;
+
+SubIMU::SubIMU()
 {
-  
+   mGyro = new ctre::phoenix::sensors::WPI_Pigeon2(0);
+   mGyro->Calibrate();
+   mGyro->Reset();
+
+   EnableSubsystemLog(kLogIMU);
+   EnablePerformanceLog(kLogPerf_ImuEnable);
+   Enable(kImuEnabled);
 }
 
-SubIMU::~SubIMU(){}
-
-SubIMU * SubIMU::getInstance()
+SubIMU *SubIMU::getInstance()
 {
     if (mSingleton == nullptr)
     {
@@ -23,42 +34,56 @@ SubIMU * SubIMU::getInstance()
     return mSingleton;
 }
 
-void SubIMU::Enable()
+void SubIMU::Enable(bool iEnable)
 {
-  m_Imu = new frc::ADIS16448_IMU();
-  m_Imu->Calibrate();
-  m_gyroVals.reserve(kNumberOfSamples);
-  Periodic();   
+    mIsEnable = iEnable;
 }
 
-void SubIMU::Periodic() 
+void SubIMU::doExecute()
 {
-    if (m_gyroVals.size() == kNumberOfSamples)
+    static int mNumberOfExecution = 0;
+    static bool wRunOnce = false;
+    if (!wRunOnce)
     {
-        m_gyroVals.pop_back();
-    }
+          double ypr[3];
+          mGyro->GetYawPitchRoll(ypr);
+          mYawStart   = ypr[0];
+          mPitchStart = ypr[1];
+          mRollStart  = ypr[2];
 
-    units::angle::degree_t turningValue = (m_Imu != nullptr)?m_Imu->GetAngle():
-                                                             units::degree_t(0);
-    m_gyroVals.insert(m_gyroVals.begin(), turningValue.value());
+          wRunOnce = true;
+    }
+    
+    static double ypr[3];
+    mGyro->GetYawPitchRoll(ypr);
+    ypr[0] = ypr[0] - mYawStart;
+    ypr[1] = ypr[1] - mPitchStart;
+    ypr[2] = ypr[2] - mRollStart;
+
+    if (mNumberOfExecution % 25 == 0 &&  mSubsystemLogEnabled)
+    {
+        std::cout << "Yaw:" << ypr[0] << "    Pitch :" << ypr[1] << "   Roll " << ypr[2] << std::endl;
+    }
+    mNumberOfExecution++;
 }
 
-float SubIMU::getAngle() 
+double SubIMU::getAngle()
 {
-    double wMoyenne = 0.0;
-    for (int i = 0; i < m_gyroVals.size(); i++)
-    {
-        wMoyenne += m_gyroVals[i];
-    }
-    return wMoyenne/m_gyroVals.size();
+    return (mGyro->GetYaw()-mYawStart);
 }
 
 units::radian_t SubIMU::getRadian()
 {
-  if (m_Imu != nullptr)
-  {
-      units::radian_t angle{m_Imu->GetAngle()};
-      return angle;
-  }
-  return (units::radian_t)0;  
+    units::radian_t mAngle{getAngle()};
+    return mAngle;
+}
+
+void SubIMU::ResetYaw()
+{
+    mGyro->Reset();
+}
+
+frc::Rotation2d SubIMU::getRotation2d()
+{
+    return -mGyro->GetRotation2d();
 }
