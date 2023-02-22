@@ -18,6 +18,7 @@
 // Activation indépendante des modules
 constexpr bool kDriveTrainEnabled = false;
 constexpr bool kColorDetectionEnabled = false;
+constexpr bool kContactDetectionEnable = false;
 constexpr bool kElevatorEnabled = false;
 constexpr bool kImuEnabled = false;
 constexpr bool kLimelightEnabled = false;
@@ -61,6 +62,13 @@ constexpr double kP = 2.7e-4,
 constexpr int   kUltrasonicDIO = 0;
 
 
+
+///////////////////////////////////////////////////////
+// Contact
+//                                      #0     #1     #2     #3     #4     #5     #6     #7     #8     #9    
+constexpr bool kContactEnable[10] = {false, false, false, false, false, false, false, false, false, false} ;
+constexpr int kContactDetectionDIO=0;
+
 ///////////////////////////////////////////////////////
 // Joystick
 constexpr int   kJoystickPort = 0;
@@ -81,3 +89,4 @@ constexpr bool kLogIMU = false;
 constexpr bool kLogDrivetrain = false;
 constexpr bool kLogLimelight = false;
 constexpr bool kLogColorDetection = false;
+constexpr bool kLogContactDetection = false;

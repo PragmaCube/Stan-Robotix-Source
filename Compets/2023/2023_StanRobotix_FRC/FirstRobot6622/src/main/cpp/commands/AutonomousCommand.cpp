@@ -37,6 +37,7 @@ void AutonomousCommand::Execute()
 {
    bool wIsFinished = true;
    step_t wNextPhase = mCurrentStep;
+   
    switch (mCurrentStep)
    {
    case Phase1_:

@@ -21,6 +21,7 @@
 #include "subsystems/subLimelight.h"
 #include "subsystems/SubPneumatic.h"
 #include "subsystems/SubUltrasonic.h"
+#include "subsystems/SubContactDetection.h"
 
 #include "Constants.h"
 /**
@@ -44,26 +45,28 @@ public:
   void Drive();
   void Auto();
 
-  SubDriveTrain *getDriveTrain() { return mDriveTrain; }
-  SubLimelight *getLimelight() { return mLimelight; }
-  SubColorSensor *getColorSensor() { return mColorSensor; }
-  SubIMU *getImu() { return mImu; }
-  SubUltrasonic *getUltrasonic() { return mUltrasonic; }
-  SubElevator *getSubElevator() { return mElevator; }
-  SubPneumatic *getSubPneumatic() { return mPneumatic; }
+  SubDriveTrain *getDriveTrain()                 { return mSubDriveTrain; }
+  SubLimelight *getLimelight()                   { return mSubLimelight; }
+  SubColorSensor *getColorSensor()               { return mSubColorSensor; }
+  SubIMU *getImu()                               { return mSubImu; }
+  SubUltrasonic *getUltrasonic()                 { return mSubUltrasonic; }
+  SubElevator *getSubElevator()                  { return mSubElevator; }
+  SubPneumatic *getSubPneumatic()                { return mSubPneumatic; }
+  SubContactDetection * getSubContactDetection() { return mSubContactDetection; }
 
 private:
   AutonomousCommand *m_autonomousCommand;
 
   frc::Joystick mJoystick{kJoystickPort};
 
-  SubDriveTrain *mDriveTrain;
-  SubLimelight *mLimelight = nullptr;
-  SubColorSensor *mColorSensor = nullptr;
-  SubIMU *mImu = nullptr;
-  SubUltrasonic *mUltrasonic = nullptr;
-  SubElevator *mElevator = nullptr;
-  SubPneumatic *mPneumatic = nullptr;
+  SubDriveTrain      * mSubDriveTrain;
+  SubLimelight       * mSubLimelight = nullptr;
+  SubColorSensor     * mSubColorSensor = nullptr;
+  SubIMU             * mSubImu = nullptr;
+  SubUltrasonic      * mSubUltrasonic = nullptr;
+  SubElevator        * mSubElevator = nullptr;
+  SubPneumatic       * mSubPneumatic = nullptr;
+  SubContactDetection*mSubContactDetection = nullptr;
 
   bool mSmart = 0;
   void ConfigureButtonBindings();

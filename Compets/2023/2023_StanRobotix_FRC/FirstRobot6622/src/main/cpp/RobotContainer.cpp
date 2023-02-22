@@ -11,30 +11,32 @@ RobotContainer::RobotContainer()
   m_autonomousCommand = new AutonomousCommand(this);
 
   // Liste des sorties
-  mDriveTrain = new SubDriveTrain(this);
-  mElevator = new SubElevator(this);
-  mPneumatic = new SubPneumatic(this);
+  mSubDriveTrain      = new SubDriveTrain(this);
+  mSubElevator        = new SubElevator(this);
+  mSubPneumatic       = new SubPneumatic(this);
 
   // liste des entrees.
-  mImu = new SubIMU();
-  mLimelight = new SubLimelight();
-  mColorSensor = new SubColorSensor();
-  mUltrasonic = new SubUltrasonic();
-  mUltrasonic->EnableImperialSystem();
-
+  mSubColorSensor     = new SubColorSensor();
+  mSubImu             = new SubIMU();
+  mSubLimelight       = new SubLimelight();
+  mSubContactDetection= new SubContactDetection();
+  mSubUltrasonic      = new SubUltrasonic();
+  mSubUltrasonic->EnableImperialSystem();
+  
   ConfigureButtonBindings();
 }
 
 void RobotContainer::AutonomousInit()
 {
   // Initialisation des subsystemes
-  mDriveTrain->Init();
-  mElevator->Init();
-  mPneumatic->Init();
-  mImu->Init();
-  mLimelight->Init();
-  mColorSensor->Init();
-  mUltrasonic->Init();
+  mSubDriveTrain->Init();
+  mSubElevator->Init();
+  mSubPneumatic->Init();
+  mSubImu->Init();
+  mSubLimelight->Init();
+  mSubColorSensor->Init();
+  mSubContactDetection->Init();
+  mSubUltrasonic->Init();
 
   // Initialisation des commandes automatisees.
   m_autonomousCommand->Init();
@@ -56,7 +58,7 @@ void RobotContainer::TeleopInit()
 void RobotContainer::DriveDisplacement()
 {
   const double slider = (1 - mJoystick.GetThrottle()) / 2;
-  mDriveTrain->MoveMeca(mJoystick.GetX() * slider, mJoystick.GetY() * slider, mJoystick.GetTwist() * slider, 1 - mJoystick.GetRawButton(1));
+  mSubDriveTrain->MoveMeca(mJoystick.GetX() * slider, mJoystick.GetY() * slider, mJoystick.GetTwist() * slider, 1 - mJoystick.GetRawButton(1));
   if (mJoystick.GetRawButtonPressed(2))
   {
     SubIMU::getInstance()->ResetYaw();
@@ -72,19 +74,19 @@ void RobotContainer::Drive()
 {
   DriveDisplacement();
 
-  mUltrasonic->Execute();
+  mSubUltrasonic->Execute();
 
-  mElevator->setCommand(mJoystick.GetPOV());
+  mSubElevator->setCommand(mJoystick.GetPOV());
 
-  SubIMU::getInstance()->Execute();
+  mSubImu->Execute();
 
-  mColorSensor->Execute();
+  mSubColorSensor->Execute();
 
-  mLimelight->Execute();
+  mSubLimelight->Execute();
 
   if (mJoystick.GetRawButtonPressed(1))
   {
-    mPneumatic->Toggle();
+    mSubPneumatic->Toggle();
   }
 }
 
