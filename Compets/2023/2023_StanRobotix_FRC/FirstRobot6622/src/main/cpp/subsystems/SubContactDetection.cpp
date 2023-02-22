@@ -6,15 +6,12 @@
 
 SubContactDetection::SubContactDetection()
 {
-    mDigitalInputVector.reserve(10);
+    mDigitalInputVector.reserve(inputMax);
 }
-
-// parcourir la liste kContactEnable[10] avec for (;;)
-// si l element index = true alors
 
 void SubContactDetection::Init()
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = input0; i < inputMax; i++)
     {
         if (kContactEnable[i])
         {
@@ -23,9 +20,9 @@ void SubContactDetection::Init()
     }
 }
 
-bool SubContactDetection::GetContactStatus(int index)
+bool SubContactDetection::GetContactStatus(InputDetection_t index)
 {
-    if (kContactEnable[index] == true)
+    if (kContactEnable[index] == true) 
     {
         return mContactCache[index];
     }
@@ -34,9 +31,9 @@ bool SubContactDetection::GetContactStatus(int index)
 }
 
 // This method will be called once per scheduler run
-void SubContactDetection::Periodic()
+void SubContactDetection::doExecute()
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = input0; i < inputMax; i++)
     {
         if (kContactEnable[i] == true)
         {
