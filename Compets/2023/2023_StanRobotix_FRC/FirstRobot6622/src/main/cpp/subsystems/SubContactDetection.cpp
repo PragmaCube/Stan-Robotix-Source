@@ -2,35 +2,45 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "subsystems/SubContactDetection.h"
+#include "subsystems\SubContactDetection.h"
 
-SubContactDetection::SubContactDetection() {
-   mTototo.reserve(10);
-   
-
-   // parcourir la liste kContactEnable[10] avec for (;;)
-   // si l element index = true alors 
- 
-
-   mTototo[mIndex] = new frc::DigitalInput(mIndex);
-
+SubContactDetection::SubContactDetection()
+{
+    mDigitalInputVector.reserve(10);
 }
 
-bool SubContactDetection::GetContactStatus (int index) {
-   // return mContactStatus.Get();
+// parcourir la liste kContactEnable[10] avec for (;;)
+// si l element index = true alors
 
-    return kContactEnable[index % 10] ;
-   
+void SubContactDetection::Init()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        if (kContactEnable[i])
+        {
+            mDigitalInputVector[i] = new frc::DigitalInput(i);
+        }
+    }
 }
 
+bool SubContactDetection::GetContactStatus(int index)
+{
+    if (kContactEnable[index] == true)
+    {
+        return mContactCache[index];
+    }
+
+    return false;
+}
 
 // This method will be called once per scheduler run
-void SubContactDetection::Periodic() 
+void SubContactDetection::Periodic()
 {
-    for(int i=0;i<10 ; i++)
+    for (int i = 0; i < 10; i++)
     {
-        kContactEnable [i]=mTototo[i]->Get(); 
+        if (kContactEnable[i] == true)
+        {
+            mContactCache[i] = mDigitalInputVector[i]->Get();
+        }
     }
-    // Pour chaque  kContactEnableîç == true
-    // mContactStatus[index] = mContactSmTototo[index]->Get(); 
 }

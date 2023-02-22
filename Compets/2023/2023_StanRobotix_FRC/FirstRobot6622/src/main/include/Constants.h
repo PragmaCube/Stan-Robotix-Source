@@ -36,8 +36,8 @@ constexpr int kJoystickPort = 0;
 
 ///////////////////////////////////////////////////////
 // Contact
-//                                         #1      #2     #3     #4     #5     #6     #7
-/*constexpr*/bool kContactEnable[10] = {false, false, false, false, false, false, false, false, false, false} ;
+//                                      #0     #1     #2     #3     #4     #5     #6     #7     #8     #9    
+constexpr bool kContactEnable[10] = {false, false, false, false, false, false, false, false, false, false} ;
 
 ///////////////////////////////////////////////////////
 // Activation des logs

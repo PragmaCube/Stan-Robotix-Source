@@ -22,11 +22,13 @@ class SubContactDetection : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
+  void Init();
+
  private:
   // bool mContactStatus [10] = {false, false, false, false, false, false, false, false, false, false} ;
-   std::vector<frc::DigitalInput *> mTototo;
+   std::vector<frc::DigitalInput *> mDigitalInputVector;
 
-  frc::DigitalInput mDigitalInput{mIndex};
+  bool mContactCache[10];
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };
