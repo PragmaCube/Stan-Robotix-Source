@@ -38,7 +38,7 @@ public:
 
   void AutonomousInit();
   void TeleopInit();
-  void Init ();
+  
 
   void AutonomousPeriodic();
 
@@ -71,6 +71,8 @@ private:
 
   bool mSmart = 0;
   bool mIsInit = false;
+
+  void Init ();
   void ConfigureButtonBindings();
   void DriveDisplacement();
   void DrivePneumatic();
