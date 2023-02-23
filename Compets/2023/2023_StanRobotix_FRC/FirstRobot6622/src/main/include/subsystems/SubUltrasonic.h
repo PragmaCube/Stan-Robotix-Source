@@ -11,8 +11,8 @@
 #include "Constants.h"
 #include "PerformanceMonitor.h"
 
-class SubUltrasonic //: public PerformanceMonitor TODO: this crash!!!!!!
-{
+class SubUltrasonic : public PerformanceMonitor
+{ 
 public:
   SubUltrasonic();
 

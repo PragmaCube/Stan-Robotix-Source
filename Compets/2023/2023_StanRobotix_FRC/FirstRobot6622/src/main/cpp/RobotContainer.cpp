@@ -25,6 +25,8 @@ RobotContainer::RobotContainer()
   mSubUltrasonic->EnableImperialSystem();
   
   ConfigureButtonBindings();
+
+  std::cout << "RobotContainer::RobotContainer() fin de la construction des subsystems" << std::endl ; 
 }
 
 void RobotContainer::Init()
@@ -42,7 +44,7 @@ void RobotContainer::Init()
   // Initialisation des commandes automatisees.
   m_autonomousCommand->Init();
 
-  std::cout << "RobotContainer::Init() terminé" << std::endl ;  
+  std::cout << "RobotContainer::Init(): fin fr l'initialisation des subsystems" << std::endl ;  
   mIsInit = true;
 }
 
@@ -86,7 +88,7 @@ void RobotContainer::Drive()
 {
   DriveDisplacement();
 
-  //mSubUltrasonic->Execute(); TODO Enable it!!!! toto
+  mSubUltrasonic->Execute(); 
 
  // mSubElevator->setCommand(mJoystick.GetPOV()); // TODO
 
