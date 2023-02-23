@@ -38,7 +38,6 @@ public:
 
   void AutonomousInit();
   void TeleopInit();
-  
 
   void AutonomousPeriodic();
 
