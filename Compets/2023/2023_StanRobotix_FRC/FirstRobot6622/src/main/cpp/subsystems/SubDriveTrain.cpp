@@ -10,6 +10,7 @@
 
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
+#include "RobotContainer.h"
 
 #include <iostream>
 
@@ -41,6 +42,8 @@ void SubDriveTrain::Init()
 
     m_robotDrive = new frc::MecanumDrive(*m_frontLeft, *m_rearLeft, *m_frontRight, *m_rearRight);
   }
+
+  mSubIMU = mRobotContainer->getImu();
 }
 
 // This method will be called once per scheduler run
@@ -50,7 +53,7 @@ void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwi
 {
   if (mIsEnabled)
   {
-    frc::Rotation2d imuAngle = SubIMU::getInstance()->getRadian();
+    frc::Rotation2d imuAngle = mSubIMU->getRadian();
     if (iFieldOriented)
     {
       m_robotDrive->DriveCartesian(-iY, iX, iTwist, imuAngle);

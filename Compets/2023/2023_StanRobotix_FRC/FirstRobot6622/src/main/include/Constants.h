@@ -21,7 +21,7 @@ constexpr bool kDriveTrainEnabled = false;
 constexpr bool kColorDetectionEnabled = false;
 constexpr bool kContactDetectionEnable = false;
 constexpr bool kElevatorEnabled = false;
-constexpr bool kImuEnabled = false;
+constexpr bool kImuEnabled = true;
 constexpr bool kLimelightEnabled = true;
 constexpr bool kPneumaticEnabled = true;
 constexpr bool kUltrasonEnable = false;
@@ -32,7 +32,7 @@ constexpr bool kContactDetectionEnable = false;
 constexpr bool kElevatorEnabled = false;
 constexpr bool kImuEnabled = false;
 constexpr bool kLimelightEnabled = true;
-constexpr bool kPneumaticEnabled = true;
+constexpr bool kPneumaticEnabled = false;
 constexpr bool kUltrasonEnable = false;
 #endif
 

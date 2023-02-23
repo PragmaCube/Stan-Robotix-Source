@@ -13,6 +13,7 @@
 
 // Référence: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
 class RobotContainer;
+class SubIMU;
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
@@ -36,4 +37,6 @@ class SubDriveTrain : public frc2::SubsystemBase {
   frc::Spark * m_rearRight = nullptr;
 
   frc::MecanumDrive * m_robotDrive = nullptr;
+
+  SubIMU * mSubIMU = nullptr;
 };

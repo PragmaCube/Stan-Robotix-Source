@@ -9,10 +9,11 @@ RobotContainer::RobotContainer()
 {
   // Liste des commandes automatises.
   m_autonomousCommand = new AutonomousCommand(this);
-
+  
   // Liste des sorties
   mSubDriveTrain      = new SubDriveTrain(this);
-  //mSubElevator        = new SubElevator(this); // TODO
+  
+  mSubElevator        = new SubElevator(this);
   mSubPneumatic       = new SubPneumatic(this);
 
   // liste des entrees.
@@ -20,26 +21,37 @@ RobotContainer::RobotContainer()
   mSubImu             = new SubIMU();
   mSubLimelight       = new SubLimelight(); 
   mSubContactDetection= new SubContactDetection();
-  //mSubUltrasonic      = new SubUltrasonic();   // TODO
-  //mSubUltrasonic->EnableImperialSystem();      // TODO
+  mSubUltrasonic      = new SubUltrasonic(); 
+  mSubUltrasonic->EnableImperialSystem();
   
   ConfigureButtonBindings();
 }
 
-void RobotContainer::AutonomousInit()
+void RobotContainer::Init()
 {
   // Initialisation des subsystemes
   mSubDriveTrain->Init();
-  //mSubElevator->Init();    // TODO
+  mSubElevator->Init();   
   mSubPneumatic->Init();
   mSubImu->Init();
-  //mSubLimelight->Init();// TODO
+  mSubLimelight->Init();
   mSubColorSensor->Init();
   mSubContactDetection->Init();
- // mSubUltrasonic->Init();// TODO
+  mSubUltrasonic->Init();
 
   // Initialisation des commandes automatisees.
   m_autonomousCommand->Init();
+
+  std::cout << "RobotContainer::Init() terminé" << std::endl ;  
+  mIsInit = true;
+}
+
+void RobotContainer::AutonomousInit()
+{
+  if (!mIsInit)
+  {
+    Init();
+  }
 }
 
 void RobotContainer::AutonomousPeriodic()
@@ -49,10 +61,10 @@ void RobotContainer::AutonomousPeriodic()
 
 void RobotContainer::TeleopInit()
 {
-  // Initialisation des subsystemes
-
-  // Initialisation des commandes automatisees.
-  // TODO: ajouter chaque automatisation
+  if (!mIsInit)
+  {
+    Init();
+  }
 }
 
 void RobotContainer::DriveDisplacement()
@@ -74,22 +86,23 @@ void RobotContainer::Drive()
 {
   DriveDisplacement();
 
-  //mSubUltrasonic->Execute(); TODO Enable it!!!!
+  //mSubUltrasonic->Execute(); TODO Enable it!!!! toto
 
-  //mSubElevator->setCommand(mJoystick.GetPOV()); // TODO
+ // mSubElevator->setCommand(mJoystick.GetPOV()); // TODO
 
   mSubImu->Execute();
 
   mSubColorSensor->Execute();
 
-  //mSubLimelight->doExecute(); // TODO
+ // mSubLimelight->doExecute(); // TODO toto
 
-  /*if (mJoystick.GetRawButtonPressed(1)) // TODO
+  if (mJoystick.GetRawButtonPressed(1)) // TODO
   {
     mSubPneumatic->Toggle();
-  }*/
+  }
 }
 
 void RobotContainer::Auto()
 {
 }
+

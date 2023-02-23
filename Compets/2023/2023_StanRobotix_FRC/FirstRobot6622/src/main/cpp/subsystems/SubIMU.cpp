@@ -12,26 +12,29 @@
 
 #include <iostream>
 
-SubIMU *SubIMU::mSingleton = nullptr;
-
 SubIMU::SubIMU()
 {
-   mGyro = new ctre::phoenix::sensors::WPI_Pigeon2(0);
-   mGyro->Calibrate();
-   mGyro->Reset();
-
-   EnableSubsystemLog(kLogIMU);
-   EnablePerformanceLog(kLogPerf_ImuEnable);
-   Enable(kImuEnabled);
+    EnableSubsystemLog(kLogIMU);
+    EnablePerformanceLog(kLogPerf_ImuEnable);
+    Enable(kImuEnabled);
 }
 
-SubIMU *SubIMU::getInstance()
+void SubIMU::Init()
 {
-    if (mSingleton == nullptr)
+    if (mIsEnable)
     {
-        mSingleton = new SubIMU();
+        mGyro = new ctre::phoenix::sensors::WPI_Pigeon2(0);
+        mGyro->Calibrate();
+        mGyro->Reset();
+
+        double ypr[3] = { 0.0f, 0.0f, 0.0f};
+
+        mGyro->GetYawPitchRoll(ypr);
+        
+        mYawStart = ypr[0];
+        mPitchStart = ypr[1];
+        mRollStart = ypr[2];
     }
-    return mSingleton;
 }
 
 void SubIMU::Enable(bool iEnable)
@@ -41,26 +44,19 @@ void SubIMU::Enable(bool iEnable)
 
 void SubIMU::doExecute()
 {
-    static int mNumberOfExecution = 0;
-    static bool wRunOnce = false;
-    if (!wRunOnce)
-    {
-          double ypr[3];
-          mGyro->GetYawPitchRoll(ypr);
-          mYawStart   = ypr[0];
-          mPitchStart = ypr[1];
-          mRollStart  = ypr[2];
+    static int mNumberOfExecution = 0;  // TODO: changer avec un timer
 
-          wRunOnce = true;
+    static double ypr[3] = { 0.0f, 0.0f, 0.0f};
+    if (mIsEnable)
+    {
+        mGyro->GetYawPitchRoll(ypr);
     }
-    
-    static double ypr[3];
-    mGyro->GetYawPitchRoll(ypr);
+
     ypr[0] = ypr[0] - mYawStart;
     ypr[1] = ypr[1] - mPitchStart;
     ypr[2] = ypr[2] - mRollStart;
 
-    if (mNumberOfExecution % 25 == 0 &&  mSubsystemLogEnabled)
+    if (mNumberOfExecution % 25 == 0 && mSubsystemLogEnabled)
     {
         std::cout << "Yaw:" << ypr[0] << "    Pitch :" << ypr[1] << "   Roll " << ypr[2] << std::endl;
     }
@@ -69,7 +65,7 @@ void SubIMU::doExecute()
 
 double SubIMU::getAngle()
 {
-    return (mGyro->GetYaw()-mYawStart);
+    return (mGyro->GetYaw() - mYawStart);
 }
 
 units::radian_t SubIMU::getRadian()
