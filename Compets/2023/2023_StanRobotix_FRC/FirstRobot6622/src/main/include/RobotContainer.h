@@ -38,6 +38,7 @@ public:
 
   void AutonomousInit();
   void TeleopInit();
+  void Init ();
 
   void AutonomousPeriodic();
 
@@ -69,6 +70,7 @@ private:
   SubContactDetection*mSubContactDetection = nullptr;
 
   bool mSmart = 0;
+  bool mIsInit = false;
   void ConfigureButtonBindings();
   void DriveDisplacement();
   void DrivePneumatic();
