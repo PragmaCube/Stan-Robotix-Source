@@ -20,7 +20,7 @@ public:
 public:
   SubColorSensor();
 
-  void Init() { }
+  void Init();
 
   void Enable(const bool iEnable);
   void EnableSubsystemLog(const bool iEnable);
@@ -34,7 +34,7 @@ public:
 private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  rev::ColorSensorV3 mColorSensor{frc::I2C::Port::kOnboard};
+  rev::ColorSensorV3 * mColorSensor = nullptr;
   rev::ColorMatch mColorMatcher;
 
   bool mIsEnabled = false;

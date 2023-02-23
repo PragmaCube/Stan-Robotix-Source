@@ -11,25 +11,24 @@
 #include "Constants.h"
 #include "PerformanceMonitor.h"
 
-class SubUltrasonic : public frc2::SubsystemBase, public PerformanceMonitor
+class SubUltrasonic //: public PerformanceMonitor TODO: this crash!!!!!!
 {
 public:
   SubUltrasonic();
 
-  void Init() { }
+  void Enable(const bool iIsEnabled);
+
+  void Init();
 
   float getDistance();
 
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
-  void Periodic() override;
   void EnableImperialSystem() { mMetricSystem = false; }
   void EnableMetricSystem() { mMetricSystem = true; }
 
 private:
-  frc::AnalogInput mUltrasonic{kUltrasonicDIO};
+  frc::AnalogInput * mUltrasonic = nullptr;
   bool mMetricSystem = true;
+  bool mIsEnabled = false;
 
   virtual void doExecute();
   virtual std::string getName() { return "SubUltrasonic"; }

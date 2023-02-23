@@ -59,10 +59,10 @@ void RobotContainer::DriveDisplacement()
 {
   const double slider = (1 - mJoystick.GetThrottle()) / 2;
   mSubDriveTrain->MoveMeca(mJoystick.GetX() * slider, mJoystick.GetY() * slider, mJoystick.GetTwist() * slider, 1 - mJoystick.GetRawButton(1));
-  if (mJoystick.GetRawButtonPressed(2))
-  {
-    SubIMU::getInstance()->ResetYaw();
-  }
+  // if (mJoystick.GetRawButtonPressed(2))
+  // {
+  //   SubIMU::getInstance()->ResetYaw();
+  // }
 }
 
 void RobotContainer::ConfigureButtonBindings()
@@ -74,7 +74,7 @@ void RobotContainer::Drive()
 {
   DriveDisplacement();
 
-  mSubUltrasonic->Execute();
+  //mSubUltrasonic->Execute(); TODO Enable it!!!!
 
   mSubElevator->setCommand(mJoystick.GetPOV());
 
@@ -82,12 +82,12 @@ void RobotContainer::Drive()
 
   mSubColorSensor->Execute();
 
-  mSubLimelight->Execute();
+  mSubLimelight->doExecute();
 
-  if (mJoystick.GetRawButtonPressed(1))
+  /*if (mJoystick.GetRawButtonPressed(1))
   {
     mSubPneumatic->Toggle();
-  }
+  }*/
 }
 
 void RobotContainer::Auto()

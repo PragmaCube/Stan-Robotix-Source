@@ -20,6 +20,14 @@ void SubColorSensor::Enable(const bool iEnable)
   mIsEnabled = iEnable;
 }
 
+void SubColorSensor::Init()
+{
+  if (mIsEnabled)
+  {
+    mColorSensor = new rev::ColorSensorV3(frc::I2C::Port::kOnboard);
+  }
+}
+
 void SubColorSensor::EnableSubsystemLog(const bool iEnable)
 {
   mSubsystemLogEnabled = iEnable;
@@ -61,7 +69,7 @@ void SubColorSensor::Execute()
 
 frc::Color SubColorSensor::GetColor()
 {
-  return mColorSensor.GetColor();
+  return mColorSensor->GetColor();
 }
 
 frc::Color SubColorSensor::GetMatchedColor()
