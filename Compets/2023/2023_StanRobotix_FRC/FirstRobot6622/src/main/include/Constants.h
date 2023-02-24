@@ -56,7 +56,6 @@ constexpr int kMotorR1Port = 3;
 ///////////////////////////////////////////////////////
 // Pneumatic
 
-
 ///////////////////////////////////////////////////////
 // Moteurs assenseur. 
 constexpr int    kCanIdElevatorR = 4;   //Valeurs temporaires, à changer si besoin 
