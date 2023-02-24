@@ -26,7 +26,7 @@ private:
   };
 
   AutomatedCommand_t mCommandList[CMD_MAX] = {
-    { MANUAL_TELEOP, true, "Ma premiere Commande", new int [2]},
+    { MANUAL_TELEOP, true, "Commande manuel", new int [2]},
     { CMD0, true, "Ma premiere Commande" , new int [2]},
     { CMD1, false, "Ma 2eme Commande" , new int [2]}
   };
@@ -45,10 +45,11 @@ private:
 
  private:
   virtual void doExecute();
-   
+  
   virtual std::string getName() { return "SubPilotInterface"; }
+  
   frc::Joystick mJoystick{kJoystickPort};
-
+  int mMenuIndex =0;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };
