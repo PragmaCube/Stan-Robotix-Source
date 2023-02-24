@@ -22,6 +22,7 @@
 #include "subsystems/SubPneumatic.h"
 #include "subsystems/SubUltrasonic.h"
 #include "subsystems/SubContactDetection.h"
+#include "subsystems/SubPilotInterface.h"
 
 #include "Constants.h"
 /**
@@ -45,15 +46,15 @@ public:
   void Drive();
   void Auto();
 
-  SubDriveTrain *getDriveTrain()                 { return mSubDriveTrain; }
-  SubLimelight *getLimelight()                   { return mSubLimelight; }
-  SubColorSensor *getColorSensor()               { return mSubColorSensor; }
-  SubIMU *getImu()                               { return mSubImu; }
-  SubUltrasonic *getUltrasonic()                 { return mSubUltrasonic; }
-  SubElevator *getSubElevator()                  { return mSubElevator; }
-  SubPneumatic *getSubPneumatic()                { return mSubPneumatic; }
-  SubContactDetection * getSubContactDetection() { return mSubContactDetection; }
-
+  SubDriveTrain       *getDriveTrain()           { return mSubDriveTrain; }
+  SubLimelight        *getLimelight()            { return mSubLimelight; }
+  SubColorSensor      *getColorSensor()          { return mSubColorSensor; }
+  SubIMU              *getImu()                  { return mSubImu; }
+  SubUltrasonic       *getUltrasonic()           { return mSubUltrasonic; }
+  SubElevator         *getSubElevator()          { return mSubElevator; }
+  SubPneumatic        *getSubPneumatic()         { return mSubPneumatic; }
+  SubContactDetection *getSubContactDetection()  { return mSubContactDetection; }
+  SubPilotInterface   *getSubPilotInterface()    {return mSubPilotInterface;}
 private:
   AutonomousCommand *m_autonomousCommand;
 
@@ -67,7 +68,8 @@ private:
   SubElevator        * mSubElevator = nullptr;
   SubPneumatic       * mSubPneumatic = nullptr;
   SubContactDetection*mSubContactDetection = nullptr;
-
+  SubPilotInterface  *mSubPilotInterface =nullptr;
+  
   bool mSmart = 0;
   bool mIsInit = false;
 

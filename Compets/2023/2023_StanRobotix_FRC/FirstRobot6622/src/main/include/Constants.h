@@ -102,3 +102,4 @@ constexpr bool kLogDrivetrain = false;
 constexpr bool kLogLimelight = true;
 constexpr bool kLogColorDetection = false;
 constexpr bool kLogContactDetection = false;
+constexpr bool kLogPilotInterface=false;

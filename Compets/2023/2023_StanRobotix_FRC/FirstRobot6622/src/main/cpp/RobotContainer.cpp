@@ -20,6 +20,7 @@ RobotContainer::RobotContainer()
   mSubImu             = new SubIMU();
   mSubLimelight       = new SubLimelight();
   mSubContactDetection= new SubContactDetection();
+  mSubPilotInterface  = new SubPilotInterface();
   mSubUltrasonic      = new SubUltrasonic();
   mSubUltrasonic->EnableImperialSystem();
   
@@ -37,7 +38,7 @@ void RobotContainer::Init()
   mSubColorSensor->Init();
   mSubContactDetection->Init();
   mSubUltrasonic->Init();
-
+  mSubPilotInterface ->Init();
   // Initialisation des commandes automatisees.
   m_autonomousCommand->Init();
 
