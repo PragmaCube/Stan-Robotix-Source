@@ -15,28 +15,25 @@
 class RobotContainer;
 class SubIMU;
 
-class SubDriveTrain : public frc2::SubsystemBase {
+class SubDriveTrain : public frc2::SubsystemBase { // TODO: enlever frc2::SubsystemBase
  public:
   SubDriveTrain(RobotContainer * iRobotContainer);
 
   void Init();
 
   void Enable(const bool iIsEnabled);
-  
-  void Periodic() override;
 
-  void MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented);
+  void MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented); // TODO: casser la fonction en deux
 
  private:
   bool mIsEnabled = false;
-  RobotContainer * mRobotContainer = nullptr;
-
+  
   frc::Spark * m_frontLeft = nullptr;
   frc::Spark * m_rearLeft  = nullptr;
   frc::Spark * m_frontRight= nullptr;
   frc::Spark * m_rearRight = nullptr;
 
-  frc::MecanumDrive * m_robotDrive = nullptr;
-
-  SubIMU * mSubIMU = nullptr;
+  RobotContainer    * mRobotContainer = nullptr;
+  frc::MecanumDrive * m_robotDrive    = nullptr;
+  SubIMU            * mSubIMU         = nullptr;
 };

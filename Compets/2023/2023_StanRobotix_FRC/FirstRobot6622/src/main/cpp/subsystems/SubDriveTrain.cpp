@@ -36,7 +36,6 @@ void SubDriveTrain::Init()
     m_frontRight = new frc::Spark (kMotorR1Port);
     m_rearRight  = new frc::Spark (kMotorR2Port);    
 
-    
     m_rearRight->SetInverted(true);        // Le filage est inverse pour ce moteur dans le robot.
     m_frontRight->SetInverted(true);       // Le filage est inverse pour ce moteur dans le robot.
 
@@ -46,14 +45,11 @@ void SubDriveTrain::Init()
   mSubIMU = mRobotContainer->getImu();
 }
 
-// This method will be called once per scheduler run
-void SubDriveTrain::Periodic() {}
-
 void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented)   // le prefix i est necessaire, pour specifier que c est une entree.
 {
   if (mIsEnabled)
   {
-    if (iFieldOriented && false)
+    if (iFieldOriented && false) // TODO: enlever le false avec l arrivee du HumanInterface
     {
       frc::Rotation2d imuAngle = mSubIMU->getRadian();
       m_robotDrive->DriveCartesian(-iY, iX, iTwist, imuAngle);
