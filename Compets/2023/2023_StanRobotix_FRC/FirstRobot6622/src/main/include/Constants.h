@@ -95,11 +95,12 @@ constexpr int   kSolenoid1Port = 1;
 constexpr int   kSolenoid2Port = 0;
 
 ///////////////////////////////////////////////////////
-// Activation des logs
+// Activation des logs de performances
 
 constexpr bool kLogPerf_UltrasonEnable = false;
 constexpr bool kLogPerf_ImuEnable = false;
 constexpr bool kLogPerf_LimelightEnable = false;
+// Activation des logs de subsytems
 
 constexpr bool kLogIMU = true;
 constexpr bool kLogDrivetrain = false;
