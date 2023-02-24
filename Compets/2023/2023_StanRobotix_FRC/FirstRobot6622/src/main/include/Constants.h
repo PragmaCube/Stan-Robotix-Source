@@ -99,7 +99,7 @@ constexpr bool kLogPerf_LimelightEnable = false;
 
 constexpr bool kLogIMU = false;
 constexpr bool kLogDrivetrain = false;
-constexpr bool kLogLimelight = true;
+constexpr bool kLogLimelight = false;
 constexpr bool kLogColorDetection = false;
 constexpr bool kLogContactDetection = false;
-constexpr bool kLogPilotInterface=false;
+constexpr bool kLogPilotInterface=true;

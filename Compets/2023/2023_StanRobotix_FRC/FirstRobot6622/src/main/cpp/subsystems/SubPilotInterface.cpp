@@ -12,10 +12,15 @@ SubPilotInterface::SubPilotInterface()
   
 void SubPilotInterface::doExecute()
 {
-    for(int i=MANUAL_TELEOP; i<CMD_MAX; i++) 
+    static int count =0;
+
+    if ((count % 50) == 0) 
     {
-        std :: cout <<  mCommandList[i].mCmdId << std::endl;
+        for(int i=MANUAL_TELEOP; i<CMD_MAX; i++) 
+        {
+        std :: cout <<  mCommandList[i].mDescription << std::endl;
+        }
     }
-    
+    count++;
 }
 

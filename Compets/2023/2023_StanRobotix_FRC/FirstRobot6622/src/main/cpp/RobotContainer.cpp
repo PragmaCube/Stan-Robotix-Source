@@ -87,6 +87,9 @@ void RobotContainer::ConfigureButtonBindings()
 
 void RobotContainer::Drive()
 {
+
+  mSubPilotInterface ->Execute();
+  
   DriveDisplacement();
 
   mSubUltrasonic->Execute(); 
