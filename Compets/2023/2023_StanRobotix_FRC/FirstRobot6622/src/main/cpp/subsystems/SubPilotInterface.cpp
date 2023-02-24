@@ -14,13 +14,22 @@ void SubPilotInterface::doExecute()
 {
     static int count =0;
 
-    mJoystick.GetRawButtonPressed(11);
 
     if ((count % 50) == 0) 
     {
         for(int i=MANUAL_TELEOP; i<CMD_MAX; i++) 
         {
         std :: cout <<  mCommandList[i].mDescription << std::endl;
+        }
+
+        if (GetRawButtonPressed(11))
+        {
+            std::cout << "le bouton 11 est pressé" << std::endl;
+        }
+
+        if (GetRawButtonPressed(12))
+        {
+            std::cout << "le bouton 12 est pressé" << std::endl;
         }
     }
     count++;
