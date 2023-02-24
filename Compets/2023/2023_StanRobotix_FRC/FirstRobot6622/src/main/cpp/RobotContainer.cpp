@@ -72,7 +72,10 @@ void RobotContainer::TeleopInit()
 void RobotContainer::DriveDisplacement()
 {// TODO
   const double slider = (1 - mJoystick.GetThrottle()) / 2;
-  mSubDriveTrain->MoveMeca(mJoystick.GetX() * slider, mJoystick.GetY() * slider, mJoystick.GetTwist() * slider, 1 - mJoystick.GetRawButton(1));
+  mSubDriveTrain->MoveMeca(mJoystick.GetX() * slider,
+                           mJoystick.GetY() * slider, 
+                           mJoystick.GetTwist() * slider, 
+                           1 - mJoystick.GetRawButton(1));
   // if (mJoystick.GetRawButtonPressed(2))
   // {
   //   SubIMU::getInstance()->ResetYaw();

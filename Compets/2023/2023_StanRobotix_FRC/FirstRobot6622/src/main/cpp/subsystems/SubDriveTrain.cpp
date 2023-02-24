@@ -36,7 +36,7 @@ void SubDriveTrain::Init()
     m_frontRight = new frc::Spark (kMotorR1Port);
     m_rearRight  = new frc::Spark (kMotorR2Port);    
 
-    m_rearLeft->SetInverted(true);         // Le filage est inverse pour ce moteur dans le robot.
+    
     m_rearRight->SetInverted(true);        // Le filage est inverse pour ce moteur dans le robot.
     m_frontRight->SetInverted(true);       // Le filage est inverse pour ce moteur dans le robot.
 
@@ -53,9 +53,9 @@ void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwi
 {
   if (mIsEnabled)
   {
-    frc::Rotation2d imuAngle = mSubIMU->getRadian();
-    if (iFieldOriented)
+    if (iFieldOriented && false)
     {
+      frc::Rotation2d imuAngle = mSubIMU->getRadian();
       m_robotDrive->DriveCartesian(-iY, iX, iTwist, imuAngle);
     }
     else
