@@ -3,6 +3,9 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
+#include <frc/XboxController.h>
+#include <frc/Joystick.h>
+
 #include "PerformanceMonitor.h"
 #include <frc2/command/SubsystemBase.h>
 #include "Constants.h"
@@ -33,10 +36,19 @@ private:
   
   void Init() { }
 
+  double GetThrottle() { return mJoystick.GetThrottle(); }
+  double GetX() { return mJoystick.GetX(); }
+  double GetY() { return mJoystick.GetY(); }
+  double GetTwist() { return mJoystick.GetTwist(); }
+  bool GetRawButtonPressed(int index) {return mJoystick.GetRawButtonPressed(index);}
+  bool GetRawButton(int index)  {return mJoystick.GetRawButton(index);}
+
  private:
   virtual void doExecute();
    
   virtual std::string getName() { return "SubPilotInterface"; }
+  frc::Joystick mJoystick{kJoystickPort};
+
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

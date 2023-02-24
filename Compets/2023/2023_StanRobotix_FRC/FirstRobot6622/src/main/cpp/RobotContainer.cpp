@@ -69,11 +69,11 @@ void RobotContainer::TeleopInit()
 
 void RobotContainer::DriveDisplacement()
 {// TODO
-  const double slider = (1 - mJoystick.GetThrottle()) / 2;
-  mSubDriveTrain->MoveMeca(mJoystick.GetX() * slider,
-                           mJoystick.GetY() * slider, 
-                           mJoystick.GetTwist() * slider, 
-                           1 - mJoystick.GetRawButton(1));
+  const double slider = (1 - mSubPilotInterface->GetThrottle()) / 2;
+  mSubDriveTrain->MoveMeca(mSubPilotInterface->GetX() * slider,
+                           mSubPilotInterface->GetY() * slider, 
+                           mSubPilotInterface->GetTwist() * slider, 
+                           1 - mSubPilotInterface ->GetRawButton(1));
   // if (mJoystick.GetRawButtonPressed(2))
   // {
   //   SubIMU::getInstance()->ResetYaw();
@@ -89,7 +89,7 @@ void RobotContainer::Drive()
 {
 
   mSubPilotInterface ->Execute();
-  
+
   DriveDisplacement();
 
   mSubUltrasonic->Execute(); 
@@ -102,7 +102,7 @@ void RobotContainer::Drive()
 
   mSubLimelight->doExecute(); // TODO toto
 
-  if (mJoystick.GetRawButtonPressed(1)) // TODO
+  if (mSubPilotInterface ->GetRawButtonPressed(1)) // TODO gatien
   {
     mSubPneumatic->Toggle();
   }

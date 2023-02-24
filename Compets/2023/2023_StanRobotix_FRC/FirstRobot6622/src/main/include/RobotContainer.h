@@ -5,8 +5,6 @@
 #pragma once
 
 #include <frc2/command/Command.h>
-#include <frc/XboxController.h>
-#include <frc/Joystick.h>
 #include <frc/Timer.h>
 #include <frc/smartdashboard/smartdashboard.h>
 
@@ -57,8 +55,6 @@ public:
   SubPilotInterface   *getSubPilotInterface()    {return mSubPilotInterface;}
 private:
   AutonomousCommand *m_autonomousCommand;
-
-  frc::Joystick mJoystick{kJoystickPort};
 
   SubDriveTrain      * mSubDriveTrain;
   SubLimelight       * mSubLimelight = nullptr;

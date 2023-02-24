@@ -14,6 +14,8 @@ void SubPilotInterface::doExecute()
 {
     static int count =0;
 
+    mJoystick.GetRawButtonPressed(11);
+
     if ((count % 50) == 0) 
     {
         for(int i=MANUAL_TELEOP; i<CMD_MAX; i++) 
