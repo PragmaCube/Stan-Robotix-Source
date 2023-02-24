@@ -3,8 +3,9 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SubElevator.h"
+#include "RobotContainer.h"
 
-SubElevator::SubElevator(RobotContainer * iRobotContainer)
+SubElevator::SubElevator(RobotContainer *iRobotContainer)
 {
   mRobotContainer = iRobotContainer;
 
@@ -13,22 +14,29 @@ SubElevator::SubElevator(RobotContainer * iRobotContainer)
   Enable(kElevatorEnabled);
 }
 
-void SubElevator::Enable(const bool iEnable) 
-{ 
-    mIsEnabled = iEnable;
+void SubElevator::Enable(const bool iEnable)
+{
+  mIsEnabled = iEnable;
+}
+
+void SubElevator::Init()
+{
+  if (mIsEnabled)
+  {
+  }
 }
 
 void SubElevator::setCommand(const int iPov)
 {
-  if(iPov==180) 
+  if (iPov == 180)
   {
     Stage(SubElevator::h0);
   }
-  else if (iPov==90) 
+  else if (iPov == 90)
   {
     Stage(SubElevator::h1);
   }
-  else if (iPov==0) 
+  else if (iPov == 0)
   {
     Stage(SubElevator::h2);
   }
@@ -59,8 +67,7 @@ void SubElevator::resetPidData()
     mLPIDController.SetSmartMotionAllowedClosedLoopError(kAllErr);
 }
 
-
-void SubElevator::Periodic() 
+void SubElevator::Periodic()
 {
     mRPIDController.SetReference(mHeight_,rev::ControlType::kSmartMotion); // ATTENTION, SIGNE - MIS SUR 1 DES 2 ARBITRAIREMENT !!!!!
     mLPIDController.SetReference(-mHeight_,rev::ControlType::kSmartMotion); // FAIRE DES TESTS POUR VOIR QUEL MOTEUR TOURNE DANS QUEL SENS !!!!!
@@ -68,24 +75,24 @@ void SubElevator::Periodic()
 
 void SubElevator::Stage(eHeight iHeight)
 {
-    switch(iHeight)
-    {
-        case h0:
-            mHeight_ = kMinHeight;
-        break;
+  switch (iHeight)
+  {
+  case h0:
+    mHeight_ = kMinHeight;
+    break;
 
-        case h1:
-            mHeight_ = kHeightS1;
-        break;
-        
-        case h2:
-            mHeight_ = kHeightS2;
-        break;
-        
-        default:
-            mLMotorElevator.Set(0);
-            mRMotorElevator.Set(0);      
-    }
+  case h1:
+    mHeight_ = kHeightS1;
+    break;
+
+  case h2:
+    mHeight_ = kHeightS2;
+    break;
+
+  default:
+    mLMotorElevator.Set(0);
+    mRMotorElevator.Set(0);
+  }
     mRPIDController.SetReference(mHeight_,rev::ControlType::kSmartMotion); // ATTENTION, SIGNE - MIS SUR 1 DES 2 ARBITRAIREMENT !!!!!
     mLPIDController.SetReference(-mHeight_,rev::ControlType::kSmartMotion); // FAIRE DES TESTS POUR VOIR QUEL MOTEUR TOURNE DANS QUEL SENS !!!!!
 }

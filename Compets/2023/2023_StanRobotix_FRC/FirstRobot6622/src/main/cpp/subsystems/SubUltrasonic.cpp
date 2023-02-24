@@ -14,26 +14,45 @@
 
 SubUltrasonic::SubUltrasonic()
 {
-    EnablePerformanceLog(kLogPerf_UltrasonEnable);
+//EnablePerformanceLog(kLogPerf_UltrasonEnable);
 }
 
-// This method will be called once per scheduler run
-void SubUltrasonic::Periodic() {}
+void SubUltrasonic::Enable(const bool iIsEnabled)
+{
+   mIsEnabled = iIsEnabled;
+}
+
+void SubUltrasonic::Init()
+{
+  if (mIsEnabled && mUltrasonic == nullptr)
+  {
+    mUltrasonic = new frc::AnalogInput(kUltrasonicDIO);
+  }
+}
 
 float SubUltrasonic::getDistance()
 {
-    double wRawValue = mUltrasonic.GetValue();
-
-    double wVoltageScaleFactor = 5 / frc::RobotController::GetVoltage5V();
-
     double wDistance = 0.0f;
-    if (mMetricSystem)
+
+    if (mUltrasonic != nullptr)
     {
-        wDistance = wRawValue * wVoltageScaleFactor * 0.125; // Distance in centimeter
+        double wRawValue = mUltrasonic->GetValue();
+
+        double wVoltageScaleFactor = 5 / frc::RobotController::GetVoltage5V();
+
+
+        if (mMetricSystem)
+        {
+            wDistance = wRawValue * wVoltageScaleFactor * 0.125; // Distance in centimeter
+        }
+        else
+        {
+            wDistance = wRawValue * wVoltageScaleFactor * 0.0492; // Distance in Inch
+        }
     }
     else
     {
-        wDistance = wRawValue * wVoltageScaleFactor * 0.0492; // Distance in Inch
+        wDistance = -10.0f;
     }
 
     return wDistance;

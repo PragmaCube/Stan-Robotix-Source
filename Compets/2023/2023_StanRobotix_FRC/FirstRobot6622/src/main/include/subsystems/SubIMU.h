@@ -24,8 +24,8 @@ public:
 private:
   bool mIsEnable = true;
   float mInitialValue[3] = {0.0, 0.0, 0.0};
-  ctre::phoenix::sensors::WPI_Pigeon2 *mGyro /*= nullptr*/; 
-  static SubIMU *mSingleton;
+  ctre::phoenix::sensors::WPI_Pigeon2 * mGyro = nullptr; 
+
   bool mSubsystemLogEnabled = false;
 
   float mYawStart;
@@ -43,12 +43,10 @@ private:
 public:
   SubIMU();
 
-  void Init() { }
+  void Init();
 
   void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
  
-  static SubIMU *getInstance();
-
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */

@@ -14,52 +14,49 @@
 
 #include <iostream>
 
+
 SubDriveTrain::SubDriveTrain(RobotContainer * iRobotContainer) 
 {
-  mRobotContainer = iRobotContainer;
-
   Enable(kDriveTrainEnabled);
 
-  m_frontLeft.SetInverted(true);         // Le filage est inverse pour ce moteur dans le robot.
-  m_rearRight.SetInverted(true);         // Le filage est inverse pour ce moteur dans le robot.
-  m_frontRight.SetInverted(true);        // Le filage est inverse pour ce moteur dans le robot.
+  mRobotContainer = iRobotContainer;
 }
 
-void SubDriveTrain::Enable(const bool iIsEnabled)
+void SubDriveTrain::Enable(const bool iEnable)
 {
-   mIsEnabled = iIsEnabled;
+  mIsEnabled = iEnable;
 }
 
-// This method will be called once per scheduler run
-void SubDriveTrain::Periodic() {}
+void SubDriveTrain::Init()
+{
+  if (mIsEnabled)
+  {
+    m_frontLeft  = new frc::Spark (kMotorL1Port);
+    m_rearLeft   = new frc::Spark (kMotorL2Port);
+    m_frontRight = new frc::Spark (kMotorR1Port);
+    m_rearRight  = new frc::Spark (kMotorR2Port);    
+
+    m_rearRight->SetInverted(true);        // Le filage est inverse pour ce moteur dans le robot.
+    m_frontRight->SetInverted(true);       // Le filage est inverse pour ce moteur dans le robot.
+
+    m_robotDrive = new frc::MecanumDrive(*m_frontLeft, *m_rearLeft, *m_frontRight, *m_rearRight);
+  }
+
+  mSubIMU = mRobotContainer->getImu();
+}
 
 void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented)   // le prefix i est necessaire, pour specifier que c est une entree.
 {
-  static bool wPreviFieldOriented = false;
-  if (kLogDrivetrain && (iFieldOriented != wPreviFieldOriented)) 
-  {
-    if (iFieldOriented)
-    {
-       std::cout << "In Field Oriented now Active " << std::endl;
-    }
-    else
-    {
-       std::cout << "In Field Oriented now Inactive " << std::endl;
-    }
-
-    wPreviFieldOriented = iFieldOriented;
-  }
-
   if (mIsEnabled)
   {
-    if (iFieldOriented)
+    if (iFieldOriented && false) // TODO: enlever le false avec l arrivee du HumanInterface
     {
-      frc::Rotation2d imuAngle = SubIMU::getInstance()->getRotation2d();
-      m_robotDrive.DriveCartesian(-iY, iX, iTwist, imuAngle);
+      frc::Rotation2d imuAngle = mSubIMU->getRadian();
+      m_robotDrive->DriveCartesian(-iY, iX, iTwist, imuAngle);
     }
     else
     {
-      m_robotDrive.DriveCartesian(-iY, iX, iTwist);
+      m_robotDrive->DriveCartesian(-iY, iX, iTwist);
     }
   }
 }

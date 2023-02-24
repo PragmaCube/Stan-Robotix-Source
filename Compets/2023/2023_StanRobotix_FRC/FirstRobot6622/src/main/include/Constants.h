@@ -16,14 +16,26 @@
 
 ///////////////////////////////////////////////////////
 // Activation indépendante des modules
-constexpr bool kDriveTrainEnabled = false;
+#define FRC_ROBOT
+#ifdef FRC_ROBOT
+constexpr bool kDriveTrainEnabled = true;
 constexpr bool kColorDetectionEnabled = false;
 constexpr bool kContactDetectionEnable = false;
 constexpr bool kElevatorEnabled = false;
 constexpr bool kImuEnabled = false;
 constexpr bool kLimelightEnabled = false;
-constexpr bool kPneumaticEnabled = true;
+constexpr bool kPneumaticEnabled = false;
 constexpr bool kUltrasonEnable = false;
+#else
+constexpr bool kDriveTrainEnabled = false;
+constexpr bool kColorDetectionEnabled = false;
+constexpr bool kContactDetectionEnable = false;
+constexpr bool kElevatorEnabled = false;
+constexpr bool kImuEnabled = false;
+constexpr bool kLimelightEnabled = true;
+constexpr bool kPneumaticEnabled = false;
+constexpr bool kUltrasonEnable = false;
+#endif
 
 ///////////////////////////////////////////////////////
 // IMU
@@ -87,6 +99,6 @@ constexpr bool kLogPerf_LimelightEnable = false;
 
 constexpr bool kLogIMU = false;
 constexpr bool kLogDrivetrain = false;
-constexpr bool kLogLimelight = false;
+constexpr bool kLogLimelight = true;
 constexpr bool kLogColorDetection = false;
 constexpr bool kLogContactDetection = false;

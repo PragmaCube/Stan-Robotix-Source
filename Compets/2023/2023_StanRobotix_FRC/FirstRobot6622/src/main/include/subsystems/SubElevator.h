@@ -17,7 +17,7 @@ class SubElevator : public frc2::SubsystemBase {
  public:
   SubElevator(RobotContainer * iRobotContainer);
 
-  void Init() { }
+  void Init();
 
   enum eHeight{h0 = 0 ,h1 = 1, h2 = 2};
   

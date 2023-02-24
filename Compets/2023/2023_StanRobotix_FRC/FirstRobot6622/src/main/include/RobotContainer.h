@@ -69,6 +69,9 @@ private:
   SubContactDetection*mSubContactDetection = nullptr;
 
   bool mSmart = 0;
+  bool mIsInit = false;
+
+  void Init ();
   void ConfigureButtonBindings();
   void DriveDisplacement();
   void DrivePneumatic();

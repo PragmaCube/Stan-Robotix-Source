@@ -19,7 +19,7 @@ class SubLimelight : public PerformanceMonitor
 public:
   SubLimelight();
 
-  void Init() { }
+  void Init();
 
   void Enable(const bool iEnable);
 
@@ -35,7 +35,6 @@ public:
 private:
   bool mIsEnabled = false;
   bool mSubsystemLogEnabled = false;
-  bool mIsInit = false;
 
   double mTargetOffsetAngle_Horizontal = 0.0;
   double mTargetOffsetAngle_Vertical = 0.0;

@@ -20,25 +20,34 @@ void SubLimelight::Enable(const bool iEnable)
   mIsEnabled = iEnable;
 }
 
-void SubLimelight::doExecute()
-{
+
+void SubLimelight::Init() 
+{ 
   if (mIsEnabled)
   {
-    if (mIsInit)
-    {
-        mNetworkTable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-    }
+     mNetworkTable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  }
+}
+
+void SubLimelight::doExecute()
+{
+  static int tempCount = 0; // TODO: get rid of this
+
+  if (mIsEnabled)
+  {
     mTargetOffsetAngle_Horizontal = mNetworkTable->GetNumber("tx", 0.0);
     mTargetOffsetAngle_Vertical = mNetworkTable->GetNumber("ty", 0.0);
     mTargetArea = mNetworkTable->GetNumber("ta", 0.0);
     mTargetSkew = mNetworkTable->GetNumber("ts", 0.0);
   }
 
-  if (mSubsystemLogEnabled)
+  if (mSubsystemLogEnabled && tempCount %50 == 0)
   {
     std::cout << "\nTargetOffsetAngle Hz(tx):" << mTargetOffsetAngle_Horizontal
               << "\nTargetOffsetAngle Vt(ty):" << mTargetOffsetAngle_Vertical
               << "\nTargetArea (ta):" << mTargetArea
               << "\nTargetSkew (ts):" << mTargetSkew << std::endl;
   }
+
+  tempCount++;
 }

@@ -13,29 +13,27 @@
 
 // Référence: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
 class RobotContainer;
+class SubIMU;
 
-class SubDriveTrain : public frc2::SubsystemBase {
+class SubDriveTrain : public frc2::SubsystemBase { // TODO: enlever frc2::SubsystemBase
  public:
   SubDriveTrain(RobotContainer * iRobotContainer);
 
-  void Init() { }
+  void Init();
 
   void Enable(const bool iIsEnabled);
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
-  void Periodic() override;
 
-  void MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented);
+  void MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented); // TODO: casser la fonction en deux
 
  private:
   bool mIsEnabled = false;
-  RobotContainer * mRobotContainer = nullptr;
+  
+  frc::Spark * m_frontLeft = nullptr;
+  frc::Spark * m_rearLeft  = nullptr;
+  frc::Spark * m_frontRight= nullptr;
+  frc::Spark * m_rearRight = nullptr;
 
-  frc::Spark m_frontLeft{kMotorL1Port};
-  frc::Spark m_rearLeft{kMotorL2Port};
-  frc::Spark m_frontRight{kMotorR1Port};
-  frc::Spark m_rearRight{kMotorR2Port};
-
-  frc::MecanumDrive m_robotDrive{m_frontLeft, m_rearLeft, m_frontRight, m_rearRight};
+  RobotContainer    * mRobotContainer = nullptr;
+  frc::MecanumDrive * m_robotDrive    = nullptr;
+  SubIMU            * mSubIMU         = nullptr;
 };
