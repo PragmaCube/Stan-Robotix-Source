@@ -12,28 +12,25 @@ RobotContainer::RobotContainer()
   
   // Liste des sorties
   mSubDriveTrain      = new SubDriveTrain(this);
-  
   mSubElevator        = new SubElevator(this);
   mSubPneumatic       = new SubPneumatic(this);
 
   // liste des entrees.
   mSubColorSensor     = new SubColorSensor();
   mSubImu             = new SubIMU();
-  mSubLimelight       = new SubLimelight(); 
+  mSubLimelight       = new SubLimelight();
   mSubContactDetection= new SubContactDetection();
-  mSubUltrasonic      = new SubUltrasonic(); 
+  mSubUltrasonic      = new SubUltrasonic();
   mSubUltrasonic->EnableImperialSystem();
   
   ConfigureButtonBindings();
-
-  std::cout << "RobotContainer::RobotContainer() fin de la construction des subsystems" << std::endl ; 
 }
 
 void RobotContainer::Init()
 {
   // Initialisation des subsystemes
   mSubDriveTrain->Init();
-  mSubElevator->Init();   
+  mSubElevator->Init();
   mSubPneumatic->Init();
   mSubImu->Init();
   mSubLimelight->Init();
