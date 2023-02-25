@@ -12,6 +12,8 @@ SubElevator::SubElevator(RobotContainer *iRobotContainer)
   resetPidData();
 
   Enable(kElevatorEnabled);
+  EnableSubsystemLog(kLogElevator);
+  EnablePerformanceLog(kLogPerf_ElevatorEnable);
 }
 
 void SubElevator::Enable(const bool iEnable)
@@ -23,6 +25,7 @@ void SubElevator::Init()
 {
   if (mIsEnabled)
   {
+
   }
 }
 
@@ -67,12 +70,6 @@ void SubElevator::resetPidData()
     mLPIDController.SetSmartMotionAllowedClosedLoopError(kAllErr);
 }
 
-void SubElevator::Periodic()
-{
-    mRPIDController.SetReference(mHeight_,rev::ControlType::kSmartMotion); // ATTENTION, SIGNE - MIS SUR 1 DES 2 ARBITRAIREMENT !!!!!
-    mLPIDController.SetReference(-mHeight_,rev::ControlType::kSmartMotion); // FAIRE DES TESTS POUR VOIR QUEL MOTEUR TOURNE DANS QUEL SENS !!!!!
-}
-
 void SubElevator::Stage(eHeight iHeight)
 {
   switch (iHeight)
@@ -93,6 +90,16 @@ void SubElevator::Stage(eHeight iHeight)
     mLMotorElevator.Set(0);
     mRMotorElevator.Set(0);
   }
+  // TODO: executer ci-dessous si et seulement si la valeur change, 
     mRPIDController.SetReference(mHeight_,rev::ControlType::kSmartMotion); // ATTENTION, SIGNE - MIS SUR 1 DES 2 ARBITRAIREMENT !!!!!
     mLPIDController.SetReference(-mHeight_,rev::ControlType::kSmartMotion); // FAIRE DES TESTS POUR VOIR QUEL MOTEUR TOURNE DANS QUEL SENS !!!!!
+}
+
+void SubElevator::doExecute ()
+{
+  if (mIsEnabled)
+  { // TODO: executer ci-dessous si et seulement si la valeur change, 
+    mRPIDController.SetReference(mHeight_,rev::ControlType::kSmartMotion); // ATTENTION, SIGNE - MIS SUR 1 DES 2 ARBITRAIREMENT !!!!!
+    mLPIDController.SetReference(-mHeight_,rev::ControlType::kSmartMotion); // FAIRE DES TESTS POUR VOIR QUEL MOTEUR TOURNE DANS QUEL SENS !!!!!
+  }
 }

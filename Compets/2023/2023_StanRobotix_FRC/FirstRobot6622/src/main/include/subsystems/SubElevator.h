@@ -10,29 +10,33 @@
 
 #include "Constants.h"
 #include <frc2/command/SubsystemBase.h>
+#include "PerformanceMonitor.h"
 
 class RobotContainer;
 
-class SubElevator : public frc2::SubsystemBase {
+class SubElevator : public PerformanceMonitor
+ {
  public:
   SubElevator(RobotContainer * iRobotContainer);
+
+  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
+
+  void Enable(const bool iEnable);
 
   void Init();
 
   enum eHeight{h0 = 0 ,h1 = 1, h2 = 2};
   
   void resetPidData();
-  void Stage(eHeight iHeight);
-  void Periodic() override;
 
-  void Enable(const bool iEnable);
+  void Stage(eHeight iHeight);
 
   void setCommand(const int iPov);
 
  private:
   bool mIsEnabled = false;
   RobotContainer * mRobotContainer;
-
+ 
   double kMaxVel = 10000, 
          kMinVel = 0, 
          kMaxAcc = 8000, 
@@ -48,4 +52,9 @@ class SubElevator : public frc2::SubsystemBase {
   rev::SparkMaxPIDController mLPIDController = mLMotorElevator.GetPIDController();
 
   double mHeight_ = kMinHeight;
+
+  bool mSubsystemLogEnabled = false;
+
+  virtual void doExecute();
+  virtual std::string getName() { return "SubElevator"; }
 };

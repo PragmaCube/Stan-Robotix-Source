@@ -103,10 +103,12 @@ constexpr bool kLogPerf_ImuEnable = false;
 constexpr bool kLogPerf_LimelightEnable = false;
 constexpr bool kLogPerf_ManualPilotEnable = false;
 constexpr bool kLogPerf_UltrasonEnable = false;
+constexpr bool kLogPerf_ElevatorEnable=false;
 
 ///////////////////////////////////////////////////////
 // Activation des logs de subsytems
 constexpr bool kLogIMU = true;
+constexpr bool kLogElevator = true;
 constexpr bool kLogDrivetrain = false;
 constexpr bool kLogLimelight = false;
 constexpr bool kLogColorDetection = false;
