@@ -10,10 +10,11 @@
 #include <frc/PneumaticsBase.h>
 #include <frc/DoubleSolenoid.h>
 #include "Constants.h"
+#include "PerformanceMonitor.h"
 
 class RobotContainer;
 
-class SubPneumatic : public frc2::SubsystemBase
+class SubPneumatic: public PerformanceMonitor
 {
 private:
   frc::DoubleSolenoid mDoubleSolenoid{frc::PneumaticsModuleType::CTREPCM, kSolenoid1Port, kSolenoid2Port};
@@ -27,8 +28,9 @@ public:
 
   ~SubPneumatic();
 
-  void Init() { }
-
+  void Init();
+  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
+ 
   void Enable(const bool iEnable);
 
   //Enables the forward doublesolenoid's channel and pushes the pneumatic cylinder forward.
@@ -39,5 +41,9 @@ public:
 
   //toggle le piston
   void Toggle();
-  
+   
+   bool mSubsystemLogEnabled = false;
+
+  virtual void doExecute();
+  virtual std::string getName() { return "SubPneumatic"; }
 };

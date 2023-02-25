@@ -23,7 +23,13 @@ void SubPneumatic::Enable(const bool iEnable)
       Retract();
    }
 }
+void SubPneumatic::Init()
+{
+  if (mIsEnabled)
+  {
 
+  }
+}
 void SubPneumatic::Extract()
 {
   mDoubleSolenoid.Set(frc::DoubleSolenoid::Value::kForward);
@@ -40,4 +46,12 @@ void SubPneumatic::Toggle()
   {
      mDoubleSolenoid.Toggle();
   }  
+}
+
+void SubPneumatic::doExecute ()
+{
+  if (mIsEnabled)
+  { 
+      // TODO: afficher potentiellement un log 
+  }
 }
