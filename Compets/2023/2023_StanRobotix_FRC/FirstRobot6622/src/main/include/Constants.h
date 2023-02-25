@@ -95,15 +95,21 @@ constexpr int   kSolenoid1Port = 1;
 constexpr int   kSolenoid2Port = 0;
 
 ///////////////////////////////////////////////////////
-// Activation des logs de performances
-
-constexpr bool kLogPerf_UltrasonEnable = false;
+// Activation des logs de performance
+constexpr bool kLogPerf_AutoConeHighEnable = false;
+constexpr bool kLogPerf_AutoConeLowEnable = false;
+constexpr bool kLogPerf_AutoChargeEnable = false;
 constexpr bool kLogPerf_ImuEnable = false;
 constexpr bool kLogPerf_LimelightEnable = false;
-// Activation des logs de subsytems
+constexpr bool kLogPerf_ManualPilotEnable = false;
+constexpr bool kLogPerf_UltrasonEnable = false;
 
+///////////////////////////////////////////////////////
+// Activation des logs de subsytems
 constexpr bool kLogIMU = true;
 constexpr bool kLogDrivetrain = false;
 constexpr bool kLogLimelight = false;
 constexpr bool kLogColorDetection = false;
 constexpr bool kLogContactDetection = false;
+constexpr bool kLogPilotInterface=true;
+

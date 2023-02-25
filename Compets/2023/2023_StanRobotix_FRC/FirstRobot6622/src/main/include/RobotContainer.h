@@ -5,8 +5,6 @@
 #pragma once
 
 #include <frc2/command/Command.h>
-#include <frc/XboxController.h>
-#include <frc/Joystick.h>
 #include <frc/Timer.h>
 #include <frc/smartdashboard/smartdashboard.h>
 
@@ -22,6 +20,7 @@
 #include "subsystems/SubPneumatic.h"
 #include "subsystems/SubUltrasonic.h"
 #include "subsystems/SubContactDetection.h"
+#include "subsystems/SubPilotInterface.h"
 
 #include "Constants.h"
 /**
@@ -42,22 +41,21 @@ public:
   void AutonomousPeriodic();
 
   frc2::Command *GetAutonomousCommand();
-  void Drive();
+  void Execute();
   void Auto();
 
-  SubDriveTrain *getDriveTrain()                 { return mSubDriveTrain; }
-  SubLimelight *getLimelight()                   { return mSubLimelight; }
-  SubColorSensor *getColorSensor()               { return mSubColorSensor; }
-  SubIMU *getImu()                               { return mSubImu; }
-  SubUltrasonic *getUltrasonic()                 { return mSubUltrasonic; }
-  SubElevator *getSubElevator()                  { return mSubElevator; }
-  SubPneumatic *getSubPneumatic()                { return mSubPneumatic; }
-  SubContactDetection * getSubContactDetection() { return mSubContactDetection; }
+  SubDriveTrain       *getSubDriveTrain()        { return mSubDriveTrain; }
+  SubLimelight        *getSubLimelight()         { return mSubLimelight; }
+  SubColorSensor      *getSubColorSensor()       { return mSubColorSensor; }
+  SubIMU              *getSubIMU()               { return mSubImu; }
+  SubUltrasonic       *getSubUltrasonic()        { return mSubUltrasonic; }
+  SubElevator         *getSubElevator()          { return mSubElevator; }
+  SubPneumatic        *getSubPneumatic()         { return mSubPneumatic; }
+  SubContactDetection *getSubContactDetection()  { return mSubContactDetection; }
+  SubPilotInterface   *getSubPilotInterface()    { return mSubPilotInterface;}
 
 private:
-  AutonomousCommand *m_autonomousCommand;
-
-  frc::Joystick mJoystick{kJoystickPort};
+  AutonomousCommand  * m_autonomousCommand;
 
   SubDriveTrain      * mSubDriveTrain;
   SubLimelight       * mSubLimelight = nullptr;
@@ -67,12 +65,10 @@ private:
   SubElevator        * mSubElevator = nullptr;
   SubPneumatic       * mSubPneumatic = nullptr;
   SubContactDetection*mSubContactDetection = nullptr;
-
-  bool mSmart = 0;
+  SubPilotInterface  *mSubPilotInterface =nullptr;
+  
   bool mIsInit = false;
-
   void Init ();
+
   void ConfigureButtonBindings();
-  void DriveDisplacement();
-  void DrivePneumatic();
 };

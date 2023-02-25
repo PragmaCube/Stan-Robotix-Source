@@ -24,9 +24,9 @@ void AutonomousCommand::Init()
 {
    mCurrentStep = Phase1_;
 
-   m_pDriveTrain = mRobotContainer->getDriveTrain();
-   m_pUltrasonic = mRobotContainer->getUltrasonic();
-   m_pIMU        = mRobotContainer->getImu();
+   m_pDriveTrain = mRobotContainer->getSubDriveTrain();
+   m_pUltrasonic = mRobotContainer->getSubUltrasonic();
+   m_pIMU        = mRobotContainer->getSubIMU();
 }
 
 /**

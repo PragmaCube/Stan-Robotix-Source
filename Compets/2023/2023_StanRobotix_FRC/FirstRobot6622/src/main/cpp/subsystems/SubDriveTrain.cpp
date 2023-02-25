@@ -42,7 +42,7 @@ void SubDriveTrain::Init()
     m_robotDrive = new frc::MecanumDrive(*m_frontLeft, *m_rearLeft, *m_frontRight, *m_rearRight);
   }
 
-  mSubIMU = mRobotContainer->getImu();
+  mSubIMU = mRobotContainer->getSubIMU();
 }
 
 void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented)   // le prefix i est necessaire, pour specifier que c est une entree.

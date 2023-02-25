@@ -13,11 +13,13 @@ public:
 
   void Execute();
 
+  virtual bool isFinish() { return true; };
+  virtual void reset() { }
+
   void EnablePerformanceLog(bool iEnable) { mPerformanceLogEnabled = iEnable; };
 
 protected:
   virtual void doExecute() = 0;
-
   virtual std::string getName() = 0;
 
 private:
