@@ -20,7 +20,7 @@ RobotContainer::RobotContainer()
   mSubImu             = new SubIMU();
   mSubLimelight       = new SubLimelight();
   mSubContactDetection= new SubContactDetection();
-  mSubPilotInterface  = new SubPilotInterface();
+  mSubPilotInterface  = new SubPilotInterface(this);
   mSubUltrasonic      = new SubUltrasonic();
   mSubUltrasonic->EnableImperialSystem();
   

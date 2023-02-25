@@ -12,29 +12,32 @@
 
 #include <iostream>
 
+class RobotContainer;
+class AutomatedCommandBase;
+
 class SubPilotInterface : public PerformanceMonitor {
 private:
- enum CommandId_t {MANUAL_TELEOP, CMD0, CMD1, CMD_MAX };
+ enum CommandId_t {MANUAL_TELEOP, AUTO_CONEHIGH, AUTO_CONELOW, AUTO_CHARGEUP, CMD_MAX };
 
-  typedef struct AutomatedCommand_t
+  struct AutomatedCommand_t
   {
       CommandId_t mCmdId;
       bool mIsEnabled = false;
       std::string mDescription;
-      int * mCommandPtr = nullptr;
-      // AutomatedCommandBase
+      PerformanceMonitor * mCommandPtr = nullptr;
   };
 
   AutomatedCommand_t mCommandList[CMD_MAX] = {
-    { MANUAL_TELEOP, true, "Commande manuel", new int [2]},
-    { CMD0, true, "Ma premiere Commande" , new int [2]},
-    { CMD1, false, "Ma 2eme Commande" , new int [2]}
+    { MANUAL_TELEOP, true, "Commande manuel", nullptr},
+    { AUTO_CONEHIGH, true, "Placer cone haut" , nullptr},
+    { AUTO_CONELOW, false, "Placer cone bas" , nullptr},
+    { AUTO_CHARGEUP, false, "Stabilisation finale" , nullptr},
   };
 
  public:
-  SubPilotInterface();
+  explicit SubPilotInterface(RobotContainer * iRobotContainer);
   
-  void Init() { }
+  void Init();
 
   double GetThrottle() { return mJoystick.GetThrottle(); }
   double GetX() { return mJoystick.GetX(); }
@@ -49,7 +52,7 @@ private:
   virtual std::string getName() { return "SubPilotInterface"; }
   
   frc::Joystick mJoystick{kJoystickPort};
-  int mMenuIndex =0;
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
+  RobotContainer * mRobotContainer;
+  int mMenuIndex   = MANUAL_TELEOP;
+  int mActiveIndex = MANUAL_TELEOP; 
 };
