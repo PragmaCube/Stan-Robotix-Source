@@ -39,15 +39,15 @@ void SubPilotInterface::doExecute()
         std :: cout <<  "Activation de " << mCommandList[mMenuIndex].mDescription << std::endl; 
     }
 
-    if (mCommandList[mMenuIndex].mCommandPtr != nullptr)
+    if (mCommandList[mActiveIndex].mCommandPtr != nullptr)
     {        
-       mCommandList[mMenuIndex].mCommandPtr->Execute();
+       mCommandList[mActiveIndex].mCommandPtr->Execute();
 
-       bool wFinish = mCommandList[mMenuIndex].mCommandPtr->isFinish();
+       bool wFinish = mCommandList[mActiveIndex].mCommandPtr->isFinish();
 
        if (wFinish)
        {
-         mCommandList[mMenuIndex].mCommandPtr->reset();
+         mCommandList[mActiveIndex].mCommandPtr->reset();
          mActiveIndex = mMenuIndex = MANUAL_TELEOP;
        }
     }
