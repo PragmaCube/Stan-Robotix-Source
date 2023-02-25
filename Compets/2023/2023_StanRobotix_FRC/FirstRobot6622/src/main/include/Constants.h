@@ -16,17 +16,21 @@
 
 ///////////////////////////////////////////////////////
 // Activation indépendante des modules
+
 #define FRC_ROBOT
 #ifdef FRC_ROBOT
+
 constexpr bool kDriveTrainEnabled = true;
 constexpr bool kColorDetectionEnabled = false;
 constexpr bool kContactDetectionEnable = false;
 constexpr bool kElevatorEnabled = false;
-constexpr bool kImuEnabled = false;
+constexpr bool kImuEnabled = true;
 constexpr bool kLimelightEnabled = false;
 constexpr bool kPneumaticEnabled = false;
 constexpr bool kUltrasonEnable = false;
+
 #else
+
 constexpr bool kDriveTrainEnabled = false;
 constexpr bool kColorDetectionEnabled = false;
 constexpr bool kContactDetectionEnable = false;
@@ -35,6 +39,7 @@ constexpr bool kImuEnabled = false;
 constexpr bool kLimelightEnabled = true;
 constexpr bool kPneumaticEnabled = false;
 constexpr bool kUltrasonEnable = false;
+
 #endif
 
 ///////////////////////////////////////////////////////
@@ -50,7 +55,6 @@ constexpr int kMotorR1Port = 3;
 
 ///////////////////////////////////////////////////////
 // Pneumatic
-
 
 ///////////////////////////////////////////////////////
 // Moteurs assenseur. 
@@ -101,11 +105,8 @@ constexpr bool kLogPerf_ManualPilotEnable = false;
 constexpr bool kLogPerf_UltrasonEnable = false;
 
 ///////////////////////////////////////////////////////
-// Activation des logs de performance
-constexpr bool kLogAutoConeHighEnable = false;
-constexpr bool kLogAutoConeLowEnable = false;
-constexpr bool kLogAutoChargeEnable = false;
-constexpr bool kLogIMU = false;
+// Activation des logs de subsytems
+constexpr bool kLogIMU = true;
 constexpr bool kLogDrivetrain = false;
 constexpr bool kLogLimelight = false;
 constexpr bool kLogColorDetection = false;

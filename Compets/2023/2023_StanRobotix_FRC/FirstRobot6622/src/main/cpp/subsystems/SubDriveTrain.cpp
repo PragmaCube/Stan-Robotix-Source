@@ -49,7 +49,7 @@ void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwi
 {
   if (mIsEnabled)
   {
-    if (iFieldOriented && false) // TODO: enlever le false avec l arrivee du HumanInterface
+    if (iFieldOriented) 
     {
       frc::Rotation2d imuAngle = mSubIMU->getRadian();
       m_robotDrive->DriveCartesian(-iY, iX, iTwist, imuAngle);
