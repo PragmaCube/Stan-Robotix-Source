@@ -112,4 +112,8 @@ constexpr bool kLogLimelight = false;
 constexpr bool kLogColorDetection = false;
 constexpr bool kLogContactDetection = false;
 constexpr bool kLogPilotInterface=true;
+constexpr bool kLogAutoConeHighEnable = false;
+constexpr bool kLogAutoConeLowEnable = false;
+constexpr bool kLogChargeUpFinalEnable = false;
+constexpr bool kLogManualEnable = false;
 
