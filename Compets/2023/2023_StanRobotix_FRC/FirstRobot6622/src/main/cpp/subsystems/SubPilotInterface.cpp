@@ -18,25 +18,22 @@ void SubPilotInterface::Init()
 }
   
 void SubPilotInterface::doExecute()
-{
-    static int count =0;
-    
-    if (GetRawButtonPressed(11))
+{  
+    if (GetRawButtonPressed(ChangementCommandeAuto))
     {
         mMenuIndex++;
 
         if (mMenuIndex == CMD_MAX)
         {
-            mMenuIndex=0;
+            mMenuIndex = 0;
         }
 
-        std :: cout <<  "Selection de " << mCommandList[mMenuIndex].mDescription << std::endl;
+        std :: cout <<  "Selection de la " << mCommandList[mMenuIndex].mDescription << std::endl;
     }
 
-    if (GetRawButtonPressed(12))
+    if (GetRawButtonPressed(ActivationCommandeAuto))
     {
-        mActiveIndex = mMenuIndex;
-        std :: cout <<  "Activation de " << mCommandList[mMenuIndex].mDescription << std::endl; 
+        mActiveIndex = mMenuIndex; 
     }
 
     if (mCommandList[mActiveIndex].mCommandPtr != nullptr)
@@ -44,23 +41,12 @@ void SubPilotInterface::doExecute()
        mCommandList[mActiveIndex].mCommandPtr->Execute();
 
        bool wFinish = mCommandList[mActiveIndex].mCommandPtr->isFinish();
-
        if (wFinish)
        {
-         mCommandList[mActiveIndex].mCommandPtr->reset();
+         mCommandList[mActiveIndex].mCommandPtr->reset(); // Pour remettre l'etat de la commande
+                                                          // automatique a zero!
          mActiveIndex = mMenuIndex = MANUAL_TELEOP;
        }
     }
-
-    if ((count % 50) == 0) 
-    {
-        for(int i=MANUAL_TELEOP; i<CMD_MAX; i++) 
-        {
-       
-        }
-
-       
-    }
-    count++;
 }
 

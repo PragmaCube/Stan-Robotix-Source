@@ -16,8 +16,9 @@ class RobotContainer;
 class AutomatedCommandBase;
 
 class SubPilotInterface : public PerformanceMonitor {
+
 private:
- enum CommandId_t {MANUAL_TELEOP, AUTO_CONEHIGH, AUTO_CONELOW, AUTO_CHARGEUP, CMD_MAX };
+  enum CommandId_t {MANUAL_TELEOP, AUTO_CONEHIGH, AUTO_CONELOW, AUTO_CHARGEUP, CMD_MAX };
 
   struct AutomatedCommand_t
   {
@@ -28,11 +29,29 @@ private:
   };
 
   AutomatedCommand_t mCommandList[CMD_MAX] = {
-    { MANUAL_TELEOP, true, "Commande manuel", nullptr},
-    { AUTO_CONEHIGH, true, "Placer cone haut" , nullptr},
-    { AUTO_CONELOW, false, "Placer cone bas" , nullptr},
-    { AUTO_CHARGEUP, false, "Stabilisation finale" , nullptr},
+    { MANUAL_TELEOP, true, "commande manuel", nullptr},
+    { AUTO_CONEHIGH, true, "commande pour placer un cone en haut" , nullptr},
+    { AUTO_CONELOW, false, "commande pour placer un cone en bas" , nullptr},
+    { AUTO_CHARGEUP, false, "commande pour la stabilisation finale" , nullptr},
   };
+
+public:
+ enum ButtonDefinition_t
+ {
+   NePasToucher, // Les index des boutons commencent a 1, pas a zero
+   Unused1,
+   Unused2,
+   Unused3,
+   Unused4,
+   Unused5,
+   Unused6,
+   Unused7,
+   Unused8,
+   Unused9,
+   Unused10,
+   ChangementCommandeAuto,
+   ActivationCommandeAuto
+ };
 
  public:
   explicit SubPilotInterface(RobotContainer * iRobotContainer);
