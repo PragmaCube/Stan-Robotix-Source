@@ -41,20 +41,21 @@ public:
   void AutonomousPeriodic();
 
   frc2::Command *GetAutonomousCommand();
-  void Drive();
+  void Execute();
   void Auto();
 
-  SubDriveTrain       *getDriveTrain()           { return mSubDriveTrain; }
-  SubLimelight        *getLimelight()            { return mSubLimelight; }
-  SubColorSensor      *getColorSensor()          { return mSubColorSensor; }
-  SubIMU              *getImu()                  { return mSubImu; }
-  SubUltrasonic       *getUltrasonic()           { return mSubUltrasonic; }
+  SubDriveTrain       *getSubDriveTrain()        { return mSubDriveTrain; }
+  SubLimelight        *getSubLimelight()         { return mSubLimelight; }
+  SubColorSensor      *getSubColorSensor()       { return mSubColorSensor; }
+  SubIMU              *getSubIMU()               { return mSubImu; }
+  SubUltrasonic       *getSubUltrasonic()        { return mSubUltrasonic; }
   SubElevator         *getSubElevator()          { return mSubElevator; }
   SubPneumatic        *getSubPneumatic()         { return mSubPneumatic; }
   SubContactDetection *getSubContactDetection()  { return mSubContactDetection; }
-  SubPilotInterface   *getSubPilotInterface()    {return mSubPilotInterface;}
+  SubPilotInterface   *getSubPilotInterface()    { return mSubPilotInterface;}
+
 private:
-  AutonomousCommand *m_autonomousCommand;
+  AutonomousCommand  * m_autonomousCommand;
 
   SubDriveTrain      * mSubDriveTrain;
   SubLimelight       * mSubLimelight = nullptr;
@@ -66,11 +67,8 @@ private:
   SubContactDetection*mSubContactDetection = nullptr;
   SubPilotInterface  *mSubPilotInterface =nullptr;
   
-  bool mSmart = 0;
   bool mIsInit = false;
-
   void Init ();
+
   void ConfigureButtonBindings();
-  void DriveDisplacement();
-  void DrivePneumatic();
 };

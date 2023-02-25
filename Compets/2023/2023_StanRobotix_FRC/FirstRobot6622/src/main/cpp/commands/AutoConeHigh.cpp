@@ -17,6 +17,8 @@ AutoConeHigh::AutoConeHigh(RobotContainer * iRobotContainer)
 
    EnableSubsystemLog(kLogAutoConeHighEnable);
    EnablePerformanceLog(kLogPerf_AutoConeHighEnable);
+
+   Init();
 }
 
 /**
@@ -27,8 +29,8 @@ void AutoConeHigh::Init()
 {
    mCurrentStep = Phase1_;
 
-   mSubDriveTrain = mRobotContainer->getDriveTrain();
-   mSubLimelight = mRobotContainer->getLimelight();
+   mSubDriveTrain = mRobotContainer->getSubDriveTrain();
+   mSubLimelight = mRobotContainer->getSubLimelight();
 }
 
 /**

@@ -5,6 +5,7 @@
 #include "subsystems/SubPilotInterface.h"
 
 #include "commands/AutoConeHigh.h"
+#include "commands/ManualPilot.h"
  
 SubPilotInterface::SubPilotInterface(RobotContainer * iRobotContainer) 
 {
@@ -15,6 +16,9 @@ void SubPilotInterface::Init()
 {
     // MANUAL_TELEOP, AUTO_CONEHIGH, AUTO_CONELOW, AUTO_CHARGEUP, CMD_MAX };
    mCommandList[AUTO_CONEHIGH].mCommandPtr = new AutoConeHigh(mRobotContainer);
+   mCommandList[MANUAL_TELEOP].mCommandPtr = new ManualPilot(mRobotContainer);
+
+   
 }
   
 void SubPilotInterface::doExecute()
@@ -47,6 +51,11 @@ void SubPilotInterface::doExecute()
                                                           // automatique a zero!
          mActiveIndex = mMenuIndex = MANUAL_TELEOP;
        }
+    }
+    else
+    {
+       mActiveIndex = MANUAL_TELEOP;
+       mCommandList[mActiveIndex].mCommandPtr->Execute();
     }
 }
 

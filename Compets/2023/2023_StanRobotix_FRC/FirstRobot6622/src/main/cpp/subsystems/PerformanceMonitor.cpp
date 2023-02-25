@@ -12,7 +12,7 @@ void PerformanceMonitor::Execute()
 
     doExecute();
 
-    if (mPerformanceLogEnabled)
+    if (mPerformanceLogEnabled && (mNumberOfExecution % 100) == 0)
     {
         std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
@@ -37,8 +37,8 @@ void PerformanceMonitor::Execute()
                   << "    MoyDurationiNnS = " << std::chrono::duration_cast<std::chrono::microseconds>(mMoyDurationiNnS).count() << "[µs]" << std::endl
                   << "    AccumulDurationiNnS = " << std::chrono::duration_cast<std::chrono::microseconds>(mAccumulDurationiNnS).count() << "[µs]" << std::endl
                   << "    Number of execution " << mNumberOfExecution << std::endl;
-        mNumberOfExecution++;
     }
+    mNumberOfExecution++;
 }
 
 //  TODO: EnableLocalPerformance.
