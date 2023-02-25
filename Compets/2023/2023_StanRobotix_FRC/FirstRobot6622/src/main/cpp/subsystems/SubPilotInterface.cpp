@@ -15,10 +15,8 @@ SubPilotInterface::SubPilotInterface(RobotContainer * iRobotContainer)
 void SubPilotInterface::Init() 
 {
     // MANUAL_TELEOP, AUTO_CONEHIGH, AUTO_CONELOW, AUTO_CHARGEUP, CMD_MAX };
-   mCommandList[AUTO_CONEHIGH].mCommandPtr = new AutoConeHigh(mRobotContainer);
-   mCommandList[MANUAL_TELEOP].mCommandPtr = new ManualPilot(mRobotContainer);
-
-   
+   mCommandList[MANUAL_TELEOP].mCommandPtr = new ManualPilot(mRobotContainer); 
+   mCommandList[AUTO_CONEHIGH].mCommandPtr = new AutoConeHigh(mRobotContainer);   
 }
   
 void SubPilotInterface::doExecute()
@@ -27,9 +25,11 @@ void SubPilotInterface::doExecute()
     {
         mMenuIndex++;
 
+        // TODO: tenir compte de mCommandList[mMenuIndex].mIsEnabled poue chercher la
+        // prochaine commande utilisable
         if (mMenuIndex == CMD_MAX)
         {
-            mMenuIndex = 0;
+            mMenuIndex = MANUAL_TELEOP;
         }
 
         std :: cout <<  "Selection de la " << mCommandList[mMenuIndex].mDescription << std::endl;
@@ -40,6 +40,14 @@ void SubPilotInterface::doExecute()
         mActiveIndex = mMenuIndex; 
     }
 
+    if (GetRawButtonPressed(AnnulationCommandeAuto))
+    {
+        std :: cout <<  "Interruption de la " << mCommandList[mMenuIndex].mDescription << std::endl;
+
+        mActiveIndex = MANUAL_TELEOP;
+        mMenuIndex   = MANUAL_TELEOP;        
+    }
+
     if (mCommandList[mActiveIndex].mCommandPtr != nullptr)
     {        
        mCommandList[mActiveIndex].mCommandPtr->Execute();
@@ -47,9 +55,15 @@ void SubPilotInterface::doExecute()
        bool wFinish = mCommandList[mActiveIndex].mCommandPtr->isFinish();
        if (wFinish)
        {
-         mCommandList[mActiveIndex].mCommandPtr->reset(); // Pour remettre l'etat de la commande
-                                                          // automatique a zero!
-         mActiveIndex = mMenuIndex = MANUAL_TELEOP;
+         if (mActiveIndex != MANUAL_TELEOP)
+         {
+            mCommandList[mActiveIndex].mCommandPtr->reset(); // Pour remettre l'etat de la commande
+                                                             // automatique a zero!
+            std :: cout <<  "Mort naturel de la " << mCommandList[mMenuIndex].mDescription << 
+                           std::endl << " Mode manuel activé" << std::endl;
+         
+         }
+         mActiveIndex = MANUAL_TELEOP;
        }
     }
     else

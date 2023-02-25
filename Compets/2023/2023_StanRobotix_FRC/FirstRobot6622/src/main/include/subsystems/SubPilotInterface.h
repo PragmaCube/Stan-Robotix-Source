@@ -39,16 +39,16 @@ public:
  enum ButtonDefinition_t
  {
    NePasToucher, // Les index des boutons commencent a 1, pas a zero
-   Unused1,
-   Unused2,
-   Unused3,
+   ActivationFieldOriented,
+   ResetImuYaw,
+   TogglePneumatic,
    Unused4,
    Unused5,
    Unused6,
    Unused7,
    Unused8,
    Unused9,
-   Unused10,
+   AnnulationCommandeAuto,
    ChangementCommandeAuto,
    ActivationCommandeAuto
  };

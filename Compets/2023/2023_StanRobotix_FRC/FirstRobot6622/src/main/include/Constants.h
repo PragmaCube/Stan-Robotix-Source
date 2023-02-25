@@ -97,7 +97,7 @@ constexpr bool kLogPerf_AutoConeLowEnable = false;
 constexpr bool kLogPerf_AutoChargeEnable = false;
 constexpr bool kLogPerf_ImuEnable = false;
 constexpr bool kLogPerf_LimelightEnable = false;
-constexpr bool kLogPerf_ManualPilotEnable = true;
+constexpr bool kLogPerf_ManualPilotEnable = false;
 constexpr bool kLogPerf_UltrasonEnable = false;
 
 ///////////////////////////////////////////////////////

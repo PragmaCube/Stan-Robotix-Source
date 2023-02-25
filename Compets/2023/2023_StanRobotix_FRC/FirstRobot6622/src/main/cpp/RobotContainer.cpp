@@ -12,7 +12,7 @@ RobotContainer::RobotContainer()
   m_autonomousCommand = new AutonomousCommand(this);
   
   // Liste des sorties
-  mSubDriveTrain      = new SubDriveTrain(this);
+  mSubDriveTrain      = new SubDriveTrain(this); // On mets this car ce subsystem depend d'autres
   mSubElevator        = new SubElevator(this);
   mSubPneumatic       = new SubPneumatic(this);
 
