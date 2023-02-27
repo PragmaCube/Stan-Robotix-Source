@@ -17,6 +17,7 @@ class RobotContainer;
 class SubIMU;
 
 class SubDriveTrain : public PerformanceMonitor
+{
  public:
   SubDriveTrain(RobotContainer * iRobotContainer);
 
@@ -24,12 +25,13 @@ class SubDriveTrain : public PerformanceMonitor
 
   void Enable(const bool iIsEnabled);
 
-  void setParameters(const double iX, const double iY, const double iTwist, const bool iFieldOriented); // TODO: casser la fonction en deux
+  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
 
-  virtual void doExecute();
+  void setParameters(const double iX, const double iY, const double iTwist, const bool iFieldOriented); // TODO: casser la fonction en deux
 
  private:
   bool mIsEnabled = false;
+  bool mSubsystemLogEnabled = false;
   
   frc::Spark * m_frontLeft = nullptr;
   frc::Spark * m_rearLeft  = nullptr;
@@ -43,6 +45,7 @@ class SubDriveTrain : public PerformanceMonitor
   double mX, mY, mTwist;
   bool mFieldOriented;
 
-  virtual std::string getName() { return "SubDriveTrain" }
+  virtual std::string getName() { return "SubDriveTrain"; }
+  virtual void doExecute();
 };
 

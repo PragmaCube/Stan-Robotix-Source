@@ -17,7 +17,7 @@ SubIMU::SubIMU()
     EnableSubsystemLog(kLogIMU);
     EnablePerformanceLog(kLogPerf_ImuEnable);
     Enable(kImuEnabled);
-    setLogPeriodity(kLogPeriod_260ms);
+    setLogPeriodity(kLogPeriod_1s);
 }
 
 void SubIMU::Init()

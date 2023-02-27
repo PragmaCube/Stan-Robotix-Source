@@ -45,7 +45,7 @@ void ManualPilot::doExecute()
                             mSubPilotInterface->GetY() * slider,
                             mSubPilotInterface->GetTwist() * slider,
                             !wIsFieldOrientedEnabled);
-   mSubDriveTrain->doExecute();
+   mSubDriveTrain->Execute();
 
    // bool wResetImuYaw = mSubPilotInterface->GetRawButton(SubPilotInterface::ResetImuYaw);
    // if (mSubPilotInterface->GetRawButtonPressed(wResetImuYaw))

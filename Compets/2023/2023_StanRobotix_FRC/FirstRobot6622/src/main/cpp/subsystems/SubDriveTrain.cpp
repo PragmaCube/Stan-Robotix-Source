@@ -18,8 +18,12 @@
 SubDriveTrain::SubDriveTrain(RobotContainer * iRobotContainer) 
 {
   Enable(kDriveTrainEnabled);
+  EnablePerformanceLog(kLogPerf_DrivetrainEnable);
+  EnableSubsystemLog(kLogDrivetrain);
 
   mRobotContainer = iRobotContainer;
+
+  setLogPeriodity(kLogPeriod_2s);
 }
 
 void SubDriveTrain::Enable(const bool iEnable)
@@ -56,9 +60,11 @@ void SubDriveTrain::setParameters(const double iX, const double iY, const double
 void SubDriveTrain::doExecute()
 {
   static int wNumberOfExecution = 0;
+  
   if (mIsEnabled)
   {
-    if (iFieldOriented) 
+
+    if (mFieldOriented) 
     {
       frc::Rotation2d imuAngle = mSubIMU->getRadian();
       m_robotDrive->DriveCartesian(-mY, mX, mTwist, imuAngle);
@@ -68,5 +74,10 @@ void SubDriveTrain::doExecute()
       m_robotDrive->DriveCartesian(-mY, mX, mTwist);
     }
   }
-  wNumberOfExecution++
+  
+    if (((wNumberOfExecution % mLogPeriodicity) == 0) && mSubsystemLogEnabled)
+    {
+        std::cout << "mX:" << mX << std::endl << "  mY :" << mY << std::endl << "   mTwist " << mTwist << std::endl;
+    }
+    wNumberOfExecution++;
 }
