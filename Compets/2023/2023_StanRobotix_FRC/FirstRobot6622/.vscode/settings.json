@@ -88,5 +88,6 @@
     "typeinfo": "cpp",
     "variant": "cpp",
     "*.inc": "cpp"
-  }
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }

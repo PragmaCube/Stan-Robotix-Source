@@ -56,7 +56,7 @@ void ManualPilot::doExecute()
 
    // // mSubElevator->setCommand(mJoystick.GetPOV()); // TODO
 
-   // mSubImu->Execute();
+   mSubImu->Execute();
 
    // mSubColorSensor->Execute();
 
