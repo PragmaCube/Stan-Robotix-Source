@@ -12,7 +12,7 @@ void PerformanceMonitor::Execute()
 
     doExecute();
 
-    if (mPerformanceLogEnabled && (mNumberOfExecution % 100) == 0)
+    if (mPerformanceLogEnabled && (mNumberOfExecution % mLogPeriodicity) == 0)
     {
         std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 

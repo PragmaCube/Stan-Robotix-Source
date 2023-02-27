@@ -25,7 +25,7 @@ constexpr bool kColorDetectionEnabled = false;
 constexpr bool kContactDetectionEnable = false;
 constexpr bool kElevatorEnabled = false;
 constexpr bool kImuEnabled = true;
-constexpr bool kLimelightEnabled = false;
+constexpr bool kLimelightEnabled = true;
 constexpr bool kPneumaticEnabled = false;
 constexpr bool kUltrasonEnable = false;
 
@@ -105,12 +105,14 @@ constexpr bool kLogPerf_ManualPilotEnable = false;
 constexpr bool kLogPerf_UltrasonEnable = false;
 constexpr bool kLogPerf_ElevatorEnable=false;
 constexpr bool kLogPerf_PneumaticEnable=false;
+constexpr bool kLogPerf_AutoFinalStabilisationEnable=false;
+
 ///////////////////////////////////////////////////////
 // Activation des logs de subsytems
 constexpr bool kLogIMU = true;
 constexpr bool kLogElevator = true;
 constexpr bool kLogDrivetrain = false;
-constexpr bool kLogLimelight = false;
+constexpr bool kLogLimelight = true;
 constexpr bool kLogColorDetection = false;
 constexpr bool kLogContactDetection = false;
 constexpr bool kLogPilotInterface=true;
@@ -119,4 +121,4 @@ constexpr bool kLogAutoConeLowEnable = false;
 constexpr bool kLogChargeUpFinalEnable = false;
 constexpr bool kLogManualEnable = false;
 constexpr bool kLogPneumatic = false;
-
+constexpr bool kLogAutoFinalStabilisationEnable=false;

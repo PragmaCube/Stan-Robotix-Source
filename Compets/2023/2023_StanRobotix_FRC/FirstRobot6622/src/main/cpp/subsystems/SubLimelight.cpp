@@ -13,6 +13,8 @@ SubLimelight::SubLimelight()
   Enable(kLimelightEnabled);
   EnablePerformanceLog(kLogPerf_LimelightEnable);
   EnableSubsystemLog(kLogLimelight);
+
+  setLogPeriodity(kLogPeriod_1s);
 }
 
 void SubLimelight::Enable(const bool iEnable)
@@ -31,7 +33,7 @@ void SubLimelight::Init()
 
 void SubLimelight::doExecute()
 {
-  static int tempCount = 0; // TODO: get rid of this
+  static int wNumberOfExecution = 0; // TODO: get rid of this
 
   if (mIsEnabled)
   {
@@ -41,7 +43,7 @@ void SubLimelight::doExecute()
     mTargetSkew = mNetworkTable->GetNumber("ts", 0.0);
   }
 
-  if (mSubsystemLogEnabled && tempCount %50 == 0)
+  if (mSubsystemLogEnabled && (wNumberOfExecution %mLogPeriodicity) == 0)
   {
     std::cout << "\nTargetOffsetAngle Hz(tx):" << mTargetOffsetAngle_Horizontal
               << "\nTargetOffsetAngle Vt(ty):" << mTargetOffsetAngle_Vertical
@@ -49,5 +51,5 @@ void SubLimelight::doExecute()
               << "\nTargetSkew (ts):" << mTargetSkew << std::endl;
   }
 
-  tempCount++;
+  wNumberOfExecution++;
 }

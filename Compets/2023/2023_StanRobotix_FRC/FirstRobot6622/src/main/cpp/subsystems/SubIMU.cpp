@@ -17,6 +17,7 @@ SubIMU::SubIMU()
     EnableSubsystemLog(kLogIMU);
     EnablePerformanceLog(kLogPerf_ImuEnable);
     Enable(kImuEnabled);
+    setLogPeriodity(kLogPeriod_260ms);
 }
 
 void SubIMU::Init()
@@ -44,7 +45,7 @@ void SubIMU::Enable(bool iEnable)
 
 void SubIMU::doExecute()
 {
-    static int mNumberOfExecution = 0;  // TODO: changer avec un timer
+    static int wNumberOfExecution = 0;  // TODO: changer avec un timer
 
     static double ypr[3] = { 0.0f, 0.0f, 0.0f};
     if (mIsEnable)
@@ -56,11 +57,11 @@ void SubIMU::doExecute()
     ypr[1] = ypr[1] - mPitchStart;
     ypr[2] = ypr[2] - mRollStart;
 
-    if (mNumberOfExecution % 25 == 0 && mSubsystemLogEnabled)
+    if (((wNumberOfExecution % mLogPeriodicity) == 0) && mSubsystemLogEnabled)
     {
         std::cout << "Yaw:" << ypr[0] << "    Pitch :" << ypr[1] << "   Roll " << ypr[2] << std::endl;
     }
-    mNumberOfExecution++;
+    wNumberOfExecution++;
 }
 
 double SubIMU::getAngle()
