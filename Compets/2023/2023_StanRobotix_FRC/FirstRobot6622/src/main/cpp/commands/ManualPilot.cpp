@@ -41,10 +41,11 @@ void ManualPilot::doExecute()
 {
    bool wIsFieldOrientedEnabled = mSubPilotInterface->GetRawButton(SubPilotInterface::ActivationFieldOriented);
    const double slider = (1 - mSubPilotInterface->GetThrottle()) / 2;
-   mSubDriveTrain->MoveMeca(mSubPilotInterface->GetX() * -slider,
+   mSubDriveTrain->setParameters(mSubPilotInterface->GetX() * -slider,
                             mSubPilotInterface->GetY() * slider,
                             mSubPilotInterface->GetTwist() * slider,
                             !wIsFieldOrientedEnabled);
+   mSubDriveTrain->doExecute();
 
    // bool wResetImuYaw = mSubPilotInterface->GetRawButton(SubPilotInterface::ResetImuYaw);
    // if (mSubPilotInterface->GetRawButtonPressed(wResetImuYaw))

@@ -10,12 +10,13 @@
 #include <frc/motorcontrol/Spark.h>
 #include <frc/drive/MecanumDrive.h>
 #include <units/angle.h>
+#include "PerformanceMonitor.h"
 
 // Référence: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
 class RobotContainer;
 class SubIMU;
 
-class SubDriveTrain : public frc2::SubsystemBase { // TODO: enlever frc2::SubsystemBase
+class SubDriveTrain : public PerformanceMonitor
  public:
   SubDriveTrain(RobotContainer * iRobotContainer);
 
@@ -23,7 +24,9 @@ class SubDriveTrain : public frc2::SubsystemBase { // TODO: enlever frc2::Subsys
 
   void Enable(const bool iIsEnabled);
 
-  void MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented); // TODO: casser la fonction en deux
+  void setParameters(const double iX, const double iY, const double iTwist, const bool iFieldOriented); // TODO: casser la fonction en deux
+
+  virtual void doExecute();
 
  private:
   bool mIsEnabled = false;
@@ -36,4 +39,10 @@ class SubDriveTrain : public frc2::SubsystemBase { // TODO: enlever frc2::Subsys
   RobotContainer    * mRobotContainer = nullptr;
   frc::MecanumDrive * m_robotDrive    = nullptr;
   SubIMU            * mSubIMU         = nullptr;
+
+  double mX, mY, mTwist;
+  bool mFieldOriented;
+
+  virtual std::string getName() { return "SubDriveTrain" }
 };
+

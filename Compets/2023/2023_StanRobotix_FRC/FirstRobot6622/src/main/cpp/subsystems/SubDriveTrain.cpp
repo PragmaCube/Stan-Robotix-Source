@@ -45,18 +45,28 @@ void SubDriveTrain::Init()
   mSubIMU = mRobotContainer->getSubIMU();
 }
 
-void SubDriveTrain::MoveMeca(const double iX, const double iY, const double iTwist, const bool iFieldOriented)   // le prefix i est necessaire, pour specifier que c est une entree.
+void SubDriveTrain::setParameters(const double iX, const double iY, const double iTwist, const bool iFieldOriented)   // le prefix i est necessaire, pour specifier que c est une entree.
 {
+  mX = iX;
+  mY = iY; 
+  mTwist = iTwist;
+  mFieldOriented = iFieldOriented;
+}
+
+void SubDriveTrain::doExecute()
+{
+  static int wNumberOfExecution = 0;
   if (mIsEnabled)
   {
     if (iFieldOriented) 
     {
       frc::Rotation2d imuAngle = mSubIMU->getRadian();
-      m_robotDrive->DriveCartesian(-iY, iX, iTwist, imuAngle);
+      m_robotDrive->DriveCartesian(-mY, mX, mTwist, imuAngle);
     }
     else
     {
-      m_robotDrive->DriveCartesian(-iY, iX, iTwist);
+      m_robotDrive->DriveCartesian(-mY, mX, mTwist);
     }
   }
+  wNumberOfExecution++
 }
