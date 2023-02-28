@@ -111,7 +111,7 @@ constexpr bool kLogPerf_AutoFinalStabilisationEnable=false;
 // Activation des logs de subsytems
 constexpr bool kLogIMU = true;
 constexpr bool kLogElevator = true;
-constexpr bool kLogDrivetrain = false;
+constexpr bool kLogDrivetrain = true;
 constexpr bool kLogLimelight = true;
 constexpr bool kLogColorDetection = false;
 constexpr bool kLogContactDetection = false;

@@ -111,9 +111,8 @@ void AutonomousCommand::End(bool interrupted)
 
 void AutonomousCommand::doExecutePhase1()
 {
-   
-m_pDriveTrain->MoveMeca(0,0.5,0,false);
-
+   m_pDriveTrain->setParameters(0,0.5,0,false);
+   m_pDriveTrain->Execute();
 }
 
 bool AutonomousCommand::isPhase1Finished()
@@ -133,14 +132,12 @@ bool AutonomousCommand::isPhase1Finished()
 
 void AutonomousCommand::doExecutePhase2()
 {
-m_pDriveTrain->MoveMeca(0,-0.5,0,false);
-
+   m_pDriveTrain->setParameters(0,-0.5,0,false);
+   m_pDriveTrain->Execute();
 }
 
 bool AutonomousCommand::isPhase2Finished()
-{
-   
- 
+{ 
    static bool executePhase2Once = true;
       if (executePhase2Once)
      {
