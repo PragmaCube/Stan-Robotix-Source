@@ -12,14 +12,6 @@ class RobotContainer;
 
 class AutoFinalStabilisation : public PerformanceMonitor
 {
-private:
-  enum step_t
-  {
-    Phase1_,
-   PhaseFinish,
-  };
-  step_t mCurrentStep;
-
 public:
  float mSpeed =1;
   /**

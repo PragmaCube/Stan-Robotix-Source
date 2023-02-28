@@ -9,8 +9,6 @@
 
 AutoFinalStabilisation::AutoFinalStabilisation(RobotContainer *iRobotContainer)
 {
-   mCurrentStep = Phase1_;
-
    mRobotContainer = iRobotContainer;
 
    mGenericTimer.Reset();
@@ -27,8 +25,6 @@ AutoFinalStabilisation::AutoFinalStabilisation(RobotContainer *iRobotContainer)
  */
 void AutoFinalStabilisation::Init()
 {
-   mCurrentStep = Phase1_;
-
    mSubDriveTrain = mRobotContainer->getSubDriveTrain();
    mSubIMU = mRobotContainer->getSubIMU();
 }
@@ -43,7 +39,7 @@ void AutoFinalStabilisation::doExecute()
    {
       if (mCurrentDir != eBackward)
       {
-         mSpeed = mSpeed / 1, 75;
+         mSpeed = mSpeed / 1.75;
       }
       mSubDriveTrain->setParameters(0, -mSpeed, 0, false); // le robot recule
       mSubDriveTrain->Execute();
@@ -53,11 +49,15 @@ void AutoFinalStabilisation::doExecute()
    {
       if (mCurrentDir != eForward)
       {
-         mSpeed = mSpeed / 1, 75;
+         mSpeed = mSpeed / 1.75;
       }
       mSubDriveTrain->setParameters(0, mSpeed, 0, false); // le robot avance
       mSubDriveTrain->Execute();
       mCurrentDir = eForward;
+   }
+   else {
+      mSubDriveTrain->setParameters(0, 0, 0, false); // le robot east immobile
+      mSubDriveTrain->Execute();
    }
 }
 
@@ -68,6 +68,6 @@ bool AutoFinalStabilisation::isFinish()
 
 void AutoFinalStabilisation::Reset()
 {
-   // std :: cout <<  "Fin de l'execution de AutoFinalStabilisation" << std::endl;
-   mCurrentStep = Phase1_;
+   std :: cout <<  "Fin de l'execution de AutoFinalStabilisation" << std::endl;
+   mCurrentDir = eNotInit;
 }

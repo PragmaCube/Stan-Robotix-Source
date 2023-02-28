@@ -45,8 +45,8 @@ void ManualPilot::doExecute()
                             mSubPilotInterface->GetY() * slider,
                             mSubPilotInterface->GetTwist() * slider,
                             wIsFieldOrientedEnabled);
+   mSubDriveTrain->Execute();
 
-   
    if (mSubPilotInterface->GetRawButtonPressed(SubPilotInterface::ResetIMUGlobal))
       {
         mSubIMU->ResetGlobal();
