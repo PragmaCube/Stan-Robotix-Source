@@ -42,7 +42,7 @@ private:
   SubDriveTrain * mSubDriveTrain  = nullptr;
   SubUltrasonic * mSubUltrasonic  = nullptr;
   SubElevator   * mSubElevator    = nullptr;
-  SubIMU        * mSubImu         = nullptr;
+  SubIMU        * mSubIMU         = nullptr;
   SubColorSensor* mSubColorSensor = nullptr;
   SubLimelight  * mSubLimelight   = nullptr;
   SubPneumatic  * mSubPneumatic   = nullptr;

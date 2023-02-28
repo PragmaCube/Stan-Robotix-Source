@@ -51,8 +51,11 @@ public:
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Enable(bool aEnable);
-  void ResetYaw();
-  double getAngle();
+  void ResetGlobal();
+
+  double getAngleYaw();
+  double getAnglePitch();
+  double getAngleRoll();
   units::radian_t getRadian();
   frc::Rotation2d getRotation2d();
 };

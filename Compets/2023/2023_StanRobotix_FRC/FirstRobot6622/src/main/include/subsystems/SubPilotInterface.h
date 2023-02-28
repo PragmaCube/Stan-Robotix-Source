@@ -40,7 +40,7 @@ public:
  {
    NePasToucher, // Les index des boutons commencent a 1, pas a zero
    ActivationFieldOriented,
-   ResetImuYaw,
+   ResetIMUGlobal,
    TogglePneumatic,
    Unused4,
    Unused5,

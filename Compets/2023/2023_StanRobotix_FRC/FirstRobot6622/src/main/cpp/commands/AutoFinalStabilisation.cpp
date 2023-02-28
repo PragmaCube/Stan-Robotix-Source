@@ -4,10 +4,10 @@
 
 #include "../../include/commands/AutoFinalStabilisation.h"
 #include "../../include/RobotContainer.h"
-
+#include "subsystems/PerformanceMonitor.h"
 #include <iostream>
 
-AutoFinalStabilisation::AutoFinalStabilisation(RobotContainer * iRobotContainer)
+AutoFinalStabilisation::AutoFinalStabilisation(RobotContainer *iRobotContainer)
 {
    mCurrentStep = Phase1_;
 
@@ -30,7 +30,7 @@ void AutoFinalStabilisation::Init()
    mCurrentStep = Phase1_;
 
    mSubDriveTrain = mRobotContainer->getSubDriveTrain();
-   mSubLimelight = mRobotContainer->getSubLimelight();
+   mSubIMU = mRobotContainer->getSubIMU();
 }
 
 /**
@@ -39,44 +39,33 @@ void AutoFinalStabilisation::Init()
  */
 void AutoFinalStabilisation::doExecute()
 {
-   bool wIsFinished = true;
-   step_t wNextPhase = mCurrentStep;
-   
-   switch (mCurrentStep)
+   if (mSubIMU->getAnglePitch() < -1.0) // l'IMU est trop precis il n'y aura jamais une valeur == a 0 il faut donc laisser une marge
    {
-   case Phase1_:
-      doExecutePhase1();
-      wIsFinished = isPhase1Finished();
-      wNextPhase = step_t::PhaseFinish;
-      break;
+      if (mCurrentDir != eBackward)
+      {
+         mSpeed = mSpeed / 1, 75;
+      }
+      mSubDriveTrain->MoveMeca(0, -mSpeed, 0, false); // le robot recule
+      mCurrentDir = eBackward;
+   }
+   if (mSubIMU->getAnglePitch() > 1.0)
+   {
+      if (mCurrentDir != eForward)
+      {
+         mSpeed = mSpeed / 1, 75;
+      }
+      mSubDriveTrain->MoveMeca(0, mSpeed, 0, false); // le robot avance
+      mCurrentDir = eForward;
    }
 }
 
 bool AutoFinalStabilisation::isFinish()
 {
-   return false; // pour que la tache ne se finit jamsais puisqu'elle est fait à la fin 
+   return false; // pour que la tache ne se finit jamsais puisqu'elle est fait à la fin
 }
 
-void AutoFinalStabilisation::Reset() 
-{ 
-   std :: cout <<  "Fin de l'execution de AutoFinalStabilisation" << std::endl;
-   mCurrentStep = Phase1_; 
-} 
-
-/**
- * The action to take when the command ends.  Called when either the command
- * finishes normally, or when it interrupted/canceled.
- *
- * @param interrupted whether the command was interrupted/canceled
- */
-
-void AutoFinalStabilisation::doExecutePhase1()
+void AutoFinalStabilisation::Reset()
 {
-   std :: cout <<  "Execution de  AutoFinalStabilisation" << std::endl;
-
-}
-
-bool AutoFinalStabilisation::isPhase1Finished()
-{
-   return true;
+   // std :: cout <<  "Fin de l'execution de AutoFinalStabilisation" << std::endl;
+   mCurrentStep = Phase1_;
 }

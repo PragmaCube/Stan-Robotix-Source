@@ -6,7 +6,8 @@
 
 #include "commands/AutoConeHigh.h"
 #include "commands/ManualPilot.h"
- 
+#include "commands/AutoFinalStabilisation.h"
+
 SubPilotInterface::SubPilotInterface(RobotContainer * iRobotContainer) 
 {
    mRobotContainer = iRobotContainer;
@@ -16,7 +17,8 @@ void SubPilotInterface::Init()
 {
     // MANUAL_TELEOP, AUTO_CONEHIGH, AUTO_CONELOW, AUTO_CHARGEUP, CMD_MAX };
    mCommandList[MANUAL_TELEOP].mCommandPtr = new ManualPilot(mRobotContainer); 
-   mCommandList[AUTO_CONEHIGH].mCommandPtr = new AutoConeHigh(mRobotContainer);   
+   mCommandList[AUTO_CONEHIGH].mCommandPtr = new AutoConeHigh(mRobotContainer);  
+   mCommandList [AUTO_CHARGEUP].mCommandPtr= new AutoFinalStabilisation (mRobotContainer); 
 }
   
 void SubPilotInterface::doExecute()

@@ -15,8 +15,8 @@
 SubIMU::SubIMU()
 {
     EnableSubsystemLog(kLogIMU);
-    EnablePerformanceLog(kLogPerf_ImuEnable);
-    Enable(kImuEnabled);
+    EnablePerformanceLog(kLogPerf_IMUEnable);
+    Enable(kIMUEnabled);
     setLogPeriodity(kLogPeriod_260ms);
 }
 
@@ -64,20 +64,34 @@ void SubIMU::doExecute()
     wNumberOfExecution++;
 }
 
-double SubIMU::getAngle()
+
+double SubIMU::getAnglePitch()
 {
-    return (mGyro->GetYaw() - mYawStart);
+    return ((mGyro->GetPitch())- mPitchStart);
+}
+double SubIMU::getAngleYaw()
+{
+    return ((mGyro->GetYaw())- mYawStart);
+}
+double SubIMU::getAngleRoll()
+{
+    return ((mGyro->GetRoll())- mRollStart);
 }
 
 units::radian_t SubIMU::getRadian()
 {
-    units::radian_t mAngle{getAngle()};
+    units::radian_t mAngle{getAngleYaw()};
     return mAngle;
 }
 
-void SubIMU::ResetYaw()
+void SubIMU::ResetGlobal()
 {
-    mGyro->Reset();
+    double ypr[3] = { 0.0f, 0.0f, 0.0f};
+    mGyro->GetYawPitchRoll(ypr);
+    std::cout << "HEYYYYYYYYYYY";
+    mYawStart = ypr[0];
+    mPitchStart = ypr[1];
+    mRollStart = ypr[2];
 }
 
 frc::Rotation2d SubIMU::getRotation2d()

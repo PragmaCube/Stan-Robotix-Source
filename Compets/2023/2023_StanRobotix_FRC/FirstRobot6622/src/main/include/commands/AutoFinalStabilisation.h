@@ -6,7 +6,6 @@
 
 #include "../subsystems/PerformanceMonitor.h"
 #include "subsystems/SubDriveTrain.h"
-#include "subsystems/SubLimelight.h"
 #include "subsystems/SubIMU.h"
 
 class RobotContainer;
@@ -22,6 +21,7 @@ private:
   step_t mCurrentStep;
 
 public:
+ float mSpeed =1;
   /**
    * Creates a new ExampleCommand.
    *
@@ -42,17 +42,15 @@ public:
 
   void End(bool interrupted);
 
-  void doExecutePhase1();
- 
-
-  bool isPhase1Finished();
-
 private:
   frc::Timer mGenericTimer;
   RobotContainer *mRobotContainer;
 
+  SubIMU * mSubIMU = nullptr;
   SubDriveTrain * mSubDriveTrain = nullptr;
-  SubLimelight * mSubLimelight = nullptr;
 
   bool mSubsystemLogEnabled = false;
+
+  enum ChargeDir_t {eNotInit, eForward, eBackward};
+  ChargeDir_t mCurrentDir = eNotInit;
 };

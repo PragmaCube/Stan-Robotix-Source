@@ -18,7 +18,7 @@ RobotContainer::RobotContainer()
 
   // liste des entrees.
   mSubColorSensor     = new SubColorSensor();
-  mSubImu             = new SubIMU();
+  mSubIMU             = new SubIMU();
   mSubLimelight       = new SubLimelight();
   mSubContactDetection= new SubContactDetection();
   mSubPilotInterface  = new SubPilotInterface(this);
@@ -34,7 +34,7 @@ void RobotContainer::Init()
   mSubDriveTrain->Init();
   mSubElevator->Init();
   mSubPneumatic->Init();
-  mSubImu->Init();
+  mSubIMU->Init();
   mSubLimelight->Init();
   mSubColorSensor->Init();
   mSubContactDetection->Init();

@@ -47,7 +47,7 @@ public:
   SubDriveTrain       *getSubDriveTrain()        { return mSubDriveTrain; }
   SubLimelight        *getSubLimelight()         { return mSubLimelight; }
   SubColorSensor      *getSubColorSensor()       { return mSubColorSensor; }
-  SubIMU              *getSubIMU()               { return mSubImu; }
+  SubIMU              *getSubIMU()               { return mSubIMU; }
   SubUltrasonic       *getSubUltrasonic()        { return mSubUltrasonic; }
   SubElevator         *getSubElevator()          { return mSubElevator; }
   SubPneumatic        *getSubPneumatic()         { return mSubPneumatic; }
@@ -60,7 +60,7 @@ private:
   SubDriveTrain      * mSubDriveTrain;
   SubLimelight       * mSubLimelight = nullptr;
   SubColorSensor     * mSubColorSensor = nullptr;
-  SubIMU             * mSubImu = nullptr;
+  SubIMU             * mSubIMU = nullptr;
   SubUltrasonic      * mSubUltrasonic = nullptr;
   SubElevator        * mSubElevator = nullptr;
   SubPneumatic       * mSubPneumatic = nullptr;

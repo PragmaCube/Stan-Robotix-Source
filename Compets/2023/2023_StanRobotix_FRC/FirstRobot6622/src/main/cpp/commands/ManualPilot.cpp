@@ -28,7 +28,7 @@ void ManualPilot::Init()
    mSubUltrasonic = mRobotContainer->getSubUltrasonic();
    mSubElevator = mRobotContainer->getSubElevator();
    mSubPilotInterface = mRobotContainer->getSubPilotInterface();
-   mSubImu = mRobotContainer->getSubIMU();
+   mSubIMU = mRobotContainer->getSubIMU();
    mSubColorSensor = mRobotContainer->getSubColorSensor();
    mSubPneumatic = mRobotContainer->getSubPneumatic();
 }
@@ -44,19 +44,19 @@ void ManualPilot::doExecute()
    mSubDriveTrain->MoveMeca(mSubPilotInterface->GetX() * -slider,
                             mSubPilotInterface->GetY() * slider,
                             mSubPilotInterface->GetTwist() * slider,
-                            !wIsFieldOrientedEnabled);
+                            wIsFieldOrientedEnabled);
 
-   // bool wResetImuYaw = mSubPilotInterface->GetRawButton(SubPilotInterface::ResetImuYaw);
-   // if (mSubPilotInterface->GetRawButtonPressed(wResetImuYaw))
-   //    // {
-   //    //   SubIMU::getInstance()->ResetYaw();
-   //    // }
+   
+   if (mSubPilotInterface->GetRawButtonPressed(SubPilotInterface::ResetIMUGlobal))
+      {
+        mSubIMU->ResetGlobal();
+      }
 
    //    mSubUltrasonic->Execute();
 
    // // mSubElevator->setCommand(mJoystick.GetPOV()); // TODO
 
-   mSubImu->Execute();
+   mSubIMU->Execute();
 
    // mSubColorSensor->Execute();
 
