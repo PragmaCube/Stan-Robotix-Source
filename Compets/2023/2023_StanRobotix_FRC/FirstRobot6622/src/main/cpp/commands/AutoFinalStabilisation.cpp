@@ -45,16 +45,18 @@ void AutoFinalStabilisation::doExecute()
       {
          mSpeed = mSpeed / 1, 75;
       }
-      mSubDriveTrain->MoveMeca(0, -mSpeed, 0, false); // le robot recule
+      mSubDriveTrain->setParameters(0, -mSpeed, 0, false); // le robot recule
+      mSubDriveTrain->Execute();
       mCurrentDir = eBackward;
    }
-   if (mSubIMU->getAnglePitch() > 1.0)
+   else if (mSubIMU->getAnglePitch() > 1.0)
    {
       if (mCurrentDir != eForward)
       {
          mSpeed = mSpeed / 1, 75;
       }
-      mSubDriveTrain->MoveMeca(0, mSpeed, 0, false); // le robot avance
+      mSubDriveTrain->setParameters(0, mSpeed, 0, false); // le robot avance
+      mSubDriveTrain->Execute();
       mCurrentDir = eForward;
    }
 }

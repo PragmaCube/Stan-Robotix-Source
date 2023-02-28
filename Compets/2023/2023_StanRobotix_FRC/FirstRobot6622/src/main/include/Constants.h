@@ -99,6 +99,7 @@ constexpr int   kSolenoid2Port = 0;
 constexpr bool kLogPerf_AutoConeHighEnable = false;
 constexpr bool kLogPerf_AutoConeLowEnable = false;
 constexpr bool kLogPerf_AutoChargeEnable = false;
+constexpr bool kLogPerf_DrivetrainEnable = false;
 constexpr bool kLogPerf_IMUEnable = false;
 constexpr bool kLogPerf_LimelightEnable = false;
 constexpr bool kLogPerf_ManualPilotEnable = false;
@@ -109,13 +110,13 @@ constexpr bool kLogPerf_AutoFinalStabilisationEnable=false;
 
 ///////////////////////////////////////////////////////
 // Activation des logs de subsytems
-constexpr bool kLogIMU = true;
-constexpr bool kLogElevator = true;
-constexpr bool kLogDrivetrain = true;
-constexpr bool kLogLimelight = true;
+constexpr bool kLogIMU = false;
+constexpr bool kLogElevator = false;
+constexpr bool kLogDrivetrain = false;
+constexpr bool kLogLimelight = false;
 constexpr bool kLogColorDetection = false;
 constexpr bool kLogContactDetection = false;
-constexpr bool kLogPilotInterface=true;
+constexpr bool kLogPilotInterface=false;
 constexpr bool kLogAutoConeHighEnable = false;
 constexpr bool kLogAutoConeLowEnable = false;
 constexpr bool kLogChargeUpFinalEnable = false;
