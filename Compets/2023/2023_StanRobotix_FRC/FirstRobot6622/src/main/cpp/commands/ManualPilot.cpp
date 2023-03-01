@@ -54,7 +54,7 @@ void ManualPilot::doExecute()
 
    //    mSubUltrasonic->Execute();
 
-   mSubElevator->setCommand(mJoystick.GetPOV()); // TODO
+   mSubElevator->setCommand(mSubPilotInterface->GetPOV()); // TODO
 
    mSubIMU->Execute();
 
