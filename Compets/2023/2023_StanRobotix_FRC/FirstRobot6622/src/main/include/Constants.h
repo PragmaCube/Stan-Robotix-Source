@@ -17,13 +17,14 @@
 ///////////////////////////////////////////////////////
 // Activation indépendante des modules
 
-#define FRC_ROBOT
+//#define FRC_ROBOT
 #ifdef FRC_ROBOT
 
 constexpr bool kDriveTrainEnabled = true;
 constexpr bool kColorDetectionEnabled = false;
 constexpr bool kContactDetectionEnable = false;
 constexpr bool kElevatorEnabled = true;
+constexpr bool kGamePieceHandlerEnabled = false;
 constexpr bool kIMUEnabled = true;
 constexpr bool kLimelightEnabled = true;
 constexpr bool kPneumaticEnabled = false;
@@ -35,8 +36,9 @@ constexpr bool kDriveTrainEnabled = false;
 constexpr bool kColorDetectionEnabled = false;
 constexpr bool kContactDetectionEnable = false;
 constexpr bool kElevatorEnabled = false;
+constexpr bool kGamePieceHandlerEnabled = false;
 constexpr bool kIMUEnabled = false;
-constexpr bool kLimelightEnabled = true;
+constexpr bool kLimelightEnabled = false;
 constexpr bool kPneumaticEnabled = false;
 constexpr bool kUltrasonEnable = false;
 
@@ -54,7 +56,9 @@ constexpr int kMotorR2Port = 2;
 constexpr int kMotorR1Port = 3;
 
 ///////////////////////////////////////////////////////
-// Pneumatic
+// Moteurs GamePieceHandler 
+constexpr int    kCanIdGamePieceHandlerR = 7;   //Valeurs temporaires, à changer si besoin 
+constexpr int    kCanIdGamePieceHandlerL = 8; 
 
 ///////////////////////////////////////////////////////
 // Moteurs assenseur. 
@@ -107,6 +111,7 @@ constexpr bool kLogPerf_UltrasonEnable = false;
 constexpr bool kLogPerf_ElevatorEnable=false;
 constexpr bool kLogPerf_PneumaticEnable=false;
 constexpr bool kLogPerf_AutoFinalStabilisationEnable=false;
+constexpr bool kLogPerf_GamePieceHandlerEnable = false;
 
 ///////////////////////////////////////////////////////
 // Activation des logs de subsytems
@@ -123,3 +128,4 @@ constexpr bool kLogChargeUpFinalEnable = false;
 constexpr bool kLogManualEnable = false;
 constexpr bool kLogPneumatic = false;
 constexpr bool kLogAutoFinalStabilisationEnable=false;
+constexpr bool kLogGamePieceHandler=false;

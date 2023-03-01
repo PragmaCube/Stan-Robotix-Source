@@ -17,6 +17,7 @@
 #include "subsystems/SubElevator.h"
 #include "subsystems/SubIMU.h"
 #include "subsystems/subLimelight.h"
+#include "subsystems/SubGamePieceHandler.h"
 #include "subsystems/SubPneumatic.h"
 #include "subsystems/SubUltrasonic.h"
 #include "subsystems/SubContactDetection.h"
@@ -53,19 +54,22 @@ public:
   SubPneumatic        *getSubPneumatic()         { return mSubPneumatic; }
   SubContactDetection *getSubContactDetection()  { return mSubContactDetection; }
   SubPilotInterface   *getSubPilotInterface()    { return mSubPilotInterface;}
+  SubGamePieceHandler *getSubGamePieceHandler()  { return mSubGamePieceHandler; }
 
 private:
   AutonomousCommand  * m_autonomousCommand;
 
-  SubDriveTrain      * mSubDriveTrain;
+  SubDriveTrain      * mSubDriveTrain = nullptr;
   SubLimelight       * mSubLimelight = nullptr;
   SubColorSensor     * mSubColorSensor = nullptr;
+  SubGamePieceHandler* mSubGamePieceHandler = nullptr;
   SubIMU             * mSubIMU = nullptr;
   SubUltrasonic      * mSubUltrasonic = nullptr;
   SubElevator        * mSubElevator = nullptr;
   SubPneumatic       * mSubPneumatic = nullptr;
   SubContactDetection*mSubContactDetection = nullptr;
   SubPilotInterface  *mSubPilotInterface =nullptr;
+
   
   bool mIsInit = false;
   void Init ();

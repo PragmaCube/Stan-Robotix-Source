@@ -46,10 +46,7 @@ public:
   void Init();
 
   void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
- 
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
+  
   void Enable(bool aEnable);
   void ResetGlobal();
 
