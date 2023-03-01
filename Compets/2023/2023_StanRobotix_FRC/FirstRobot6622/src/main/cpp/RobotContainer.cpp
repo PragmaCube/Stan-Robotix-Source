@@ -15,6 +15,7 @@ RobotContainer::RobotContainer()
   mSubDriveTrain      = new SubDriveTrain(this); // On mets this car ce subsystem depend d'autres
   mSubElevator        = new SubElevator(this);
   mSubPneumatic       = new SubPneumatic(this);
+  mSubGamePieceHandler= new SubGamePieceHandler();
 
   // liste des entrees.
   mSubColorSensor     = new SubColorSensor();
@@ -39,6 +40,7 @@ void RobotContainer::Init()
   mSubColorSensor->Init();
   mSubContactDetection->Init();
   mSubUltrasonic->Init();
+  mSubGamePieceHandler->Init();
 
   // Initialisation des commandes automatisees.
   m_autonomousCommand->Init();

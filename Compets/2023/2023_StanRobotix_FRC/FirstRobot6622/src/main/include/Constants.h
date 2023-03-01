@@ -24,6 +24,7 @@ constexpr bool kDriveTrainEnabled = true;
 constexpr bool kColorDetectionEnabled = false;
 constexpr bool kContactDetectionEnable = false;
 constexpr bool kElevatorEnabled = false;
+constexpr bool kGamePieceHandlernabled = false;
 constexpr bool kIMUEnabled = true;
 constexpr bool kLimelightEnabled = true;
 constexpr bool kPneumaticEnabled = false;
@@ -35,6 +36,7 @@ constexpr bool kDriveTrainEnabled = false;
 constexpr bool kColorDetectionEnabled = false;
 constexpr bool kContactDetectionEnable = false;
 constexpr bool kElevatorEnabled = false;
+constexpr bool kGamePieceHandlernabled = false;
 constexpr bool kIMUEnabled = false;
 constexpr bool kLimelightEnabled = true;
 constexpr bool kPneumaticEnabled = false;
@@ -107,6 +109,7 @@ constexpr bool kLogPerf_UltrasonEnable = false;
 constexpr bool kLogPerf_ElevatorEnable=false;
 constexpr bool kLogPerf_PneumaticEnable=false;
 constexpr bool kLogPerf_AutoFinalStabilisationEnable=false;
+constexpr bool kLogPerf_GamePieceHandlerEnable = false;
 
 ///////////////////////////////////////////////////////
 // Activation des logs de subsytems
@@ -123,3 +126,4 @@ constexpr bool kLogChargeUpFinalEnable = false;
 constexpr bool kLogManualEnable = false;
 constexpr bool kLogPneumatic = false;
 constexpr bool kLogAutoFinalStabilisationEnable=false;
+constexpr bool kLogGamePieceHandler=false;
