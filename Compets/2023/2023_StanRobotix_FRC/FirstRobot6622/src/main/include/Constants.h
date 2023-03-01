@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////
 // Activation indépendante des modules
 
-//#define FRC_ROBOT
+#define FRC_ROBOT
 #ifdef FRC_ROBOT
 
 constexpr bool kDriveTrainEnabled = true;
@@ -116,7 +116,7 @@ constexpr bool kLogPerf_GamePieceHandlerEnable = false;
 ///////////////////////////////////////////////////////
 // Activation des logs de subsytems
 constexpr bool kLogIMU = false;
-constexpr bool kLogElevator = false;
+constexpr bool kLogElevator = true;
 constexpr bool kLogDrivetrain = false;
 constexpr bool kLogLimelight = false;
 constexpr bool kLogColorDetection = false;
