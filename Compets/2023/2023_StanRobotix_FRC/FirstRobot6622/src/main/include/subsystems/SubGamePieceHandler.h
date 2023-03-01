@@ -25,9 +25,19 @@ class SubGamePieceHandler : public PerformanceMonitor {
   virtual std::string getName() { return "SubGamePieceHandler"; }
 
  private:
-  rev::CANSparkMax m_motor1{0, rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax m_motor2{1, rev::CANSparkMax::MotorType::kBrushless};
+  enum eStatus            {eRetract , eExtract , eStop};  // Enum pour le statut actuel du GamePieceHandler
+  eStatus mState = eStop;
+  bool mIsUpdated = false;
+
+  rev::CANSparkMax * mMotorRight = nullptr;
+  rev::CANSparkMax * mMotorLeft = nullptr;
 
   bool mSubsystemLogEnabled = false;
   bool mIsEnable = true;
+
+  const double kNoPower = 0.0;
+  const double kFullPower = 0.5;
+
+  double mRequestedPowerLeft = 0.0;
+  double mRequestedPowerRight = 0.0;
 };

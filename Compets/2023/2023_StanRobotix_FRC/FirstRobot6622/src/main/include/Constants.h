@@ -17,14 +17,14 @@
 ///////////////////////////////////////////////////////
 // Activation indépendante des modules
 
-#define FRC_ROBOT
+//#define FRC_ROBOT
 #ifdef FRC_ROBOT
 
 constexpr bool kDriveTrainEnabled = true;
 constexpr bool kColorDetectionEnabled = false;
 constexpr bool kContactDetectionEnable = false;
 constexpr bool kElevatorEnabled = false;
-constexpr bool kGamePieceHandlernabled = false;
+constexpr bool kGamePieceHandlerEnabled = false;
 constexpr bool kIMUEnabled = true;
 constexpr bool kLimelightEnabled = true;
 constexpr bool kPneumaticEnabled = false;
@@ -36,9 +36,9 @@ constexpr bool kDriveTrainEnabled = false;
 constexpr bool kColorDetectionEnabled = false;
 constexpr bool kContactDetectionEnable = false;
 constexpr bool kElevatorEnabled = false;
-constexpr bool kGamePieceHandlernabled = false;
+constexpr bool kGamePieceHandlerEnabled = false;
 constexpr bool kIMUEnabled = false;
-constexpr bool kLimelightEnabled = true;
+constexpr bool kLimelightEnabled = false;
 constexpr bool kPneumaticEnabled = false;
 constexpr bool kUltrasonEnable = false;
 
@@ -56,7 +56,9 @@ constexpr int kMotorR2Port = 2;
 constexpr int kMotorR1Port = 3;
 
 ///////////////////////////////////////////////////////
-// Pneumatic
+// Moteurs GamePieceHandler 
+constexpr int    kCanIdGamePieceHandlerR = 7;   //Valeurs temporaires, à changer si besoin 
+constexpr int    kCanIdGamePieceHandlerL = 8; 
 
 ///////////////////////////////////////////////////////
 // Moteurs assenseur. 

@@ -5,37 +5,64 @@
 #include "subsystems/SubGamePieceHandler.h"
 #include "Constants.h"
 
-SubGamePieceHandler::SubGamePieceHandler() 
+SubGamePieceHandler::SubGamePieceHandler()
 {
     EnableSubsystemLog(kLogGamePieceHandler);
     EnablePerformanceLog(kLogPerf_GamePieceHandlerEnable);
-    Enable(kGamePieceHandlernabled);
+    Enable(kGamePieceHandlerEnabled);
 
     setLogPeriodity(kLogPeriod_260ms);
 }
 
 void SubGamePieceHandler::Extract()
 {
-    m_motor1.Set(0.5);
-    m_motor2.Set(-0.5);
+    if (mState != eExtract)
+    {
+        mRequestedPowerLeft = -kFullPower;
+        mRequestedPowerRight= kFullPower;
+        mState = eExtract;
+        mIsUpdated = true;
+    }
 }
 
 void SubGamePieceHandler::Retract()
 {
-    m_motor1.Set(-0.5);
-    m_motor2.Set(0.5);
+    if (mState != eRetract)
+    {
+        mRequestedPowerLeft = kFullPower;
+        mRequestedPowerRight= -kFullPower;
+        mState = eRetract;
+        mIsUpdated = true;
+    }
 }
 
 void SubGamePieceHandler::Stop()
 {
-    m_motor1.Set(0);
-    m_motor2.Set(0);
+    if (mState != eRetract)
+    {
+        mRequestedPowerLeft = kNoPower;
+        mRequestedPowerRight= kNoPower;
+        mState = eStop;
+        mIsUpdated = true;
+    }
 }
 
 // This method will be called once per scheduler run
-void SubGamePieceHandler::doExecute() {}
+void SubGamePieceHandler::doExecute()
+{
+    if (mIsEnable && mIsUpdated)
+    {
+       mMotorRight->Set(mRequestedPowerLeft);
+       mMotorRight->Set(mRequestedPowerRight);
+       mIsUpdated = false;
+    }
+}
 
 void SubGamePieceHandler::Init()
 {
-
+    if (mIsEnable)
+    {
+        mMotorRight = new rev::CANSparkMax(kCanIdGamePieceHandlerR, rev::CANSparkMax::MotorType::kBrushless);
+        mMotorLeft = new rev::CANSparkMax(kCanIdGamePieceHandlerL, rev::CANSparkMax::MotorType::kBrushless);
+    }
 }
