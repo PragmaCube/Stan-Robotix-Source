@@ -64,6 +64,7 @@ public:
   double GetTwist() { return mJoystick.GetTwist(); }
   bool GetRawButtonPressed(int index) {return mJoystick.GetRawButtonPressed(index);}
   bool GetRawButton(int index)  {return mJoystick.GetRawButton(index);}
+  unsigned short int GetPOV() {return mJoystick.GetPOV();}
 
  private:
   virtual void doExecute();

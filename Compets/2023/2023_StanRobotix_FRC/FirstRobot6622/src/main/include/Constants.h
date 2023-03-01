@@ -23,7 +23,7 @@
 constexpr bool kDriveTrainEnabled = true;
 constexpr bool kColorDetectionEnabled = false;
 constexpr bool kContactDetectionEnable = false;
-constexpr bool kElevatorEnabled = false;
+constexpr bool kElevatorEnabled = true;
 constexpr bool kIMUEnabled = true;
 constexpr bool kLimelightEnabled = true;
 constexpr bool kPneumaticEnabled = false;
@@ -58,7 +58,7 @@ constexpr int kMotorR1Port = 3;
 
 ///////////////////////////////////////////////////////
 // Moteurs assenseur. 
-constexpr int    kCanIdElevatorR = 4;   //Valeurs temporaires, à changer si besoin 
+constexpr int    kCanIdElevatorR = 3;   //Valeurs temporaires, à changer si besoin 
 constexpr int    kCanIdElevatorL = 1; 
 constexpr double kHeightS2 = -220; // valeurs arbitraires (certaines de betabot), faire des tests pour trouver les bonnes valeurs
 constexpr double kHeightS1 =-80;
@@ -66,7 +66,7 @@ constexpr double kMinHeight = 0;
 
 // default PID coefficients for ejector
 constexpr double kP = 2.7e-4, 
-                 kI = 2.7e-6, 
+                 kI = 2.5e-6, 
                  kD = 5e-4, 
                  kIz = 0, 
                  kFF = 0.000156, 
