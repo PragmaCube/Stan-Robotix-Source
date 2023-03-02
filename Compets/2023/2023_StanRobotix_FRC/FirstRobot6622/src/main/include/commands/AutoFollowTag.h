@@ -40,6 +40,7 @@ class AutoFollowTag : public PerformanceMonitor
 
   SubDriveTrain * mSubDriveTrain = nullptr;
   SubLimelight * mSubLimelight = nullptr;
-  frc2::PIDController mController{0.05f, 0, 0};
+  frc2::PIDController mAngleController{0.05f, 0, 0};
+  frc2::PIDController mDistanceController{0.08f, 0.01f, 0.01f};
   bool mSubsystemLogEnabled = false;
 };
