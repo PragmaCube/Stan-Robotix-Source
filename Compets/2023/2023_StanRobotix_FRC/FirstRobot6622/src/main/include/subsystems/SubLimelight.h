@@ -4,6 +4,7 @@
 
 #pragma once
 
+
 #include "frc/smartdashboard/Smartdashboard.h"
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableInstance.h"
@@ -32,7 +33,11 @@ public:
   double getTargetArea() { return mTargetArea; }
   double getTargetSkew() { return mTargetSkew; }
 
-private:
+  enum ePos { eX, eY, eZ, eRoll, ePitch, eYaw };  //Enum pour choisir ce qu'on veut dans la methode get
+  enum eReferential { eField, eTag };            //Enum pour choisir referientiel
+
+  double getPos(ePos iPos, eReferential iReferential);
+  private:
   bool mIsEnabled = false;
   bool mSubsystemLogEnabled = false;
 
@@ -43,7 +48,10 @@ private:
 
   std::shared_ptr<nt::NetworkTable> mNetworkTable;
 
-  virtual std::string getName() { return "SubLimelight"; }
-
-
-};
+  virtual std::string getName() { return "SubLimelight"; } // TODO variable globale publique
+  
+  std::vector<double> mFieldBotPos = { 0, 0, 0 , 0, 0, 0, };
+  std::vector<double> mTagBotPos   = { 0, 0, 0 , 0, 0, 0, };
+  
+  
+  };

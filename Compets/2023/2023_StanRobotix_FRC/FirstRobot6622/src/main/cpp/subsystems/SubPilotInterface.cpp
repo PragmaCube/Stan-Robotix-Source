@@ -2,11 +2,14 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+#include <frc2/command/button/JoystickButton.h>
+
 #include "subsystems/SubPilotInterface.h"
 
 #include "commands/AutoConeHigh.h"
 #include "commands/ManualPilot.h"
 #include "commands/AutoFinalStabilisation.h"
+#include "commands/AutoFollowTag.h"
 
 SubPilotInterface::SubPilotInterface(RobotContainer * iRobotContainer) 
 {
@@ -16,9 +19,10 @@ SubPilotInterface::SubPilotInterface(RobotContainer * iRobotContainer)
 void SubPilotInterface::Init() 
 {
     // MANUAL_TELEOP, AUTO_CONEHIGH, AUTO_CONELOW, AUTO_CHARGEUP, CMD_MAX };
-   mCommandList[MANUAL_TELEOP].mCommandPtr = new ManualPilot(mRobotContainer); 
-   mCommandList[AUTO_CONEHIGH].mCommandPtr = new AutoConeHigh(mRobotContainer);  
-   mCommandList [AUTO_CHARGEUP].mCommandPtr= new AutoFinalStabilisation (mRobotContainer); 
+   mCommandList[MANUAL_TELEOP].mCommandPtr  = new ManualPilot(mRobotContainer); 
+   mCommandList[AUTO_CONEHIGH].mCommandPtr  = new AutoConeHigh(mRobotContainer);  
+   mCommandList[AUTO_CHARGEUP].mCommandPtr  = new AutoFinalStabilisation (mRobotContainer);
+   mCommandList[AUTO_FOLLOWTAG].mCommandPtr = new AutoFollowTag(mRobotContainer); 
 }
   
 void SubPilotInterface::doExecute()
@@ -40,6 +44,7 @@ void SubPilotInterface::doExecute()
     if (GetRawButtonPressed(ActivationCommandeAuto))
     {
         mActiveIndex = mMenuIndex; 
+        std :: cout << "Activation de la " << mCommandList[mMenuIndex].mDescription << std::endl;
     }
 
     if (GetRawButtonPressed(AnnulationCommandeAuto))

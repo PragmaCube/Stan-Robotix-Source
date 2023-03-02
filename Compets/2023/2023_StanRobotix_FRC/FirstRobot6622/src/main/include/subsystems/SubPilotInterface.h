@@ -18,7 +18,7 @@ class AutomatedCommandBase;
 class SubPilotInterface : public PerformanceMonitor {
 
 private:
-  enum CommandId_t {MANUAL_TELEOP, AUTO_CONEHIGH, AUTO_CONELOW, AUTO_CHARGEUP, CMD_MAX };
+  enum CommandId_t {MANUAL_TELEOP, AUTO_CONEHIGH, AUTO_CONELOW, AUTO_CHARGEUP, AUTO_FOLLOWTAG, CMD_MAX };
 
   struct AutomatedCommand_t
   {
@@ -33,6 +33,7 @@ private:
     { AUTO_CONEHIGH, true, "commande pour placer un cone en haut" , nullptr},
     { AUTO_CONELOW, false, "commande pour placer un cone en bas" , nullptr},
     { AUTO_CHARGEUP, false, "commande pour la stabilisation finale" , nullptr},
+    { AUTO_FOLLOWTAG, true, "commande pour pointer vers tag", nullptr},
   };
 
 public:
@@ -47,7 +48,7 @@ public:
    Unused6,
    Unused7,
    Unused8,
-   Unused9,
+   FollowTag,
    AnnulationCommandeAuto,
    ChangementCommandeAuto,
    ActivationCommandeAuto
