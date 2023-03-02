@@ -13,7 +13,6 @@ AutoFollowTag::AutoFollowTag(RobotContainer * iRobotContainer)
 
     EnableSubsystemLog(kLogAutoFollowTagEnable);
     EnablePerformanceLog(kLogPerf_AutoFollowTagEnable);
-
     Init();
   }
 
@@ -31,12 +30,22 @@ void AutoFollowTag::Init()
 {
   mSubDriveTrain = mRobotContainer->getSubDriveTrain();
   mSubLimelight = mRobotContainer->getSubLimelight();
+  mDistanceController.SetSetpoint(5);
 }
 
 void AutoFollowTag::doExecute()
 {
   mSubLimelight->Execute();
-  
-  mSubDriveTrain->setParameters(0,0,-mController.Calculate(mSubLimelight->getTargetOffsetAngleHorizontal()),0);
+  double mDistanceOutput;
+  if(mSubLimelight->getTargetArea()!=0)
+  {
+    mDistanceOutput = mDistanceController.Calculate(mSubLimelight->getTargetArea());
+  }
+  else
+  {
+    mDistanceOutput = 0;
+  }
+  mSubDriveTrain->setParameters(0,mDistanceOutput,-mAngleController.Calculate(mSubLimelight->getTargetOffsetAngleHorizontal()),0);
   mSubDriveTrain->Execute();
+  
 }
