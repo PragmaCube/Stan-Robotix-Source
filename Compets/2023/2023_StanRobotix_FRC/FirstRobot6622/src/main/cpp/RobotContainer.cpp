@@ -89,7 +89,3 @@ void RobotContainer::Auto()
 {
 }
 
-void RobotContainer::DisabledInit()
-{
-  
-}

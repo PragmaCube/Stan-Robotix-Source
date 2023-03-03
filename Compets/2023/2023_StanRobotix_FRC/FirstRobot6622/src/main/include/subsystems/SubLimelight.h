@@ -19,7 +19,7 @@ class SubLimelight : public PerformanceMonitor
 
 public:
   SubLimelight();
-  ~SubLimelight();
+
   void Init();
 
   void Enable(const bool iEnable);
@@ -48,7 +48,10 @@ public:
 
   std::shared_ptr<nt::NetworkTable> mNetworkTable;
 
-  virtual std::string getName() { return "SubLimelight"; }
-
-
-};
+  virtual std::string getName() { return "SubLimelight"; } // TODO variable globale publique
+  
+  std::vector<double> mFieldBotPos = { 0, 0, 0 , 0, 0, 0, };
+  std::vector<double> mTagBotPos   = { 0, 0, 0 , 0, 0, 0, };
+  
+  
+  };

@@ -27,8 +27,7 @@ void SubLimelight::Init()
 { 
   if (mIsEnabled)
   {
-    mNetworkTable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-    mNetworkTable->PutNumber("ledMode", 3); // Allumer les leds https://docs.limelightvision.io/en/latest/networktables_api.html
+     mNetworkTable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
   }
 }
 
@@ -38,10 +37,10 @@ void SubLimelight::doExecute()
 
   if (mIsEnabled) //Mise a jour des valeurs
   {
-    mTargetOffsetAngle_Horizontal = mNetworkTable->GetNumber("tx", 0.0);//https://docs.limelightvision.io/en/latest/networktables_api.html
-    mTargetOffsetAngle_Vertical = mNetworkTable->GetNumber("ty", 0.0); //https://docs.limelightvision.io/en/latest/networktables_api.html
-    mTargetArea = mNetworkTable->GetNumber("ta", 0.0); //https://docs.limelightvision.io/en/latest/networktables_api.html
-    mTargetSkew = mNetworkTable->GetNumber("ts", 0.0); //https://docs.limelightvision.io/en/latest/networktables_api.html
+    mTargetOffsetAngle_Horizontal = mNetworkTable->GetNumber("tx", 0.0);
+    mTargetOffsetAngle_Vertical = mNetworkTable->GetNumber("ty", 0.0);
+    mTargetArea = mNetworkTable->GetNumber("ta", 0.0);
+    mTargetSkew = mNetworkTable->GetNumber("ts", 0.0);
 
     mFieldBotPos = mNetworkTable->GetNumberArray("<botpose>",std::vector<double>(6));
     mTagBotPos   = mNetworkTable->GetNumberArray("<botpose_targetspace>",std::vector<double>(6));
@@ -66,4 +65,20 @@ void SubLimelight::doExecute()
   }
 
   wNumberOfExecution++;
+}
+
+double SubLimelight::getPos(ePos iPos, eReferential iReferential)
+{
+  switch(iReferential)
+  {
+    case eField:
+      return mFieldBotPos[iPos];
+
+    case eTag:
+      return mTagBotPos[iPos];
+
+    default:
+      break;
+  };
+  return 0.0;
 }
