@@ -71,7 +71,10 @@ void Robot::TeleopPeriodic()
   m_container.Execute();
 }
 
-void Robot::DisabledInit() {}
+void Robot::DisabledInit()
+{
+  m_container.DisabledInit();
+}
 
 void Robot::DisabledPeriodic() {}
 

@@ -64,6 +64,7 @@ void SubDriveTrain::doExecute()
   {
     if (mFieldOriented)
     {
+      mSubIMU->Execute();
       frc::Rotation2d imuAngle = mSubIMU->getRadian();
       m_robotDrive->DriveCartesian(-mY, mX, mTwist, imuAngle);
     }

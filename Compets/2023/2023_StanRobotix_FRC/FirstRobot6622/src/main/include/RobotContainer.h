@@ -41,6 +41,9 @@ public:
 
   void AutonomousPeriodic();
 
+  void DisabledInit();
+  
+
   frc2::Command *GetAutonomousCommand();
   void Execute();
   void Auto();
