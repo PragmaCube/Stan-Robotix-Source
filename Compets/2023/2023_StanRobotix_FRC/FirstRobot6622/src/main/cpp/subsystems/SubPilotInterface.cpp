@@ -7,6 +7,7 @@
 #include "commands/AutoConeHigh.h"
 #include "commands/ManualPilot.h"
 #include "commands/AutoFinalStabilisation.h"
+#include "commands/AutoFollowTag.h"
 
 SubPilotInterface::SubPilotInterface(RobotContainer * iRobotContainer) 
 {
@@ -19,6 +20,8 @@ void SubPilotInterface::Init()
    mCommandList[MANUAL_TELEOP].mCommandPtr = new ManualPilot(mRobotContainer); 
    mCommandList[AUTO_CONEHIGH].mCommandPtr = new AutoConeHigh(mRobotContainer);  
    mCommandList [AUTO_CHARGEUP].mCommandPtr= new AutoFinalStabilisation (mRobotContainer); 
+   mCommandList[AUTO_FOLLOWTAG].mCommandPtr = new AutoFollowTag(mRobotContainer); 
+   // AJOUT COMMANDE AUTOMATISEE
 }
   
 void SubPilotInterface::doExecute()
@@ -40,6 +43,7 @@ void SubPilotInterface::doExecute()
     if (GetRawButtonPressed(ActivationCommandeAuto))
     {
         mActiveIndex = mMenuIndex; 
+        std :: cout << "Activation de la " << mCommandList[mMenuIndex].mDescription << std::endl;
     }
 
     if (GetRawButtonPressed(AnnulationCommandeAuto))

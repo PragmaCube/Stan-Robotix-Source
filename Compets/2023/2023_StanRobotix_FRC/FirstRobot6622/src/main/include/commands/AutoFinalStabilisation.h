@@ -27,8 +27,6 @@ public:
 
   virtual std::string getName() { return "AutoFinalStabilisation"; }
 
-  void End(bool interrupted);
-
 private:
   frc::Timer mGenericTimer;
   float mSpeed =1;

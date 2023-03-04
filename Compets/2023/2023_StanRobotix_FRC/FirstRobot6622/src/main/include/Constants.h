@@ -113,6 +113,8 @@ constexpr bool kLogPerf_PneumaticEnable = false;
 constexpr bool kLogPerf_AutoFinalStabilisationEnable = false;
 constexpr bool kLogPerf_GamePieceHandlerEnable = false;
 constexpr bool kLogPerfContactDetection = false;
+constexpr bool kLogPerf_AutoFollowTagEnable = false;
+// AJOUT COMMANDE AUTOMATISEE
 
 
 ///////////////////////////////////////////////////////
@@ -120,15 +122,17 @@ constexpr bool kLogPerfContactDetection = false;
 constexpr bool kLogIMU = false;
 constexpr bool kLogElevator = true;
 constexpr bool kLogDrivetrain = false;
-constexpr bool kLogLimelight = false;
+constexpr bool kLogLimelight = true;
 constexpr bool kLogColorDetection = false;
 constexpr bool kLogContactDetection = false;
 constexpr bool kLogPilotInterface = false;
 constexpr bool kLogAutoConeHighEnable = false;
 constexpr bool kLogAutoConeLowEnable = false;
+constexpr bool kLogAutoFollowTagEnable = false;
 constexpr bool kLogChargeUpFinalEnable = false;
 constexpr bool kLogManualEnable = false;
 constexpr bool kLogPneumatic = false;
 constexpr bool kLogAutoFinalStabilisationEnable = false;
 constexpr bool kLogGamePieceHandler = false;
 constexpr bool kLogUltrason = false;
+// AJOUT COMMANDE AUTOMATISEE

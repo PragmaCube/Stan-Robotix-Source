@@ -43,7 +43,6 @@ public:
 
   virtual std::string getName() { return "AutoConeHigh"; }
 
-  void End(bool interrupted);
 
   void doExecutePhase1();
   void doExecutePhase2();
