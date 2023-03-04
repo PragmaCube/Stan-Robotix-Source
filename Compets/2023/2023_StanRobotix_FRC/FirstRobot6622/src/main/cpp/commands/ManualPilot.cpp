@@ -56,7 +56,7 @@ void ManualPilot::doExecute()
 
    mSubElevator->setCommand(mSubPilotInterface->GetPOV(),
                             mSubPilotInterface->GetRawButton(SubPilotInterface::ElevatorManualUp),
-                            mSubPilotInterface->GetRawButton(SubPilotInterface::ElevatorManualDown)); // TODO
+                            mSubPilotInterface->GetRawButton(SubPilotInterface::ElevatorManualDown));
 
    mSubIMU->Execute();
 
