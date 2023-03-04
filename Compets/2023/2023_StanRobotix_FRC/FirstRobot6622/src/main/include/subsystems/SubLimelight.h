@@ -33,7 +33,7 @@ public:
   double getTargetArea() { return mTargetArea; }
   double getTargetSkew() { return mTargetSkew; }
 
-  enum ePos { eX, eY, eZ, eRoll, ePitch, eYaw };  //Enum pour choisir ce qu'on veut dans la methode get
+  enum ePos { eX, eY, eZ, ePitch, eYaw, eRoll };  //Enum pour choisir ce qu'on veut dans la methode get
   enum eReferential { eField, eTag };            //Enum pour choisir referientiel
 
   double getPos(ePos iPos, eReferential iReferential);
@@ -50,8 +50,8 @@ public:
 
   virtual std::string getName() { return "SubLimelight"; } // TODO variable globale publique
   
-  std::vector<double> mFieldBotPos = { 0, 0, 0 , 0, 0, 0, };
-  std::vector<double> mTagBotPos   = { 0, 0, 0 , 0, 0, 0, };
+  std::vector<double> mFieldBotPos = { 0, 0, 0, 0, 0, 0, };
+  std::vector<double> mTagBotPos   = { 0, 0, 0, 0, 0, 0, };
   
   
   };
