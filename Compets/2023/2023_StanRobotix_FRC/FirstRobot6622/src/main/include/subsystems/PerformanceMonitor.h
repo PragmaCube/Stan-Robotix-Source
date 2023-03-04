@@ -29,8 +29,10 @@ protected:
   void setLogPeriodity(unsigned int iPeriod) {mLogPeriodicity = iPeriod; }
 
   RobotContainer * mRobotContainer = nullptr;
-  bool mIsEnabled = false;
-  bool mSubsystemLogEnabled = false;
+
+  bool mIsEnabled             = false;
+  bool mSubsystemLogEnabled   = false;
+  bool mPerformanceLogEnabled = false;
  
   unsigned int mLogPeriodicity = kLogPeriod_Undefined;   // Le log est pseudo-desactive par defaut
   const unsigned int kLogPeriod_100ms = 5;
@@ -42,12 +44,11 @@ protected:
   const unsigned int kLogPeriod_10s = 1000;
   const unsigned int kLogPeriod_Undefined = 10000000;
 
+  unsigned long mNumberOfExecution = 1;
+
 private:
   std::chrono::nanoseconds mMinDurationiNnS = std::chrono::nanoseconds::max();
   std::chrono::nanoseconds mMaxDurationiNnS = std::chrono::nanoseconds::min();
   std::chrono::nanoseconds mMoyDurationiNnS = std::chrono::nanoseconds::zero();
   std::chrono::nanoseconds mAccumulDurationiNnS = std::chrono::nanoseconds::zero();
-
-  unsigned long mNumberOfExecution = 1;
-  bool mPerformanceLogEnabled = false;
 };

@@ -57,10 +57,14 @@ void SubGamePieceHandler::doExecute()
        mMotorRight->Set(mRequestedPowerLeft);
        mMotorRight->Set(mRequestedPowerRight);
        mIsUpdated = false;
-       if (mSubsystemLogEnabled)
-       {
-        std::cout << "Sub GamePieceHandler\nStatus : " << mState << std::endl;
-       }
+    }
+
+    if (
+        mSubsystemLogEnabled && 
+        ((mNumberOfExecution % mLogPeriodicity) == 0)
+        )
+    {
+    std::cout << "Sub GamePieceHandler\nStatus : " << mState << std::endl;
     }
 }
 

@@ -27,8 +27,6 @@ void SubLimelight::Init()
 
 void SubLimelight::doExecute()
 {
-  static int wNumberOfExecution = 0; // TODO: get rid of this
-
   if (mIsEnabled)
   {
     mTargetOffsetAngle_Horizontal = mNetworkTable->GetNumber("tx", 0.0);
@@ -37,13 +35,14 @@ void SubLimelight::doExecute()
     mTargetSkew = mNetworkTable->GetNumber("ts", 0.0);
   }
 
-  if (mSubsystemLogEnabled && (wNumberOfExecution %mLogPeriodicity) == 0)
+  if (
+       mSubsystemLogEnabled && 
+       ((mNumberOfExecution % mLogPeriodicity) == 0)
+     )
   {
     std::cout << "\nTargetOffsetAngle Hz(tx):" << mTargetOffsetAngle_Horizontal
               << "\nTargetOffsetAngle Vt(ty):" << mTargetOffsetAngle_Vertical
               << "\nTargetArea (ta):" << mTargetArea
               << "\nTargetSkew (ts):" << mTargetSkew << std::endl;
   }
-
-  wNumberOfExecution++;
 }

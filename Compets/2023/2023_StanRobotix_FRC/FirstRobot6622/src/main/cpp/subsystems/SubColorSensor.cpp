@@ -7,7 +7,7 @@
 #include <frc/smartdashboard/smartdashboard.h>
 #include <iostream>
 
-SubColorSensor::SubColorSensor() 
+SubColorSensor::SubColorSensor()
 {
   mColorMatcher.AddColorMatch(kCube);
   mColorMatcher.AddColorMatch(kCone);
@@ -50,9 +50,10 @@ void SubColorSensor::doExecute()
     frc::SmartDashboard::PutNumber("Red", wRed);
     frc::SmartDashboard::PutNumber("Green", wGreen);
     frc::SmartDashboard::PutNumber("Blue", wBlue);
-  
 
-    if (mSubsystemLogEnabled)
+    if (
+        mSubsystemLogEnabled &&
+        ((mNumberOfExecution % mLogPeriodicity) == 0))
     {
       std::cout << "ColorSensor\nR : " << wRed << "    G : " << wGreen << "    B : " << wBlue << std::endl;
     }

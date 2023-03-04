@@ -40,8 +40,6 @@ void SubIMU::Init()
 
 void SubIMU::doExecute()
 {
-    static int wNumberOfExecution = 0; // TODO: changer avec un timer
-
     static double ypr[3] = {0.0f, 0.0f, 0.0f};
     if (mIsEnabled)
     {
@@ -52,11 +50,13 @@ void SubIMU::doExecute()
     ypr[1] = ypr[1] - mPitchStart;
     ypr[2] = ypr[2] - mRollStart;
 
-    if (((wNumberOfExecution % mLogPeriodicity) == 0) && mSubsystemLogEnabled)
+    if (
+         mSubsystemLogEnabled && 
+         ((mNumberOfExecution % mLogPeriodicity) == 0)
+       )
     {
         std::cout << "Yaw:" << ypr[0] << "    Pitch :" << ypr[1] << "   Roll " << ypr[2] << std::endl;
     }
-    wNumberOfExecution++;
 }
 
 double SubIMU::getAnglePitch()
