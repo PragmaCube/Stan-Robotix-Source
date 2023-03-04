@@ -17,12 +17,6 @@ SubLimelight::SubLimelight()
   setLogPeriodity(kLogPeriod_1s);
 }
 
-void SubLimelight::Enable(const bool iEnable)
-{
-  mIsEnabled = iEnable;
-}
-
-
 void SubLimelight::Init() 
 { 
   if (mIsEnabled)

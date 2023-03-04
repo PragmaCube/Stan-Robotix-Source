@@ -16,11 +16,6 @@ SubElevator::SubElevator(RobotContainer *iRobotContainer)
   EnablePerformanceLog(kLogPerf_ElevatorEnable);
 }
 
-void SubElevator::Enable(const bool iEnable)
-{
-  mIsEnabled = iEnable;
-}
-
 void SubElevator::Init()
 {
   if (mIsEnabled)

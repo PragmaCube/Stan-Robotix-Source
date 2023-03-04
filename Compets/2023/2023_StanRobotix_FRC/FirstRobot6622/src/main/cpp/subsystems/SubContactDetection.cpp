@@ -11,11 +11,8 @@ SubContactDetection::SubContactDetection()
     mDigitalInputVector.reserve(inputMax);
 
     Enable(kContactDetectionEnable);
-}
-
-void SubContactDetection::Enable(const bool iIsEnabled)
-{
-   mIsEnabled = iIsEnabled;
+    EnableSubsystemLog(kLogContactDetection);
+    EnablePerformanceLog(kLogPerfContactDetection);
 }
 
 void SubContactDetection::Init()
@@ -31,7 +28,7 @@ void SubContactDetection::Init()
 
 bool SubContactDetection::GetContactStatus(InputDetection_t index)
 {
-    if (kContactEnable[index] == true) 
+    if (kContactEnable[index]) 
     {
         return mContactCache[index];
     }
@@ -42,18 +39,21 @@ bool SubContactDetection::GetContactStatus(InputDetection_t index)
 // This method will be called once per scheduler run
 void SubContactDetection::doExecute()
 {
-    for (int i = input0; i < inputMax; i++)
+    if (mIsEnabled)
     {
-        if (kContactEnable[i] == true)
+        for (int i = input0; i < inputMax; i++)
         {
-            bool wCurrent =  mDigitalInputVector[i]->Get();
-
-            if (kLogContactDetection && mContactCache[i] != wCurrent)
+            if (kContactEnable[i])
             {
-                std::string wNewState = (wCurrent)?"Active":"Inactive";
-                std::cout << "Changement d'etat pour le contact n# " << i << ": " << wNewState << std::endl;
+                bool wCurrent =  mDigitalInputVector[i]->Get();
+
+                if (mSubsystemLogEnabled && mContactCache[i] != wCurrent)
+                {
+                    std::string wNewState = (wCurrent)?"Active":"Inactive";
+                    std::cout << "Changement d'etat pour le contact n# " << i << ": " << wNewState << std::endl;
+                }
+                mContactCache[i] = wCurrent;
             }
-            mContactCache[i] = wCurrent;
         }
     }
 }

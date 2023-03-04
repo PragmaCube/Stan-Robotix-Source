@@ -21,10 +21,6 @@ public:
 
   void Init();
 
-  void Enable(const bool iEnable);
-
-  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
-
   void doExecute();
 
   double getTargetOffsetAngleHorizontal() { return mTargetOffsetAngle_Horizontal; }
@@ -33,9 +29,6 @@ public:
   double getTargetSkew() { return mTargetSkew; }
 
 private:
-  bool mIsEnabled = false;
-  bool mSubsystemLogEnabled = false;
-
   double mTargetOffsetAngle_Horizontal = 0.0;
   double mTargetOffsetAngle_Vertical = 0.0;
   double mTargetArea = 0.0;

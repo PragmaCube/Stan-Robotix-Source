@@ -25,11 +25,6 @@ SubDriveTrain::SubDriveTrain(RobotContainer *iRobotContainer)
   setLogPeriodity(kLogPeriod_2s);
 }
 
-void SubDriveTrain::Enable(const bool iEnable)
-{
-  mIsEnabled = iEnable;
-}
-
 void SubDriveTrain::Init()
 {
   if (mIsEnabled)

@@ -38,8 +38,6 @@ public:
 
   void Init();
 
-  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
-
   virtual void doExecute();
 
   virtual bool isFinish();
@@ -77,5 +75,4 @@ private:
   SubDriveTrain * mSubDriveTrain = nullptr;
   SubLimelight * mSubLimelight = nullptr;
 
-  bool mSubsystemLogEnabled = false;
 };

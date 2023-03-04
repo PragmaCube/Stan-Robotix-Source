@@ -16,8 +16,6 @@ class SubUltrasonic : public PerformanceMonitor
 public:
   SubUltrasonic();
 
-  void Enable(const bool iIsEnabled);
-
   void Init();
 
   float getDistance();

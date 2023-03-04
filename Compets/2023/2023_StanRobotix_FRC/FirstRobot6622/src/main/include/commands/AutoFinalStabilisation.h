@@ -23,8 +23,6 @@ public:
 
   void Init();
 
-  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
-
   virtual void doExecute();
 
   virtual bool isFinish();
@@ -40,8 +38,6 @@ private:
 
   SubIMU * mSubIMU = nullptr;
   SubDriveTrain * mSubDriveTrain = nullptr;
-
-  bool mSubsystemLogEnabled = false;
 
   enum ChargeDir_t {eNotInit, eForward, eBackward};
   ChargeDir_t mCurrentDir = eNotInit;

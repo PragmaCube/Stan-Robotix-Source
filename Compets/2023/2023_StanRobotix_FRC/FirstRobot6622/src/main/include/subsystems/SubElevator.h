@@ -19,10 +19,6 @@ class SubElevator : public PerformanceMonitor
  public:
   SubElevator(RobotContainer * iRobotContainer);
 
-  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
-
-  void Enable(const bool iEnable);
-
   void Init();
 
   enum eHeight{h0 = 0 ,h1 = 1, h2 = 2, hManual = 3};
@@ -34,7 +30,7 @@ class SubElevator : public PerformanceMonitor
   void setCommand(const int iPov, const bool iButtonUp, const bool iButtonDown);
 
  private:
-  bool mIsEnabled = false;
+
   RobotContainer * mRobotContainer;
  
   double kMaxVel = 10000, 
@@ -53,8 +49,6 @@ class SubElevator : public PerformanceMonitor
 
   double mHeight_ = kMinHeight;
   double mHeightManual = 0.0;
-
-  bool mSubsystemLogEnabled = false;
 
   virtual void doExecute();
   virtual std::string getName() { return "SubElevator"; }

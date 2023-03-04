@@ -22,33 +22,28 @@ SubIMU::SubIMU()
 
 void SubIMU::Init()
 {
-    if (mIsEnable)
+    if (mIsEnabled)
     {
         mGyro = new ctre::phoenix::sensors::WPI_Pigeon2(0);
         mGyro->Calibrate();
         mGyro->Reset();
 
-        double ypr[3] = { 0.0f, 0.0f, 0.0f};
+        double ypr[3] = {0.0f, 0.0f, 0.0f};
 
         mGyro->GetYawPitchRoll(ypr);
-        
+
         mYawStart = ypr[0];
         mPitchStart = ypr[1];
         mRollStart = ypr[2];
     }
 }
 
-void SubIMU::Enable(bool iEnable)
-{
-    mIsEnable = iEnable;
-}
-
 void SubIMU::doExecute()
 {
-    static int wNumberOfExecution = 0;  // TODO: changer avec un timer
+    static int wNumberOfExecution = 0; // TODO: changer avec un timer
 
-    static double ypr[3] = { 0.0f, 0.0f, 0.0f};
-    if (mIsEnable)
+    static double ypr[3] = {0.0f, 0.0f, 0.0f};
+    if (mIsEnabled)
     {
         mGyro->GetYawPitchRoll(ypr);
     }
@@ -64,18 +59,17 @@ void SubIMU::doExecute()
     wNumberOfExecution++;
 }
 
-
 double SubIMU::getAnglePitch()
 {
-    return ((mGyro->GetPitch())- mPitchStart);
+    return ((mGyro->GetPitch()) - mPitchStart);
 }
 double SubIMU::getAngleYaw()
 {
-    return ((mGyro->GetYaw())- mYawStart);
+    return ((mGyro->GetYaw()) - mYawStart);
 }
 double SubIMU::getAngleRoll()
 {
-    return ((mGyro->GetRoll())- mRollStart);
+    return ((mGyro->GetRoll()) - mRollStart);
 }
 
 units::radian_t SubIMU::getRadian()
@@ -86,9 +80,8 @@ units::radian_t SubIMU::getRadian()
 
 void SubIMU::ResetGlobal()
 {
-    double ypr[3] = { 0.0f, 0.0f, 0.0f};
+    double ypr[3] = {0.0f, 0.0f, 0.0f};
     mGyro->GetYawPitchRoll(ypr);
-    std::cout << "HEYYYYYYYYYYY";
     mYawStart = ypr[0];
     mPitchStart = ypr[1];
     mRollStart = ypr[2];

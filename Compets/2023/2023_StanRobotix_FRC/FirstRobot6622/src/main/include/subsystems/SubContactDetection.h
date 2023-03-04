@@ -20,8 +20,6 @@ class SubContactDetection : public frc2::SubsystemBase, public PerformanceMonito
   bool GetContactStatus(InputDetection_t index);
 
   void EnableLog(bool iEnable) {};
-
-  void Enable(const bool iIsEnabled);
  
   void Init();
 

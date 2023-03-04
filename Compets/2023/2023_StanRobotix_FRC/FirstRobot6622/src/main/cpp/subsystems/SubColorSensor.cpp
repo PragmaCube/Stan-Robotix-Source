@@ -5,6 +5,7 @@
 #include "subsystems/SubColorSensor.h"
 
 #include <frc/smartdashboard/smartdashboard.h>
+#include <iostream>
 
 SubColorSensor::SubColorSensor() 
 {
@@ -15,11 +16,6 @@ SubColorSensor::SubColorSensor()
   EnableSubsystemLog(kLogColorDetection);
 }
 
-void SubColorSensor::Enable(const bool iEnable)
-{
-  mIsEnabled = iEnable;
-}
-
 void SubColorSensor::Init()
 {
   if (mIsEnabled)
@@ -28,12 +24,7 @@ void SubColorSensor::Init()
   }
 }
 
-void SubColorSensor::EnableSubsystemLog(const bool iEnable)
-{
-  mSubsystemLogEnabled = iEnable;
-}
-
-void SubColorSensor::Execute()
+void SubColorSensor::doExecute()
 {
   if (mIsEnabled)
   {
@@ -59,11 +50,12 @@ void SubColorSensor::Execute()
     frc::SmartDashboard::PutNumber("Red", wRed);
     frc::SmartDashboard::PutNumber("Green", wGreen);
     frc::SmartDashboard::PutNumber("Blue", wBlue);
-  }
+  
 
-  if (mSubsystemLogEnabled)
-  {
-      // TODO
+    if (mSubsystemLogEnabled)
+    {
+      std::cout << "ColorSensor\nR : " << wRed << "    G : " << wGreen << "    B : " << wBlue << std::endl;
+    }
   }
 }
 
