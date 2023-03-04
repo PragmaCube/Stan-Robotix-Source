@@ -25,13 +25,13 @@ class SubElevator : public PerformanceMonitor
 
   void Init();
 
-  enum eHeight{h0 = 0 ,h1 = 1, h2 = 2};
+  enum eHeight{h0 = 0 ,h1 = 1, h2 = 2, hManual = 3};
   
   void resetPidData();
 
   void Stage(eHeight iHeight);
 
-  void setCommand(const int iPov);
+  void setCommand(const int iPov, const bool iButtonUp, const bool iButtonDown);
 
  private:
   bool mIsEnabled = false;
@@ -52,6 +52,7 @@ class SubElevator : public PerformanceMonitor
   rev::SparkMaxPIDController mLPIDController = mLMotorElevator.GetPIDController();
 
   double mHeight_ = kMinHeight;
+  double mHeightManual = 0.0;
 
   bool mSubsystemLogEnabled = false;
 

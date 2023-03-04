@@ -29,19 +29,36 @@ void SubElevator::Init()
   }
 }
 
-void SubElevator::setCommand(const int iPov)
+void SubElevator::setCommand(const int iPov, const bool iButtonUp, const bool iButtonDown)
 {
   if (iPov == 180)
   {
     Stage(SubElevator::h0);
+    mHeightManual = 0;
   }
   else if (iPov == 90)
   {
     Stage(SubElevator::h1);
+    mHeightManual = 0;
   }
   else if (iPov == 0)
   {
     Stage(SubElevator::h2);
+    mHeightManual = 0;
+  }
+  else if (iButtonUp)
+  {
+    Stage(SubElevator::hManual);
+    mHeightManual = 1;
+  }
+  else if (iButtonDown)
+  {
+    Stage(SubElevator::hManual);
+    mHeightManual = -1;
+  }
+  else
+  {
+    mHeightManual = 0;
   }
 }
 
@@ -84,6 +101,10 @@ void SubElevator::Stage(eHeight iHeight)
 
   case h2:
     mHeight_ = kHeightS2;
+    break;
+    
+  case hManual:
+    mHeight_= mHeight_+mHeightManual;
     break;
 
   default:

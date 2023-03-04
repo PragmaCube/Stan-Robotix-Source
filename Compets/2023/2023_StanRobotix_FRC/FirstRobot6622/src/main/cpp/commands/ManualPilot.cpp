@@ -54,7 +54,9 @@ void ManualPilot::doExecute()
 
    //    mSubUltrasonic->Execute();
 
-   mSubElevator->setCommand(mSubPilotInterface->GetPOV()); // TODO
+   mSubElevator->setCommand(mSubPilotInterface->GetPOV(),
+                            mSubPilotInterface->GetRawButton(SubPilotInterface::ElevatorManualUp),
+                            mSubPilotInterface->GetRawButton(SubPilotInterface::ElevatorManualDown)); // TODO
 
    mSubIMU->Execute();
 
