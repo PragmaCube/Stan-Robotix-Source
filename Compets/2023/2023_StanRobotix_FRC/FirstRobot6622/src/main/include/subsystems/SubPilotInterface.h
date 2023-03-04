@@ -12,7 +12,6 @@
 
 #include <iostream>
 
-class RobotContainer;
 class AutomatedCommandBase;
 
 class SubPilotInterface : public PerformanceMonitor {
@@ -23,7 +22,7 @@ private:
   struct AutomatedCommand_t
   {
       CommandId_t mCmdId;
-      bool mIsEnabled = false;
+      bool mIsCmdAvailable = false;
       std::string mDescription;
       PerformanceMonitor * mCommandPtr = nullptr;
   };
@@ -32,7 +31,7 @@ private:
     { MANUAL_TELEOP, true, "commande manuel", nullptr},
     { AUTO_CONEHIGH, true, "commande pour placer un cone en haut" , nullptr},
     { AUTO_CONELOW, false, "commande pour placer un cone en bas" , nullptr},
-    { AUTO_CHARGEUP, false, "commande pour la stabilisation finale" , nullptr},
+    { AUTO_CHARGEUP, false, "commande pour la stabilisation finale" , nullptr}
   };
 
 public:
@@ -62,8 +61,10 @@ public:
   double GetX() { return mJoystick.GetX(); }
   double GetY() { return mJoystick.GetY(); }
   double GetTwist() { return mJoystick.GetTwist(); }
-  bool GetRawButtonPressed(int index) {return mJoystick.GetRawButtonPressed(index);}
-  bool GetRawButton(int index)  {return mJoystick.GetRawButton(index);}
+
+  bool GetRawButtonPressed(ButtonDefinition_t index) {return mJoystick.GetRawButtonPressed(index);}
+  bool GetRawButton(ButtonDefinition_t index)  {return mJoystick.GetRawButton(index);}
+
   unsigned short int GetPOV() {return mJoystick.GetPOV();}
 
  private:
@@ -72,7 +73,6 @@ public:
   virtual std::string getName() { return "SubPilotInterface"; }
   
   frc::Joystick mJoystick{kJoystickPort};
-  RobotContainer * mRobotContainer;
   int mMenuIndex   = MANUAL_TELEOP;
   int mActiveIndex = MANUAL_TELEOP; 
 };

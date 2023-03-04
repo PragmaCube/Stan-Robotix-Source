@@ -6,6 +6,8 @@
 
 #include <chrono>
 
+class RobotContainer;
+
 class PerformanceMonitor
 {
 public:
@@ -26,6 +28,7 @@ protected:
 
   void setLogPeriodity(unsigned int iPeriod) {mLogPeriodicity = iPeriod; }
 
+  RobotContainer * mRobotContainer = nullptr;
   bool mIsEnabled = false;
   bool mSubsystemLogEnabled = false;
  

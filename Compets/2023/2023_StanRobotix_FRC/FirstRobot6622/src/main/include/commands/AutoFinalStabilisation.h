@@ -8,12 +8,9 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
 
-class RobotContainer;
-
 class AutoFinalStabilisation : public PerformanceMonitor
 {
 public:
- float mSpeed =1;
   /**
    * Creates a new ExampleCommand.
    *
@@ -34,7 +31,7 @@ public:
 
 private:
   frc::Timer mGenericTimer;
-  RobotContainer *mRobotContainer;
+  float mSpeed =1;
 
   SubIMU * mSubIMU = nullptr;
   SubDriveTrain * mSubDriveTrain = nullptr;

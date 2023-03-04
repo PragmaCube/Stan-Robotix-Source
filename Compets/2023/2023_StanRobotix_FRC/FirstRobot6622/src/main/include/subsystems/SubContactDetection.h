@@ -33,5 +33,4 @@ class SubContactDetection : public frc2::SubsystemBase, public PerformanceMonito
    std::vector<frc::DigitalInput *> mDigitalInputVector;
 
   bool mContactCache[10];
-  bool mIsEnabled = false;
 };

@@ -6,8 +6,6 @@
 
 #include "../subsystems/PerformanceMonitor.h"
 
-class RobotContainer;
-
 class SubColorSensor;
 class SubDriveTrain;
 class SubElevator;
@@ -37,8 +35,6 @@ public:
   virtual std::string getName() { return "ManualPilot"; }
 
 private:
-  RobotContainer *mRobotContainer;
-
   SubDriveTrain * mSubDriveTrain  = nullptr;
   SubUltrasonic * mSubUltrasonic  = nullptr;
   SubElevator   * mSubElevator    = nullptr;

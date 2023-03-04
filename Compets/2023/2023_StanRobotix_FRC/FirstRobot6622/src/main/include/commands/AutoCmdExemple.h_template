@@ -8,8 +8,6 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubLimelight.h"
 
-class RobotContainer;
-
 class AutoCmdExample : public PerformanceMonitor
 {
 private:
@@ -70,7 +68,6 @@ public:
 
 private:
   frc::Timer mGenericTimer;
-  RobotContainer *mRobotContainer;
 
   SubDriveTrain * mSubDriveTrain = nullptr;
   SubLimelight * mSubLimelight = nullptr;

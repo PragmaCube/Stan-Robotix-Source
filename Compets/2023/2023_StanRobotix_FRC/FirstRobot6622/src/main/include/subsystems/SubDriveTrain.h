@@ -13,7 +13,6 @@
 #include "PerformanceMonitor.h"
 
 // Référence: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
-class RobotContainer;
 class SubIMU;
 
 class SubDriveTrain : public PerformanceMonitor
@@ -32,7 +31,6 @@ class SubDriveTrain : public PerformanceMonitor
   frc::Spark * m_frontRight= nullptr;
   frc::Spark * m_rearRight = nullptr;
 
-  RobotContainer    * mRobotContainer = nullptr;
   frc::MecanumDrive * m_robotDrive    = nullptr;
   SubIMU            * mSubIMU         = nullptr;
 

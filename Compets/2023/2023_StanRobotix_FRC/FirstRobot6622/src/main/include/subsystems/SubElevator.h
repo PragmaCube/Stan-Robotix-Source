@@ -12,8 +12,6 @@
 #include <frc2/command/SubsystemBase.h>
 #include "PerformanceMonitor.h"
 
-class RobotContainer;
-
 class SubElevator : public PerformanceMonitor
  {
  public:
@@ -30,9 +28,6 @@ class SubElevator : public PerformanceMonitor
   void setCommand(const int iPov, const bool iButtonUp, const bool iButtonDown);
 
  private:
-
-  RobotContainer * mRobotContainer;
- 
   double kMaxVel = 10000, 
          kMinVel = 0, 
          kMaxAcc = 8000, 
