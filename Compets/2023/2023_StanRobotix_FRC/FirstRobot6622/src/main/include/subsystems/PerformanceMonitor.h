@@ -26,14 +26,13 @@ protected:
   virtual void doExecute() = 0;
   virtual std::string getName() = 0;
 
+  bool isEnabled()          { return mIsEnabled; }
+  bool isSystemLogEnabled() { return mSubsystemLogEnabled; }
+
   void setLogPeriodity(unsigned int iPeriod) {mLogPeriodicity = iPeriod; }
 
   RobotContainer * mRobotContainer = nullptr;
-
-  bool mIsEnabled             = false;
-  bool mSubsystemLogEnabled   = false;
-  bool mPerformanceLogEnabled = false;
- 
+  
   unsigned int mLogPeriodicity = kLogPeriod_Undefined;   // Le log est pseudo-desactive par defaut
   const unsigned int kLogPeriod_100ms = 5;
   const unsigned int kLogPeriod_260ms = 13; //ce n'est pas 250 car ce n'est pas divisible par 20
@@ -44,11 +43,18 @@ protected:
   const unsigned int kLogPeriod_10s = 1000;
   const unsigned int kLogPeriod_Undefined = 10000000;
 
-  unsigned long mNumberOfExecution = 1;
+  bool timeToDisplaySystemLog()  { return mSubsystemLogEnabled &&
+                                          ((mNumberOfExecution % mLogPeriodicity) == 0); }
 
 private:
   std::chrono::nanoseconds mMinDurationiNnS = std::chrono::nanoseconds::max();
   std::chrono::nanoseconds mMaxDurationiNnS = std::chrono::nanoseconds::min();
   std::chrono::nanoseconds mMoyDurationiNnS = std::chrono::nanoseconds::zero();
   std::chrono::nanoseconds mAccumulDurationiNnS = std::chrono::nanoseconds::zero();
+
+  unsigned long mNumberOfExecution = 1;
+
+  bool mPerformanceLogEnabled      = false;
+  bool mIsEnabled                  = false;
+  bool mSubsystemLogEnabled        = false;
 };

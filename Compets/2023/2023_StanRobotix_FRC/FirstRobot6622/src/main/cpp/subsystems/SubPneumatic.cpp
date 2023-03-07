@@ -19,7 +19,7 @@ SubPneumatic::~SubPneumatic() {}
 
 void SubPneumatic::Init()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   {
     //Retract();
   }
@@ -39,7 +39,7 @@ void SubPneumatic::Retract()
 
 void SubPneumatic::Toggle()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   {
     mDoubleSolenoid.Toggle();
     if (mState == eRetract)
@@ -55,7 +55,7 @@ void SubPneumatic::Toggle()
 
 void SubPneumatic::doExecute()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   {
     std::cout << "SubPneumatic\nStatus : " << mState << std::endl;
   }

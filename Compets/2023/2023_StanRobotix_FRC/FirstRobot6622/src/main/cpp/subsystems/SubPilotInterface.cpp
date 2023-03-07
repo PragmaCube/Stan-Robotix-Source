@@ -30,7 +30,7 @@ void SubPilotInterface::doExecute()
     {
         mMenuIndex++;
 
-        // TODO: tenir compte de mCommandList[mMenuIndex].mIsEnabled poue chercher la
+        // TODO: tenir compte de mCommandList[mMenuIndex].isEnabled() pour chercher la
         // prochaine commande utilisable
         if (mMenuIndex == CMD_MAX)
         {

@@ -18,7 +18,7 @@ SubColorSensor::SubColorSensor()
 
 void SubColorSensor::Init()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   {
     mColorSensor = new rev::ColorSensorV3(frc::I2C::Port::kOnboard);
   }
@@ -26,7 +26,7 @@ void SubColorSensor::Init()
 
 void SubColorSensor::doExecute()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   {
     frc::Color wColor = GetColor();
     double wRed = wColor.red;
@@ -51,9 +51,7 @@ void SubColorSensor::doExecute()
     frc::SmartDashboard::PutNumber("Green", wGreen);
     frc::SmartDashboard::PutNumber("Blue", wBlue);
 
-    if (
-        mSubsystemLogEnabled &&
-        ((mNumberOfExecution % mLogPeriodicity) == 0))
+    if (timeToDisplaySystemLog())
     {
       std::cout << "ColorSensor\nR : " << wRed << "    G : " << wGreen << "    B : " << wBlue << std::endl;
     }
