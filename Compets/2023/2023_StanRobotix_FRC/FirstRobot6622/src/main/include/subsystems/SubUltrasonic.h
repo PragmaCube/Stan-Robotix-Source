@@ -21,12 +21,11 @@ public:
   float getDistance();
 
   void EnableImperialSystem() { mMetricSystem = false; }
-  void EnableMetricSystem() { mMetricSystem = true; }
+  void EnableMetricSystem()   { mMetricSystem = true;  }
 
 private:
   frc::AnalogInput * mUltrasonic = nullptr;
   bool mMetricSystem = true;
-
   virtual void doExecute();
   virtual std::string getName() { return "SubUltrasonic"; }
 };

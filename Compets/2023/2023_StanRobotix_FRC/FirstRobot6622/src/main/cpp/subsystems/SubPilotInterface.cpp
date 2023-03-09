@@ -12,6 +12,11 @@
 SubPilotInterface::SubPilotInterface(RobotContainer * iRobotContainer) 
 {
    mRobotContainer = iRobotContainer;
+    std::chrono::microseconds getFunctionMeanExecutionTimeInUs()
+    {
+        +=newDuration;
+        return mAccumulFuncDurationiNnS/mNumberOfFunctionExecution;
+    }
 }
 
 void SubPilotInterface::Init() 
@@ -56,7 +61,12 @@ void SubPilotInterface::doExecute()
 
     if (mCommandList[mActiveIndex].mCommandPtr != nullptr)
     {        
+       startFunctionTimer();
        mCommandList[mActiveIndex].mCommandPtr->Execute();
+       stopFunctionTimer();
+
+
+       // affiche du texte dans la console
 
        bool wFinish = mCommandList[mActiveIndex].mCommandPtr->isFinish();
        if (wFinish)

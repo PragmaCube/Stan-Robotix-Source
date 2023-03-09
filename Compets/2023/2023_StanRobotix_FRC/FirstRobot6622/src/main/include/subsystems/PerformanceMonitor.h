@@ -46,7 +46,21 @@ protected:
   bool timeToDisplaySystemLog()  { return mSubsystemLogEnabled &&
                                           ((mNumberOfExecution % mLogPeriodicity) == 0); }
 
+  void startFunctionTimer();
+  void stopFunctionTimer();
+  std::chrono::nanoseconds getFunctionMeanExecutionTimeInNs();
+  std::chrono::nanoseconds getFunctionMinExecutionTimeInNs();
+  std::chrono::nanoseconds getFunctionMaxExecutionTimeInNs();
+
+  std::chrono::nanoseconds mAccumulFuncDurationiNnS = std::chrono::nanoseconds::zero();
+  std::chrono::nanoseconds mMinDurationiNnS = std::chrono::nanoseconds::max();
+  std::chrono::nanoseconds mMaxDurationiNnS = std::chrono::nanoseconds::min();
+  std::chrono::nanoseconds mMoyDurationiNnS = std::chrono::nanoseconds::zero();
+  unsigned long mNumberOfFunctionExecution = 0;
+
 private:
+  std::chrono::steady_clock::time_point mFnctPerformanceTimeStart;
+
   std::chrono::nanoseconds mMinDurationiNnS = std::chrono::nanoseconds::max();
   std::chrono::nanoseconds mMaxDurationiNnS = std::chrono::nanoseconds::min();
   std::chrono::nanoseconds mMoyDurationiNnS = std::chrono::nanoseconds::zero();

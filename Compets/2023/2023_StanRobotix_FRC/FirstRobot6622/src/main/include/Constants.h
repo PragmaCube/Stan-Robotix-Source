@@ -135,4 +135,5 @@ constexpr bool kLogPneumatic = true;
 constexpr bool kLogAutoFinalStabilisationEnable = false;
 constexpr bool kLogGamePieceHandler = false;
 constexpr bool kLogUltrason = false;
+
 // AJOUT COMMANDE AUTOMATISEE
