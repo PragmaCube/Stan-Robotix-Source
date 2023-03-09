@@ -27,7 +27,7 @@ constexpr bool kElevatorEnabled = true;
 constexpr bool kGamePieceHandlerEnabled = false;
 constexpr bool kIMUEnabled = true;
 constexpr bool kLimelightEnabled = true;
-constexpr bool kPneumaticEnabled = false;
+constexpr bool kPneumaticEnabled = true;
 constexpr bool kUltrasonEnable = false;
 
 #else
@@ -109,7 +109,7 @@ constexpr bool kLogPerf_LimelightEnable = false;
 constexpr bool kLogPerf_ManualPilotEnable = false;
 constexpr bool kLogPerf_UltrasonEnable = false;
 constexpr bool kLogPerf_ElevatorEnable = false;
-constexpr bool kLogPerf_PneumaticEnable = false;
+constexpr bool kLogPerf_PneumaticEnable = true;
 constexpr bool kLogPerf_AutoFinalStabilisationEnable = false;
 constexpr bool kLogPerf_GamePieceHandlerEnable = false;
 constexpr bool kLogPerfContactDetection = false;
@@ -131,7 +131,7 @@ constexpr bool kLogAutoConeLowEnable = false;
 constexpr bool kLogAutoFollowTagEnable = false;
 constexpr bool kLogChargeUpFinalEnable = false;
 constexpr bool kLogManualEnable = false;
-constexpr bool kLogPneumatic = false;
+constexpr bool kLogPneumatic = true;
 constexpr bool kLogAutoFinalStabilisationEnable = false;
 constexpr bool kLogGamePieceHandler = false;
 constexpr bool kLogUltrason = false;

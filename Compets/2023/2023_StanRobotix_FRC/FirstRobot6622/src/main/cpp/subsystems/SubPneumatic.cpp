@@ -21,7 +21,7 @@ void SubPneumatic::Init()
 {
   if (isEnabled())
   {
-    //Retract();
+    Retract();
   }
 }
 
@@ -44,10 +44,12 @@ void SubPneumatic::Toggle()
     mDoubleSolenoid.Toggle();
     if (mState == eRetract)
     {
+      std::cout << "extrct" << std::endl;
       mState = eExtract;
     }
     else
     {
+      std::cout << "Retrct" << std::endl;
       mState = eRetract;
     }
   }
