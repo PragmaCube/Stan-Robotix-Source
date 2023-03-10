@@ -25,6 +25,7 @@ public:
 protected:
   virtual void doExecute() = 0;
   virtual std::string getName() = 0;
+  virtual std::string getFuncttionName()=0;
 
   bool isEnabled()          { return mIsEnabled; }
   bool isSystemLogEnabled() { return mSubsystemLogEnabled; }

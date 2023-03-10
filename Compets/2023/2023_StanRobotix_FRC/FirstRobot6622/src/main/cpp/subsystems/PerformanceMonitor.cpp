@@ -41,8 +41,6 @@ void PerformanceMonitor::Execute()
     mNumberOfExecution++;
 }
 
-
-
 void PerformanceMonitor::startFunctionTimer()
 {
     FunctionBegin = std::chrono::steady_clock::now();
@@ -52,9 +50,20 @@ void PerformanceMonitor::stopFunctionTimer()
 {
     NewDuration = FunctionBegin - std::chrono::steady_clock::now();
     mAccumulFuncDurationiNnS += NewDuration;
-    mMoyDurationFunctioniNnS = mAccumulFuncDurationiNnS/mNumberOfFunctionExecution;
+    mMoyDurationFunctioniNnS = mAccumulFuncDurationiNnS / mNumberOfFunctionExecution;
+      if (NewDuration < mMinDurationFunctioniNnS)
+        {
+            mMinDurationFunctioniNnS = NewDuration;
+        }
+        else if (NewDuration > mMaxDurationFunctioniNnS)
+        {
+            mMaxDurationFunctioniNnS = NewDuration;
+        }
+    std::cout <<"La duree est de "          << NewDuration << " nanosecond" << std::endl;
+    std::cout <<"La moyenne est de "        << mMoyDurationFunctioniNnS<< " nanosecond" << std::endl;
+    std::cout <<"La valeur maximal est de " << mMaxDurationFunctioniNnS<< " nanosecond" << std::endl;
+    std::cout <<"La valeur minimal est de " << mMinDurationFunctioniNnS<< " nanosecond" << std::endl;
 }
-
 
 //  TODO: EnableLocalPerformance.
 // startPerfTimers
