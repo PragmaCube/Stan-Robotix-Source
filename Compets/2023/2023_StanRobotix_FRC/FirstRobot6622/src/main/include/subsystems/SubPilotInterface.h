@@ -78,5 +78,5 @@ public:
   frc::Joystick mJoystick{kJoystickPort};
   int mMenuIndex   = MANUAL_TELEOP;
   int mActiveIndex = MANUAL_TELEOP; 
-  int NewDuration=0;
+
 };

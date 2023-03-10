@@ -53,11 +53,13 @@ protected:
   std::chrono::nanoseconds getFunctionMaxExecutionTimeInNs();
 
   std::chrono::nanoseconds mAccumulFuncDurationiNnS = std::chrono::nanoseconds::zero();
-  std::chrono::nanoseconds mMinDurationiNnS = std::chrono::nanoseconds::max();
-  std::chrono::nanoseconds mMaxDurationiNnS = std::chrono::nanoseconds::min();
-  std::chrono::nanoseconds mMoyDurationiNnS = std::chrono::nanoseconds::zero();
+  std::chrono::nanoseconds mMinDurationFunctioniNnS = std::chrono::nanoseconds::max();
+  std::chrono::nanoseconds mMaxDurationFunctioniNnS = std::chrono::nanoseconds::min();
+  std::chrono::nanoseconds mMoyDurationFunctioniNnS = std::chrono::nanoseconds::zero();
   unsigned long mNumberOfFunctionExecution = 0;
+   std::chrono::nanoseconds NewDuration;
 
+  
 private:
   std::chrono::steady_clock::time_point mFnctPerformanceTimeStart;
 
@@ -71,4 +73,6 @@ private:
   bool mPerformanceLogEnabled      = false;
   bool mIsEnabled                  = false;
   bool mSubsystemLogEnabled        = false;
+  protected:
+  std::chrono::steady_clock::time_point FunctionBegin;
 };

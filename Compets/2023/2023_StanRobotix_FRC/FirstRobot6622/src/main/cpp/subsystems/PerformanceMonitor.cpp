@@ -41,6 +41,21 @@ void PerformanceMonitor::Execute()
     mNumberOfExecution++;
 }
 
+
+
+void PerformanceMonitor::startFunctionTimer()
+{
+    FunctionBegin = std::chrono::steady_clock::now();
+}
+
+void PerformanceMonitor::stopFunctionTimer()
+{
+    NewDuration = FunctionBegin - std::chrono::steady_clock::now();
+    mAccumulFuncDurationiNnS += NewDuration;
+    mMoyDurationFunctioniNnS = mAccumulFuncDurationiNnS/mNumberOfFunctionExecution;
+}
+
+
 //  TODO: EnableLocalPerformance.
 // startPerfTimers
 // stopPerTimer
