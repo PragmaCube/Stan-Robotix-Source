@@ -25,7 +25,6 @@ public:
 protected:
   virtual void doExecute() = 0;
   virtual std::string getName() = 0;
-  virtual std::string getFuncttionName()=0;
 
   bool isEnabled()          { return mIsEnabled; }
   bool isSystemLogEnabled() { return mSubsystemLogEnabled; }
@@ -45,7 +44,7 @@ protected:
   const unsigned int kLogPeriod_Undefined = 10000000;
 
   bool timeToDisplaySystemLog()  { return mSubsystemLogEnabled &&
-                                          ((mNumberOfExecution % mLogPeriodicity) == 0); }
+                                          ((mSubSystemPerfStruct.mNumberOfExecution % mLogPeriodicity) == 0); }
 
   void startFunctionTimer();
   void stopFunctionTimer();
@@ -58,18 +57,18 @@ protected:
   std::chrono::nanoseconds mMaxDurationFunctioniNnS = std::chrono::nanoseconds::min();
   std::chrono::nanoseconds mMoyDurationFunctioniNnS = std::chrono::nanoseconds::zero();
   unsigned long mNumberOfFunctionExecution = 0;
-   std::chrono::nanoseconds NewDuration;
-
   
 private:
-  std::chrono::steady_clock::time_point mFnctPerformanceTimeStart;
+  struct Perf_Struct_t {
+    std::chrono::nanoseconds mMinDurationiNnS = std::chrono::nanoseconds::max();
+    std::chrono::nanoseconds mMaxDurationiNnS = std::chrono::nanoseconds::min();
+    std::chrono::nanoseconds mMoyDurationiNnS = std::chrono::nanoseconds::zero();
+    std::chrono::nanoseconds mAccumulDurationiNnS = std::chrono::nanoseconds::zero();
 
-  std::chrono::nanoseconds mMinDurationiNnS = std::chrono::nanoseconds::max();
-  std::chrono::nanoseconds mMaxDurationiNnS = std::chrono::nanoseconds::min();
-  std::chrono::nanoseconds mMoyDurationiNnS = std::chrono::nanoseconds::zero();
-  std::chrono::nanoseconds mAccumulDurationiNnS = std::chrono::nanoseconds::zero();
+    unsigned long mNumberOfExecution = 1;
+  };
 
-  unsigned long mNumberOfExecution = 1;
+  Perf_Struct_t mSubSystemPerfStruct;
 
   bool mPerformanceLogEnabled      = false;
   bool mIsEnabled                  = false;
