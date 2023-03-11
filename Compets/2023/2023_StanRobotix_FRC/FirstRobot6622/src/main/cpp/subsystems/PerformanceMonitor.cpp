@@ -46,7 +46,7 @@ void PerformanceMonitor::startFunctionTimer()
     FunctionBegin = std::chrono::steady_clock::now();
 }
 
-void PerformanceMonitor::stopFunctionTimer()
+void PerformanceMonitor::stopFunctionTimer(const std::string iComment)
 {
     std::chrono::nanoseconds wNewDuration = FunctionBegin - std::chrono::steady_clock::now();
     mAccumulFuncDurationiNnS += wNewDuration;
@@ -59,12 +59,12 @@ void PerformanceMonitor::stopFunctionTimer()
         {
             mMaxDurationFunctioniNnS = wNewDuration;
         }
-    std::cout <<"La duree est de "          << wNewDuration << " nanosecond" << std::endl;
-    std::cout <<"La moyenne est de "        << mMoyDurationFunctioniNnS<< " nanosecond" << std::endl;
-    std::cout <<"La valeur maximal est de " << mMaxDurationFunctioniNnS<< " nanosecond" << std::endl;
-    std::cout <<"La valeur minimal est de " << mMinDurationFunctioniNnS<< " nanosecond" << std::endl;
+    if (timeToDisplaySystemLog())
+    {
+        std::cout << "Temp execution de la fonction " << iComment << std::endl;
+        std::cout <<"La duree est de "          << wNewDuration << " nanosecond" << std::endl;
+        std::cout <<"La moyenne est de "        << mMoyDurationFunctioniNnS<< " nanosecond" << std::endl;
+        std::cout <<"La valeur maximal est de " << mMaxDurationFunctioniNnS<< " nanosecond" << std::endl;
+        std::cout <<"La valeur minimal est de " << mMinDurationFunctioniNnS<< " nanosecond" << std::endl;
+    }
 }
-
-//  TODO: EnableLocalPerformance.
-// startPerfTimers
-// stopPerTimer
