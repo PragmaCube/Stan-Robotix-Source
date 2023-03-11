@@ -2,23 +2,23 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/AutoFollowTag.h"
+#include "commands/AutoFollowTape.h"
 #include "../../include/RobotContainer.h"
 
 // AJOUT COMMANDE AUTOMATISEE
-AutoFollowTag::AutoFollowTag(RobotContainer * iRobotContainer)
+AutoFollowTape::AutoFollowTape(RobotContainer * iRobotContainer)
 {
     mRobotContainer = iRobotContainer;
 
     mGenericTimer.Reset();
 
-    EnableSubsystemLog(kLogAutoFollowTagEnable);
-    EnablePerformanceLog(kLogPerf_AutoFollowTagEnable);
+    EnableSubsystemLog(kLogAutoFollowTapeEnable);
+    EnablePerformanceLog(kLogPerf_AutoFollowTapeEnable);
 
     Init();
 }
 
-void AutoFollowTag::Init()
+void AutoFollowTape::Init()
 {
   mSubDriveTrain = mRobotContainer->getSubDriveTrain();
   mSubLimelight = mRobotContainer->getSubLimelight();
@@ -27,20 +27,20 @@ void AutoFollowTag::Init()
   mYawController.SetSetpoint(0);
 }
 
-void AutoFollowTag::reset()
+void AutoFollowTape::reset()
 {
-   std :: cout <<  "Fin de l'execution de AutoFollowTag" << std::endl;
+   std :: cout <<  "Fin de l'execution de AutoFollowTape" << std::endl;
    mCorrectPipeline_QuestionMark = 0;
    // Ne pas oublier de remettre les variables de la commande automatisee... dans la mesure ou 
    // on risque de la relancer plus tard
 }
 
 // Returns true when the command should end.
-bool AutoFollowTag::isFinish() {
+bool AutoFollowTape::isFinish() {
   return   0 && mXController.AtSetpoint() && mYController.AtSetpoint() && mYawController.AtSetpoint();
 }
 
-void AutoFollowTag::doExecute()
+void AutoFollowTape::doExecute()
 {
   if(!mCorrectPipeline_QuestionMark)
   {

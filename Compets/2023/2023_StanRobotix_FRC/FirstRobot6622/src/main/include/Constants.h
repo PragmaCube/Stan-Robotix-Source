@@ -114,6 +114,7 @@ constexpr bool kLogPerf_AutoFinalStabilisationEnable = false;
 constexpr bool kLogPerf_GamePieceHandlerEnable = false;
 constexpr bool kLogPerfContactDetection = false;
 constexpr bool kLogPerf_AutoFollowTagEnable = false;
+constexpr bool kLogPerf_AutoFollowTapeEnable = false;
 // AJOUT COMMANDE AUTOMATISEE
 
 
@@ -129,6 +130,7 @@ constexpr bool kLogPilotInterface = false;
 constexpr bool kLogAutoConeHighEnable = false;
 constexpr bool kLogAutoConeLowEnable = false;
 constexpr bool kLogAutoFollowTagEnable = false;
+constexpr bool kLogAutoFollowTapeEnable = false;
 constexpr bool kLogChargeUpFinalEnable = false;
 constexpr bool kLogManualEnable = false;
 constexpr bool kLogPneumatic = true;

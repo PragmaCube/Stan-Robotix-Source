@@ -26,6 +26,11 @@ void SubLimelight::Init()
   }
 }
 
+void SubLimelight::setPipeline(int iPipeline)
+{
+  mNetworkTable->PutNumber("pipeline",iPipeline);
+}
+
 void SubLimelight::doExecute()
 {
   if (isEnabled())

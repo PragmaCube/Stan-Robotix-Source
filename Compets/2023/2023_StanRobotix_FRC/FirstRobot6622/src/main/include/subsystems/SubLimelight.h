@@ -30,6 +30,12 @@ public:
     eField,
     eTag
   }; // Enum pour choisir referientiel
+  enum ePipelines
+  {
+    eAprilTag,
+    eTape,
+    eDefault
+  }; //Enum pour que Cyril se plaigne pas que ce soit pas assez explicite
 
 public:
   SubLimelight();
@@ -38,6 +44,7 @@ public:
 
   void doExecute();
 
+  void setPipeline(int iPipeline);
   double getTargetOffsetAngleHorizontal() { return mTargetOffsetAngle_Horizontal; }
   double getTargetOffsetAngleVertical() { return mTargetOffsetAngle_Vertical; }
   double getTargetArea() { return mTargetArea; }

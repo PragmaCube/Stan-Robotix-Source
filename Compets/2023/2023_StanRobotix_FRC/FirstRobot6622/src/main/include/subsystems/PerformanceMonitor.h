@@ -47,7 +47,7 @@ protected:
                                           ((mSubSystemPerfStruct.mNumberOfExecution % mLogPeriodicity) == 0); }
 
   void startFunctionTimer();
-  void stopFunctionTimer();
+  void stopFunctionTimer(const std::string iComment);
   std::chrono::nanoseconds getFunctionMeanExecutionTimeInNs();
   std::chrono::nanoseconds getFunctionMinExecutionTimeInNs();
   std::chrono::nanoseconds getFunctionMaxExecutionTimeInNs();

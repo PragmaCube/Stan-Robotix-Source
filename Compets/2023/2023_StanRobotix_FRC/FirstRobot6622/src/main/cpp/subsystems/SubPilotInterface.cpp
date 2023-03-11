@@ -8,6 +8,7 @@
 #include "commands/ManualPilot.h"
 #include "commands/AutoFinalStabilisation.h"
 #include "commands/AutoFollowTag.h"
+#include "commands/AutoFollowTape.h"
 
 SubPilotInterface::SubPilotInterface(RobotContainer *iRobotContainer)
 {
@@ -21,6 +22,7 @@ void SubPilotInterface::Init()
     mCommandList[AUTO_CONEHIGH].mCommandPtr = new AutoConeHigh(mRobotContainer);
     mCommandList[AUTO_CHARGEUP].mCommandPtr = new AutoFinalStabilisation(mRobotContainer);
     mCommandList[AUTO_FOLLOWTAG].mCommandPtr = new AutoFollowTag(mRobotContainer);
+    mCommandList[AUTO_FOLLOWTAPE].mCommandPtr = new AutoFollowTape(mRobotContainer);
     // AJOUT COMMANDE AUTOMATISEE
 }
 

@@ -13,9 +13,9 @@
 #include "Constants.h"
 
 // AJOUT COMMANDE AUTOMATISEE
-class AutoFollowTag : public PerformanceMonitor {
+class AutoFollowTape : public PerformanceMonitor {
 public:
-  AutoFollowTag(RobotContainer *iRobotContainer);
+  AutoFollowTape(RobotContainer *iRobotContainer);
 
   void Init();
 
@@ -35,6 +35,6 @@ private:
   frc2::PIDController mYController{0.3f, 0.1f, 0.2f};
   frc2::PIDController mXController{0.5f, 0.05f, 0.2f};
   frc2::PIDController mYawController{0.05f, 0.01f, 0.0f};
-  
+
   bool mCorrectPipeline_QuestionMark = 0;
 };
