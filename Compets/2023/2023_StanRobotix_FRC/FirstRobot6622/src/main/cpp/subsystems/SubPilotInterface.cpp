@@ -30,11 +30,19 @@ void SubPilotInterface::doExecute()
     {
         mMenuIndex++;
 
-        // TODO: tenir compte de mCommandList[mMenuIndex].isEnabled() pour chercher la
-        // prochaine commande utilisable
         if (mMenuIndex == CMD_MAX)
         {
             mMenuIndex = MANUAL_TELEOP;
+        }
+
+        while(mCommandList[mMenuIndex].mIsCmdAvailable == false)
+        {
+            mMenuIndex++;
+            if (mMenuIndex == CMD_MAX)
+            {
+                mMenuIndex = MANUAL_TELEOP;
+            }
+
         }
 
         std ::cout << "Selection de la " << mCommandList[mMenuIndex].mDescription << std::endl;
@@ -56,9 +64,7 @@ void SubPilotInterface::doExecute()
 
     if (mCommandList[mActiveIndex].mCommandPtr != nullptr)
     {
-        startFunctionTimer();
         mCommandList[mActiveIndex].mCommandPtr->Execute();
-        stopFunctionTimer();
         mNumberOfFunctionExecution++;
 
         // affiche du texte dans la console
