@@ -22,8 +22,8 @@ void AutoFollowTape::Init()
 {
   mSubDriveTrain = mRobotContainer->getSubDriveTrain();
   mSubLimelight = mRobotContainer->getSubLimelight();
-  mXController.SetSetpoint(0);
-  mYController.SetSetpoint(-1.5);
+  mAlignController.SetSetpoint(0);
+  mDistanceController.SetSetpoint(1.5);
   mYawController.SetSetpoint(0);
 }
 
@@ -37,7 +37,7 @@ void AutoFollowTape::reset()
 
 // Returns true when the command should end.
 bool AutoFollowTape::isFinish() {
-  return   0 && mXController.AtSetpoint() && mYController.AtSetpoint() && mYawController.AtSetpoint();
+  return   0 && mAlignController.AtSetpoint() && mDistanceController.AtSetpoint() && mYawController.AtSetpoint();
 }
 
 void AutoFollowTape::doExecute()
@@ -48,17 +48,17 @@ void AutoFollowTape::doExecute()
   }
   mSubLimelight->Execute();      // Ne pas oublier de rajouter les executes de chaque subsysteme entree, telle que Limelight, Ultrason... etc
 
-  double wXOutput = 0.0;
-  if(mSubLimelight->getPos(SubLimelight::ePos::eX, SubLimelight::eReferential::eTag) != 0)
+  double wAlignOutput = 0.0;
+  if(mSubLimelight->getTapeOffSetDistance() != 0)
   {
-    wXOutput = mXController.Calculate(mSubLimelight->getPos(SubLimelight::ePos::eX, SubLimelight::eReferential::eTag));
+    wAlignOutput = mAlignController.Calculate(mSubLimelight->getTapeOffSetDistance());
     // std::cout << mSubLimelight->getPos(SubLimelight::ePos::eYaw, SubLimelight::eReferential::eTag) << std::endl;
   }
 
-  double wYOutput = 0.0;
-  if(mSubLimelight->getPos(SubLimelight::ePos::eZ, SubLimelight::eReferential::eTag) != 0)
+  double wDistanceOutput = 0.0;
+  if(mSubLimelight->getTargetArea() != 30)
   {
-    wYOutput = mYController.Calculate(mSubLimelight->getPos(SubLimelight::ePos::eZ, SubLimelight::eReferential::eTag));
+    wDistanceOutput = mDistanceController.Calculate(mSubLimelight->getTargetArea());
     // std::cout << mSubLimelight->getPos(SubLimelight::ePos::eY, SubLimelight::eReferential::eTag) << std::endl;
   }
 
@@ -69,22 +69,6 @@ void AutoFollowTape::doExecute()
     // std::cout << mSubLimelight->getPos(SubLimelight::ePos::eYaw, SubLimelight::eReferential::eTag) << std::endl;
   }
 
-  mSubDriveTrain->setParameters(wXOutput,wYOutput,-wYawOutput,0);
+  mSubDriveTrain->setParameters(wAlignOutput,wDistanceOutput,-wYawOutput,0);
   mSubDriveTrain->Execute();
-  
-  if(mXController.AtSetpoint() && mYController.AtSetpoint() && mYawController.AtSetpoint())
-  {
-    if(mXController.GetSetpoint() == 0)
-    {
-      mXController.SetSetpoint(1.80);
-      mYController.SetSetpoint(-1.90);
-      mYawController.SetSetpoint(0);
-    }
-    else
-    {
-      mXController.SetSetpoint(0);
-      mYController.SetSetpoint(-1.5);
-      mYawController.SetSetpoint(0);
-    }
-  }
 }

@@ -50,12 +50,19 @@ public:
   double getTargetArea() { return mTargetArea; }
   double getTargetSkew() { return mTargetSkew; }
   double getPos(ePos iPos, eReferential iReferential);
+  double getTapeOffSetDistance() { return mTapeOffSetDistance; }
 
 private:
   double mTargetOffsetAngle_Horizontal = 0.0;
   double mTargetOffsetAngle_Vertical = 0.0;
   double mTargetArea = 0.0;
   double mTargetSkew = 0.0;
+
+  double mPosTapeX1 ;
+  double mPosTapeY1 ;
+  double mPosTapeX2 ;
+  double mPosTapeY2 ;
+  double mTapeOffSetDistance;
 
   std::shared_ptr<nt::NetworkTable> mNetworkTable;
 

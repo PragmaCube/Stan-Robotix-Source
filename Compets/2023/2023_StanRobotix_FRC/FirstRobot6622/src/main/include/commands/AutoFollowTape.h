@@ -32,8 +32,8 @@ private:
   SubDriveTrain *mSubDriveTrain = nullptr;
   SubLimelight *mSubLimelight = nullptr;
   
-  frc2::PIDController mYController{0.3f, 0.1f, 0.2f};
-  frc2::PIDController mXController{0.5f, 0.05f, 0.2f};
+  frc2::PIDController mDistanceController{0.3f, 0.1f, 0.2f};
+  frc2::PIDController mAlignController{0.5f, 0.05f, 0.2f};
   frc2::PIDController mYawController{0.05f, 0.01f, 0.0f};
 
   bool mCorrectPipeline_QuestionMark = 0;

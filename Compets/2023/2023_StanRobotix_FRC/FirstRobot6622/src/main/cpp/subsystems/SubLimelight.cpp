@@ -42,6 +42,13 @@ void SubLimelight::doExecute()
 
     mFieldBotPos = mNetworkTable->GetNumberArray("botpose",std::vector<double>(6));
     mTagBotPos   = mNetworkTable->GetNumberArray("botpose_targetspace",std::vector<double>(6));
+
+    mPosTapeX1 = mNetworkTable->GetNumber("tx0", 0.0);
+    mPosTapeY1 = mNetworkTable->GetNumber("ty0", 0.0);
+    mPosTapeX2 = mNetworkTable->GetNumber("tx1", 0.0);
+    mPosTapeY2 = mNetworkTable->GetNumber("ty1", 0.0);
+
+    mTapeOffSetDistance = mPosX2 - mPosX1;
   }
 
   if (timeToDisplaySystemLog())
