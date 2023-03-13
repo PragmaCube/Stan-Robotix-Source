@@ -28,6 +28,7 @@ void SubLimelight::Init()
   if (mIsEnabled)
   {
      mNetworkTable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+     mNetworkTable->PutNumber("ledMode",3);
   }
 }
 
@@ -42,24 +43,30 @@ void SubLimelight::doExecute()
     mTargetArea = mNetworkTable->GetNumber("ta", 0.0);
     mTargetSkew = mNetworkTable->GetNumber("ts", 0.0);
 
-    mFieldBotPos = mNetworkTable->GetNumberArray("<botpose>",std::vector<double>(6));
-    mTagBotPos   = mNetworkTable->GetNumberArray("<botpose_targetspace>",std::vector<double>(6));
+    mFieldBotPos = mNetworkTable->GetNumberArray("botpose",std::vector<double>(6));
+    mTagBotPos   = mNetworkTable->GetNumberArray("botpose_targetspace",std::vector<double>(6));
   }
 
-  if (mSubsystemLogEnabled && (wNumberOfExecution %mLogPeriodicity) == 0)
+  if (mSubsystemLogEnabled && (wNumberOfExecution % mLogPeriodicity) == 0)
   {
     std::cout << "\nTargetOffsetAngle Hz(tx):" << mTargetOffsetAngle_Horizontal
               << "\nTargetOffsetAngle Vt(ty):" << mTargetOffsetAngle_Vertical
               << "\nTargetArea (ta):" << mTargetArea
-              << "\nTargetSkew (ts):" << mTargetSkew;
-    std::cout << "\nFieldBotPos(botpose): { ";
-    for (double n : mFieldBotPos)
-      std::cout << n << ", ";
+              << "\nTargetSkew (ts):" << mTargetSkew << std::endl;
+    std::cout << "\nFieldBotPos(botpose): { "; 
+
+    for (int i = 0 ; i < mFieldBotPos.size() ; i++ )
+    {
+      std::cout << mFieldBotPos[i] << ", ";
+    }
+
     std::cout << "} \n";
     
     std::cout << "\nTagBotPos(botpose_targetspace): { ";
-    for (double n : mTagBotPos)
-      std::cout << n << ", ";
+    for (int i = 0 ; i < mTagBotPos.size() ; i++ )
+    {
+      std::cout << mTagBotPos[i] << ", ";
+    }
     std::cout << "} \n"
     << std::endl;
   }
