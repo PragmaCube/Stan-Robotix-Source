@@ -47,16 +47,16 @@ protected:
                                           ((mSubSystemPerfStruct.mNumberOfExecution % mLogPeriodicity) == 0); }
 
   void startFunctionTimer();
-  void stopFunctionTimer();
+  void stopFunctionTimer(const std::string iComment);
   std::chrono::nanoseconds getFunctionMeanExecutionTimeInNs();
   std::chrono::nanoseconds getFunctionMinExecutionTimeInNs();
   std::chrono::nanoseconds getFunctionMaxExecutionTimeInNs();
 
-  std::chrono::nanoseconds mAccumulFuncDurationiNnS = std::chrono::nanoseconds::zero();
-  std::chrono::nanoseconds mMinDurationFunctioniNnS = std::chrono::nanoseconds::max();
-  std::chrono::nanoseconds mMaxDurationFunctioniNnS = std::chrono::nanoseconds::min();
-  std::chrono::nanoseconds mMoyDurationFunctioniNnS = std::chrono::nanoseconds::zero();
-  unsigned long mNumberOfFunctionExecution = 0;
+  // std::chrono::nanoseconds mAccumulFuncDurationiNnS = std::chrono::nanoseconds::zero();
+  // std::chrono::nanoseconds mMinDurationFunctioniNnS = std::chrono::nanoseconds::max();
+  // std::chrono::nanoseconds mMaxDurationFunctioniNnS = std::chrono::nanoseconds::min();
+  // std::chrono::nanoseconds mMoyDurationFunctioniNnS = std::chrono::nanoseconds::zero();
+  // unsigned long mNumberOfFunctionExecution = 0;
   
 private:
   struct Perf_Struct_t {
@@ -69,8 +69,9 @@ private:
   };
 
   Perf_Struct_t mSubSystemPerfStruct;
+  Perf_Struct_t mFunctionPerfStruct;
 
-  bool mPerformanceLogEnabled      = false;
+  bool mPerformanceLogEnabled      = true;
   bool mIsEnabled                  = false;
   bool mSubsystemLogEnabled        = false;
   protected:

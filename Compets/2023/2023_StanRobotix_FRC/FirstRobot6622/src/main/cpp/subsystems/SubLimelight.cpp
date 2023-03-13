@@ -36,7 +36,7 @@ void SubLimelight::doExecute()
     mTargetSkew = mNetworkTable->GetNumber("ts", 0.0);
 
     mFieldBotPos = mNetworkTable->GetNumberArray("botpose",std::vector<double>(6));
-    mTagBotPos   = mNetworkTable->GetNumberArray("botpose_targetspace",std::vector<double>(6));
+    mTagBotPos   = mNetworkTable->GetNumberArray("botpose_targetspace", std::vector<double>(6));
   }
 
   if (timeToDisplaySystemLog())

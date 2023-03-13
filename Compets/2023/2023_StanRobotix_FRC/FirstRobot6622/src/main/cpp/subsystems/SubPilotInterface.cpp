@@ -12,6 +12,8 @@
 SubPilotInterface::SubPilotInterface(RobotContainer *iRobotContainer)
 {
     mRobotContainer = iRobotContainer;
+
+    setLogPeriodity(kLogPeriod_1s); //kLogPeriod_Undefined
 }
 
 void SubPilotInterface::Init()
@@ -64,8 +66,9 @@ void SubPilotInterface::doExecute()
 
     if (mCommandList[mActiveIndex].mCommandPtr != nullptr)
     {
+        void startFunctionTimer();
         mCommandList[mActiveIndex].mCommandPtr->Execute();
-        mNumberOfFunctionExecution++;
+       void stopFunctionTimer();
 
         // affiche du texte dans la console
 
