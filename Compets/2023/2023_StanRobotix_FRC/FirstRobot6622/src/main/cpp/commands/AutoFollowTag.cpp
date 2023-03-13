@@ -24,6 +24,8 @@ bool AutoFollowTag::isFinish() {
 void AutoFollowTag::reset()
 {
    std :: cout <<  "Fin de l'execution de AutoFollowTag" << std::endl;
+   mRunOnce = true;
+   mSubDriveTrain->setAngleSource(SubDriveTrain::eIMU);
 }
 
 void AutoFollowTag::Init()
@@ -33,10 +35,16 @@ void AutoFollowTag::Init()
   mXController.SetSetpoint(0);
   mYController.SetSetpoint(-1.5);
   mYawController.SetSetpoint(0);
+  mRunOnce = true;
 }
 
 void AutoFollowTag::doExecute()
 {
+  if(mRunOnce)
+  {
+    mRunOnce = false;
+    mSubDriveTrain->setAngleSource(SubDriveTrain::eInputed);
+  }
   mSubLimelight->Execute();
 
   double mXOutput;
@@ -71,7 +79,7 @@ void AutoFollowTag::doExecute()
   {
     mYawOutput = 0;
   }
-
+  mSubDriveTrain->setInputedAngle(mSubLimelight->getPos(SubLimelight::ePos::eYaw, SubLimelight::eReferential::eTag));
   mSubDriveTrain->setParameters(mXOutput,mYOutput,-mYawOutput,0);
   mSubDriveTrain->Execute();
   

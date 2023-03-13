@@ -28,7 +28,14 @@ class SubDriveTrain : public PerformanceMonitor
   void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
 
   void setParameters(const double iX, const double iY, const double iTwist, const bool iFieldOriented); // TODO: casser la fonction en deux
-
+  enum eAngleSource
+  {
+    eIMU,
+    eInputed,
+    eNone
+  };
+  void setAngleSource(const eAngleSource iAngleSource);
+  void setInputedAngle(const double iAngle);
  private:
   bool mIsEnabled = false;
   bool mSubsystemLogEnabled = false;
@@ -47,5 +54,9 @@ class SubDriveTrain : public PerformanceMonitor
 
   virtual std::string getName() { return "SubDriveTrain"; }
   virtual void doExecute();
+
+  eAngleSource mAngleSource;
+
+  double mInputedAngle;
 };
 

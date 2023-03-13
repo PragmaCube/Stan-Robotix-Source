@@ -64,7 +64,19 @@ void SubDriveTrain::doExecute()
   {
     if (mFieldOriented)
     {
-      frc::Rotation2d imuAngle = mSubIMU->getRadian();
+      frc::Rotation2d imuAngle;
+      switch(mAngleSource)
+      {
+        case eIMU:
+        imuAngle = mSubIMU->getRadian();
+        break;
+
+        case eInputed:
+        imuAngle = units::degree_t{mInputedAngle};
+
+        default:
+        imuAngle = 0_rad;
+      }
       m_robotDrive->DriveCartesian(-mY, mX, mTwist, imuAngle);
     }
     else
@@ -81,4 +93,14 @@ void SubDriveTrain::doExecute()
   }
 
   wNumberOfExecution++;
+}
+
+void SubDriveTrain::setAngleSource(const eAngleSource iAngleSource)
+{
+  mAngleSource = iAngleSource;
+}
+
+void SubDriveTrain::setInputedAngle(const double iAngle)
+{
+  mInputedAngle = iAngle;
 }
