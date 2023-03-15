@@ -48,7 +48,7 @@ void SubLimelight::doExecute()
     mPosTapeX2 = mNetworkTable->GetNumber("tx1", 0.0);
     mPosTapeY2 = mNetworkTable->GetNumber("ty1", 0.0);
 
-    mTapeOffSetDistance = mPosX2 - mPosX1;
+    mTapeOffSetDistance = mPosTapeX2 - mPosTapeX1;
   }
 
   if (timeToDisplaySystemLog())
