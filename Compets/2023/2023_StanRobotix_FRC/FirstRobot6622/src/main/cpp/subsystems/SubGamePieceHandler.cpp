@@ -54,7 +54,7 @@ void SubGamePieceHandler::doExecute()
 {
     if (isEnabled() && mIsUpdated)
     {
-       mMotorRight->Set(mRequestedPowerLeft);
+     //  mMotorLeft->Set(mRequestedPowerLeft);
        mMotorRight->Set(mRequestedPowerRight);
        mIsUpdated = false;
     }
@@ -69,7 +69,7 @@ void SubGamePieceHandler::Init()
 {
     if (isEnabled())
     {
-        mMotorRight = new rev::CANSparkMax(kCanIdGamePieceHandlerR, rev::CANSparkMax::MotorType::kBrushless);
-        mMotorLeft = new rev::CANSparkMax(kCanIdGamePieceHandlerL, rev::CANSparkMax::MotorType::kBrushless);
+      mMotorRight = new rev::CANSparkMax(kCanIdGamePieceHandlerR, rev::CANSparkMax::MotorType::kBrushless);
+     // mMotorLeft = new rev::CANSparkMax(kCanIdGamePieceHandlerL, rev::CANSparkMax::MotorType::kBrushless);
     }
 }

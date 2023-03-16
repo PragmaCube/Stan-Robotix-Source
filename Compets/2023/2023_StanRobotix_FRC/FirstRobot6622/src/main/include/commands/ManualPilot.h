@@ -14,6 +14,7 @@ class SubLimelight;
 class SubPilotInterface;
 class SubPneumatic;
 class SubUltrasonic;
+class SubGamePieceHandler;
 
 class ManualPilot : public PerformanceMonitor
 {
@@ -43,4 +44,5 @@ private:
   SubLimelight  * mSubLimelight   = nullptr;
   SubPneumatic  * mSubPneumatic   = nullptr;
   SubPilotInterface * mSubPilotInterface = nullptr;
+  SubGamePieceHandler * mSubGamePieceHandler = nullptr;
 };

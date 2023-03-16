@@ -31,6 +31,7 @@ void ManualPilot::Init()
    mSubIMU = mRobotContainer->getSubIMU();
    mSubColorSensor = mRobotContainer->getSubColorSensor();
    mSubPneumatic = mRobotContainer->getSubPneumatic();
+   mSubGamePieceHandler = mRobotContainer->getSubGamePieceHandler();
 }
 
 /**
@@ -69,4 +70,9 @@ void ManualPilot::doExecute()
       mSubPneumatic->Toggle();
       std::cout << "PNEUMATIC TOOGLE" << std::endl;
    }
+   if (mSubPilotInterface->GetRawButtonPressed(SubPilotInterface::GamepieceHandlerIn))
+   {
+      mSubGamePieceHandler->Extract();
+   }
+   mSubGamePieceHandler->Execute();   
 }
