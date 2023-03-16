@@ -45,18 +45,13 @@ protected:
 
   bool timeToDisplaySystemLog()  { return mSubsystemLogEnabled &&
                                           ((mSubSystemPerfStruct.mNumberOfExecution % mLogPeriodicity) == 0); }
-
+  
+  void resetFunctionStat();
   void startFunctionTimer();
   void stopFunctionTimer(const std::string iComment);
   std::chrono::nanoseconds getFunctionMeanExecutionTimeInNs();
   std::chrono::nanoseconds getFunctionMinExecutionTimeInNs();
   std::chrono::nanoseconds getFunctionMaxExecutionTimeInNs();
-
-  std::chrono::nanoseconds mAccumulFuncDurationiNnS = std::chrono::nanoseconds::zero();
-  std::chrono::nanoseconds mMinDurationFunctioniNnS = std::chrono::nanoseconds::max();
-  std::chrono::nanoseconds mMaxDurationFunctioniNnS = std::chrono::nanoseconds::min();
-  std::chrono::nanoseconds mMoyDurationFunctioniNnS = std::chrono::nanoseconds::zero();
-  unsigned long mNumberOfFunctionExecution = 0;
   
 private:
   struct Perf_Struct_t {
@@ -69,10 +64,11 @@ private:
   };
 
   Perf_Struct_t mSubSystemPerfStruct;
+  Perf_Struct_t mFunctionPerfStruct;
 
   bool mPerformanceLogEnabled      = false;
   bool mIsEnabled                  = false;
   bool mSubsystemLogEnabled        = false;
-  protected:
-  std::chrono::steady_clock::time_point FunctionBegin;
+  
+  std::chrono::steady_clock::time_point mStartFunctionTime;
 };

@@ -29,7 +29,7 @@ constexpr bool kIMUEnabled = true;
 constexpr bool kLimelightEnabled = true;
 constexpr bool kPneumaticEnabled = true;
 constexpr bool kUltrasonEnable = false;
-
+constexpr bool kPilotInterfaceEnable = true;
 #else
 
 constexpr bool kDriveTrainEnabled = false;
@@ -41,6 +41,7 @@ constexpr bool kIMUEnabled = false;
 constexpr bool kLimelightEnabled = false;
 constexpr bool kPneumaticEnabled = false;
 constexpr bool kUltrasonEnable = false;
+constexpr bool kPilotInterfaceEnable = true;
 
 #endif
 
@@ -126,7 +127,7 @@ constexpr bool kLogDrivetrain = false;
 constexpr bool kLogLimelight = true;
 constexpr bool kLogColorDetection = false;
 constexpr bool kLogContactDetection = false;
-constexpr bool kLogPilotInterface = false;
+constexpr bool kLogPilotInterface = true;
 constexpr bool kLogAutoConeHighEnable = false;
 constexpr bool kLogAutoConeLowEnable = false;
 constexpr bool kLogAutoFollowTagEnable = false;

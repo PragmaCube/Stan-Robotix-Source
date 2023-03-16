@@ -30,41 +30,55 @@ void PerformanceMonitor::Execute()
         mSubSystemPerfStruct.mMoyDurationiNnS = mSubSystemPerfStruct.mAccumulDurationiNnS / mSubSystemPerfStruct.mNumberOfExecution;
 
         //    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count() << "[ns]" << std::endl;
-        std::cout << "Statistics for " << getName() << std::endl
-                  << "    NewDuration = " << std::chrono::duration_cast<std::chrono::microseconds>(wNewDuration).count() << "[µs]" << std::endl
-                  << "    MinDurationiNnS = " << std::chrono::duration_cast<std::chrono::microseconds>(mSubSystemPerfStruct.mMinDurationiNnS).count() << "[µs]" << std::endl
-                  << "    MaxDurationiNnS = " << std::chrono::duration_cast<std::chrono::microseconds>(mSubSystemPerfStruct.mMaxDurationiNnS).count() << "[µs]" << std::endl
-                  << "    MoyDurationiNnS = " << std::chrono::duration_cast<std::chrono::microseconds>(mSubSystemPerfStruct.mMoyDurationiNnS).count() << "[µs]" << std::endl
-                  << "    AccumulDurationiNnS = " << std::chrono::duration_cast<std::chrono::microseconds>(mSubSystemPerfStruct.mAccumulDurationiNnS).count() << "[µs]" << std::endl
-                  << "    Number of execution " << mSubSystemPerfStruct.mNumberOfExecution << std::endl;
+        std::cout << "Statistique de performance sur le module " << getName() << std::endl
+                  << "    Dernière      = " << std::chrono::duration_cast<std::chrono::microseconds>(wNewDuration).count() << "[ns]" << std::endl
+                  << "    Minimum en ns = " << std::chrono::duration_cast<std::chrono::microseconds>(mSubSystemPerfStruct.mMinDurationiNnS).count() << "[ns]" << std::endl
+                  << "    Maximum en ns = " << std::chrono::duration_cast<std::chrono::microseconds>(mSubSystemPerfStruct.mMaxDurationiNnS).count() << "[ns]" << std::endl
+                  << "    Moyen en ns   = " << std::chrono::duration_cast<std::chrono::microseconds>(mSubSystemPerfStruct.mMoyDurationiNnS).count() << "[ns]" << std::endl
+                  << "    # executions  = " << mSubSystemPerfStruct.mNumberOfExecution << std::endl;
     }
     mSubSystemPerfStruct.mNumberOfExecution++;
 }
 
-void PerformanceMonitor::startFunctionTimer()
+void PerformanceMonitor::resetFunctionStat()
 {
-    FunctionBegin = std::chrono::steady_clock::now();
+   mFunctionPerfStruct.mMinDurationiNnS = std::chrono::nanoseconds::max();
+   mFunctionPerfStruct.mMaxDurationiNnS = std::chrono::nanoseconds::min();
+   mFunctionPerfStruct.mMoyDurationiNnS = std::chrono::nanoseconds::zero();
+   mFunctionPerfStruct.mAccumulDurationiNnS = std::chrono::nanoseconds::zero();
+
+   mFunctionPerfStruct.mNumberOfExecution = 1;
 }
 
-void PerformanceMonitor::stopFunctionTimer(const std::string iComment)
+void PerformanceMonitor::startFunctionTimer()
 {
-    std::chrono::nanoseconds wNewDuration = FunctionBegin - std::chrono::steady_clock::now();
-    mAccumulFuncDurationiNnS += wNewDuration;
-    mMoyDurationFunctioniNnS = mAccumulFuncDurationiNnS / mNumberOfFunctionExecution;
-      if (wNewDuration < mMinDurationFunctioniNnS)
-        {
-            mMinDurationFunctioniNnS = wNewDuration;
-        }
-        else if (wNewDuration > mMaxDurationFunctioniNnS)
-        {
-            mMaxDurationFunctioniNnS = wNewDuration;
-        }
+    mStartFunctionTime = std::chrono::steady_clock::now();
+}
+
+void PerformanceMonitor::stopFunctionTimer(const std::string iFunctionName)
+{
+    std::chrono::nanoseconds wNewDuration = mStartFunctionTime - std::chrono::steady_clock::now();
+    mFunctionPerfStruct.mAccumulDurationiNnS += wNewDuration;
+    mFunctionPerfStruct.mMoyDurationiNnS = mFunctionPerfStruct.mAccumulDurationiNnS / mFunctionPerfStruct.mNumberOfExecution;
+    if (wNewDuration < mFunctionPerfStruct.mMinDurationiNnS)
+    {
+        mFunctionPerfStruct.mMinDurationiNnS = wNewDuration;
+    }
+    else if (wNewDuration > mFunctionPerfStruct.mMaxDurationiNnS)
+    {
+        mFunctionPerfStruct.mMaxDurationiNnS = wNewDuration;
+    }
+    mFunctionPerfStruct.mNumberOfExecution++;
+
     if (timeToDisplaySystemLog())
     {
-        std::cout << "Temp execution de la fonction " << iComment << std::endl;
-        std::cout <<"La duree est de "          << wNewDuration << " nanosecond" << std::endl;
-        std::cout <<"La moyenne est de "        << mMoyDurationFunctioniNnS<< " nanosecond" << std::endl;
-        std::cout <<"La valeur maximal est de " << mMaxDurationFunctioniNnS<< " nanosecond" << std::endl;
-        std::cout <<"La valeur minimal est de " << mMinDurationFunctioniNnS<< " nanosecond" << std::endl;
+        std::cout << "Statistique de performance sur la fonction " << iFunctionName << std::endl
+                  << "    Dernière      = " << std::chrono::duration_cast<std::chrono::microseconds>(wNewDuration).count() << "[ns]" << std::endl
+                  << "    Minimum en ns = " << std::chrono::duration_cast<std::chrono::microseconds>(mFunctionPerfStruct.mMinDurationiNnS).count() << "[ns]" << std::endl
+                  << "    Maximum en ns = " << std::chrono::duration_cast<std::chrono::microseconds>(mFunctionPerfStruct.mMaxDurationiNnS).count() << "[ns]" << std::endl
+                  << "    Moyen en ns   = " << std::chrono::duration_cast<std::chrono::microseconds>(mFunctionPerfStruct.mMoyDurationiNnS).count() << "[ns]" << std::endl
+                  << "    # executions  = " << mFunctionPerfStruct.mNumberOfExecution << std::endl;
     }
 }
+
+    

@@ -13,6 +13,12 @@
 SubPilotInterface::SubPilotInterface(RobotContainer *iRobotContainer)
 {
     mRobotContainer = iRobotContainer;
+
+    Enable(kPilotInterfaceEnable);
+    EnablePerformanceLog(kLogPerf_ManualPilotEnable);
+    EnableSubsystemLog(kLogPilotInterface);  
+
+    setLogPeriodity(kLogPeriod_1s);  
 }
 
 void SubPilotInterface::Init()
@@ -66,9 +72,9 @@ void SubPilotInterface::doExecute()
 
     if (mCommandList[mActiveIndex].mCommandPtr != nullptr)
     {
+        // startFunctionTimer();
         mCommandList[mActiveIndex].mCommandPtr->Execute();
-        mNumberOfFunctionExecution++;
-
+        // stopFunctionTimer("Toto");
         // affiche du texte dans la console
 
         bool wFinish = mCommandList[mActiveIndex].mCommandPtr->isFinish();
