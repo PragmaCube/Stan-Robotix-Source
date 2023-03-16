@@ -5,6 +5,9 @@
 #include "subsystems/SubPilotInterface.h"
 
 #include "commands/AutoConeHigh.h"
+#include "commands/AutoConeLow.h"
+#include "commands/AutoCubeHigh.h"
+#include "commands/AutoCubeLow.h"
 #include "commands/ManualPilot.h"
 #include "commands/AutoFinalStabilisation.h"
 #include "commands/AutoFollowTag.h"
@@ -26,6 +29,9 @@ void SubPilotInterface::Init()
     // MANUAL_TELEOP, AUTO_CONEHIGH, AUTO_CONELOW, AUTO_CHARGEUP, CMD_MAX };
     mCommandList[MANUAL_TELEOP].mCommandPtr = new ManualPilot(mRobotContainer);
     mCommandList[AUTO_CONEHIGH].mCommandPtr = new AutoConeHigh(mRobotContainer);
+    mCommandList[AUTO_CONELOW].mCommandPtr = new AutoConeLow(mRobotContainer);
+    mCommandList[AUTO_CUBEHIGH].mCommandPtr = new AutoCubeHigh(mRobotContainer);
+    mCommandList[AUTO_CUBELOW].mCommandPtr = new AutoCubeLow(mRobotContainer);
     mCommandList[AUTO_CHARGEUP].mCommandPtr = new AutoFinalStabilisation(mRobotContainer);
     mCommandList[AUTO_FOLLOWTAG].mCommandPtr = new AutoFollowTag(mRobotContainer);
     mCommandList[AUTO_FOLLOWTAPE].mCommandPtr = new AutoFollowTape(mRobotContainer);

@@ -103,6 +103,8 @@ constexpr int   kSolenoid2Port = 0;
 // Activation des logs de performance
 constexpr bool kLogPerf_AutoConeHighEnable = false;
 constexpr bool kLogPerf_AutoConeLowEnable = false;
+constexpr bool kLogPerf_AutoCubeHighEnable = false;
+constexpr bool kLogPerf_AutoCubeLowEnable = false;
 constexpr bool kLogPerf_AutoChargeEnable = false;
 constexpr bool kLogPerf_DrivetrainEnable = false;
 constexpr bool kLogPerf_IMUEnable = false;
@@ -130,6 +132,8 @@ constexpr bool kLogContactDetection = false;
 constexpr bool kLogPilotInterface = true;
 constexpr bool kLogAutoConeHighEnable = false;
 constexpr bool kLogAutoConeLowEnable = false;
+constexpr bool kLogAutoCubeHighEnable = false;
+constexpr bool kLogAutoCubeLowEnable = false;
 constexpr bool kLogAutoFollowTagEnable = false;
 constexpr bool kLogAutoFollowTapeEnable = false;
 constexpr bool kLogChargeUpFinalEnable = false;
