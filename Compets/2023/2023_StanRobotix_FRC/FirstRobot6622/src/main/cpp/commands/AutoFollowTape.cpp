@@ -68,7 +68,7 @@ void AutoFollowTape::doExecute()
     wYawOutput = mYawController.Calculate(mSubLimelight->getTargetOffsetAngleHorizontal());
     // std::cout << mSubLimelight->getPos(SubLimelight::ePos::eYaw, SubLimelight::eReferential::eTag) << std::endl;
   }
-
+  std::cout<<"wAlignOutput : " <<wAlignOutput << "  wDistanceOutput : " << wDistanceOutput << "  wYawOutput" << wYawOutput << std::endl;
   mSubDriveTrain->setParameters(wAlignOutput,wDistanceOutput,-wYawOutput,0);
   mSubDriveTrain->Execute();
 }

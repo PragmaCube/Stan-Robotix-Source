@@ -63,6 +63,7 @@ private:
   double mPosTapeX2 ;
   double mPosTapeY2 ;
   double mTapeOffSetDistance;
+  double cropValues[4];
 
   std::shared_ptr<nt::NetworkTable> mNetworkTable;
 
