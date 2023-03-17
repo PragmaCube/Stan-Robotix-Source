@@ -34,7 +34,7 @@ private:
     { AUTO_CONELOW, true, "commande pour placer un cone en bas" , nullptr},
     { AUTO_CUBEHIGH, true, "commande pour placer un cube en haut" , nullptr},
     { AUTO_CUBELOW, true, "commande pour placer un cube en bas" , nullptr},
-    { AUTO_CHARGEUP, false, "commande pour la stabilisation finale" , nullptr},
+    { AUTO_CHARGEUP, true, "commande pour la stabilisation finale" , nullptr},
     { AUTO_FOLLOWTAG, true, "commande pour pointer vers tag", nullptr},
     { AUTO_FOLLOWTAPE, true, "commande pour pointer vers bande reflechissante", nullptr}
     // AJOUT COMMANDE AUTOMATISEE

@@ -38,13 +38,21 @@ void AutoFinalStabilisation::doExecute()
 {
    mSubIMU->Execute();
    double wAngle = mSubIMU->getAnglePitch();
-   double wOutput = 0.0;
-   if(abs(wAngle - mPitchController.GetSetpoint()) < 1.0)
+   double wYaw = mSubIMU->getAngleYaw();
+   double wYOutput = 0.0;
+   double wYawOutput = 0.0;
+   
+   if(abs(wAngle - mPitchController.GetSetpoint()) > 0.0)
    {
-      wOutput = mPitchController.Calculate(wAngle);
+      wYOutput = mPitchController.Calculate(wAngle);
    }
-   mSubDriveTrain->setParameters(0, wOutput, 0, 0);
+   if(abs(wYaw - mYawController.GetSetpoint()) > 0.0)
+   {
+      wYawOutput = mYawController.Calculate(wYaw);
+   }
+   mSubDriveTrain->setParameters(0, -wYOutput, -wYawOutput, 0);
    mSubDriveTrain->Execute();
+   std::cout << wAngle <<std::endl;
 }
 
 bool AutoFinalStabilisation::isFinish()

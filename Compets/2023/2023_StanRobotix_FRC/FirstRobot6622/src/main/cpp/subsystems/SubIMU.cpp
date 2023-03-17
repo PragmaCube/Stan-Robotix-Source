@@ -27,7 +27,7 @@ void SubIMU::Init()
         mGyro = new ctre::phoenix::sensors::WPI_Pigeon2(0);
         mGyro->Calibrate();
         mGyro->Reset();
-
+        mGyro->ConfigMountPose(ctre::phoenix::sensors::AxisDirection::NegativeZ,ctre::phoenix::sensors::AxisDirection::NegativeY);
         double ypr[3] = {0.0f, 0.0f, 0.0f};
 
         mGyro->GetYawPitchRoll(ypr);

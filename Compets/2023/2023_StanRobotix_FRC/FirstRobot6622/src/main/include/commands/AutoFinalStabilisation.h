@@ -39,4 +39,5 @@ private:
   ChargeDir_t mCurrentDir = eNotInit;
 
   frc2::PIDController mPitchController{0.1f, 0.0f, 0.0f};
+  frc2::PIDController mYawController{0.05f, 0.01f, 0.0f};
 };
