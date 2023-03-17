@@ -19,18 +19,28 @@ class AutonomousCommand
 private:
   enum step_t
   {
-    Phase1_,
-    Phase2_,
-    phase3_,
-    Phase4_,
-    Phase5_,
-    Phase6_,
-    Phase7_,
-    Phase8_,
-    Phase9_,
+    Phase1_1_,
+    Phase1_2_,
+    Phase1_3_,
+    Phase2_s1_,
+    Phase2_s2_,
+    Phase2_s3_,
+    Phase3_s1_,
+    Phase3_s2_,
+    Phase3_s3_,
+    Phase4_s1_s3,
+    Phase4_s2,
     PhaseFinish
   };
   step_t mCurrentStep;
+
+  enum senario_t
+  {
+    Senario1,
+    Senario2,
+    Senario3
+  };
+  senario_t mCurrentSenario; 
 
 public:
   /**
@@ -46,26 +56,37 @@ public:
   void Execute();
   void End(bool interrupted);
 
-  void doExecutePhase1();
-  void doExecutePhase2();
-  void doExecutePhase3();
-  void doExecutePhase4();
-  void doExecutePhase5();
-  void doExecutePhase6();
-  void doExecutePhase7();
-  void doExecutePhase8();
-  void doExecutePhase9();
+  void doExecutePhase1_1();
+  void doExecutePhase1_2();
+  void doExecutePhase1_3();
+  void doExecutePhase2_s1();
+  void doExecutePhase2_s2();
+  void doExecutePhase2_s3();
+  void doExecutePhase3_s1();
+  void doExecutePhase3_s2();
+  void doExecutePhase3_s3();
+  void doExecutePhase4_s1_s3();
+  void doExecutePhase4_s2();
   void doFinish();
 
-  bool isPhase1Finished();
-  bool isPhase2Finished();
-  bool isPhase3Finished();
-  bool isPhase4Finished();
-  bool isPhase5Finished();
-  bool isPhase6Finished();
-  bool isPhase7Finished();
-  bool isPhase8Finished();
-  bool isPhase9Finished();
+  bool isPhase1_1Finished();
+  bool isPhase1_2Finished();
+  bool isPhase1_3Finished();
+  bool isPhase2_s1Finished();
+  bool isPhase2_s2Finished();
+  bool isPhase2_s3Finished();
+  bool isPhase3_s1Finished();
+  bool isPhase3_s2Finished();
+  bool isPhase3_s3Finished();
+  bool isPhase4_s1_s3Finished();
+  bool isPhase4_s2Finished();
+  void doExecuteSenario1();
+  void doExecuteSenario2();
+  void doExecuteSenario3();
+
+  bool isSenario1Finished();
+  bool isSenario2Finished();
+  bool isSenario3Finished();
 
 private:
   frc::Timer mGenericTimer;

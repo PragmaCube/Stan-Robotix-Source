@@ -9,7 +9,7 @@
 
 AutonomousCommand::AutonomousCommand(RobotContainer * iRobotContainer)
 {
-   mCurrentStep = Phase1_;
+   mCurrentStep = Phase1_1_;
 
    mRobotContainer = iRobotContainer;
 
@@ -22,7 +22,7 @@ AutonomousCommand::AutonomousCommand(RobotContainer * iRobotContainer)
  */
 void AutonomousCommand::Init()
 {
-   mCurrentStep = Phase1_;
+   mCurrentStep = Phase1_1_;
 
    m_pDriveTrain = mRobotContainer->getSubDriveTrain();
    m_pUltrasonic = mRobotContainer->getSubUltrasonic();
@@ -35,66 +35,20 @@ void AutonomousCommand::Init()
  */
 void AutonomousCommand::Execute()
 {
-   bool wIsFinished = true;
-   step_t wNextPhase = mCurrentStep;
-   
-   switch (mCurrentStep)
+   switch (mCurrentSenario)
    {
-   case Phase1_:
-      doExecutePhase1();
-      wIsFinished = isPhase1Finished();
-      wNextPhase = step_t::Phase2_;
+   // Senario1 = allez chercher le cube au loin, en tournant legerement vers la gauche
+   case Senario1:
+      doExecuteSenario1();
       break;
-
-   case Phase2_:
-      doExecutePhase2();
-      wIsFinished = isPhase2Finished();
-      wNextPhase = step_t::phase3_;
+   // Senario2 = aller sur le truc au millieu
+   case Senario2:
+      doExecuteSenario2();
       break;
-
-   case phase3_:
-      doExecutePhase3();
-      wIsFinished = isPhase3Finished();
-      wNextPhase = step_t::Phase4_;
+   // Senario3 = allez chercher le cube au loin, en tournant legerement vers la droite
+   case Senario3:
+      doExecuteSenario3();
       break;
-
-   case Phase4_:
-      doExecutePhase4();
-      wIsFinished = isPhase4Finished();
-      wNextPhase = step_t::Phase5_;
-      break;
-   case Phase5_:
-      doExecutePhase5();
-      wIsFinished = isPhase5Finished();
-      wNextPhase = step_t::Phase6_;
-      break;
-   case Phase6_:
-      doExecutePhase6();
-      wIsFinished = isPhase6Finished();
-      wNextPhase = step_t::Phase7_;
-      break;
-   case Phase7_:
-      doExecutePhase7();
-      wIsFinished = isPhase7Finished();
-      wNextPhase = step_t::Phase8_;
-      break;
-   case Phase8_:
-      doExecutePhase8();
-      wIsFinished = isPhase8Finished();
-      wNextPhase = step_t::Phase9_;
-      break;
-   case Phase9_:
-      doExecutePhase9();
-      wIsFinished = isPhase9Finished();
-      wNextPhase = step_t::PhaseFinish;
-      break;
-   case PhaseFinish:
-      break;
-   };
-
-   if (wIsFinished)
-   {
-      mCurrentStep = wNextPhase;
    }
 }
 
@@ -109,123 +63,291 @@ void AutonomousCommand::End(bool interrupted)
    doFinish();
 }
 
-void AutonomousCommand::doExecutePhase1()
+void AutonomousCommand::doExecuteSenario1()
 {
-   m_pDriveTrain->setParameters(0,0.5,0,false);
-   m_pDriveTrain->Execute();
+   bool wIsFinished = true;
+   step_t wNextPhase = mCurrentStep;
+   
+   switch (mCurrentStep)
+   {
+   case Phase1_1_:
+      doExecutePhase1_1();
+      wIsFinished = isPhase1_1Finished();
+      wNextPhase = step_t::Phase1_2_;
+      break;
+
+   case Phase1_2_:
+      doExecutePhase1_2();
+      wIsFinished = isPhase1_2Finished();
+      wNextPhase = step_t::Phase1_3_;
+      break;
+
+   case Phase1_3_:
+      doExecutePhase1_3();
+      wIsFinished = isPhase1_3Finished();
+      wNextPhase = step_t::Phase2_s1_;
+      break;
+
+   case Phase2_s1_:
+      doExecutePhase2_s1();
+      wIsFinished = isPhase2_s1Finished();
+      wNextPhase = step_t::Phase3_s1_;
+      break;
+   
+    case Phase3_s1_:
+      doExecutePhase3_s1();
+      wIsFinished = isPhase3_s1Finished();
+      wNextPhase = step_t::Phase4_s1_s3;
+      break;
+
+   case Phase4_s1_s3:
+      doExecutePhase4_s1_s3();
+      wIsFinished = isPhase4_s1_s3Finished();
+      wNextPhase = step_t::PhaseFinish;
+      break;
+   case PhaseFinish:
+      break;
+   };
+
+   if (wIsFinished)
+   {
+      mCurrentStep = wNextPhase;
+   }
 }
 
-bool AutonomousCommand::isPhase1Finished()
+void AutonomousCommand::doExecuteSenario2()
 {
-   static bool executePhase1Once = true;
-      if (executePhase1Once)
-     {
-      mGenericTimer.Start();
-      executePhase1Once = false;
-     }
-     if (mGenericTimer.Get() >= 0.5_s)
-     {
-         return true;
-     }
-   return false;
+   bool wIsFinished = true;
+   step_t wNextPhase = mCurrentStep;
+   
+   switch (mCurrentStep)
+   {
+   case Phase1_1_:
+      doExecutePhase1_1();
+      wIsFinished = isPhase1_1Finished();
+      wNextPhase = step_t::Phase1_2_;
+      break;
+
+   case Phase1_2_:
+      doExecutePhase1_2();
+      wIsFinished = isPhase1_2Finished();
+      wNextPhase = step_t::Phase1_3_;
+      break;
+
+   case Phase1_3_:
+      doExecutePhase1_3();
+      wIsFinished = isPhase1_3Finished();
+      wNextPhase = step_t::Phase2_s2_;
+      break;
+
+   case Phase2_s2_:
+      doExecutePhase2_s2();
+      wIsFinished = isPhase2_s2Finished();
+      wNextPhase = step_t::Phase2_s2_;
+      break;
+    case Phase3_s2_:
+      doExecutePhase3_s2();
+      wIsFinished = isPhase3_s2Finished();
+      wNextPhase = step_t::Phase4_s2;
+      break;
+
+   case Phase4_s2:
+      doExecutePhase4_s2();
+      wIsFinished = isPhase4_s2Finished();
+      wNextPhase = step_t::PhaseFinish;
+      break;
+   case PhaseFinish:
+      break;
+   };
+
+   if (wIsFinished)
+   {
+      mCurrentStep = wNextPhase;
+   }
 }
 
-void AutonomousCommand::doExecutePhase2()
+void AutonomousCommand::doExecuteSenario3()
 {
-   m_pDriveTrain->setParameters(0,-0.5,0,false);
-   m_pDriveTrain->Execute();
+   bool wIsFinished = true;
+   step_t wNextPhase = mCurrentStep;
+   
+   switch (mCurrentStep)
+   {
+   case Phase1_1_:
+      doExecutePhase1_1();
+      wIsFinished = isPhase1_1Finished();
+      wNextPhase = step_t::Phase1_2_;
+      break;
+
+   case Phase1_2_:
+      doExecutePhase1_2();
+      wIsFinished = isPhase1_2Finished();
+      wNextPhase = step_t::Phase1_3_;
+      break;
+
+   case Phase1_3_:
+      doExecutePhase1_3();
+      wIsFinished = isPhase1_3Finished();
+      wNextPhase = step_t::Phase2_s3_;
+      break;
+
+   case Phase2_s3_:
+      doExecutePhase2_s3();
+      wIsFinished = isPhase2_s3Finished();
+      wNextPhase = step_t::Phase3_s3_;
+      break;
+   case Phase3_s3_:
+      doExecutePhase3_s3();
+      wIsFinished = isPhase3_s3Finished();
+      wNextPhase = step_t::Phase4_s1_s3;
+      break;
+
+   case Phase4_s1_s3:
+      doExecutePhase4_s1_s3();
+      wIsFinished = isPhase4_s1_s3Finished();
+      wNextPhase = step_t::PhaseFinish;
+      break;
+   case PhaseFinish:
+      break;
+   };
+
+   if (wIsFinished)
+   {
+      mCurrentStep = wNextPhase;
+   }
 }
 
-bool AutonomousCommand::isPhase2Finished()
+
+void AutonomousCommand::doExecutePhase1_1()
+{
+   // avancer un peu et aggriper le cube avec le cube
+}
+
+bool AutonomousCommand::isPhase1_1Finished()
+{
+  
+}
+
+void AutonomousCommand::doExecutePhase1_2()
+{
+   // etendre l'elevator
+}
+
+bool AutonomousCommand::isPhase1_2Finished()
 { 
-   static bool executePhase2Once = true;
-      if (executePhase2Once)
+   /*
+   static bool executePhase1_2Once = true;
+      if (executePhase1_2Once)
      {
       mGenericTimer.Reset();
       mGenericTimer.Start();
-      executePhase2Once = false;
+      executePhase1_2Once = false;
      }
      if (mGenericTimer.Get() >= 0.5_s)
      {
          return true;
      }
    return false;
+   */
+
+}
+
+void AutonomousCommand::doExecutePhase1_3()
+{
+ // lache le cube et retracte
+}
+
+bool AutonomousCommand::isPhase1_3Finished()
+{
    
-}
-
-void AutonomousCommand::doExecutePhase3()
-{
- 
-}
-
-bool AutonomousCommand::isPhase3Finished()
-{
-
-     return true;
+   return true;
      
 }
 
-void AutonomousCommand::doExecutePhase4()
+void AutonomousCommand::doExecutePhase2_s1()
 {
+   // reculer un peu, tournez vers la droite d'un peu moins de 180 dergres
 }
 
 
-bool AutonomousCommand::isPhase4Finished()
+bool AutonomousCommand::isPhase2_s1Finished()
 {
    return true;
 }
 
-void AutonomousCommand::doExecutePhase5()
+void AutonomousCommand::doExecutePhase2_s2()
 {
-  
+  // reculer un peu, tournez de 180 dergres
 }
 
-bool AutonomousCommand::isPhase5Finished()
+bool AutonomousCommand::isPhase2_s2Finished()
 {
 
      return true;
    
 }
 
-void AutonomousCommand::doExecutePhase6()
+void AutonomousCommand::doExecutePhase2_s3()
 {
-  
+  // reculer un peu, tournez vers la gauche d'un peu moins de 180 dergres
 }
 
 
-bool AutonomousCommand::isPhase6Finished()
+bool AutonomousCommand::isPhase2_s3Finished()
 {
   return true;
 }
 
-void AutonomousCommand::doExecutePhase7()
+void AutonomousCommand::doExecutePhase3_s1()
 {
-
+   // avancer jusqu'au cube et tourner legement vers la droite
 }
 
 
-bool AutonomousCommand::isPhase7Finished()
+bool AutonomousCommand::isPhase3_s1Finished()
 {
      return true;
 }
 
-void AutonomousCommand::doExecutePhase8()
+void AutonomousCommand::doExecutePhase3_s2()
 {
-  
+  // avancer jusqu'a la plateforme
 }
 
 
-bool AutonomousCommand::isPhase8Finished()
+bool AutonomousCommand::isPhase3_s2Finished()
 {
    return true;
 }
 
-void AutonomousCommand::doExecutePhase9()
+void AutonomousCommand::doExecutePhase3_s3()
 {
-  
+  // avancer jusqu'au cube et tourner legement vers la gauche
 }
 
-bool AutonomousCommand::isPhase9Finished()
+bool AutonomousCommand::isPhase3_s3Finished()
+{
+   return true;
+}
+
+void AutonomousCommand::doExecutePhase4_s1_s3()
+{
+   // avancer un peu et toggle la pneumatique pour aggriper le cube
+}
+
+
+bool AutonomousCommand::isPhase4_s1_s3Finished()
+{
+     return true;
+}
+
+void AutonomousCommand::doExecutePhase4_s2()
+{
+  // se maintenir sur la plateforme
+}
+
+
+bool AutonomousCommand::isPhase4_s2Finished()
 {
    return true;
 }
@@ -237,12 +359,12 @@ void AutonomousCommand::doFinish()
 
 // List of example for autonomous period
 /*  Example 1: Turn right for 90 degrees
-void doExecutePhase1_TurnRight()
+void doExecutePhase1_1_TurnRight()
 {
    m_pDriveTrain->MoveDrive(1,-1, SubDriveTrain::MotorSpeed::eSlow);
 }
 
-bool isPhase1_TurnRight_Finished()
+bool isPhase1_1_TurnRight_Finished()
 {
      static float startAngle = m_pIMU->getAngle();
 
@@ -257,7 +379,7 @@ bool isPhase1_TurnRight_Finished()
 */
 
 /* Example 2: Attend 10 secondes, tourne le robot pendant deux secondes et arrete.
-void doExecutePhase1()
+void doExecutePhase1_1()
 {
    static bool executeTimerOnce = true;
    if (executeTimerOnce)
@@ -266,7 +388,7 @@ void doExecutePhase1()
    }
 }
 
-bool isPhase1Finished()
+bool isPhase1_1Finished()
 {
    if (mGenericTimer.Get().value()>10)
    {
@@ -276,7 +398,7 @@ bool isPhase1Finished()
    return false;
 }
 
-void doExecutePhase2()
+void doExecutePhase1_2()
 {
    static bool executeTimerOnce = true;
 
@@ -288,19 +410,19 @@ void doExecutePhase2()
    }
 }
 
-bool isPhase2Finished()
+bool isPhase1_2Finished()
 {
      return (mGenericTimer.Get().value()>2);
 }
 
-void doExecutePhase3()
+void doExecutePhase1_3()
 {
    m_pDriveTrain->MoveDrive(0,0, SubDriveTrain::MotorSpeed::eSlow);
 }
 */
 
 /* Example 3: Exemple pour utiliser l'ejecteur en periode autonome.
-void doExecutePhase1()
+void doExecutePhase1_1()
 {
    static bool didEjectorExecuted = true;
    m_pEjectorSubsystem->Periodic(didEjectorExecuted);
@@ -308,7 +430,7 @@ void doExecutePhase1()
 
 }
 
-bool isPhase1Finished()
+bool isPhase1_1Finished()
 {
    if (m_pEjectorSubsystem->isOperationCompleted())
    {
@@ -318,18 +440,18 @@ bool isPhase1Finished()
 }*/
 
 /* Example 4: Exemple pour utiliser le climber. A la fin de la montee, l ejector s active
-void doExecutePhase1()
+void doExecutePhase1_1()
 {
    m_pClimber->Stage(SubClimber::eHeight::h2);
    m_pClimber->Periodic();
 }
 
-bool isPhase1Finished()
+bool isPhase1_1Finished()
 {
    return m_pClimber->isOperationCompleted();
 }
 
-void doExecutePhase2()
+void doExecutePhase1_2()
 {
    static bool didEjectorExecuted = true;
    m_pEjectorSubsystem->Periodic(didEjectorExecuted);
