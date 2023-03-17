@@ -27,6 +27,7 @@ void AutoFinalStabilisation::Init()
 {
    mSubDriveTrain = mRobotContainer->getSubDriveTrain();
    mSubIMU = mRobotContainer->getSubIMU();
+   mPitchController.SetSetpoint(0.0);
 }
 
 /**
@@ -35,30 +36,15 @@ void AutoFinalStabilisation::Init()
  */
 void AutoFinalStabilisation::doExecute()
 {
-   if (mSubIMU->getAnglePitch() < -1.0) // l'IMU est trop precis il n'y aura jamais une valeur == a 0 il faut donc laisser une marge
+   mSubIMU->Execute();
+   double wAngle = mSubIMU->getAnglePitch();
+   double wOutput = 0.0;
+   if(abs(wAngle - mPitchController.GetSetpoint()) < 1.0)
    {
-      if (mCurrentDir != eBackward)
-      {
-         mSpeed = mSpeed / 1.75;
-      }
-      mSubDriveTrain->setParameters(0, -mSpeed, 0, false); // le robot recule
-      mSubDriveTrain->Execute();
-      mCurrentDir = eBackward;
+      wOutput = mPitchController.Calculate(wAngle);
    }
-   else if (mSubIMU->getAnglePitch() > 1.0)
-   {
-      if (mCurrentDir != eForward)
-      {
-         mSpeed = mSpeed / 1.75;
-      }
-      mSubDriveTrain->setParameters(0, mSpeed, 0, false); // le robot avance
-      mSubDriveTrain->Execute();
-      mCurrentDir = eForward;
-   }
-   else {
-      mSubDriveTrain->setParameters(0, 0, 0, false); // le robot east immobile
-      mSubDriveTrain->Execute();
-   }
+   mSubDriveTrain->setParameters(0, wOutput, 0, 0);
+   mSubDriveTrain->Execute();
 }
 
 bool AutoFinalStabilisation::isFinish()
