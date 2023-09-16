@@ -59,11 +59,12 @@ git pull
 La gestion du repositoire (modification du README ou modifications majeures) est laissée au chef de l'équipe et aux mentors.
 
 
-Chef d'équipe : Andre Wojcik<br>
-Mentors : Clement Jevardat-de-Fombelle et Raphaël Pothier 
+Chef d'équipe : André` Wojcik<br>
+Mentors : Clement Jevardat-de-Fombelle, Raphaël Pothier et Martin le Gallic
 
 Contacts :
 
+marty.legallic@sherbrooke.com <br>
 wojcik.andre2.0@gmail.com <br>
 raphael.pothier@umontreal.ca <br>
 <br>
