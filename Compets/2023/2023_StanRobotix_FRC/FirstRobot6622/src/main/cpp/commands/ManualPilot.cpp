@@ -58,7 +58,6 @@ void ManualPilot::doExecute()
                             mSubPilotInterface->GetRawButton(SubPilotInterface::ElevatorManualUp),
                             mSubPilotInterface->GetRawButton(SubPilotInterface::ElevatorManualDown));
 
-
    mSubIMU->Execute();
 
    // mSubColorSensor->Execute();

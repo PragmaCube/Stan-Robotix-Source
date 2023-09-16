@@ -52,22 +52,25 @@ void SubGamePieceHandler::Stop()
 // This method will be called once per scheduler run
 void SubGamePieceHandler::doExecute()
 {
-    if (isEnabled() && mIsUpdated)
+    if (mIsEnabled && mIsUpdated)
     {
        mMotorRight->Set(mRequestedPowerLeft);
        mMotorRight->Set(mRequestedPowerRight);
        mIsUpdated = false;
     }
 
-    if (timeToDisplaySystemLog())
+    if (
+        mSubsystemLogEnabled && 
+        ((mNumberOfExecution % mLogPeriodicity) == 0)
+        )
     {
-        std::cout << "Sub GamePieceHandler\nStatus : " << mState << std::endl;
+    std::cout << "Sub GamePieceHandler\nStatus : " << mState << std::endl;
     }
 }
 
 void SubGamePieceHandler::Init()
 {
-    if (isEnabled())
+    if (mIsEnabled)
     {
         mMotorRight = new rev::CANSparkMax(kCanIdGamePieceHandlerR, rev::CANSparkMax::MotorType::kBrushless);
         mMotorLeft = new rev::CANSparkMax(kCanIdGamePieceHandlerL, rev::CANSparkMax::MotorType::kBrushless);

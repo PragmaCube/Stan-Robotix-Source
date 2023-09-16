@@ -18,7 +18,7 @@ class SubPneumatic : public PerformanceMonitor
 {
 private:
   frc::DoubleSolenoid mDoubleSolenoid{frc::PneumaticsModuleType::CTREPCM, kSolenoid1Port, kSolenoid2Port};
- 
+
 public:
   SubPneumatic(RobotContainer * iRobotContainer);
 

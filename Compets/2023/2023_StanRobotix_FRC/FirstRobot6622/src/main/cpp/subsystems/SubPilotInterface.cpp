@@ -56,13 +56,8 @@ void SubPilotInterface::doExecute()
 
     if (mCommandList[mActiveIndex].mCommandPtr != nullptr)
     {
-        startFunctionTimer();
+
         mCommandList[mActiveIndex].mCommandPtr->Execute();
-        stopFunctionTimer();
-        mNumberOfFunctionExecution++;
-
-        // affiche du texte dans la console
-
         bool wFinish = mCommandList[mActiveIndex].mCommandPtr->isFinish();
         if (wFinish)
         {
@@ -82,3 +77,4 @@ void SubPilotInterface::doExecute()
         mCommandList[mActiveIndex].mCommandPtr->Execute();
     }
 }
+

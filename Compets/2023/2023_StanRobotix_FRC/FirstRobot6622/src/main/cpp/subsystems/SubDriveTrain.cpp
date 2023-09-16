@@ -53,7 +53,7 @@ void SubDriveTrain::setParameters(const double iX, const double iY, const double
 
 void SubDriveTrain::doExecute()
 {
-  if (isEnabled())
+  if (mIsEnabled)
   {
     if (mFieldOriented)
     {
@@ -66,7 +66,10 @@ void SubDriveTrain::doExecute()
     }
   }
 
-  if (timeToDisplaySystemLog())
+  if (
+      mSubsystemLogEnabled && 
+      ((mNumberOfExecution % mLogPeriodicity) == 0)
+      )
   {
     std::cout << "mX:" << mX << std::endl
               << "  mY :" << mY << std::endl

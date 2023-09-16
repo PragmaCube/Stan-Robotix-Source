@@ -26,6 +26,7 @@ public:
 private:
   frc::AnalogInput * mUltrasonic = nullptr;
   bool mMetricSystem = true;
+
   virtual void doExecute();
   virtual std::string getName() { return "SubUltrasonic"; }
 };
