@@ -25,6 +25,10 @@ public:
 protected:
   virtual void doExecute() = 0;
   virtual std::string getName() = 0;
+  virtual std::string getFuncttionName()=0;
+
+  bool isEnabled()          { return mIsEnabled; }
+  bool isSystemLogEnabled() { return mSubsystemLogEnabled; }
 
   void setLogPeriodity(unsigned int iPeriod) {mLogPeriodicity = iPeriod; }
 
@@ -47,8 +51,11 @@ protected:
   unsigned long mNumberOfExecution = 1;
 
 private:
+  std::chrono::steady_clock::time_point mFnctPerformanceTimeStart;
+
   std::chrono::nanoseconds mMinDurationiNnS = std::chrono::nanoseconds::max();
   std::chrono::nanoseconds mMaxDurationiNnS = std::chrono::nanoseconds::min();
   std::chrono::nanoseconds mMoyDurationiNnS = std::chrono::nanoseconds::zero();
   std::chrono::nanoseconds mAccumulDurationiNnS = std::chrono::nanoseconds::zero();
+
 };

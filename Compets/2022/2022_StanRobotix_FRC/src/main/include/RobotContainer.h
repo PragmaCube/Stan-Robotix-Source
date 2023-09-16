@@ -22,6 +22,8 @@
 #include <cameraserver/CameraServer.h>
 
 #include "subsystems/DriveTrain.h"
+#include "subsystems/motor_pid_subsystem.h"
+#include <iostream>
 
 #include "subsystems/LaunchSystem.h"
 #include "rev/CANSparkMax.h"
@@ -61,6 +63,9 @@ class RobotContainer {
 
   bool isCollecting;
   bool isLaunching;
+
+  // Pid est ici
+  MotorPIDSubsystem* m_motorPIDsubsystem;
 
   void ConfigureButtonBindings();
 

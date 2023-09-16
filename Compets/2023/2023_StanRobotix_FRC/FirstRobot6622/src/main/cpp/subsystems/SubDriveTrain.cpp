@@ -27,7 +27,7 @@ SubDriveTrain::SubDriveTrain(RobotContainer *iRobotContainer)
 
 void SubDriveTrain::Init()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   {
     m_frontLeft  = new frc::Spark (kMotorL1Port);
     m_rearLeft   = new frc::Spark (kMotorL2Port);

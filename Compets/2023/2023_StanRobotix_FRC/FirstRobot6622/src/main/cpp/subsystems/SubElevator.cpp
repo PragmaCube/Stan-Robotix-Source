@@ -18,7 +18,7 @@ SubElevator::SubElevator(RobotContainer *iRobotContainer)
 
 void SubElevator::Init()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   {
 
   }
@@ -113,7 +113,7 @@ void SubElevator::Stage(eHeight iHeight)
 
 void SubElevator::doExecute ()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   { // TODO: executer ci-dessous si et seulement si la valeur change, 
     mRPIDController.SetReference(mHeight_,rev::ControlType::kSmartMotion); // ATTENTION, SIGNE - MIS SUR 1 DES 2 ARBITRAIREMENT !!!!!
     mLPIDController.SetReference(-mHeight_,rev::ControlType::kSmartMotion); // FAIRE DES TESTS POUR VOIR QUEL MOTEUR TOURNE DANS QUEL SENS !!!!!

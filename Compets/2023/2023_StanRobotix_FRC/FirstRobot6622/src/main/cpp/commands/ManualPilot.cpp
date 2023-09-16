@@ -64,8 +64,9 @@ void ManualPilot::doExecute()
 
    // mSubLimelight->doExecute(); // TODO toto
 
-   // if (mSubPilotInterface->GetRawButtonPressed(SubPilotInterface::TogglePneumatic)) // TODO gatien
-   // {
-   //    mSubPneumatic->Toggle();
-   // }
+   if (mSubPilotInterface->GetRawButtonPressed(SubPilotInterface::TogglePneumatic)) // TODO gatien
+   {
+      mSubPneumatic->Toggle();
+      std::cout << "PNEUMATIC TOOGLE" << std::endl;
+   }
 }

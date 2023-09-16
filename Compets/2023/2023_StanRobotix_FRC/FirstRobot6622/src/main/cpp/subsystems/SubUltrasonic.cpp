@@ -21,7 +21,7 @@ SubUltrasonic::SubUltrasonic()
 
 void SubUltrasonic::Init()
 {
-  if (mIsEnabled && mUltrasonic == nullptr)
+  if (isEnabled() && mUltrasonic == nullptr)
   {
     mUltrasonic = new frc::AnalogInput(kUltrasonicDIO);
   }

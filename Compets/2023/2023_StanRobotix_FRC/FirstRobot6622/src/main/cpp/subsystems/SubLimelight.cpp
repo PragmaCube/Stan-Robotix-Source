@@ -19,7 +19,7 @@ SubLimelight::SubLimelight()
 
 void SubLimelight::Init() 
 { 
-  if (mIsEnabled)
+  if (isEnabled())
   {
      mNetworkTable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
      mNetworkTable->PutNumber("ledMode",3); // TODO: 3 signification ? rajouter enum

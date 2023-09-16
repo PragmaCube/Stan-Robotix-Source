@@ -30,7 +30,7 @@ void SubPilotInterface::doExecute()
     {
         mMenuIndex++;
 
-        // TODO: tenir compte de mCommandList[mMenuIndex].mIsEnabled poue chercher la
+        // TODO: tenir compte de mCommandList[mMenuIndex].isEnabled() pour chercher la
         // prochaine commande utilisable
         if (mMenuIndex == CMD_MAX)
         {
@@ -56,8 +56,8 @@ void SubPilotInterface::doExecute()
 
     if (mCommandList[mActiveIndex].mCommandPtr != nullptr)
     {
-        mCommandList[mActiveIndex].mCommandPtr->Execute();
 
+        mCommandList[mActiveIndex].mCommandPtr->Execute();
         bool wFinish = mCommandList[mActiveIndex].mCommandPtr->isFinish();
         if (wFinish)
         {
@@ -77,3 +77,4 @@ void SubPilotInterface::doExecute()
         mCommandList[mActiveIndex].mCommandPtr->Execute();
     }
 }
+

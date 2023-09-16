@@ -27,7 +27,7 @@ constexpr bool kElevatorEnabled = true;
 constexpr bool kGamePieceHandlerEnabled = false;
 constexpr bool kIMUEnabled = true;
 constexpr bool kLimelightEnabled = true;
-constexpr bool kPneumaticEnabled = false;
+constexpr bool kPneumaticEnabled = true;
 constexpr bool kUltrasonEnable = false;
 
 #else
