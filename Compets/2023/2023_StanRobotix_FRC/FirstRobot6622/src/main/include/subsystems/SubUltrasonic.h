@@ -16,20 +16,16 @@ class SubUltrasonic : public PerformanceMonitor
 public:
   SubUltrasonic();
 
-  void Enable(const bool iIsEnabled);
-
   void Init();
 
   float getDistance();
 
   void EnableImperialSystem() { mMetricSystem = false; }
-  void EnableMetricSystem() { mMetricSystem = true; }
+  void EnableMetricSystem()   { mMetricSystem = true;  }
 
 private:
   frc::AnalogInput * mUltrasonic = nullptr;
   bool mMetricSystem = true;
-  bool mIsEnabled = false;
-
   virtual void doExecute();
   virtual std::string getName() { return "SubUltrasonic"; }
 };

@@ -56,7 +56,8 @@ void ManualPilot::doExecute()
 
    mSubElevator->setCommand(mSubPilotInterface->GetPOV(),
                             mSubPilotInterface->GetRawButton(SubPilotInterface::ElevatorManualUp),
-                            mSubPilotInterface->GetRawButton(SubPilotInterface::ElevatorManualDown)); // TODO
+                            mSubPilotInterface->GetRawButton(SubPilotInterface::ElevatorManualDown));
+
 
    mSubIMU->Execute();
 
@@ -64,8 +65,9 @@ void ManualPilot::doExecute()
 
    // mSubLimelight->doExecute(); // TODO toto
 
-   // if (mSubPilotInterface->GetRawButtonPressed(SubPilotInterface::TogglePneumatic)) // TODO gatien
-   // {
-   //    mSubPneumatic->Toggle();
-   // }
+   if (mSubPilotInterface->GetRawButtonPressed(SubPilotInterface::TogglePneumatic)) // TODO gatien
+   {
+      mSubPneumatic->Toggle();
+      std::cout << "PNEUMATIC TOOGLE" << std::endl;
+   }
 }

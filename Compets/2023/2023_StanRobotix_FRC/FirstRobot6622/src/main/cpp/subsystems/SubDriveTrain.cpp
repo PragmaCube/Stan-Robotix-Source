@@ -25,14 +25,9 @@ SubDriveTrain::SubDriveTrain(RobotContainer *iRobotContainer)
   setLogPeriodity(kLogPeriod_2s);
 }
 
-void SubDriveTrain::Enable(const bool iEnable)
-{
-  mIsEnabled = iEnable;
-}
-
 void SubDriveTrain::Init()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   {
     m_frontLeft  = new frc::Spark (kMotorL1Port);
     m_rearLeft   = new frc::Spark (kMotorL2Port);
@@ -58,9 +53,7 @@ void SubDriveTrain::setParameters(const double iX, const double iY, const double
 
 void SubDriveTrain::doExecute()
 {
-  static int wNumberOfExecution = 0;
-
-  if (mIsEnabled)
+  if (isEnabled())
   {
     if (mFieldOriented)
     {
@@ -73,12 +66,10 @@ void SubDriveTrain::doExecute()
     }
   }
 
-  if (((wNumberOfExecution % mLogPeriodicity) == 0) && mSubsystemLogEnabled)
+  if (timeToDisplaySystemLog())
   {
     std::cout << "mX:" << mX << std::endl
               << "  mY :" << mY << std::endl
               << "   mTwist " << mTwist << std::endl;
   }
-
-  wNumberOfExecution++;
 }

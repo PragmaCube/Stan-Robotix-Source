@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////
 // Activation indépendante des modules
 
-//#define FRC_ROBOT
+#define FRC_ROBOT
 #ifdef FRC_ROBOT
 
 constexpr bool kDriveTrainEnabled = true;
@@ -27,7 +27,7 @@ constexpr bool kElevatorEnabled = true;
 constexpr bool kGamePieceHandlerEnabled = false;
 constexpr bool kIMUEnabled = true;
 constexpr bool kLimelightEnabled = true;
-constexpr bool kPneumaticEnabled = false;
+constexpr bool kPneumaticEnabled = true;
 constexpr bool kUltrasonEnable = false;
 
 #else
@@ -64,9 +64,9 @@ constexpr int    kCanIdGamePieceHandlerL = 8;
 // Moteurs assenseur. 
 constexpr int    kCanIdElevatorR = 3;   //Valeurs temporaires, à changer si besoin 
 constexpr int    kCanIdElevatorL = 1; 
-constexpr double kHeightS2 = -220; // valeurs arbitraires (certaines de betabot), faire des tests pour trouver les bonnes valeurs
-constexpr double kHeightS1 =-80;
-constexpr double kMinHeight = 0;
+constexpr double kHeightS2       = -753.0; // valeurs arbitraires (certaines de betabot), faire des tests pour trouver les bonnes valeurs
+constexpr double kHeightS1       = -753.0/2.0;
+constexpr double kMinHeight      = 0;
 
 // default PID coefficients for ejector
 constexpr double kP = 2.7e-4, 
@@ -108,24 +108,32 @@ constexpr bool kLogPerf_IMUEnable = false;
 constexpr bool kLogPerf_LimelightEnable = false;
 constexpr bool kLogPerf_ManualPilotEnable = false;
 constexpr bool kLogPerf_UltrasonEnable = false;
-constexpr bool kLogPerf_ElevatorEnable=false;
-constexpr bool kLogPerf_PneumaticEnable=false;
-constexpr bool kLogPerf_AutoFinalStabilisationEnable=false;
+constexpr bool kLogPerf_ElevatorEnable = false;
+constexpr bool kLogPerf_PneumaticEnable = true;
+constexpr bool kLogPerf_AutoFinalStabilisationEnable = false;
 constexpr bool kLogPerf_GamePieceHandlerEnable = false;
+constexpr bool kLogPerfContactDetection = false;
+constexpr bool kLogPerf_AutoFollowTagEnable = false;
+// AJOUT COMMANDE AUTOMATISEE
+
 
 ///////////////////////////////////////////////////////
 // Activation des logs de subsytems
 constexpr bool kLogIMU = false;
-constexpr bool kLogElevator = false;
+constexpr bool kLogElevator = true;
 constexpr bool kLogDrivetrain = false;
-constexpr bool kLogLimelight = false;
+constexpr bool kLogLimelight = true;
 constexpr bool kLogColorDetection = false;
 constexpr bool kLogContactDetection = false;
-constexpr bool kLogPilotInterface=false;
+constexpr bool kLogPilotInterface = false;
 constexpr bool kLogAutoConeHighEnable = false;
 constexpr bool kLogAutoConeLowEnable = false;
+constexpr bool kLogAutoFollowTagEnable = false;
 constexpr bool kLogChargeUpFinalEnable = false;
 constexpr bool kLogManualEnable = false;
-constexpr bool kLogPneumatic = false;
-constexpr bool kLogAutoFinalStabilisationEnable=false;
-constexpr bool kLogGamePieceHandler=false;
+constexpr bool kLogPneumatic = true;
+constexpr bool kLogAutoFinalStabilisationEnable = false;
+constexpr bool kLogGamePieceHandler = false;
+constexpr bool kLogUltrason = false;
+
+// AJOUT COMMANDE AUTOMATISEE

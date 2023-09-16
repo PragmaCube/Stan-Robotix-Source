@@ -5,53 +5,60 @@
 #include "subsystems/SubPneumatic.h"
 #include "Constants.h"
 
-SubPneumatic::SubPneumatic(RobotContainer * iRobotContainer)
+#include <iostream>
+
+SubPneumatic::SubPneumatic(RobotContainer *iRobotContainer)
 {
   Enable(kPneumaticEnabled);
-
+  EnableSubsystemLog(kLogPneumatic);
+  EnablePerformanceLog(kLogPerf_PneumaticEnable);
   mRobotContainer = iRobotContainer;
 }
 
-SubPneumatic::~SubPneumatic(){}
+SubPneumatic::~SubPneumatic() {}
 
-void SubPneumatic::Enable(const bool iEnable)
-{
-   mIsEnabled = iEnable;
-
-   if (mIsEnabled)
-   {
-      Retract();
-   }
-}
 void SubPneumatic::Init()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   {
-
+    Retract();
   }
 }
+
 void SubPneumatic::Extract()
 {
   mDoubleSolenoid.Set(frc::DoubleSolenoid::Value::kForward);
+  mState = eExtract;
 }
 
 void SubPneumatic::Retract()
 {
   mDoubleSolenoid.Set(frc::DoubleSolenoid::Value::kReverse);
+  mState = eRetract;
 }
 
 void SubPneumatic::Toggle()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   {
-     mDoubleSolenoid.Toggle();
-  }  
+    mDoubleSolenoid.Toggle();
+    if (mState == eRetract)
+    {
+      std::cout << "extrct" << std::endl;
+      mState = eExtract;
+    }
+    else
+    {
+      std::cout << "Retrct" << std::endl;
+      mState = eRetract;
+    }
+  }
 }
 
-void SubPneumatic::doExecute ()
+void SubPneumatic::doExecute()
 {
-  if (mIsEnabled)
-  { 
-      // TODO: afficher potentiellement un log 
+  if (isEnabled())
+  {
+    std::cout << "SubPneumatic\nStatus : " << mState << std::endl;
   }
 }

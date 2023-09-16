@@ -5,6 +5,8 @@
 #include "subsystems/SubGamePieceHandler.h"
 #include "Constants.h"
 
+#include <iostream>
+
 SubGamePieceHandler::SubGamePieceHandler()
 {
     EnableSubsystemLog(kLogGamePieceHandler);
@@ -50,17 +52,22 @@ void SubGamePieceHandler::Stop()
 // This method will be called once per scheduler run
 void SubGamePieceHandler::doExecute()
 {
-    if (mIsEnable && mIsUpdated)
+    if (isEnabled() && mIsUpdated)
     {
        mMotorRight->Set(mRequestedPowerLeft);
        mMotorRight->Set(mRequestedPowerRight);
        mIsUpdated = false;
     }
+
+    if (timeToDisplaySystemLog())
+    {
+        std::cout << "Sub GamePieceHandler\nStatus : " << mState << std::endl;
+    }
 }
 
 void SubGamePieceHandler::Init()
 {
-    if (mIsEnable)
+    if (isEnabled())
     {
         mMotorRight = new rev::CANSparkMax(kCanIdGamePieceHandlerR, rev::CANSparkMax::MotorType::kBrushless);
         mMotorLeft = new rev::CANSparkMax(kCanIdGamePieceHandlerL, rev::CANSparkMax::MotorType::kBrushless);

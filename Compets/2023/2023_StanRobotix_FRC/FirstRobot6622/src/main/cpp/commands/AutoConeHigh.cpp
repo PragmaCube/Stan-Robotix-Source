@@ -113,17 +113,6 @@ void AutoConeHigh::reset()
    mCurrentStep = Phase1_; 
 } 
 
-/**
- * The action to take when the command ends.  Called when either the command
- * finishes normally, or when it interrupted/canceled.
- *
- * @param interrupted whether the command was interrupted/canceled
- */
-void AutoConeHigh::End(bool interrupted)
-{
-   doFinish();
-}
-
 void AutoConeHigh::doExecutePhase1()
 {
    std :: cout <<  "Execution de  AutoConeHigh" << std::endl;

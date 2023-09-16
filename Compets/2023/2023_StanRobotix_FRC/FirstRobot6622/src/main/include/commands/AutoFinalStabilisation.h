@@ -8,12 +8,9 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
 
-class RobotContainer;
-
 class AutoFinalStabilisation : public PerformanceMonitor
 {
 public:
- float mSpeed =1;
   /**
    * Creates a new ExampleCommand.
    *
@@ -23,8 +20,6 @@ public:
 
   void Init();
 
-  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
-
   virtual void doExecute();
 
   virtual bool isFinish();
@@ -32,16 +27,12 @@ public:
 
   virtual std::string getName() { return "AutoFinalStabilisation"; }
 
-  void End(bool interrupted);
-
 private:
   frc::Timer mGenericTimer;
-  RobotContainer *mRobotContainer;
+  float mSpeed =1;
 
   SubIMU * mSubIMU = nullptr;
   SubDriveTrain * mSubDriveTrain = nullptr;
-
-  bool mSubsystemLogEnabled = false;
 
   enum ChargeDir_t {eNotInit, eForward, eBackward};
   ChargeDir_t mCurrentDir = eNotInit;

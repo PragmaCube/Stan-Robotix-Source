@@ -5,8 +5,9 @@
 #include "subsystems/SubColorSensor.h"
 
 #include <frc/smartdashboard/smartdashboard.h>
+#include <iostream>
 
-SubColorSensor::SubColorSensor() 
+SubColorSensor::SubColorSensor()
 {
   mColorMatcher.AddColorMatch(kCube);
   mColorMatcher.AddColorMatch(kCone);
@@ -15,27 +16,17 @@ SubColorSensor::SubColorSensor()
   EnableSubsystemLog(kLogColorDetection);
 }
 
-void SubColorSensor::Enable(const bool iEnable)
-{
-  mIsEnabled = iEnable;
-}
-
 void SubColorSensor::Init()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   {
     mColorSensor = new rev::ColorSensorV3(frc::I2C::Port::kOnboard);
   }
 }
 
-void SubColorSensor::EnableSubsystemLog(const bool iEnable)
+void SubColorSensor::doExecute()
 {
-  mSubsystemLogEnabled = iEnable;
-}
-
-void SubColorSensor::Execute()
-{
-  if (mIsEnabled)
+  if (isEnabled())
   {
     frc::Color wColor = GetColor();
     double wRed = wColor.red;
@@ -59,11 +50,11 @@ void SubColorSensor::Execute()
     frc::SmartDashboard::PutNumber("Red", wRed);
     frc::SmartDashboard::PutNumber("Green", wGreen);
     frc::SmartDashboard::PutNumber("Blue", wBlue);
-  }
 
-  if (mSubsystemLogEnabled)
-  {
-      // TODO
+    if (timeToDisplaySystemLog())
+    {
+      std::cout << "ColorSensor\nR : " << wRed << "    G : " << wGreen << "    B : " << wBlue << std::endl;
+    }
   }
 }
 

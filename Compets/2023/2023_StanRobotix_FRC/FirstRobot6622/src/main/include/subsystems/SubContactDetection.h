@@ -20,8 +20,6 @@ class SubContactDetection : public frc2::SubsystemBase, public PerformanceMonito
   bool GetContactStatus(InputDetection_t index);
 
   void EnableLog(bool iEnable) {};
-
-  void Enable(const bool iIsEnabled);
  
   void Init();
 
@@ -35,5 +33,4 @@ class SubContactDetection : public frc2::SubsystemBase, public PerformanceMonito
    std::vector<frc::DigitalInput *> mDigitalInputVector;
 
   bool mContactCache[10];
-  bool mIsEnabled = false;
 };

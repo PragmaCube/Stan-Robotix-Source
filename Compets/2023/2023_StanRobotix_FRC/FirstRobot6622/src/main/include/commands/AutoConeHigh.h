@@ -8,8 +8,6 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubLimelight.h"
 
-class RobotContainer;
-
 class AutoConeHigh : public PerformanceMonitor
 {
 private:
@@ -38,8 +36,6 @@ public:
 
   void Init();
 
-  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
-
   virtual void doExecute();
 
   virtual bool isFinish();
@@ -47,7 +43,6 @@ public:
 
   virtual std::string getName() { return "AutoConeHigh"; }
 
-  void End(bool interrupted);
 
   void doExecutePhase1();
   void doExecutePhase2();
@@ -72,10 +67,8 @@ public:
 
 private:
   frc::Timer mGenericTimer;
-  RobotContainer *mRobotContainer;
 
   SubDriveTrain * mSubDriveTrain = nullptr;
   SubLimelight * mSubLimelight = nullptr;
 
-  bool mSubsystemLogEnabled = false;
 };

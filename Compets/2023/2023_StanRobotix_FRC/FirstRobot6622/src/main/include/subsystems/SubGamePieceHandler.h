@@ -12,9 +12,6 @@ class SubGamePieceHandler : public PerformanceMonitor {
  public:
   SubGamePieceHandler();
 
-  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
-  void Enable(bool iEnable) { mIsEnable = iEnable; }
-
   void Init();
 
   void Extract();
@@ -31,9 +28,6 @@ class SubGamePieceHandler : public PerformanceMonitor {
 
   rev::CANSparkMax * mMotorRight = nullptr;
   rev::CANSparkMax * mMotorLeft = nullptr;
-
-  bool mSubsystemLogEnabled = false;
-  bool mIsEnable = true;
 
   const double kNoPower = 0.0;
   const double kFullPower = 0.5;

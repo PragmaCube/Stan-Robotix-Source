@@ -22,11 +22,8 @@ public:
   } DataType;
 
 private:
-  bool mIsEnable = true;
   float mInitialValue[3] = {0.0, 0.0, 0.0};
   ctre::phoenix::sensors::WPI_Pigeon2 * mGyro = nullptr; 
-
-  bool mSubsystemLogEnabled = false;
 
   float mYawStart;
   float mPitchStart;
@@ -45,9 +42,6 @@ public:
 
   void Init();
 
-  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
-  
-  void Enable(bool aEnable);
   void ResetGlobal();
 
   double getAngleYaw();

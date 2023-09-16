@@ -14,17 +14,14 @@
 
 SubUltrasonic::SubUltrasonic()
 {
-//EnablePerformanceLog(kLogPerf_UltrasonEnable);
-}
-
-void SubUltrasonic::Enable(const bool iIsEnabled)
-{
-   mIsEnabled = iIsEnabled;
+    Enable(kUltrasonEnable);
+    EnableSubsystemLog(kLogUltrason);
+    EnablePerformanceLog(kLogPerf_UltrasonEnable);
 }
 
 void SubUltrasonic::Init()
 {
-  if (mIsEnabled && mUltrasonic == nullptr)
+  if (isEnabled() && mUltrasonic == nullptr)
   {
     mUltrasonic = new frc::AnalogInput(kUltrasonicDIO);
   }
@@ -60,7 +57,7 @@ float SubUltrasonic::getDistance()
 
 void SubUltrasonic::doExecute()
 {
-    if (kUltrasonEnable)
+    if (kUltrasonEnable && kLogUltrason)
     {
         std::cout << "Ultrason: " << getDistance() << std::endl;
     }

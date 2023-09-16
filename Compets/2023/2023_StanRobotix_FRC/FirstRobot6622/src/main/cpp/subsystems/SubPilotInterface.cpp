@@ -7,71 +7,78 @@
 #include "commands/AutoConeHigh.h"
 #include "commands/ManualPilot.h"
 #include "commands/AutoFinalStabilisation.h"
+#include "commands/AutoFollowTag.h"
 
-SubPilotInterface::SubPilotInterface(RobotContainer * iRobotContainer) 
+SubPilotInterface::SubPilotInterface(RobotContainer *iRobotContainer)
 {
-   mRobotContainer = iRobotContainer;
+    mRobotContainer = iRobotContainer;
 }
 
-void SubPilotInterface::Init() 
+void SubPilotInterface::Init()
 {
     // MANUAL_TELEOP, AUTO_CONEHIGH, AUTO_CONELOW, AUTO_CHARGEUP, CMD_MAX };
-   mCommandList[MANUAL_TELEOP].mCommandPtr = new ManualPilot(mRobotContainer); 
-   mCommandList[AUTO_CONEHIGH].mCommandPtr = new AutoConeHigh(mRobotContainer);  
-   mCommandList [AUTO_CHARGEUP].mCommandPtr= new AutoFinalStabilisation (mRobotContainer); 
+    mCommandList[MANUAL_TELEOP].mCommandPtr = new ManualPilot(mRobotContainer);
+    mCommandList[AUTO_CONEHIGH].mCommandPtr = new AutoConeHigh(mRobotContainer);
+    mCommandList[AUTO_CHARGEUP].mCommandPtr = new AutoFinalStabilisation(mRobotContainer);
+    mCommandList[AUTO_FOLLOWTAG].mCommandPtr = new AutoFollowTag(mRobotContainer);
+    // AJOUT COMMANDE AUTOMATISEE
 }
-  
+
 void SubPilotInterface::doExecute()
-{  
+{
     if (GetRawButtonPressed(ChangementCommandeAuto))
     {
         mMenuIndex++;
 
-        // TODO: tenir compte de mCommandList[mMenuIndex].mIsEnabled poue chercher la
+        // TODO: tenir compte de mCommandList[mMenuIndex].isEnabled() pour chercher la
         // prochaine commande utilisable
         if (mMenuIndex == CMD_MAX)
         {
             mMenuIndex = MANUAL_TELEOP;
         }
 
-        std :: cout <<  "Selection de la " << mCommandList[mMenuIndex].mDescription << std::endl;
+        std ::cout << "Selection de la " << mCommandList[mMenuIndex].mDescription << std::endl;
     }
 
     if (GetRawButtonPressed(ActivationCommandeAuto))
     {
-        mActiveIndex = mMenuIndex; 
+        mActiveIndex = mMenuIndex;
+        std ::cout << "Activation de la " << mCommandList[mMenuIndex].mDescription << std::endl;
     }
 
     if (GetRawButtonPressed(AnnulationCommandeAuto))
     {
-        std :: cout <<  "Interruption de la " << mCommandList[mMenuIndex].mDescription << std::endl;
+        std ::cout << "Interruption de la " << mCommandList[mMenuIndex].mDescription << std::endl;
 
         mActiveIndex = MANUAL_TELEOP;
-        mMenuIndex   = MANUAL_TELEOP;        
+        mMenuIndex = MANUAL_TELEOP;
     }
 
     if (mCommandList[mActiveIndex].mCommandPtr != nullptr)
-    {        
-       mCommandList[mActiveIndex].mCommandPtr->Execute();
+    {
+        startFunctionTimer();
+        mCommandList[mActiveIndex].mCommandPtr->Execute();
+        stopFunctionTimer();
+        mNumberOfFunctionExecution++;
 
-       bool wFinish = mCommandList[mActiveIndex].mCommandPtr->isFinish();
-       if (wFinish)
-       {
-         if (mActiveIndex != MANUAL_TELEOP)
-         {
-            mCommandList[mActiveIndex].mCommandPtr->reset(); // Pour remettre l'etat de la commande
-                                                             // automatique a zero!
-            std :: cout <<  "Mort naturel de la " << mCommandList[mMenuIndex].mDescription << 
-                           std::endl << " Mode manuel activé" << std::endl;
-         
-         }
-         mActiveIndex = MANUAL_TELEOP;
-       }
+        // affiche du texte dans la console
+
+        bool wFinish = mCommandList[mActiveIndex].mCommandPtr->isFinish();
+        if (wFinish)
+        {
+            if (mActiveIndex != MANUAL_TELEOP)
+            {
+                mCommandList[mActiveIndex].mCommandPtr->reset(); // Pour remettre l'etat de la commande
+                                                                 // automatique a zero!
+                std ::cout << "Mort naturel de la " << mCommandList[mMenuIndex].mDescription << std::endl
+                           << " Mode manuel activé" << std::endl;
+            }
+            mActiveIndex = MANUAL_TELEOP;
+        }
     }
     else
     {
-       mActiveIndex = MANUAL_TELEOP;
-       mCommandList[mActiveIndex].mCommandPtr->Execute();
+        mActiveIndex = MANUAL_TELEOP;
+        mCommandList[mActiveIndex].mCommandPtr->Execute();
     }
 }
-

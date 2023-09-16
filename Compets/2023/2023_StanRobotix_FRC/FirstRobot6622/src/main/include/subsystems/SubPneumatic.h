@@ -14,35 +14,33 @@
 
 class RobotContainer;
 
-class SubPneumatic: public PerformanceMonitor
+class SubPneumatic : public PerformanceMonitor
 {
 private:
   frc::DoubleSolenoid mDoubleSolenoid{frc::PneumaticsModuleType::CTREPCM, kSolenoid1Port, kSolenoid2Port};
-  // frc::Compressor pcmCompressor{0, frc::PneumaticsModuleType::CTREPCM};
-  
-  bool mIsEnabled = false;
-  RobotContainer * mRobotContainer;
-
+ 
 public:
   SubPneumatic(RobotContainer * iRobotContainer);
 
   ~SubPneumatic();
 
-  void Init();
-  void EnableSubsystemLog(bool iEnable) { mSubsystemLogEnabled = iEnable; }
- 
-  void Enable(const bool iEnable);
+  enum eState
+  {
+    eRetract = 0,
+    eExtract = 1
+  };
+  eState mState = eRetract;
 
-  //Enables the forward doublesolenoid's channel and pushes the pneumatic cylinder forward.
+  void Init();
+
+  // Enables the forward doublesolenoid's channel and pushes the pneumatic cylinder forward.
   void Extract();
 
-  //Enables the reverse doublesolenoid's channel and retracts the pneumatic cylinder.
+  // Enables the reverse doublesolenoid's channel and retracts the pneumatic cylinder.
   void Retract();
 
-  //toggle le piston
+  // toggle le piston
   void Toggle();
-   
-   bool mSubsystemLogEnabled = false;
 
   virtual void doExecute();
   virtual std::string getName() { return "SubPneumatic"; }

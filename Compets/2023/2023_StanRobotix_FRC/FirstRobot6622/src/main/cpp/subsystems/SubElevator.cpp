@@ -16,14 +16,9 @@ SubElevator::SubElevator(RobotContainer *iRobotContainer)
   EnablePerformanceLog(kLogPerf_ElevatorEnable);
 }
 
-void SubElevator::Enable(const bool iEnable)
-{
-  mIsEnabled = iEnable;
-}
-
 void SubElevator::Init()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   {
 
   }
@@ -49,12 +44,16 @@ void SubElevator::setCommand(const int iPov, const bool iButtonUp, const bool iB
   else if (iButtonUp)
   {
     Stage(SubElevator::hManual);
-    mHeightManual += 10;
+    mHeightManual = 1;
   }
   else if (iButtonDown)
   {
     Stage(SubElevator::hManual);
-    mHeightManual += -10;
+    mHeightManual = -1;
+  }
+  else
+  {
+    mHeightManual = 0;
   }
 }
 
@@ -100,7 +99,7 @@ void SubElevator::Stage(eHeight iHeight)
     break;
     
   case hManual:
-    mHeight_=mHeight_+mHeightManual;
+    mHeight_= mHeight_+mHeightManual;
     break;
 
   default:
@@ -114,7 +113,7 @@ void SubElevator::Stage(eHeight iHeight)
 
 void SubElevator::doExecute ()
 {
-  if (mIsEnabled)
+  if (isEnabled())
   { // TODO: executer ci-dessous si et seulement si la valeur change, 
     mRPIDController.SetReference(mHeight_,rev::ControlType::kSmartMotion); // ATTENTION, SIGNE - MIS SUR 1 DES 2 ARBITRAIREMENT !!!!!
     mLPIDController.SetReference(-mHeight_,rev::ControlType::kSmartMotion); // FAIRE DES TESTS POUR VOIR QUEL MOTEUR TOURNE DANS QUEL SENS !!!!!

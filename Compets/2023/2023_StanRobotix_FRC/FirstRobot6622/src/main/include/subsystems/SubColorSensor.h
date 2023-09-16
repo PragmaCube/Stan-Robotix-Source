@@ -9,8 +9,9 @@
 #include "rev/ColorMatch.h"
 
 #include "Constants.h"
+#include "PerformanceMonitor.h"
 
-class SubColorSensor : public frc2::SubsystemBase
+class SubColorSensor : public frc2::SubsystemBase, public PerformanceMonitor
 {
 public:
   static constexpr frc::Color kCone = frc::Color(0.360, 0.569, 0.070); // couleur du Cone 0.34 R, 0.54 G, 0.10 B
@@ -22,10 +23,8 @@ public:
 
   void Init();
 
-  void Enable(const bool iEnable);
-  void EnableSubsystemLog(const bool iEnable);
-
-  void Execute();
+  virtual void doExecute();
+  virtual std::string getName() { return "SubColorSensor"; }
 
   frc::Color GetColor();
 
@@ -36,7 +35,4 @@ private:
   // declared private and exposed only through public methods.
   rev::ColorSensorV3 * mColorSensor = nullptr;
   rev::ColorMatch mColorMatcher;
-
-  bool mIsEnabled = false;
-  bool mSubsystemLogEnabled = false;
 };
