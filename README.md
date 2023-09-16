@@ -4,7 +4,7 @@
 
 # Stan-Robotix-Source
 Code source des compétitions auxquelles [Stan Robotix](https://stanrobotix6622.com/) a participé, les autres activités et la documentation.
-2019-2022
+2019-2023
 
 ## Pourquoi créer un repositoire global?
 Il a été créé pour éviter de multiplier le nombre de repositoires. En effet, à chaque compétition ou à chaque projet, Programmation en créait un, faisant en sorte qu'il fallait chercher
@@ -59,14 +59,11 @@ git pull
 La gestion du repositoire (modification du README ou modifications majeures) est laissée au chef de l'équipe et aux mentors.
 
 
-Chef d'équipe : Nahuel Duquéroy-Roldán<br>
-Mentors : Cyril Jacob, Philippe Ducas, Raphaël Pothier et Martin Le Gallic
+Chef d'équipe : Andre Wojcik<br>
+Mentors : Clement Jevardat-de-Fombelle et Raphaël Pothier 
 
 Contacts :
 
+wojcik.andre2.0@gmail.com <br>
 raphael.pothier@umontreal.ca <br>
-martin.le.gallic@usherbrooke.ca <br>
-cyril.jacob@stanislas.qc.ca <br>
-philippe.ducas@stanislas.qc.ca <br>
-nahuel.duqueroy-roldan@stanislas.qc.ca<br>
 <br>
