@@ -63,15 +63,12 @@ class Robot : public frc::TimedRobot {
   frc::VictorSP mMotors[2] = {frc::VictorSP{eLeft},frc::VictorSP{eRight}};
   frc::DifferentialDrive mDrive{mMotors[eLeft],mMotors[eRight]};
 
-  double mDriveX;
-  double mDriveY;
   frc::XboxController mController{0};
   
   // const int kPancarteId = 1;
   const int kClimbId = 3;
   const int kRGBPort = 2;
-  const int kTourPort = 3;
-  // rev::CANSparkMax mPancarte{kPancarteId, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+
   rev::CANSparkMax mClimb{kClimbId, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder mClimbEncoder = mClimb.GetEncoder(); 
   rev::SparkMaxPIDController mClimbPid = mClimb.GetPIDController();
@@ -95,7 +92,7 @@ class Robot : public frc::TimedRobot {
   static const int kTourLenght = 223;
   const int kActualTourLenght = 171;
   frc::AddressableLED::LEDData mLedData[kTourLenght + kLedLenght];
-  frc::Color8Bit mColor;
+
   double mClimbMotionSmoothing = 0.0;
 
   enum eState
@@ -124,7 +121,6 @@ class Robot : public frc::TimedRobot {
 
   double mMotionSmoothedDrive[2] = {0,0};
   const double kMotionSmoothingDrivePart = 0.05;
-  const double kMaxStickDelta = 0.25;
 
   frc::Servo mServo{3};
 
