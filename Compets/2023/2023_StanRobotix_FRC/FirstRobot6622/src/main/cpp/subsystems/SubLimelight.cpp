@@ -29,6 +29,7 @@ void SubLimelight::Init()
 void SubLimelight::doExecute()
 {
   if (isEnabled())
+
   {
     mTargetOffsetAngle_Horizontal = mNetworkTable->GetNumber("tx", 0.0);
     mTargetOffsetAngle_Vertical = mNetworkTable->GetNumber("ty", 0.0);
@@ -38,6 +39,7 @@ void SubLimelight::doExecute()
     mFieldBotPos = mNetworkTable->GetNumberArray("botpose",std::vector<double>(6));
     mTagBotPos   = mNetworkTable->GetNumberArray("botpose_targetspace",std::vector<double>(6));
   }
+
 
   if (timeToDisplaySystemLog())
   {

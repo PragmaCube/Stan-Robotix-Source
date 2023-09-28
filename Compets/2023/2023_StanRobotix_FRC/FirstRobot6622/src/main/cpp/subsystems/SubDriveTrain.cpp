@@ -53,7 +53,9 @@ void SubDriveTrain::setParameters(const double iX, const double iY, const double
 
 void SubDriveTrain::doExecute()
 {
+
   if (isEnabled())
+
   {
     if (mFieldOriented)
     {
@@ -65,6 +67,7 @@ void SubDriveTrain::doExecute()
       m_robotDrive->DriveCartesian(-mY, mX, mTwist);
     }
   }
+
 
   if (timeToDisplaySystemLog())
   {

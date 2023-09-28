@@ -4,6 +4,9 @@
 
 #pragma once
 
+#include <frc2/command/CommandHelper.h>
+#include <frc2/command/PIDCommand.h>
+#include <frc/controller/PIDController.h>
 #include "../subsystems/PerformanceMonitor.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
@@ -36,4 +39,5 @@ private:
 
   enum ChargeDir_t {eNotInit, eForward, eBackward};
   ChargeDir_t mCurrentDir = eNotInit;
-};
+
+  frc2::PIDController mPitchController{0.3f, 0.1f, 0.2f}; // TODO : A tuner par-ce que pas teste

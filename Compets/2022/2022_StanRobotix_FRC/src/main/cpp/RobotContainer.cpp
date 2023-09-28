@@ -51,6 +51,11 @@ void RobotContainer::ConfigureButtonBindings() {
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
+  
+  std::cout << 'Pid setup complete\n';
+  mSubDriveTrain->PidSetPoint(3);
+  // Commence le temps ici
+  mSubDriveTrain->PidStartTimer();
   return &m_autonomousCommand;
 }
 
@@ -83,6 +88,18 @@ void RobotContainer::Drive()
   }
 
   mSubDriveTrain->TankDrive(
+        - mController.GetY(frc::GenericHID::JoystickHand::kLeftHand),
+        - mController.GetY(frc::GenericHID::JoystickHand::kRightHand), mMotorSpeed[mMotorIndex]);
+}
+
+void RobotContainer::Auto()
+{
+  if (!mSubDriveTrain->PidAtsetpoint)
+  {
+    mSubDriveTrain->PidDrive();
+  }
+  else {}
+}
         - mController.GetLeftY(),
         mController.GetRightY(), mMotorSpeed[mMotorIndex]);
   

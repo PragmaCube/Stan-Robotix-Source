@@ -53,6 +53,7 @@ void SubGamePieceHandler::Stop()
 void SubGamePieceHandler::doExecute()
 {
     if (isEnabled() && mIsUpdated)
+
     {
        mMotorRight->Set(mRequestedPowerLeft);
        mMotorRight->Set(mRequestedPowerRight);
@@ -67,6 +68,7 @@ void SubGamePieceHandler::doExecute()
 
 void SubGamePieceHandler::Init()
 {
+
     if (isEnabled())
     {
         mMotorRight = new rev::CANSparkMax(kCanIdGamePieceHandlerR, rev::CANSparkMax::MotorType::kBrushless);
