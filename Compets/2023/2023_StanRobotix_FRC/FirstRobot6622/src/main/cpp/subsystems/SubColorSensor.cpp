@@ -51,9 +51,8 @@ void SubColorSensor::doExecute()
     frc::SmartDashboard::PutNumber("Green", wGreen);
     frc::SmartDashboard::PutNumber("Blue", wBlue);
 
-    if (
-        mSubsystemLogEnabled &&
-        ((mNumberOfExecution % mLogPeriodicity) == 0))
+    if (timeToDisplaySystemLog())
+
     {
       std::cout << "ColorSensor\nR : " << wRed << "    G : " << wGreen << "    B : " << wBlue << std::endl;
     }

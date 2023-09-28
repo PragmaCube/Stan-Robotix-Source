@@ -39,7 +39,9 @@ bool SubContactDetection::GetContactStatus(InputDetection_t index)
 // This method will be called once per scheduler run
 void SubContactDetection::doExecute()
 {
-    if (mIsEnabled)
+
+    if (isEnabled())
+
     {
         for (int i = input0; i < inputMax; i++)
         {
@@ -47,7 +49,9 @@ void SubContactDetection::doExecute()
             {
                 bool wCurrent =  mDigitalInputVector[i]->Get();
 
-                if (mSubsystemLogEnabled && mContactCache[i] != wCurrent)
+
+                if (isSystemLogEnabled() && mContactCache[i] != wCurrent)
+
                 {
                     std::string wNewState = (wCurrent)?"Active":"Inactive";
                     std::cout << "Changement d'etat pour le contact n# " << i << ": " << wNewState << std::endl;

@@ -22,7 +22,8 @@ SubIMU::SubIMU()
 
 void SubIMU::Init()
 {
-    if (mIsEnabled)
+
+    if (isEnabled())
     {
         mGyro = new ctre::phoenix::sensors::WPI_Pigeon2(0);
         mGyro->Calibrate();
@@ -41,7 +42,9 @@ void SubIMU::Init()
 void SubIMU::doExecute()
 {
     static double ypr[3] = {0.0f, 0.0f, 0.0f};
-    if (mIsEnabled)
+
+    if (isEnabled())
+
     {
         mGyro->GetYawPitchRoll(ypr);
     }
@@ -50,10 +53,9 @@ void SubIMU::doExecute()
     ypr[1] = ypr[1] - mPitchStart;
     ypr[2] = ypr[2] - mRollStart;
 
-    if (
-         mSubsystemLogEnabled && 
-         ((mNumberOfExecution % mLogPeriodicity) == 0)
-       )
+
+    if (timeToDisplaySystemLog())
+
     {
         std::cout << "Yaw:" << ypr[0] << "    Pitch :" << ypr[1] << "   Roll " << ypr[2] << std::endl;
     }
