@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="256" height="256" src="https://static.wixstatic.com/media/89f157_1e985f270d91477cb3e130f01d7198a5~mv2.png/v1/fill/w_544,h_493,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/equipe-stan-logo_edited_edited.png">
+  <img width="256" height="256" src="https://stanrobotix.files.wordpress.com/2017/01/cropped-cropped-equipe-stan-logo2.jpg">
 </p>
 
 # Stan-Robotix-Source
