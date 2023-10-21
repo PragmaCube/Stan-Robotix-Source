@@ -22,7 +22,7 @@ class SubArm : public frc2::SubsystemBase {
   void CalibrationDown();
   void Stop();
   void Calibrate0();
-  double getMotorEncoder();
+  double getPosition();
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -33,7 +33,7 @@ class SubArm : public frc2::SubsystemBase {
   rev::SparkMaxRelativeEncoder mMotorArmEncoder = mMotorArm.GetEncoder();
   rev::SparkMaxPIDController mPIDArmController = mMotorArm.GetPIDController();
 
-  double m0 = 0;
+  double mZero = 0;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

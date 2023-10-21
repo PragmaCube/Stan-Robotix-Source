@@ -20,8 +20,7 @@ void Auto::Execute()
   switch (mCurrentStep)
   {
     case Phase1_:
-      mDrive.setParameters(mOrdonnee, 0.0, 0.0, false);
-      mDrive.doExecute();
+      mDrive.drive(mOrdonnee, 0.0, 0.0);
       mTimer.Start();
 
       if (mCompteur < 4)
@@ -42,8 +41,7 @@ void Auto::Execute()
       break;
 
     case Phase2_:
-      mDrive.setParameters(0.0, mAbscisse, 0.0, false); 
-      mDrive.doExecute();
+      mDrive.drive(0.0, mAbscisse, 0.0);
       mTimer.Start();
 
       if (mCompteur < 4)

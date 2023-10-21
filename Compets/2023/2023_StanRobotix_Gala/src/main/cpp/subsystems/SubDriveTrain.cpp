@@ -25,25 +25,16 @@ SubDriveTrain::SubDriveTrain()
     m_robotDrive = new frc::MecanumDrive(*m_frontLeft, *m_rearLeft, *m_frontRight, *m_rearRight);
 }
 
-void SubDriveTrain::setParameters(const double iX, const double iY, const double iTwist, const bool iFieldOriented) // le prefix i est necessaire, pour specifier que c est une entree.
+void SubDriveTrain::drive(const double iX, const double iY, const double iTwist, const frc::Rotation2d iRotation2d) // le prefix i est necessaire, pour specifier que c est une entree.
 {
-  mX = iX;
-  mY = iY;
-  mTwist = iTwist;
-  mFieldOriented = iFieldOriented;
+  m_robotDrive->DriveCartesian(-iY, iX, iTwist, iRotation2d);
 }
 
-void SubDriveTrain::doExecute()
+void SubDriveTrain::drive(const double iX, const double iY, const double iTwist) // le prefix i est necessaire, pour specifier que c est une entree.
 {
-  if (mFieldOriented)
-  {
-    m_robotDrive->DriveCartesian(-mY, mX, mTwist, mGyro.getRotation2D());
-  }
-  else
-  {
-    m_robotDrive->DriveCartesian(-mY, mX, mTwist);
-  }
+  m_robotDrive->DriveCartesian(-iY, iX, iTwist);
 }
-
 
 void SubDriveTrain::SetSpeed() { }
+
+void SubDriveTrain::Periodic() { }

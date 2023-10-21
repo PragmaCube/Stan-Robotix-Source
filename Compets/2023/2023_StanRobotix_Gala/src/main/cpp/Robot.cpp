@@ -23,43 +23,70 @@ void Robot::TeleopInit()
 void Robot::TeleopPeriodic()
 {
   //Drive Train
-  double wLeftY = mController.GetLeftY() * 0.5;
-  double wLeftX = mController.GetLeftX() * 0.5;
-  double wRightX = mController.GetRightX() * 0.5;
+  wLeftY = mController.GetLeftY() * 0.5;
+  wLeftX = mController.GetLeftX() * 0.5;
+  wRightX = mController.GetRightX() * 0.5;
 
-  mDrive.setParameters(wLeftX, wLeftY, wRightX, true);
-  mDrive.doExecute();
+  mDrive.drive(wLeftX, wLeftY, wRightX, mGyro.getRotation2D());
   
-  if (mController.GetXButtonPressed())
+  // Manual Mode
+  if (mController.GetLeftBumperPressed())
   {
-    mPneumatic.Retract();
+    if (mManualMode)
+    {
+      mManualMode = false;
+    }
+    else
+    {
+      mManualMode = true;
+    }
   }
-  if (mController.GetBButtonPressed())
+
+  // Assignation Touches
+  if (mManualMode)
   {
-    mPneumatic.Extract();
+    if (mArm.getPosition() > ArmConstants::kPositionDown && mController.GetYButton())
+    {
+      mArm.Move(-0.1);
+    }
+    else if (mArm.getPosition() < ArmConstants::kPositionUp && mController.GetAButton())
+    {
+      mArm.Move(0.1);
+    }
   }
-  if (mController.GetYButtonPressed())
+  else
   {
-    mArm.PosUp();
+    if (mController.GetXButtonPressed())
+    {
+      mPneumatic.Retract();
+    }
+    if (mController.GetBButtonPressed())
+    {
+      mPneumatic.Extract();
+    }
+    if (mController.GetYButtonPressed())
+    {
+      mArm.PosUp();
+    }
+    if (mController.GetAButtonPressed())
+    {
+      mArm.PosDown();
+    }
+    if (mController.GetBackButton())
+    {
+      mArm.CalibrationDown();
+    }
+    if (mController.GetBackButtonReleased())
+    {
+      mArm.Stop();
+      mArm.Calibrate0();
+    }
+    if (mController.GetStartButton())
+    {
+      mGyro.ResetAngle();
+    }
   }
-  if (mController.GetAButtonPressed())
-  {
-    mArm.PosDown();
-  }
-  if (mController.GetBackButton())
-  {
-    mArm.CalibrationDown();
-  }
-  if (mController.GetBackButtonReleased())
-  {
-    mArm.Stop();
-    mArm.Calibrate0();
-  }
-  if (mController.GetStartButton())
-  {
-    mDrive.mGyro.ResetAngle();
-  }
-  std::cout << mDrive.mGyro.getRotation2D().Degrees().value() << std::endl;
+  std::cout << mGyro.GetAngle() << std::endl;
 
 }
 

@@ -27,4 +27,4 @@ void SubPneumatic::Toggle()
     mDoubleSolenoid.Toggle();
 }
 
-
+void SubPneumatic::Periodic() { }

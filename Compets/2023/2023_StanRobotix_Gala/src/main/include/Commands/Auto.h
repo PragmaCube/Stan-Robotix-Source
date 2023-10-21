@@ -10,6 +10,7 @@
 #include <frc/Timer.h>
 
 #include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubGyro.h"
 
 /**
  * An example command.
@@ -49,6 +50,7 @@ class Auto
     double mTwiste = 0.0;
 
     SubDriveTrain mDrive;
+    SubGyro mGyro;
     frc::Timer mTimer;
 };
 

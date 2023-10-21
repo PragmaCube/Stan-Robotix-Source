@@ -13,14 +13,17 @@ class SubGyro : public frc2::SubsystemBase {
 
   frc::Rotation2d getRotation2D();
   void ResetAngle();
-  
+  double GetAngle();
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-  ctre::phoenix::sensors::WPI_Pigeon2 mGyro = ctre::phoenix::sensors::WPI_Pigeon2(0);
+  
 
  private:
+
+  ctre::phoenix::sensors::WPI_Pigeon2* mGyro = nullptr;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

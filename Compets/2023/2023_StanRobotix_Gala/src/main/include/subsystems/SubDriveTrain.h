@@ -20,15 +20,13 @@ class SubDriveTrain : public frc2::SubsystemBase
  public:
   SubDriveTrain();
 
-  void setParameters(const double iX, const double iY, const double iTwist, const bool iFieldOriented); // TODO: casser la fonction en deux
-  void doExecute();
+  void drive(const double iX, const double iY, const double iTwist, const frc::Rotation2d iRotation2d);
+  void drive(const double iX, const double iY, const double iTwist);                                                 // Function overloading pour double déclaration
   void SetSpeed();
-  SubGyro mGyro;
 
   void Periodic() override;
 
  private:
- 
   
   frc::VictorSP * m_frontLeft = nullptr;
   frc::VictorSP * m_rearLeft = nullptr;
@@ -36,9 +34,6 @@ class SubDriveTrain : public frc2::SubsystemBase
   frc::VictorSP * m_rearRight = nullptr;
 
   frc::MecanumDrive * m_robotDrive = nullptr;
-
-  double mX, mY, mTwist;
-  bool mFieldOriented;
 
   
 };

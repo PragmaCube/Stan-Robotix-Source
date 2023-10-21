@@ -8,12 +8,12 @@ SubArm::SubArm() = default;
 
 void SubArm::PosUp()
 {
-    mPIDArmController.SetReference(ArmConstants::kPositionUp + m0, rev::ControlType::kSmartMotion);
+    mPIDArmController.SetReference(ArmConstants::kPositionUp + mZero, rev::ControlType::kSmartMotion);
 }
 
 void SubArm::PosDown()
 {
-    mPIDArmController.SetReference(ArmConstants::kPositionDown + m0, rev::ControlType::kSmartMotion);
+    mPIDArmController.SetReference(ArmConstants::kPositionDown + mZero, rev::ControlType::kSmartMotion);
 }
 
 void SubArm::CalibrationDown()
@@ -27,7 +27,17 @@ void SubArm::Stop()
 }
 void SubArm::Calibrate0()
 {
-    m0 = mMotorArmEncoder.GetPosition();
+    mZero = mMotorArmEncoder.GetPosition();
+}
+
+void SubArm::Move(float iValue)
+{
+    mMotorArm.Set(iValue);
+}
+
+double SubArm::getPosition()
+{
+    return mMotorArmEncoder.GetPosition() - mZero;
 }
 
 // This method will be called once per scheduler run

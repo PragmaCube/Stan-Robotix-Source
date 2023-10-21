@@ -4,17 +4,25 @@
 
 #include "subsystems/SubGyro.h"
 
-SubGyro::SubGyro() = default;
+SubGyro::SubGyro() 
+{
+    mGyro = new ctre::phoenix::sensors::WPI_Pigeon2(0);
+}
 
 frc::Rotation2d SubGyro::getRotation2D()
 {
-    return -mGyro.GetRotation2d();
+    return -mGyro->GetRotation2d();
 }
 
 void SubGyro::ResetAngle()
 {
-    mGyro.Reset();
-    mGyro.Calibrate();
+    mGyro->Reset();
+    mGyro->Calibrate();
+}
+
+double SubGyro::GetAngle()
+{
+    mGyro->GetAngle();
 }
 
 // This method will be called once per scheduler run

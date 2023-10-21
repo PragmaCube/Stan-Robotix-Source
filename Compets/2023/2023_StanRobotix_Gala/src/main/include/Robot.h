@@ -43,14 +43,19 @@ class Robot : public frc::TimedRobot {
   void SimulationPeriodic() override;
 
   SubDriveTrain mDrive;
+  SubGyro mGyro;
   SubArm mArm;
   SubPneumatic mPneumatic;
   
   private : 
   
 
-
   frc::XboxController mController{0};
   
-  
+  double wLeftY;
+  double wLeftX;
+  double wRightX;
+
+  bool mManualMode = false;
+
 };
