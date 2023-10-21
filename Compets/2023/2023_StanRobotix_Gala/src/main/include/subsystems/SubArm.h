@@ -8,17 +8,21 @@
 #include <rev/SparkMaxRelativeEncoder.h>
 #include <rev/CANSparkMax.h>
 #include <frc2/command/SubsystemBase.h>
-#include <Constants.h>
+#include "Constants.h"
 
 class SubArm : public frc2::SubsystemBase {
  public:
+  
   SubArm();
+  
+  void PosDown();
+  void PosUp();
+  void Move(float iValue);
 
-  void Down();
-  void Up();
   void CalibrationDown();
   void Stop();
   void Calibrate0();
+  double getMotorEncoder();
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */

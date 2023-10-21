@@ -6,12 +6,11 @@
 // Date       Auteur          Description                                               Test
 // 21jan2023  Andre W. Micha R.  mecanum operationel en robot-oriented-drive sans IMU      Deplacement omni-directionnel
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Référence: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
+// R�f�rence: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
 
 
 #include "subsystems/SubDriveTrain.h"
 
-#include <iostream>
 
 SubDriveTrain::SubDriveTrain()
 {
@@ -36,5 +35,15 @@ void SubDriveTrain::setParameters(const double iX, const double iY, const double
 
 void SubDriveTrain::doExecute()
 {
-  m_robotDrive->DriveCartesian(-mY, mX, mTwist, mGyro.GetRotation2D());
+  if (mFieldOriented)
+  {
+    m_robotDrive->DriveCartesian(-mY, mX, mTwist, mGyro.getRotation2D());
+  }
+  else
+  {
+    m_robotDrive->DriveCartesian(-mY, mX, mTwist);
+  }
 }
+
+
+void SubDriveTrain::SetSpeed() { }

@@ -4,15 +4,15 @@
 
 #pragma once
 
-#include <vector>
 #include <frc2/command/SubsystemBase.h>
 #include <frc/Compressor.h>
 #include <frc/PneumaticsBase.h>
 #include <frc/DoubleSolenoid.h>
+
 #include "Constants.h"
 
 
-class SubPneumatic
+class SubPneumatic : public frc2::SubsystemBase
 {
 private:
   frc::DoubleSolenoid mDoubleSolenoid{frc::PneumaticsModuleType::CTREPCM, SubPneumaticConstants::kSolenoid1Port, SubPneumaticConstants::kSolenoid2Port};
@@ -20,7 +20,6 @@ private:
 public:
   SubPneumatic();
 
-  ~SubPneumatic();
 
   enum eState
   {
@@ -40,6 +39,6 @@ public:
   // toggle le piston
   void Toggle();
 
-  virtual void doExecute();
-  virtual std::string getName() { return "SubPneumatic"; }
+
+  void Periodic() override;
 };

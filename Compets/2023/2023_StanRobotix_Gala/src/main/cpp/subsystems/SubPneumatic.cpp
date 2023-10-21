@@ -5,51 +5,26 @@
 #include "subsystems/SubPneumatic.h"
 #include "Constants.h"
 
-#include <iostream>
+SubPneumatic::SubPneumatic() = default;
 
-SubPneumatic::SubPneumatic() {}
-
-SubPneumatic::~SubPneumatic() {}
-
+// This method will be called once per scheduler run
 void SubPneumatic::Init()
 {
     Retract();
  }
-
 void SubPneumatic::Extract()
 {
   mDoubleSolenoid.Set(frc::DoubleSolenoid::Value::kForward);
   mState = eExtract;
 }
-
 void SubPneumatic::Retract()
 {
   mDoubleSolenoid.Set(frc::DoubleSolenoid::Value::kReverse);
   mState = eRetract;
 }
-
 void SubPneumatic::Toggle()
 {
     mDoubleSolenoid.Toggle();
-    if (mState == eRetract)
-    {
-
-      std::cout << "extrct" << std::endl;
-
-      mState = eExtract;
-    }
-    else
-    {
-
-      std::cout << "Retrct" << std::endl;
-
-      mState = eRetract;
-    }
 }
 
-void SubPneumatic::doExecute()
-{
 
-    std::cout << "SubPneumatic\nStatus : " << mState << std::endl;
-
-}

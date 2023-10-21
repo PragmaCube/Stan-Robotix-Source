@@ -6,9 +6,9 @@
 
 SubGyro::SubGyro() = default;
 
-frc::Rotation2d SubGyro::GetRotation2D()
+frc::Rotation2d SubGyro::getRotation2D()
 {
-    return mGyro.GetRotation2d();
+    return -mGyro.GetRotation2d();
 }
 
 void SubGyro::ResetAngle()

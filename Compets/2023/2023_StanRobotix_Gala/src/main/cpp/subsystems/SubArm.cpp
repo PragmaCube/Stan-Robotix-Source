@@ -6,12 +6,12 @@
 
 SubArm::SubArm() = default;
 
-void SubArm::Up()
+void SubArm::PosUp()
 {
     mPIDArmController.SetReference(ArmConstants::kPositionUp + m0, rev::ControlType::kSmartMotion);
 }
 
-void SubArm::Down()
+void SubArm::PosDown()
 {
     mPIDArmController.SetReference(ArmConstants::kPositionDown + m0, rev::ControlType::kSmartMotion);
 }

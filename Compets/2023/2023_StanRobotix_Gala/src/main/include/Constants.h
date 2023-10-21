@@ -18,7 +18,7 @@ namespace SubPneumaticConstants
 namespace ArmConstants
 {
     constexpr int kArmCanId = 3;
-    constexpr double kPositionUp = 15;
+    constexpr double kPositionUp = 20;
     constexpr double kPositionDown = 0;
     constexpr double kCalibrationDown = -1.0;
 } // namespace Arm
