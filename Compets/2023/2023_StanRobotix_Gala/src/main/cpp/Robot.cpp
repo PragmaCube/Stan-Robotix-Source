@@ -40,11 +40,11 @@ void Robot::TeleopPeriodic()
   }
   if (mController.GetYButtonPressed())
   {
-    mArm.Up();
+    mArm.PosUp();
   }
   if (mController.GetAButtonPressed())
   {
-    mArm.Down();
+    mArm.PosDown();
   }
   if (mController.GetBackButton())
   {
@@ -59,7 +59,7 @@ void Robot::TeleopPeriodic()
   {
     mDrive.mGyro.ResetAngle();
   }
-  std::cout << mDrive.mGyro.GetRotation2D().Degrees().value() << std::endl;
+  std::cout << mDrive.mGyro.getRotation2D().Degrees().value() << std::endl;
 
 }
 
