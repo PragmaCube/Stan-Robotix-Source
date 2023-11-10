@@ -20,6 +20,7 @@
 #include <subsystems/SubDriveTrain.h>
 #include <subsystems/SubArm.h>
 #include <subsystems/SubPneumatic.h>
+#include <commands/Auto.h>
 
 
 class Robot : public frc::TimedRobot {

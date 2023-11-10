@@ -13,19 +13,27 @@ void Robot::RobotPeriodic()
 {
 }
 
-void Robot::AutonomousInit() {}
-void Robot::AutonomousPeriodic() {}
+void Robot::AutonomousInit() 
+{
+  // mAutonomus.Initialize();
+}
+
+void Robot::AutonomousPeriodic() 
+{
+  // mAutonomus.Execute();
+}
 
 void Robot::TeleopInit()
 {
+  mPneumatic.Init();
   std::cout << "Fin Teleop Init" << std::endl;
 }
 void Robot::TeleopPeriodic()
 {
   //Drive Train
-  wLeftY = mController.GetLeftY() * 0.5;
-  wLeftX = mController.GetLeftX() * 0.5;
-  wRightX = mController.GetRightX() * 0.5;
+  wLeftY = mController.GetLeftY();
+  wLeftX = mController.GetLeftX();
+  wRightX = mController.GetRightX();
 
   mDrive.drive(wLeftX, wLeftY, wRightX, mGyro.getRotation2D());
   
@@ -86,7 +94,6 @@ void Robot::TeleopPeriodic()
       mGyro.ResetAngle();
     }
   }
-  std::cout << mGyro.GetAngle() << std::endl;
 
 }
 

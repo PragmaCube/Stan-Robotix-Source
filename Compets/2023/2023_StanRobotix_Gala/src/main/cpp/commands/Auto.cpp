@@ -4,6 +4,8 @@
 
 #include "commands/Auto.h"
 
+#include <iostream>
+
 Auto::Auto() {
   // Use addRequirements() here to declare subsystem dependencies.
 }
