@@ -1,0 +1,12 @@
+See file:///C:/Users/StanRobotix6622/Desktop/Stan-Robotix-Source/Activités/2023/Projet_Exemple/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+compiling Autos.cpp successful.
+
+compiling ExampleCommand.cpp successful.
+
+compiling RobotContainer.cpp successful.
+
+compiling Robot.cpp successful.
+
+compiling ExampleSubsystem.cpp successful.
+
+Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///C:/Users/StanRobotix6622/Desktop/Stan-Robotix-Source/Activités/2023/Projet_Exemple/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.
