@@ -19,24 +19,33 @@ class SubDriveTrain : public frc2::SubsystemBase {
    */
   void Periodic() override;
   
-  void TankDrive();
+  void tankDrive(double leftSpeed, double rightSpeed);
+  void setCoef(Coef eValueCoef)
 
-  void TankDrive() override;
- 
+  enum Coef
+  {
+    High, 
+    Medium, 
+    Low
+  };
+
+  enum Coef eCoef = Low;
  private:
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   frc::Spark SparkAG{DriveTrainConstants::AvantGauche}; //spark avant gauche 
   frc::Spark SparkAD{DriveTrainConstants::AvantDroite}; //spark avant droite 
-  frc::Spark SparkDG{DriveTrainConstants::ArriereGauche}; //spark avant gauche 
-  frc::Spark SparkDD{DriveTrainConstants::ArriereDroite}; //spark avant droite 
+  frc::Spark SparkDG{DriveTrainConstants::ArriereGauche}; //spark derriere gauche 
+  frc::Spark SparkDD{DriveTrainConstants::ArriereDroite}; //spark derriere droite 
+
+  float coef;
   
-  
-  frc::MotorControllerGroup Droite{SparkAD, SparkDD};// Groupe Droite
+  frc::MotorControllerGroup Droite{SparkAD, SparkDD};// Groupe Droite 
   frc::MotorControllerGroup Gauche{SparkAG, SparkDG};// Groupe Gauche
   frc::DifferentialDrive Drive{Gauche, Droite};//Tank drive
 };
+
 
 
 

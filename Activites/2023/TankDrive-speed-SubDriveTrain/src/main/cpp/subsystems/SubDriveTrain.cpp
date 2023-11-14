@@ -8,3 +8,28 @@ SubDriveTrain::SubDriveTrain() = default;
 
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
+
+void SubDriveTrain::tankDrive(double leftSpeed, double rightSpeed) 
+{
+
+    Drive.TankDrive(leftSpeed*coef, rightSpeed*coef); 
+
+}
+
+void SubDriveTrain::setCoef(Coef eValueCoef)
+{
+    switch (eValueCoef)
+    {
+    case High :
+        /* code */
+        break;
+    case Medium :
+        /* code */
+        break;
+    case Low :
+        /* code */
+        break;
+    default:
+        break;
+    } 
+}
