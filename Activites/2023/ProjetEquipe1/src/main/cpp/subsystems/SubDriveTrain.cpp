@@ -9,7 +9,7 @@ SubDriveTrain::SubDriveTrain() = default;
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
 
-void SubDriveTrain::Drive(double left, double right) 
+void SubDriveTrain::TankDrive(double left, double right) 
 {
     m_drive.TankDrive(left, right);
 }

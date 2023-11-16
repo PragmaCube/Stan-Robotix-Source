@@ -14,7 +14,9 @@
  * they are needed.
  */
 
-namespace OperatorConstants {
+namespace OperatorConstants {   
+
+constexpr int kDriverControllerPort = 0 ;
 
 constexpr int kMotorRearRight = 0;
 constexpr int kMotorRearLeft = 1;
