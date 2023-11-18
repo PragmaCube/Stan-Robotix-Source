@@ -4,13 +4,17 @@
 
 #include "subsystems/subDriveTrain.h"
 
-subDriveTrain::subDriveTrain() = default;
+subDriveTrain::subDriveTrain()
+{
+    motorL1.SetInverted(true);
+    motorL2.SetInverted(true);
+}
 
 // This method will be called once per scheduler run
 void subDriveTrain::Periodic() {}
 void subDriveTrain::mecanumDrive(float x, float y, float z)
 {
-    drive.DriveCartesian(y, x, z);
+    drive.DriveCartesian(y*0.5, x*0.5, z*0.5);
 }
 
 // fichier local "", autre <>

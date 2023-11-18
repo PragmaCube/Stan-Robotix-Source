@@ -35,7 +35,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 }
 
 void RobotContainer::drive() {
-  driveTrain.mecanumDrive(joystick.GetX(), joystick.GetY(), joystick.GetZ());
+  driveTrain.mecanumDrive(-joystick.GetX(), joystick.GetY(), -joystick.GetZ());
 }
 
 
