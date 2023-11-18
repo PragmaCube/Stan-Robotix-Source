@@ -4,7 +4,11 @@
 
 #include "subsystems/SubDriveTrain.h"
 
-SubDriveTrain::SubDriveTrain() = default;
+SubDriveTrain::SubDriveTrain()
+{
+    victorLeft1.SetInverted(true);
+    victorLeft2.SetInverted(true);
+}
 
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}

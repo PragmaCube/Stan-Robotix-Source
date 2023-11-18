@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "RobotContainer.h"
-
+#include <frc/Joystick.h>
 #include <frc2/command/button/Trigger.h>
 
 #include "commands/Autos.h"
@@ -36,9 +36,9 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 
 
 
-void RobotContainer::TankDrive()
+void RobotContainer::TankDrive(){}
 
 void RobotContainer::drive()
 {
-  m_TankDrive.TankDrive(m_JoysticksController.GetLeftY().,m_JoysticksController.GetRightY().);
+  m_TankDrive.TankDrive(m_JoysticksController.GetLeftY(),m_JoysticksController.GetRightY());
 }

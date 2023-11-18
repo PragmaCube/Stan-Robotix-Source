@@ -4,13 +4,14 @@
 
 #pragma once
 
+
 #include <frc2/command/SubsystemBase.h>
-#include <frc/motorcontrol/Talon.h>
+#include <frc/motorcontrol/VictorSP.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
 #include <frc/drive/DifferentialDrive.h>
-
+#include <ctre/Phoenix.h>
 #include "Constants.h"
-
+#include "frc/motorcontrol/PWMMotorController.h"
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
   SubDriveTrain();
@@ -24,13 +25,14 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
  private:
  
-  frc::Talon RearRight{OperatorConstants::kMotorRearRight};
-  frc::Talon RearLeft{OperatorConstants::kMotorRearLeft};
-  frc::Talon FrontRight{OperatorConstants::kMotorFrontRight};
-  frc::Talon FrontLeft{OperatorConstants::kMotorFrontLeft};
+  
+ ctre::phoenix::motorcontrol::can::WPI_VictorSPX victorLeft1{1};
+ ctre::phoenix::motorcontrol::can::WPI_VictorSPX victorLeft2{3};
+ ctre::phoenix::motorcontrol::can::WPI_VictorSPX victorRight1{2};
+ ctre::phoenix::motorcontrol::can::WPI_VictorSPX victorRight2{4};
 
-  frc::MotorControllerGroup m_rightMotor{RearRight, FrontRight};
-  frc::MotorControllerGroup m_leftMotor{RearLeft, FrontLeft};
+  frc::MotorControllerGroup m_rightMotor{victorRight1, victorRight2};
+  frc::MotorControllerGroup m_leftMotor{victorLeft1, victorLeft2};
 
   frc::DifferentialDrive m_drive{m_leftMotor, m_rightMotor};
 
