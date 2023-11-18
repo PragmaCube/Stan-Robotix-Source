@@ -16,18 +16,18 @@ void SubDriveTrain::tankDrive(double leftSpeed, double rightSpeed)
 
 }
 
-void SubDriveTrain::setCoef(Coef eValueCoef)
+void SubDriveTrain::setCoef(int Position)
 {
-    switch (eValueCoef)
+    switch (Tcoef[Position])
     {
     case High :
-        /* code */
+        coef = 0.75;
         break;
     case Medium :
-        /* code */
+        coef = 0.5;
         break;
     case Low :
-        /* code */
+        coef = 0.3;
         break;
     default:
         break;

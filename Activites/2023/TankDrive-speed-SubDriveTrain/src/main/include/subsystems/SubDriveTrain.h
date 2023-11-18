@@ -20,16 +20,18 @@ class SubDriveTrain : public frc2::SubsystemBase {
   void Periodic() override;
   
   void tankDrive(double leftSpeed, double rightSpeed);
-  void setCoef(Coef eValueCoef)
+  void setCoef(Coef eValueCoef);
+
+  
 
   enum Coef
   {
     High, 
     Medium, 
-    Low
+    Low,
   };
 
-  enum Coef eCoef = Low;
+ Coef TCoef[3] = {Low , Medium , High};
  private:
 
   // Components (e.g. motor controllers and sensors) should generally be

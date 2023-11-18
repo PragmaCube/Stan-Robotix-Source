@@ -16,6 +16,8 @@
   },
   "C_Cpp.default.configurationProvider": "vscode-wpilib",
   "files.associations": {
-    "*.inc": "cpp"
+    "*.inc": "cpp",
+    "bitset": "cpp",
+    "algorithm": "cpp"
   }
 }

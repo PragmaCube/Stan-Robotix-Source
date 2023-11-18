@@ -4,6 +4,8 @@
 
 #include "RobotContainer.h"
 
+#include "SubDriveTrain.h"
+
 #include <frc2/command/button/Trigger.h>
 
 #include "commands/Autos.h"
@@ -15,6 +17,21 @@ RobotContainer::RobotContainer() {
   // Configure the button bindings
   ConfigureBindings();
 }
+
+
+void RobotContainer::Drive()
+{
+
+ 
+
+  if (bool frc::XboxController::GetLeftBumperPressed ())
+  {
+    count +=1 ; 
+    SubDriveTrain::Setcoef(count % 3) ;
+  }
+}
+
+
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
