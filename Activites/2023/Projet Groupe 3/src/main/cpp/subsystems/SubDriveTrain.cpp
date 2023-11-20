@@ -19,6 +19,6 @@ void SubDriveTrain::SetInverted()
 {
   victorLeft1.SetInverted(true);
   victorLeft2.SetInverted(true);
-  victorRight1.SetInverted(true);
-  victorRight2.SetInverted(true);
+  //victorRight1.SetInverted(true);
+  //victorRight2.SetInverted(true);
 }
