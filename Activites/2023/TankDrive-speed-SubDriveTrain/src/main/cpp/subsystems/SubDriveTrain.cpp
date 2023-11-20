@@ -18,18 +18,5 @@ void SubDriveTrain::tankDrive(double leftSpeed, double rightSpeed)
 
 void SubDriveTrain::setCoef(int Position)
 {
-    switch (Tcoef[Position])
-    {
-    case High :
-        coef = 0.75;
-        break;
-    case Medium :
-        coef = 0.5;
-        break;
-    case Low :
-        coef = 0.3;
-        break;
-    default:
-        break;
-    } 
+    coef = Mapper[TCoef[Position]];
 }

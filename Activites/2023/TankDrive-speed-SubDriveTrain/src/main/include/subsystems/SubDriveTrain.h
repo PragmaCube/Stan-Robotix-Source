@@ -9,6 +9,7 @@
 #include "Constants.h"
 #include <frc/motorcontrol/MotorControllerGroup.h>
 #include <frc/drive/DifferentialDrive.h>
+#include <map>
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
@@ -20,7 +21,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
   void Periodic() override;
   
   void tankDrive(double leftSpeed, double rightSpeed);
-  void setCoef(Coef eValueCoef);
+  void setCoef(int Position);
 
   
 
@@ -46,6 +47,8 @@ class SubDriveTrain : public frc2::SubsystemBase {
   frc::MotorControllerGroup Droite{SparkAD, SparkDD};// Groupe Droite 
   frc::MotorControllerGroup Gauche{SparkAG, SparkDG};// Groupe Gauche
   frc::DifferentialDrive Drive{Gauche, Droite};//Tank drive
+  std::map<int, float> Mapper{std::pair<int, float>(High,0.75),std::pair<int, float>(Medium,0.5),std::pair<int, float>(Low,0.3)};
+  
 };
 
 

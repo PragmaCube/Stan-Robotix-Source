@@ -4,8 +4,6 @@
 
 #include "RobotContainer.h"
 
-#include "SubDriveTrain.h"
-
 #include <frc2/command/button/Trigger.h>
 
 #include "commands/Autos.h"
@@ -21,13 +19,11 @@ RobotContainer::RobotContainer() {
 
 void RobotContainer::Drive()
 {
-
- 
-
-  if (bool frc::XboxController::GetLeftBumperPressed ())
+  if (m_driverController.GetLeftBumperPressed())
   {
-    count +=1 ; 
-    SubDriveTrain::Setcoef(count % 3) ;
+    count +=1;
+    count %= 3; 
+    Daniel.setCoef(count);
   }
 }
 
