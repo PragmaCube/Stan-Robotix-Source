@@ -11,8 +11,10 @@
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-
   // Configure the button bindings
+  driveTrain = new subDriveTrain;
+  joystick = new frc::Joystick;
+
   ConfigureBindings();
 }
 
@@ -35,7 +37,9 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 }
 
 void RobotContainer::drive() {
-  driveTrain.mecanumDrive(-joystick.GetX(), joystick.GetY(), -joystick.GetZ());
+  if(joystick->GetX()>0.1 ||joystick->GetY()>0.1 || joystick->GetZ()>0.1){
+      driveTrain->mecanumDrive(-joystick->GetX(), joystick->GetY(), -joystick->GetZ());
+  }
 }
 
 
