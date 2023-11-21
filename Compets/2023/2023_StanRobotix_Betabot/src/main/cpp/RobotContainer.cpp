@@ -1,6 +1,7 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
+#include <iostream>
 
 #include "RobotContainer.h"
 
@@ -9,12 +10,14 @@
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
-RobotContainer::RobotContainer() {
-  // Initialize all of your commands and subsystems here
+// RobotContainer::RobotContainer() {
+//   // Initialize all of your commands and subsystems here
+//   // Configure the button bindings
+//   driveTrain = new subDriveTrain;
+  // joystick = new frc::Joystick;
 
-  // Configure the button bindings
-  ConfigureBindings();
-}
+//   ConfigureBindings();
+// }
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
@@ -33,3 +36,16 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);
 }
+
+void RobotContainer::drive() 
+{
+  driveTrain.mecanumDrive(joystick.GetX(), -joystick.GetY(), -joystick.GetZ(), IMU.getRotation2D());
+  if (joystick.GetRawButtonPressed(1))
+  {
+    IMU.ResetAngle();
+    std::cout<<"yyyyyyyyyyya";
+  }
+}
+
+
+// typeDuReturn classe::fonction(parametres); -> parametres: Get...()
