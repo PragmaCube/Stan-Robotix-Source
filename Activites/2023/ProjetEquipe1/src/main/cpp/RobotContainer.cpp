@@ -44,7 +44,7 @@ void RobotContainer::drive()
 
 
   int CoeffSuppl;
-    if (m_JoysticksController.GetRightBumperPressed() == 1)
+    if (m_JoysticksController.GetRightBumper() == 1)
     {
         CoeffSuppl = 1;
     }
