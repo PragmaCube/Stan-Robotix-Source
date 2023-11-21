@@ -10,6 +10,7 @@
 #include "commands/ExampleCommand.h"
 
 RobotContainer::RobotContainer() {
+ //m_JoysticksController = new frc::XboxController;
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings
@@ -40,5 +41,16 @@ void RobotContainer::TankDrive(){}
 
 void RobotContainer::drive()
 {
-  m_TankDrive.TankDrive(m_JoysticksController.GetLeftY(),m_JoysticksController.GetRightY());
+
+
+  int CoeffSuppl;
+    if (m_JoysticksController.GetRightBumperPressed() == 1)
+    {
+        CoeffSuppl = 1;
+    }
+    else
+    {
+        CoeffSuppl = 2;
+    }
+  m_TankDrive.TankDrive(m_JoysticksController.GetLeftY(),m_JoysticksController.GetRightY(), CoeffSuppl);
 }

@@ -17,7 +17,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
   SubDriveTrain();
 
 
-  void TankDrive(double left, double right);
+  void TankDrive(double left, double right, int LBpressed);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */

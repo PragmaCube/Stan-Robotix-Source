@@ -18,9 +18,5 @@ namespace OperatorConstants {
 
 constexpr int kDriverControllerPort = 0 ;
 
-constexpr int kMotorRearRight = 0;
-constexpr int kMotorRearLeft = 1;
-constexpr int kMotorFrontRight = 2;
-constexpr int kMotorFrontLeft = 3;
 
 }  // namespace OperatorConstants

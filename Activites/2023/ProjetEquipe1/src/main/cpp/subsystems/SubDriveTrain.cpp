@@ -13,7 +13,7 @@ SubDriveTrain::SubDriveTrain()
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
 
-void SubDriveTrain::TankDrive(double left, double right) 
+void SubDriveTrain::TankDrive(double left, double right, int LBpressed) 
 {
-    m_drive.TankDrive(left, right);
+    m_drive.TankDrive(left * LBpressed / 2, right * LBpressed / 2);
 }
