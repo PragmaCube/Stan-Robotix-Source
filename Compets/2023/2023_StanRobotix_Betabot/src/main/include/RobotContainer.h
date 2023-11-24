@@ -12,6 +12,8 @@
 #include <frc/Joystick.h>
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
+#include "subsystems/SubArm.h"
+#include "subsystems/SubEjector.h"
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -26,6 +28,8 @@ class RobotContainer {
   frc2::CommandPtr GetAutonomousCommand();
 
  void drive();
+ void oEjector();   
+ void oArm();
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{OperatorConstants::kDriverControllerPort};
@@ -35,7 +39,10 @@ class RobotContainer {
 
   void ConfigureBindings();
 
+
   frc::Joystick joystick{0};
   SubDriveTrain driveTrain;
   SubIMU IMU;
+  SubArm Arm;
+  SubEjector Ejector;
 };

@@ -43,7 +43,32 @@ void RobotContainer::drive()
   if (joystick.GetRawButtonPressed(1))
   {
     IMU.ResetAngle();
-    std::cout<<"yyyyyyyyyyya";
+    
+  }
+}
+
+void RobotContainer::oEjector()
+{
+  std::cout << joystick.GetRawButtonPressed(2) << std::endl;
+  if (joystick.GetRawButton(2))
+  {
+    Ejector.On((joystick.GetThrottle()+1)/2);
+  }
+  else
+  {
+    Ejector.Off();
+  }
+}
+
+void RobotContainer::oArm()
+{
+  if (joystick.GetRawButtonPressed(5))
+  {
+    Arm.PosUp();
+  }
+  if (joystick.GetRawButtonPressed(3))
+  {
+    Arm.PosDown();
   }
 }
 

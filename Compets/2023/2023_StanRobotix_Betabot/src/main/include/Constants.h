@@ -19,3 +19,15 @@ namespace OperatorConstants {
 constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
+
+namespace ArmConstants
+{
+    constexpr int kArmCanId = 4;
+    constexpr int kPositionUp = 1;
+    constexpr int kPositionDown = 0;
+}
+
+namespace EjectorConstants
+{
+    constexpr int kEjectorCanId = 3;
+}

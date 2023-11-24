@@ -22,7 +22,7 @@ void SubIMU::ResetAngle()
 
 double SubIMU::GetAngle()
 {
-    mGyro->GetAngle();
+    return mGyro->GetAngle();
 }
 
 // This method will be called once per scheduler run

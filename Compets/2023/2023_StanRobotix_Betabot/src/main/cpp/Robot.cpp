@@ -59,6 +59,8 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() 
 {
   m_container.drive();
+  m_container.oArm();
+  m_container.oEjector();
 }
 
 /**
