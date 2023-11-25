@@ -18,4 +18,8 @@ namespace OperatorConstants {
 
 constexpr int kDriverControllerPort = 0;
 
+constexpr int kCanIdElevator = 0;
+
+constexpr float kSpeedPush = 0.80F;
+constexpr float kSpeedPull = 0.20F; 
 }  // namespace OperatorConstants
