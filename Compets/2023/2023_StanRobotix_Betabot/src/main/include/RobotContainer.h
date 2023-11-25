@@ -6,7 +6,7 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
-
+#include "subsystems/SubIMU.h"
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include <frc/Joystick.h>
@@ -37,4 +37,5 @@ void drive();
 
   frc::Joystick joystick{0};
   SubDriveTrain driveTrain;
+  SubIMU IMU;
 };

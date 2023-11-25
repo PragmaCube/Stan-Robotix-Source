@@ -11,10 +11,6 @@
 #include <frc/filter/LinearFilter.h>
 class SubIMU : public frc2::SubsystemBase 
 {
-   
-
-
-
  public:
   SubIMU();
   units::standard_gravity_t getShock();

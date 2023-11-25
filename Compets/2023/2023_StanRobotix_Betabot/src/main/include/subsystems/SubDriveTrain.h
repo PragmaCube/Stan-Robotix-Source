@@ -16,7 +16,7 @@ class SubDriveTrain : public frc2::SubsystemBase
   SubDriveTrain();
 
   /**
-   * Will be called periodically whenever the CommandScheduler runs.
+   * Will be called periodically whenever the CommandScheduler runs. 
    */
   void Periodic() override;
 
