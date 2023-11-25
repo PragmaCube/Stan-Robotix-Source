@@ -19,3 +19,8 @@ namespace OperatorConstants {
 constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
+
+namespace ArmConstants
+{
+    constexpr int kMotorId = 4;
+} // namespace ArmConstants
