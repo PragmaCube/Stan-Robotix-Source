@@ -32,10 +32,10 @@ void RobotContainer::ConfigureBindings() {
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
 }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous
-  return autos::ExampleAuto(&m_subsystem);
-}
+// frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
+//   // An example command will be run in autonomous
+//   return Autos::ExampleAuto(&m_subsystem);
+// }
 
 void RobotContainer::drive() 
 {

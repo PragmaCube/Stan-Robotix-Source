@@ -4,10 +4,27 @@
 
 #include "subsystems/SubArm.h"
 
+
 SubArm::SubArm() = default;
 
 // This method will be called once per scheduler run
 void SubArm::Periodic() {}
+
+void SubArm::Init()
+{
+    mArmTab.Add("Position Up", 1)
+           .WithWidget("Number Slider")
+           .GetEntry();
+    mArmTab.Add("Position Down", 0)
+           .WithWidget("Number Slider")
+           .GetEntry();
+    mArmTab.Add("Current Position", CurrentPosition())
+           .WithWidget("Number Bar")
+           .GetEntry();
+    mArmTab.Add("Current Speed", CurrentSpeed())
+           .WithWidget("Number Bar")
+           .GetEntry();
+}
 
 void SubArm::PosDown()
 {
@@ -22,4 +39,14 @@ void SubArm::PosUp()
 void SubArm::Move(float iValue)
 {
     mMotorArm.Set(iValue);
+}
+
+double SubArm::CurrentPosition()
+{
+    mMotorArmEncoder.GetPosition();
+}
+
+double SubArm::CurrentSpeed()
+{
+    mMotorArm.Get();
 }

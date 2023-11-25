@@ -10,6 +10,13 @@
 #include <frc2/command/SubsystemBase.h>
 #include "Constants.h"
 
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/ShuffleboardLayout.h>
+#include <frc/shuffleboard/ShuffleboardTab.h>
+#include <networktables/GenericEntry.h>
+#include <networktables/NetworkTableInstance.h>
+
+
 
 class SubArm : public frc2::SubsystemBase {
  public:
@@ -25,7 +32,14 @@ class SubArm : public frc2::SubsystemBase {
 
   void Move(float);
 
+  double CurrentPosition();
+  double CurrentSpeed();
+
+  void Init();
+
  private:
+
+  frc::ShuffleboardTab& mArmTab = frc::Shuffleboard::GetTab("Arm");
 
   rev::CANSparkMax mMotorArm{ArmConstants::kArmCanId, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder mMotorArmEncoder = mMotorArm.GetEncoder();
