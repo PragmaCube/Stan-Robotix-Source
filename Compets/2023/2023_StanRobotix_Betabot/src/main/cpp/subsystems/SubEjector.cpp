@@ -14,18 +14,22 @@ frc2::CommandPtr SubEjector::SubEjectorMethodCommand() {
   // Subsystem::RunOnce implicitly requires `this` subsystem.
   return RunOnce([/* this */] { /* one-time action goes here */ });
 }
-void SubEjector::Forward()
-{
-    mMotorElevator.Set(OperatorConstants::kSpeedPush);
-}
 
-void SubEjector::Backward()
+void SubEjector::Set(eSpeeds iSpeed)
 {
-    mMotorElevator.Set(-OperatorConstants::kSpeedPull);
+    switch (iSpeed)
+    {
+    case eForwards:
+        mMotorElevator.Set(EjectorConstants::kSpeedPush);
+        break;
+    case eBackwards:
+        mMotorElevator.Set(EjectorConstants::kSpeedPull);
+        break;
+    case eStop:
+        mMotorElevator.Set(0);
+        break;
+    default:
+        mMotorElevator.Set(0);
+        break;
+    }
 }
-
-void SubEjector::Stop()
-{
-    mMotorElevator.Set(0);
-}
-

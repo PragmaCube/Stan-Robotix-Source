@@ -14,19 +14,22 @@ class SubEjector : public frc2::SubsystemBase {
  public:
   SubEjector();
 
-  void Forward();
-  void Backward();
-  void Stop();
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
   frc2::CommandPtr SubEjectorMethodCommand();
-  
+  enum eSpeeds
+  {
+    eForwards,
+    eBackwards,
+    eStop
+  };
+  void Set(eSpeeds iSpeed);
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  rev::CANSparkMax mMotorElevator{OperatorConstants::kCanIdElevator, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax mMotorElevator{EjectorConstants::kCanIdElevator, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder mMotorEncoder = mMotorElevator.GetEncoder();
   
 
