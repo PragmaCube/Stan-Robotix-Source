@@ -17,11 +17,12 @@ class SubArm : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
+  void Advance();
+
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   rev::CANSparkMax mArmMotor{ArmConstants::kMotorId, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxPIDController mArmPID = mArmMotor.GetPIDController();
-  mArmPID.SetReference(SetPoint, rev::CANSparkMax::ControlType::kSmartMotion);
-  ProcessVariable = m_encoder.GetPosition();
+
 };
