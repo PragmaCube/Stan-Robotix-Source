@@ -22,13 +22,18 @@ class SubDriveTrain : public frc2::SubsystemBase
 
   void mecanumDrive(float x, float y, float z, frc::Rotation2d iRotation2d);
 
- private:
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX motorL1{DriveTrainConstants::kMotorL1Id}; // 0 is the RIO PWM port this is connected to
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX motorL2{DriveTrainConstants::kMotorL2Id};
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX motorR1{DriveTrainConstants::kMotorR1Id};
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX motorR2{DriveTrainConstants::kMotorR2Id};
+  void setVitesse(float Vitesse);
 
-  frc::MecanumDrive drive{motorL1, motorL2, motorR1, motorR2};
+ private:
+
+  float vitesse = 0.5;
+
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* motorL1; // 0 is the RIO PWM port this is connected to
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* motorL2;
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* motorR1;
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* motorR2;
+
+  frc::MecanumDrive* drive;
   
 
   // Components (e.g. motor controllers and sensors) should generally be
