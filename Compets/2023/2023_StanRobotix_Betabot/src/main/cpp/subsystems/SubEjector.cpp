@@ -4,7 +4,10 @@
 
 #include "subsystems/SubEjector.h"
 
-SubEjector::SubEjector() = default;
+SubEjector::SubEjector() 
+{
+    mMotorElevator = new rev::CANSparkMax(EjectorConstants::kCanIdElevator, rev::CANSparkMax::MotorType::kBrushless);
+}
 
 // This method will be called once per scheduler run
 void SubEjector::Periodic() {}
@@ -17,19 +20,20 @@ frc2::CommandPtr SubEjector::SubEjectorMethodCommand() {
 
 void SubEjector::Set(eSpeeds iSpeed)
 {
+    
     switch (iSpeed)
     {
     case eForwards:
-        mMotorElevator.Set(EjectorConstants::kSpeedPush);
+        mMotorElevator -> Set(EjectorConstants::kSpeedPush);
         break;
     case eBackwards:
-        mMotorElevator.Set(EjectorConstants::kSpeedPull);
+        mMotorElevator -> Set(EjectorConstants::kSpeedPull);
         break;
     case eStop:
-        mMotorElevator.Set(0);
+        mMotorElevator -> Set(0);
         break;
     default:
-        mMotorElevator.Set(0);
+        mMotorElevator -> Set(0);
         break;
     }
 }

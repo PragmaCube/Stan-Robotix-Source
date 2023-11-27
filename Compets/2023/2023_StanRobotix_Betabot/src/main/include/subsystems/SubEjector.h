@@ -29,8 +29,5 @@ class SubEjector : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  rev::CANSparkMax mMotorElevator{EjectorConstants::kCanIdElevator, rev::CANSparkMax::MotorType::kBrushless};
-  rev::SparkMaxRelativeEncoder mMotorEncoder = mMotorElevator.GetEncoder();
-  
-
+  rev::CANSparkMax* mMotorElevator = nullptr;
 };
