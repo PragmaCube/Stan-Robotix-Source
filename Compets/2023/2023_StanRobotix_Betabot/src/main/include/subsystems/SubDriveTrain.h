@@ -15,9 +15,7 @@ class SubDriveTrain : public frc2::SubsystemBase
  public:
   SubDriveTrain();
 
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
+
   void Periodic() override;
 
   void mecanumDrive(float x, float y, float z, frc::Rotation2d iRotation2d);
@@ -34,6 +32,7 @@ class SubDriveTrain : public frc2::SubsystemBase
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX* motorR2;
 
   frc::MecanumDrive* drive;
+
   
 
   // Components (e.g. motor controllers and sensors) should generally be
