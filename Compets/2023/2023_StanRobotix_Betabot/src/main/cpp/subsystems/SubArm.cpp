@@ -4,7 +4,14 @@
 
 #include "subsystems/SubArm.h"
 
-SubArm::SubArm() = default;
+SubArm::SubArm()
+{
+    mArmMotor = new rev::CANSparkMax{ArmConstants::kMotorId, rev::CANSparkMax::MotorType::kBrushless};
+
+}
 
 // This method will be called once per scheduler run
 void SubArm::Periodic() {}
+
+  
+
