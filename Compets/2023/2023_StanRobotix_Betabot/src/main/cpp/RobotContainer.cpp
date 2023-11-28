@@ -36,13 +36,13 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   return autos::ExampleAuto(&m_subsystem);
 }
 
-void RobotContainer::drive() {
+void RobotContainer::drive() 
+{
   if(joystick.GetX()>0.01 or joystick.GetY()>0.01 or joystick.GetZ()>0.01)
   {
       driveTrain.mecanumDrive(joystick.GetX(), -joystick.GetY(), -joystick.GetZ(), IMU.getRotation2d());
   }
 }
-
 
 
 // typeDuReturn classe::fonction(parametres); -> parametres: Get...()
