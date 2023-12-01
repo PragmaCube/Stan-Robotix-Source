@@ -9,12 +9,14 @@
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
-RobotContainer::RobotContainer() {
-  // Initialize all of your commands and subsystems here
+// RobotContainer::RobotContainer() {
+//   // Initialize all of your commands and subsystems here
+//   // Configure the button bindings
+//   driveTrain = new subDriveTrain;
+  // joystick = new frc::Joystick;
 
-  // Configure the button bindings
-  ConfigureBindings();
-}
+//   ConfigureBindings();
+// }
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
@@ -33,3 +35,14 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);
 }
+
+void RobotContainer::drive() 
+{
+  if(joystick.GetX()>0.01 or joystick.GetY()>0.01 or joystick.GetZ()>0.01)
+  {
+      driveTrain.mecanumDrive(joystick.GetX(), -joystick.GetY(), -joystick.GetZ(), IMU.getRotation2d());
+  }
+}
+
+
+// typeDuReturn classe::fonction(parametres); -> parametres: Get...()
