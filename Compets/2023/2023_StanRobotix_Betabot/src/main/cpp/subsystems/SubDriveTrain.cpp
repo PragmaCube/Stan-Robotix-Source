@@ -22,6 +22,10 @@ void SubDriveTrain::Periodic() {}
 
 void SubDriveTrain::mecanumDrive(const float x, const float y, const float z, const frc::Rotation2d iRotation2d)
 {
-    drive.DriveCartesian(y*0.5, -x*0.5, -z*0.5, iRotation2d);
+    drive->DriveCartesian(y*(vitesse), -x*(vitesse), -z*(vitesse), iRotation2d);
 }
 
+void SubDriveTrain::setVitesse(float Vitesse)
+{
+    vitesse = Vitesse;
+}
