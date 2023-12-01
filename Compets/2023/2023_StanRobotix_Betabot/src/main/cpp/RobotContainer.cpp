@@ -71,6 +71,7 @@ void RobotContainer::drive()
 void RobotContainer::oEjector()
 {
   //std::cout << joystick.GetRawButtonPressed(2) << std::endl;
+  std::cout << joystick.GetRawButtonPressed(2) << std::endl;
   if (joystick.GetRawButton(2))
   {
     Ejector.On((-joystick.GetThrottle()+1)/2);
