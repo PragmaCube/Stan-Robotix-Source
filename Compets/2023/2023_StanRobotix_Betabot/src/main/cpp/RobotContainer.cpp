@@ -18,6 +18,17 @@
 //   ConfigureBindings();
 // }
 
+void RobotContainer::armInit()
+{
+  Arm.Init();
+  frc::Shuffleboard::GetTab("Operator").AddDouble("X", [this]{return joystick.GetX();});
+  frc::Shuffleboard::GetTab("Operator").AddDouble("Y", [this]{return joystick.GetY();});
+  frc::Shuffleboard::GetTab("Operator").AddDouble("Z", [this]{return joystick.GetZ();});
+  frc::Shuffleboard::GetTab("IMU").AddDouble("Rotation2d", [this]{return IMU.getRotation2D().Degrees().value();});
+  
+  
+}
+
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
 
@@ -38,9 +49,37 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::drive() 
 {
-  if(joystick.GetX()>0.01 or joystick.GetY()>0.01 or joystick.GetZ()>0.01)
+  driveTrain.mecanumDrive(joystick.GetX(), joystick.GetY(), joystick.GetZ(), IMU.getRotation2D());
+  
+  if (joystick.GetRawButtonPressed(1))
   {
-      driveTrain.mecanumDrive(joystick.GetX(), -joystick.GetY(), -joystick.GetZ(), IMU.getRotation2d());
+    IMU.ResetAngle();
+    
+  }
+}
+
+void RobotContainer::oEjector()
+{
+  std::cout << joystick.GetRawButtonPressed(2) << std::endl;
+  if (joystick.GetRawButton(2))
+  {
+    Ejector.On((-joystick.GetThrottle()+1)/2);
+  }
+  else
+  {
+    Ejector.Off();
+  }
+}
+
+void RobotContainer::oArm()
+{
+  if (joystick.GetRawButtonPressed(5))
+  {
+    Arm.PosUp();
+  }
+  if (joystick.GetRawButtonPressed(3))
+  {
+    Arm.PosDown();
   }
 }
 

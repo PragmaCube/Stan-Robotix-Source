@@ -25,7 +25,11 @@ class RobotContainer {
 
   frc2::CommandPtr GetAutonomousCommand();
 
-void drive();
+ void drive();
+ void oEjector();   
+ void oArm();
+ void armInit();
+
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{OperatorConstants::kDriverControllerPort};

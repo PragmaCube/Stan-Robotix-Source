@@ -22,9 +22,12 @@ constexpr int kDriverControllerPort = 0;
 
 namespace DriveTrainConstants
 {
-    constexpr int kMotorL1Id = 1;
-    constexpr int kMotorL2Id = 3;
-    constexpr int kMotorR1Id = 2;
-    constexpr int kMotorR2Id = 4;
-    
-} // namespace DriveTrainConstants
+    constexpr int kArmCanId = 4;
+    constexpr int kPositionUp = 400;
+    constexpr int kPositionDown = 0;
+}
+
+namespace EjectorConstants
+{
+    constexpr int kEjectorCanId = 3;
+}
