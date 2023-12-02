@@ -9,6 +9,8 @@
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
+#include <frc/Joystick.h>
+#include "subsystems/SubArm.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -23,6 +25,7 @@ class RobotContainer {
 
   frc2::CommandPtr GetAutonomousCommand();
 
+  void ArmLimit();
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
@@ -31,5 +34,9 @@ class RobotContainer {
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
 
+  SubArm mArm;
+
   void ConfigureBindings();
+
+  frc::Joystick joystick{0};
 };

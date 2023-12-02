@@ -4,7 +4,26 @@
 
 #include "subsystems/SubArm.h"
 
-SubArm::SubArm() = default;
+SubArm::SubArm()
+{
+    
+}
 
 // This method will be called once per scheduler run
+void SubArm::Up()
+{
+    mArmMotor.Set(ArmConstants::motorSpeed);	
+}
+
+// This method will be called once per scheduler run
+void SubArm::Down()
+{
+    mArmMotor.Set(-(ArmConstants::motorSpeed));
+}
+
+double SubArm::GetEncodeurPosition()
+{
+    return mArmMotorEncodeur.GetPosition();
+}
+
 void SubArm::Periodic() {}

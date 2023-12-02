@@ -33,3 +33,21 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);
 }
+
+void RobotContainer::ArmLimit()
+{
+  
+
+  switch(joystick.GetPOV())
+  {
+    case 0 :
+       mArm.Down();
+       break;
+    case 180 :
+       mArm.Up();
+       break;
+    
+    default:
+       break;
+  }
+}

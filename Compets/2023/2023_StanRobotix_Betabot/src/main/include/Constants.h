@@ -23,4 +23,5 @@ constexpr int kDriverControllerPort = 0;
 namespace ArmConstants
 {
     constexpr int kMotorId = 4;
+    constexpr float motorSpeed = 0.1;
 } // namespace ArmConstants
