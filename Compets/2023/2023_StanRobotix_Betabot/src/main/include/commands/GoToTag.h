@@ -12,18 +12,21 @@
 #include <frc/shuffleboard/ShuffleboardTab.h>
 #include <networktables/GenericEntry.h>
 #include <frc/shuffleboard/BuiltInWidgets.h>
+#include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubIMU.h"
 class GoToTag
     : public frc2::CommandHelper<frc2::PIDCommand, GoToTag> {
  public:
-  GoToTag();
+  GoToTag(SubDriveTrain *iDriveTrain);
 
   bool IsFinished() override;
  private:
   nt::GenericEntry* mCoefP;
   nt::GenericEntry* mCoefI;
   nt::GenericEntry* mCoefD;
-  
+  SubDriveTrain *mDriveTrain;
 
+  SubIMU *mIMU;
 
     
 };

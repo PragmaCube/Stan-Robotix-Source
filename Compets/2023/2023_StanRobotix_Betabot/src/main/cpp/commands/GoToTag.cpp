@@ -7,7 +7,7 @@
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-GoToTag::GoToTag()
+GoToTag::GoToTag(SubDriveTrain *iDriveTrain)
     : CommandHelper{frc2::PIDController{0.001, 0, 0},
                     // This should return the measurement
                     [] { return LimelightHelpers::getTX(""); },
@@ -16,7 +16,7 @@ GoToTag::GoToTag()
                     // This uses the output
                     [this](double output) {
                       // Use the output here
-                      /*on appelle le drivetrain*/
+                      mDriveTrain->mecanumDrive(0,0,output,mIMU->getRotation2d());
                       GetController().SetPID(mCoefP->GetDouble(0),mCoefI->GetDouble(0),mCoefD->GetDouble(0));
                     }} {
                       mCoefP = frc::Shuffleboard::GetTab("GoToTab")
@@ -33,6 +33,8 @@ GoToTag::GoToTag()
                                                   .Add("Coef D", 0)
                                                   .WithWidget(frc::BuiltInWidgets::kTextView)
                                                   .GetEntry();
+                      mDriveTrain = iDriveTrain;
+
                     }
 
 // Returns true when the command should end.
