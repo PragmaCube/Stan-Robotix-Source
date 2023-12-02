@@ -24,8 +24,8 @@ class GoToTag
   nt::GenericEntry* mCoefP;
   nt::GenericEntry* mCoefI;
   nt::GenericEntry* mCoefD;
+  
   SubDriveTrain *mDriveTrain;
-
   SubIMU *mIMU;
 
     
