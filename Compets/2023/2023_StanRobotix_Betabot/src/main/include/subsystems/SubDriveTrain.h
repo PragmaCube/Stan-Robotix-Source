@@ -13,18 +13,19 @@
 class SubDriveTrain : public frc2::SubsystemBase 
 {
  public:
-  SubDriveTrain();
-
+  SubDriveTrain();  
 
   void Periodic() override;
 
   void mecanumDrive(float x, float y, float z, frc::Rotation2d iRotation2d);
 
-  void setVitesse(float Vitesse);
+  void setVitesse(int Vitesse);
+
+  int getVitesse();
 
  private:
 
-  float vitesse = 0.5;
+  int vitesse = 2;
 
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX* motorL1; // 0 is the RIO PWM port this is connected to
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX* motorL2;

@@ -43,17 +43,31 @@ void RobotContainer::drive()
   if (joystick.GetRawButtonPressed(1))
   {
     IMU.ResetAngle();
-    
   }
 
-  if (joystick.GetRawButtonPressed(6) == 1)
+  /*if (joystick.GetRawButtonPressed(6) == 1)
   {
     driveTrain.setVitesse(1);
   }
 
   if (joystick.GetRawButtonPressed(4) == 1)
   {
-    driveTrain.setVitesse(0.5);
+    driveTrain.setVitesse(2);
+  }*/
+
+  if (joystick.GetRawButtonPressed(4) == 1) 
+  {
+    switch(driveTrain.getVitesse())
+    {
+      case 1 :
+        driveTrain.setVitesse(2);
+        break;
+      case 2 :
+        driveTrain.setVitesse(1);
+        break;
+      default:
+        driveTrain.setVitesse(2);
+    }
   }
 }
 
