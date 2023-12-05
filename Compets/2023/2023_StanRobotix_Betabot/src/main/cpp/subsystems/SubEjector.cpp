@@ -4,9 +4,11 @@
 
 #include "subsystems/SubEjector.h"
 
+
+#include <iostream>
 SubEjector::SubEjector() 
 {
-    mMotorElevator = new rev::CANSparkMax(EjectorConstants::kCanIdElevator, rev::CANSparkMax::MotorType::kBrushless);
+   
 }
 
 // This method will be called once per scheduler run
@@ -24,16 +26,20 @@ void SubEjector::Set(eSpeeds iSpeed)
     switch (iSpeed)
     {
     case eForwards:
-        mMotorElevator -> Set(EjectorConstants::kSpeedPush);
+        mMotorElevator.Set(EjectorConstants::kSpeedPush);
+        std::cout << '1' << std::endl;
         break;
     case eBackwards:
-        mMotorElevator -> Set(EjectorConstants::kSpeedPull);
+        mMotorElevator.Set(EjectorConstants::kSpeedPull);
+        std::cout << '2' << std::endl;
         break;
     case eStop:
-        mMotorElevator -> Set(0);
+        mMotorElevator.Set(0);
+        std::cout << '3' << std::endl;
         break;
     default:
-        mMotorElevator -> Set(0);
+        mMotorElevator.Set(0);
+        std::cout << '4' << std::endl;
         break;
     }
 }

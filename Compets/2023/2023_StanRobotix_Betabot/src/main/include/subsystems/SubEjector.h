@@ -25,12 +25,12 @@ class SubEjector : public frc2::SubsystemBase {
     eBackwards,
     eStop
   };
-  void Set(const eSpeeds iSpeed);
-  void SetEjectorSpeedCoeficient(float EjectorSpeedCoeficient);
-  float GetEjectorSpeedCoeficient(float EjectorSpeedCoeficient);
+  void Set(eSpeeds iSpeed);
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  rev::CANSparkMax* mMotorElevator = nullptr;
-  float EjectorSpeedCoeficient = 0;
+  rev::CANSparkMax mMotorElevator{EjectorConstants::kCanIdElevator, rev::CANSparkMax::MotorType::kBrushless};
+  rev::SparkMaxRelativeEncoder mMotorEncoder = mMotorElevator.GetEncoder();
+  
+
 };
