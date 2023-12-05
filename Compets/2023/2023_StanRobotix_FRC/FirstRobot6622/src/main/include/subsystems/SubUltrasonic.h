@@ -5,12 +5,14 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/Ultrasonic.h>
-#include"Constants.h"
+#include <frc/AnalogInput.h>
+#include <frc/RobotController.h>
 
-class ultrason : public frc2::SubsystemBase {
+#include "Constants.h"
+
+class SubUltrasonic : public frc2::SubsystemBase {
  public:
-  ultrason();
+  SubUltrasonic();
   float getDistance();
 
   /**
@@ -21,6 +23,5 @@ class ultrason : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-    frc::Ultrasonic mUltrasonic{kUltrasonicDIO_1, kUltrasonicDIO_2};
-    units::meter_t distance;
+  frc::AnalogInput ultrasonic{kUltrasonicDIO};
 };

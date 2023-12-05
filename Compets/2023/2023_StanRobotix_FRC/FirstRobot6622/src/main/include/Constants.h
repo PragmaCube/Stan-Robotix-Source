@@ -1,4 +1,3 @@
 #pragma once
 
-int kUltrasonicDIO_1 = 0;
-int kUltrasonicDIO_2 = 1;
+constexpr int kUltrasonicDIO = 0;
