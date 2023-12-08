@@ -9,6 +9,11 @@ SubIMU::SubIMU() = default;
 // This method will be called once per scheduler run
 void SubIMU::Periodic() {}
 
+void SubIMU::ResetAngle()
+{
+    IMU.Reset();
+}
+
 units::standard_gravity_t SubIMU::getAccelX()
 {
     int16_t wAccel[3];
