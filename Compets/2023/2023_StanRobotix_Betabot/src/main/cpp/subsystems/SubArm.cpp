@@ -43,10 +43,10 @@ void SubArm::Move(float iValue)
 
 double SubArm::CurrentPosition()
 {
-    mMotorArmEncoder.GetPosition();
+    return mMotorArmEncoder.GetPosition();
 }
 
 double SubArm::CurrentSpeed()
 {
-    mMotorArm.Get();
+    return mMotorArm.Get();
 }

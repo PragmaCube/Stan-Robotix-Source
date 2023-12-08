@@ -29,7 +29,8 @@ void RobotContainer::ConfigureBindings() {
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
-  m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+  // m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+  // frc::Shuffleboard::
 }
 
 // frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
@@ -40,19 +41,35 @@ void RobotContainer::ConfigureBindings() {
 void RobotContainer::drive() 
 {
   driveTrain.mecanumDrive(joystick.GetX(), -joystick.GetY(), -joystick.GetZ(), IMU.getRotation2D());
-  if (joystick.GetRawButtonPressed(1))
+  if (joystick.GetRawButtonPressed(8))
   {
     IMU.ResetAngle();
-    
   }
 }
 
 void RobotContainer::oEjector()
 {
-  std::cout << joystick.GetRawButtonPressed(2) << std::endl;
-  if (joystick.GetRawButton(2))
+  if (joystick.GetRawButtonPressed(6))
   {
-    Ejector.On((joystick.GetThrottle()+1)/2);
+    isArmForward = false;
+    std::cout << "forward" << std::endl;  
+  }
+  else if (joystick.GetRawButtonPressed(4))
+  {
+    isArmForward = true;
+    std::cout << "backward" << std::endl;
+  }
+
+  if (joystick.GetRawButton(1))
+  {
+    if (isArmForward)
+    {
+      Ejector.On(-(joystick.GetThrottle()-1)/2);
+    }
+    else
+    {
+      Ejector.On((joystick.GetThrottle()-1)/2);
+    }
   }
   else
   {
