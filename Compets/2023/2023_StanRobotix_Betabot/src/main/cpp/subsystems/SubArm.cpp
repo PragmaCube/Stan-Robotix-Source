@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SubArm.h"
+#include <iostream>
 
 SubArm::SubArm()
 {
@@ -24,6 +25,12 @@ void SubArm::Down()
 double SubArm::GetEncodeurPosition()
 {
     return mArmMotorEncodeur.GetPosition();
+}
+
+void SubArm::StopArm()
+{
+    std::cout<<mArmMotorEncodeur.GetPosition();
+    mArmMotor.Set(0);
 }
 
 void SubArm::Periodic() {}

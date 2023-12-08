@@ -39,4 +39,5 @@ class RobotContainer {
   void ConfigureBindings();
 
   frc::Joystick joystick{0};
+  int compteur = 0;
 };

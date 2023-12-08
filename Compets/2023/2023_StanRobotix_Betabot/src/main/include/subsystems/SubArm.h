@@ -20,6 +20,7 @@ class SubArm : public frc2::SubsystemBase {
   void Up();
   void Down();
   double GetEncodeurPosition();
+  void StopArm();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be

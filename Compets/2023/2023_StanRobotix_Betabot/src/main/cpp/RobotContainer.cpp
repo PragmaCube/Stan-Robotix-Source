@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "RobotContainer.h"
+#include "subsystems/SubArm.h"
 
 #include <frc2/command/button/Trigger.h>
 
@@ -36,18 +37,23 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::ArmLimit()
 {
-  
-
-  switch(joystick.GetPOV())
+  if (mArm.GetEncodeurPosition() >= 4)
   {
-    case 0 :
-       mArm.Down();
-       break;
-    case 180 :
-       mArm.Up();
-       break;
-    
-    default:
-       break;
+    mArm.StopArm();
+  }
+  else 
+  {
+    switch(joystick.GetPOV())
+    {
+      case 0 :
+        mArm.Down();
+        break;
+      case 180 :
+        mArm.Up();
+        break;
+      default:
+        mArm.StopArm();
+        break;
+    }
   }
 }
