@@ -24,6 +24,6 @@ constexpr int kDriverControllerPort = 0;
 namespace EjectorConstants
 {
     constexpr int kCanIdElevator = 3;
-    constexpr float kSpeedPush = 0.80F;
-    constexpr float kSpeedPull = -0.20F; 
+    constexpr float kSpeedPush = 0.010F;
+    constexpr float kSpeedPull = -0.010F; 
 } // namespace EjectorConstants

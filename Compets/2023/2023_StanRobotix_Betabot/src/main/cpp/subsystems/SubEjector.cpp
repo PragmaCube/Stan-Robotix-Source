@@ -5,7 +5,6 @@
 #include "subsystems/SubEjector.h"
 
 
-#include <iostream>
 SubEjector::SubEjector() 
 {
    
@@ -27,19 +26,15 @@ void SubEjector::Set(eSpeeds iSpeed)
     {
     case eForwards:
         mMotorElevator.Set(EjectorConstants::kSpeedPush);
-        std::cout << '1' << std::endl;
         break;
     case eBackwards:
         mMotorElevator.Set(EjectorConstants::kSpeedPull);
-        std::cout << '2' << std::endl;
         break;
     case eStop:
         mMotorElevator.Set(0);
-        std::cout << '3' << std::endl;
         break;
     default:
         mMotorElevator.Set(0);
-        std::cout << '4' << std::endl;
         break;
     }
 }
