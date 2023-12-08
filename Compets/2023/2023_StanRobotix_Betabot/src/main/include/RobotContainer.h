@@ -39,8 +39,8 @@ class RobotContainer {
 
   void ConfigureBindings();
 
-  frc::Joystick joystick{0};
-  SubDriveTrain driveTrain;
-  SubIMU IMU;
+  frc::Joystick mJoystick{0};
+  SubDriveTrain mDriveTrain;
+  SubIMU mIMU;
 
 };

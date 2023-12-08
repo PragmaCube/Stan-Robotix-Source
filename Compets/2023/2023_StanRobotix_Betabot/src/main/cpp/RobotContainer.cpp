@@ -38,35 +38,35 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::drive() 
 {
-  driveTrain.mecanumDrive(joystick.GetX(), joystick.GetY(), joystick.GetZ(), IMU.getRotation2d());
+  mDriveTrain.mecanumDrive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
   
-  if (joystick.GetRawButtonPressed(1))
+  if (mJoystick.GetRawButtonPressed(1))
   {
-    IMU.ResetAngle();
+    mIMU.ResetAngle();
   }
 
-  /*if (joystick.GetRawButtonPressed(6) == 1)
+  /*if (mJoystick.GetRawButtonPressed(6) == 1)
   {
-    driveTrain.setVitesse(1);
+    mDriveTrain.setVitesse(1);
   }
 
-  if (joystick.GetRawButtonPressed(4) == 1)
+  if (mJoystick.GetRawButtonPressed(4) == 1)
   {
-    driveTrain.setVitesse(2);
+    mDriveTrain.setVitesse(2);
   }*/
 
-  if (joystick.GetRawButtonPressed(4) == 1) 
+  if (mJoystick.GetRawButtonPressed(4) == 1) 
   {
-    switch(driveTrain.getVitesse())
+    switch(mDriveTrain.getVitesse())
     {
       case 1 :
-        driveTrain.setVitesse(2);
+        mDriveTrain.setVitesse(2);
         break;
       case 2 :
-        driveTrain.setVitesse(1);
+        mDriveTrain.setVitesse(1);
         break;
       default:
-        driveTrain.setVitesse(2);
+        mDriveTrain.setVitesse(2);
     }
   }
 }
