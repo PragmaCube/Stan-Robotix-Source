@@ -94,14 +94,14 @@ void AutoCmd::Init()
      
 
 
-     driveTrain.mecanumDrive(0,5,0,IMU.getRotation2D());
+     driveTrain.mecanumDrive(0,0.2,0,IMU.getRotation2D());
    
  }
 
  bool AutoCmd::isPhase1Finished()
  {
     
-    if (mGenericTimer.Get()>5_s)
+    if (mGenericTimer.Get()>2_s)
     {
      mGenericTimer.Reset();
      return true;
@@ -120,7 +120,7 @@ void AutoCmd::Init()
  }
  bool AutoCmd::isPhase2Finished() 
  { 
-    if (mGenericTimer.Get()>5_s)
+    if (mGenericTimer.Get()>2_s)
     {
      mGenericTimer.Reset();
      return true;
@@ -133,12 +133,12 @@ void AutoCmd::Init()
 
  void AutoCmd::doExecutePhase3() 
  { 
-    driveTrain.mecanumDrive(0,5,0,IMU.getRotation2D());
+    driveTrain.mecanumDrive(0,0.2,0,IMU.getRotation2D());
 
  }
  bool AutoCmd::isPhase3Finished() { 
     
-    if (mGenericTimer.Get()>5_s)
+    if (mGenericTimer.Get()>2_s)
     {
      mGenericTimer.Reset();
      return true;
@@ -154,7 +154,7 @@ void AutoCmd::Init()
     
  }
  bool AutoCmd::isPhase4Finished() { 
-    if (mGenericTimer.Get()>5_s)
+    if (mGenericTimer.Get()>2_s)
     {
      mGenericTimer.Reset();
      return true;
