@@ -29,7 +29,6 @@ double SubArm::GetEncodeurPosition()
 
 void SubArm::StopArm()
 {
-    std::cout<<mArmMotorEncodeur.GetPosition();
     mArmMotor.Set(0);
 }
 

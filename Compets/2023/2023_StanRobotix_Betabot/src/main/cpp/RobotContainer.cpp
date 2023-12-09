@@ -2,6 +2,8 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+#include <iostream>
+
 #include "RobotContainer.h"
 #include "subsystems/SubArm.h"
 
@@ -9,6 +11,8 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+
+/*-------------------------------------------------------------------------------------------*/
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
@@ -35,25 +39,30 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   return autos::ExampleAuto(&m_subsystem);
 }
 
+/*-------------------------------------------------------------------------------------------*/
+
 void RobotContainer::ArmLimit()
 {
-  if (mArm.GetEncodeurPosition() >= 4)
+  // monter bras
+  if (joystick.GetPOV() == 0 && mArm.GetEncodeurPosition() > ArmConstants::kArmLimitDown)
   {
+    std::cout << "message" << std::endl;
+    mArm.Down();
+  }
+  
+  // Baisser bras
+  else if (joystick.GetPOV() == 180 && mArm.GetEncodeurPosition() < ArmConstants::kArmLimitUp)
+  {
+    std::cout << "messageoui" << std::endl;
+    mArm.Up();
+  }
+
+  // bras a atteint la limite
+  else
+  {
+    std::cout << "message2" << std::endl;
     mArm.StopArm();
   }
-  else 
-  {
-    switch(joystick.GetPOV())
-    {
-      case 0 :
-        mArm.Down();
-        break;
-      case 180 :
-        mArm.Up();
-        break;
-      default:
-        mArm.StopArm();
-        break;
-    }
-  }
+
+  
 }
