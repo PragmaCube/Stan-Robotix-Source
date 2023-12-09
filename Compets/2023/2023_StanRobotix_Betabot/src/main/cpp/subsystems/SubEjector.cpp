@@ -7,11 +7,12 @@
 SubEjector::SubEjector() = default;
 
 // This method will be called once per scheduler run
-void SubEjector::Periodic() {}
+void SubEjector::Periodic() 
+{}
 
 void SubEjector::On(double speed)
 {
-    mMotorArm.Set(speed);
+    mMotorArm.Set(-speed);
     state = true;
 }
 

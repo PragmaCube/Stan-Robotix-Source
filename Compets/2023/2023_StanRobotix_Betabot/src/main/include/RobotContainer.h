@@ -14,6 +14,7 @@
 #include "subsystems/SubIMU.h"
 #include "subsystems/SubArm.h"
 #include "subsystems/SubEjector.h"
+#include <frc/shuffleboard/Shuffleboard.h>
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -45,4 +46,5 @@ class RobotContainer {
   SubIMU IMU;
   SubArm Arm;
   SubEjector Ejector;
+  bool isArmForward = true;
 };
