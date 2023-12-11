@@ -34,28 +34,35 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 }
 void RobotContainer::Drive()
 {
-  if (joystick.GetRawButton(3))
+
+
+  if (joystick.GetRawButtonPressed(1))
   {
-      m_SubEjector.Set(SubEjector::eForwards);
+    if ( m_SubEjector.GetMoveState() == SubEjector::eForwards)
+    {
+      mMotorElevator.Set(EjectorConstants::kSpeedPush*m_SubEjector.GetSpeedCoefficient());
+    }
+
+    if ( m_SubEjector.GetMoveState() == SubEjector::eBackwards)
+    {
+      mMotorElevator.Set(EjectorConstants::kSpeedPush*-m_SubEjector.GetSpeedCoefficient());
+    }
   }
-  if (joystick.GetRawButton(4))
+  else
   {
-      m_SubEjector.Set(SubEjector::eBackwards);
+    mMotorElevator.Set(0);
   }
 
-    if (joystick.GetRawButton(5))
+
+
+  if (joystick.GetRawButtonPressed(3))
   {
-      m_SubEjector.Set(SubEjector::eStop);
+    m_SubEjector.SetMoveState(SubEjector::eForwards);
+  }   
+  
+  if (joystick.GetRawButtonPressed(4))
+  {
+    m_SubEjector.SetMoveState(SubEjector::eBackwards);
   }
 
-}
-
-float RobotContainer::GetVitesse()
-{
-  return eVitesse;
-}
-
-void RobotContainer::SetVitesse(int VitesseaSet)
-{
-  eVitesse=VitesseaSet;
 }

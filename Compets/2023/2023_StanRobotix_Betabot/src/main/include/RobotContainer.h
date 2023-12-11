@@ -24,7 +24,7 @@ class RobotContainer {
   frc2::CommandPtr GetAutonomousCommand();
   void Drive();
   float GetVitesse();
-  void SetVitesse(int VitesseaSet);
+  void SetVitesse(float VitesseaSet);
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
@@ -32,7 +32,7 @@ class RobotContainer {
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
-  int eVitesse = 0;
+
   void ConfigureBindings();
   SubEjector m_SubEjector;
   frc::Joystick joystick{0};

@@ -19,16 +19,17 @@ frc2::CommandPtr SubEjector::SubEjectorMethodCommand() {
   return RunOnce([/* this */] { /* one-time action goes here */ });
 }
 
+
 void SubEjector::Set(eSpeeds iSpeed)
 {
     
     switch (iSpeed)
     {
     case eForwards:
-        mMotorElevator.Set(EjectorConstants::kSpeedPush);
+        SubEjector::SetMoveState(eForwards);
         break;
     case eBackwards:
-        mMotorElevator.Set(EjectorConstants::kSpeedPull);
+        SubEjector::SetMoveState(eBackwards);
         break;
     case eStop:
         mMotorElevator.Set(0);
@@ -37,4 +38,26 @@ void SubEjector::Set(eSpeeds iSpeed)
         mMotorElevator.Set(0);
         break;
     }
+}
+
+float SubEjector::GetSpeedCoefficient()
+{
+  return eSpeedCoefficient;
+}
+
+void SubEjector::SetSpeedCoefficient(float SpeedToSet)
+{
+  eSpeedCoefficient=SpeedToSet;
+}
+
+
+
+float SubEjector::GetMoveState()
+{
+  return MoveState;
+}
+
+void SubEjector::SetMoveState(eSpeeds MoveStateToSet)
+{
+  MoveState=MoveStateToSet;
 }
