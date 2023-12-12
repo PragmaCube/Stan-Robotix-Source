@@ -57,12 +57,5 @@ void RobotContainer::ArmLimit()
     mArm.Up();
   }
 
-  // bras a atteint la limite
-  else
-  {
-    std::cout << "message2" << std::endl;
-    mArm.StopArm();
-  }
-
   
 }

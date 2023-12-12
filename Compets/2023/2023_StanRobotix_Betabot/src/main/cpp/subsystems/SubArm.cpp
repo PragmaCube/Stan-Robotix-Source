@@ -4,22 +4,37 @@
 
 #include "subsystems/SubArm.h"
 #include <iostream>
+// Pour installer le PID
+#include <frc2/command/PIDSubsystem.h>
+// ---------------------
 
 SubArm::SubArm()
 {
-    
+    // Pour installer le PID
+    mPIDController.SetP(ArmConstants::kP);
+    mPIDController.SetI(ArmConstants::kI);
+    mPIDController.SetD(ArmConstants::kD);
+    mPIDController.SetIZone(ArmConstants::kIz);
+    mPIDController.SetFF(ArmConstants::kFF);
+
+    mPIDController.SetOutputRange(ArmConstants::kMinOutput, ArmConstants::kMaxOutput);
+    mPIDController.SetSmartMotionMaxVelocity(kMaxVel);
+    mPIDController.SetSmartMotionMinOutputVelocity(kMinVel);
+    mPIDController.SetSmartMotionMaxAccel(kMaxAcc);
+    mPIDController.SetSmartMotionAllowedClosedLoopError(kAllErr);
+    // ---------------------
 }
 
 // This method will be called once per scheduler run
 void SubArm::Up()
 {
-    mArmMotor.Set(ArmConstants::motorSpeed);	
+    Height = ArmConstants::kArmLimitUp;
 }
 
 // This method will be called once per scheduler run
 void SubArm::Down()
 {
-    mArmMotor.Set(-(ArmConstants::motorSpeed));
+    Height = ArmConstants::kArmLimitDown;
 }
 
 double SubArm::GetEncodeurPosition()
@@ -32,7 +47,8 @@ void SubArm::StopArm()
     mArmMotor.Set(0);
 }
 
-void SubArm::Periodic() {}
 
-  
-
+void SubArm::Periodic() 
+{
+    mPIDController.SetReference(Height,rev::ControlType::kSmartMotion);
+}
