@@ -15,18 +15,18 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
 class GoToTag
-    : public frc2::CommandHelper<frc2::PIDCommand, GoToTag> {
+    : public frc2::CommandHelper<frc2::CommandBase, GoToTag> {
  public:
   GoToTag(SubDriveTrain *iDriveTrain);
 
+
+  void Execute() override;
   bool IsFinished() override;
  private:
-  nt::GenericEntry* mCoefP;
-  nt::GenericEntry* mCoefI;
-  nt::GenericEntry* mCoefD;
-  
-  SubDriveTrain *mDriveTrain;
-  SubIMU *mIMU;
-
-    
+  nt::GenericEntry* mCoefP = nullptr;
+  nt::GenericEntry* mCoefI = nullptr;
+  nt::GenericEntry* mCoefD = nullptr;
+  SubDriveTrain *mDriveTrain = nullptr;
+  frc2::PIDController mPIDController {0.2, 1.2, 0.1};
+  double Output;
 };

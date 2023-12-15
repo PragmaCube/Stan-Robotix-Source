@@ -1,43 +1,65 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-
+#include <iostream>
 #include "commands/GoToTag.h"
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
+
 GoToTag::GoToTag(SubDriveTrain *iDriveTrain)
-    : CommandHelper{frc2::PIDController{0.001, 0, 0},
-                    // This should return the measurement
-                    [] { return LimelightHelpers::getTX(""); },
-                    // This should return the setpoint (can also be a constant)
-                    [] { return 0; },
-                    // This uses the output
-                    [this](double output) {
-                      // Use the output here
-                      mDriveTrain->mecanumDrive(0,0,output,mIMU->getRotation2d());
-                      GetController().SetPID(mCoefP->GetDouble(0),mCoefI->GetDouble(0),mCoefD->GetDouble(0));
-                    }} {
-                      mCoefP = frc::Shuffleboard::GetTab("GoToTab")
-                                                  .Add("Coef P", 0.001)
-                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                  .GetEntry();
-
-                      mCoefI = frc::Shuffleboard::GetTab("GoToTab")
-                                                  .Add("Coef I", 0)
-                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                  .GetEntry();
-
-                      mCoefD = frc::Shuffleboard::GetTab("GoToTab")
-                                                  .Add("Coef D", 0)
-                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                  .GetEntry();
+    // : CommandHelper{frc2::PIDController{0.001, 0, 0},
+    //                 // This should return the measurement
+    //                 [] { return LimelightHelpers::getTX(""); },
+    //                 // This should return the setpoint (can also be a constant)
+    //                 [] { return 0; },
+    //                 // This uses the output
+    //                 [this](double output) {
+    //                   // Use the output here
+    //                   try
+    //                   {
+    //                     if(mDriveTrain != 0x0)
+    //                     mDriveTrain->mecanumDrive(0.0F,0.0F,(float)output,frc::Rotation2d(0_rad));
+    //                   }
+    //                   catch(const std::exception& e)
+    //                   {
+    //                     std::cout << e.what() << '\n';
+    //                   }
+                      
+    //                   Output = output;
+    //                   std::cout << output << std::endl;
+    //                   this->GetController().SetPID(mCoefP->GetDouble(0),mCoefI->GetDouble(0),mCoefD->GetDouble(0));
+    //                 }}
+                    {
                       mDriveTrain = iDriveTrain;
-
+                      AddRequirements(mDriveTrain);
                     }
+void GoToTag::Execute() 
+{
+                      mCoefP = frc::Shuffleboard::GetTab("GoToTag")
+                                                  .Add("CoefP", 0.1)
+                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
+                                                  .GetEntry();
 
+                      mCoefI = frc::Shuffleboard::GetTab("GoToTag")
+                                                  .Add("CoefI", 0.001)
+                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
+                                                  .GetEntry();
+
+                      mCoefD = frc::Shuffleboard::GetTab("GoToTag")
+                                                  .Add("CoefD", 0.0)
+                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
+                                                  .GetEntry();
+                      frc::Shuffleboard::GetTab("GotoTag").Add("Debug", 1.0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
+  mPIDController.SetP(mCoefP->GetDouble(0.1));
+  mPIDController.SetI(mCoefI->GetDouble(0.001));
+  mPIDController.SetD(mCoefD->GetDouble(0.0));
+  Output = mPIDController.Calculate(LimelightHelpers::getTX(""), 0)*1000000 ; 
+  std::cout<< Output << std::endl; 
+  mDriveTrain->mecanumDrive(0.0F,0.0F,Output,frc::Rotation2d(0_rad));
+}
 // Returns true when the command should end.
-bool GoToTag::IsFinished() {
-  return GetController().AtSetpoint();
+ bool GoToTag::IsFinished() {
+  return mPIDController.AtSetpoint();
 }

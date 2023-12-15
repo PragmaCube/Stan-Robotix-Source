@@ -5,19 +5,17 @@
 #include "RobotContainer.h"
 
 #include <frc2/command/button/Trigger.h>
-
+#include "commands/oui.h"
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
 
-// RobotContainer::RobotContainer() {
-//   // Initialize all of your commands and subsystems here
-//   // Configure the button bindings
-//   driveTrain = new subDriveTrain;
-  // joystick = new frc::Joystick;
+RobotContainer::RobotContainer() {
+  // Initialize all of your commands and subsystems here
+  // Configure the button bindings
 
-//   ConfigureBindings();
-// }
+  ConfigureBindings();
+}
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
@@ -28,7 +26,12 @@ void RobotContainer::ConfigureBindings() {
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
   frc2::Trigger([this] {
     return joystick.GetRawButton(7);
-  }).OnTrue(GoToTag(&driveTrain).ToPtr()); 
+  }).OnTrue(GoToTag(&driveTrain).ToPtr());
+
+  frc2::Trigger([this] {
+    return joystick.GetRawButton(6);
+  }).OnTrue(oui().ToPtr());
+
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
@@ -41,7 +44,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::drive() 
 {
-  driveTrain.mecanumDrive(joystick.GetX(), -joystick.GetY(), -joystick.GetZ(), IMU.getRotation2d());
+  driveTrain.mecanumDrive(-joystick.GetX(), joystick.GetY(), -joystick.GetZ(), IMU.getRotation2d());
 }
 
 

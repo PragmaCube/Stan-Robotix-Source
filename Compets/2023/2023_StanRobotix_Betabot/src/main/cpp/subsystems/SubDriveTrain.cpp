@@ -5,24 +5,28 @@
 #include "subsystems/SubDriveTrain.h"
 
 SubDriveTrain::SubDriveTrain()
-{
-    motorL1 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX{DriveTrainConstants::kMotorL1Id};
-    motorL2 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX{DriveTrainConstants::kMotorL2Id};
-    motorR1 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX{DriveTrainConstants::kMotorR1Id};
-    motorR2 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX{DriveTrainConstants::kMotorR2Id};
-
-    drive = new frc::MecanumDrive{*motorL1, *motorL2, *motorR1, *motorR2};
-    
-    motorL1->SetInverted(true);
-    motorL2->SetInverted(true);
+{    
+    motorL1.SetInverted(true);
+    motorL2.SetInverted(true);
+    vitesse = 0.5F;
 }
 
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
 
-void SubDriveTrain::mecanumDrive(const float x, const float y, const float z, const frc::Rotation2d iRotation2d)
+void SubDriveTrain::mecanumDrive(float x, float y, float z, frc::Rotation2d iRotation2d)
 {
-    drive->DriveCartesian(y*(vitesse), x*(vitesse), z*(vitesse), iRotation2d);
+    try
+    {
+        if(this != nullptr)
+        drive.DriveCartesian(y*vitesse, x*vitesse, z*vitesse, iRotation2d);
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << e.what() << '\n';
+    }
+    
+    
 }
 
 void SubDriveTrain::setVitesse(float Vitesse)
