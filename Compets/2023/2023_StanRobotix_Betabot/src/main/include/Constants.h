@@ -23,7 +23,7 @@ constexpr int kDriverControllerPort = 0;
 namespace ArmConstants
 {
     constexpr int kMotorId = 4;
-    constexpr float motorSpeed = 0.15;
+    constexpr float motorSpeed = 0.15; 
     constexpr float kArmLimitUp = 4;
     constexpr float kArmLimitDown = 0;
 
