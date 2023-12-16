@@ -20,6 +20,7 @@ constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
 
+
 namespace ArmConstants
 {
     constexpr int kArmCanId = 4;
@@ -31,3 +32,4 @@ namespace EjectorConstants
 {
     constexpr int kEjectorCanId = 3;
 }
+

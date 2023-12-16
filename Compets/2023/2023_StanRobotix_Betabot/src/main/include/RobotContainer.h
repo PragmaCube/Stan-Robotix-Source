@@ -6,15 +6,17 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
-
+#include "subsystems/SubIMU.h"
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include <frc/Joystick.h>
 #include "subsystems/SubDriveTrain.h"
+#include "commands/GoToTag.h"
 #include "subsystems/SubIMU.h"
 #include "subsystems/SubArm.h"
 #include "subsystems/SubEjector.h"
 #include <frc/shuffleboard/Shuffleboard.h>
+
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -48,3 +50,4 @@ class RobotContainer {
   SubEjector Ejector;
   bool isArmForward = true;
 };
+
