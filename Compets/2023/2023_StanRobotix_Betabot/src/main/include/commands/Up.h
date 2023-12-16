@@ -6,6 +6,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/SubArm.h"
 
 /**
  * An example command.
@@ -17,7 +18,7 @@
 class Up
     : public frc2::CommandHelper<frc2::CommandBase, Up> {
  public:
-  Up();
+  Up(SubArm *iArm);
 
   void Initialize() override;
 
@@ -26,4 +27,7 @@ class Up
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+
+ private:
+  SubArm *mArm;
 };

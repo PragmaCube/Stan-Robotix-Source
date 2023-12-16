@@ -2,10 +2,10 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "subsystems/SubArm.h"
 #include <iostream>
 // Pour installer le PID
 #include <frc2/command/PIDSubsystem.h>
+#include "subsystems/SubArm.h"
 // ---------------------
 
 SubArm::SubArm()
@@ -26,10 +26,10 @@ SubArm::SubArm()
 }
 
 // This method will be called once per scheduler run
-void SubArm::Up()
-{
-    Height = ArmConstants::kArmLimitUp;
-}
+// void SubArm::Up()
+// {
+//     Height = ArmConstants::kArmLimitUp;
+// }
 
 // This method will be called once per scheduler run
 void SubArm::Down()

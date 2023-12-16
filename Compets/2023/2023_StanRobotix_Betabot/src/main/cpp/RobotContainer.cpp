@@ -44,17 +44,17 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 void RobotContainer::ArmLimit()
 {
   // monter bras
-  if (joystick.GetPOV() == 0 && mArm.GetEncodeurPosition() > ArmConstants::kArmLimitDown)
+  if (joystick.GetPOV() == 0 && mArm->GetEncodeurPosition() > ArmConstants::kArmLimitDown)
   {
     std::cout << "message" << std::endl;
-    mArm.Down();
+    mArm->Down();
   }
   
   // Baisser bras
-  else if (joystick.GetPOV() == 180 && mArm.GetEncodeurPosition() < ArmConstants::kArmLimitUp)
+  else if (joystick.GetPOV() == 180 && mArm->GetEncodeurPosition() < ArmConstants::kArmLimitUp)
   {
     std::cout << "messageoui" << std::endl;
-    mArm.Up();
+    mArm->Up();
   }
 
   

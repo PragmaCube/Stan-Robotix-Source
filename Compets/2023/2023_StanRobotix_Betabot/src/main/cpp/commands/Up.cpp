@@ -4,9 +4,9 @@
 
 #include "commands/Up.h"
 #include "subsystems/SubArm.h"
+#include "Constants.h"
 
-
-Up::Up() 
+Up::Up(SubArm *iArm) 
 {
   // Use addRequirements() here to declare subsystem dependencies.
 }
@@ -20,7 +20,7 @@ void Up::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Up::Execute() 
 {
-
+  
 }
 
 // Called once the command ends or is interrupted.
@@ -28,5 +28,5 @@ void Up::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool Up::IsFinished() {
-  return   Height = ArmConstants::kArmLimitUp == ;
+  return mArm->GetEncodeurPosition() == ArmConstants::kArmLimitUp;
 }

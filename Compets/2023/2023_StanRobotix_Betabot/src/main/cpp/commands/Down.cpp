@@ -4,12 +4,14 @@
 
 #include "commands/Down.h"
 #include "subsystems/SubArm.h"
+#include "Constants.h"
 
-Down::Down() {
-  // Use addRequirements() here to declare subsystem dependencies.
+
+Down::Down(SubArm *iArm)
+{
+
 }
 
-// Called when the command is initially scheduled.
 void Down::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
@@ -23,5 +25,5 @@ void Down::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool Down::IsFinished() {
-  return ArmConstants::kArmLimitDown == SubArm::GetEncodeurPosition;
+  return mArm->GetEncodeurPosition() == ArmConstants::kArmLimitUp;
 }
