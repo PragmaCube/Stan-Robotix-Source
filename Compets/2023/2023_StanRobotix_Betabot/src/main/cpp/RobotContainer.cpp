@@ -34,35 +34,46 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 }
 void RobotContainer::Drive()
 {
-
-
-  if (joystick.GetRawButtonPressed(1))
+ /* if (joystick.GetRawButtonPressed(1))
   {
-    if ( m_SubEjector.GetMoveState() == SubEjector::eForwards)
+    if ( m_SubEjector.GetMoveState() == true)
     {
-      mMotorElevator.Set(EjectorConstants::kSpeedPush*m_SubEjector.GetSpeedCoefficient());
+      m_SubEjector.Set(SubEjector::eForwards, joystick.GetThrottle());
     }
 
-    if ( m_SubEjector.GetMoveState() == SubEjector::eBackwards)
+    if ( m_SubEjector.GetMoveState() == false)
     {
-      mMotorElevator.Set(EjectorConstants::kSpeedPush*-m_SubEjector.GetSpeedCoefficient());
+      m_SubEjector.Set(SubEjector::eBackwards, joystick.GetThrottle());
     }
   }
   else
   {
-    mMotorElevator.Set(0);
+      m_SubEjector.Set(SubEjector::eStop, 0);
+  }*/
+
+  if (joystick.GetRawButtonPressed(1))
+  {
+     m_SubEjector.SetRoll(m_SubEjector.GetRoll() +1);
+   if (m_SubEjector.GetRoll() == 3)
+   {
+     m_SubEjector.SetRoll(0);
+   }
   }
 
+    if ( m_SubEjector.GetRoll() == 0)
+    {
+      m_SubEjector.Set(SubEjector::eForwards, joystick.GetThrottle());
+    }
 
+    if (m_SubEjector.GetRoll() == 1)
+    {
+      m_SubEjector.Set(SubEjector::eBackwards, joystick.GetThrottle());
+    }
 
-  if (joystick.GetRawButtonPressed(3))
+  if (m_SubEjector.GetRoll() == 2)
   {
-    m_SubEjector.SetMoveState(SubEjector::eForwards);
+    m_SubEjector.SetMoveState(true);
   }   
   
-  if (joystick.GetRawButtonPressed(4))
-  {
-    m_SubEjector.SetMoveState(SubEjector::eBackwards);
-  }
 
 }

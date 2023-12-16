@@ -26,21 +26,19 @@ class SubEjector : public frc2::SubsystemBase {
     eStop
   };
 
-  void Set(eSpeeds iSpeed);
-
-  float GetSpeedCoefficient();
-  void SetSpeedCoefficient(float SpeedToSet);
+  void Set(eSpeeds iSpeed, double Coefficient);
 
   float GetMoveState();
-  void SetMoveState(eSpeeds MoveStateToSet);
+  void SetMoveState(bool MoveStateToSet);
   
-  void Turn();
+  int GetRoll();
+  void SetRoll(int roll);
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   rev::CANSparkMax mMotorElevator{EjectorConstants::kCanIdElevator, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder mMotorEncoder = mMotorElevator.GetEncoder();
-    float eSpeedCoefficient = 0;
-    eSpeeds MoveState = eForwards;
+    bool MoveState = true;
+    int Roll = 0;
 };
