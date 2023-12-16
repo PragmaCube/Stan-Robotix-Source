@@ -15,6 +15,7 @@ class SubDriveTrain : public frc2::SubsystemBase
  public:
   SubDriveTrain();  
 
+
   void Periodic() override;
 
   void mecanumDrive(float iX, float iY, float iZ, frc::Rotation2d iRotation2d);
@@ -22,6 +23,8 @@ class SubDriveTrain : public frc2::SubsystemBase
   void setVitesse(int iVitesse);
 
   int getVitesse();
+
+  void setVitesse(float Vitesse);
 
  private:
 
