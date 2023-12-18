@@ -32,6 +32,7 @@ GoToTag::GoToTag(SubDriveTrain *iDriveTrain)
     //                   this->GetController().SetPID(mCoefP->GetDouble(0),mCoefI->GetDouble(0),mCoefD->GetDouble(0));
     //                 }}
                     {
+                      LimelightHelpers::setPipelineIndex("limelight",2);
                       mDriveTrain = iDriveTrain;
                       AddRequirements(mDriveTrain);
                     }

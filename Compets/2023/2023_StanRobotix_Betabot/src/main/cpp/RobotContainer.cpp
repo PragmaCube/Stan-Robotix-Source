@@ -6,7 +6,6 @@
 #include "RobotContainer.h"
 
 #include <frc2/command/button/Trigger.h>
-#include "commands/oui.h"
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
@@ -30,9 +29,6 @@ void RobotContainer::ConfigureBindings() {
     return joystick.GetRawButton(7);
   }).OnTrue(GoToTag(&driveTrain).ToPtr());
 
-  frc2::Trigger([this] {
-    return joystick.GetRawButton(6);
-  }).OnTrue(oui().ToPtr());
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
@@ -47,7 +43,7 @@ void RobotContainer::ConfigureBindings() {
 
 void RobotContainer::drive() 
 {
-  driveTrain.mecanumDrive(joystick.GetX(), -joystick.GetY(), -joystick.GetZ(), IMU.getRotation2D());
+  driveTrain.mecanumDrive(-joystick.GetX(), joystick.GetY(), -joystick.GetZ(), IMU.getRotation2D());
   if (joystick.GetRawButtonPressed(8))
   {
     IMU.ResetAngle();
