@@ -18,7 +18,6 @@ void SubDriveTrain::mecanumDrive(float x, float y, float z, frc::Rotation2d iRot
 {
     try
     {
-        if(this != nullptr)
         drive.DriveCartesian(y*vitesse, x*vitesse, z*vitesse, iRotation2d);
     }
     catch(const std::exception& e)
