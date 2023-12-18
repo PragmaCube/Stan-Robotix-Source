@@ -6,6 +6,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+
 #include "subsystems/SubIMU.h"
 #include "subsystems/SubDriveTrain.h"
 
@@ -19,12 +20,12 @@
 class Rotation90DegresDroite
     : public frc2::CommandHelper<frc2::CommandBase, Rotation90DegresDroite> {
  public:
-  Rotation90DegresDroite(SubIMU *iIMU ,SubDriveTrain *iDrive);
+  Rotation90DegresDroite(SubIMU *iIMU ,SubDriveTrain *iDriveTrain);
 
   double RotationDroite;
 
   SubIMU *mIMU;
-  SubDriveTrain *mDrive;
+  SubDriveTrain *mDriveTrain;
 
   void Initialize() override;
 
