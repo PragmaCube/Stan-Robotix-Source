@@ -3,30 +3,32 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/Up.h"
-#include "subsystems/SubArm.h"
-#include "Constants.h"
+
 
 Up::Up(SubArm *iArm) 
 {
-  // Use addRequirements() here to declare subsystem dependencies.
+  mArm = iArm;
+  AddRequirements(mArm);
 }
+
 
 // Called when the command is initially scheduled.
 void Up::Initialize() 
 {
-
+  mArm->Up();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void Up::Execute() 
 {
-  
+  mArm->Periodic();
 }
 
 // Called once the command ends or is interrupted.
 void Up::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool Up::IsFinished() {
+bool Up::IsFinished() 
+{
   return mArm->GetEncodeurPosition() == ArmConstants::kArmLimitUp;
 }

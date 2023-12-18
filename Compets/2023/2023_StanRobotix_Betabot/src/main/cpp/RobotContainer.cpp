@@ -12,6 +12,8 @@
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
+
+
 /*-------------------------------------------------------------------------------------------*/
 
 RobotContainer::RobotContainer() {
@@ -25,9 +27,15 @@ void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
 
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-  frc2::Trigger([this] {
-    return m_subsystem.ExampleCondition();
-  }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+  frc2::Trigger([this] 
+  {
+    return joystick.GetPOV() == 0;
+  }).OnTrue(Down(&mArm).ToPtr()); // A CONFIRMER
+
+  frc2::Trigger([this] 
+  {
+    return joystick.GetPOV() == 180;
+  }).OnTrue(Up(&mArm).ToPtr()); // A CONFIRMER
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
@@ -42,20 +50,17 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 /*-------------------------------------------------------------------------------------------*/
 
 void RobotContainer::ArmLimit()
-{
-  // monter bras
-  if (joystick.GetPOV() == 0 && mArm->GetEncodeurPosition() > ArmConstants::kArmLimitDown)
-  {
-    std::cout << "message" << std::endl;
-    mArm->Down();
-  }
-  
-  // Baisser bras
-  else if (joystick.GetPOV() == 180 && mArm->GetEncodeurPosition() < ArmConstants::kArmLimitUp)
-  {
-    std::cout << "messageoui" << std::endl;
-    mArm->Up();
-  }
-
-  
+{ 
+    // if (joystick.GetPOV() == 0 && mArm->GetEncodeurPosition() > ArmConstants::kArmLimitDown)
+    // {
+    //   std::cout << "message" << std::endl;
+    //   mArm->Down();
+    // }
+    
+    // // Baisser bras
+    // else if (joystick.GetPOV() == 180 && mArm->GetEncodeurPosition() < ArmConstants::kArmLimitUp)
+    // {
+    //   std::cout << "messageoui" << std::endl;
+    //   mArm->Up();
+    // }
 }

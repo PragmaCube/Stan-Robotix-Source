@@ -26,10 +26,10 @@ SubArm::SubArm()
 }
 
 // This method will be called once per scheduler run
-// void SubArm::Up()
-// {
-//     Height = ArmConstants::kArmLimitUp;
-// }
+void SubArm::Up()
+{
+    Height = ArmConstants::kArmLimitUp;
+}
 
 // This method will be called once per scheduler run
 void SubArm::Down()

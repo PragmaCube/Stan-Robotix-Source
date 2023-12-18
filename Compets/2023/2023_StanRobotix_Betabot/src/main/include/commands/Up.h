@@ -7,6 +7,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/SubArm.h"
+#include "Constants.h"
 
 /**
  * An example command.
@@ -16,7 +17,8 @@
  * Command will *not* work!
  */
 class Up
-    : public frc2::CommandHelper<frc2::CommandBase, Up> {
+    : public frc2::CommandHelper<frc2::CommandBase, Up> 
+{
  public:
   Up(SubArm *iArm);
 
