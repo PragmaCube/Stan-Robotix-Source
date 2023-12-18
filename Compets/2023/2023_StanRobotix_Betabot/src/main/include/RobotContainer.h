@@ -38,7 +38,7 @@ class RobotContainer {
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
 
-  SubArm *mArm; 
+  SubArm mArm; 
 
   void ConfigureBindings();
 

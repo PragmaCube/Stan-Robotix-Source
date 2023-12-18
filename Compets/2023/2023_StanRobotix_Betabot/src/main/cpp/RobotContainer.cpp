@@ -29,12 +29,12 @@ void RobotContainer::ConfigureBindings() {
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
   frc2::Trigger([this] 
   {
-    return joystick.GetPOV() == 0;
+    return joystick.GetPOV() == 180;
   }).OnTrue(Down(&mArm).ToPtr()); // A CONFIRMER
 
   frc2::Trigger([this] 
   {
-    return joystick.GetPOV() == 180;
+    return joystick.GetPOV() == 0;
   }).OnTrue(Up(&mArm).ToPtr()); // A CONFIRMER
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is

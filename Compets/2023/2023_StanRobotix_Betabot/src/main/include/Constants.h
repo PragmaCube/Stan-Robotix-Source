@@ -24,7 +24,7 @@ namespace ArmConstants
 {
     constexpr int kMotorId = 4;
     constexpr float motorSpeed = 0.15; 
-    constexpr float kArmLimitUp = 4;
+    constexpr float kArmLimitUp = 2;
     constexpr float kArmLimitDown = 0;
 
     constexpr double kP = 0.00004999999873689376, 
