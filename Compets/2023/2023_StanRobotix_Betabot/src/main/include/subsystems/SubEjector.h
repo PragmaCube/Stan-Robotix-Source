@@ -4,28 +4,30 @@
 
 #pragma once
 
-
 #include <frc2/command/SubsystemBase.h>
-#include <ctre/Phoenix.h>
+#include <rev/CANSparkMax.h>
 
-class SubIMU : public frc2::SubsystemBase {
+#include "Constants.h"
+
+
+class SubEjector : public frc2::SubsystemBase {
  public:
-  SubIMU();
-
-  frc::Rotation2d getRotation2D();
-  void ResetAngle();
-  double GetAngle();
+  SubEjector();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
+  void On(double);
+  void Off();
+  bool IsRunning();
+
  private:
-
-
-  ctre::phoenix::sensors::WPI_Pigeon2* mGyro = nullptr;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-};
+  rev::CANSparkMax mMotorArm{EjectorConstants::kEjectorCanId, rev::CANSparkMax::MotorType::kBrushless};
 
+  bool state = false;
+
+};
