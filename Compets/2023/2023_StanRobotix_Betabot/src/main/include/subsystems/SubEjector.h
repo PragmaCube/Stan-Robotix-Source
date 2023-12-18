@@ -21,6 +21,7 @@ class SubEjector : public frc2::SubsystemBase {
   frc2::CommandPtr SubEjectorMethodCommand();
   enum eSpeeds
   {
+    eState,
     eForwards,
     eBackwards,
     eStop

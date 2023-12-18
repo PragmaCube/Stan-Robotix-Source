@@ -53,27 +53,24 @@ void RobotContainer::Drive()
 
   if (joystick.GetRawButtonPressed(1))
   {
-     m_SubEjector.SetRoll(m_SubEjector.GetRoll() +1);
-   if (m_SubEjector.GetRoll() == 3)
-   {
-     m_SubEjector.SetRoll(0);
-   }
+     m_SubEjector.SetRoll((m_SubEjector.GetRoll() +1) %3);
   }
 
-    if ( m_SubEjector.GetRoll() == 0)
+  switch (m_SubEjector.GetRoll())
     {
-      m_SubEjector.Set(SubEjector::eForwards, joystick.GetThrottle());
+    case 0:
+          m_SubEjector.Set(SubEjector::eStop, (joystick.GetThrottle()-1)/2);
+        break;
+    case 1:
+          m_SubEjector.Set(SubEjector::eForwards, (joystick.GetThrottle()-1)/2);
+        break;
+    case 2:
+        m_SubEjector.Set(SubEjector::eBackwards, (joystick.GetThrottle()-1)/2);
+        break;
+    default:
+        m_SubEjector.Set(SubEjector::eStop, (joystick.GetThrottle()-1)/2);
+        break;
     }
-
-    if (m_SubEjector.GetRoll() == 1)
-    {
-      m_SubEjector.Set(SubEjector::eBackwards, joystick.GetThrottle());
-    }
-
-  if (m_SubEjector.GetRoll() == 2)
-  {
-    m_SubEjector.SetMoveState(true);
-  }   
-  
-
 }
+
+  
