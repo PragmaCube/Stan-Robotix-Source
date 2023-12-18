@@ -8,6 +8,7 @@
 #include <frc2/command/button/Trigger.h>
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include <iostream>
 
 RobotContainer::RobotContainer() {
 
@@ -50,7 +51,7 @@ void RobotContainer::Drive()
   {
       m_SubEjector.Set(SubEjector::eStop, 0);
   }*/
-
+/////////////////////////////////////////////////////////
   if (joystick.GetRawButtonPressed(1))
   {
      m_SubEjector.SetRoll((m_SubEjector.GetRoll() +1) %3);
@@ -59,18 +60,24 @@ void RobotContainer::Drive()
   switch (m_SubEjector.GetRoll())
     {
     case 0:
-          m_SubEjector.Set(SubEjector::eStop, (joystick.GetThrottle()-1)/2);
-        break;
+      m_SubEjector.Set(SubEjector::eStop, (joystick.GetThrottle()+1)/2);
+      
+      break;
     case 1:
-          m_SubEjector.Set(SubEjector::eForwards, (joystick.GetThrottle()-1)/2);
-        break;
+      m_SubEjector.Set(SubEjector::eForwards, (joystick.GetThrottle()+1)/2);
+      
+      break;
     case 2:
-        m_SubEjector.Set(SubEjector::eBackwards, (joystick.GetThrottle()-1)/2);
-        break;
+      m_SubEjector.Set(SubEjector::eBackwards, (joystick.GetThrottle()+1)/2);
+      
+      break;
     default:
-        m_SubEjector.Set(SubEjector::eStop, (joystick.GetThrottle()-1)/2);
-        break;
+      m_SubEjector.Set(SubEjector::eStop, (joystick.GetThrottle()+1)/2);
+      
+      break;
+      
     }
+  
 }
 
   

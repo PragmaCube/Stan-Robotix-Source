@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SubEjector.h"
-
+#include <iostream>
 
 SubEjector::SubEjector() 
 {
@@ -36,12 +36,15 @@ void SubEjector::Set(eSpeeds iSpeed, double Coefficient)
     {
     case eForwards:
           mMotorElevator.Set(EjectorConstants::kSpeedPush*Coefficient);
+          std::cout << EjectorConstants::kSpeedPush*Coefficient << std::endl;
         break;
     case eBackwards:
-          mMotorElevator.Set(-EjectorConstants::kSpeedPush*-Coefficient);
+          mMotorElevator.Set(EjectorConstants::kSpeedPull*-Coefficient);
+          std::cout << -EjectorConstants::kSpeedPush*-Coefficient << std::endl;
         break;
     case eStop:
         mMotorElevator.Set(0);
+        std::cout << "stop" << std::endl;
         break;
     default:
         mMotorElevator.Set(0);
