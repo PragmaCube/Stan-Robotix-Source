@@ -35,3 +35,4 @@ class Rotation90DegresDroite
 
   bool IsFinished() override;
 };
+
