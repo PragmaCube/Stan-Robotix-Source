@@ -39,7 +39,7 @@ void SubEjector::Set(eSpeeds iSpeed, double Coefficient)
           std::cout << EjectorConstants::kSpeedPush*Coefficient << std::endl;
         break;
     case eBackwards:
-          mMotorElevator.Set(EjectorConstants::kSpeedPull*-Coefficient);
+          mMotorElevator.Set(EjectorConstants::kSpeedPull*Coefficient);
           std::cout << -EjectorConstants::kSpeedPush*-Coefficient << std::endl;
         break;
     case eStop:

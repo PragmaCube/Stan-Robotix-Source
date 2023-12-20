@@ -60,19 +60,19 @@ void RobotContainer::Drive()
   switch (m_SubEjector.GetRoll())
     {
     case 0:
-      m_SubEjector.Set(SubEjector::eStop, (joystick.GetThrottle()+1)/2);
+      m_SubEjector.Set(SubEjector::eStop, (joystick.GetThrottle()-1)/2);
       
       break;
     case 1:
-      m_SubEjector.Set(SubEjector::eForwards, (joystick.GetThrottle()+1)/2);
+      m_SubEjector.Set(SubEjector::eForwards, (joystick.GetThrottle()-1)/2);
       
       break;
     case 2:
-      m_SubEjector.Set(SubEjector::eBackwards, (joystick.GetThrottle()+1)/2);
+      m_SubEjector.Set(SubEjector::eBackwards, (joystick.GetThrottle()-1)/2);
       
       break;
     default:
-      m_SubEjector.Set(SubEjector::eStop, (joystick.GetThrottle()+1)/2);
+      m_SubEjector.Set(SubEjector::eStop, (joystick.GetThrottle()-1)/2);
       
       break;
       
