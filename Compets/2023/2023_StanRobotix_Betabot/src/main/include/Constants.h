@@ -24,7 +24,7 @@ constexpr int kDriverControllerPort = 0;
 namespace ArmConstants
 {
     constexpr int kArmCanId = 4;
-    constexpr int kPositionUp = 1;
+    constexpr int kPositionUp = 2;
     constexpr int kPositionDown = 0;
 }
 

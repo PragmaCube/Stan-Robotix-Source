@@ -67,11 +67,11 @@ void RobotContainer::oEjector()
   {
     if (isArmForward)
     {
-      Ejector.On(-(joystick.GetThrottle()-1)/2);
+      Ejector.On(-(joystick.GetThrottle()-1));
     }
     else
     {
-      Ejector.On((joystick.GetThrottle()-1)/2);
+      Ejector.On((joystick.GetThrottle()-1));
     }
   }
   else
