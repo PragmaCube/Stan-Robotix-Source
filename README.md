@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="256" height="256" src="https://stanrobotix.files.wordpress.com/2017/01/cropped-cropped-equipe-stan-logo2.jpg">
+  <img width="256" height="256" src="https://github.com/PragmaCube/Stan-Robotix-Source/blob/master/Stan-Robotix-Source.png">
 </p>
 
 # Stan-Robotix-Source
