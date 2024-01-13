@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="1280" height="640" src="https://github.com/PragmaCube/Stan-Robotix-Source/blob/master/Stan-Robotix-Source.png">
+  <img width="640" height="320" src="https://github.com/PragmaCube/Stan-Robotix-Source/blob/master/Stan-Robotix-Source.png">
 </p>
 
 # Stan-Robotix-Source
