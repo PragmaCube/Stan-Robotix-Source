@@ -13,6 +13,13 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+namespace EjectorConstants
+{
+    constexpr float kSpeedPull=1.0;
+    constexpr float kSpeedPush=-1.0;
+    constexpr int kId=1;
+    constexpr int kInProximity = 1023;
+}
 
 namespace OperatorConstants {
 
