@@ -9,6 +9,7 @@
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
+#include "subsystems/SubEjector.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -20,16 +21,23 @@
 class RobotContainer {
  public:
   RobotContainer();
+  
+  SubEjector       *getSubEjector()        { return mSubEjector; }
 
   frc2::CommandPtr GetAutonomousCommand();
 
  private:
+
+   SubEjector      * mSubEjector = nullptr;
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
       OperatorConstants::kDriverControllerPort};
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
+
+bool mIsInit = false;
+void Init();
 
   void ConfigureBindings();
 };

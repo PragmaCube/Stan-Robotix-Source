@@ -20,7 +20,8 @@ class SubEjector : public frc2::SubsystemBase
   void In();
   void Out();
   void Stop();
-
+  void Init();
+  
  private:
  rev::ColorSensorV3 mColorSensor{frc::I2C::Port::kOnboard};
  rev::CANSparkMax mMotorEjector{EjectorConstants::kId, rev::CANSparkMax::MotorType::kBrushless};
