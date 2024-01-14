@@ -60,6 +60,7 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() 
 {
   m_container.ArmLimit();
+  m_container.drive();
 }
 
 /**

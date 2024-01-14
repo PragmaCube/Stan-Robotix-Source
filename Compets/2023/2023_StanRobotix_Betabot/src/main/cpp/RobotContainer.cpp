@@ -13,14 +13,15 @@
 #include "commands/ExampleCommand.h"
 
 
-
 /*-------------------------------------------------------------------------------------------*/
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
+//   // Configure the button bindings
+//   driveTrain = new subDriveTrain;
+   joystick = new frc::Joystick;
 
-  // Configure the button bindings
-  ConfigureBindings();
+   ConfigureBindings();
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -47,8 +48,6 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   return autos::ExampleAuto(&m_subsystem);
 }
 
-/*-------------------------------------------------------------------------------------------*/
-
 void RobotContainer::ArmLimit()
 { 
     // if (joystick.GetPOV() == 0 && mArm->GetEncodeurPosition() > ArmConstants::kArmLimitDown)
@@ -64,3 +63,41 @@ void RobotContainer::ArmLimit()
     //   mArm->Up();
     // }
 }
+
+void RobotContainer::drive() 
+{
+  mDriveTrain.mecanumDrive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
+  
+  if (mJoystick.GetRawButtonPressed(1))
+  {
+    mIMU.ResetAngle();
+  }
+
+  /*if (mJoystick.GetRawButtonPressed(6) == 1)
+  {
+    mDriveTrain.setVitesse(1);
+  }
+
+  if (mJoystick.GetRawButtonPressed(4) == 1)
+  {
+    mDriveTrain.setVitesse(2);
+  }*/
+
+  if (mJoystick.GetRawButtonPressed(4) == 1) 
+  {
+    switch(mDriveTrain.getVitesse())
+    {
+      case 1 :
+        mDriveTrain.setVitesse(2);
+        break;
+      case 2 :
+        mDriveTrain.setVitesse(1);
+        break;
+      default:
+        mDriveTrain.setVitesse(2);
+    }
+  }
+}
+
+
+// typeDuReturn classe::fonction(parametres); -> parametres: Get...()
