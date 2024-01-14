@@ -46,3 +46,9 @@ units::standard_gravity_t SubIMU::getShock()
 {
     return ShockFilter.Calculate(getAccel());
 }
+
+
+double SubIMU::getAngleYaw()
+{
+    return IMU.GetAngle();
+}

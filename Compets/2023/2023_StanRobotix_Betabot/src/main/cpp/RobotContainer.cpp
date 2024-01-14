@@ -2,21 +2,20 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "RobotContainer.h"
-
 #include <frc2/command/button/Trigger.h>
 
+#include "RobotContainer.h"
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
-// RobotContainer::RobotContainer() {
-//   // Initialize all of your commands and subsystems here
-//   // Configure the button bindings
-//   driveTrain = new subDriveTrain;
+RobotContainer::RobotContainer() {
+  // Initialize all of your commands and subsystems here
+  // Configure the button bindings
+  // driveTrain = new subDriveTrain;
   // joystick = new frc::Joystick;
 
-//   ConfigureBindings();
-// }
+  ConfigureBindings();
+}
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
@@ -25,6 +24,14 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(10);
+  }).OnTrue(Rotation90DegresDroite(&mIMU, &mDriveTrain).ToPtr());
+  
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(9);
+  }).OnTrue(Rotation90DegresGauche(&mIMU, &mDriveTrain).ToPtr());
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.

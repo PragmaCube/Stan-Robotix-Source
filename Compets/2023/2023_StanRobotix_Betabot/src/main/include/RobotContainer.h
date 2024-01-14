@@ -6,11 +6,15 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
-#include "subsystems/SubIMU.h"
+#include <frc/Joystick.h>
+
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
-#include <frc/Joystick.h>
 #include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubIMU.h"
+
+#include "commands/Rotation90DegresDroite.h"
+#include "commands/Rotation90DegresGauche.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -21,7 +25,7 @@
  */
 class RobotContainer {
  public:
-  // RobotContainer();
+  RobotContainer();
 
   frc2::CommandPtr GetAutonomousCommand();
 

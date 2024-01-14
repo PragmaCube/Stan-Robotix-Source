@@ -18,6 +18,7 @@ class SubIMU : public frc2::SubsystemBase
   units::standard_gravity_t getAccelY();
   units::standard_gravity_t getAccel();
   frc::Rotation2d getRotation2d();
+  double getAngleYaw();
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
