@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="256" height="256" src="https://stanrobotix.files.wordpress.com/2017/01/cropped-cropped-equipe-stan-logo2.jpg">
+  <img width="640" height="320" src="https://github.com/PragmaCube/Stan-Robotix-Source/blob/master/Stan-Robotix-Source.png">
 </p>
 
 # Stan-Robotix-Source
@@ -11,11 +11,18 @@ Dépôt officiel de l'équipe [Stan Robotix 6622](https://stanrobotix6622.com/) 
 - Activités : tout ce qui n'est pas relié aux compétitions
 - Compets : l'intégralité du code source des compétitions ([BetaBots](https://robotiquefirstquebec.org/frc/betabots/) et FRC)
 - Doc : documentation créée par l'équipe pour la communauté
-  - Liste d'exercices V1.1 DISPONIBLE
-  - Corrections de la liste d'exercices V1.1 DISPONIBLE
+  - Liste d'exercices V1.3 DISPONIBLE
+  - Corrections de la liste d'exercices V1.3 DISPONIBLE
   - Aide rapide sur Git et Github V1.0 DISPONIBLE
   - Aide sur la structuration d'un programme C++ V1.0 DISPONIBLE
   - Manuel sur les bases C++ et l'utilisation de [WPILIB](https://docs.wpilib.org/en/stable/) EN COURS D'ÉCRITURE
+
+## Exécuter un programme
+- Code de compétition : chaque projet possède dans son nom l'année de création. Pour utiliser en 2024 un projet de 2023 il faut s'assurer de :
+  - Mettre à jour WPILIB et VS Code
+  - Mettre à jour les dépendances supplémentaires
+  - Importer le projet
+- Code des activités : il est nécessaire de compiler chaque programme en utilisant un compilateur. [GCC](https://gcc.gnu.org/) est recommandé.
 
 ## Conventions de structure
 - Branches :`Année-StanRobotix-Compétition-SousSytème/Commande`
@@ -36,24 +43,25 @@ Dépôt officiel de l'équipe [Stan Robotix 6622](https://stanrobotix6622.com/) 
 
 ## Rappel des commandes de base de Git
 ```
-gitk
 git clone
 git status
 git add *
 git add "NomDuFichier"
+git rm "NomDuFichier"
 git commit -m "MessageQuiADuSens"
 git push
 git checkout NomDeLaBranche
-git rm "NomDuFichier"
+git branch NomDeLaBranche
 git pull
 git fetch
+gitk
 ```
 ## Gestion
 La gestion du dépôt (modification du README ou modifications majeures) est laissée au chef de l'équipe et aux mentors.
 
 
 Chef d'équipe : André Wojcik<br>
-Mentors : Raphaël Pothier et Clément Jevardat-de-Fombelle
+Mentors : Raphaël Pothier et Clément Jevardat-de-Fombelle<br>
 Contacts :
 
 andre.wojcik@stanislas.qc.ca <br>
