@@ -9,19 +9,25 @@
 #include <frc/RobotController.h>
 
 #include "Constants.h"
+#include "PerformanceMonitor.h"
 
-class SubUltrasonic : public frc2::SubsystemBase {
- public:
+class SubUltrasonic : public PerformanceMonitor
+{ 
+public:
   SubUltrasonic();
+
+  void Init();
+
   float getDistance();
 
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
-  void Periodic() override;
+  void EnableImperialSystem() { mMetricSystem = false; }
+  void EnableMetricSystem()   { mMetricSystem = true;  }
 
- private:
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
-  frc::AnalogInput ultrasonic{kUltrasonicDIO};
+private:
+  frc::AnalogInput * mUltrasonic = nullptr;
+  bool mMetricSystem = true;
+
+  virtual void doExecute();
+  virtual std::string getName() { return "SubUltrasonic"; }
+
 };
