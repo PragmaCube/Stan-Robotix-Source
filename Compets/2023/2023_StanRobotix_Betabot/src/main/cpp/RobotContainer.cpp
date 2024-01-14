@@ -5,13 +5,13 @@
 #include <iostream>
 
 #include "RobotContainer.h"
-#include "subsystems/SubArm.h"
 
+#include "Constants.h"
 #include <frc2/command/button/Trigger.h>
 
-#include "RobotContainer.h"
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include <iostream>
 
 /*-------------------------------------------------------------------------------------------*/
 
@@ -48,7 +48,7 @@ void RobotContainer::ConfigureBindings() {
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
-  m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
@@ -90,6 +90,49 @@ void RobotContainer::drive()
   {
     mDriveTrain.setVitesse(2);
   }*/
+  
+  /* if (joystick.GetRawButtonPressed(1))
+  {
+    if ( m_SubEjector.GetMoveState() == true)
+    {
+      m_SubEjector.Set(SubEjector::eForwards, joystick.GetThrottle());
+    }
+
+    if ( m_SubEjector.GetMoveState() == false)
+    {
+      m_SubEjector.Set(SubEjector::eBackwards, joystick.GetThrottle());
+    }
+  }
+  else
+  {
+      m_SubEjector.Set(SubEjector::eStop, 0);
+  }*/
+/////////////////////////////////////////////////////////
+  if (mJoystick.GetRawButtonPressed(1))
+  {
+     m_SubEjector.SetRoll((m_SubEjector.GetRoll() +1) %3);
+  }
+
+  switch (m_SubEjector.GetRoll())
+    {
+    case 0:
+      m_SubEjector.Set(SubEjector::eStop, (mJoystick.GetThrottle()-1)/2);
+      
+      break;
+    case 1:
+      m_SubEjector.Set(SubEjector::eForwards, (mJoystick.GetThrottle()-1)/2);
+      
+      break;
+    case 2:
+      m_SubEjector.Set(SubEjector::eBackwards, (mJoystick.GetThrottle()-1)/2);
+      
+      break;
+    default:
+      m_SubEjector.Set(SubEjector::eStop, (mJoystick.GetThrottle()-1)/2);
+      
+      break;
+      
+    }
 
   if (mJoystick.GetRawButtonPressed(4) == 1) 
   {
@@ -106,6 +149,5 @@ void RobotContainer::drive()
     }
   }
 }
-
 
 // typeDuReturn classe::fonction(parametres); -> parametres: Get...()

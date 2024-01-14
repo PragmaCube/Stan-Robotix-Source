@@ -18,7 +18,15 @@ namespace OperatorConstants {
 
 constexpr int kDriverControllerPort = 0;
 
+
 }  // namespace OperatorConstants
+
+namespace EjectorConstants
+{
+    constexpr int kCanIdElevator = 3;
+    constexpr float kSpeedPush = 1.0F;
+    constexpr float kSpeedPull = -1.0F; 
+} // namespace EjectorConstants
 
 namespace ArmConstants
 {
