@@ -17,6 +17,13 @@ Dépôt officiel de l'équipe [Stan Robotix 6622](https://stanrobotix6622.com/) 
   - Aide sur la structuration d'un programme C++ V1.0 DISPONIBLE
   - Manuel sur les bases C++ et l'utilisation de [WPILIB](https://docs.wpilib.org/en/stable/) EN COURS D'ÉCRITURE
 
+## Exécuter un programme
+- Code de compétition : chaque projet possède dans son nom l'année de création. Pour utiliser en 2024 un projet de 2023 il faut s'assurer de :
+  - Mettre à jour WPILIB et VS Code
+  - Mettre à jour les dépendances supplémentaires
+  - Importer le projet
+- Code des activités : il est nécessaire de compiler chaque programme en utilisant un compilateur. [GCC](https://gcc.gnu.org/) est recommandé.
+
 ## Conventions de structure
 - Branches :`Année-StanRobotix-Compétition-SousSytème/Commande`
 - Répertoires : `Année_StanRobotix_Compétition/Projet`
@@ -36,17 +43,18 @@ Dépôt officiel de l'équipe [Stan Robotix 6622](https://stanrobotix6622.com/) 
 
 ## Rappel des commandes de base de Git
 ```
-gitk
 git clone
 git status
 git add *
 git add "NomDuFichier"
+git rm "NomDuFichier"
 git commit -m "MessageQuiADuSens"
 git push
 git checkout NomDeLaBranche
-git rm "NomDuFichier"
+git branch NomDeLaBranche
 git pull
 git fetch
+gitk
 ```
 ## Gestion
 La gestion du dépôt (modification du README ou modifications majeures) est laissée au chef de l'équipe et aux mentors.
