@@ -2,28 +2,41 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+#include <iostream>
+
+#include "RobotContainer.h"
+#include "subsystems/SubArm.h"
+
 #include <frc2/command/button/Trigger.h>
 
 #include "RobotContainer.h"
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
+/*-------------------------------------------------------------------------------------------*/
+
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-  // Configure the button bindings
-  // driveTrain = new subDriveTrain;
-  // joystick = new frc::Joystick;
+//   // Configure the button bindings
+//   driveTrain = new subDriveTrain;
+   joystick = new frc::Joystick;
 
-  ConfigureBindings();
+   ConfigureBindings();
 }
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
 
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-  frc2::Trigger([this] {
-    return m_subsystem.ExampleCondition();
-  }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+  frc2::Trigger([this] 
+  {
+    return joystick.GetPOV() == 180;
+  }).OnTrue(Down(&mArm).ToPtr()); // A CONFIRMER
+
+  frc2::Trigger([this] 
+  {
+    return joystick.GetPOV() == 0;
+  }).OnTrue(Up(&mArm).ToPtr()); // A CONFIRMER
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(10);
@@ -41,6 +54,22 @@ void RobotContainer::ConfigureBindings() {
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);
+}
+
+void RobotContainer::ArmLimit()
+{ 
+    // if (joystick.GetPOV() == 0 && mArm->GetEncodeurPosition() > ArmConstants::kArmLimitDown)
+    // {
+    //   std::cout << "message" << std::endl;
+    //   mArm->Down();
+    // }
+    
+    // // Baisser bras
+    // else if (joystick.GetPOV() == 180 && mArm->GetEncodeurPosition() < ArmConstants::kArmLimitUp)
+    // {
+    //   std::cout << "messageoui" << std::endl;
+    //   mArm->Up();
+    // }
 }
 
 void RobotContainer::drive() 

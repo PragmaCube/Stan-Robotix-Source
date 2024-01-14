@@ -10,9 +10,11 @@
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
+#include "subsystems/SubArm.h"
+#include "commands/Down.h"
+#include "commands/Up.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
-
 #include "commands/Rotation90DegresDroite.h"
 #include "commands/Rotation90DegresGauche.h"
 
@@ -21,7 +23,7 @@
  * Command-based is a "declarative" paradigm, very little robot logic should
  * actually be handled in the {@link Robot} periodic methods (other than the
  * scheduler calls).  Instead, the structure of the robot (including subsystems,
- * commands, and trigger mappings) should be declared here.
+ * commands, and trigger mappings) should be declared here... ......
  */
 class RobotContainer {
  public:
@@ -29,10 +31,13 @@ class RobotContainer {
 
   frc2::CommandPtr GetAutonomousCommand();
 
+ void ArmLimit();
+
  void drive();
  void oEjector();   
  void oArm();
  void armInit();
+
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -41,11 +46,13 @@ class RobotContainer {
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
 
+  SubArm mArm; 
+
   void ConfigureBindings();
+
+  int compteur = 0;
 
   frc::Joystick mJoystick{0};
   SubDriveTrain mDriveTrain;
   SubIMU mIMU;
-
-
 };

@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Robot.h"
+#include "subsystems/SubArm.h"
 
 #include <frc2/command/CommandScheduler.h>
 
@@ -58,6 +59,7 @@ void Robot::TeleopInit() {
  */
 void Robot::TeleopPeriodic() 
 {
+  m_container.ArmLimit();
   m_container.drive();
 }
 
