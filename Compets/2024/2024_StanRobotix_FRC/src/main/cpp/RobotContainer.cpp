@@ -1,9 +1,9 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-
 #include "RobotContainer.h"
 
+#include "Constants.h"
 #include <frc2/command/button/Trigger.h>
 
 #include "commands/Autos.h"
@@ -32,4 +32,15 @@ void RobotContainer::ConfigureBindings() {
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);
+}
+
+
+void RobotContainer::drive() 
+{
+  mDriveTrain.mecanumDrive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
+  
+  if (mJoystick.GetRawButtonPressed(1))
+  {
+    mIMU.ResetAngle();
+  }
 }
