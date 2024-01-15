@@ -27,16 +27,14 @@ class SubDriveTrain : public frc2::SubsystemBase
 
   int getVitesse();
 
-  void setVitesse(float Vitesse);
-
  private:
 
   int mVitesse = 2;
 
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX mMotorL1{1}; // 0 is the RIO PWM port this is connected to
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX mMotorL2{2};
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX mMotorR1{3};
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX mMotorR2{4};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* mMotorL1{}; // 0 is the RIO PWM port this is connected to
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* mMotorL2{};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* mMotorR1{};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* mMotorR2{};
 
   frc::MecanumDrive* mDrive;
 };
