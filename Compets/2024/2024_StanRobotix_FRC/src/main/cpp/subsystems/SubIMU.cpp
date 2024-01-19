@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SubIMU.h"
+#include <cmath>
 
 SubIMU::SubIMU() = default;
 
@@ -16,24 +17,18 @@ void SubIMU::ResetAngle()
 
 units::standard_gravity_t SubIMU::getAccelX()
 {
-    int16_t wAccel[3];
-    IMU.GetBiasedAccelerometer(wAccel);
-    return units::standard_gravity_t{(double)wAccel[0] / 16384.0 };
+    return IMU.GetAccelerationX().GetValue();
 }
 
 
 units::standard_gravity_t SubIMU::getAccelY()
 {
-    int16_t wAccel[3];
-    IMU.GetBiasedAccelerometer(wAccel);
-    return units::standard_gravity_t{(double)wAccel[1] / 16384.0};
+    return IMU.GetAccelerationY().GetValue();
 }
 
 units::standard_gravity_t SubIMU::getAccel()
 {
-    int16_t wAccel[3];
-    IMU.GetBiasedAccelerometer(wAccel);
-    return units::standard_gravity_t{sqrt(pow((double)wAccel[0] / 16384.0,2) + pow((double)wAccel[1] / 16384.0,2))};
+    return units::standard_gravity_t(std::sqrt(std::pow( IMU.GetAccelerationX().GetValueAsDouble(),2) + std::pow(IMU.GetAccelerationY().GetValueAsDouble(),2) ));
 }
 
 
