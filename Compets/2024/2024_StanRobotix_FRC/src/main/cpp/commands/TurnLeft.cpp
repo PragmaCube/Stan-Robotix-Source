@@ -3,16 +3,29 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/TurnLeft.h"
+#include <frc/drive/MecanumDrive.h>
 
-TurnLeft::TurnLeft() {
-  // Use addRequirements() here to declare subsystem dependencies.
+TurnLeft::TurnLeft(SubDriveTrain *iDriveTrain, SubIMU *iIMU) 
+{
+  mDriveTrain = iDriveTrain;
+  mIMU = iIMU;
+  AddRequirements(mDriveTrain);
+  AddRequirements(mIMU);
+
+  
+}
+  
+// Called when the command is initially scheduled.
+void TurnLeft::Initialize() 
+{
+ mIMU->ResetAngle();
+ mPIDController.SetSetpoint(90);
 }
 
-// Called when the command is initially scheduled.
-void TurnLeft::Initialize() {}
-
 // Called repeatedly when this Command is scheduled to run
-void TurnLeft::Execute() {}
+void TurnLeft::Execute() {
+  mDriveTrain->mecanumDrive(0, 0, 0, mIMU->getRotation2d());
+}
 
 // Called once the command ends or is interrupted.
 void TurnLeft::End(bool interrupted) {}
@@ -20,4 +33,5 @@ void TurnLeft::End(bool interrupted) {}
 // Returns true when the command should end.
 bool TurnLeft::IsFinished() {
   return false;
+
 }

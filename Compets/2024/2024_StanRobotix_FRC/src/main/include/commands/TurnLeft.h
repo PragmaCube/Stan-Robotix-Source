@@ -3,9 +3,13 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
-
+#include <frc/controller/PIDController.h>
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubIMU.h"
+#include "RobotContainer.h"
+#include "Constants.h"
 
 /**
  * An example command.
@@ -17,7 +21,7 @@
 class TurnLeft
     : public frc2::CommandHelper<frc2::Command, TurnLeft> {
  public:
-  TurnLeft();
+  TurnLeft(SubDriveTrain* iDriveTrain, SubIMU* iIMU);
 
   void Initialize() override;
 
@@ -26,4 +30,12 @@ class TurnLeft
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+
+ private:
+ 
+    SubDriveTrain* mDriveTrain;
+    SubIMU* mIMU;
+
+    frc::PIDController mPIDController {0.2, 1.2, 0.1};
+    double Output;
 };
