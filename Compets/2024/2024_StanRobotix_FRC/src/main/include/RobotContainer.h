@@ -4,6 +4,7 @@
 
 #pragma once
 #include <frc/Joystick.h> 
+#include <frc2/command/button/CommandJoystick.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
 
@@ -11,6 +12,7 @@
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
+#include "commands/GoToTag.h"
 
 
 /**
@@ -37,7 +39,7 @@ class RobotContainer {
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  frc2::CommandXboxController m_driverController{OperatorConstants::kDriverControllerPort};
+  frc2::CommandJoystick m_driverController{OperatorConstants::kDriverControllerPort};
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
@@ -45,8 +47,6 @@ class RobotContainer {
   void ConfigureBindings();
 
   int compteur = 0;
-
-  frc::Joystick mJoystick{0};
   
   SubDriveTrain mDriveTrain;
   SubIMU mIMU;

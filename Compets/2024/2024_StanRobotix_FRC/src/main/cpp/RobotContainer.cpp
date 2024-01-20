@@ -23,10 +23,14 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+  // frc2::Trigger([this] {
+    // return SubDriveTrain.ExampleCondition();
+  // }).OnTrue(GoToTag(&mDriveTrain).ToPtr());
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
-  m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+  m_driverController.Button(1).OnTrue(GoToTag(&mDriveTrain).ToPtr());
+
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
