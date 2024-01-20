@@ -20,25 +20,22 @@ class SubAscenseur : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  int getVitesse();
+  double getVitesse();
 
-  void setVitesse(float Vitesse);
+  void setVitesse(double Vitesse);
 
-  void bougeAscenseur(double iVitesse);
+  void bougeAscenseur(double vitesse);
+
+  void setPositionAscenseur(double iPosition);
 
   double getEncoderPositionMotor1();
   double getEncoderPositionMotor2();
 
   void stopAscenseurMotors();
 
-  double kMaxVel = 2000,
-         kMinVel = 0,
-         kMaxAcc = 1500,
-         kAllErr = 0;
-
  private:
 
-  float vitesse = 0;
+  double vitesse = 0;
 
   rev::CANSparkMax mAscenseurMotor1 {AscenseurConstants::kMotorId1, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax mAscenseurMotor2 {AscenseurConstants::kMotorId2, rev::CANSparkMax::MotorType::kBrushless};
