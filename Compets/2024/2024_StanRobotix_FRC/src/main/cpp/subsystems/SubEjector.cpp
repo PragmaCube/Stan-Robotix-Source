@@ -12,10 +12,14 @@ void SubEjector::Periodic() {
     switch (mState)
     {
         case eIn:
-            mMotorEjector.Set(EjectorConstants::kSpeedPull);
-            if(mColorSensor.GetProximity() !=0&& mProximity<EjectorConstants::kInProximity)
+            
+            if(mProximity !=0 && mProximity < EjectorConstants::kInProximity)
             {
                 mState=eStop;
+            }
+            else
+            {
+                mMotorEjector.Set(EjectorConstants::kSpeedPull);
             }
             break;
         case eOut:
@@ -39,3 +43,4 @@ void SubEjector::Stop()
 {
     mState=eStop;
 }
+void SubEjector::Init() { }
