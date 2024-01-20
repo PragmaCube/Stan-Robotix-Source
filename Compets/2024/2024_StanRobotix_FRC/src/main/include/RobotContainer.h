@@ -25,14 +25,8 @@ class RobotContainer {
   RobotContainer();
 
   frc2::CommandPtr GetAutonomousCommand();
-  void Drive();
-
- void ArmLimit();
 
  void drive();
- void oEjector();   
- void oArm();
- void armInit();
 
 
  private:
