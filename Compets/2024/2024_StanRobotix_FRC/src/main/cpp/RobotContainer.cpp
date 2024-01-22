@@ -21,8 +21,8 @@ void RobotContainer::ConfigureBindings() {
 
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
   frc2::Trigger([this] {
-    return m_subsystem.ExampleCondition();
-  }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+    return mJoystick.GetRawButtonPressed(5);
+  }).OnTrue(GoToTag(&mDriveTrain).ToPtr());
   // frc2::Trigger([this] {
     // return SubDriveTrain.ExampleCondition();
   // }).OnTrue(GoToTag(&mDriveTrain).ToPtr());
@@ -39,7 +39,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 }
 
 
-void RobotContainer::drive() 
+void RobotContainer::Drive() 
 {
   mDriveTrain.mecanumDrive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
   

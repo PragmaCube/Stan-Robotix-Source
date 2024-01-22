@@ -28,14 +28,7 @@ class RobotContainer {
 
   frc2::CommandPtr GetAutonomousCommand();
   void Drive();
-
- void ArmLimit();
-
- void drive();
- void oEjector();   
- void oArm();
- void armInit();
-
+ 
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -48,6 +41,8 @@ class RobotContainer {
 
   int compteur = 0;
   
+  frc::Joystick mJoystick{0};
+
   SubDriveTrain mDriveTrain;
   SubIMU mIMU;
 };
