@@ -11,6 +11,7 @@
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
+#include <frc/controller/PIDController.h>
 
 
 /**
@@ -44,4 +45,5 @@ class RobotContainer {
   
   SubDriveTrain mDriveTrain;
   SubIMU mIMU;
+  PIDController mController;
 };

@@ -21,41 +21,6 @@ constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
 
-namespace EjectorConstants
-{
-    constexpr int kCanIdElevator = 3;
-    constexpr float kSpeedPush = 1.0F;
-    constexpr float kSpeedPull = -1.0F; 
-} // namespace EjectorConstants
-
-namespace ArmConstants
-{
-    constexpr int kMotorId = 4;
-    constexpr float motorSpeed = 0.15; 
-    constexpr float kArmLimitUp = 2;
-    constexpr float kArmLimitDown = 0;
-
-    constexpr double kP = 0.00004999999873689376, 
-                 kI = 9.999999974752427e-7, 
-                 kD = 0, 
-                 kIz = 0, 
-                 kFF = 0.000155999994603917, 
-                 kMaxOutput = 0.5,
-                 kMinOutput = -0.5;
-} // namespace ArmConstants
-
-namespace DriveTrainConstants
-{
-    constexpr int kArmCanId = 4;
-    constexpr int kPositionUp = 400;
-    constexpr int kPositionDown = 0;
-}
-
-namespace EjectorConstants
-{
-    constexpr int kEjectorCanId = 3;
-}
-
 namespace DriveTrainConstants
 {
     constexpr int kMotorL1Id = 1;
