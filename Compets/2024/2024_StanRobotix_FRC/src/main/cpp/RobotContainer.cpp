@@ -33,3 +33,27 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);
 }
+
+void RobotContainer::MoveAscenseur()
+{
+  if (mJoystick.GetRawButtonPressed(7))
+  {
+    mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitDown);
+  }
+  else if (mJoystick.GetRawButtonPressed(9))
+  {
+    mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitMiddle);
+  }
+  else if (mJoystick.GetRawButtonPressed(11))
+  {
+    mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitUp);
+  }
+  else if (mJoystick.GetRawButtonPressed(8))
+  {
+    mAscenseur.bougeAscenseur(10);
+  }
+  else if (mJoystick.GetRawButtonPressed(10))
+  {
+    mAscenseur.bougeAscenseur(-10);
+  }
+}

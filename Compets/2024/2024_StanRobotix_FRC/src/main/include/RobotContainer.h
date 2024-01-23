@@ -26,6 +26,8 @@ class RobotContainer {
 
   frc2::CommandPtr GetAutonomousCommand();
 
+  void MoveAscenseur();
+
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{

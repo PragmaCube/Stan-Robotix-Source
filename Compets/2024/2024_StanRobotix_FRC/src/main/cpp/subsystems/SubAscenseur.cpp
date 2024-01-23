@@ -26,13 +26,13 @@ void SubAscenseur::setVitesse(double Vitesse)
 void SubAscenseur::bougeAscenseur(double vitesse)
 {
     mPIDController1.SetReference(vitesse, rev::CANSparkMax::ControlType::kDutyCycle);
-    mPIDController2.SetReference(vitesse, rev::CANSparkMax::ControlType::kDutyCycle);
+    mPIDController2.SetReference(-vitesse, rev::CANSparkMax::ControlType::kDutyCycle);
 }
 
 void SubAscenseur::setPositionAscenseur(double iPosition)
 {
     mPIDController1.SetReference(iPosition, rev::CANSparkMax::ControlType::kSmartMotion);
-    mPIDController2.SetReference(iPosition, rev::CANSparkMax::ControlType::kSmartMotion);
+    mPIDController2.SetReference(-iPosition, rev::CANSparkMax::ControlType::kSmartMotion);
 }
 
 double SubAscenseur::getEncoderPositionMotor1()
