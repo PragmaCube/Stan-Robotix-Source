@@ -11,6 +11,7 @@
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
+#include <frc/controller/PIDController.h>
 
 
 /**
@@ -25,14 +26,8 @@ class RobotContainer {
   RobotContainer();
 
   frc2::CommandPtr GetAutonomousCommand();
-  void Drive();
-
- void ArmLimit();
 
  void drive();
- void oEjector();   
- void oArm();
- void armInit();
 
 
  private:
@@ -50,4 +45,5 @@ class RobotContainer {
   
   SubDriveTrain mDriveTrain;
   SubIMU mIMU;
+  PIDController mController;
 };
