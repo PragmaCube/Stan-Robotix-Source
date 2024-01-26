@@ -45,5 +45,4 @@ class RobotContainer {
   
   SubDriveTrain mDriveTrain;
   SubIMU mIMU;
-  PIDController mController;
 };

@@ -24,14 +24,20 @@ void TurnLeft::Initialize()
 
 // Called repeatedly when this Command is scheduled to run
 void TurnLeft::Execute() {
-  mDriveTrain->mecanumDrive(0, 0, 0, mIMU->getRotation2d());
+  mDriveTrain->mecanumDrive(0, 0, mPIDController.Calculate(mIMU->getAngleYaw()), mIMU->getRotation2d());
 }
 
 // Called once the command ends or is interrupted.
-void TurnLeft::End(bool interrupted) {}
+void TurnLeft::End(bool interrupted) 
+{
+
+}
 
 // Returns true when the command should end.
 bool TurnLeft::IsFinished() {
-  return false;
-
+  if (mPIDController.AtSetpoint())
+  {
+    return true;
+  }
+return false;
 }
