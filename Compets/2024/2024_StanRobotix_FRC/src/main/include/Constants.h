@@ -22,12 +22,12 @@ inline constexpr int kDriverControllerPort = 0;
 
 namespace AscenseurConstants {
 
-    constexpr int kMotorId1 = 5;
-    constexpr int kMotorId2 = 6;
+    constexpr int kMotorId1 = 1;
+    constexpr int kMotorId2 = 3;
 
-    constexpr double kAscenseurLimitUp = 8;
-    constexpr double kAscenseurLimitMiddle = 5;
-    constexpr double kAscenseurLimitDown = 0;
+    constexpr double kAscenseurLimitUp = 100;
+    constexpr double kAscenseurLimitMiddle = 30;
+    constexpr double kAscenseurLimitDown = 10;
 
     constexpr double kP = 0.00004999999873689376, 
                  kI = 9.999999974752427e-7, 

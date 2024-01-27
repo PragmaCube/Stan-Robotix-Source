@@ -7,6 +7,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <rev/CANSparkMax.h>
 #include <rev/SparkMaxPIDController.h>
+#include <cmath>
 
 #include "Constants.h"
 
@@ -20,18 +21,23 @@ class SubAscenseur : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  double getVitesse();
+  double getPositionVoulue();
 
-  void setVitesse(double Vitesse);
+  void setPositionVoulue(double iPositionVoulue);
 
-  void bougeAscenseur(double vitesse);
+  void bougeAscenseur(double iVitesse);
 
   void setPositionAscenseur(double iPosition);
 
   double getEncoderPositionMotor1();
   double getEncoderPositionMotor2();
 
+  double getVelocityMotor1();
+  double getVelocityMotor2();
+
   void stopAscenseurMotors();
+
+  double PositionVoulue;
 
  private:
 

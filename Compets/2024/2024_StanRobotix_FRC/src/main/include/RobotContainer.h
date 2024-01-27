@@ -11,6 +11,9 @@
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubAscenseur.h"
+#include "commands/Haut.h"
+#include "commands/Milieu.h"
+#include "commands/Bas.h"
 
 
 /**

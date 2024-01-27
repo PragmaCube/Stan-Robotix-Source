@@ -8,6 +8,7 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include <iostream>
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
@@ -24,6 +25,18 @@ void RobotContainer::ConfigureBindings() {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
 
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(7);
+  }).OnTrue(Haut(&mAscenseur).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(9);
+  }).OnTrue(Milieu(&mAscenseur).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(11);
+  }).OnTrue(Bas(&mAscenseur).ToPtr());
+
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
@@ -36,24 +49,30 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::MoveAscenseur()
 {
-  if (mJoystick.GetRawButtonPressed(7))
+  if (mJoystick.GetRawButton(7))
   {
     mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitDown);
   }
-  else if (mJoystick.GetRawButtonPressed(9))
+  else if (mJoystick.GetRawButton(9))
   {
     mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitMiddle);
   }
-  else if (mJoystick.GetRawButtonPressed(11))
+  else if (mJoystick.GetRawButton(11))
   {
     mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitUp);
   }
-  else if (mJoystick.GetRawButtonPressed(8))
+  else if (mJoystick.GetRawButton(8))
   {
-    mAscenseur.bougeAscenseur(10);
+    mAscenseur.bougeAscenseur(0.5);
   }
-  else if (mJoystick.GetRawButtonPressed(10))
+  else if (mJoystick.GetRawButton(10))
   {
-    mAscenseur.bougeAscenseur(-10);
+    mAscenseur.bougeAscenseur(-0.5);
   }
+  else
+  {
+    mAscenseur.stopAscenseurMotors();
+  }
+  std::cout << mAscenseur.getEncoderPositionMotor1() << " : Encoder 1" << std::endl;
+  std::cout << mAscenseur.getEncoderPositionMotor2() << " : Encoder 2" << std::endl;
 }
