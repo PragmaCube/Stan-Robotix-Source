@@ -4,7 +4,7 @@
 
 #include "commands/TurnLeft.h"
 #include <frc/drive/MecanumDrive.h>
-
+#include "commands/GoToTag.h"
 TurnLeft::TurnLeft(SubDriveTrain *iDriveTrain, SubIMU *iIMU) 
 {
   mDriveTrain = iDriveTrain;
@@ -25,6 +25,23 @@ void TurnLeft::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void TurnLeft::Execute() {
   mDriveTrain->mecanumDrive(0, 0, mPIDController.Calculate(mIMU->getAngleYaw()), mIMU->getRotation2d());
+
+  
+  mCoefP = frc::Shuffleboard::GetTab("GoToTag")
+                                                  .Add("CoefP", 42)
+                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
+                                                  .GetEntry();
+
+  mCoefI = frc::Shuffleboard::GetTab("GoToTag")
+                                                  .Add("CoefI", 0)
+                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
+                                                  .GetEntry();
+
+  mCoefD = frc::Shuffleboard::GetTab("GoToTag")
+                                                  .Add("CoefD", 0)
+                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
+                                                  .GetEntry();
+                      frc::Shuffleboard::GetTab("GoToTag").Add("Debug", 1.0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
 }
 
 // Called once the command ends or is interrupted.
