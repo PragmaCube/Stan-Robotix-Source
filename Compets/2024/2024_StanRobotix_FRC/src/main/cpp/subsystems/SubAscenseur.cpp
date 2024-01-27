@@ -7,26 +7,35 @@
 
 SubAscenseur::SubAscenseur()
 {
-
+    // mPIDController1.SetP(AscenseurConstants::kP);
+    // mPIDController2.SetP(AscenseurConstants::kP);
+    // mPIDController1.SetI(AscenseurConstants::kI);
+    // mPIDController2.SetI(AscenseurConstants::kI);
+    // mPIDController1.SetD(AscenseurConstants::kD);
+    // mPIDController2.SetD(AscenseurConstants::kD);
+    
+    // mPIDController1.SetFF(AscenseurConstants::kFF);
+    // mPIDController2.SetFF(AscenseurConstants::kFF);
+    // mPIDController1.SetOutputRange(AscenseurConstants::kMinOutput, AscenseurConstants::kMaxOutput);
 }
 
 // This method will be called once per scheduler run
 void SubAscenseur::Periodic() {}
 
-double SubAscenseur::getVitesse()
+double SubAscenseur::getPositionVoulue()
 {
-    return vitesse;
+    return PositionVoulue;
 }
 
-void SubAscenseur::setVitesse(double Vitesse)
+void SubAscenseur::setPositionVoulue(double iPositionVoulue)
 {
-    vitesse = Vitesse;
+    PositionVoulue = iPositionVoulue;
 }
 
-void SubAscenseur::bougeAscenseur(double vitesse)
+void SubAscenseur::bougeAscenseur(double iVitesse)
 {
-    mPIDController1.SetReference(vitesse, rev::CANSparkMax::ControlType::kDutyCycle);
-    mPIDController2.SetReference(-vitesse, rev::CANSparkMax::ControlType::kDutyCycle);
+    mAscenseurMotor1.Set(iVitesse);
+    mAscenseurMotor2.Set(-iVitesse);
 }
 
 void SubAscenseur::setPositionAscenseur(double iPosition)
@@ -47,6 +56,6 @@ double SubAscenseur::getEncoderPositionMotor2()
 
 void SubAscenseur::stopAscenseurMotors()
 {
-    mPIDController1.SetReference(0,rev::CANSparkMax::ControlType::kDutyCycle);
-    mPIDController2.SetReference(0,rev::CANSparkMax::ControlType::kDutyCycle);
+    mPIDController1.SetReference(0, rev::CANSparkMax::ControlType::kDutyCycle);
+    mPIDController2.SetReference(0, rev::CANSparkMax::ControlType::kDutyCycle);
 }

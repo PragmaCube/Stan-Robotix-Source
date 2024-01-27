@@ -20,11 +20,11 @@ class SubAscenseur : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  double getVitesse();
+  double getPositionVoulue();
 
-  void setVitesse(double Vitesse);
+  void setPositionVoulue(double iPositionVoulue);
 
-  void bougeAscenseur(double vitesse);
+  void bougeAscenseur(double iVitesse);
 
   void setPositionAscenseur(double iPosition);
 
@@ -32,6 +32,8 @@ class SubAscenseur : public frc2::SubsystemBase {
   double getEncoderPositionMotor2();
 
   void stopAscenseurMotors();
+
+  double PositionVoulue;
 
  private:
 
