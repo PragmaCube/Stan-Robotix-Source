@@ -7,7 +7,7 @@
 SubDriveTrain::SubDriveTrain()
 {
     mMotorL1 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX{DriveTrainConstants::kMotorL1Id};
-    mMotorL2 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX{DriveTrainConstants::kMotorL2Id};
+    mMotorL2 = new ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::kMotorL2Id};
     mMotorR1 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX{DriveTrainConstants::kMotorR1Id};
     mMotorR2 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX{DriveTrainConstants::kMotorR2Id};
 

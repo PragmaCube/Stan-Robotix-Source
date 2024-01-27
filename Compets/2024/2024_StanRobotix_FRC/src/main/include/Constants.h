@@ -23,17 +23,9 @@ constexpr int kDriverControllerPort = 0;
 
 namespace DriveTrainConstants
 {
-    constexpr int kMotorL1Id = 1;
-    constexpr int kMotorL2Id = 3;
-    constexpr int kMotorR1Id = 2;
-    constexpr int kMotorR2Id = 4;
+    constexpr int kMotorL1Id = 2;
+    constexpr int kMotorL2Id = 4;
+    constexpr int kMotorR1Id = 3;
+    constexpr int kMotorR2Id = 1;
     
 } // namespace DriveTrainConstants
-
-namespace PIDCOnstants
-{
-    constexpr double kP = 0.2;
-    constexpr double kI = 1.2;
-    constexpr double kD = 0.1;
-    
-}
