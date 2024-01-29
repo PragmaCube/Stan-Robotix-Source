@@ -30,3 +30,9 @@ namespace DriveTrainConstants
     
 } // namespace DriveTrainConstants
 
+namespace DrivePIDConstants
+{
+    auto kTurnP = 0.2;
+    auto kTurnI = 1.2;
+    auto kTurnD = 0.1;
+}

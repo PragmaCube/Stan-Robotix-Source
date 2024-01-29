@@ -9,6 +9,8 @@
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
+#include <iostream>
+
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
@@ -23,6 +25,11 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+
+   frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(2);
+  }).OnTrue(TurnLeft(&mDriveTrain, &mIMU).ToPtr());
+
 
   // frc2::Trigger([this] {
   //   return mJoystick.GetRawButtonPressed(2) ;
@@ -43,8 +50,10 @@ void RobotContainer::drive()
 {
   mDriveTrain.mecanumDrive(mJoystick.GetX(), -mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
   
+  std::cout << mIMU.getAngleYaw() << std::endl;
+
   if (mJoystick.GetRawButtonPressed(1))
   {
-    mIMU.ResetAngle();
+    // mIMU.ResetAngle();
   }
 }
