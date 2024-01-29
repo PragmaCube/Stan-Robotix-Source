@@ -37,3 +37,19 @@ namespace AscenseurConstants {
                  kMaxOutput = 0.5,
                  kMinOutput = -0.5;
 }
+
+namespace PivotConstants
+{
+    constexpr float kHeightUp = 2;
+    constexpr float kHeightMiddle = 1;
+    constexpr float kHeightDown = 0;
+    constexpr int kMotorId = 0;
+
+    constexpr double kP = 0.00004999999873689376, 
+                 kI = 9.999999974752427e-7, 
+                 kD = 0, 
+                 kIz = 0, 
+                 kFF = 0.000155999994603917, 
+                 kMaxOutput = 0.5,
+                 kMinOutput = -0.5;
+} // namespace mPivotMotor

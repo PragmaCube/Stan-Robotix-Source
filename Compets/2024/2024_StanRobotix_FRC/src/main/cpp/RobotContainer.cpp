@@ -4,10 +4,7 @@
 
 #include "RobotContainer.h"
 
-#include <frc2/command/button/Trigger.h>
 
-#include "commands/Autos.h"
-#include "commands/ExampleCommand.h"
 #include <iostream>
 
 RobotContainer::RobotContainer() {
@@ -36,6 +33,18 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(11);
   }).OnTrue(Bas(&mAscenseur).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetPOV() == 180;
+  }).OnTrue(PivotDown(&mPivot).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetPOV() == 0;
+  }).OnTrue(PivotUp(&mPivot).ToPtr());
+
+   frc2::Trigger([this] {
+    return mJoystick.GetPOV() == 90 || mJoystick.GetPOV() == 270;
+  }).OnTrue(PivotMiddle(&mPivot).ToPtr());
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
@@ -75,4 +84,34 @@ void RobotContainer::MoveAscenseur()
   }
   std::cout << mAscenseur.getEncoderPositionMotor1() << " : Encoder 1" << std::endl;
   std::cout << mAscenseur.getEncoderPositionMotor2() << " : Encoder 2" << std::endl;
+}
+
+void RobotContainer::drive()
+{
+  // if (mJoystick.GetPOV() == 0)
+  // {
+  //   mPivot.pivotUp();
+  // }
+  // else if (mJoystick.GetPOV() == 180)
+  // {
+  //   mPivot.pivotDown();
+  // }
+  // apres les fameux conseils dAndre
+  // else if (mJoystick.GetPOV() == 90 || mJoystick.GetPOV() == 270)
+  // {
+  //   mPivot.pivotMiddle();
+  // }
+  // else
+  // {
+  //   mPivot.stopPivot();
+  // }
+
+  // if (mJoystick.GetPOV() == 180)
+  // {
+  //   mPivot.pivotGo();
+  // }
+  // else
+  // {
+  //   mPivot.stopPivot();
+  // }
 }
