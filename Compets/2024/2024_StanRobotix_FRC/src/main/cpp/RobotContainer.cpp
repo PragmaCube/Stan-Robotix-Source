@@ -58,32 +58,32 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::MoveAscenseur()
 {
-  if (mJoystick.GetRawButton(7))
-  {
-    mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitDown);
-  }
-  else if (mJoystick.GetRawButton(9))
-  {
-    mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitMiddle);
-  }
-  else if (mJoystick.GetRawButton(11))
-  {
-    mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitUp);
-  }
-  else if (mJoystick.GetRawButton(8))
-  {
-    mAscenseur.bougeAscenseur(0.5);
-  }
-  else if (mJoystick.GetRawButton(10))
-  {
-    mAscenseur.bougeAscenseur(-0.5);
-  }
-  else
-  {
-    mAscenseur.stopAscenseurMotors();
-  }
-  std::cout << mAscenseur.getEncoderPositionMotor1() << " : Encoder 1" << std::endl;
-  std::cout << mAscenseur.getEncoderPositionMotor2() << " : Encoder 2" << std::endl;
+  // if (mJoystick.GetRawButton(7))
+  // {
+  //   mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitDown);
+  // }
+  // else if (mJoystick.GetRawButton(9))
+  // {
+  //   mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitMiddle);
+  // }
+  // else if (mJoystick.GetRawButton(11))
+  // {
+  //   mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitUp);
+  // }
+  // else if (mJoystick.GetRawButton(8))
+  // {
+  //   mAscenseur.bougeAscenseur(0.5);
+  // }
+  // else if (mJoystick.GetRawButton(10))
+  // {
+  //   mAscenseur.bougeAscenseur(-0.5);
+  // }
+  // else
+  // {
+  //   mAscenseur.stopAscenseurMotors();
+  // }
+  // std::cout << mAscenseur.getEncoderPositionMotor1() << " : Encoder 1" << std::endl;
+  // std::cout << mAscenseur.getEncoderPositionMotor2() << " : Encoder 2" << std::endl;
 }
 
 void RobotContainer::drive()

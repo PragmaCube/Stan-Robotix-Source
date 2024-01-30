@@ -43,7 +43,7 @@ namespace PivotConstants
     constexpr float kHeightUp = 2;
     constexpr float kHeightMiddle = 1;
     constexpr float kHeightDown = 0;
-    constexpr int kMotorId = 0;
+    constexpr int kMotorId = 7;
 
     constexpr double kP = 0.00004999999873689376, 
                  kI = 9.999999974752427e-7, 
