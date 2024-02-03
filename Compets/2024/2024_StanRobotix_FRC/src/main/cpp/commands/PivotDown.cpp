@@ -30,6 +30,6 @@ void PivotDown::End(bool interrupted) { }
 bool PivotDown::IsFinished() {
   return (std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightDown) < 0.05 &&
          std::abs(mPivot->getVelocityMotor()) < 0.05) || 
-         (std::abs(mAscenseur->getEncoderPositionMotor1() - mAscenseur->getPositionVoulue()) < 0.05 &&
-         std::abs(mAscenseur->getEncoderPositionMotor2() - mAscenseur->getPositionVoulue()) < 0.05   );     
+         (std::abs(mAscenseur->getEncoderPositionMotor1() - AscenseurConstants::kAscenseurLimitDown) < 0.05 &&
+         std::abs(mAscenseur->getEncoderPositionMotor2() - AscenseurConstants::kAscenseurLimitDown) < 0.05);     
 }
