@@ -36,7 +36,7 @@ void RobotContainer::ConfigureBindings() {
 
   frc2::Trigger([this] {
     return mJoystick.GetPOV() == 180;
-  }).OnTrue(PivotDown(&mPivot).ToPtr());
+  }).OnTrue(PivotDown(&mPivot, &mAscenseur).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetPOV() == 0;

@@ -8,6 +8,8 @@
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/SubPivot.h"
 
+#include "subsystems/SubAscenseur.h"
+
 /**
  * An example command.
  *
