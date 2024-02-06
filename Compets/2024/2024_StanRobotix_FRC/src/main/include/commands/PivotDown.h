@@ -8,6 +8,9 @@
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/SubPivot.h"
 
+#include "subsystems/SubAscenseur.h"
+#include "Constants.h"
+
 /**
  * An example command.
  *
@@ -18,7 +21,7 @@
 class PivotDown
     : public frc2::CommandHelper<frc2::Command, PivotDown> {
  public:
-  PivotDown(SubPivot *iPivot);
+  PivotDown(SubPivot *iPivot, SubAscenseur *iAscenseur);
 
   void Initialize() override;
 
@@ -30,4 +33,5 @@ class PivotDown
   
   private:
   SubPivot *mPivot;
+  SubAscenseur *mAscenseur;
 };

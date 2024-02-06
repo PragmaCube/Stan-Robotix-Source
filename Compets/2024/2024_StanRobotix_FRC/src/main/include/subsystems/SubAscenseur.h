@@ -9,6 +9,7 @@
 #include <rev/SparkMaxPIDController.h>
 #include <cmath>
 
+#include "SubPivot.h"
 #include "Constants.h"
 
 class SubAscenseur : public frc2::SubsystemBase {

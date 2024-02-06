@@ -5,10 +5,13 @@
 #include "commands/PivotDown.h"
 
 
-PivotDown::PivotDown(SubPivot *iPivot) {
+PivotDown::PivotDown(SubPivot *iPivot, SubAscenseur *iAscensseur) {
   // Use addRequirements() here to declare subsystem dependencies.
   mPivot = iPivot;
+  mAscenseur=iAscensseur;
+  
   AddRequirements(mPivot);
+  AddRequirements(mAscenseur);
 }
 
 // Called when the command is initially scheduled.
@@ -21,10 +24,12 @@ void PivotDown::Execute()
 }
 
 // Called once the command ends or is interrupted.
-void PivotDown::End(bool interrupted) {}
+void PivotDown::End(bool interrupted) { }
 
 // Returns true when the command should end.
 bool PivotDown::IsFinished() {
-  return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightDown) < 0.05 &&
-         std::abs(mPivot->getVelocityMotor())< 0.05;
+  return (std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightDown) < 0.05 &&
+         std::abs(mPivot->getVelocityMotor()) < 0.05) || 
+         (std::abs(mAscenseur->getEncoderPositionMotor1() - AscenseurConstants::kAscenseurLimitDown) < 0.05 &&
+         std::abs(mAscenseur->getEncoderPositionMotor2() - AscenseurConstants::kAscenseurLimitDown) < 0.05);     
 }
