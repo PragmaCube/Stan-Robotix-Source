@@ -34,17 +34,17 @@ void RobotContainer::ConfigureBindings() {
     return mJoystick.GetRawButtonPressed(11);
   }).OnTrue(Bas(&mAscenseur).ToPtr());
 
-  frc2::Trigger([this] {
-    return mJoystick.GetPOV() == 180;
-  }).OnTrue(PivotDown(&mPivot).ToPtr());
+  // frc2::Trigger([this] {
+  //   return mJoystick.GetPOV() == 180;
+  // }).OnTrue(PivotDown(&mPivot).ToPtr());
 
-  frc2::Trigger([this] {
-    return mJoystick.GetPOV() == 0;
-  }).OnTrue(PivotUp(&mPivot).ToPtr());
+  // frc2::Trigger([this] {
+  //   return mJoystick.GetPOV() == 0;
+  // }).OnTrue(PivotUp(&mPivot).ToPtr());
 
-   frc2::Trigger([this] {
-    return mJoystick.GetPOV() == 90 || mJoystick.GetPOV() == 270;
-  }).OnTrue(PivotMiddle(&mPivot).ToPtr());
+  //  frc2::Trigger([this] {
+  //   return mJoystick.GetPOV() == 90 || mJoystick.GetPOV() == 270;
+  // }).OnTrue(PivotMiddle(&mPivot).ToPtr());
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
@@ -106,12 +106,16 @@ void RobotContainer::drive()
   //   mPivot.stopPivot();
   // }
 
-  // if (mJoystick.GetPOV() == 180)
-  // {
-  //   mPivot.pivotGo();
-  // }
-  // else
-  // {
-  //   mPivot.stopPivot();
-  // }
+  if (mJoystick.GetRawButton(10))
+  {
+    mPivot.pivotGo(1);
+  }
+  else if (mJoystick.GetRawButton(12))
+  {
+    mPivot.pivotGo(-1);
+  }
+  else
+  {
+    mPivot.stopPivot();
+  }
 }

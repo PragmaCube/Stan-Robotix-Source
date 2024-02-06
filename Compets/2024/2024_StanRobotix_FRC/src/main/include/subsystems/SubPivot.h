@@ -22,7 +22,7 @@ class SubPivot : public frc2::SubsystemBase {
   void Periodic() override;
 
   void pivotUp();
-  void pivotGo();
+  void pivotGo(double ivitesse);
   double getEncodeurPosition();
   double getVelocityMotor();
   void stopPivot();

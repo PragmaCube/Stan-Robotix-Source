@@ -41,9 +41,9 @@ void SubPivot::pivotUp()
     mPIDController.SetReference(PivotConstants::kHeightUp,rev::ControlType::kSmartMotion);
 }
 
-void SubPivot::pivotGo()
+void SubPivot::pivotGo(double ivitesse)
 {
-    mPivotMotor.Set(0.2);
+    mPivotMotor.Set(ivitesse);
 }
 
 double SubPivot::getEncodeurPosition()
