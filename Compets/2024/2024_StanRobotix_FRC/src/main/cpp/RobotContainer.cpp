@@ -3,13 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 #include "RobotContainer.h"
 
-#include "Constants.h"
-#include <frc2/command/button/Trigger.h>
-#include "commands/TurnLeft.h"
-#include "commands/Autos.h"
-#include "commands/ExampleCommand.h"
 
-#include <iostream>
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
@@ -30,6 +24,9 @@ void RobotContainer::ConfigureBindings() {
     return mJoystick.GetRawButtonPressed(2);
   }).OnTrue(TurnLeft(&mDriveTrain, &mIMU).ToPtr());
 
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(12);
+  }).OnTrue(GoToTag(&mDriveTrain).ToPtr());
 
   // frc2::Trigger([this] {
   //   return mJoystick.GetRawButtonPressed(2) ;
@@ -48,8 +45,11 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::drive() 
 {
-  mDriveTrain.mecanumDrive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
-  
+  if (mDriveTrain.getEnableDriveTrain())
+  {
+    mDriveTrain.mecanumDrive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
+  }
+
   std::cout << mIMU.getAngleYaw() << std::endl;
 
   if (mJoystick.GetRawButtonPressed(1))
@@ -57,3 +57,4 @@ void RobotContainer::drive()
     mIMU.ResetAngle();
   }
 }
+

@@ -27,6 +27,8 @@ namespace DriveTrainConstants
     constexpr int kMotorL2Id = 4;
     constexpr int kMotorR1Id = 3;
     constexpr int kMotorR2Id = 1;
+
+    // bool driveEnabled = true;
     
 } // namespace DriveTrainConstants
 

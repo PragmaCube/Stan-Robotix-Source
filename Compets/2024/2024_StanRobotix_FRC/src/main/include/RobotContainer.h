@@ -12,7 +12,14 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
 #include <frc/controller/PIDController.h>
+#include "commands/GoToTag.h"
+#include "Constants.h"
+#include <frc2/command/button/Trigger.h>
+#include "commands/TurnLeft.h"
+#include "commands/Autos.h"
+#include "commands/ExampleCommand.h"
 
+#include <iostream>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since

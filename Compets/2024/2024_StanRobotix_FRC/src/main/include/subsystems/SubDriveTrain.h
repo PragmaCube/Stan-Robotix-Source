@@ -19,6 +19,9 @@ class SubDriveTrain : public frc2::SubsystemBase
  public:
   SubDriveTrain();  
 
+  void setEnableDriveTrain(bool iEnable);
+
+  bool getEnableDriveTrain();
 
   void Periodic() override;
 
@@ -29,6 +32,8 @@ class SubDriveTrain : public frc2::SubsystemBase
   int getVitesse();
 
  private:
+
+  bool enable = true;
 
   int mVitesse = 2;
 

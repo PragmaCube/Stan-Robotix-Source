@@ -1,7 +1,6 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-#include <iostream>
 #include "commands/GoToTag.h"
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.
@@ -35,6 +34,12 @@ GoToTag::GoToTag(SubDriveTrain *iDriveTrain)
                       mDriveTrain = iDriveTrain;
                       AddRequirements(mDriveTrain);
                     }
+
+void GoToTag::Initialize() 
+{
+  mDriveTrain->setEnableDriveTrain(false);
+}
+
 void GoToTag::Execute() 
 {
                       mCoefP = frc::Shuffleboard::GetTab("GoToTag")
@@ -55,11 +60,16 @@ void GoToTag::Execute()
   mPIDController.SetP(mCoefP->GetDouble(42));
   mPIDController.SetI(mCoefI->GetDouble(0));
   mPIDController.SetD(mCoefD->GetDouble(0));
-  //Output = mPIDController.Calculate(LimelightHelpers::getTX(""), 0) ; 
+  Output = mPIDController.Calculate(LimelightHelpers::getTX(""), 0) ; 
   std::cout<< Output << std::endl; 
-  mDriveTrain->mecanumDrive(0.0F,0.0F,Output,frc::Rotation2d(0_rad));
+  mDriveTrain->mecanumDrive(0.0F,0.0F,-Output,frc::Rotation2d(0_rad));
 }
 // Returns true when the command should end.
  bool GoToTag::IsFinished() {
   return mPIDController.AtSetpoint();
+}
+
+void GoToTag::End(bool interrupted) 
+{
+  mDriveTrain->setEnableDriveTrain(true);
 }
