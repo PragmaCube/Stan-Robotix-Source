@@ -32,7 +32,7 @@ namespace DriveTrainConstants
 
 namespace DrivePIDConstants
 {
-    auto kTurnP = 0.2;
-    auto kTurnI = 1.2;
-    auto kTurnD = 0.1;
+    constexpr double kTurnP = 0.2;
+    constexpr double kTurnI = 1.2;
+    constexpr double kTurnD = 0.1;
 }

@@ -48,12 +48,12 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::drive() 
 {
-  mDriveTrain.mecanumDrive(mJoystick.GetX(), -mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
+  mDriveTrain.mecanumDrive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
   
   std::cout << mIMU.getAngleYaw() << std::endl;
 
   if (mJoystick.GetRawButtonPressed(1))
   {
-    // mIMU.ResetAngle();
+    mIMU.ResetAngle();
   }
 }

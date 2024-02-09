@@ -18,20 +18,20 @@
  {
   mPIDController.SetSetpoint(90);
 
-   mCoefP = frc::Shuffleboard::GetTab("TurnLeft")
-                                                   .Add("CoefP", DrivePIDConstants::kTurnP)
-                                                   .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                   .GetEntry();
+  //  mCoefP = frc::Shuffleboard::GetTab("TurnLeft")
+  //                                                  .Add("CoefP", DrivePIDConstants::kTurnP)
+  //                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
+  //                                                  .GetEntry();
 
-   mCoefI = frc::Shuffleboard::GetTab("TurnLeft")
-                                                   .Add("CoefI", DrivePIDConstants::kTurnI)
-                                                   .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                   .GetEntry();
+  //  mCoefI = frc::Shuffleboard::GetTab("TurnLeft")
+  //                                                  .Add("CoefI", DrivePIDConstants::kTurnI)
+  //                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
+  //                                                  .GetEntry();
 
-   mCoefD = frc::Shuffleboard::GetTab("TurnLeft")
-                                                   .Add("CoefD", DrivePIDConstants::kTurnD)
-                                                   .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                   .GetEntry();
+  //  mCoefD = frc::Shuffleboard::GetTab("TurnLeft")
+  //                                                  .Add("CoefD", DrivePIDConstants::kTurnD)
+  //                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
+  //                                                  .GetEntry();
  }
 
 
