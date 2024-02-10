@@ -38,12 +38,10 @@ GoToTag::GoToTag(SubDriveTrain *iDriveTrain)
 void GoToTag::Initialize() 
 {
   mDriveTrain->setEnableDriveTrain(false);
-}
-
-void GoToTag::Execute() 
-{
-                      mCoefP = frc::Shuffleboard::GetTab("GoToTag")
-                                                  .Add("CoefP", 42)
+                     
+  mPIDController.SetTolerance(1, 0.1);
+   mCoefP = frc::Shuffleboard::GetTab("GoToTag")
+                                                  .Add("CoefP", 0.01)
                                                   .WithWidget(frc::BuiltInWidgets::kTextView)
                                                   .GetEntry();
 
@@ -53,20 +51,26 @@ void GoToTag::Execute()
                                                   .GetEntry();
 
                       mCoefD = frc::Shuffleboard::GetTab("GoToTag")
-                                                  .Add("CoefD", 0)
+                                                  .Add("CoefD", 2)
                                                   .WithWidget(frc::BuiltInWidgets::kTextView)
                                                   .GetEntry();
                       frc::Shuffleboard::GetTab("GoToTag").Add("Debug", 1.0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
-  mPIDController.SetP(mCoefP->GetDouble(42));
+                    
+}
+
+void GoToTag::Execute() 
+{
+  mPIDController.SetP(mCoefP->GetDouble(0.05));
   mPIDController.SetI(mCoefI->GetDouble(0));
   mPIDController.SetD(mCoefD->GetDouble(0));
   Output = mPIDController.Calculate(LimelightHelpers::getTX(""), 0) ; 
+  std::cout << mPIDController.GetP() << std::endl;
   std::cout<< Output << std::endl; 
   mDriveTrain->mecanumDrive(0.0F,0.0F,-Output,frc::Rotation2d(0_rad));
 }
 // Returns true when the command should end.
  bool GoToTag::IsFinished() {
-  return mPIDController.AtSetpoint();
+  return mPIDController.AtSetpoint() && false;
 }
 
 void GoToTag::End(bool interrupted) 
