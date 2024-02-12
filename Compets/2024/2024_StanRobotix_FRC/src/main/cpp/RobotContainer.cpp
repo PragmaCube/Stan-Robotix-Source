@@ -56,5 +56,10 @@ void RobotContainer::drive()
   {
     mIMU.ResetAngle();
   }
+  data = LimelightHelpers::getBotpose_TargetSpace();
+  for (int i = 0; i < data.size(); i++)
+  {
+    std::cout << i << " : " << data.at(i) << std::endl;
+  }
 }
 

@@ -23,10 +23,25 @@ class GoToTag
   bool IsFinished() override;
   void End(bool interrupted) override;
  private:
-  nt::GenericEntry* mCoefP = nullptr;
-  nt::GenericEntry* mCoefI = nullptr;
-  nt::GenericEntry* mCoefD = nullptr;
+  nt::GenericEntry* mCoefPAngle = nullptr;
+  nt::GenericEntry* mCoefIAngle = nullptr;
+  nt::GenericEntry* mCoefDAngle = nullptr;
+
+  nt::GenericEntry* mCoefPX = nullptr;
+  nt::GenericEntry* mCoefIX = nullptr;
+  nt::GenericEntry* mCoefDX = nullptr;
+
+  nt::GenericEntry* mCoefPY = nullptr;
+  nt::GenericEntry* mCoefIY = nullptr;
+  nt::GenericEntry* mCoefDY = nullptr;
+
   SubDriveTrain *mDriveTrain = nullptr;
-  frc::PIDController mPIDController {50, 12, 0};
-  double Output;
+
+  frc::PIDController mPIDControllerAngle {50, 12, 0};
+  frc::PIDController mPIDControllerX {1, 0, 0};
+  frc::PIDController mPIDControllerY {1, 0, 0};
+
+  double OutputAngle;
+  double OutputX;
+  double OutputY;
 };
