@@ -72,17 +72,17 @@ void RobotContainer::drive()
     mDriveTrain.mecanumDrive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
   }
 
-  std::cout << mIMU.getAngleYaw() << std::endl;
+  // std::cout << mIMU.getAngleYaw() << std::endl;
 
   if (mJoystick.GetRawButtonPressed(1))
   {
     mIMU.ResetAngle();
   }
-  data = LimelightHelpers::getBotpose_TargetSpace();
-  for (int i = 0; i < data.size(); i++)
-  {
-    std::cout << i << " : " << data.at(i) << std::endl;
-  }
+  
+  // for (int i = 0; i < LimelightHelpers::getBotpose_TargetSpace().size(); i++)
+  // {
+  //   std::cout << i << " : " << LimelightHelpers::getBotpose_TargetSpace().at(i) << std::endl;
+  // }
 }
 
 void RobotContainer::MoveAscenseur()
@@ -115,38 +115,3 @@ void RobotContainer::MoveAscenseur()
   // std::cout << mAscenseur.getEncoderPositionMotor2() << " : Encoder 2" << std::endl;
   // std::cout << mAscenseur.MotorStruggling() << " : Amps" << std::endl;
 }
-
-void RobotContainer::drive()
-{
-  // if (mJoystick.GetPOV() == 0)
-  // {
-  //   mPivot.pivotUp();
-  // }
-  // else if (mJoystick.GetPOV() == 180)
-  // {
-  //   mPivot.pivotDown();
-  // }
-  // apres les fameux conseils dAndre
-  // else if (mJoystick.GetPOV() == 90 || mJoystick.GetPOV() == 270)
-  // {
-  //   mPivot.pivotMiddle();
-  // }
-  // else
-  // {
-  //   mPivot.stopPivot();
-  // }
-
-  // if (mJoystick.GetRawButton(10))
-  // {
-  //   mPivot.pivotGo(0.1);
-  // }
-  // else if (mJoystick.GetRawButton(12))
-  // {
-  //   mPivot.pivotGo(-0.1);
-  // }
-  // else
-  // {
-  //   mPivot.stopPivot();
-  // }
-}
-

@@ -65,7 +65,6 @@ class RobotContainer {
 
   int compteur = 0;
 
-  frc::Joystick mJoystick{0};
   
   SubDriveTrain mDriveTrain;
   SubIMU mIMU;
