@@ -1,13 +1,9 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-
 #include "RobotContainer.h"
 
-#include <frc2/command/button/Trigger.h>
 
-#include "commands/Autos.h"
-#include "commands/ExampleCommand.h"
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
@@ -22,6 +18,40 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(12);
+  }).OnTrue(GoToTag(&mDriveTrain).ToPtr());
+
+  // frc2::Trigger([this] {
+  //   return mJoystick.GetRawButtonPressed(2) ;
+  // }).OnTrue(TurnLeft(&mDriveTrain, &mIMU).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurUp);
+  }).OnTrue(AscenseurHaut(&mAscenseur).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurMiddle);
+  }).OnTrue(AscenseurMilieu(&mAscenseur).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurDown);
+  }).OnTrue(AscenseurBas(&mAscenseur).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetPOV() == 180;
+  }).OnTrue(PivotDown(&mPivot, &mAscenseur).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetPOV() == 0;
+  }).OnTrue(PivotUp(&mPivot).ToPtr());
+
+   frc2::Trigger([this] {
+    return mJoystick.GetPOV() == 90 || mJoystick.GetPOV() == 270;
+  }).OnTrue(PivotMiddle(&mPivot).ToPtr());
+
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
@@ -38,3 +68,58 @@ void RobotContainer::Init()
  mSubEjector->Init();
     mIsInit=true;
  }
+
+
+void RobotContainer::drive() 
+{
+  if (mDriveTrain.getEnableDriveTrain())
+  {
+    mDriveTrain.mecanumDrive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
+  }
+
+  // std::cout << mIMU.getAngleYaw() << std::endl;
+
+  if (mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kImuReset))
+  {
+    mIMU.ResetAngle();
+  }
+  
+  // for (int i = 0; i < LimelightHelpers::getBotpose_TargetSpace().size(); i++)
+  // {
+  //   std::cout << i << " : " << LimelightHelpers::getBotpose_TargetSpace().at(i) << std::endl;
+  // }
+}
+
+void RobotContainer::MoveAscenseur()
+{
+  if (mAscenseur.isEnable())
+  {
+    if (mJoystick.GetRawButton(8))
+    {
+      mAscenseur.bougeAscenseur(0.5);
+    }
+    else if (mJoystick.GetRawButton(10))
+    {
+      mAscenseur.bougeAscenseur(-0.5);
+    }
+    else
+    {
+      mAscenseur.stopAscenseurMotors();
+    }
+  }
+}
+
+void RobotContainer::MovePivot()
+{
+  if (mPivot.isEnable())
+  {
+    if (mJoystick.GetRawButton(JoystickBindingsConstants::kPivotManualUp))
+    {
+      mPivot.pivotGo(-0.1);
+    }
+    else if (mJoystick.GetRawButton(JoystickBindingsConstants::kPivotManualDown))
+    {
+      mPivot.pivotGo(0.1);
+    }
+  }
+}

@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Robot.h"
+#include "RobotContainer.h"
 
 #include <frc2/command/CommandScheduler.h>
 
@@ -56,7 +57,11 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() 
+{
+  m_container.MoveAscenseur();
+  m_container.drive();
+}
 
 /**
  * This function is called periodically during test mode.

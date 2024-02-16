@@ -23,6 +23,81 @@ namespace EjectorConstants
 
 namespace OperatorConstants {
 
-inline constexpr int kDriverControllerPort = 0;
+constexpr int kDriverControllerPort = 0;
+
 
 }  // namespace OperatorConstants
+
+namespace JoystickBindingsConstants
+{
+    ////////////  PIVOT  ////////////
+    constexpr int kPivotManualDown = 10;
+    constexpr int kPivotManualUp = 12;
+
+    ////////////  ASCENSEUR  ////////////
+    constexpr int kAscenseurUp = 7;
+    constexpr int kAscenseurMiddle = 9;
+    constexpr int kAscenseurDown = 11;
+    constexpr int kAscenseurManualUp = 8;
+    constexpr int kAscenseurManualDown = 6;
+
+    ////////////  IMU  ////////////
+    constexpr int kImuReset = 1;
+
+    ////////////  AUTOMATISATIONS  ////////////
+    constexpr int kGotoTag = 2;
+
+}
+
+namespace DriveTrainConstants
+{
+    constexpr int kMotorL1Id = 2;
+    constexpr int kMotorL2Id = 4;
+    constexpr int kMotorR1Id = 3;
+    constexpr int kMotorR2Id = 1;
+
+    // bool driveEnabled = true;
+    
+} // namespace DriveTrainConstants
+
+namespace DrivePIDConstants
+{
+    constexpr double kTurnP = 0.2;
+    constexpr double kTurnI = 1.2;
+    constexpr double kTurnD = 0.1;
+}
+
+namespace AscenseurConstants {
+
+    constexpr int kMotorId1 = 1;
+    constexpr int kMotorId2 = 3;
+
+    constexpr double kAscenseurLimitUp = 80;
+    constexpr double kAscenseurLimitMiddle = 30;
+    constexpr double kAscenseurLimitDown = 0;
+
+    constexpr double kP = 0.00004999999873689376, 
+                 kI = 9.999999974752427e-7, 
+                 kD = 0, 
+                 kIz = 0, 
+                 kFF = 0.000155999994603917, 
+                 kMaxOutput = 0.5,
+                 kMinOutput = -0.5;
+}
+
+namespace PivotConstants
+{
+    constexpr float kHeightUp = -3;
+    constexpr float kHeightMiddle = 0;
+    constexpr float kHeightDown = 3;
+    constexpr int kMotorId = 7;
+
+    constexpr double kP = 0.00004999999873689376, 
+                 kI = 9.999999974752427e-7, 
+                 kD = 0, 
+                 kIz = 0, 
+                 kFF = 0.000155999994603917, 
+                 kMaxOutput = 0.5,
+                 kMinOutput = -0.5;
+} // namespace mPivotMotor
+
