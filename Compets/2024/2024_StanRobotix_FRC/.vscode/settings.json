@@ -16,6 +16,7 @@
   },
   "C_Cpp.default.configurationProvider": "vscode-wpilib",
   "files.associations": {
+    "*.inc": "cpp"
     "any": "cpp",
     "array": "cpp",
     "atomic": "cpp",
@@ -91,5 +92,6 @@
     "typeinfo": "cpp",
     "valarray": "cpp",
     "variant": "cpp"
+
   }
 }

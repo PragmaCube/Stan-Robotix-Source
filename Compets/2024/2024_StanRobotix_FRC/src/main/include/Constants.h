@@ -16,9 +16,28 @@
 
 namespace OperatorConstants {
 
-inline constexpr int kDriverControllerPort = 0;
+constexpr int kDriverControllerPort = 0;
+
 
 }  // namespace OperatorConstants
+
+namespace DriveTrainConstants
+{
+    constexpr int kMotorL1Id = 2;
+    constexpr int kMotorL2Id = 4;
+    constexpr int kMotorR1Id = 3;
+    constexpr int kMotorR2Id = 1;
+
+    // bool driveEnabled = true;
+    
+} // namespace DriveTrainConstants
+
+namespace DrivePIDConstants
+{
+    constexpr double kTurnP = 0.2;
+    constexpr double kTurnI = 1.2;
+    constexpr double kTurnD = 0.1;
+}
 
 namespace AscenseurConstants {
 
@@ -53,3 +72,4 @@ namespace PivotConstants
                  kMaxOutput = 0.5,
                  kMinOutput = -0.5;
 } // namespace mPivotMotor
+

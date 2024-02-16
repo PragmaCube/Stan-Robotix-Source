@@ -1,0 +1,413 @@
+[
+  {
+    "name": "linuxathena",
+    "architecture": "arm-v7",
+    "operatingSystem": "linux",
+    "flavor": "default",
+    "buildType": "debug",
+    "cppPath": "C:\\Users\\Public\\wpilib\\2023\\roborio\\bin\\arm-frc2023-linux-gnueabi-g++.exe",
+    "cPath": "C:\\Users\\Public\\wpilib\\2023\\roborio\\bin\\arm-frc2023-linux-gnueabi-gcc.exe",
+    "msvc": false,
+    "gcc": true,
+    "systemCppMacros": [],
+    "systemCppArgs": [],
+    "systemCMacros": [],
+    "systemCArgs": [],
+    "allLibFiles": [
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\9c6bb2103a3d82450f87644c2c782003\\transformed\\wpilibNewCommands-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\7b740c0741bb8cdef9845c28157b4867\\transformed\\REVLib-cpp-2023.1.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\be4522aad35e350a1438d95c98debfca\\transformed\\REVLib-driver-2023.1.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\d36a5063d14d66f4cf78f633d073966e\\transformed\\wpilibc-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\6de908f44183828b88b1804786e77788\\transformed\\ntcore-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\cbbaac75b20bb565dca5e8089c410db2\\transformed\\hal-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\062826165847ba6b02017b06274bdccb\\transformed\\wpimath-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\f4c52b32b5e3a607487b45280649e26c\\transformed\\wpinet-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\24fe1b9370cf9a13928bc07594c864b0\\transformed\\wpiutil-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\355e8e3b3d3893789cfdc671987ca2ff\\transformed\\netcomm-2023.3.0-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\b64b4185a5c2ec4ab51c31afaec4d6a8\\transformed\\chipobject-2023.3.0-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\c94b174a8ff525c97be46d6f5269ca89\\transformed\\visa-2023.3.0-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\68d3ea9ad50b4d0a9ccb3ec09637559e\\transformed\\cameraserver-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\d3b3db4768ab7e084aaf48eaf459a071\\transformed\\cscore-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\b7d147c4eaae16901bb4cf8c6a5a001c\\transformed\\apriltag-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\8ad7f433c3220a938f5e739b547fd881\\transformed\\opencv-cpp-4.6.0-4-headers\\",
+      "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\include\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\30260e5da45014b29d8aecb925cbafff\\transformed\\wpilibNewCommands-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\2a414afe795278e4dc9d0b6d234fb908\\transformed\\wpilibc-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\86e91b6b68c1f50eef50acd1485eb361\\transformed\\ntcore-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\22a739e7e11213b112c082a0ae4a604b\\transformed\\hal-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\364d1c3c25738b8a692bf9f830406517\\transformed\\wpimath-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\c87c3019e865b8809fb3bc4740a22fde\\transformed\\wpinet-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\da74682e22e0a8940a28e37d93316ea4\\transformed\\wpiutil-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\e1dc95133921a15291d4a5ade94ae013\\transformed\\cameraserver-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\846a14bf76535b8158bf79cc7317aae5\\transformed\\cscore-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\659e94df895be4dd2f533b92344d39e3\\transformed\\apriltag-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\2bf1f4eb73f3cd75916d855ead91d809\\transformed\\opencv-cpp-4.6.0-4-sources\\"
+    ],
+    "allLibSources": [
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\30260e5da45014b29d8aecb925cbafff\\transformed\\wpilibNewCommands-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\2a414afe795278e4dc9d0b6d234fb908\\transformed\\wpilibc-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\86e91b6b68c1f50eef50acd1485eb361\\transformed\\ntcore-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\22a739e7e11213b112c082a0ae4a604b\\transformed\\hal-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\364d1c3c25738b8a692bf9f830406517\\transformed\\wpimath-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\c87c3019e865b8809fb3bc4740a22fde\\transformed\\wpinet-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\da74682e22e0a8940a28e37d93316ea4\\transformed\\wpiutil-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\e1dc95133921a15291d4a5ade94ae013\\transformed\\cameraserver-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\846a14bf76535b8158bf79cc7317aae5\\transformed\\cscore-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\659e94df895be4dd2f533b92344d39e3\\transformed\\apriltag-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\2bf1f4eb73f3cd75916d855ead91d809\\transformed\\opencv-cpp-4.6.0-4-sources\\"
+    ],
+    "allLibHeaders": [
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\9c6bb2103a3d82450f87644c2c782003\\transformed\\wpilibNewCommands-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\7b740c0741bb8cdef9845c28157b4867\\transformed\\REVLib-cpp-2023.1.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\be4522aad35e350a1438d95c98debfca\\transformed\\REVLib-driver-2023.1.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\d36a5063d14d66f4cf78f633d073966e\\transformed\\wpilibc-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\6de908f44183828b88b1804786e77788\\transformed\\ntcore-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\cbbaac75b20bb565dca5e8089c410db2\\transformed\\hal-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\062826165847ba6b02017b06274bdccb\\transformed\\wpimath-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\f4c52b32b5e3a607487b45280649e26c\\transformed\\wpinet-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\24fe1b9370cf9a13928bc07594c864b0\\transformed\\wpiutil-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\355e8e3b3d3893789cfdc671987ca2ff\\transformed\\netcomm-2023.3.0-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\b64b4185a5c2ec4ab51c31afaec4d6a8\\transformed\\chipobject-2023.3.0-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\c94b174a8ff525c97be46d6f5269ca89\\transformed\\visa-2023.3.0-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\68d3ea9ad50b4d0a9ccb3ec09637559e\\transformed\\cameraserver-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\d3b3db4768ab7e084aaf48eaf459a071\\transformed\\cscore-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\b7d147c4eaae16901bb4cf8c6a5a001c\\transformed\\apriltag-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\8ad7f433c3220a938f5e739b547fd881\\transformed\\opencv-cpp-4.6.0-4-headers\\",
+      "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\include\\"
+    ],
+    "binaries": [
+      {
+        "componentName": "frcUserProgram",
+        "sourceSets": [
+          {
+            "source": {
+              "srcDirs": [
+                "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\cpp\\"
+              ],
+              "includes": [
+                "**/*.cpp",
+                "**/*.cc"
+              ],
+              "excludes": []
+            },
+            "exportedHeaders": {
+              "srcDirs": [
+                "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\include\\"
+              ],
+              "includes": [],
+              "excludes": []
+            },
+            "cpp": true,
+            "args": [
+              "-Wall",
+              "-Wextra",
+              "-std=c++20",
+              "-Wformat=2",
+              "-pedantic",
+              "-Wno-psabi",
+              "-Wno-unused-parameter",
+              "-Wno-error=deprecated-declarations",
+              "-fPIC",
+              "-pthread",
+              "-Wno-error=deprecated-enum-enum-conversion",
+              "-Og",
+              "-g"
+            ],
+            "macros": []
+          }
+        ],
+        "libHeaders": [
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\9c6bb2103a3d82450f87644c2c782003\\transformed\\wpilibNewCommands-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\7b740c0741bb8cdef9845c28157b4867\\transformed\\REVLib-cpp-2023.1.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\be4522aad35e350a1438d95c98debfca\\transformed\\REVLib-driver-2023.1.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\d36a5063d14d66f4cf78f633d073966e\\transformed\\wpilibc-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\6de908f44183828b88b1804786e77788\\transformed\\ntcore-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\cbbaac75b20bb565dca5e8089c410db2\\transformed\\hal-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\062826165847ba6b02017b06274bdccb\\transformed\\wpimath-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\f4c52b32b5e3a607487b45280649e26c\\transformed\\wpinet-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\24fe1b9370cf9a13928bc07594c864b0\\transformed\\wpiutil-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\355e8e3b3d3893789cfdc671987ca2ff\\transformed\\netcomm-2023.3.0-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\b64b4185a5c2ec4ab51c31afaec4d6a8\\transformed\\chipobject-2023.3.0-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\c94b174a8ff525c97be46d6f5269ca89\\transformed\\visa-2023.3.0-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\68d3ea9ad50b4d0a9ccb3ec09637559e\\transformed\\cameraserver-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\d3b3db4768ab7e084aaf48eaf459a071\\transformed\\cscore-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\b7d147c4eaae16901bb4cf8c6a5a001c\\transformed\\apriltag-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\8ad7f433c3220a938f5e739b547fd881\\transformed\\opencv-cpp-4.6.0-4-headers\\",
+          "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\include\\"
+        ],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "sourceBinaries": [
+      {
+        "source": {
+          "srcDirs": [
+            "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\cpp\\"
+          ],
+          "includes": [
+            "**/*.cpp",
+            "**/*.cc"
+          ],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++20",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-Wno-unused-parameter",
+          "-Wno-error=deprecated-declarations",
+          "-fPIC",
+          "-pthread",
+          "-Wno-error=deprecated-enum-enum-conversion",
+          "-Og",
+          "-g"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      },
+      {
+        "source": {
+          "srcDirs": [
+            "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\include\\"
+          ],
+          "includes": [],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++20",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-Wno-unused-parameter",
+          "-Wno-error=deprecated-declarations",
+          "-fPIC",
+          "-pthread",
+          "-Wno-error=deprecated-enum-enum-conversion",
+          "-Og",
+          "-g"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "nameBinaryMap": {
+      "frcUserProgram": 0
+    }
+  },
+  {
+    "name": "linuxathena",
+    "architecture": "arm-v7",
+    "operatingSystem": "linux",
+    "flavor": "default",
+    "buildType": "release",
+    "cppPath": "C:\\Users\\Public\\wpilib\\2023\\roborio\\bin\\arm-frc2023-linux-gnueabi-g++.exe",
+    "cPath": "C:\\Users\\Public\\wpilib\\2023\\roborio\\bin\\arm-frc2023-linux-gnueabi-gcc.exe",
+    "msvc": false,
+    "gcc": true,
+    "systemCppMacros": [],
+    "systemCppArgs": [],
+    "systemCMacros": [],
+    "systemCArgs": [],
+    "allLibFiles": [
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\9c6bb2103a3d82450f87644c2c782003\\transformed\\wpilibNewCommands-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\7b740c0741bb8cdef9845c28157b4867\\transformed\\REVLib-cpp-2023.1.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\be4522aad35e350a1438d95c98debfca\\transformed\\REVLib-driver-2023.1.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\d36a5063d14d66f4cf78f633d073966e\\transformed\\wpilibc-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\6de908f44183828b88b1804786e77788\\transformed\\ntcore-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\cbbaac75b20bb565dca5e8089c410db2\\transformed\\hal-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\062826165847ba6b02017b06274bdccb\\transformed\\wpimath-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\f4c52b32b5e3a607487b45280649e26c\\transformed\\wpinet-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\24fe1b9370cf9a13928bc07594c864b0\\transformed\\wpiutil-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\355e8e3b3d3893789cfdc671987ca2ff\\transformed\\netcomm-2023.3.0-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\b64b4185a5c2ec4ab51c31afaec4d6a8\\transformed\\chipobject-2023.3.0-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\c94b174a8ff525c97be46d6f5269ca89\\transformed\\visa-2023.3.0-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\68d3ea9ad50b4d0a9ccb3ec09637559e\\transformed\\cameraserver-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\d3b3db4768ab7e084aaf48eaf459a071\\transformed\\cscore-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\b7d147c4eaae16901bb4cf8c6a5a001c\\transformed\\apriltag-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\8ad7f433c3220a938f5e739b547fd881\\transformed\\opencv-cpp-4.6.0-4-headers\\",
+      "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\include\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\30260e5da45014b29d8aecb925cbafff\\transformed\\wpilibNewCommands-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\2a414afe795278e4dc9d0b6d234fb908\\transformed\\wpilibc-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\86e91b6b68c1f50eef50acd1485eb361\\transformed\\ntcore-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\22a739e7e11213b112c082a0ae4a604b\\transformed\\hal-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\364d1c3c25738b8a692bf9f830406517\\transformed\\wpimath-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\c87c3019e865b8809fb3bc4740a22fde\\transformed\\wpinet-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\da74682e22e0a8940a28e37d93316ea4\\transformed\\wpiutil-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\e1dc95133921a15291d4a5ade94ae013\\transformed\\cameraserver-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\846a14bf76535b8158bf79cc7317aae5\\transformed\\cscore-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\659e94df895be4dd2f533b92344d39e3\\transformed\\apriltag-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\2bf1f4eb73f3cd75916d855ead91d809\\transformed\\opencv-cpp-4.6.0-4-sources\\"
+    ],
+    "allLibSources": [
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\30260e5da45014b29d8aecb925cbafff\\transformed\\wpilibNewCommands-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\2a414afe795278e4dc9d0b6d234fb908\\transformed\\wpilibc-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\86e91b6b68c1f50eef50acd1485eb361\\transformed\\ntcore-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\22a739e7e11213b112c082a0ae4a604b\\transformed\\hal-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\364d1c3c25738b8a692bf9f830406517\\transformed\\wpimath-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\c87c3019e865b8809fb3bc4740a22fde\\transformed\\wpinet-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\da74682e22e0a8940a28e37d93316ea4\\transformed\\wpiutil-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\e1dc95133921a15291d4a5ade94ae013\\transformed\\cameraserver-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\846a14bf76535b8158bf79cc7317aae5\\transformed\\cscore-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\659e94df895be4dd2f533b92344d39e3\\transformed\\apriltag-cpp-2023.4.3-sources\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\2bf1f4eb73f3cd75916d855ead91d809\\transformed\\opencv-cpp-4.6.0-4-sources\\"
+    ],
+    "allLibHeaders": [
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\9c6bb2103a3d82450f87644c2c782003\\transformed\\wpilibNewCommands-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\7b740c0741bb8cdef9845c28157b4867\\transformed\\REVLib-cpp-2023.1.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\be4522aad35e350a1438d95c98debfca\\transformed\\REVLib-driver-2023.1.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\d36a5063d14d66f4cf78f633d073966e\\transformed\\wpilibc-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\6de908f44183828b88b1804786e77788\\transformed\\ntcore-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\cbbaac75b20bb565dca5e8089c410db2\\transformed\\hal-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\062826165847ba6b02017b06274bdccb\\transformed\\wpimath-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\f4c52b32b5e3a607487b45280649e26c\\transformed\\wpinet-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\24fe1b9370cf9a13928bc07594c864b0\\transformed\\wpiutil-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\355e8e3b3d3893789cfdc671987ca2ff\\transformed\\netcomm-2023.3.0-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\b64b4185a5c2ec4ab51c31afaec4d6a8\\transformed\\chipobject-2023.3.0-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\c94b174a8ff525c97be46d6f5269ca89\\transformed\\visa-2023.3.0-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\68d3ea9ad50b4d0a9ccb3ec09637559e\\transformed\\cameraserver-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\d3b3db4768ab7e084aaf48eaf459a071\\transformed\\cscore-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\b7d147c4eaae16901bb4cf8c6a5a001c\\transformed\\apriltag-cpp-2023.4.3-headers\\",
+      "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\8ad7f433c3220a938f5e739b547fd881\\transformed\\opencv-cpp-4.6.0-4-headers\\",
+      "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\include\\"
+    ],
+    "binaries": [
+      {
+        "componentName": "frcUserProgram",
+        "sourceSets": [
+          {
+            "source": {
+              "srcDirs": [
+                "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\cpp\\"
+              ],
+              "includes": [
+                "**/*.cpp",
+                "**/*.cc"
+              ],
+              "excludes": []
+            },
+            "exportedHeaders": {
+              "srcDirs": [
+                "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\include\\"
+              ],
+              "includes": [],
+              "excludes": []
+            },
+            "cpp": true,
+            "args": [
+              "-Wall",
+              "-Wextra",
+              "-std=c++20",
+              "-Wformat=2",
+              "-pedantic",
+              "-Wno-psabi",
+              "-Wno-unused-parameter",
+              "-Wno-error=deprecated-declarations",
+              "-fPIC",
+              "-pthread",
+              "-Wno-error=deprecated-enum-enum-conversion",
+              "-O2"
+            ],
+            "macros": []
+          }
+        ],
+        "libHeaders": [
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\9c6bb2103a3d82450f87644c2c782003\\transformed\\wpilibNewCommands-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\7b740c0741bb8cdef9845c28157b4867\\transformed\\REVLib-cpp-2023.1.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\be4522aad35e350a1438d95c98debfca\\transformed\\REVLib-driver-2023.1.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\d36a5063d14d66f4cf78f633d073966e\\transformed\\wpilibc-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\6de908f44183828b88b1804786e77788\\transformed\\ntcore-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\cbbaac75b20bb565dca5e8089c410db2\\transformed\\hal-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\062826165847ba6b02017b06274bdccb\\transformed\\wpimath-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\f4c52b32b5e3a607487b45280649e26c\\transformed\\wpinet-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\24fe1b9370cf9a13928bc07594c864b0\\transformed\\wpiutil-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\355e8e3b3d3893789cfdc671987ca2ff\\transformed\\netcomm-2023.3.0-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\b64b4185a5c2ec4ab51c31afaec4d6a8\\transformed\\chipobject-2023.3.0-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\c94b174a8ff525c97be46d6f5269ca89\\transformed\\visa-2023.3.0-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\68d3ea9ad50b4d0a9ccb3ec09637559e\\transformed\\cameraserver-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\d3b3db4768ab7e084aaf48eaf459a071\\transformed\\cscore-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\b7d147c4eaae16901bb4cf8c6a5a001c\\transformed\\apriltag-cpp-2023.4.3-headers\\",
+          "C:\\Users\\pragm\\.gradle\\caches\\transforms-3\\8ad7f433c3220a938f5e739b547fd881\\transformed\\opencv-cpp-4.6.0-4-headers\\",
+          "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\include\\"
+        ],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "sourceBinaries": [
+      {
+        "source": {
+          "srcDirs": [
+            "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\cpp\\"
+          ],
+          "includes": [
+            "**/*.cpp",
+            "**/*.cc"
+          ],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++20",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-Wno-unused-parameter",
+          "-Wno-error=deprecated-declarations",
+          "-fPIC",
+          "-pthread",
+          "-Wno-error=deprecated-enum-enum-conversion",
+          "-O2"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      },
+      {
+        "source": {
+          "srcDirs": [
+            "C:\\Users\\pragm\\OneDrive\\Bureau\\Stan-Robotix-Source\\Activités\\2023\\ProjetExempleSpark\\src\\main\\include\\"
+          ],
+          "includes": [],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++20",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-Wno-unused-parameter",
+          "-Wno-error=deprecated-declarations",
+          "-fPIC",
+          "-pthread",
+          "-Wno-error=deprecated-enum-enum-conversion",
+          "-O2"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "nameBinaryMap": {
+      "frcUserProgram": 0
+    }
+  }
+]
