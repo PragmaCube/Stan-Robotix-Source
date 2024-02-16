@@ -6,9 +6,23 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
+#include <frc/Joystick.h>
+#include <frc2/command/button/Trigger.h>
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
+#include "subsystems/SubAscenseur.h"
+#include "commands/Haut.h"
+#include "commands/Milieu.h"
+#include "commands/Bas.h"
+
+#include "commands/PivotUp.h"
+#include "commands/PivotMiddle.h"
+#include "commands/PivotDown.h"
+
+
+#include "commands/Autos.h"
+#include "commands/ExampleCommand.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -23,6 +37,10 @@ class RobotContainer {
 
   frc2::CommandPtr GetAutonomousCommand();
 
+  void drive();
+
+  void MoveAscenseur();
+
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
@@ -30,6 +48,9 @@ class RobotContainer {
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
+  SubAscenseur mAscenseur;
+  SubPivot mPivot;
+  frc::Joystick mJoystick{0};
 
   void ConfigureBindings();
 };

@@ -19,3 +19,37 @@ namespace OperatorConstants {
 inline constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
+
+namespace AscenseurConstants {
+
+    constexpr int kMotorId1 = 1;
+    constexpr int kMotorId2 = 3;
+
+    constexpr double kAscenseurLimitUp = 80;
+    constexpr double kAscenseurLimitMiddle = 30;
+    constexpr double kAscenseurLimitDown = 0;
+
+    constexpr double kP = 0.00004999999873689376, 
+                 kI = 9.999999974752427e-7, 
+                 kD = 0, 
+                 kIz = 0, 
+                 kFF = 0.000155999994603917, 
+                 kMaxOutput = 0.5,
+                 kMinOutput = -0.5;
+}
+
+namespace PivotConstants
+{
+    constexpr float kHeightUp = -3;
+    constexpr float kHeightMiddle = 0;
+    constexpr float kHeightDown = 3;
+    constexpr int kMotorId = 7;
+
+    constexpr double kP = 0.00004999999873689376, 
+                 kI = 9.999999974752427e-7, 
+                 kD = 0, 
+                 kIz = 0, 
+                 kFF = 0.000155999994603917, 
+                 kMaxOutput = 0.5,
+                 kMinOutput = -0.5;
+} // namespace mPivotMotor
