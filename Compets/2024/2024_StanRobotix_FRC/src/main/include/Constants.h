@@ -21,6 +21,27 @@ constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
 
+namespace JoystickBindingsConstants
+{
+    ////////////  PIVOT  ////////////
+    constexpr int kPivotManualDown = 10;
+    constexpr int kPivotManualUp = 12;
+
+    ////////////  ASCENSEUR  ////////////
+    constexpr int kAscenseurUp = 7;
+    constexpr int kAscenseurMiddle = 9;
+    constexpr int kAscenseurDown = 11;
+    constexpr int kAscenseurManualUp = 8;
+    constexpr int kAscenseurManualDown = 6;
+
+    ////////////  IMU  ////////////
+    constexpr int kImuReset = 1;
+
+    ////////////  AUTOMATISATIONS  ////////////
+    constexpr int kGotoTag = 2;
+
+}
+
 namespace DriveTrainConstants
 {
     constexpr int kMotorL1Id = 2;

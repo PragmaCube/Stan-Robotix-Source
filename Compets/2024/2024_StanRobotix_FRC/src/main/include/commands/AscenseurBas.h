@@ -17,10 +17,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class Bas
-    : public frc2::CommandHelper<frc2::Command, Bas> {
+class AscenseurBas
+    : public frc2::CommandHelper<frc2::Command, AscenseurBas> {
  public:
-  Bas(SubAscenseur *iAscenseur);
+  AscenseurBas(SubAscenseur *iAscenseur);
 
   void Initialize() override;
 

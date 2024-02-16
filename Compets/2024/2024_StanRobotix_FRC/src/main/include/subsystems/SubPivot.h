@@ -29,6 +29,9 @@ class SubPivot : public frc2::SubsystemBase {
   void pivotDown();
   void pivotMiddle();
 
+  bool isEnable();
+  void setEnable(bool iEnable) {mHeight = iEnable;}
+
 
   double kMaxVel = 2000, 
          kMinVel = 0, 
@@ -37,6 +40,7 @@ class SubPivot : public frc2::SubsystemBase {
   
   
  private:
+  bool mEnable = true;
   float mHeight = 0;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

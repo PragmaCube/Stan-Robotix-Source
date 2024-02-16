@@ -36,6 +36,11 @@ void SubPivot::pivotMiddle()
     mPIDController.SetReference(PivotConstants::kHeightMiddle,rev::ControlType::kSmartMotion);
 }
 
+bool SubPivot::isEnable()
+{
+    return mEnable;
+}
+
 void SubPivot::pivotUp()
 {
     mPIDController.SetReference(PivotConstants::kHeightUp,rev::ControlType::kSmartMotion);

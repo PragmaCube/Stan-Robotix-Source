@@ -30,16 +30,16 @@ void RobotContainer::ConfigureBindings() {
   // }).OnTrue(TurnLeft(&mDriveTrain, &mIMU).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(7);
-  }).OnTrue(Haut(&mAscenseur).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurUp);
+  }).OnTrue(AscenseurHaut(&mAscenseur).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(9);
-  }).OnTrue(Milieu(&mAscenseur).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurMiddle);
+  }).OnTrue(AscenseurMilieu(&mAscenseur).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(11);
-  }).OnTrue(Bas(&mAscenseur).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurDown);
+  }).OnTrue(AscenseurBas(&mAscenseur).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetPOV() == 180;
@@ -74,7 +74,7 @@ void RobotContainer::drive()
 
   // std::cout << mIMU.getAngleYaw() << std::endl;
 
-  if (mJoystick.GetRawButtonPressed(1))
+  if (mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kImuReset))
   {
     mIMU.ResetAngle();
   }
@@ -87,31 +87,34 @@ void RobotContainer::drive()
 
 void RobotContainer::MoveAscenseur()
 {
-  // if (mJoystick.GetRawButton(7))
-  // {
-  //   mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitDown);
-  // }
-  // else if (mJoystick.GetRawButton(9))
-  // {
-  //   mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitMiddle);
-  // }
-  // else if (mJoystick.GetRawButton(11))
-  // {
-  //   mAscenseur.setPositionAscenseur(AscenseurConstants::kAscenseurLimitUp);
-  // }
-  // else if (mJoystick.GetRawButton(8))
-  // {
-  //   mAscenseur.bougeAscenseur(0.5);
-  // }
-  // else if (mJoystick.GetRawButton(10))
-  // {
-  //   mAscenseur.bougeAscenseur(-0.5);
-  // }
-  // else
-  // {
-  //   mAscenseur.stopAscenseurMotors();
-  // }
-  // std::cout << mAscenseur.getEncoderPositionMotor1() << " : Encoder 1" << std::endl;
-  // std::cout << mAscenseur.getEncoderPositionMotor2() << " : Encoder 2" << std::endl;
-  // std::cout << mAscenseur.MotorStruggling() << " : Amps" << std::endl;
+  if (mAscenseur.isEnable())
+  {
+    if (mJoystick.GetRawButton(8))
+    {
+      mAscenseur.bougeAscenseur(0.5);
+    }
+    else if (mJoystick.GetRawButton(10))
+    {
+      mAscenseur.bougeAscenseur(-0.5);
+    }
+    else
+    {
+      mAscenseur.stopAscenseurMotors();
+    }
+  }
+}
+
+void RobotContainer::MovePivot()
+{
+  if (mPivot.isEnable())
+  {
+    if (mJoystick.GetRawButton(JoystickBindingsConstants::kPivotManualUp))
+    {
+      mPivot.pivotGo(-0.1);
+    }
+    else if (mJoystick.GetRawButton(JoystickBindingsConstants::kPivotManualDown))
+    {
+      mPivot.pivotGo(0.1);
+    }
+  }
 }

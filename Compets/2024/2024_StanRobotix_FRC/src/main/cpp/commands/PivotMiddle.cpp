@@ -12,7 +12,10 @@ PivotMiddle::PivotMiddle(SubPivot *iPivot) {
 }
 
 // Called when the command is initially scheduled.
-void PivotMiddle::Initialize() {}
+void PivotMiddle::Initialize() 
+{
+  mPivot->setEnable(false);
+}
 
 // Called repeatedly when this Command is scheduled to run
 void PivotMiddle::Execute() 
@@ -23,7 +26,10 @@ void PivotMiddle::Execute()
 }
 
 // Called once the command ends or is interrupted.
-void PivotMiddle::End(bool interrupted) {}
+void PivotMiddle::End(bool interrupted) 
+{
+  mPivot->setEnable(true);
+}
 
 // Returns true when the command should end.
 bool PivotMiddle::IsFinished() {

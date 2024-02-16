@@ -16,10 +16,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class Milieu
-    : public frc2::CommandHelper<frc2::Command, Milieu> {
+class AscenseurMilieu
+    : public frc2::CommandHelper<frc2::Command, AscenseurMilieu> {
  public:
-  Milieu(SubAscenseur *iAscenseur);
+  AscenseurMilieu(SubAscenseur *iAscenseur);
 
   void Initialize() override;
 

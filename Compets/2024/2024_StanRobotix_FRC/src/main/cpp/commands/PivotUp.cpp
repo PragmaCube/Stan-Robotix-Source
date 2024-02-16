@@ -12,18 +12,23 @@ PivotUp::PivotUp(SubPivot *iPivot) {
 }
 
 // Called when the command is initially scheduled.
-void PivotUp::Initialize() {}
+void PivotUp::Initialize() 
+{
+  mPivot->setEnable(false);
+}
 
 // Called repeatedly when this Command is scheduled to run
 void PivotUp::Execute() 
 {
   mPivot->pivotUp();
   std::cout << "Pivot Up" << std::endl;
-
 }
 
 // Called once the command ends or is interrupted.
-void PivotUp::End(bool interrupted) {}
+void PivotUp::End(bool interrupted) 
+{
+  mPivot->setEnable(true);
+}
 
 // Returns true when the command should end.
 bool PivotUp::IsFinished() {

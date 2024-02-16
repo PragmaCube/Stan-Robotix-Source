@@ -41,10 +41,14 @@ class SubAscenseur : public frc2::SubsystemBase {
 
   double MotorStruggling();
 
+  void setEnable(bool iEnable) {mEnable = iEnable;}
+  bool isEnable() {return mEnable;}
+
   double PositionVoulue;
 
  private:
 
+  bool mEnable = true;
   double vitesse = 0;
 
   rev::CANSparkMax mAscenseurMotor1 {AscenseurConstants::kMotorId1, rev::CANSparkMax::MotorType::kBrushless};

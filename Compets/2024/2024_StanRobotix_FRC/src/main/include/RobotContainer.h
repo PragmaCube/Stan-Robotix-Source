@@ -21,17 +21,15 @@
 
 #include <iostream>
 #include "subsystems/SubAscenseur.h"
-#include "commands/Haut.h"
-#include "commands/Milieu.h"
-#include "commands/Bas.h"
+#include "commands/AscenseurHaut.h"
+#include "commands/AscenseurMilieu.h"
+#include "commands/AscenseurBas.h"
 
 #include "commands/PivotUp.h"
 #include "commands/PivotMiddle.h"
 #include "commands/PivotDown.h"
 
 
-#include "commands/Autos.h"
-#include "commands/ExampleCommand.h"
 
 
 /**
@@ -50,6 +48,7 @@ class RobotContainer {
 
  void drive();
   void MoveAscenseur();
+  void MovePivot();
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
