@@ -7,10 +7,9 @@
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-
+ mSubEjector      = new SubEjector(); 
   // Configure the button bindings
-  ConfigureBindings();
-}
+  ConfigureBindings();}
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
@@ -63,6 +62,12 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);
 }
+
+void RobotContainer::Init()
+ {
+ mSubEjector->Init();
+    mIsInit=true;
+ }
 
 
 void RobotContainer::drive() 
