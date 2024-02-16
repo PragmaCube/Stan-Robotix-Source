@@ -5,11 +5,13 @@
 
 
 
-RobotContainer::RobotContainer() {
+RobotContainer::RobotContainer() 
+{
   // Initialize all of your commands and subsystems here
- mSubEjector      = new SubEjector(); 
+ 
   // Configure the button bindings
-  ConfigureBindings();}
+  ConfigureBindings();
+}
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
@@ -65,7 +67,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::Init()
  {
- mSubEjector->Init();
+    mEjector.Init();
     mIsInit=true;
  }
 

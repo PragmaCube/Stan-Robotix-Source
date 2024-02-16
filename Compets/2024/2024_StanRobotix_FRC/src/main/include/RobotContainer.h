@@ -42,13 +42,11 @@
 class RobotContainer {
  public:
   RobotContainer();
-  
-  SubEjector       *getSubEjector()        { return mSubEjector; }
 
   frc2::CommandPtr GetAutonomousCommand();
 
 
- void drive();
+  void drive();
   void MoveAscenseur();
   void MovePivot();
   void MoveEjector();
