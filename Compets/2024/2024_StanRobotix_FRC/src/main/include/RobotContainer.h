@@ -51,15 +51,17 @@ class RobotContainer {
  void drive();
   void MoveAscenseur();
   void MovePivot();
+  void MoveEjector();
 
  private:
 
-   SubEjector      * mSubEjector = nullptr;
+  
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{OperatorConstants::kDriverControllerPort};
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
+  SubEjector mEjector;
   SubAscenseur mAscenseur;
   SubPivot mPivot;
   frc::Joystick mJoystick{0};

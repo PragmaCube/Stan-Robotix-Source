@@ -123,3 +123,19 @@ void RobotContainer::MovePivot()
     }
   }
 }
+
+void RobotContainer::MoveEjector()
+{
+  if (mJoystick.GetRawButton(5))
+  {
+    mEjector.In();
+  }
+  else if (mJoystick.GetRawButton(3))
+  {
+    mEjector.Out();
+  }
+  else
+  {
+    mEjector.Stop();
+  }
+}
