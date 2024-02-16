@@ -9,7 +9,6 @@
 #include <rev/SparkMaxPIDController.h>
 #include <cmath>
 
-#include "SubPivot.h"
 #include "Constants.h"
 
 class SubAscenseur : public frc2::SubsystemBase {
@@ -37,6 +36,10 @@ class SubAscenseur : public frc2::SubsystemBase {
   double getVelocityMotor2();
 
   void stopAscenseurMotors();
+
+  bool isMotorStruggling();
+
+  double MotorStruggling();
 
   double PositionVoulue;
 

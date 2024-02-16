@@ -23,7 +23,7 @@ SubPivot::SubPivot ()
 // This method will be called once per scheduler run
 void SubPivot::Periodic() 
 {
-   mPIDController.SetReference(mHeight,rev::ControlType::kSmartMotion);
+//    mPIDController.SetReference(mHeight,rev::ControlType::kSmartMotion);
 }
 
 void SubPivot::pivotDown() 

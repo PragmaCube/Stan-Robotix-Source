@@ -69,3 +69,13 @@ void SubAscenseur::stopAscenseurMotors()
     mPIDController1.SetReference(0, rev::CANSparkMax::ControlType::kDutyCycle);
     mPIDController2.SetReference(0, rev::CANSparkMax::ControlType::kDutyCycle);
 }
+
+bool SubAscenseur::isMotorStruggling()
+{
+    return (mAscenseurMotor1.GetOutputCurrent() >= 32);
+}
+
+double SubAscenseur::MotorStruggling()
+{
+    return mAscenseurMotor1.GetOutputCurrent();
+}

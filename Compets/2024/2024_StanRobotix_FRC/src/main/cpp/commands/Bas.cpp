@@ -32,6 +32,6 @@ bool Bas::IsFinished()
   return (std::abs(mAscenseur->getEncoderPositionMotor1() - mAscenseur->getPositionVoulue()) < 0.05 &&
          std::abs(mAscenseur->getEncoderPositionMotor2() - mAscenseur->getPositionVoulue()) < 0.05 &&
          std::abs(mAscenseur->getVelocityMotor1()) < 0.05 &&
-         std::abs(mAscenseur->getVelocityMotor2()) < 0.05) ||
-         (std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightDown) < 0.05);
+         std::abs(mAscenseur->getVelocityMotor2()) < 0.05);
+//        (std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightDown) < 0.05);
 }

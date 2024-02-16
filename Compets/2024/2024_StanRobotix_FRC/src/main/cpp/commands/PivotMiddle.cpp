@@ -19,6 +19,7 @@ void PivotMiddle::Execute()
 {
   mPivot->pivotMiddle();
   std::cout << "Pivot Middle" << std::endl;
+
 }
 
 // Called once the command ends or is interrupted.
