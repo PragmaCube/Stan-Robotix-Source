@@ -41,6 +41,10 @@ namespace JoystickBindingsConstants
     constexpr int kAscenseurManualUp = 8;
     constexpr int kAscenseurManualDown = 6;
 
+    ////////////  EJECTOR  ////////////
+    constexpr int kEjectorIn = 5;
+    constexpr int kEjectorOut = 3;
+
     ////////////  IMU  ////////////
     constexpr int kImuReset = 1;
 

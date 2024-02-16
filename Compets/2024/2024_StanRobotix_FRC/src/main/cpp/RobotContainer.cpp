@@ -23,7 +23,7 @@ void RobotContainer::ConfigureBindings() {
 
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(12);
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kGotoTag);
   }).OnTrue(GoToTag(&mDriveTrain).ToPtr());
 
   // frc2::Trigger([this] {
@@ -67,7 +67,6 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::Init()
  {
-    mEjector.Init();
     mIsInit=true;
  }
 
@@ -78,8 +77,6 @@ void RobotContainer::drive()
   {
     mDriveTrain.mecanumDrive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
   }
-
-  // std::cout << mIMU.getAngleYaw() << std::endl;
 
   if (mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kImuReset))
   {
@@ -96,11 +93,11 @@ void RobotContainer::MoveAscenseur()
 {
   if (mAscenseur.isEnable())
   {
-    if (mJoystick.GetRawButton(8))
+    if (mJoystick.GetRawButton(JoystickBindingsConstants::kAscenseurManualUp))
     {
       mAscenseur.bougeAscenseur(0.5);
     }
-    else if (mJoystick.GetRawButton(10))
+    else if (mJoystick.GetRawButton(JoystickBindingsConstants::kAscenseurManualDown))
     {
       mAscenseur.bougeAscenseur(-0.5);
     }
@@ -128,11 +125,11 @@ void RobotContainer::MovePivot()
 
 void RobotContainer::MoveEjector()
 {
-  if (mJoystick.GetRawButton(5))
+  if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorIn))
   {
     mEjector.In();
   }
-  else if (mJoystick.GetRawButton(3))
+  else if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOut))
   {
     mEjector.Out();
   }
