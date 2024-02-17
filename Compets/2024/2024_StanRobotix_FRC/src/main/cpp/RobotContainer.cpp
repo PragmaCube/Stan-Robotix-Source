@@ -39,11 +39,19 @@ void RobotContainer::ConfigureBindings() {
   }).OnTrue(AscenseurMilieu(&mAscenseur).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurDown);
+    if (mPivot.getEncodeurPosition() < PivotConstants::kHeightMiddle)
+    {
+      return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurDown);
+    }
+    return false;
   }).OnTrue(AscenseurBas(&mAscenseur).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetPOV() == 180;
+    if (mAscenseur.getEncoderPositionMotor1() < AscenseurConstants::kAscenseurLimitMiddle)
+    {
+      return mJoystick.GetPOV() == 180;
+    }
+    return false;
   }).OnTrue(PivotDown(&mPivot, &mAscenseur).ToPtr());
 
   frc2::Trigger([this] {
