@@ -105,3 +105,7 @@ namespace PivotConstants
                  kMinOutput = -0.5;
 } // namespace mPivotMotor
 
+namespace AvancerConstants
+{
+    constexpr double Vitesse = 0.5;
+}

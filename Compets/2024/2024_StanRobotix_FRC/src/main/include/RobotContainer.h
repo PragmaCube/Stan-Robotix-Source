@@ -19,6 +19,7 @@
 #include "commands/TurnLeft.h"
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include "commands/Automatisation.h"
 
 #include <iostream>
 #include "subsystems/SubAscenseur.h"
@@ -50,6 +51,7 @@ class RobotContainer {
   void MoveAscenseur();
   void MovePivot();
   void MoveEjector();
+frc2::SequentialCommandGroup GetPersonalAutonomousCommand();
 
  private:
 
@@ -68,8 +70,7 @@ bool mIsInit = false;
 void Init();
 
   void ConfigureBindings();
-
-  int compteur = 0;
+    int compteur = 0;
 
   
   SubDriveTrain mDriveTrain;

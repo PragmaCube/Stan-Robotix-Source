@@ -26,6 +26,6 @@ class Robot : public frc::TimedRobot {
   // Have it empty by default so that if testing teleop it
   // doesn't have undefined behavior and potentially crash.
   std::optional<frc2::CommandPtr> m_autonomousCommand;
-
+  
   RobotContainer m_container;
 };
