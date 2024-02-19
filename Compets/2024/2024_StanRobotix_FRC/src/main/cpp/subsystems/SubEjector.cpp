@@ -8,19 +8,19 @@ SubEjector::SubEjector() = default;
 
 // This method will be called once per scheduler run
 void SubEjector::Periodic() {
-    mProximity = mColorSensor.GetProximity();
+    // mProximity = mColorSensor.GetProximity();
     switch (mState)
     {
         case eIn:
             
-            if(mProximity !=0 && mProximity < EjectorConstants::kInProximity)
-            {
+            // if(mProximity !=0 && mProximity < EjectorConstants::kInProximity)
+            // {
                 mState=eStop;
-            }
-            else
-            {
+            // }
+            // else
+            // {
                 mMotorEjector.Set(EjectorConstants::kSpeedPull);
-            }
+            // }
             break;
         case eOut:
             mMotorEjector.Set(EjectorConstants::kSpeedPush);

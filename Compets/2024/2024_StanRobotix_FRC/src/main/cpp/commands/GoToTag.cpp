@@ -110,12 +110,12 @@ void GoToTag::Execute()
   mPIDControllerX.SetP(mCoefPX->GetDouble(42));
   mPIDControllerX.SetI(mCoefIX->GetDouble(0));
   mPIDControllerX.SetD(mCoefDX->GetDouble(0));
-  OutputX = mPIDControllerX.Calculate(LimelightHelpers::getBotpose_TargetSpace().at(0), 0) ; 
+  OutputX = mPIDControllerX.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(0), 0) ; 
 
   mPIDControllerY.SetP(mCoefPY->GetDouble(42));
   mPIDControllerY.SetI(mCoefIY->GetDouble(0));
   mPIDControllerY.SetD(mCoefDY->GetDouble(0));
-  OutputY = mPIDControllerY.Calculate(LimelightHelpers::getBotpose_TargetSpace().at(1), 1) ; 
+  OutputY = mPIDControllerY.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(1), 1) ; 
 
   // std::cout << mPIDController.GetP() << std::endl;
   // std::cout<< Output << std::endl; 

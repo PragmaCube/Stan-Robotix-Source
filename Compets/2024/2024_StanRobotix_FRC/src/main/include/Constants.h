@@ -17,7 +17,7 @@ namespace EjectorConstants
 {
     constexpr float kSpeedPull=1.0;
     constexpr float kSpeedPush=-1.0;
-    constexpr int kId=1;
+    constexpr int kId=4;
     constexpr int kInProximity = 1023;
 }
 
