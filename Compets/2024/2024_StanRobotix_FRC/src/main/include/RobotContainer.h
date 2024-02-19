@@ -51,7 +51,6 @@ class RobotContainer {
   void MoveAscenseur();
   void MovePivot();
   void MoveEjector();
-frc2::SequentialCommandGroup GetPersonalAutonomousCommand();
 
  private:
 

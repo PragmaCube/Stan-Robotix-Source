@@ -16,10 +16,7 @@ PivotDown::PivotDown(SubPivot *iPivot, SubAscenseur *iAscensseur) {
 }
 
 // Called when the command is initially scheduled.
-void PivotDown::Initialize() 
-{
-  mPivot->setEnable(false);
-}
+void PivotDown::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void PivotDown::Execute() 
@@ -30,10 +27,7 @@ void PivotDown::Execute()
 }
 
 // Called once the command ends or is interrupted.
-void PivotDown::End(bool interrupted) 
-{
-  mPivot->setEnable(true);
-}
+void PivotDown::End(bool interrupted) { }
 
 // Returns true when the command should end.
 bool PivotDown::IsFinished() {

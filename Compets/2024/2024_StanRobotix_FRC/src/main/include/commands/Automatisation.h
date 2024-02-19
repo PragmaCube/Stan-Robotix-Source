@@ -8,11 +8,13 @@
 #include <frc2/command/SequentialCommandGroup.h>
 #include "commands/Avancer.h"
 #include "commands/TurnRight.h"
+#include "commands/AscenseurMilieu.h"
+#include "commands/PivotDown.h"
 
 class Automatisation
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  Automatisation> {
  public:
-  Automatisation(SubDriveTrain *iDriveTrain, SubIMU *iIMU);
+  Automatisation(SubDriveTrain *iDriveTrain, SubIMU *iIMU, SubAscenseur *iAscenseur, SubPivot *iPivot);
 
 };
