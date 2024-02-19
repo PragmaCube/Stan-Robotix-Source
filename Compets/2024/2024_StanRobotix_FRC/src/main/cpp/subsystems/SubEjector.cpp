@@ -12,32 +12,24 @@ void SubEjector::Periodic() {
     switch (mState)
     {
         case eIn:
-            
-            // if(mProximity !=0 && mProximity < EjectorConstants::kInProximity)
-            // {
-                mState=eStop;
-            // }
-            // else
-            // {
-                mMotorEjector.Set(EjectorConstants::kSpeedPull);
-            // }
+            mMotorEjector.Set(EjectorConstants::kSpeedPull*mvitesse);
             break;
         case eOut:
-            mMotorEjector.Set(EjectorConstants::kSpeedPush);
+            mMotorEjector.Set(EjectorConstants::kSpeedPush*mvitesse);
             break;
         default:
             mMotorEjector.Set(0);
-
-
     }
 }
-void SubEjector::In()
+void SubEjector::In(double ivitesse)
 {
     mState=eIn;
+    mvitesse = ivitesse;
 }
-void SubEjector::Out()
+void SubEjector::Out(double ivitesse)
 {
     mState=eOut;
+    mvitesse = ivitesse;
 }
 void SubEjector::Stop()
 {

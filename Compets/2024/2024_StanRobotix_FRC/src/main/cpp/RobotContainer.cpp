@@ -127,11 +127,11 @@ void RobotContainer::MoveEjector()
 {
   if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorIn))
   {
-    mEjector.In();
+    mEjector.In(-(mJoystick.GetRawAxis(4)-1/2));
   }
   else if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOut))
   {
-    mEjector.Out();
+    mEjector.Out(-(mJoystick.GetRawAxis(4)-1/2));
   }
   else
   {
