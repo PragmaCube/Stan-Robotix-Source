@@ -45,81 +45,80 @@ void GoToTag::Initialize()
   mPIDControllerX.SetTolerance(1, 0.1);
   mPIDControllerY.SetTolerance(1, 0.1);
 
-                      mCoefPAngle = frc::Shuffleboard::GetTab("GoToTag")
-                                                  .Add("CoefPAngle", 42)
-                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                  .GetEntry();
+                      // mCoefPAngle = frc::Shuffleboard::GetTab("GoToTag")
+                      //                             .Add("CoefPAngle", 42)
+                      //                             .WithWidget(frc::BuiltInWidgets::kTextView)
+                      //                             .GetEntry();
 
-                      mCoefIAngle = frc::Shuffleboard::GetTab("GoToTag")
-                                                  .Add("CoefIAngle", 0)
-                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                  .GetEntry();
+                      // mCoefIAngle = frc::Shuffleboard::GetTab("GoToTag")
+                      //                             .Add("CoefIAngle", 0)
+                      //                             .WithWidget(frc::BuiltInWidgets::kTextView)
+                      //                             .GetEntry();
 
-                      mCoefDAngle = frc::Shuffleboard::GetTab("GoToTag")
-                                                  .Add("CoefDAngle", 0)
-                                                  .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                  .GetEntry();
-                      frc::Shuffleboard::GetTab("GoToTag").Add("Debug", 1.0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
-
-
-                        mCoefPX = frc::Shuffleboard::GetTab("GoToTag")
-                                                    .Add("CoefPX", 42)
-                                                    .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                    .GetEntry();
-
-                        mCoefIX = frc::Shuffleboard::GetTab("GoToTag")
-                                                    .Add("CoefIX", 0)
-                                                    .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                    .GetEntry();
-
-                        mCoefDX = frc::Shuffleboard::GetTab("GoToTag")
-                                                    .Add("CoefDX", 0)
-                                                    .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                    .GetEntry();
-                        frc::Shuffleboard::GetTab("GoToTag").Add("Debug", 1.0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
+                      // mCoefDAngle = frc::Shuffleboard::GetTab("GoToTag")
+                      //                             .Add("CoefDAngle", 0)
+                      //                             .WithWidget(frc::BuiltInWidgets::kTextView)
+                      //                             .GetEntry();
+                      // frc::Shuffleboard::GetTab("GoToTag").Add("Debug", 1.0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
 
 
-                          mCoefPY = frc::Shuffleboard::GetTab("GoToTag")
-                                                    .Add("CoefPY", 42)
-                                                    .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                    .GetEntry();
+                      //   mCoefPX = frc::Shuffleboard::GetTab("GoToTag")
+                      //                               .Add("CoefPX", 42)
+                      //                               .WithWidget(frc::BuiltInWidgets::kTextView)
+                      //                               .GetEntry();
 
-                          mCoefIY = frc::Shuffleboard::GetTab("GoToTag")
-                                                    .Add("CoefIY", 0)
-                                                    .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                    .GetEntry();
+                      //   mCoefIX = frc::Shuffleboard::GetTab("GoToTag")
+                      //                               .Add("CoefIX", 0)
+                      //                               .WithWidget(frc::BuiltInWidgets::kTextView)
+                      //                               .GetEntry();
 
-                          mCoefDY = frc::Shuffleboard::GetTab("GoToTag")
-                                                    .Add("CoefDY", 0)
-                                                    .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                    .GetEntry();
-                        frc::Shuffleboard::GetTab("GoToTag").Add("Debug", 1.0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
+                      //   mCoefDX = frc::Shuffleboard::GetTab("GoToTag")
+                      //                               .Add("CoefDX", 0)
+                      //                               .WithWidget(frc::BuiltInWidgets::kTextView)
+                      //                               .GetEntry();
+                      //   frc::Shuffleboard::GetTab("GoToTag").Add("Debug", 1.0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
 
 
+                      //     mCoefPY = frc::Shuffleboard::GetTab("GoToTag")
+                      //                               .Add("CoefPY", 42)
+                      //                               .WithWidget(frc::BuiltInWidgets::kTextView)
+                      //                               .GetEntry();
 
+                      //     mCoefIY = frc::Shuffleboard::GetTab("GoToTag")
+                      //                               .Add("CoefIY", 0)
+                      //                               .WithWidget(frc::BuiltInWidgets::kTextView)
+                      //                               .GetEntry();
+
+                      //     mCoefDY = frc::Shuffleboard::GetTab("GoToTag")
+                      //                               .Add("CoefDY", 0)
+                      //                               .WithWidget(frc::BuiltInWidgets::kTextView)
+                      //                               .GetEntry();
+                      //   frc::Shuffleboard::GetTab("GoToTag").Add("Debug", 1.0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
+
+
+  mPIDControllerAngle.SetP(0.065);
+  mPIDControllerAngle.SetI(0);
+  mPIDControllerAngle.SetD(0.005);
+
+  mPIDControllerX.SetP(1.3);
+  mPIDControllerX.SetI(0);
+  mPIDControllerX.SetD(0);
+
+  mPIDControllerY.SetP(1.6);
+  mPIDControllerY.SetI(0);
+  mPIDControllerY.SetD(0.005);
   // std::cout<< Output << std::endl; 
 }
 
 void GoToTag::Execute() 
-{
-  mPIDControllerAngle.SetP(mCoefPAngle->GetDouble(42));
-  mPIDControllerAngle.SetI(mCoefIAngle->GetDouble(0));
-  mPIDControllerAngle.SetD(mCoefDAngle->GetDouble(0));
+{ 
   OutputAngle = mPIDControllerAngle.Calculate(LimelightHelpers::getTX(""), 0) ; 
-
-  mPIDControllerX.SetP(mCoefPX->GetDouble(42));
-  mPIDControllerX.SetI(mCoefIX->GetDouble(0));
-  mPIDControllerX.SetD(mCoefDX->GetDouble(0));
   OutputX = mPIDControllerX.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(0), 0) ; 
-
-  mPIDControllerY.SetP(mCoefPY->GetDouble(42));
-  mPIDControllerY.SetI(mCoefIY->GetDouble(0));
-  mPIDControllerY.SetD(mCoefDY->GetDouble(0));
-  OutputY = mPIDControllerY.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(1), 1) ; 
-
+  OutputY = mPIDControllerY.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(2), -1) ; 
+// std::cout << LimelightHelpers::getCameraPose_TargetSpace().at(2) <<std::endl;
   // std::cout << mPIDController.GetP() << std::endl;
   // std::cout<< Output << std::endl; 
-  mDriveTrain->mecanumDrive(OutputX,OutputY,-OutputAngle,frc::Rotation2d(0_rad));  
+  mDriveTrain->mecanumDrive(OutputX,-OutputY,-OutputAngle,frc::Rotation2d(0_rad));  
 }
 // Returns true when the command should end.
  bool GoToTag::IsFinished() {

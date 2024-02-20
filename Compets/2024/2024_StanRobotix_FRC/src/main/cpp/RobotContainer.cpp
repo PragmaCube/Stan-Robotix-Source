@@ -76,6 +76,7 @@ void RobotContainer::drive()
   if (mDriveTrain.getEnableDriveTrain())
   {
     mDriveTrain.mecanumDrive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
+    // mDriveTrain.mecanumDrive(mJoystick.GetX(), 0,0, mIMU.getRotation2d());
   }
 
   if (mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kImuReset))
@@ -87,6 +88,7 @@ void RobotContainer::drive()
   // {
   //   std::cout << i << " : " << LimelightHelpers::getBotpose_TargetSpace().at(i) << std::endl;
   // }
+  // std::cout << " : " << LimelightHelpers::getCameraPose_TargetSpace().size() << std::endl;
 }
 
 void RobotContainer::MoveAscenseur()

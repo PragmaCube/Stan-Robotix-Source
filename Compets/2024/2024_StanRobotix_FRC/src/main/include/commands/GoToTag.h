@@ -37,7 +37,7 @@ class GoToTag
 
   SubDriveTrain *mDriveTrain = nullptr;
 
-  frc::PIDController mPIDControllerAngle {50, 12, 0};
+  frc::PIDController mPIDControllerAngle {1, 0, 0};
   frc::PIDController mPIDControllerX {1, 0, 0};
   frc::PIDController mPIDControllerY {1, 0, 0};
 
