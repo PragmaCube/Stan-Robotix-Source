@@ -80,8 +80,8 @@ namespace AscenseurConstants {
     constexpr double kAscenseurLimitMiddle = 40;
     constexpr double kAscenseurLimitDown = 0;
 
-    constexpr double kP = 0.0005, 
-                 kI = 0, 
+    constexpr double kP = 0.00009999999873689376, 
+                 kI = 19.999999974752427e-7,
                  kD = 0, 
                  kIz = 0, 
                  kFF = 0.000155999994603917, 
