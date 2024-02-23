@@ -15,8 +15,8 @@
  */
 namespace EjectorConstants
 {
-    constexpr float kSpeedPull=1.0;
-    constexpr float kSpeedPush=-1.0;
+    constexpr float kSpeedPull=-1.0;
+    constexpr float kSpeedPush=1.0;
     constexpr int kId=4;
     constexpr int kInProximity = 1023;
 }
@@ -38,12 +38,12 @@ namespace JoystickBindingsConstants
     constexpr int kAscenseurUp = 7;
     constexpr int kAscenseurMiddle = 9;
     constexpr int kAscenseurDown = 11;
-    constexpr int kAscenseurManualUp = 8;
-    constexpr int kAscenseurManualDown = 6;
+    constexpr int kAscenseurManualUp = 6;
+    constexpr int kAscenseurManualDown = 4;
 
     ////////////  EJECTOR  ////////////
-    constexpr int kEjectorIn = 5;
-    constexpr int kEjectorOut = 3;
+    constexpr int kEjectorIn = 3;
+    constexpr int kEjectorOut = 5;
 
     ////////////  IMU  ////////////
     constexpr int kImuReset = 1;
@@ -77,11 +77,11 @@ namespace AscenseurConstants {
     constexpr int kMotorId2 = 3;
 
     constexpr double kAscenseurLimitUp = 80;
-    constexpr double kAscenseurLimitMiddle = 30;
+    constexpr double kAscenseurLimitMiddle = 40;
     constexpr double kAscenseurLimitDown = 0;
 
-    constexpr double kP = 0.00004999999873689376, 
-                 kI = 9.999999974752427e-7, 
+    constexpr double kP = 0.0005, 
+                 kI = 0, 
                  kD = 0, 
                  kIz = 0, 
                  kFF = 0.000155999994603917, 
@@ -91,9 +91,9 @@ namespace AscenseurConstants {
 
 namespace PivotConstants
 {
-    constexpr float kHeightUp = -3;
-    constexpr float kHeightMiddle = 0;
-    constexpr float kHeightDown = 3;
+    constexpr float kHeightUp = -16;
+    constexpr float kHeightMiddle = -10;
+    constexpr float kHeightDown = 0;
     constexpr int kMotorId = 7;
 
     constexpr double kP = 0.00004999999873689376, 

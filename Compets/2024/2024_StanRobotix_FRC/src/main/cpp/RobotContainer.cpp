@@ -76,7 +76,6 @@ void RobotContainer::drive()
   if (mDriveTrain.getEnableDriveTrain())
   {
     mDriveTrain.mecanumDrive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ(), mIMU.getRotation2d());
-    // mDriveTrain.mecanumDrive(mJoystick.GetX(), 0,0, mIMU.getRotation2d());
   }
 
   if (mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kImuReset))
@@ -84,11 +83,7 @@ void RobotContainer::drive()
     mIMU.ResetAngle();
   }
   
-  // for (int i = 0; i < LimelightHelpers::getBotpose_TargetSpace().size(); i++)
-  // {
-  //   std::cout << i << " : " << LimelightHelpers::getBotpose_TargetSpace().at(i) << std::endl;
-  // }
-  // std::cout << " : " << LimelightHelpers::getCameraPose_TargetSpace().size() << std::endl;
+  
 }
 
 void RobotContainer::MoveAscenseur()
@@ -129,11 +124,13 @@ void RobotContainer::MoveEjector()
 {
   if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorIn))
   {
-    mEjector.In(-(mJoystick.GetRawAxis(4)-1/2));
+    // std::cout << "Ejector In" << std::endl;
+    mEjector.In((mJoystick.GetRawAxis(3)+1)/2);
   }
   else if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOut))
   {
-    mEjector.Out(-(mJoystick.GetRawAxis(4)-1/2));
+    // std::cout << "Ejector Out" << std::endl;
+    mEjector.Out((mJoystick.GetRawAxis(3)+1)/2);
   }
   else
   {

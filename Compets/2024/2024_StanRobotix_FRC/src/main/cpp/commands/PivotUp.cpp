@@ -21,7 +21,7 @@ void PivotUp::Initialize()
 void PivotUp::Execute() 
 {
   mPivot->pivotUp();
-  std::cout << "Pivot Up" << std::endl;
+  // std::cout << "Pivot Up" << std::endl;
 }
 
 // Called once the command ends or is interrupted.

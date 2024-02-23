@@ -25,7 +25,7 @@ void PivotDown::Initialize()
 void PivotDown::Execute() 
 {
   mPivot->pivotDown();
-  std::cout << "Pivot Down" << std::endl;
+  // std::cout << "Pivot Down" << std::endl;
 
 }
 

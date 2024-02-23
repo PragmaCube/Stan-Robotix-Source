@@ -21,7 +21,7 @@ void PivotMiddle::Initialize()
 void PivotMiddle::Execute() 
 {
   mPivot->pivotMiddle();
-  std::cout << "Pivot Middle" << std::endl;
+  // std::cout << "Pivot Middle" << std::endl;
 
 }
 

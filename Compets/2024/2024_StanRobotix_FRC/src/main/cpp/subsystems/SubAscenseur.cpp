@@ -4,23 +4,28 @@
 
 #include <frc2/command/PIDSubsystem.h>
 #include "subsystems/SubAscenseur.h"
+#include <iostream>
 
 SubAscenseur::SubAscenseur()
 {
-    // mPIDController1.SetP(AscenseurConstants::kP);
-    // mPIDController2.SetP(AscenseurConstants::kP);
-    // mPIDController1.SetI(AscenseurConstants::kI);
-    // mPIDController2.SetI(AscenseurConstants::kI);
-    // mPIDController1.SetD(AscenseurConstants::kD);
-    // mPIDController2.SetD(AscenseurConstants::kD);
+    mPIDController1.SetP(AscenseurConstants::kP);
+    mPIDController2.SetP(AscenseurConstants::kP);
+    mPIDController1.SetI(AscenseurConstants::kI);
+    mPIDController2.SetI(AscenseurConstants::kI);
+    mPIDController1.SetD(AscenseurConstants::kD);
+    mPIDController2.SetD(AscenseurConstants::kD);
     
-    // mPIDController1.SetFF(AscenseurConstants::kFF);
-    // mPIDController2.SetFF(AscenseurConstants::kFF);
-    // mPIDController1.SetOutputRange(AscenseurConstants::kMinOutput, AscenseurConstants::kMaxOutput);
+    mPIDController1.SetFF(AscenseurConstants::kFF);
+    mPIDController2.SetFF(AscenseurConstants::kFF);
+    mPIDController1.SetOutputRange(AscenseurConstants::kMinOutput, AscenseurConstants::kMaxOutput);
 }
 
 // This method will be called once per scheduler run
-void SubAscenseur::Periodic() {}
+void SubAscenseur::Periodic() 
+{
+    std::cout << mPIDController1.GetI() << std::endl;
+    std::cout << mPIDController2.GetI()<< std::endl;
+}
 
 double SubAscenseur::getPositionVoulue()
 {
