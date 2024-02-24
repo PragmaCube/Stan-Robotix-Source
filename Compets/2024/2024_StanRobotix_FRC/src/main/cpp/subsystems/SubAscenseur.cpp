@@ -23,8 +23,8 @@ SubAscenseur::SubAscenseur()
 // This method will be called once per scheduler run
 void SubAscenseur::Periodic() 
 {
-    std::cout << mPIDController1.GetI() << std::endl;
-    std::cout << mPIDController2.GetI()<< std::endl;
+    // std::cout << mPIDController1.GetI() << std::endl;
+    // std::cout << mPIDController2.GetI()<< std::endl;
 }
 
 double SubAscenseur::getPositionVoulue()

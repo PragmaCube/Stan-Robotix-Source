@@ -78,15 +78,15 @@ namespace AscenseurConstants {
 
     constexpr double kAscenseurLimitUp = 80;
     constexpr double kAscenseurLimitMiddle = 40;
-    constexpr double kAscenseurLimitDown = 0;
+    constexpr double kAscenseurLimitDown = 2;
 
     constexpr double kP = 0.00009999999873689376, 
                  kI = 19.999999974752427e-7,
                  kD = 0, 
                  kIz = 0, 
                  kFF = 0.000155999994603917, 
-                 kMaxOutput = 0.5,
-                 kMinOutput = -0.5;
+                 kMaxOutput = 1,
+                 kMinOutput = -1;
 }
 
 namespace PivotConstants
