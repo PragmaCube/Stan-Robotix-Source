@@ -31,22 +31,22 @@ constexpr int kDriverControllerPort = 0;
 namespace JoystickBindingsConstants
 {
     ////////////  PIVOT  ////////////
-    constexpr int kPivotManualDown = 10;
-    constexpr int kPivotManualUp = 12;
+    constexpr int kPivotDown = 11;
+    constexpr int kPivotUp = 12;
 
     ////////////  ASCENSEUR  ////////////
-    constexpr int kAscenseurUp = 7;
-    constexpr int kAscenseurMiddle = 9;
-    constexpr int kAscenseurDown = 11;
+    constexpr int kAscenseurUp = 8;
+    // constexpr int kAscenseurMiddle = 9;
+    constexpr int kAscenseurDown = 7;
     constexpr int kAscenseurManualUp = 6;
     constexpr int kAscenseurManualDown = 4;
 
     ////////////  EJECTOR  ////////////
-    constexpr int kEjectorIn = 3;
-    constexpr int kEjectorOut = 5;
+    constexpr int kEjectorIn = 1;
+    constexpr int kEjectorOut = 10;
 
     ////////////  IMU  ////////////
-    constexpr int kImuReset = 1;
+    constexpr int kImuReset = 9;
 
     ////////////  AUTOMATISATIONS  ////////////
     constexpr int kGotoTag = 2;

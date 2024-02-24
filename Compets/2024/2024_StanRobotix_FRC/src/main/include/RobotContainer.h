@@ -25,11 +25,14 @@
 #include "commands/AscenseurHaut.h"
 #include "commands/AscenseurMilieu.h"
 #include "commands/AscenseurBas.h"
+#include "commands/Amplificateur.h"
 
 #include "commands/PivotUp.h"
 #include "commands/PivotMiddle.h"
 #include "commands/PivotDown.h"
+#include "commands/Pickup.h"
 
+#include "LimelightHelpers.h" 
 
 
 /**
@@ -48,7 +51,6 @@ class RobotContainer {
 
   void drive();
   void MoveAscenseur();
-  void MovePivot();
   void MoveEjector();
 
  private:

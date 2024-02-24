@@ -34,26 +34,34 @@ void RobotContainer::ConfigureBindings() {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurUp);
   }).OnTrue(AscenseurHaut(&mAscenseur).ToPtr());
 
-  frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurMiddle);
-  }).OnTrue(AscenseurMilieu(&mAscenseur).ToPtr());
+  // frc2::Trigger([this] {
+  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurMiddle);
+  // }).OnTrue(AscenseurMilieu(&mAscenseur).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurDown);
   }).OnTrue(AscenseurBas(&mAscenseur).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetPOV() == 180;
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPivotDown);
   }).OnTrue(PivotDown(&mPivot, &mAscenseur).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetPOV() == 0;
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPivotUp);;
   }).OnTrue(PivotUp(&mPivot).ToPtr());
 
    frc2::Trigger([this] {
     return mJoystick.GetPOV() == 90 || mJoystick.GetPOV() == 270;
   }).OnTrue(PivotMiddle(&mPivot).ToPtr());
 
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(6);
+  }).OnTrue(Amplificateur(&mPivot, &mAscenseur).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetPOV() == 90 || mJoystick.GetPOV() == 270;
+  }).OnTrue(Pickup(&mPivot, &mAscenseur).ToPtr());
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
@@ -68,7 +76,9 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 void RobotContainer::Init()
  {
     mIsInit=true;
+    LimelightHelpers::setStreamMode_Standard("");
  }
+
 
 
 void RobotContainer::drive() 
@@ -105,32 +115,17 @@ void RobotContainer::MoveAscenseur()
   }
 }
 
-void RobotContainer::MovePivot()
-{
-  if (mPivot.isEnable())
-  {
-    if (mJoystick.GetRawButton(JoystickBindingsConstants::kPivotManualUp))
-    {
-      mPivot.pivotGo(-0.1);
-    }
-    else if (mJoystick.GetRawButton(JoystickBindingsConstants::kPivotManualDown))
-    {
-      mPivot.pivotGo(0.1);
-    }
-  }
-}
-
 void RobotContainer::MoveEjector()
 {
   if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorIn))
   {
     // std::cout << "Ejector In" << std::endl;
-    mEjector.In((mJoystick.GetRawAxis(3)+1)/2);
+    mEjector.In(-((mJoystick.GetRawAxis(3)-1)/2));
   }
   else if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOut))
   {
     // std::cout << "Ejector Out" << std::endl;
-    mEjector.Out((mJoystick.GetRawAxis(3)+1)/2);
+    mEjector.Out((-(mJoystick.GetRawAxis(3)-1)/2));
   }
   else
   {
