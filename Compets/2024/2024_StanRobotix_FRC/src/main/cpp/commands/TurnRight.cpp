@@ -15,6 +15,7 @@
   
  void TurnRight::Initialize() 
  {
+  mDriveTrain->setEnableDriveTrain(false);
   mPIDController.SetSetpoint(-90);
   mPIDController.SetPID(0.065 , 0 , 0.065);
  }
@@ -25,7 +26,10 @@
     mDriveTrain->mecanumDrive(0, 0, mPIDController.Calculate(mIMU->getAngleYaw()), mIMU->getRotation2d());
  }
 
- void TurnRight::End(bool interrupted) {}
+ void TurnRight::End(bool interrupted) 
+ {
+  mDriveTrain->setEnableDriveTrain(true);
+ }
 
  bool TurnRight::IsFinished() 
  {

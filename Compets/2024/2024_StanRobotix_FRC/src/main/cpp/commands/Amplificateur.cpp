@@ -15,6 +15,7 @@ Amplificateur::Amplificateur(SubPivot *iPivot, SubAscenseur *iAscenseur) {
 // Called when the command is initially scheduled.
 void Amplificateur::Initialize() 
 {
+  mAscenseur->setEnable(false);
   mAscenseur->setPositionVoulue(AscenseurConstants::kAscenseurLimitMiddle);
 }
 
@@ -23,11 +24,13 @@ void Amplificateur::Execute()
 {
   mPivot->pivotUp();
   mAscenseur->setPositionAscenseur(mAscenseur->getPositionVoulue());
-
 }
 
 // Called once the command ends or is interrupted.
-void Amplificateur::End(bool interrupted) {}
+void Amplificateur::End(bool interrupted) 
+{
+  mAscenseur->setEnable(true);
+}
 
 // Returns true when the command should end.
 bool Amplificateur::IsFinished() {
