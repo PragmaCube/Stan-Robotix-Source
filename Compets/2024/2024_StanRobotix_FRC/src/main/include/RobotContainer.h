@@ -25,6 +25,7 @@
 #include "commands/AscenseurMilieu.h"
 #include "commands/AscenseurBas.h"
 #include "commands/Amplificateur.h"
+#include "commands/PosStorage.h"
 
 #include "commands/PivotUp.h"
 #include "commands/PivotMiddle.h"

@@ -54,6 +54,21 @@ void GoToTag::Initialize()
   mPIDControllerY.SetP(1.6);
   mPIDControllerY.SetI(0);
   mPIDControllerY.SetD(0.005);
+
+  if (LimelightHelpers::getFiducialID() == 1 || LimelightHelpers::getFiducialID() == 2 || LimelightHelpers::getFiducialID() == 10 || LimelightHelpers::getFiducialID() == 9)
+  { // Source
+    SetPoint = -1.5;
+    WrongTag = false;
+  }
+  else if (LimelightHelpers::getFiducialID() == 6 || LimelightHelpers::getFiducialID() == 5)
+  { // Amplficateur
+    SetPoint = -1;
+    WrongTag = false;
+  }
+  else
+  { // Speacker ou Trap
+    WrongTag = true;
+  }
 }
 
 void GoToTag::Execute() 
@@ -66,7 +81,7 @@ void GoToTag::Execute()
 }
 // Returns true when the command should end.
  bool GoToTag::IsFinished() {
-  return mPIDControllerAngle.AtSetpoint() && mPIDControllerX.AtSetpoint() && mPIDControllerY.AtSetpoint();
+  return (mPIDControllerAngle.AtSetpoint() && mPIDControllerX.AtSetpoint() && mPIDControllerY.AtSetpoint()) || WrongTag;
 }
 
 void GoToTag::End(bool interrupted) 

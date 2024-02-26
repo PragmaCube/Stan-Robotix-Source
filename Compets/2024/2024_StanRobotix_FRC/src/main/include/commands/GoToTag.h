@@ -44,4 +44,6 @@ class GoToTag
   double OutputAngle;
   double OutputX;
   double OutputY;
+  float SetPoint;
+  bool WrongTag = false; 
 };

@@ -3,8 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 #include "RobotContainer.h"
 
-
-
 RobotContainer::RobotContainer() 
 {
   // Initialize all of your commands and subsystems here
@@ -50,7 +48,6 @@ void RobotContainer::ConfigureBindings() {
     return mJoystick.GetPOV() == 90 || mJoystick.GetPOV() == 270;
   }).OnTrue(PivotMiddle(&mPivot).ToPtr());
 
-
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAmplificator);
   }).OnTrue(Amplificateur(&mPivot, &mAscenseur).ToPtr());
@@ -58,6 +55,11 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPickup);
   }).OnTrue(Pickup(&mPivot, &mAscenseur).ToPtr());
+
+  // A voir quel bouton utiliser
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPosStorage); // 5 ou 3?
+  }).OnTrue(PosStorage(&mPivot, &mAscenseur).ToPtr());
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
@@ -74,8 +76,6 @@ void RobotContainer::Init()
     mIsInit=true;
  }
 
-
-
 void RobotContainer::drive() 
 {
   if (mDriveTrain.getEnableDriveTrain())
@@ -87,23 +87,24 @@ void RobotContainer::drive()
   {
     mIMU.ResetAngle();
   }
-  
-  
 }
 
 void RobotContainer::MoveAscenseur()
 {
-  if (!mJoystick.GetRawButton(JoystickBindingsConstants::kAscenseurUp) && !mJoystick.GetRawButton(JoystickBindingsConstants::kAscenseurDown))
+  if (mAscenseur.isEnable())
   {
-    mAscenseur.stopAscenseurMotors();
-  }
-  else if (mJoystick.GetRawButton(JoystickBindingsConstants::kAscenseurUp))
-  {
-    mAscenseur.bougeAscenseur(1);
-  }
-  else
-  {
-    mAscenseur.bougeAscenseur(-1);
+    if (!mJoystick.GetRawButton(JoystickBindingsConstants::kAscenseurUp) && !mJoystick.GetRawButton(JoystickBindingsConstants::kAscenseurDown))
+    {
+      mAscenseur.stopAscenseurMotors();
+    }
+    else if (mJoystick.GetRawButton(JoystickBindingsConstants::kAscenseurUp))
+    {
+      mAscenseur.bougeAscenseur(1);
+    }
+    else
+    {
+      mAscenseur.bougeAscenseur(-1);
+    }
   }
 }
 

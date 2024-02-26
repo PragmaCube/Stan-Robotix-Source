@@ -25,7 +25,6 @@ namespace OperatorConstants {
 
 constexpr int kDriverControllerPort = 0;
 
-
 }  // namespace OperatorConstants
 
 namespace JoystickBindingsConstants
@@ -52,7 +51,7 @@ namespace JoystickBindingsConstants
     constexpr int kGotoTag = 2;
     constexpr int kAmplificator = 6;
     constexpr int kPickup = 4;
-
+    constexpr int kPosStorage = 3; // ou 5
 }
 
 namespace DriveTrainConstants
@@ -106,4 +105,3 @@ namespace PivotConstants
                  kMaxOutput = 0.5,
                  kMinOutput = -0.5;
 } // namespace mPivotMotor
-
