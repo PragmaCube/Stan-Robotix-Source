@@ -38,8 +38,8 @@ namespace JoystickBindingsConstants
     constexpr int kAscenseurUp = 8;
     // constexpr int kAscenseurMiddle = 9;
     constexpr int kAscenseurDown = 7;
-    constexpr int kAscenseurManualUp = 6;
-    constexpr int kAscenseurManualDown = 4;
+    // constexpr int kAscenseurManualUp = 6;
+    // constexpr int kAscenseurManualDown = 4;
 
     ////////////  EJECTOR  ////////////
     constexpr int kEjectorIn = 1;
@@ -50,6 +50,8 @@ namespace JoystickBindingsConstants
 
     ////////////  AUTOMATISATIONS  ////////////
     constexpr int kGotoTag = 2;
+    constexpr int kAmplificator = 6;
+    constexpr int kPickup = 4;
 
 }
 
@@ -76,8 +78,8 @@ namespace AscenseurConstants {
     constexpr int kMotorId1 = 1;
     constexpr int kMotorId2 = 3;
 
-    constexpr double kAscenseurLimitUp = 80;
-    constexpr double kAscenseurLimitMiddle = 40;
+    constexpr double kAscenseurLimitUp = 70;
+    constexpr double kAscenseurLimitMiddle = 45;
     constexpr double kAscenseurLimitDown = 2;
 
     constexpr double kP = 0.00009999999873689376, 

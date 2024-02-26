@@ -32,6 +32,5 @@ void PivotUp::End(bool interrupted)
 
 // Returns true when the command should end.
 bool PivotUp::IsFinished() {
-  return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightUp) < 0.05 &&
-         std::abs(mPivot->getVelocityMotor())< 0.05;
+  return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightUp) < 0.05;
 }

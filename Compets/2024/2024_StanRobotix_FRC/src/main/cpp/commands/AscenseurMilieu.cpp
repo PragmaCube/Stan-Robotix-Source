@@ -33,8 +33,5 @@ void AscenseurMilieu::End(bool interrupted)
 
 // Returns true when the command should end.
 bool AscenseurMilieu::IsFinished() {
-  return std::abs(mAscenseur->getEncoderPositionMotor1()-mAscenseur->getPositionVoulue()) < 0.05 &&
-         std::abs(mAscenseur->getEncoderPositionMotor2()-mAscenseur->getPositionVoulue()) < 0.05 &&
-         std::abs(mAscenseur->getVelocityMotor1()) == 0 &&
-         std::abs(mAscenseur->getVelocityMotor2()) == 0;
+  return std::abs(mAscenseur->getEncoderPositionMotor1()-mAscenseur->getPositionVoulue()) < 0.05 ;
 }

@@ -5,6 +5,8 @@
 
 #include "commands/Pickup.h"
 
+#include <iostream>
+
 
 Pickup::Pickup(SubPivot *iPivot, SubAscenseur *iAscenseur)
 {
@@ -18,18 +20,24 @@ Pickup::Pickup(SubPivot *iPivot, SubAscenseur *iAscenseur)
 // Called when the command is initially scheduled.
 void Pickup::Initialize() 
 {
+  mAscenceur->setEnable(false);   
   mAscenceur->setPositionVoulue(AscenseurConstants::kAscenseurLimitDown);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void Pickup::Execute() 
 {
+//   std::cout << "yo" << std::endl;
   mPivot->pivotDown();
-  mAscenceur->setPositionVoulue(AscenseurConstants::kAscenseurLimitDown);
+  mAscenceur->setPositionAscenseur(mAscenceur->getPositionVoulue());
+
 }
 
 // Called once the command ends or is interrupted.
-void Pickup::End(bool interrupted) {}
+void Pickup::End(bool interrupted) 
+{
+  mAscenceur->setEnable(false);
+}
 
 // Returns true when the command should end.
 bool Pickup::IsFinished() {

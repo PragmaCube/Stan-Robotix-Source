@@ -33,6 +33,5 @@ void PivotMiddle::End(bool interrupted)
 
 // Returns true when the command should end.
 bool PivotMiddle::IsFinished() {
-  return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightMiddle) < 0.05 &&
-         std::abs(mPivot->getVelocityMotor())< 0.05;
+  return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightMiddle) < 0.05;
 }

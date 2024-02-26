@@ -17,39 +17,18 @@
  void TurnLeft::Initialize() 
  {
   mPIDController.SetSetpoint(90);
-
- mCoefP = frc::Shuffleboard::GetTab("TurnLeft")
-                                                 .Add("CoefP", DrivePIDConstants::kTurnP)
-                                                 .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                 .GetEntry();
-
- mCoefI = frc::Shuffleboard::GetTab("TurnLeft")
-                                                 .Add("CoefI", DrivePIDConstants::kTurnI)
-                                                 .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                 .GetEntry();
-
- mCoefD = frc::Shuffleboard::GetTab("TurnLeft")
-                                                 .Add("CoefD", DrivePIDConstants::kTurnD)
-                                                 .WithWidget(frc::BuiltInWidgets::kTextView)
-                                                 .GetEntry();
+  mPIDController.SetPID(0.065 , 0 , 0.065);
  }
 
 
  void TurnLeft::Execute()
  {
     mDriveTrain->mecanumDrive(0, 0, mPIDController.Calculate(mIMU->getAngleYaw()), mIMU->getRotation2d());
-    mPIDController.SetPID(mCoefP->GetDouble(DrivePIDConstants::kTurnP),mCoefI->GetDouble(DrivePIDConstants::kTurnI),mCoefD->GetDouble(DrivePIDConstants::kTurnD));
  }
 
- void TurnLeft::End(bool interrupted) 
+ void TurnLeft::End(bool interrupted) {}
+
+ bool TurnLeft::IsFinished() 
  {
-
- }
-
- bool TurnLeft::IsFinished() {
-   if (mPIDController.AtSetpoint())
-   {
-     return true;
-   }
- return false;
+  return mPIDController.AtSetpoint();
  }
