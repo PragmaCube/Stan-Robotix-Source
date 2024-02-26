@@ -20,7 +20,6 @@
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
-#include <iostream>
 #include "subsystems/SubAscenseur.h"
 #include "commands/AscenseurHaut.h"
 #include "commands/AscenseurMilieu.h"

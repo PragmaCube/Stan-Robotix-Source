@@ -5,9 +5,6 @@
 
 #include "commands/Pickup.h"
 
-#include <iostream>
-
-
 Pickup::Pickup(SubPivot *iPivot, SubAscenseur *iAscenseur)
 {
   mPivot = iPivot;
@@ -27,10 +24,8 @@ void Pickup::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Pickup::Execute() 
 {
-//   std::cout << "yo" << std::endl;
   mPivot->pivotDown();
   mAscenceur->setPositionAscenseur(mAscenceur->getPositionVoulue());
-
 }
 
 // Called once the command ends or is interrupted.

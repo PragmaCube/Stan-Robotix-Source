@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/PivotDown.h"
-#include <iostream>
 
 
 PivotDown::PivotDown(SubPivot *iPivot, SubAscenseur *iAscensseur) {
@@ -25,8 +24,6 @@ void PivotDown::Initialize()
 void PivotDown::Execute() 
 {
   mPivot->pivotDown();
-  // std::cout << "Pivot Down" << std::endl;
-
 }
 
 // Called once the command ends or is interrupted.

@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/PivotMiddle.h"
-#include <iostream>
 
 PivotMiddle::PivotMiddle(SubPivot *iPivot) {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -21,8 +20,6 @@ void PivotMiddle::Initialize()
 void PivotMiddle::Execute() 
 {
   mPivot->pivotMiddle();
-  // std::cout << "Pivot Middle" << std::endl;
-
 }
 
 // Called once the command ends or is interrupted.

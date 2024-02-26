@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/PivotUp.h"
-#include <iostream>
 
 PivotUp::PivotUp(SubPivot *iPivot) {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -21,7 +20,6 @@ void PivotUp::Initialize()
 void PivotUp::Execute() 
 {
   mPivot->pivotUp();
-  // std::cout << "Pivot Up" << std::endl;
 }
 
 // Called once the command ends or is interrupted.
