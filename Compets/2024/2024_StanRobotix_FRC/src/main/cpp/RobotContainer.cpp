@@ -3,6 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 #include "RobotContainer.h"
 
+#include <iostream>
+
 RobotContainer::RobotContainer() 
 {
   // Initialize all of your commands and subsystems here
@@ -75,6 +77,7 @@ void RobotContainer::Init()
  {
     mIsInit=true;
     mDriveTrain.setVitesse(0.5);
+    std::cout << "Robot container" << std::endl;
  }
 
 void RobotContainer::drive() 
