@@ -77,9 +77,9 @@ namespace AscenseurConstants {
     constexpr int kMotorId1 = 1;
     constexpr int kMotorId2 = 3;
 
-    constexpr double kAscenseurLimitUp = 70;
-    constexpr double kAscenseurLimitMiddle = 55;
-    constexpr double kAscenseurLimitDown = 2;
+    constexpr double kAscenseurLimitUp = 70 - 83;
+    constexpr double kAscenseurLimitMiddle = 55 - 83;
+    constexpr double kAscenseurLimitDown = 2 -83;
 
     constexpr double kP = 0.00009999999873689376, 
                  kI = 19.999999974752427e-7,
