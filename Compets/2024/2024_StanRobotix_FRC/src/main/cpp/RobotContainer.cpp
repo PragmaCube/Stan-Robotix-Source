@@ -11,6 +11,9 @@ RobotContainer::RobotContainer()
  
   // Configure the button bindings
   ConfigureBindings();
+  mIsInit=true;
+  mDriveTrain.setVitesse(0.5);
+  mIMU.ResetAngle();
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -26,17 +29,25 @@ void RobotContainer::ConfigureBindings() {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kGotoTag);
   }).OnTrue(GoToTag(&mDriveTrain).ToPtr());
 
-  frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurUp);
-  }).OnTrue(AscenseurHaut(&mAscenseur).ToPtr());
+  // frc2::Trigger([this] {
+  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurUp);
+  // }).OnTrue(AscenseurHaut(&mAscenseur).ToPtr());
 
   // frc2::Trigger([this] {
   //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurMiddle);
   // }).OnTrue(AscenseurMilieu(&mAscenseur).ToPtr());
 
+  // frc2::Trigger([this] {
+  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurDown);
+  // }).OnTrue(AscenseurBas(&mAscenseur).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurUp);
+  }).OnTrue(TrapUp(&mPivot, &mAscenseur).ToPtr());
+
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurDown);
-  }).OnTrue(AscenseurBas(&mAscenseur).ToPtr());
+  }).OnTrue(TrapDown(&mPivot, &mAscenseur).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPivotDown);
@@ -73,12 +84,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   return autos::ExampleAuto(&m_subsystem);
 }
 
-void RobotContainer::Init()
- {
-    mIsInit=true;
-    mDriveTrain.setVitesse(0.5);
-    std::cout << "Robot container" << std::endl;
- }
+void RobotContainer::Init() {}
 
 void RobotContainer::drive() 
 {

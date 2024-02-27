@@ -31,6 +31,8 @@
 #include "commands/PivotMiddle.h"
 #include "commands/PivotDown.h"
 #include "commands/Pickup.h"
+#include "commands/TrapDown.h"
+#include "commands/TrapUp.h"
 
 #include "LimelightHelpers.h" 
 
