@@ -74,6 +74,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 void RobotContainer::Init()
  {
     mIsInit=true;
+    mDriveTrain.setVitesse(0.5);
  }
 
 void RobotContainer::drive() 

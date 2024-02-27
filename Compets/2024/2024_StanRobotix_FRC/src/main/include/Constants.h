@@ -17,7 +17,7 @@ namespace EjectorConstants
 {
     constexpr float kSpeedPull=-1.0;
     constexpr float kSpeedPush=1.0;
-    constexpr int kId=4;
+    constexpr int kId = 4;
     constexpr int kInProximity = 1023;
 }
 
@@ -78,7 +78,7 @@ namespace AscenseurConstants {
     constexpr int kMotorId2 = 3;
 
     constexpr double kAscenseurLimitUp = 70;
-    constexpr double kAscenseurLimitMiddle = 45;
+    constexpr double kAscenseurLimitMiddle = 55;
     constexpr double kAscenseurLimitDown = 2;
 
     constexpr double kP = 0.00009999999873689376, 
@@ -92,7 +92,7 @@ namespace AscenseurConstants {
 
 namespace PivotConstants
 {
-    constexpr float kHeightUp = -16;
+    constexpr float kHeightUp = -17;
     constexpr float kHeightMiddle = -10;
     constexpr float kHeightDown = 0;
     constexpr int kMotorId = 7;
