@@ -77,9 +77,9 @@ namespace AscenseurConstants {
     constexpr int kMotorId1 = 1;
     constexpr int kMotorId2 = 3;
 
-    constexpr double kAscenseurLimitUp = 70 - 83;
+    constexpr double kAscenseurLimitUp = 79 - 83;
     constexpr double kAscenseurLimitMiddle = 55 - 83;
-    constexpr double kAscenseurLimitDown = 2 -83;
+    constexpr double kAscenseurLimitDown = 0 - 83 ;
 
     constexpr double kP = 0.00009999999873689376, 
                  kI = 19.999999974752427e-7,
@@ -92,9 +92,9 @@ namespace AscenseurConstants {
 
 namespace PivotConstants
 {
-    constexpr float kHeightUp = -17;
-    constexpr float kHeightMiddle = -10;
-    constexpr float kHeightDown = 0;
+    constexpr float kHeightUp = -16 - 9.643;
+    constexpr float kHeightMiddle = -10 - 9.643;
+    constexpr float kHeightDown = -0.4 - 9.643;
     constexpr int kMotorId = 7;
 
     constexpr double kP = 0.00004999999873689376, 
