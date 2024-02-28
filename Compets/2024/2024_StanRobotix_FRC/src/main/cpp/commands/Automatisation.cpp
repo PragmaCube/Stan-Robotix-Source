@@ -7,6 +7,25 @@
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-Automatisation::Automatisation(SubDriveTrain* iDriveTrain, SubIMU* iIMU, SubAscenseur *iAscenseur, SubPivot *iPivot) {
-  AddCommands(Avancer(iDriveTrain, 2), TurnRight(iDriveTrain, iIMU), GoToTag(iDriveTrain), AscenseurMilieu(iAscenseur), PivotDown(iPivot, iAscenseur));
+Automatisation::Automatisation(SubDriveTrain* iDriveTrain, SubIMU* iIMU, SubAscenseur *iAscenseur, SubPivot *iPivot, ePeriodAuto iPeriodAuto) 
+{
+  switch (iPeriodAuto)
+    {
+      case AvancerSolo:
+        AddCommands(Avancer(iDriveTrain, 2));
+        break;
+      case BlueAlliance:
+        AddCommands(Avancer(iDriveTrain, 2), TurnLeft(iDriveTrain, iIMU), GoToTag(iDriveTrain), AscenseurMilieu(iAscenseur), PivotDown(iPivot, iAscenseur));
+        break;
+      case BlueAllianceLong:
+        AddCommands(Avancer(iDriveTrain, 2), TurnLeft(iDriveTrain, iIMU), Avancer(iDriveTrain, 3), GoToTag(iDriveTrain), AscenseurMilieu(iAscenseur), PivotDown(iPivot, iAscenseur));
+        break;
+      case RedAlliance:
+        AddCommands(Avancer(iDriveTrain, 2), TurnRight(iDriveTrain, iIMU), GoToTag(iDriveTrain), AscenseurMilieu(iAscenseur), PivotDown(iPivot, iAscenseur));
+        break;
+      case RedAllianceLong:
+        AddCommands(Avancer(iDriveTrain, 2), TurnRight(iDriveTrain, iIMU), Avancer(iDriveTrain, 3), GoToTag(iDriveTrain), AscenseurMilieu(iAscenseur), PivotDown(iPivot, iAscenseur));
+        break;
+    }
+  // AddCommands(Avancer(iDriveTrain, 2), TurnRight(iDriveTrain, iIMU), GoToTag(iDriveTrain), AscenseurMilieu(iAscenseur), PivotDown(iPivot, iAscenseur));
 }

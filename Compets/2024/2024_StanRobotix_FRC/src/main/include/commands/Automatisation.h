@@ -15,6 +15,18 @@ class Automatisation
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  Automatisation> {
  public:
-  Automatisation(SubDriveTrain *iDriveTrain, SubIMU *iIMU, SubAscenseur *iAscenseur, SubPivot *iPivot);
+  enum ePeriodAuto
+  {
+    AvancerSolo,
+    BlueAlliance,
+    BlueAllianceLong,
+    RedAlliance,  
+    RedAllianceLong
+  };
 
+  Automatisation(SubDriveTrain *iDriveTrain, SubIMU *iIMU, SubAscenseur *iAscenseur, SubPivot *iPivot, ePeriodAuto iPeriodAuto);
+  
+
+  private:
+    
 };

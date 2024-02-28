@@ -60,7 +60,7 @@ void RobotContainer::ConfigureBindings() {
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous       
-  return Automatisation(&mDriveTrain, &mIMU, &mAscenseur, &mPivot).ToPtr();
+  return Automatisation(&mDriveTrain, &mIMU, &mAscenseur, &mPivot, Automatisation::ePeriodAuto::BlueAlliance).ToPtr();
 }
 
 void RobotContainer::Init()
