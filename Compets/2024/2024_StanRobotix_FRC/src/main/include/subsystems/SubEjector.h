@@ -17,8 +17,9 @@ class SubEjector : public frc2::SubsystemBase
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-  void In(double ivitesse);
-  void Out(double ivitesse);
+  void In();
+  void OutUp();
+  void OutDown();
   void Stop();
   void Init();
   
@@ -27,11 +28,11 @@ class SubEjector : public frc2::SubsystemBase
  enum eState
  {
   eIn,
-  eOut,
+  eOutUp,
+  eOutDown,
   eStop
  };
  eState mState =eStop;
- double mvitesse = 0.5;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

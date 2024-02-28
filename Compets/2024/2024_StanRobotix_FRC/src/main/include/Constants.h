@@ -15,8 +15,9 @@
  */
 namespace EjectorConstants
 {
-    constexpr float kSpeedPull=-1.0;
-    constexpr float kSpeedPush=1.0;
+    constexpr float kSpeedIn = -0.3;
+    constexpr float kSpeedOutUp = 0.55;
+    constexpr float kSpeedOutDown = -0.4;
     constexpr int kId = 4;
     constexpr int kInProximity = 1023;
 }
@@ -42,7 +43,8 @@ namespace JoystickBindingsConstants
 
     ////////////  EJECTOR  ////////////
     constexpr int kEjectorIn = 1;
-    constexpr int kEjectorOut = 10;
+    constexpr int kEjectorOutUp = 10;
+    constexpr int kEjectorOutDown = 1; // A VERIFIER
 
     ////////////  IMU  ////////////
     constexpr int kImuReset = 9;
@@ -51,7 +53,7 @@ namespace JoystickBindingsConstants
     constexpr int kGotoTag = 2;
     constexpr int kAmplificator = 6;
     constexpr int kPickup = 4;
-    constexpr int kPosStorage = 3; // ou 5
+    constexpr int kPosStorage = 3;
 }
 
 namespace DriveTrainConstants

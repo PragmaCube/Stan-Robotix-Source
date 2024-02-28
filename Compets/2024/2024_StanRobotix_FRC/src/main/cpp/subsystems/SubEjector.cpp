@@ -12,27 +12,32 @@ void SubEjector::Periodic() {
     switch (mState)
     {
         case eIn:
-            mMotorEjector.Set(EjectorConstants::kSpeedPull*mvitesse);
+            mMotorEjector.Set(EjectorConstants::kSpeedIn);
             break;
-        case eOut:
-            mMotorEjector.Set(EjectorConstants::kSpeedPush*mvitesse);
+        case eOutUp:
+            mMotorEjector.Set(EjectorConstants::kSpeedOutUp);
+            break;
+        case eOutDown:
+            mMotorEjector.Set(EjectorConstants::kSpeedOutDown);
             break;
         default:
             mMotorEjector.Set(0);
     }
 }
-void SubEjector::In(double ivitesse)
+void SubEjector::In()
 {
-    mState=eIn;
-    mvitesse = ivitesse;
+    mState = eIn;
 }
-void SubEjector::Out(double ivitesse)
+void SubEjector::OutUp()
 {
-    mState=eOut;
-    mvitesse = ivitesse;
+    mState = eOutUp;
+}
+void SubEjector::OutDown()
+{
+    mState = eOutDown;
 }
 void SubEjector::Stop()
 {
-    mState=eStop;
+    mState = eStop;
 }
 void SubEjector::Init() { }

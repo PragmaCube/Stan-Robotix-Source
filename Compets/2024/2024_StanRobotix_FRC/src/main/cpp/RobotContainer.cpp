@@ -120,16 +120,20 @@ void RobotContainer::MoveAscenseur()
 
 void RobotContainer::MoveEjector()
 {
-  if (!mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorIn) && !mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOut))
+  if (!mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorIn) && !mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOutDown))
   {
     mEjector.Stop();
   }
   else if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorIn))
   {
-    mEjector.In(-((mJoystick.GetRawAxis(3)-1)/2));
+    mEjector.In();
   }
-  else
+  else if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOutDown) && mPivot.getEncodeurPosition() < PivotConstants::kHeightUp + 0.1)
   {
-    mEjector.Out((-(mJoystick.GetRawAxis(3)-1)/2));
+    mEjector.OutUp();
+  }
+  else if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOutUp))
+  {
+    mEjector.OutDown();
   }
 }
