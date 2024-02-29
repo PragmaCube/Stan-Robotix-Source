@@ -16,15 +16,16 @@
   
  void TurnLeft::Initialize() 
  {
+  angleDebut = mIMU->getAngleYaw();
   mDriveTrain->setEnableDriveTrain(false);
-  mPIDController.SetSetpoint(90);
+  mPIDController.SetSetpoint(-90);
   mPIDController.SetPID(0.065 , 0 , 0.065);
  }
 
 
  void TurnLeft::Execute()
  {
-    mDriveTrain->mecanumDrive(0, 0, mPIDController.Calculate(mIMU->getAngleYaw()), mIMU->getRotation2d());
+    mDriveTrain->mecanumDrive(0, 0, -0.7, mIMU->getRotation2d());
  }
 
  void TurnLeft::End(bool interrupted) 
@@ -34,5 +35,5 @@
 
  bool TurnLeft::IsFinished() 
  {
-  return mPIDController.AtSetpoint();
+  return (mIMU->getAngleYaw()-angleDebut) < -80;
  }

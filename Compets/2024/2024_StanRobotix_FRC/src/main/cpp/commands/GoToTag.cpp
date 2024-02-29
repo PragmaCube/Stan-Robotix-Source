@@ -37,6 +37,7 @@ GoToTag::GoToTag(SubDriveTrain *iDriveTrain)
 
 void GoToTag::Initialize() 
 {
+  mTimer.Start();
   mDriveTrain->setEnableDriveTrain(false);
                      
   mPIDControllerAngle.SetTolerance(0.5, 0.1);
@@ -48,7 +49,7 @@ void GoToTag::Initialize()
   mPIDControllerAngle.SetD(0.005);
 
   mPIDControllerX.SetP(1.3);
-  mPIDControllerX.SetI(0);
+  mPIDControllerX.SetI(0.05);
   mPIDControllerX.SetD(0.05);
 
   mPIDControllerY.SetP(1.6);
@@ -62,7 +63,7 @@ void GoToTag::Initialize()
   }
   else if (LimelightHelpers::getFiducialID() == 6 || LimelightHelpers::getFiducialID() == 5)
   { // Amplficateur
-    SetPoint = -1;
+    SetPoint = -0.5;
     WrongTag = false;
   }
   else
@@ -75,13 +76,17 @@ void GoToTag::Execute()
 { 
   OutputAngle = mPIDControllerAngle.Calculate(LimelightHelpers::getTX(""), 0) ; 
   OutputX = mPIDControllerX.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(0), 0) ; 
-  OutputY = mPIDControllerY.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(2), -1) ; 
+  OutputY = mPIDControllerY.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(2), SetPoint) ; 
   
-  mDriveTrain->mecanumDrive(OutputX,-OutputY,-OutputAngle,frc::Rotation2d(0_rad));  
+  if (!(LimelightHelpers::getFiducialID() == -1))
+  {
+    mDriveTrain->mecanumDrive(OutputX,-OutputY,-OutputAngle);  
+  } 
+  std::cout << mTimer.Get().value() << std::endl;
 }
 // Returns true when the command should end.
  bool GoToTag::IsFinished() {
-  return (mPIDControllerAngle.AtSetpoint() && mPIDControllerX.AtSetpoint() && mPIDControllerY.AtSetpoint()) || WrongTag;
+  return (mPIDControllerAngle.AtSetpoint() && mPIDControllerX.AtSetpoint() && mPIDControllerY.AtSetpoint()) || WrongTag || mTimer.Get().value() >= 3;
 }
 
 void GoToTag::End(bool interrupted) 

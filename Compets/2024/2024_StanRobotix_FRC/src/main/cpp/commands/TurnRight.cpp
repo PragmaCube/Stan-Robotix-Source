@@ -15,23 +15,22 @@
   
  void TurnRight::Initialize() 
  {
-  mDriveTrain->setEnableDriveTrain(false);
-  mPIDController.SetSetpoint(-90);
-  mPIDController.SetPID(0.065 , 0 , 0.065);
+  angleDebut = mIMU->getAngleYaw();
+  // mDriveTrain->setEnableDriveTrain(false);
  }
 
 
  void TurnRight::Execute()
  {
-    mDriveTrain->mecanumDrive(0, 0, mPIDController.Calculate(mIMU->getAngleYaw()), mIMU->getRotation2d());
+    mDriveTrain->mecanumDrive(0, 0, 0.7, mIMU->getRotation2d());
  }
 
  void TurnRight::End(bool interrupted) 
  {
-  mDriveTrain->setEnableDriveTrain(true);
+  // mDriveTrain->setEnableDriveTrain(true);
  }
 
  bool TurnRight::IsFinished() 
  {
-   return mPIDController.AtSetpoint();
+   return (mIMU->getAngleYaw()-angleDebut) > 80;
  }

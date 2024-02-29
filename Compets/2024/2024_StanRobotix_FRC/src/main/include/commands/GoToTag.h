@@ -1,5 +1,8 @@
 
 #pragma once
+#include <frc/Timer.h>
+
+#include <iostream>
 
 #include <frc2/command/CommandHelper.h>
 #include <frc/controller/PIDController.h>
@@ -46,4 +49,7 @@ class GoToTag
   double OutputY;
   float SetPoint;
   bool WrongTag = false; 
+  frc::Timer mTimer;
+
+
 };

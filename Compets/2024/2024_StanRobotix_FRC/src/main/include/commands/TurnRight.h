@@ -36,6 +36,7 @@
     
      SubDriveTrain* mDriveTrain;
      SubIMU* mIMU;
+      float angleDebut;
 
      frc::PIDController mPIDController {DrivePIDConstants::kTurnP, DrivePIDConstants::kTurnI, DrivePIDConstants::kTurnD};
      double Output;

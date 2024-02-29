@@ -19,7 +19,8 @@ namespace EjectorConstants
     constexpr float kSpeedOutUp = 0.55;
     constexpr float kSpeedOutDown = -0.4;
     constexpr int kId = 4;
-    constexpr int kInProximity = 1023;
+    constexpr int kEjectorInTime = 1;
+    constexpr int kEjectorOutDownTime = 1;
 }
 
 namespace OperatorConstants {
@@ -44,7 +45,7 @@ namespace JoystickBindingsConstants
     ////////////  EJECTOR  ////////////
     constexpr int kEjectorIn = 1;
     constexpr int kEjectorOutUp = 10;
-    constexpr int kEjectorOutDown = 1; // A VERIFIER
+    constexpr int kEjectorOutDown = 1; 
 
     ////////////  IMU  ////////////
     constexpr int kImuReset = 9;
@@ -65,7 +66,7 @@ namespace DriveTrainConstants
 
     // bool driveEnabled = true;
     
-} // namespace DriveTrainConstants
+}
 
 namespace DrivePIDConstants
 {
@@ -79,7 +80,7 @@ namespace AscenseurConstants {
     constexpr int kMotorId1 = 1;
     constexpr int kMotorId2 = 3;
 
-    constexpr double kAscenseurLimitUp = 79 - 83;
+    constexpr double kAscenseurLimitUp = 82 - 83;
     constexpr double kAscenseurLimitMiddle = 55 - 83;
     constexpr double kAscenseurLimitDown = 0 - 83 ;
 
@@ -96,7 +97,7 @@ namespace PivotConstants
 {
     constexpr float kHeightUp = -16 - 9.643;
     constexpr float kHeightMiddle = -10 - 9.643;
-    constexpr float kHeightDown = -0.4 - 9.643;
+    constexpr float kHeightDown = -0.5 - 9.643;
     constexpr int kMotorId = 7;
 
     constexpr double kP = 0.00004999999873689376, 
@@ -107,3 +108,8 @@ namespace PivotConstants
                  kMaxOutput = 0.5,
                  kMinOutput = -0.5;
 } // namespace mPivotMotor
+
+namespace AvancerConstants
+{
+    constexpr double Vitesse = 0.7;
+}

@@ -49,13 +49,13 @@ void RobotContainer::ConfigureBindings() {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurDown);
   }).OnTrue(TrapDown(&mPivot, &mAscenseur).ToPtr());
 
-  frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPivotDown);
-  }).OnTrue(PivotDown(&mPivot, &mAscenseur).ToPtr());
+  // frc2::Trigger([this] {
+  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPivotDown);
+  // }).OnTrue(PivotDown(&mPivot, &mAscenseur).ToPtr());
 
-  frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPivotUp);;
-  }).OnTrue(PivotUp(&mPivot).ToPtr());
+  // frc2::Trigger([this] {
+  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPivotUp);;
+  // }).OnTrue(PivotUp(&mPivot).ToPtr());
 
    frc2::Trigger([this] {
     return mJoystick.GetPOV() == 90 || mJoystick.GetPOV() == 270;
@@ -80,8 +80,8 @@ void RobotContainer::ConfigureBindings() {
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous
-  return autos::ExampleAuto(&m_subsystem);
+  // An example command will be run in autonomous       
+  return Automatisation(&mDriveTrain, &mIMU, &mAscenseur, &mPivot, &mEjector, Automatisation::ePeriodAuto::BlueAllianceLong).ToPtr();
 }
 
 void RobotContainer::Init() {}
@@ -103,24 +103,24 @@ void RobotContainer::MoveAscenseur()
 {
   if (mAscenseur.isEnable())
   {
-    if (!mJoystick.GetRawButton(JoystickBindingsConstants::kAscenseurUp) && !mJoystick.GetRawButton(JoystickBindingsConstants::kAscenseurDown))
+    if (!mJoystick.GetRawButton(JoystickBindingsConstants::kPivotUp) && !mJoystick.GetRawButton(JoystickBindingsConstants::kPivotDown))
     {
       mAscenseur.stopAscenseurMotors();
     }
-    else if (mJoystick.GetRawButton(JoystickBindingsConstants::kAscenseurUp))
+    else if (mJoystick.GetRawButton(JoystickBindingsConstants::kPivotUp))
     {
-      mAscenseur.bougeAscenseur(1);
+      mAscenseur.bougeAscenseur(0.2);
     }
     else
     {
-      mAscenseur.bougeAscenseur(-1);
+      mAscenseur.bougeAscenseur(-0.2);
     }
   }
 }
 
 void RobotContainer::MoveEjector()
 {
-  if (!mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorIn) && !mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOutDown))
+  if (!mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorIn) && !mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOutUp))
   {
     mEjector.Stop();
   }
@@ -128,12 +128,12 @@ void RobotContainer::MoveEjector()
   {
     mEjector.In();
   }
-  else if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOutDown) && mPivot.getEncodeurPosition() < PivotConstants::kHeightUp + 0.1)
+  else if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOutDown) && mPivot.getEncodeurPosition() < PivotConstants::kHeightUp + 1)
   {
-    mEjector.OutUp();
+    mEjector.OutDown();
   }
   else if (mJoystick.GetRawButton(JoystickBindingsConstants::kEjectorOutUp))
   {
-    mEjector.OutDown();
+    mEjector.OutUp();
   }
 }

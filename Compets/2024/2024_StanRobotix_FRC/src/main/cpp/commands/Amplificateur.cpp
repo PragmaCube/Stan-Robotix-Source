@@ -6,7 +6,7 @@
 
 Amplificateur::Amplificateur(SubPivot *iPivot, SubAscenseur *iAscenseur) {
   mPivot = iPivot;
-  mAscenseur=iAscenseur;
+  mAscenseur = iAscenseur;
   
   AddRequirements(mPivot);
   AddRequirements(mAscenseur);
@@ -34,6 +34,6 @@ void Amplificateur::End(bool interrupted)
 
 // Returns true when the command should end.
 bool Amplificateur::IsFinished() {
-    return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightMiddle) < 0.05 &&
-          std::abs(mAscenseur->getEncoderPositionMotor1() - AscenseurConstants::kAscenseurLimitMiddle) < 0.05;
+    return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightMiddle) < 2 &&
+          std::abs(mAscenseur->getEncoderPositionMotor1() - AscenseurConstants::kAscenseurLimitMiddle) < 5;
 }

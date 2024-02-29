@@ -33,6 +33,10 @@
 #include "commands/Pickup.h"
 #include "commands/TrapDown.h"
 #include "commands/TrapUp.h"
+#include "commands/Automatisation.h"
+#include "commands/Avancer.h"
+#include "commands/EjectorIn.h"
+#include "commands/EjectorOut.h"
 
 #include "LimelightHelpers.h" 
 
