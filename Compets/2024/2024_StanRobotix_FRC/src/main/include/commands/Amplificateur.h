@@ -3,6 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
+#include <frc/Timer.h>
+
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
@@ -33,5 +35,8 @@ class Amplificateur
   private:
   SubPivot *mPivot;
   SubAscenseur *mAscenseur;
+  double mDuree = 3.4;
+  frc::Timer mTimer;
+    
 };
 

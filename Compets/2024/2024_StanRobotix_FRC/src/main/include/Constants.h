@@ -111,5 +111,5 @@ namespace PivotConstants
 
 namespace AvancerConstants
 {
-    constexpr double Vitesse = 0.7;
+    constexpr double Vitesse = 0.8;
 }

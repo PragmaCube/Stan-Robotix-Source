@@ -53,7 +53,7 @@ void GoToTag::Initialize()
   mPIDControllerX.SetD(0.05);
 
   mPIDControllerY.SetP(1.6);
-  mPIDControllerY.SetI(0);
+  mPIDControllerY.SetI(0.03);
   mPIDControllerY.SetD(0.005);
 
   if (LimelightHelpers::getFiducialID() == 1 || LimelightHelpers::getFiducialID() == 2 || LimelightHelpers::getFiducialID() == 10 || LimelightHelpers::getFiducialID() == 9)

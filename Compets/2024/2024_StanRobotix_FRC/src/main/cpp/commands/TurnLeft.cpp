@@ -25,7 +25,7 @@
 
  void TurnLeft::Execute()
  {
-    mDriveTrain->mecanumDrive(0, 0, -0.7, mIMU->getRotation2d());
+    mDriveTrain->mecanumDrive(0, 0, -0.8, mIMU->getRotation2d());
  }
 
  void TurnLeft::End(bool interrupted) 
@@ -35,5 +35,5 @@
 
  bool TurnLeft::IsFinished() 
  {
-  return (mIMU->getAngleYaw()-angleDebut) < -80;
+  return (mIMU->getAngleYaw()-angleDebut) < -72;
  }
