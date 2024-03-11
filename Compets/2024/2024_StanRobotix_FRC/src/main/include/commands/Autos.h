@@ -4,13 +4,28 @@
 
 #pragma once
 
-#include <frc2/command/CommandPtr.h>
+#include <frc2/command/CommandHelper.h>
+#include <frc2/command/SequentialCommandGroup.h>
+#include "commands/Avancer.h"
+#include "commands/TurnRight.h"
+#include "commands/AscenseurMilieu.h"
+#include "commands/PivotDown.h"
+#include "commands/Amplificateur.h"
+#include "commands/Pickup.h"
+#include"commands/PosStorage.h"
+#include "commands/EjectorIn.h"
+#include "commands/EjectorOut.h"
 
 #include "subsystems/ExampleSubsystem.h"
 
 namespace autos {
-/**
- * Example static factory for an autonomous command.
- */
-frc2::CommandPtr ExampleAuto(ExampleSubsystem* subsystem);
+enum ePeriodAuto
+  {
+    AvancerSolo,
+    BlueAlliance,
+    BlueAllianceLong,
+    RedAlliance,  
+    RedAllianceLong
+  };
+frc2::CommandPtr Auto(SubDriveTrain *iDriveTrain, SubIMU *iIMU, SubAscenseur *iAscenseur, SubPivot *iPivot, SubEjector *iEjector, ePeriodAuto iPeriodAuto, ExampleSubsystem *subsystem);
 }  // namespace autos

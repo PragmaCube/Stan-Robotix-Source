@@ -16,9 +16,8 @@
 #include "commands/EjectorIn.h"
 #include "commands/EjectorOut.h"
 
-class Automatisation
-    : public frc2::CommandHelper<frc2::SequentialCommandGroup,
-                                 Automatisation> {
+class Automatisation : public frc2::CommandHelper<frc2::SequentialCommandGroup, Automatisation> 
+{
  public:
   enum ePeriodAuto
   {
