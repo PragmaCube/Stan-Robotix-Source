@@ -5,17 +5,17 @@
 # Stan-Robotix-Source
 Dépôt officiel de l'équipe [Stan Robotix 6622](https://stanrobotix6622.com/) participant à la compétition [FIRST](https://www.firstinspires.org/robotics/frc)
 
-2019-2023
+2019-2024
 
 ## Structure
 - Activités : tout ce qui n'est pas relié aux compétitions
 - Compets : l'intégralité du code source des compétitions ([BetaBots](https://robotiquefirstquebec.org/frc/betabots/) et FRC)
 - Doc : documentation créée par l'équipe pour la communauté
+  - Manuel sur les bases C++ et l'utilisation de [WPILIB](https://docs.wpilib.org/en/stable/) V1.1 DISPONIBLE
   - Liste d'exercices V1.3 DISPONIBLE
   - Corrections de la liste d'exercices V1.3 DISPONIBLE
   - Aide rapide sur Git et Github V1.0 DISPONIBLE
   - Aide sur la structuration d'un programme C++ V1.0 DISPONIBLE
-  - Manuel sur les bases C++ et l'utilisation de [WPILIB](https://docs.wpilib.org/en/stable/) EN COURS D'ÉCRITURE
 
 ## Exécuter un programme
 - Code de compétition : chaque projet possède dans son nom l'année de création. Pour utiliser en 2024 un projet de 2023 il faut s'assurer de :
@@ -62,7 +62,7 @@ La gestion du dépôt (modification du README ou modifications majeures) est lai
 
 Chef d'équipe : André Wojcik<br>
 Mentors : Raphaël Pothier et Clément Jevardat-de-Fombelle<br>
-Contacts :
 
+Contacts :
 andre.wojcik@stanislas.qc.ca <br>
 raphael.pothier@umontreal.ca <br>
