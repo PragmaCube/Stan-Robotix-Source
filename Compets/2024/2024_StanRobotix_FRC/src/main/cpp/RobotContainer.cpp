@@ -3,15 +3,13 @@
 // the WPILib BSD license file in the root directory of this project.
 #include "RobotContainer.h"
 
-#include <iostream>
-
 RobotContainer::RobotContainer() 
 {
   // Initialize all of your commands and subsystems here
  
   // Configure the button bindings
   ConfigureBindings();
-  mIsInit=true;
+  mIsInit = true;
   mDriveTrain.setVitesse(0.7);
   mIMU.ResetAngle();
 }
