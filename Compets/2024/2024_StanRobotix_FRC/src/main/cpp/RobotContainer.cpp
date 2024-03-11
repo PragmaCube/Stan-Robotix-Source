@@ -11,7 +11,7 @@ RobotContainer::RobotContainer()
  
   // Configure the button bindings
   ConfigureBindings();
-  mIsInit=true;
+  mIsInit = true;
   mDriveTrain.setVitesse(0.7);
   mIMU.ResetAngle();
 }
