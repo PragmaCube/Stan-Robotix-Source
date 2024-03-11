@@ -40,4 +40,5 @@ void SubEjector::Stop()
 {
     mState = eStop;
 }
+
 void SubEjector::Init() { }
