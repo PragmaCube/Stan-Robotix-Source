@@ -22,7 +22,10 @@ void Avancer::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void Avancer::End(bool interrupted) {}
+void Avancer::End(bool interrupted) 
+{
+  mTimer.Reset();
+}
 
 // Returns true when the command should end.
 bool Avancer::IsFinished() {

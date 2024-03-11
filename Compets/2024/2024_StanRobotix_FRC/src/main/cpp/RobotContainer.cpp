@@ -12,7 +12,7 @@ RobotContainer::RobotContainer()
   // Configure the button bindings
   ConfigureBindings();
   mIsInit=true;
-  mDriveTrain.setVitesse(0.5);
+  mDriveTrain.setVitesse(0.7);
   mIMU.ResetAngle();
 }
 
@@ -80,10 +80,17 @@ void RobotContainer::ConfigureBindings() {
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous       
-  return Automatisation(&mDriveTrain, &mIMU, &mAscenseur, &mPivot, &mEjector, Automatisation::ePeriodAuto::BlueAllianceLong).ToPtr();
+  // An example command will be run in autonomous
+  if (LimelightHelpers::getCameraPose_TargetSpace().size() == 0)
+  {
+    return Automatisation(&mDriveTrain, &mIMU, &mAscenseur, &mPivot, &mEjector, Automatisation::ePeriodAuto::AvancerSolo).ToPtr();
+  }
+  else
+  {       
+    return Automatisation(&mDriveTrain, &mIMU, &mAscenseur, &mPivot, &mEjector, Automatisation::ePeriodAuto::BlueAlliance).ToPtr();
+  }
 }
-
+   
 void RobotContainer::Init() {}
 
 void RobotContainer::drive() 
@@ -97,6 +104,15 @@ void RobotContainer::drive()
   {
     mIMU.ResetAngle();
   }
+
+  // if (mJoystick.GetPOV() == 0)
+  // {
+  //   mPivot.pivotGo(-0.5);
+  // }
+  // if (mJoystick.GetPOV() == 180)
+  // {
+  //   mPivot.pivotGo(0.5);
+  // }
 }
 
 void RobotContainer::MoveAscenseur()

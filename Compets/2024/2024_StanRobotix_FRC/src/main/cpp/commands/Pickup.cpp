@@ -36,6 +36,6 @@ void Pickup::End(bool interrupted)
 
 // Returns true when the command should end.
 bool Pickup::IsFinished() {
-  return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightDown) < 0.05 &&
-        std::abs(mAscenceur->getEncoderPositionMotor1() - AscenseurConstants::kAscenseurLimitDown) < 0.05;
+  return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightDown) < 2 &&
+        std::abs(mAscenceur->getEncoderPositionMotor1() - AscenseurConstants::kAscenseurLimitDown) < 4;
 }

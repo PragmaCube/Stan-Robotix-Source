@@ -16,7 +16,7 @@
 namespace EjectorConstants
 {
     constexpr float kSpeedIn = -0.3;
-    constexpr float kSpeedOutUp = 0.55;
+    constexpr float kSpeedOutUp = 0.58;
     constexpr float kSpeedOutDown = -0.4;
     constexpr int kId = 4;
     constexpr int kEjectorInTime = 1;
@@ -80,8 +80,8 @@ namespace AscenseurConstants {
     constexpr int kMotorId1 = 1;
     constexpr int kMotorId2 = 3;
 
-    constexpr double kAscenseurLimitUp = 82 - 83;
-    constexpr double kAscenseurLimitMiddle = 55 - 83;
+    constexpr double kAscenseurLimitUp = 82.8 - 83;
+    constexpr double kAscenseurLimitMiddle = 57 - 83;
     constexpr double kAscenseurLimitDown = 0 - 83 ;
 
     constexpr double kP = 0.00009999999873689376, 

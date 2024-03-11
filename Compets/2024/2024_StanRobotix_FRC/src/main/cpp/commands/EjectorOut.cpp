@@ -24,7 +24,11 @@ void EjectorOut::Execute()
 }
 
 // Called once the command ends or is interrupted.
-void EjectorOut::End(bool interrupted) {}
+void EjectorOut::End(bool interrupted) 
+{
+  mTimer.Reset();
+  mEjector->Stop();
+}
 
 // Returns true when the command should end.
 bool EjectorOut::IsFinished() {

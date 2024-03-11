@@ -26,7 +26,7 @@ void Amplificateur::Execute()
 {
   mPivot->pivotUp();
   mAscenseur->setPositionAscenseur(mAscenseur->getPositionVoulue());
-  std::cout << "Encodeur position Pivot : " << std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightMiddle) << " Encoder position ascenseur : " << std::abs(mAscenseur->getEncoderPositionMotor1() - AscenseurConstants::kAscenseurLimitMiddle) << std::endl;
+  // std::cout << "Encodeur position Pivot : " << std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightMiddle) << " Encoder position ascenseur : " << std::abs(mAscenseur->getEncoderPositionMotor1() - AscenseurConstants::kAscenseurLimitMiddle) << std::endl;
 }
 
 // Called once the command ends or is interrupted.

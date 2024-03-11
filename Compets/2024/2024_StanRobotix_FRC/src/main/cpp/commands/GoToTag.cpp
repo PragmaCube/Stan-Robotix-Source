@@ -38,12 +38,15 @@ GoToTag::GoToTag(SubDriveTrain *iDriveTrain)
 void GoToTag::Initialize() 
 {
   mTimer.Start();
+  mTimer.Reset();
   mDriveTrain->setEnableDriveTrain(false);
                      
   mPIDControllerAngle.SetTolerance(0.5, 0.1);
   mPIDControllerX.SetTolerance(0.5, 0.1);
   mPIDControllerY.SetTolerance(0.5, 0.1);
 
+
+\
   mPIDControllerAngle.SetP(0.065);
   mPIDControllerAngle.SetI(0);
   mPIDControllerAngle.SetD(0.005);
@@ -82,7 +85,7 @@ void GoToTag::Execute()
   {
     mDriveTrain->mecanumDrive(OutputX,-OutputY,-OutputAngle);  
   } 
-  std::cout << mTimer.Get().value() << std::endl;
+  // std::cout << mTimer.Get().value() << std::endl;
 }
 // Returns true when the command should end.
  bool GoToTag::IsFinished() {

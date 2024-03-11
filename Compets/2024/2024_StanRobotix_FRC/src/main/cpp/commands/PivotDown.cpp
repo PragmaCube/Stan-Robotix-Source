@@ -34,5 +34,5 @@ void PivotDown::End(bool interrupted)
 
 // Returns true when the command should end.
 bool PivotDown::IsFinished() {
-  return (std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightDown) < 0.05 );     
+  return (std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightDown) < 2 );     
 }
