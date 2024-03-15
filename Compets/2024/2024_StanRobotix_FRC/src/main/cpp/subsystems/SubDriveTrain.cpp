@@ -42,10 +42,10 @@ int SubDriveTrain::getVitesse()
 
 void SubDriveTrain::setEnableDriveTrain(bool iEnable)
 {
-    enable = iEnable;
+    mEnable = iEnable;
 }
 
 bool SubDriveTrain::getEnableDriveTrain()
 {
-    return enable;
+    return mEnable;
 }

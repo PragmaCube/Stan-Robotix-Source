@@ -6,8 +6,8 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/SubPivot.h"
 
+#include "subsystems/SubPivot.h"
 #include "subsystems/SubAscenseur.h"
 #include "Constants.h"
 

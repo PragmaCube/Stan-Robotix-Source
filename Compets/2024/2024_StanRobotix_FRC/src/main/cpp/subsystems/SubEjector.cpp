@@ -24,18 +24,22 @@ void SubEjector::Periodic() {
             mMotorEjector.Set(0);
     }
 }
+
 void SubEjector::In()
 {
     mState = eIn;
 }
+
 void SubEjector::OutUp()
 {
     mState = eOutUp;
 }
+
 void SubEjector::OutDown()
 {
     mState = eOutDown;
 }
+
 void SubEjector::Stop()
 {
     mState = eStop;

@@ -3,30 +3,28 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
+
 #include <frc/Joystick.h> 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
-#include <frc/Joystick.h>
+#include <frc2/command/button/Trigger.h>
+#include <frc/controller/PIDController.h>
 
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubEjector.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
-#include <frc/controller/PIDController.h>
+#include "subsystems/SubAscenseur.h"
+
+#include "commands/ExampleCommand.h"
 #include "commands/GoToTag.h"
-#include "Constants.h"
-#include <frc2/command/button/Trigger.h>
 #include "commands/TurnLeft.h"
 #include "commands/Autos.h"
-#include "commands/ExampleCommand.h"
-
-#include "subsystems/SubAscenseur.h"
 #include "commands/AscenseurHaut.h"
 #include "commands/AscenseurMilieu.h"
 #include "commands/AscenseurBas.h"
 #include "commands/Amplificateur.h"
 #include "commands/PosStorage.h"
-
 #include "commands/PivotUp.h"
 #include "commands/PivotMiddle.h"
 #include "commands/PivotDown.h"
@@ -39,6 +37,7 @@
 #include "commands/EjectorOut.h"
 
 #include "LimelightHelpers.h" 
+#include "Constants.h"
 
 
 /**
@@ -78,7 +77,6 @@ void Init();
   void ConfigureBindings();
 
   int compteur = 0;
-
   
   SubDriveTrain mDriveTrain;
   SubIMU mIMU;

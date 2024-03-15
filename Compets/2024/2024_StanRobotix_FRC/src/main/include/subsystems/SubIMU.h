@@ -3,9 +3,11 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
-#include <frc2/command/SubsystemBase.h>
+
 #include <ctre/Phoenix.h>
 #include <ctre/phoenix6/Pigeon2.hpp>
+
+#include <frc2/command/SubsystemBase.h>
 
 class SubIMU : public frc2::SubsystemBase 
 {

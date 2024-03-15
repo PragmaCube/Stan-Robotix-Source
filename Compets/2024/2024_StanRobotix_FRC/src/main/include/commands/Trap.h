@@ -6,6 +6,7 @@
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/SequentialCommandGroup.h>
+
 #include "commands/TrapDown.h"
 #include "commands/TrapUp.h"
 #include "commands/Amplificateur.h"

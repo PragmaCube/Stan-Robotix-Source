@@ -4,10 +4,11 @@
 
 #pragma once
 
+#include <cmath>
+
 #include <frc2/command/SubsystemBase.h>
 #include <rev/CANSparkMax.h>
 #include <rev/SparkMaxPIDController.h>
-#include <cmath>
 
 #include "Constants.h"
 
@@ -59,7 +60,4 @@ class SubAscenseur : public frc2::SubsystemBase {
 
   rev::SparkMaxPIDController mPIDController1 = mAscenseurMotor1.GetPIDController();
   rev::SparkMaxPIDController mPIDController2 = mAscenseurMotor2.GetPIDController();
-
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
 };

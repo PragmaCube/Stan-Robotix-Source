@@ -4,13 +4,13 @@
 
 #pragma once
 
+#include <cmath>
+
 #include <frc2/command/SubsystemBase.h>
 #include <rev/CANSparkMax.h>
 #include <rev/SparkMaxPIDController.h>
+
 #include "Constants.h"
-
-#include <cmath>
-
 
 class SubPivot : public frc2::SubsystemBase {
  public:

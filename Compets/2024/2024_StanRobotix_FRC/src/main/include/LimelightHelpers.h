@@ -5,16 +5,16 @@
 //https://github.com/LimelightVision/limelightlib-wpicpp
 ///
 
+#include <string>
+#include <unistd.h>
+#include <vector>
+#include <iostream>
+
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableInstance.h"
 #include "networktables/NetworkTableEntry.h"
 #include "networktables/NetworkTableValue.h"
 #include "wpi/json.h"
-#include <string>
-#include <unistd.h>
-#include <vector>
-#include <chrono>
-#include <iostream>
 
 namespace LimelightHelpers
 {
@@ -329,24 +329,6 @@ namespace LimelightHelpers
         ~LimelightResultsClass() {}
         VisionResultsClass targetingResults;
     };
-
-    // inline LimelightResultsClass getLatestResults(const std::string &limelightName = "", bool profile = false)
-    // {
-    //     auto start = std::chrono::high_resolution_clock::now();
-    //     std::string jsonString = getJSONDump(limelightName);
-    //     wpi::json data = wpi::json::parse(jsonString);
-    //     auto end = std::chrono::high_resolution_clock::now();
-    //     double nanos = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
-    //     double millis = (nanos * 0.000001);
-
-    //     LimelightResultsClass out = data.get<LimelightResultsClass>();
-    //     out.targetingResults.m_JsonParseLatency = millis;
-    //     if (profile)
-    //     {
-    //         std::cout << "lljson: " << millis << std::endl;
-    //     }
-    //     return out;
-    // }
 
     namespace internal
     {

@@ -8,7 +8,6 @@ AscenseurBas::AscenseurBas(SubAscenseur *iAscenseur) {
 
   mAscenseur = iAscenseur;
   AddRequirements(mAscenseur);
-  // Use addRequirements() here to declare subsystem dependencies.
 }
 
 // Called when the command is initially scheduled.

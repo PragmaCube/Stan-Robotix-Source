@@ -10,8 +10,6 @@
 #include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
 #include <ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h>
 
-
-
 #include "Constants.h"
 
 class SubDriveTrain : public frc2::SubsystemBase 
@@ -34,7 +32,7 @@ class SubDriveTrain : public frc2::SubsystemBase
 
  private:
 
-  bool enable = true;
+  bool mEnable = true;
 
   float mVitesse = 1;
 

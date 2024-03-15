@@ -24,9 +24,7 @@ namespace EjectorConstants
 }
 
 namespace OperatorConstants {
-
-constexpr int kDriverControllerPort = 0;
-
+    constexpr int kDriverControllerPort = 0;
 }  // namespace OperatorConstants
 
 namespace JoystickBindingsConstants
