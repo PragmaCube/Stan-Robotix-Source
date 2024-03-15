@@ -8,7 +8,7 @@
 #include <frc2/command/SequentialCommandGroup.h>
 #include "commands/Avancer.h"
 #include "commands/TurnRight.h"
-#include "commands/AscenseurMilieu.h"
+#include "commands/ElevatorMiddle.h"
 #include "commands/PivotDown.h"
 #include "commands/Amplificateur.h"
 #include "commands/Pickup.h"
@@ -27,5 +27,5 @@ enum ePeriodAuto
     RedAlliance,  
     RedAllianceLong
   };
-frc2::CommandPtr Auto(SubDriveTrain *iDriveTrain, SubIMU *iIMU, SubAscenseur *iAscenseur, SubPivot *iPivot, SubEjector *iEjector, ePeriodAuto iPeriodAuto, ExampleSubsystem *subsystem);
+frc2::CommandPtr Auto(SubDriveTrain *iDriveTrain, SubIMU *iIMU, SubElevator *iElevator, SubPivot *iPivot, SubEjector *iEjector, ePeriodAuto iPeriodAuto, ExampleSubsystem *subsystem);
 }  // namespace autos

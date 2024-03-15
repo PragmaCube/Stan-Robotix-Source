@@ -1,40 +1,37 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
+#include <cmath>
 
-#include "commands/Amplificateur.h"
+#include "commands/ElevatorMiddle.h"
 
-Amplificateur::Amplificateur(SubPivot *iPivot, SubElevator *iElevator) {
-  mPivot = iPivot;
+ElevatorMiddle::ElevatorMiddle(SubElevator *iElevator) {
+
   mElevator = iElevator;
-  
-  AddRequirements(mPivot);
   AddRequirements(mElevator);
+  // Use addRequirements() here to declare subsystem dependencies.
 }
 
 // Called when the command is initially scheduled.
-void Amplificateur::Initialize() 
+void ElevatorMiddle::Initialize() 
 {
-  mTimer.Start();
   mElevator->setEnable(false);
   mElevator->setTargetPosition(AscenseurConstants::kAscenseurLimitMiddle);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void Amplificateur::Execute() 
+void ElevatorMiddle::Execute() 
 {
-  mPivot->pivotUp();
   mElevator->setElevatorPosition();
 }
 
 // Called once the command ends or is interrupted.
-void Amplificateur::End(bool interrupted) 
+void ElevatorMiddle::End(bool interrupted) 
 {
   mElevator->setEnable(true);
 }
 
 // Returns true when the command should end.
-bool Amplificateur::IsFinished() {
-    return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightUp) < 2 &&
-          std::abs(mElevator->getEncoderPositionMotor(Motor1) - AscenseurConstants::kAscenseurLimitMiddle) < 5 ;//|| mTimer.Get().value() > mDuree;
+bool ElevatorMiddle::IsFinished() {
+  return std::abs(mElevator->getEncoderPositionMotor(Motor1)-mElevator->getTargetPosition()) < 0.05 ;
 }

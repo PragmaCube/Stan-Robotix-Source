@@ -6,8 +6,9 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/SubPivot.h"
 
-#include "subsystems/SubAscenseur.h"
+#include "subsystems/SubElevator.h"
 
 /**
  * An example command.
@@ -16,10 +17,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class AscenseurMilieu
-    : public frc2::CommandHelper<frc2::Command, AscenseurMilieu> {
+class ElevatorDown
+    : public frc2::CommandHelper<frc2::Command, ElevatorDown> {
  public:
-  AscenseurMilieu(SubAscenseur *iAscenseur);
+  ElevatorDown(SubElevator *iElevator);
 
   void Initialize() override;
 
@@ -30,5 +31,6 @@ class AscenseurMilieu
   bool IsFinished() override;
   
   private:
-  SubAscenseur *mAscenseur;
+  SubElevator *mElevator;
+  SubPivot *mPivot;
 };

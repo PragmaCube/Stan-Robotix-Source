@@ -9,7 +9,7 @@
 #include <frc2/command/CommandHelper.h>
 
 #include "subsystems/SubPivot.h"
-#include "subsystems/SubAscenseur.h"
+#include "subsystems/SubElevator.h"
 
 
 /**
@@ -22,7 +22,7 @@
 class Amplificateur
     : public frc2::CommandHelper<frc2::Command, Amplificateur> {
  public:
-  Amplificateur(SubPivot *iPivot, SubAscenseur *iAscenseur);
+  Amplificateur(SubPivot *iPivot, SubElevator *iElevator);
 
   void Initialize() override;
 
@@ -34,7 +34,7 @@ class Amplificateur
 
   private:
   SubPivot *mPivot;
-  SubAscenseur *mAscenseur;
+  SubElevator *mElevator;
   double mDuree = 3.4;
   frc::Timer mTimer;
     

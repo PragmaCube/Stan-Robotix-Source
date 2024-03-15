@@ -2,39 +2,35 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/TrapUp.h"
+#include "commands/ElevatorUp.h"
 
-TrapUp::TrapUp(SubPivot *iPivot, SubElevator *iElevator) {
-  // Use addRequirements() here to declare subsystem dependencies.
-  mPivot = iPivot;
+ElevatorUp::ElevatorUp(SubElevator *iElevator) {
+
   mElevator = iElevator;
-
-  AddRequirements(mPivot);
   AddRequirements(mElevator);
+  // Use addRequirements() here to declare subsystem dependencies.
 }
 
 // Called when the command is initially scheduled.
-void TrapUp::Initialize() 
+void ElevatorUp::Initialize() 
 {
-  mElevator->setEnable(false);   
+  mElevator->setEnable(false);
   mElevator->setTargetPosition(AscenseurConstants::kAscenseurLimitUp);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void TrapUp::Execute() 
+void ElevatorUp::Execute() 
 {
-  mPivot->pivotMiddle();
   mElevator->setElevatorPosition();
 }
 
 // Called once the command ends or is interrupted.
-void TrapUp::End(bool interrupted) 
+void ElevatorUp::End(bool interrupted) 
 {
   mElevator->setEnable(true);
 }
 
 // Returns true when the command should end.
-bool TrapUp::IsFinished() {
-  return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightUp) < 2 &&
-        std::abs(mElevator->getEncoderPositionMotor(Motor1) - AscenseurConstants::kAscenseurLimitDown) < 4;
+bool ElevatorUp::IsFinished() {
+  return std::abs(mElevator->getEncoderPositionMotor(Motor1)-mElevator->getTargetPosition()) < 0.05;
 }

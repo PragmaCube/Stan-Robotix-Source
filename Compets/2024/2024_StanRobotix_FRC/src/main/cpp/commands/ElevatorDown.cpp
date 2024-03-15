@@ -2,39 +2,36 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/Pickup.h"
+#include "commands/ElevatorDown.h"
 
-Pickup::Pickup(SubPivot *iPivot, SubElevator *iElevator)
-{
-  mPivot = iPivot;
+ElevatorDown::ElevatorDown(SubElevator *iElevator) {
+
   mElevator = iElevator;
-
-  AddRequirements(mPivot);
   AddRequirements(mElevator);
+  // Use addRequirements() here to declare subsystem dependencies.
 }
 
 // Called when the command is initially scheduled.
-void Pickup::Initialize() 
+void ElevatorDown::Initialize() 
 {
-  mElevator->setEnable(false);   
+  mElevator->setEnable(false);
   mElevator->setTargetPosition(AscenseurConstants::kAscenseurLimitDown);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void Pickup::Execute() 
+void ElevatorDown::Execute() 
 {
-  mPivot->pivotDown();
   mElevator->setElevatorPosition();
 }
 
 // Called once the command ends or is interrupted.
-void Pickup::End(bool interrupted) 
+void ElevatorDown::End(bool interrupted) 
 {
   mElevator->setEnable(true);
 }
 
 // Returns true when the command should end.
-bool Pickup::IsFinished() {
-  return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightDown) < 2 &&
-        std::abs(mElevator->getEncoderPositionMotor(Motor1) - AscenseurConstants::kAscenseurLimitDown) < 4;
+bool ElevatorDown::IsFinished() 
+{
+  return (std::abs(mElevator->getEncoderPositionMotor(Motor1) - mElevator->getTargetPosition()) < 0.05);
 }

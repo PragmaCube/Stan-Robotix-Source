@@ -59,7 +59,7 @@ void Robot::TeleopInit() {
  */
 void Robot::TeleopPeriodic() 
 {
-  m_container.MoveAscenseur();
+  m_container.MoveElevator();
   m_container.drive();
   m_container.MoveEjector();
 }

@@ -4,37 +4,37 @@
 
 #include "commands/PosStorage.h"
 
-PosStorage::PosStorage(SubPivot *iPivot, SubAscenseur *iAscenseur)
+PosStorage::PosStorage(SubPivot *iPivot, SubElevator *iElevator)
 {
   mPivot = iPivot;
-  mAscenceur = iAscenseur;
+  mElevator = iElevator;
 
   AddRequirements(mPivot);
-  AddRequirements(mAscenceur);
+  AddRequirements(mElevator);
 }
 
 // Called when the command is initially scheduled.
 void PosStorage::Initialize() 
 {
-  mAscenceur->setEnable(false);   
-  mAscenceur->setPositionVoulue(AscenseurConstants::kAscenseurLimitDown);
+  mElevator->setEnable(false);   
+  mElevator->setTargetPosition(AscenseurConstants::kAscenseurLimitDown);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void PosStorage::Execute() 
 {
   mPivot->pivotUp();
-  mAscenceur->setPositionAscenseur(mAscenceur->getPositionVoulue());
+  mElevator->setElevatorPosition();
 }
 
 // Called once the command ends or is interrupted.
 void PosStorage::End(bool interrupted) 
 {
-  mAscenceur->setEnable(true);
+  mElevator->setEnable(true);
 }
 
 // Returns true when the command should end.
 bool PosStorage::IsFinished() {
   return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightUp) < 2 &&
-        std::abs(mAscenceur->getEncoderPositionMotor1() - AscenseurConstants::kAscenseurLimitDown) < 4;
+        std::abs(mElevator->getEncoderPositionMotor(Motor1) - AscenseurConstants::kAscenseurLimitDown) < 4;
 }

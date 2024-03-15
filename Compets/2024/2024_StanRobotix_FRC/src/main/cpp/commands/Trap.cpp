@@ -7,7 +7,8 @@
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-
-Trap::Trap(SubAscenseur *iAscenseur, SubPivot *iPivot) {
-  AddCommands(TrapDown(iPivot, iAscenseur) , TrapUp(iPivot, iAscenseur), Amplificateur(iPivot, iAscenseur));
+Trap::Trap(SubElevator *iElevator, SubPivot *iPivot) {
+  // Add your commands here, e.g.
+  AddCommands(TrapDown(iPivot, iElevator) , TrapUp(iPivot, iElevator), Amplificateur(iPivot, iElevator));
+  // AddCommands(FooCommand{}, BarCommand{});
 }

@@ -6,9 +6,10 @@
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/SequentialCommandGroup.h>
+
 #include "commands/Avancer.h"
 #include "commands/TurnRight.h"
-#include "commands/AscenseurMilieu.h"
+#include "commands/ElevatorMiddle.h"
 #include "commands/PivotDown.h"
 #include "commands/Amplificateur.h"
 #include "commands/Pickup.h"
@@ -28,8 +29,8 @@ class Automatisation : public frc2::CommandHelper<frc2::SequentialCommandGroup, 
     RedAllianceLong
   };
 
-  Automatisation(SubDriveTrain *iDriveTrain, SubIMU *iIMU, SubAscenseur *iAscenseur, SubPivot *iPivot, SubEjector *iEjector, ePeriodAuto iPeriodAuto);
-  
+  Automatisation(SubDriveTrain *iDriveTrain, SubIMU *iIMU, SubElevator *iElevator, SubPivot *iPivot, SubEjector *iEjector, ePeriodAuto iPeriodAuto);
+  //JSON_BINARY_READER_MAKE_BJD_OPTIMIZED_TYPE_MARKERS_
 
   private:
     

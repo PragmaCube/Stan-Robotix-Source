@@ -9,7 +9,6 @@ RobotContainer::RobotContainer()
  
   // Configure the button bindings
   ConfigureBindings();
-  mIsInit = true;
   mDriveTrain.setVitesse(0.7);
   mIMU.ResetAngle();
 }
@@ -18,10 +17,6 @@ void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
 
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-  frc2::Trigger([this] {
-    return m_subsystem.ExampleCondition();
-  }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
-
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kGotoTag);
@@ -29,27 +24,27 @@ void RobotContainer::ConfigureBindings() {
 
   // frc2::Trigger([this] {
   //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurUp);
-  // }).OnTrue(AscenseurHaut(&mAscenseur).ToPtr());
+  // }).OnTrue(ElevatorUp(&mElevator).ToPtr());
 
   // frc2::Trigger([this] {
   //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurMiddle);
-  // }).OnTrue(AscenseurMilieu(&mAscenseur).ToPtr());
+  // }).OnTrue(ElevatorMiddle(&mElevator).ToPtr());
 
   // frc2::Trigger([this] {
   //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurDown);
-  // }).OnTrue(AscenseurBas(&mAscenseur).ToPtr());
+  // }).OnTrue(ElevatorDown(&mElevator).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurUp);
-  }).OnTrue(TrapUp(&mPivot, &mAscenseur).ToPtr());
+  }).OnTrue(TrapUp(&mPivot, &mElevator).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurDown);
-  }).OnTrue(TrapDown(&mPivot, &mAscenseur).ToPtr());
+  }).OnTrue(TrapDown(&mPivot, &mElevator).ToPtr());
 
   // frc2::Trigger([this] {
   //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPivotDown);
-  // }).OnTrue(PivotDown(&mPivot, &mAscenseur).ToPtr());
+  // }).OnTrue(PivotDown(&mPivot, &mElevator).ToPtr());
 
   // frc2::Trigger([this] {
   //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPivotUp);;
@@ -61,31 +56,27 @@ void RobotContainer::ConfigureBindings() {
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAmplificator);
-  }).OnTrue(Amplificateur(&mPivot, &mAscenseur).ToPtr());
+  }).OnTrue(Amplificateur(&mPivot, &mElevator).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPickup);
-  }).OnTrue(Pickup(&mPivot, &mAscenseur).ToPtr());
+  }).OnTrue(Pickup(&mPivot, &mElevator).ToPtr());
 
   // A voir quel bouton utiliser
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPosStorage); // 5 ou 3?
-  }).OnTrue(PosStorage(&mPivot, &mAscenseur).ToPtr());
-
-  // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
-  // pressed, cancelling on release.
-  m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+  }).OnTrue(PosStorage(&mPivot, &mElevator).ToPtr());
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   if (LimelightHelpers::getCameraPose_TargetSpace().size() == 0)
   {
-    return Automatisation(&mDriveTrain, &mIMU, &mAscenseur, &mPivot, &mEjector, Automatisation::ePeriodAuto::AvancerSolo).ToPtr();
+    return Automatisation(&mDriveTrain, &mIMU, &mElevator, &mPivot, &mEjector, Automatisation::ePeriodAuto::AvancerSolo).ToPtr();
   }
   else
   {       
-    return Automatisation(&mDriveTrain, &mIMU, &mAscenseur, &mPivot, &mEjector, Automatisation::ePeriodAuto::BlueAlliance).ToPtr();
+    return Automatisation(&mDriveTrain, &mIMU, &mElevator, &mPivot, &mEjector, Automatisation::ePeriodAuto::BlueAlliance).ToPtr();
   }
 }
    
@@ -113,21 +104,21 @@ void RobotContainer::drive()
   // }
 }
 
-void RobotContainer::MoveAscenseur()
+void RobotContainer::MoveElevator()
 {
-  if (mAscenseur.isEnable())
+  if (mElevator.isEnable())
   {
     if (!mJoystick.GetRawButton(JoystickBindingsConstants::kPivotUp) && !mJoystick.GetRawButton(JoystickBindingsConstants::kPivotDown))
     {
-      mAscenseur.stopAscenseurMotors();
+      mElevator.stopElevatorMotors();
     }
     else if (mJoystick.GetRawButton(JoystickBindingsConstants::kPivotUp))
     {
-      mAscenseur.bougeAscenseur(0.2);
+      mElevator.manualMoveElevator(0.2);
     }
     else
     {
-      mAscenseur.bougeAscenseur(-0.2);
+      mElevator.manualMoveElevator(-0.2);
     }
   }
 }

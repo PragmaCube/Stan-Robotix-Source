@@ -8,7 +8,7 @@
 #include <frc2/command/CommandHelper.h>
 
 #include "Subsystems/SubPivot.h"
-#include "subsystems/SubAscenseur.h"
+#include "subsystems/SubElevator.h"
 
 /**
  * An example command.
@@ -20,7 +20,7 @@
 class TrapUp
     : public frc2::CommandHelper<frc2::Command, TrapUp> {
  public:
-  TrapUp(SubPivot *iPivot, SubAscenseur *iAscenseur);
+  TrapUp(SubPivot *iPivot, SubElevator *iElevator);
 
   void Initialize() override;
 
@@ -32,5 +32,5 @@ class TrapUp
 
   private:
   SubPivot *mPivot = nullptr;
-  SubAscenseur *mAscenceur = nullptr;
+  SubElevator *mElevator = nullptr;
 };

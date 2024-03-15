@@ -15,5 +15,5 @@ class Trap
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  Trap> {
  public:
-  Trap(SubAscenseur *iAscenseur, SubPivot *iPivot);
+  Trap(SubElevator *iElevator, SubPivot *iPivot);
 };

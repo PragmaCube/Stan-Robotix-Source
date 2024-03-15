@@ -7,7 +7,7 @@
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "subsystems/SubAscenseur.h"
+#include "subsystems/SubElevator.h"
 
 /**
  * An example command.
@@ -16,10 +16,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class AscenseurHaut
-    : public frc2::CommandHelper<frc2::Command, AscenseurHaut> {
+class ElevatorUp
+    : public frc2::CommandHelper<frc2::Command, ElevatorUp> {
  public:
-  AscenseurHaut(SubAscenseur *iAscenseur);
+  ElevatorUp(SubElevator *iElevator);
 
   void Initialize() override;
 
@@ -30,5 +30,5 @@ class AscenseurHaut
   bool IsFinished() override;
 
   private:
-  SubAscenseur *mAscenseur;
+  SubElevator *mElevator;
 };

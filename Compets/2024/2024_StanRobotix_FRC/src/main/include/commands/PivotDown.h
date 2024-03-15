@@ -8,7 +8,7 @@
 #include <frc2/command/CommandHelper.h>
 
 #include "subsystems/SubPivot.h"
-#include "subsystems/SubAscenseur.h"
+#include "subsystems/SubElevator.h"
 #include "Constants.h"
 
 /**
@@ -21,7 +21,7 @@
 class PivotDown
     : public frc2::CommandHelper<frc2::Command, PivotDown> {
  public:
-  PivotDown(SubPivot *iPivot, SubAscenseur *iAscenseur);
+  PivotDown(SubPivot *iPivot, SubElevator *iElevator);
 
   void Initialize() override;
 
@@ -33,5 +33,5 @@ class PivotDown
   
   private:
   SubPivot *mPivot;
-  SubAscenseur *mAscenseur;
+  SubElevator *mElevator;
 };

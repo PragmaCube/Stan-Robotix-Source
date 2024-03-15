@@ -8,7 +8,7 @@
 #include <frc2/command/CommandHelper.h>
 
 #include "Subsystems/SubPivot.h"
-#include "subsystems/SubAscenseur.h"
+#include "subsystems/SubElevator.h"
 
 /**
  
@@ -20,7 +20,7 @@ Command will not work!
 class PosStorage
     : public frc2::CommandHelper<frc2::Command, PosStorage> {
  public:
-  PosStorage(SubPivot *iPivot, SubAscenseur *iAscenseur);
+  PosStorage(SubPivot *iPivot, SubElevator *iElevator);
 
   void Initialize() override;
 
@@ -32,5 +32,5 @@ class PosStorage
 
   private:
   SubPivot *mPivot = nullptr;
-  SubAscenseur *mAscenceur = nullptr;
+  SubElevator *mElevator = nullptr;
 };

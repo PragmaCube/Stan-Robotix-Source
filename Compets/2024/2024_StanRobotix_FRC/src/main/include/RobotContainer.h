@@ -14,15 +14,15 @@
 #include "subsystems/SubEjector.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
-#include "subsystems/SubAscenseur.h"
+#include "subsystems/SubElevator.h"
 
 #include "commands/ExampleCommand.h"
 #include "commands/GoToTag.h"
 #include "commands/TurnLeft.h"
 #include "commands/Autos.h"
-#include "commands/AscenseurHaut.h"
-#include "commands/AscenseurMilieu.h"
-#include "commands/AscenseurBas.h"
+#include "commands/ElevatorUp.h"
+#include "commands/ElevatorMiddle.h"
+#include "commands/ElevatorDown.h"
 #include "commands/Amplificateur.h"
 #include "commands/PosStorage.h"
 #include "commands/PivotUp.h"
@@ -49,13 +49,13 @@
  */
 class RobotContainer {
  public:
+
   RobotContainer();
 
   frc2::CommandPtr GetAutonomousCommand();
 
-
   void drive();
-  void MoveAscenseur();
+  void MoveElevator();
   void MoveEjector();
 
  private:
@@ -65,19 +65,13 @@ class RobotContainer {
   frc2::CommandXboxController m_driverController{OperatorConstants::kDriverControllerPort};
 
   // The robot's subsystems are defined here...
-  ExampleSubsystem m_subsystem;
   SubEjector mEjector;
-  SubAscenseur mAscenseur;
+  SubElevator mElevator;
   SubPivot mPivot;
-  frc::Joystick mJoystick{0};
-
-bool mIsInit = false;
-void Init();
-
-  void ConfigureBindings();
-
-  int compteur = 0;
-  
   SubDriveTrain mDriveTrain;
   SubIMU mIMU;
+  frc::Joystick mJoystick{0};
+
+  void Init();
+  void ConfigureBindings();
 };

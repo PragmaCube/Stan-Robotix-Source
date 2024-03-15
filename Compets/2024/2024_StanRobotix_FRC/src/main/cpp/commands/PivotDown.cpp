@@ -5,13 +5,13 @@
 #include "commands/PivotDown.h"
 
 
-PivotDown::PivotDown(SubPivot *iPivot, SubAscenseur *iAscensseur) {
+PivotDown::PivotDown(SubPivot *iPivot, SubElevator *iAscensseur) {
   // Use addRequirements() here to declare subsystem dependencies.
   mPivot = iPivot;
-  mAscenseur=iAscensseur;
+  mElevator=iAscensseur;
   
   AddRequirements(mPivot);
-  AddRequirements(mAscenseur);
+  AddRequirements(mElevator);
 }
 
 // Called when the command is initially scheduled.

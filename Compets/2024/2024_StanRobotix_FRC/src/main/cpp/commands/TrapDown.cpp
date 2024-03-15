@@ -4,37 +4,37 @@
 
 #include "commands/TrapDown.h"
 
-TrapDown::TrapDown(SubPivot *iPivot, SubAscenseur *iAscenseur) {
+TrapDown::TrapDown(SubPivot *iPivot, SubElevator *iElevator) {
   // Use addRequirements() here to declare subsystem dependencies.
   mPivot = iPivot;
-  mAscenceur = iAscenseur;
+  mElevator = iElevator;
 
   AddRequirements(mPivot);
-  AddRequirements(mAscenceur);
+  AddRequirements(mElevator);
 }
 
 // Called when the command is initially scheduled.
 void TrapDown::Initialize() 
 {
-  mAscenceur->setEnable(false);   
-  mAscenceur->setPositionVoulue(AscenseurConstants::kAscenseurLimitDown);
+  mElevator->setEnable(false);   
+  mElevator->setTargetPosition(AscenseurConstants::kAscenseurLimitDown);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void TrapDown::Execute() 
 {
   mPivot->pivotMiddle();
-  mAscenceur->setPositionAscenseur(mAscenceur->getPositionVoulue());
+  mElevator->setElevatorPosition();
 }
 
 // Called once the command ends or is interrupted.
 void TrapDown::End(bool interrupted) 
 {
-  mAscenceur->setEnable(true);
+  mElevator->setEnable(true);
 }
 
 // Returns true when the command should end.
 bool TrapDown::IsFinished() {
   return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightUp) < 2 &&
-        std::abs(mAscenceur->getEncoderPositionMotor1() - AscenseurConstants::kAscenseurLimitDown) < 4;
+        std::abs(mElevator->getEncoderPositionMotor(Motor1) - AscenseurConstants::kAscenseurLimitDown) < 4;
 }

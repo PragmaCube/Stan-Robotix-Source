@@ -8,7 +8,6 @@
 #include <string>
 #include <unistd.h>
 #include <vector>
-#include <iostream>
 
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableInstance.h"
