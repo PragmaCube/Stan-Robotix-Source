@@ -17,7 +17,7 @@ Pickup::Pickup(SubPivot *iPivot, SubElevator *iElevator)
 void Pickup::Initialize() 
 {
   mElevator->setEnable(false);   
-  mElevator->setTargetPosition(AscenseurConstants::kAscenseurLimitDown);
+  mElevator->setTargetPosition(ElevatorConstants::kElevatorLimitDown);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -36,5 +36,5 @@ void Pickup::End(bool interrupted)
 // Returns true when the command should end.
 bool Pickup::IsFinished() {
   return std::abs(mPivot->getEncodeurPosition() - PivotConstants::kHeightDown) < 2 &&
-        std::abs(mElevator->getEncoderPositionMotor(Motor1) - AscenseurConstants::kAscenseurLimitDown) < 4;
+        std::abs(mElevator->getEncoderPositionMotor(Motor1) - ElevatorConstants::kElevatorLimitDown) < 4;
 }

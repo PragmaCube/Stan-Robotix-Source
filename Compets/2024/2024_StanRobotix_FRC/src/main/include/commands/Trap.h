@@ -9,7 +9,7 @@
 
 #include "commands/TrapDown.h"
 #include "commands/TrapUp.h"
-#include "commands/Amplificateur.h"
+#include "commands/Amplificator.h"
 
 class Trap
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,

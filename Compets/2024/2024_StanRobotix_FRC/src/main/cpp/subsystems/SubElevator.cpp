@@ -7,16 +7,16 @@
 
 SubElevator::SubElevator()
 {
-    mPIDController1.SetP(AscenseurConstants::kP);
-    mPIDController2.SetP(AscenseurConstants::kP);
-    mPIDController1.SetI(AscenseurConstants::kI);
-    mPIDController2.SetI(AscenseurConstants::kI);
-    mPIDController1.SetD(AscenseurConstants::kD);
-    mPIDController2.SetD(AscenseurConstants::kD);
+    mPIDController1.SetP(ElevatorConstants::kP);
+    mPIDController2.SetP(ElevatorConstants::kP);
+    mPIDController1.SetI(ElevatorConstants::kI);
+    mPIDController2.SetI(ElevatorConstants::kI);
+    mPIDController1.SetD(ElevatorConstants::kD);
+    mPIDController2.SetD(ElevatorConstants::kD);
     
-    mPIDController1.SetFF(AscenseurConstants::kFF);
-    mPIDController2.SetFF(AscenseurConstants::kFF);
-    mPIDController1.SetOutputRange(AscenseurConstants::kMinOutput, AscenseurConstants::kMaxOutput);
+    mPIDController1.SetFF(ElevatorConstants::kFF);
+    mPIDController2.SetFF(ElevatorConstants::kFF);
+    mPIDController1.SetOutputRange(ElevatorConstants::kMinOutput, ElevatorConstants::kMaxOutput);
 }
 
 // This method will be called once per scheduler run

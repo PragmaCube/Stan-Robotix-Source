@@ -16,7 +16,7 @@ ElevatorMiddle::ElevatorMiddle(SubElevator *iElevator) {
 void ElevatorMiddle::Initialize() 
 {
   mElevator->setEnable(false);
-  mElevator->setTargetPosition(AscenseurConstants::kAscenseurLimitMiddle);
+  mElevator->setTargetPosition(ElevatorConstants::kElevatorLimitMiddle);
 }
 
 // Called repeatedly when this Command is scheduled to run

@@ -54,8 +54,8 @@ class SubElevator : public frc2::SubsystemBase {
   bool mEnable = true;
   double mTargetPosition;
 
-  rev::CANSparkMax mElevatorMotor1 {AscenseurConstants::kMotorId1, rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax mElevatorMotor2 {AscenseurConstants::kMotorId2, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax mElevatorMotor1 {ElevatorConstants::kMotorId1, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax mElevatorMotor2 {ElevatorConstants::kMotorId2, rev::CANSparkMax::MotorType::kBrushless};
 
   rev::SparkMaxRelativeEncoder mElevatorMotor1Encoder = mElevatorMotor1.GetEncoder(rev::SparkRelativeEncoder::EncoderType::kHallSensor, 42);
   rev::SparkMaxRelativeEncoder mElevatorMotor2Encoder = mElevatorMotor2.GetEncoder(rev::SparkRelativeEncoder::EncoderType::kHallSensor, 42);

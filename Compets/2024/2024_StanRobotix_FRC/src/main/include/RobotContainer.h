@@ -23,7 +23,7 @@
 #include "commands/ElevatorUp.h"
 #include "commands/ElevatorMiddle.h"
 #include "commands/ElevatorDown.h"
-#include "commands/Amplificateur.h"
+#include "commands/Amplificator.h"
 #include "commands/PosStorage.h"
 #include "commands/PivotUp.h"
 #include "commands/PivotMiddle.h"
@@ -32,7 +32,7 @@
 #include "commands/TrapDown.h"
 #include "commands/TrapUp.h"
 #include "commands/Automatisation.h"
-#include "commands/Avancer.h"
+#include "commands/Foward.h"
 #include "commands/EjectorIn.h"
 #include "commands/EjectorOut.h"
 

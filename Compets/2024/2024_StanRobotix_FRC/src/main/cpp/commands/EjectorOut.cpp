@@ -4,10 +4,10 @@
 
 #include "commands/EjectorOut.h"
 
-EjectorOut::EjectorOut(SubEjector *iEjector, double iSecondes) {
+EjectorOut::EjectorOut(SubEjector *iEjector, double iSeconds) {
   // Use addRequirements() here to declare subsystem dependencies.
   mEjector = iEjector;
-  mDuree = iSecondes;
+  mDuration = iSeconds;
   AddRequirements(mEjector);
 }
 
@@ -32,5 +32,5 @@ void EjectorOut::End(bool interrupted)
 
 // Returns true when the command should end.
 bool EjectorOut::IsFinished() {
-  return mTimer.Get().value() > mDuree;
+  return mTimer.Get().value() > mDuration;
 }

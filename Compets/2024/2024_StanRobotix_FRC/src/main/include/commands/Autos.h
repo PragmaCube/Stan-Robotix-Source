@@ -6,11 +6,11 @@
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/SequentialCommandGroup.h>
-#include "commands/Avancer.h"
+#include "commands/Foward.h"
 #include "commands/TurnRight.h"
 #include "commands/ElevatorMiddle.h"
 #include "commands/PivotDown.h"
-#include "commands/Amplificateur.h"
+#include "commands/Amplificator.h"
 #include "commands/Pickup.h"
 #include"commands/PosStorage.h"
 #include "commands/EjectorIn.h"
@@ -21,7 +21,7 @@
 namespace autos {
 enum ePeriodAuto
   {
-    AvancerSolo,
+    FowardSolo,
     BlueAlliance,
     BlueAllianceLong,
     RedAlliance,  

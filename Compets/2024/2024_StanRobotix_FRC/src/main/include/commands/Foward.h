@@ -17,11 +17,11 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class Avancer
+class Foward
 
-    : public frc2::CommandHelper<frc2::Command, Avancer> {
+    : public frc2::CommandHelper<frc2::Command, Foward> {
  public:
-  Avancer(SubDriveTrain* iDriveTrain, double iSecondes);
+  Foward(SubDriveTrain* iDriveTrain, double iSeconds);
 
   void Initialize() override;
 
@@ -33,7 +33,7 @@ class Avancer
 
   private:
     SubDriveTrain* mDriveTrain;
-    double mDuree;
+    double mDuration;
     frc::Timer mTimer;
     
 };

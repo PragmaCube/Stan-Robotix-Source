@@ -7,11 +7,11 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/SequentialCommandGroup.h>
 
-#include "commands/Avancer.h"
+#include "commands/Foward.h"
 #include "commands/TurnRight.h"
 #include "commands/ElevatorMiddle.h"
 #include "commands/PivotDown.h"
-#include "commands/Amplificateur.h"
+#include "commands/Amplificator.h"
 #include "commands/Pickup.h"
 #include"commands/PosStorage.h"
 #include "commands/EjectorIn.h"
@@ -22,7 +22,7 @@ class Automatisation : public frc2::CommandHelper<frc2::SequentialCommandGroup, 
  public:
   enum ePeriodAuto
   {
-    AvancerSolo,
+    FowardSolo,
     BlueAlliance,
     BlueAllianceLong,
     RedAlliance,  

@@ -9,6 +9,6 @@
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 Trap::Trap(SubElevator *iElevator, SubPivot *iPivot) {
   // Add your commands here, e.g.
-  AddCommands(TrapDown(iPivot, iElevator) , TrapUp(iPivot, iElevator), Amplificateur(iPivot, iElevator));
+  AddCommands(TrapDown(iPivot, iElevator) , TrapUp(iPivot, iElevator), Amplificator(iPivot, iElevator));
   // AddCommands(FooCommand{}, BarCommand{});
 }

@@ -23,23 +23,23 @@ void RobotContainer::ConfigureBindings() {
   }).OnTrue(GoToTag(&mDriveTrain).ToPtr());
 
   // frc2::Trigger([this] {
-  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurUp);
+  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kElevatorUp);
   // }).OnTrue(ElevatorUp(&mElevator).ToPtr());
 
   // frc2::Trigger([this] {
-  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurMiddle);
+  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kElevatorMiddle);
   // }).OnTrue(ElevatorMiddle(&mElevator).ToPtr());
 
   // frc2::Trigger([this] {
-  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurDown);
+  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kElevatorDown);
   // }).OnTrue(ElevatorDown(&mElevator).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurUp);
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kElevatorUp);
   }).OnTrue(TrapUp(&mPivot, &mElevator).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAscenseurDown);
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kElevatorDown);
   }).OnTrue(TrapDown(&mPivot, &mElevator).ToPtr());
 
   // frc2::Trigger([this] {
@@ -56,7 +56,7 @@ void RobotContainer::ConfigureBindings() {
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAmplificator);
-  }).OnTrue(Amplificateur(&mPivot, &mElevator).ToPtr());
+  }).OnTrue(Amplificator(&mPivot, &mElevator).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kPickup);
@@ -72,7 +72,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   if (LimelightHelpers::getCameraPose_TargetSpace().size() == 0)
   {
-    return Automatisation(&mDriveTrain, &mIMU, &mElevator, &mPivot, &mEjector, Automatisation::ePeriodAuto::AvancerSolo).ToPtr();
+    return Automatisation(&mDriveTrain, &mIMU, &mElevator, &mPivot, &mEjector, Automatisation::ePeriodAuto::FowardSolo).ToPtr();
   }
   else
   {       

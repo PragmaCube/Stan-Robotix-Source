@@ -8,7 +8,7 @@
 PivotDown::PivotDown(SubPivot *iPivot, SubElevator *iAscensseur) {
   // Use addRequirements() here to declare subsystem dependencies.
   mPivot = iPivot;
-  mElevator=iAscensseur;
+  mElevator = iAscensseur;
   
   AddRequirements(mPivot);
   AddRequirements(mElevator);

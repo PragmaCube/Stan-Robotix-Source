@@ -4,10 +4,10 @@
 
 #include "commands/EjectorIn.h"
 
-EjectorIn::EjectorIn(SubEjector *iEjector, double iSecondes) {
+EjectorIn::EjectorIn(SubEjector *iEjector, double iSeconds) {
   // Use addRequirements() here to declare subsystem dependencies.
   mEjector = iEjector;
-  mDuree = iSecondes;
+  mDuration = iSeconds;
 
   AddRequirements(mEjector);
 }
@@ -33,5 +33,5 @@ void EjectorIn::End(bool interrupted)
 
 // Returns true when the command should end.
 bool EjectorIn::IsFinished() {
-  return mTimer.Get().value() > mDuree;
+  return mTimer.Get().value() > mDuration;
 }

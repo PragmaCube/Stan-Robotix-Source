@@ -15,7 +15,7 @@ ElevatorDown::ElevatorDown(SubElevator *iElevator) {
 void ElevatorDown::Initialize() 
 {
   mElevator->setEnable(false);
-  mElevator->setTargetPosition(AscenseurConstants::kAscenseurLimitDown);
+  mElevator->setTargetPosition(ElevatorConstants::kElevatorLimitDown);
 }
 
 // Called repeatedly when this Command is scheduled to run

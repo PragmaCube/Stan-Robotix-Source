@@ -11,21 +11,21 @@ Automatisation::Automatisation(SubDriveTrain* iDriveTrain, SubIMU* iIMU, SubElev
 {
   switch (iPeriodAuto)
     {
-      case AvancerSolo:
-        AddCommands(Avancer(iDriveTrain, 0.8));
+      case FowardSolo:
+        AddCommands(Foward(iDriveTrain, 0.8));
         break;
       case BlueAlliance:
-        AddCommands(Avancer(iDriveTrain, 0.8), TurnLeft(iDriveTrain, iIMU),PosStorage(iPivot, iElevator), GoToTag(iDriveTrain), Avancer(iDriveTrain, 0.1), Amplificateur(iPivot, iElevator), EjectorOut(iEjector, EjectorConstants::kEjectorOutDownTime));
+        AddCommands(Foward(iDriveTrain, 0.8), TurnLeft(iDriveTrain, iIMU),PosStorage(iPivot, iElevator), GoToTag(iDriveTrain), Foward(iDriveTrain, 0.1), Amplificator(iPivot, iElevator), EjectorOut(iEjector, EjectorConstants::kEjectorOutDownTime));
         break;
       case BlueAllianceLong:
-        AddCommands(Avancer(iDriveTrain, 0.8), TurnLeft(iDriveTrain, iIMU), Avancer(iDriveTrain, 2),PosStorage(iPivot, iElevator), GoToTag(iDriveTrain), Avancer(iDriveTrain, 0.1), Amplificateur(iPivot, iElevator), EjectorOut(iEjector, EjectorConstants::kEjectorOutDownTime));
+        AddCommands(Foward(iDriveTrain, 0.8), TurnLeft(iDriveTrain, iIMU), Foward(iDriveTrain, 2),PosStorage(iPivot, iElevator), GoToTag(iDriveTrain), Foward(iDriveTrain, 0.1), Amplificator(iPivot, iElevator), EjectorOut(iEjector, EjectorConstants::kEjectorOutDownTime));
         break;
       case RedAlliance:
-        AddCommands(Avancer(iDriveTrain, 0.8), TurnRight(iDriveTrain, iIMU),PosStorage(iPivot, iElevator), GoToTag(iDriveTrain), Avancer(iDriveTrain, 0.1), Amplificateur(iPivot, iElevator), EjectorOut(iEjector, EjectorConstants::kEjectorOutDownTime));
+        AddCommands(Foward(iDriveTrain, 0.8), TurnRight(iDriveTrain, iIMU),PosStorage(iPivot, iElevator), GoToTag(iDriveTrain), Foward(iDriveTrain, 0.1), Amplificator(iPivot, iElevator), EjectorOut(iEjector, EjectorConstants::kEjectorOutDownTime));
         break;
       case RedAllianceLong:
-        AddCommands(Avancer(iDriveTrain, 0.8), TurnRight(iDriveTrain, iIMU), Avancer(iDriveTrain, 2),PosStorage(iPivot, iElevator), GoToTag(iDriveTrain), Avancer(iDriveTrain, 0.1), Amplificateur(iPivot, iElevator), EjectorOut(iEjector, EjectorConstants::kEjectorOutDownTime));
+        AddCommands(Foward(iDriveTrain, 0.8), TurnRight(iDriveTrain, iIMU), Foward(iDriveTrain, 2),PosStorage(iPivot, iElevator), GoToTag(iDriveTrain), Foward(iDriveTrain, 0.1), Amplificator(iPivot, iElevator), EjectorOut(iEjector, EjectorConstants::kEjectorOutDownTime));
         break;
     }
-  // AddCommands(Avancer(iDriveTrain, 2), TurnRight(iDriveTrain, iIMU), GoToTag(iDriveTrain), ElevatorMiddle(iElevator), PivotDown(iPivot, iElevator));
+  // AddCommands(Foward(iDriveTrain, 2), TurnRight(iDriveTrain, iIMU), GoToTag(iDriveTrain), ElevatorMiddle(iElevator), PivotDown(iPivot, iElevator));
 }

@@ -21,7 +21,7 @@
 class EjectorIn
     : public frc2::CommandHelper<frc2::Command, EjectorIn> {
  public:
-  EjectorIn(SubEjector *iEjector, double iSecondes);
+  EjectorIn(SubEjector *iEjector, double iSeconds);
 
   void Initialize() override;
 
@@ -33,6 +33,6 @@ class EjectorIn
 
   private:
   SubEjector *mEjector;
-  double mDuree;
+  double mDuration;
   frc::Timer mTimer;
 };

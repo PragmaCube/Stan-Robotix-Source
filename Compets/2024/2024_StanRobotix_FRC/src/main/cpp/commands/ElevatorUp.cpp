@@ -15,7 +15,7 @@ ElevatorUp::ElevatorUp(SubElevator *iElevator) {
 void ElevatorUp::Initialize() 
 {
   mElevator->setEnable(false);
-  mElevator->setTargetPosition(AscenseurConstants::kAscenseurLimitUp);
+  mElevator->setTargetPosition(ElevatorConstants::kElevatorLimitUp);
 }
 
 // Called repeatedly when this Command is scheduled to run

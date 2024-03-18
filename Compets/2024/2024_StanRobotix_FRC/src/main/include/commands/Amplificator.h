@@ -19,10 +19,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class Amplificateur
-    : public frc2::CommandHelper<frc2::Command, Amplificateur> {
+class Amplificator
+    : public frc2::CommandHelper<frc2::Command, Amplificator> {
  public:
-  Amplificateur(SubPivot *iPivot, SubElevator *iElevator);
+  Amplificator(SubPivot *iPivot, SubElevator *iElevator);
 
   void Initialize() override;
 
@@ -35,7 +35,7 @@ class Amplificateur
   private:
   SubPivot *mPivot;
   SubElevator *mElevator;
-  double mDuree = 3.4;
+  double mDuration = 3.4;
   frc::Timer mTimer;
     
 };

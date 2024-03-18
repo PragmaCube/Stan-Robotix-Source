@@ -6,7 +6,7 @@
 
 PivotMiddle::PivotMiddle(SubPivot *iPivot) {
   // Use addRequirements() here to declare subsystem dependencies.
-  mPivot=iPivot;
+  mPivot = iPivot;
   AddRequirements(mPivot);
 }
 
