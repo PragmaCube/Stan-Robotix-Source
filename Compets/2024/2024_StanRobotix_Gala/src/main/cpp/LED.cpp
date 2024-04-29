@@ -1,5 +1,11 @@
 #include "LED.h"
 
+LED::LED()
+{
+    m_led.SetLength(kLength);
+    m_led.SetData(m_ledBuffer);
+    m_led.Start();
+}
 
 void LED::setMode(Mode iMode){
     switch (iMode)

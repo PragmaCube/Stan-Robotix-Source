@@ -12,11 +12,13 @@ class LED {
         giving,
         taking
     };
+
+    LED();
     
     void setMode(Mode iMode);
 
  private:
-    static constexpr int kLength = 300;
+    static constexpr int kLength = 40;
 
     // PWM port 9
     // Must be a PWM header, not MXP or DIO

@@ -13,6 +13,8 @@
 #include "subsystems/SubDriveTrain.h"
 #include "LED.h"
 
+#include <iostream>
+
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -25,7 +27,10 @@ class RobotContainer {
   RobotContainer();
 
   frc2::CommandPtr GetAutonomousCommand();
+
   void setLED();
+
+  void Init();
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
