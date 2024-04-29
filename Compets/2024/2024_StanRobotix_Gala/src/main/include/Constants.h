@@ -23,6 +23,11 @@ inline constexpr int kDriverControllerPort = 0;
 
 namespace DriveTrainConstants {
 
-    constexpr int kLeftMotor = 0;
-    constexpr int kRightMotor = 1;
+    constexpr int kLeftMotorID = 0;
+    constexpr int kRightMotorID = 1;
+}
+
+namespace ChainConstants {
+
+    constexpr int kMotorID = 2;
 }
