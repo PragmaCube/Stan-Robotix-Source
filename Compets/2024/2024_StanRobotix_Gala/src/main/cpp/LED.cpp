@@ -20,16 +20,16 @@ void LED::setMode(Mode iMode){
             break;
         case giving:
             for (int i = 0; i < kLength; i++)
-                {
-                    m_ledBuffer[i].SetHSV(120, 100, 100);
-                }
+            {
+                m_ledBuffer[i].SetHSV(120, 100, 100);
+            }
             break;
         case taking:
             for (int i = 0; i < kLength; i++)
-                {
-                    m_ledBuffer[i].SetHSV(240, 100, 100);
-                }
+            {
+                m_ledBuffer[i].SetHSV(240, 100, 100);
+            }
             break;
     };
-
+    m_led.SetData(m_ledBuffer);
 }
