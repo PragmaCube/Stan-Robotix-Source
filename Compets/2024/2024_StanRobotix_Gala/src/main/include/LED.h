@@ -17,6 +17,11 @@ class LED {
     
     void setMode(Mode iMode);
 
+    bool isImmobile = false;
+    bool isMoving = false;
+    bool isGiving = false;
+    bool isTaking = false;
+
  private:
     static constexpr int kLength = 40;
 

@@ -27,10 +27,21 @@ void RobotContainer::ConfigureBindings() {
 
 void RobotContainer::setLED()
 {
-  if (m_driverController.GetRawButtonPressed(1))
+  if (m_driverController.GetRawButtonPressed(1) || mLED.isMoving)
   {
-    std::cout << "test" << std::endl;
     mLED.setMode(mLED.moving);
+  }
+  if (m_driverController.GetRawButtonPressed(2))
+  {
+    mLED.setMode(mLED.giving);
+  }
+  if (m_driverController.GetRawButtonPressed(3))
+  {
+    mLED.setMode(mLED.taking);
+  }
+  if (m_driverController.GetRawButtonPressed(4))
+  {
+    mLED.setMode(mLED.immobile);
   }
 }
 
