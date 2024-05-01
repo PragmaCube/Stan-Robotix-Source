@@ -31,9 +31,18 @@ void LED::setMode(Mode iMode){
             m_ledBuffer[firstPixelHue].SetRGB(255, 0, 0);
             break;
         case giving:
-            for (int i = 0; i < kLength; i++)
+            isImmobile = false; 
+            isMoving = false;
+            isGiving = true;
+            isTaking = false;
+
+            firstPixelHue += 1;
+            firstPixelHue %= 3;
+            for (int i = 0; i < kLength; i += 3)
             {
-                m_ledBuffer[i].SetRGB(0, 255, 0);
+                m_ledBuffer[(firstPixelHue + i) % kLength].SetRGB(255, 0, 0);
+                m_ledBuffer[(firstPixelHue + 1 + i) % kLength].SetRGB(0, 255, 0);
+                m_ledBuffer[(firstPixelHue + 2 + i) % kLength].SetRGB(0, 0, 255);
             }
             break;
         case taking:

@@ -31,7 +31,7 @@ void RobotContainer::setLED()
   {
     mLED.setMode(mLED.moving);
   }
-  if (m_driverController.GetRawButtonPressed(2))
+  if (m_driverController.GetRawButtonPressed(2) || mLED.isGiving)
   {
     mLED.setMode(mLED.giving);
   }
