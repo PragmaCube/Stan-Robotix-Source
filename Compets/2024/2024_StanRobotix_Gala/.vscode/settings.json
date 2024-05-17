@@ -75,6 +75,8 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "array": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "bitset": "cpp",
+    "algorithm": "cpp"
   }
 }

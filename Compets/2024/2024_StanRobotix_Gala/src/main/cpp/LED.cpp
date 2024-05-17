@@ -11,6 +11,10 @@ void LED::setMode(Mode iMode){
     switch (iMode)
     {
         case immobile:
+            isImmobile = true; 
+            isMoving = false;
+            isGiving = false;
+            isTaking = false;
             for (int i = 0; i < kLength; i++)
             {
                 m_ledBuffer[i].SetRGB(0, 0, 0);
@@ -46,9 +50,13 @@ void LED::setMode(Mode iMode){
             }
             break;
         case taking:
+            isImmobile = false; 
+            isMoving = false;
+            isGiving = false;
+            isTaking = true;
             for (int i = 0; i < kLength; i++)
             {
-                m_ledBuffer[i].SetRGB(0, 0, 255);
+                m_ledBuffer[i].SetRGB(255, 50, 0);
             }
             break;
     };

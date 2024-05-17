@@ -32,6 +32,7 @@ class RobotContainer {
 
   void Init();
 
+
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
@@ -42,5 +43,7 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
 
   void ConfigureBindings();
+
+  int timer = 3;
 
 };

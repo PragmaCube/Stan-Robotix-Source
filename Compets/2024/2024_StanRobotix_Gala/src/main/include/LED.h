@@ -2,6 +2,7 @@
 #include <iostream>
 #include <array>
 #include <frc/AddressableLED.h>
+#include <chrono>
 
 class LED {
  public:
