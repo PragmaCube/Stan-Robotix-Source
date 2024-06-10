@@ -1,8 +1,4 @@
-<p align="center">
-  <img width="640" height="320" src="https://github.com/PragmaCube/Stan-Robotix-Source/blob/master/Stan-Robotix-Source.png">
-</p>
-
-# Stan-Robotix-Source
+# Stan-Robotix-Source ![star](https://img.shields.io/github/stars/PragmaCube/Stan-Robotix-Source)
 Dépôt officiel de l'équipe [Stan Robotix 6622](https://stanrobotix6622.com/) participant à la compétition [FIRST](https://www.firstinspires.org/robotics/frc)
 
 2019-2024
@@ -63,6 +59,6 @@ La gestion du dépôt (modification du README ou modifications majeures) est lai
 Chef d'équipe : André Wojcik<br>
 Mentors : Raphaël Pothier et Clément Jevardat-de-Fombelle<br>
 
-Contacts :
+Contacts :<br>
 andre.wojcik@stanislas.qc.ca <br>
 raphael.pothier@umontreal.ca <br>
