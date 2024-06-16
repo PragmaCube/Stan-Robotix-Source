@@ -6,18 +6,46 @@
 
 SubDriveTrain::SubDriveTrain()
 {
-    motorL1.SetInverted(true);
-    motorL2.SetInverted(true);
+
+
+    mMotorL1 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX{DriveTrainConstants::kMotorL1Id};
+    mMotorL2 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX{DriveTrainConstants::kMotorL2Id};
+    mMotorR1 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX{DriveTrainConstants::kMotorR1Id};
+    mMotorR2 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX{DriveTrainConstants::kMotorR2Id};
+
+    mDrive = new frc::MecanumDrive{*mMotorL1, *mMotorL2, *mMotorR1, *mMotorR2};
+    
+    mMotorL1->SetInverted(true);
+    mMotorL2->SetInverted(true);
+
 
 }
 
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
 
+
+
 void SubDriveTrain::mecanumDrive(float x, float y, float z, frc::Rotation2d iRotation2d)
 {
-    drive.DriveCartesian(y*0.5, x*0.5, z*0.5, iRotation2d);
+    try
+    {
+        drive.DriveCartesian(y*vitesse, x*vitesse, z*vitesse, iRotation2d);
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << e.what() << '\n';
+    }
+    
+    
+
 }
 
 // fichier local "", autre <>
 
+
+
+int SubDriveTrain::getVitesse()
+{
+    return mVitesse;
+}

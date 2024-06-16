@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Robot.h"
+#include "subsystems/SubArm.h"
 
 #include <frc2/command/CommandScheduler.h>
 
@@ -34,7 +35,7 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
-  m_autonomousCommand = m_container.GetAutonomousCommand();
+ // m_autonomousCommand = m_container.GetAutonomousCommand();
 
   if (m_autonomousCommand) {
     m_autonomousCommand->Schedule();
@@ -56,7 +57,13 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() 
+{
+  m_container.ArmLimit();
+  m_container.drive();
+  m_container.oArm();
+  m_container.oEjector();
+}
 
 /**
  * This function is called periodically during test mode.
