@@ -5,47 +5,38 @@
 #pragma once
 
 
-#include <rev/SparkMaxRelativeEncoder.h>
-#include <rev/CANSparkMax.h>
 #include <frc2/command/SubsystemBase.h>
+#include <rev/CANSparkMax.h>
+#include <rev/SparkMaxPIDController.h>
 #include "Constants.h"
-
-#include <frc/shuffleboard/Shuffleboard.h>
-#include <frc/shuffleboard/ShuffleboardLayout.h>
-#include <frc/shuffleboard/ShuffleboardTab.h>
-#include <networktables/GenericEntry.h>
-#include <networktables/NetworkTableInstance.h>
-
-
 
 class SubArm : public frc2::SubsystemBase {
  public:
   SubArm();
-  
+
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
-  void PosDown();
-  void PosUp();
 
-  void Move(float);
+  void Up();
+  void Down();
+  double GetEncodeurPosition();
+  void StopArm();
 
-  double CurrentPosition();
-  double CurrentSpeed();
-
-  void Init();
+  double kMaxVel = 2000, 
+         kMinVel = 0, 
+         kMaxAcc = 1500, 
+         kAllErr = 0;
 
  private:
-
-  frc::ShuffleboardTab& mArmTab = frc::Shuffleboard::GetTab("Arm");
-
-  rev::CANSparkMax mMotorArm{ArmConstants::kArmCanId, rev::CANSparkMax::MotorType::kBrushless};
-  rev::SparkMaxRelativeEncoder mMotorArmEncoder = mMotorArm.GetEncoder();
-  rev::SparkMaxPIDController mPIDArmController = mMotorArm.GetPIDController();
-
-
+  float Height = 0;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+  rev::CANSparkMax mArmMotor {ArmConstants::kMotorId, rev::CANSparkMax::MotorType::kBrushless};
+  rev::SparkMaxRelativeEncoder mArmMotorEncodeur = mArmMotor.GetEncoder();
+  rev::SparkMaxPIDController mPIDController = mArmMotor.GetPIDController();
+  
 };

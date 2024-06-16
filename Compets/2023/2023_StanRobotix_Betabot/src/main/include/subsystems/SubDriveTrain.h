@@ -9,14 +9,22 @@
 #include <frc/drive/MecanumDrive.h>
 #include <ctre/Phoenix.h>
 
+
+#include "Constants.h"
+
+
 class SubDriveTrain : public frc2::SubsystemBase 
 {
  public:
-  SubDriveTrain();
+  SubDriveTrain();  
 
   void Periodic() override;
 
-  void mecanumDrive(float x, float y, float z, frc::Rotation2d iRotation2d);
+  void mecanumDrive(float iX, float iY, float iZ, frc::Rotation2d iRotation2d);
+
+  void setVitesse(int iVitesse);
+
+  int getVitesse();
 
 
  private:
@@ -25,8 +33,17 @@ class SubDriveTrain : public frc2::SubsystemBase
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX motorR1{2};
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX motorR2{4};
 
-  frc::MecanumDrive drive{motorL1, motorL2, motorR1, motorR2};
-  
+
+  int mVitesse = 2;
+
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* mMotorL1; // 0 is the RIO PWM port this is connected to
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* mMotorL2;
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* mMotorR1;
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* mMotorR2;
+
+  frc::MecanumDrive* mDrive;
+
+
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

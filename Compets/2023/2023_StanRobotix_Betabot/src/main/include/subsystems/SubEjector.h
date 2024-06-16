@@ -4,11 +4,12 @@
 
 #pragma once
 
+
+#include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
-#include <rev/CANSparkMax.h>
-
+#include <rev/SparkMaxRelativeEncoder.h>
+#include "rev/CANSparkMax.h"
 #include "Constants.h"
-
 
 class SubEjector : public frc2::SubsystemBase {
  public:
@@ -19,15 +20,29 @@ class SubEjector : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  void On(double);
-  void Off();
-  bool IsRunning();
+  frc2::CommandPtr SubEjectorMethodCommand();
+  enum eSpeeds
+  {
+    eState,
+    eForwards,
+    eBackwards,
+    eStop
+  };
+
+  void Set(eSpeeds iSpeed, double Coefficient);
+
+  float GetMoveState();
+  void SetMoveState(bool MoveStateToSet);
+  
+  int GetRoll();
+  void SetRoll(int roll);
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  rev::CANSparkMax mMotorArm{EjectorConstants::kEjectorCanId, rev::CANSparkMax::MotorType::kBrushless};
 
-  bool state = false;
-
+  rev::CANSparkMax mMotorElevator{EjectorConstants::kCanIdElevator, rev::CANSparkMax::MotorType::kBrushless};
+  rev::SparkMaxRelativeEncoder mMotorEncoder = mMotorElevator.GetEncoder();
+    bool MoveState = true;
+    int Roll = 0;
 };

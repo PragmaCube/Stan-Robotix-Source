@@ -12,14 +12,18 @@ class SubIMU : public frc2::SubsystemBase {
  public:
   SubIMU();
 
-  frc::Rotation2d getRotation2D();
-  void ResetAngle();
-  double GetAngle();
-
+  units::standard_gravity_t getShock();
+  units::standard_gravity_t getAccelX();
+  units::standard_gravity_t getAccelY();
+  units::standard_gravity_t getAccel();
+  frc::Rotation2d getRotation2d();
+  double getAngleYaw();
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
+
+  void ResetAngle();
 
  private:
 
