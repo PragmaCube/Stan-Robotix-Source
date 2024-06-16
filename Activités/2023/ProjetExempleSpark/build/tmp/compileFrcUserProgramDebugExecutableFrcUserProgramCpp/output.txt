@@ -1,0 +1,4 @@
+See file:///C:/Users/pragm/OneDrive/Bureau/Stan-Robotix-Source/Activités/2023/ProjetExempleSpark/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramDebugExecutableFrcUserProgramCpp.
+compiling SubEjectorCAN.cpp successful.
+
+Finished compileFrcUserProgramDebugExecutableFrcUserProgramCpp, see full log file:///C:/Users/pragm/OneDrive/Bureau/Stan-Robotix-Source/Activités/2023/ProjetExempleSpark/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt.

@@ -1,0 +1,4 @@
+See file:///Users/michmich/Desktop/Stan-Robotix-Source/Compets/2024/2024_StanRobotix_Gala/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt for all output for linkFrcUserProgramReleaseExecutable.
+linking frcUserProgram successful.
+
+Finished linkFrcUserProgramReleaseExecutable, see full log file:///Users/michmich/Desktop/Stan-Robotix-Source/Compets/2024/2024_StanRobotix_Gala/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt.
