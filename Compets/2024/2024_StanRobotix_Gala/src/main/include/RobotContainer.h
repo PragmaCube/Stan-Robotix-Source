@@ -11,6 +11,9 @@
 #include "subsystems/ExampleSubsystem.h"
 
 #include "subsystems/SubDriveTrain.h"
+#include "LED.h"
+
+#include <iostream>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -25,13 +28,22 @@ class RobotContainer {
 
   frc2::CommandPtr GetAutonomousCommand();
 
+  void setLED();
+
+  void Init();
+
+
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
       OperatorConstants::kDriverControllerPort};
 
+  LED mLED;
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
 
   void ConfigureBindings();
+
+  int timer = 3;
+
 };

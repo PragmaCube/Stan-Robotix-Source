@@ -23,10 +23,34 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+}
 
-  // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
-  // pressed, cancelling on release.
-  m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+void RobotContainer::setLED()
+{
+  if (m_driverController.GetRawButtonPressed(1) || mLED.isMoving)
+  { 
+    mLED.setMode(mLED.moving);
+  }
+  if (m_driverController.GetRawButtonPressed(2) || mLED.isGiving)
+  {
+    if (timer == 3)
+    {
+      mLED.setMode(mLED.giving);
+      timer = 0;
+    }
+    else
+    {
+      timer++;
+    }
+  }
+  if (m_driverController.GetRawButtonPressed(3))
+  {
+    mLED.setMode(mLED.taking);
+  }
+  if (m_driverController.GetRawButtonPressed(4))
+  {
+    mLED.setMode(mLED.immobile);
+  }
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
