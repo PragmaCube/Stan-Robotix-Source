@@ -5,6 +5,7 @@
 #pragma once
 
 
+
 #include <frc2/command/SubsystemBase.h>
 #include <ctre/Phoenix.h>
 
@@ -12,12 +13,15 @@ class SubIMU : public frc2::SubsystemBase {
  public:
   SubIMU();
 
+
   units::standard_gravity_t getShock();
   units::standard_gravity_t getAccelX();
   units::standard_gravity_t getAccelY();
   units::standard_gravity_t getAccel();
   frc::Rotation2d getRotation2d();
+
   double getAngleYaw();
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -32,4 +36,5 @@ class SubIMU : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };
+
 

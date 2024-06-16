@@ -88,5 +88,7 @@
     "typeindex": "cpp",
     "typeinfo": "cpp",
     "variant": "cpp"
+    "cmath": "cpp"
+
   }
 }
