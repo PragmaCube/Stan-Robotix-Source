@@ -27,8 +27,8 @@ class SubDriveTrain : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   
-  frc::Spark mLeftMotors{DriveTrainConstants::kLeftMotor}; //spark gauche 
-  frc::Spark mRightMotors{DriveTrainConstants::kRightMotor}; //spark droite 
+  frc::Spark mLeftMotors{DriveTrainConstants::kLeftMotorID}; //spark gauche 
+  frc::Spark mRightMotors{DriveTrainConstants::kRightMotorID}; //spark droite 
 
   // frc::DifferentialDrive mDrive(std::function< void(double)> mLeftMotors,
   //   std::function< void(double)> mRightMotors);
