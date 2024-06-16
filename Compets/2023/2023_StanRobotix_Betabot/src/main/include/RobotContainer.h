@@ -13,10 +13,12 @@
 #include "commands/Down.h"
 #include "commands/Up.h"
 #include "subsystems/SubDriveTrain.h"
+
 #include "subsystems/SubIMU.h"
 #include "subsystems/SubEjector.h"
 #include "commands/Rotation90DegresDroite.h"
 #include "commands/Rotation90DegresGauche.h"
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -28,6 +30,8 @@
 class RobotContainer {
  public:
   RobotContainer();
+
+
 
   frc2::CommandPtr GetAutonomousCommand();
   void Drive();
@@ -49,6 +53,7 @@ class RobotContainer {
 
   void ConfigureBindings();
 
+
   int compteur = 0;
 
   frc::Joystick mJoystick{0};
@@ -57,4 +62,6 @@ class RobotContainer {
   SubIMU mIMU;
   SubEjector m_SubEjector;
   SubArm mArm; 
+
 };
+

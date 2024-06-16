@@ -4,6 +4,7 @@
 
 #pragma once
 
+
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMaxRelativeEncoder.h>
@@ -18,6 +19,7 @@ class SubEjector : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
+
   frc2::CommandPtr SubEjectorMethodCommand();
   enum eSpeeds
   {
@@ -38,6 +40,7 @@ class SubEjector : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+
   rev::CANSparkMax mMotorElevator{EjectorConstants::kCanIdElevator, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder mMotorEncoder = mMotorElevator.GetEncoder();
     bool MoveState = true;

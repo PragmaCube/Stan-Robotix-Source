@@ -21,6 +21,7 @@ constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
 
+
 namespace EjectorConstants
 {
     constexpr int kCanIdElevator = 3;
@@ -48,10 +49,12 @@ namespace DriveTrainConstants
 {
     constexpr int kArmCanId = 4;
     constexpr int kPositionUp = 400;
+
     constexpr int kPositionDown = 0;
 }
 
 namespace EjectorConstants
+
 {
     constexpr int kEjectorCanId = 3;
 }
@@ -64,3 +67,4 @@ namespace DriveTrainConstants
     constexpr int kMotorR2Id = 4;
     
 } // namespace DriveTrainConstants
+

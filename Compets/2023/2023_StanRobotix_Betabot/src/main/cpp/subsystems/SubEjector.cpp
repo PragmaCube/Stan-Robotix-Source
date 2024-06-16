@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SubEjector.h"
+
 #include <iostream>
 
 SubEjector::SubEjector() 
@@ -61,4 +62,5 @@ float SubEjector::GetMoveState()
 void SubEjector::SetMoveState(bool MoveStateToSet)
 {
   MoveState=MoveStateToSet;
+
 }

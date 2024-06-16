@@ -4,6 +4,7 @@
 
 #pragma once
 
+
 #include <frc2/command/SubsystemBase.h>
 #include <rev/CANSparkMax.h>
 #include <rev/SparkMaxPIDController.h>
@@ -13,10 +14,12 @@ class SubArm : public frc2::SubsystemBase {
  public:
   SubArm();
 
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
+
 
   void Up();
   void Down();
