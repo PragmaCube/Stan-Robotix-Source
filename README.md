@@ -8,8 +8,8 @@ Dépôt officiel de l'équipe [Stan Robotix 6622](https://stanrobotix6622.com/) 
 - Compets : l'intégralité du code source des compétitions ([BetaBots](https://robotiquefirstquebec.org/frc/betabots/) et FRC)
 - Doc : documentation créée par l'équipe pour la communauté
   - Manuel sur les bases C++ et l'utilisation de [WPILIB](https://docs.wpilib.org/en/stable/) V1.1 DISPONIBLE
-  - Liste d'exercices V1.3 DISPONIBLE
-  - Corrections de la liste d'exercices V1.3 DISPONIBLE
+  - Liste d'exercices V2.0 DISPONIBLE
+  - Corrections de la liste d'exercices V2.0 DISPONIBLE
   - Aide rapide sur Git et Github V1.0 DISPONIBLE
   - Aide sur la structuration d'un programme C++ V1.0 DISPONIBLE
 
