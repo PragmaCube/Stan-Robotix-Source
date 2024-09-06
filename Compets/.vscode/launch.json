@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/michmich/Desktop/Stan-Robotix-Source/Compets/2024/2024_StanRobotix_Gala/src/main/include/subsystems",
+      "program": "/Users/michmich/Desktop/Stan-Robotix-Source/Compets/2024/2024_StanRobotix_Gala/src/main/include/subsystems/build/Debug/outDebug"
+    }
+  ]
+}

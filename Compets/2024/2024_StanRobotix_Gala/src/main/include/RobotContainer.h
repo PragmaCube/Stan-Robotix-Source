@@ -6,10 +6,11 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
+#include <frc/Joystick.h>
 
 #include "Constants.h"
-#include "subsystems/ExampleSubsystem.h"
 
+#include "subsystems/Swerve.h"
 #include "subsystems/SubDriveTrain.h"
 
 /**
@@ -23,7 +24,9 @@ class RobotContainer {
  public:
   RobotContainer();
 
+
   frc2::CommandPtr GetAutonomousCommand();
+  void Drive();
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -31,7 +34,11 @@ class RobotContainer {
       OperatorConstants::kDriverControllerPort};
 
   // The robot's subsystems are defined here...
-  ExampleSubsystem m_subsystem;
+  Swerve mSwerve;
+  frc::Joystick mJoystick{0};
+  
 
   void ConfigureBindings();
+
+ 
 };
