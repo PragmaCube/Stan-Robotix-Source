@@ -10,6 +10,4 @@ SubDriveTrain::SubDriveTrain() = default;
 void SubDriveTrain::Periodic() {}
 
 void SubDriveTrain::arcadeDrive(double xSpeed, double zRotation) 
-{
-    mDrive.ArcadeDrive(xSpeed, zRotation, true);
-}
+{}

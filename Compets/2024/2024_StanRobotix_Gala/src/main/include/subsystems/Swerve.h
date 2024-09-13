@@ -13,6 +13,8 @@
 #include <array>
 #include <vector>
 
+#include "Constants.h"
+
 class Swerve : public frc2::SubsystemBase {
  public:
   Swerve();
@@ -43,23 +45,23 @@ class Swerve : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
 
-  rev::CANSparkMax m_frontLeft{1, rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax m_frontLeft550{2, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_frontLeft{DriveTrainConstants::kFrontLeftMotorID, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_frontLeft550{DriveTrainConstants::kFrontLeftMotor550ID, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder m_frontLeft550Encoder = m_frontLeft550.GetEncoder();
   rev::SparkMaxPIDController m_frontLeft550PID = m_frontLeft550.GetPIDController();
 
-  rev::CANSparkMax m_frontRight{3, rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax m_frontRight550{4, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_frontRight{DriveTrainConstants::kFrontRighttMotorID, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_frontRight550{DriveTrainConstants::kFrontRightMotor550ID, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder m_frontRight550Encoder = m_frontRight550.GetEncoder();
   rev::SparkMaxPIDController m_frontRight550PID = m_frontRight550.GetPIDController();
 
-  rev::CANSparkMax m_backLeft{5, rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax m_backLeft550{6, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_backLeft{DriveTrainConstants::kBackLeftMotorID, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_backLeft550{DriveTrainConstants::kBackLefttMotor550ID, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder m_backLeft550Encoder = m_backLeft550.GetEncoder();
   rev::SparkMaxPIDController m_backLeft550PID = m_backLeft550.GetPIDController();
 
-  rev::CANSparkMax m_backRight{7, rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax m_backRight550{8, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_backRight{DriveTrainConstants::kBackRightMotorID, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_backRight550{DriveTrainConstants::kBackRightMotor550ID, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder m_backRight550Encoder = m_backRight550.GetEncoder();
   rev::SparkMaxPIDController m_backRight550PID = m_backRight550.GetPIDController();
   

@@ -26,14 +26,8 @@ class SubDriveTrain : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-  
-  frc::Spark mLeftMotors{DriveTrainConstants::kLeftMotorID}; //spark gauche 
-  frc::Spark mRightMotors{DriveTrainConstants::kRightMotorID}; //spark droite 
-
   // frc::DifferentialDrive mDrive(std::function< void(double)> mLeftMotors,
   //   std::function< void(double)> mRightMotors);
 
   // frc::DifferentialDrive mDrive(frc::Spark mLeftMotors, frc::Spark mRightMotors);
-
-  frc::DifferentialDrive mDrive{mLeftMotors, mRightMotors};
 };
