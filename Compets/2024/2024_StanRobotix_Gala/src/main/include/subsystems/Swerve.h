@@ -9,9 +9,11 @@
 #include <frc/kinematics/SwerveDriveKinematics.h>
 #include <rev/CANSparkMax.h>
 #include <rev/SparkMaxRelativeEncoder.h>
+#include <rev/SparkMaxAbsoluteEncoder.h>
 #include <tuple>
 #include <array>
 #include <vector>
+#include <frc/controller/PIDController.h>
 
 #include "Constants.h"
 
@@ -48,27 +50,39 @@ class Swerve : public frc2::SubsystemBase {
   rev::CANSparkMax m_frontLeft{DriveTrainConstants::kFrontLeftMotorID, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax m_frontLeft550{DriveTrainConstants::kFrontLeftMotor550ID, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder m_frontLeft550Encoder = m_frontLeft550.GetEncoder();
-  rev::SparkMaxPIDController m_frontLeft550PID = m_frontLeft550.GetPIDController();
+  rev::SparkMaxAbsoluteEncoder  m_frontLeft550AbsoluteEncoder = m_frontLeft550.GetAbsoluteEncoder(rev::SparkMaxAbsoluteEncoder::Type::kDutyCycle);
+  // rev::SparkMaxPIDController m_frontLeft550PID = m_frontLeft550.GetPIDController();
+
+  frc::PIDController m_frontLeft550PID {DriveTrainConstants::PIDs::kP , DriveTrainConstants::PIDs::kI , DriveTrainConstants::PIDs::kD};
 
   rev::CANSparkMax m_frontRight{DriveTrainConstants::kFrontRighttMotorID, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax m_frontRight550{DriveTrainConstants::kFrontRightMotor550ID, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder m_frontRight550Encoder = m_frontRight550.GetEncoder();
-  rev::SparkMaxPIDController m_frontRight550PID = m_frontRight550.GetPIDController();
+  rev::SparkMaxAbsoluteEncoder  m_frontRight550AbsoluteEncoder = m_frontRight550.GetAbsoluteEncoder(rev::SparkMaxAbsoluteEncoder::Type::kDutyCycle);
+  // rev::SparkMaxPIDController m_frontRight550PID = m_frontRight550.GetPIDController();
+
+  frc::PIDController m_frontRight550PID {DriveTrainConstants::PIDs::kP , DriveTrainConstants::PIDs::kI , DriveTrainConstants::PIDs::kD};
 
   rev::CANSparkMax m_backLeft{DriveTrainConstants::kBackLeftMotorID, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax m_backLeft550{DriveTrainConstants::kBackLefttMotor550ID, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder m_backLeft550Encoder = m_backLeft550.GetEncoder();
-  rev::SparkMaxPIDController m_backLeft550PID = m_backLeft550.GetPIDController();
+  rev::SparkMaxAbsoluteEncoder  m_backLeft550AbsoluteEncoder = m_backLeft550.GetAbsoluteEncoder(rev::SparkMaxAbsoluteEncoder::Type::kDutyCycle);
+  // rev::SparkMaxPIDController m_backLeft550PID = m_backLeft550.GetPIDController();
+
+  frc::PIDController m_backLeft550PID {DriveTrainConstants::PIDs::kP , DriveTrainConstants::PIDs::kI , DriveTrainConstants::PIDs::kD};
 
   rev::CANSparkMax m_backRight{DriveTrainConstants::kBackRightMotorID, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax m_backRight550{DriveTrainConstants::kBackRightMotor550ID, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxRelativeEncoder m_backRight550Encoder = m_backRight550.GetEncoder();
-  rev::SparkMaxPIDController m_backRight550PID = m_backRight550.GetPIDController();
+  rev::SparkMaxAbsoluteEncoder  m_backRight550AbsoluteEncoder = m_backRight550.GetAbsoluteEncoder(rev::SparkMaxAbsoluteEncoder::Type::kDutyCycle);
+  // rev::SparkMaxPIDController m_backRight550PID = m_backRight550.GetPIDController();
+
+  frc::PIDController m_backRight550PID {DriveTrainConstants::PIDs::kP , DriveTrainConstants::PIDs::kI , DriveTrainConstants::PIDs::kD};
   
   
 
-  units::meters_per_second_t m_maxSpeedX = 1_mps;
-  units::meters_per_second_t m_maxSpeedY = 1_mps;
-  units::radians_per_second_t m_maxSpeed0 = units::radians_per_second_t(2 * std::numbers::pi);
+  units::meters_per_second_t m_maxSpeedX = 0.1_mps;
+  units::meters_per_second_t m_maxSpeedY = 0.1_mps;
+  units::radians_per_second_t m_maxSpeed0 = units::radians_per_second_t(1 / 5 * std::numbers::pi);
 
 };
