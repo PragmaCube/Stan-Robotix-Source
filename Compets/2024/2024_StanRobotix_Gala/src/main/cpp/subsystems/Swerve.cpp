@@ -18,10 +18,10 @@ void Swerve::Init()
 
 void Swerve::Move(float iX, float iY, float i0)
 {
-    float A = iX - i0*(0.125/2);
-    float B = iX + i0*(0.125/2);
-    float C = iY - i0*(0.125/2);
-    float D = iY + i0*(0.125/2);
+    float A = iX - i0*(0.125);
+    float B = iX + i0*(0.125);
+    float C = iY - i0*(0.125);
+    float D = iY + i0*(0.125);
 
     m_frontRight.Set(sqrt(B*B + C*C));
     m_frontRight550PID.SetSetpoint(atan2(B, C) / (2*std::numbers::pi) + 0.5);
