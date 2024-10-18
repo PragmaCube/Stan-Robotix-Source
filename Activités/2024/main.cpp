@@ -1,8 +1,8 @@
 #include <iostream>
 
-int main()
+int main() 
 {
-    std::cout << "Allo !";
-    
-    return 0;
+  std::cout << "Allo du groupe 1 !";
+  
+  return 0;
 }
