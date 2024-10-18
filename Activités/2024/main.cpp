@@ -2,7 +2,7 @@
 
 int main()
 {
-    std::cout << "Allo !";
+    std::cout << "Allo du groupe 2!";
     
     return 0;
 }
