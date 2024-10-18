@@ -81,8 +81,8 @@ class Swerve : public frc2::SubsystemBase {
   
   
 
-  units::meters_per_second_t m_maxSpeedX = 0.1_mps;
-  units::meters_per_second_t m_maxSpeedY = 0.1_mps;
-  units::radians_per_second_t m_maxSpeed0 = units::radians_per_second_t(1 / 5 * std::numbers::pi);
+  units::meters_per_second_t m_maxSpeedX = 1_mps;
+  units::meters_per_second_t m_maxSpeedY = 1_mps;
+  units::radians_per_second_t m_maxSpeed0 = units::radians_per_second_t(std::numbers::pi);
 
 };

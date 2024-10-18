@@ -27,5 +27,30 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 }
 
 void RobotContainer::Drive(){
-  mSwerve.Move(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ());
+  float Sensi = 0.01;
+
+  float X = 0;
+  float Y = 0;
+  float Z = 0;
+
+  if (mJoystick.GetX() >= 0){
+    X = mJoystick.GetX()*mJoystick.GetX();
+  }
+  else{
+    X = -mJoystick.GetX()*mJoystick.GetX();
+  }
+  if (mJoystick.GetY() >= 0){
+    Y = mJoystick.GetY()*mJoystick.GetY();
+  }
+  else{
+    Y = -mJoystick.GetY()*mJoystick.GetY();
+  }
+  if (mJoystick.GetZ() >= 0){
+    Z = mJoystick.GetZ()*mJoystick.GetZ();
+  }
+  else{
+    Z = -mJoystick.GetZ()*mJoystick.GetZ();
+  }
+
+  mSwerve.Move(X, Y, Z);
 }
