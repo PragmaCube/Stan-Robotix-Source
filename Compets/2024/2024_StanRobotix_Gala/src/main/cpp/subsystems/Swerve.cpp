@@ -16,32 +16,6 @@ void Swerve::Init()
     
 }
 
-    // float A = iX - i0*(0.125);
-    // float B = iX + i0*(0.125);
-    // float C = iY - i0*(0.125);
-    // float D = iY + i0*(0.125);
-
-    // float Vfr = -sqrt(B*B + C*C)/2;
-    // float Vfl = sqrt(B*B + D*D)/2;
-    // float Vbl = sqrt(A*A + D*D)/2;
-    // float Vbr = sqrt(A*A + C*C)/2;
-
-    // m_frontRight.Set(Vfr);
-    // m_frontRight550PID.SetSetpoint(atan2(B, C) / (2*std::numbers::pi) + 0.5);
-    // m_frontRight550.Set(m_frontRight550PID.Calculate(m_frontRight550AbsoluteEncoder.GetPosition()));
-
-    // m_frontLeft.Set(Vfl);
-    // m_frontLeft550PID.SetSetpoint(atan2(B, D) / (2*std::numbers::pi) + 0.5);
-    // m_frontLeft550.Set(m_frontLeft550PID.Calculate(m_frontLeft550AbsoluteEncoder.GetPosition()));
-    
-    // m_backLeft.Set(Vbl);
-    // m_backLeft550PID.SetSetpoint(atan2(A, D) / (2*std::numbers::pi) + 0.5);
-    // m_backLeft550.Set(m_backLeft550PID.Calculate(m_backLeft550AbsoluteEncoder.GetPosition()));
-    
-    // m_backRight.Set(Vbr);
-    // m_backRight550PID.SetSetpoint(atan2(A, C) / (2*std::numbers::pi) + 0.5);
-    // m_backRight550.Set(m_backRight550PID.Calculate(m_backRight550AbsoluteEncoder.GetPosition()));
-
 
 void Swerve::Move(float iX, float iY, float i0)
 {
@@ -100,42 +74,4 @@ void Swerve::Move(float iX, float iY, float i0)
     m_backRight.Set(-double(brOptimized.speed / m_maxSpeedX) * 0.7);
 
 }
-
-
-
-//     // m_frontLeft550PID.SetReference((15), rev::ControlType::kPosition);
-//     // m_frontRight550PID.SetReference((15), rev::ControlType::kPosition);
-//     // m_backLeft550PID.SetReference((15), rev::ControlType::kPosition);
-//     // m_backRight550PID.SetReference((15), rev::ControlType::kPosition);
-
-//     // m_frontLeft550PID.SetSetpoint(0.7);
-//     // m_frontLeft550.Set(m_frontLeft550PID.Calculate(m_frontLeft550AbsoluteEncoder.GetPosition()));
-
-//     // m_frontRight550PID.SetSetpoint(0.7);
-//     // m_frontRight550.Set(m_frontRight550PID.Calculate(m_frontRight550AbsoluteEncoder.GetPosition()));
-
-//     // m_backLeft550PID.SetSetpoint(0.7);
-//     // m_backLeft550.Set(m_backLeft550PID.Calculate(m_backLeft550AbsoluteEncoder.GetPosition()));
-//     // std::cout << m_backLeft550AbsoluteEncoder.GetPosition() << std::endl;
-
-//     // m_backRight550PID.SetSetpoint(0.7);
-//     // m_backRight550.Set(m_backRight550PID.Calculate(m_backRight550AbsoluteEncoder.GetPosition()));
-//     // // std::cout << m_backRight550AbsoluteEncoder.GetPosition() << std::endl;
-
-
-    
-    
-    
-
-//     // m_backRight.Set(0.3);
-//     // m_backRight550.Set(0.3);
-
-//     // m_backLeft.Set(0.3);
-//     // m_backLeft550.Set(0.3);
-    
-//     // m_frontRight.Set(0.3);
-//     //m_frontRight550.Set(0.3);
-    
-//     // m_frontLeft.Set(0.3);
-//     // m_frontLeft550.Set(0.3);
        
