@@ -19,14 +19,7 @@ void Swerve::Init()
 
 void Swerve::Move(float iX, float iY, float i0)
 {
-<<<<<<< HEAD
     frc::ChassisSpeeds speeds{m_maxSpeedY * iY, m_maxSpeedX * iX, m_maxSpeed0 * i0};
-=======
-    float A = iX - i0*(0.125);
-    float B = iX + i0*(0.125);
-    float C = iY - i0*(0.125);
-    float D = iY + i0*(0.125);
->>>>>>> 6ab570fa8e31877fdc9f251427c0731286c6971f
 
     auto [fl, fr, bl, br] = m_kinematics.ToSwerveModuleStates(speeds);
 
