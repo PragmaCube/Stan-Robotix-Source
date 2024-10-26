@@ -32,8 +32,7 @@ void Swerve::Move(float iX, float iY, float i0)
     std::cout << double(br.speed / m_maxSpeedX) * 0.7 << std::endl;
 
     frc::Rotation2d flCurrentAngle(units::degree_t(m_frontLeft550AbsoluteEncoder.GetPosition()) * 360);
-    auto flOptimized = frc::SwerveModuleState::Optimize(fl,
-   units::radian_t(m_frontLeft550AbsoluteEncoder.GetPosition()));
+    auto flOptimized = frc::SwerveModuleState::Optimize(fl, flCurrentAngle);
     flOptimized.speed *= (flOptimized.angle - flCurrentAngle).Cos();
 
     m_frontLeft550PID.SetSetpoint(double(flOptimized.angle.Radians() / (2*std::numbers::pi)) + 0.5);
@@ -43,8 +42,7 @@ void Swerve::Move(float iX, float iY, float i0)
 
 
     frc::Rotation2d frCurrentAngle(units::degree_t(m_frontRight550AbsoluteEncoder.GetPosition()) * 360);
-    auto frOptimized = frc::SwerveModuleState::Optimize(fr,
-   units::radian_t(m_frontRight550AbsoluteEncoder.GetPosition()));
+    auto frOptimized = frc::SwerveModuleState::Optimize(fr, frCurrentAngle);
     frOptimized.speed *= (frOptimized.angle - frCurrentAngle).Cos();
 
     m_frontRight550PID.SetSetpoint(double(frOptimized.angle.Radians() / (2*std::numbers::pi)) + 0.5);
@@ -54,8 +52,7 @@ void Swerve::Move(float iX, float iY, float i0)
 
 
     frc::Rotation2d blCurrentAngle(units::degree_t(m_backLeft550AbsoluteEncoder.GetPosition()) * 360);
-    auto blOptimized = frc::SwerveModuleState::Optimize(bl,
-   units::radian_t(m_backLeft550AbsoluteEncoder.GetPosition()));
+    auto blOptimized = frc::SwerveModuleState::Optimize(bl, blCurrentAngle);
     blOptimized.speed *= (blOptimized.angle - blCurrentAngle).Cos();
 
     m_backLeft550PID.SetSetpoint(double(blOptimized.angle.Radians() / (2*std::numbers::pi)) + 0.5);
@@ -65,8 +62,7 @@ void Swerve::Move(float iX, float iY, float i0)
 
 
     frc::Rotation2d brCurrentAngle(units::degree_t(m_backRight550AbsoluteEncoder.GetPosition()) * 360);
-    auto brOptimized = frc::SwerveModuleState::Optimize(br,
-   units::radian_t(m_backRight550AbsoluteEncoder.GetPosition()));
+    auto brOptimized = frc::SwerveModuleState::Optimize(br, brCurrentAngle);
     brOptimized.speed *= (brOptimized.angle - brCurrentAngle).Cos();
 
     m_backRight550PID.SetSetpoint(double(brOptimized.angle.Radians() / (2*std::numbers::pi)) + 0.5);
