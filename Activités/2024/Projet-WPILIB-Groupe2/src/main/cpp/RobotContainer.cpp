@@ -8,10 +8,17 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include <frc2/command/RunCommand.h>
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
+  
 
+  mSub.SetDefaultCommand(frc2::RunCommand(
+      [this] {
+        mSub.drive(joystick.GetX(), joystick.GetY(), joystick.GetTwist());
+      },
+      {&mSub}));
   // Configure the button bindings
   ConfigureBindings();
 }

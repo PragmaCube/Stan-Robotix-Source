@@ -18,15 +18,20 @@ class SubDriveTrain : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
+  void drive(const double iX, const double iY, const double iTwist);
+
+
  private:
   
-ctre::phoenix::motorcontrol::can::WPI_VictorSPX motor1{OperatorConstants::motor1port};
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX motor2{OperatorConstants::motor2port};
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX motor3{OperatorConstants::motor3port};
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX motor4{OperatorConstants::motor4port};
-
-  frc::MecanumDrive drive{motor1, motor2, motor3, motor4};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX * mMotor1 = nullptr;
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX * mMotor2 = nullptr;
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX * mMotor3 = nullptr;
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX * mMotor4 = nullptr;
+  
+  frc::MecanumDrive * mDrive = nullptr;
   
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+
+
 };
