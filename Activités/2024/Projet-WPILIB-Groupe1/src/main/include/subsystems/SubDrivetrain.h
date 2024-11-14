@@ -7,6 +7,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
 #include "Constants.h"
+#include <frc/drive/MecanumDrive.h>
 
 class SubDrivetrain : public frc2::SubsystemBase {
  public:
@@ -15,6 +16,8 @@ class SubDrivetrain : public frc2::SubsystemBase {
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
+  void Drive(double	xSpeed, double ySpeed, double	zRotation, frc::Rotation2d gyroAngle = 0_rad);
+
   void Periodic() override;
 
  private:
@@ -24,4 +27,6 @@ class SubDrivetrain : public frc2::SubsystemBase {
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX mMotorL2Controller{DrivetrainConstants::kMotorL2Id};
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX mMotorR1Controller{DrivetrainConstants::kMotorR1Id};
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX mMotorR2Controller{DrivetrainConstants::kMotorR2Id};
+
+  frc::MecanumDrive mRobotDrive{mMotorL1Controller, mMotorL2Controller,mMotorR1Controller ,mMotorR2Controller };
 };
