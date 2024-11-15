@@ -25,6 +25,8 @@ class RobotContainer {
 
   frc2::CommandPtr GetAutonomousCommand();
 
+  void drive();
+
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
 
@@ -35,7 +37,7 @@ class RobotContainer {
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
 
-  SubDriveTrain mSub;
+  SubDriveTrain * mSub = nullptr;
   frc::Joystick joystick{OperatorConstants::joystickPort};
 
   void ConfigureBindings();

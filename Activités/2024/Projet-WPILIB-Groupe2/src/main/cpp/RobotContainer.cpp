@@ -10,15 +10,20 @@
 #include "commands/ExampleCommand.h"
 #include <frc2/command/RunCommand.h>
 
+void RobotContainer::drive(){
+  mSub->drive(
+    joystick.GetX(), joystick.GetY(), joystick.GetTwist()
+  );
+}
+
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-  
 
-  mSub.SetDefaultCommand(frc2::RunCommand(
+  mSub->SetDefaultCommand(frc2::RunCommand(
       [this] {
-        mSub.drive(joystick.GetX(), joystick.GetY(), joystick.GetTwist());
+        mSub->drive(joystick.GetX(), joystick.GetY(), joystick.GetTwist());
       },
-      {&mSub}));
+      {mSub}));
   // Configure the button bindings
   ConfigureBindings();
 }
