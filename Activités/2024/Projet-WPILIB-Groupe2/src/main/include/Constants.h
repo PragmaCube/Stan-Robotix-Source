@@ -22,5 +22,6 @@ constexpr int motor1port = 0;
 constexpr int motor2port = 1;
 constexpr int motor3port = 2;
 constexpr int motor4port = 3;
+constexpr int joystickPort = 4;
 }  // namespace OperatorConstants
 

@@ -8,7 +8,7 @@
 
 SubDriveTrain::SubDriveTrain()
 {
-    mMotor1 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX (OperatorConstants::motor1port);
+    mMotor1 = new ctre::phoenix::motorcontrol::can::WPI_TalonSRX (OperatorConstants::motor1port);
     mMotor2 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX (OperatorConstants::motor2port);
     mMotor3 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX (OperatorConstants::motor3port);
     mMotor4 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX (OperatorConstants::motor4port);

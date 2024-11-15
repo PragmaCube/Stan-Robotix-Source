@@ -6,6 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
+#include <ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h>
 #include <frc/drive/MecanumDrive.h>
 #include "Constants.h"
 
@@ -23,7 +24,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
  private:
   
-  ctre::phoenix::motorcontrol::can::WPI_VictorSPX * mMotor1 = nullptr;
+  ctre::phoenix::motorcontrol::can::WPI_TalonSRX * mMotor1 = nullptr;
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX * mMotor2 = nullptr;
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX * mMotor3 = nullptr;
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX * mMotor4 = nullptr;
