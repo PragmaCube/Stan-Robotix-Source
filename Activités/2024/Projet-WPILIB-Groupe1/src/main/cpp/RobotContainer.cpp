@@ -4,16 +4,29 @@
 
 #include "RobotContainer.h"
 
+#include <functional>
+
 #include <frc2/command/button/Trigger.h>
+#include <frc2/command/Command.h>
+#include <frc2/command/CommandHelper.h>
+#include <frc2/command/RunCommand.h>
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings
   ConfigureBindings();
+  mSubDrivetrain.SetDefaultCommand(frc2::RunCommand(
+    [this]{
+      mSubDrivetrain.Drive(-mJoystick.GetX(), -mJoystick.GetY(), -mJoystick.GetTwist());
+    },
+    {&mSubDrivetrain}));
+  
+      
 }
 
 void RobotContainer::ConfigureBindings() {

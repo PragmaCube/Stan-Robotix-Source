@@ -10,6 +10,6 @@ SubDrivetrain::SubDrivetrain(){
 }
 // This method will be called once per scheduler run
 void SubDrivetrain::Periodic() {}
-void SubDrivetrain::Drive(double xSpeed, double ySpeed, double	zRotation, frc::Rotation2d gyroAngle = 0_rad) {
+void SubDrivetrain::Drive(double xSpeed, double ySpeed, double	zRotation, frc::Rotation2d gyroAngle) {
     mRobotDrive.DriveCartesian(xSpeed, ySpeed, zRotation, gyroAngle);
 }
