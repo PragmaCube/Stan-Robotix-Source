@@ -22,11 +22,10 @@ RobotContainer::RobotContainer() {
   ConfigureBindings();
   mSubDrivetrain.SetDefaultCommand(frc2::RunCommand(
     [this]{
-      mSubDrivetrain.Drive(-mJoystick.GetX(), -mJoystick.GetY(), -mJoystick.GetTwist());
+      mSubDrivetrain.Drive(-mJoystick.GetX(), -mJoystick.GetY(), -mJoystick.GetZ(), mIMU.getRotation2d());
     },
-    {&mSubDrivetrain}));
-  
-      
+    {&mSubDrivetrain, &mIMU}));
+
 }
 
 void RobotContainer::ConfigureBindings() {

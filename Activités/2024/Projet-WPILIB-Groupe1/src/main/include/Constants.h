@@ -26,3 +26,7 @@ namespace DrivetrainConstants {
     constexpr int kMotorR1Id = 2;
     constexpr int kMotorR2Id = 3;
 }
+
+namespace SubIMUConstants {
+    constexpr int kIMUDeviceId = 0;
+}
