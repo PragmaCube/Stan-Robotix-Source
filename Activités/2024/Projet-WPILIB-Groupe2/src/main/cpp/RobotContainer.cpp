@@ -10,20 +10,17 @@
 #include "commands/ExampleCommand.h"
 #include <frc2/command/RunCommand.h>
 
-void RobotContainer::drive(){
-  mSub->drive(
-    joystick.GetX(), joystick.GetY(), joystick.GetTwist()
-  );
-}
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
-  mSub->SetDefaultCommand(frc2::RunCommand(
-      [this] {
-        mSub->drive(joystick.GetX(), joystick.GetY(), joystick.GetTwist());
-      },
-      {mSub}));
+  mSub = new SubDriveTrain;
+
+    mSub->SetDefaultCommand(frc2::RunCommand(
+       [this] {
+         mSub->drive(joystick.GetX(), joystick.GetY(), joystick.GetZ());
+        },
+        {mSub}));
   // Configure the button bindings
   ConfigureBindings();
 }
@@ -39,6 +36,12 @@ void RobotContainer::ConfigureBindings() {
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+}
+
+void RobotContainer::drive(){
+   mSub->drive(
+     joystick.GetX(), joystick.GetY(), joystick.GetZ()
+   );
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
