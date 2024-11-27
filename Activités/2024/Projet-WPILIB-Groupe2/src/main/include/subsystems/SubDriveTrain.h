@@ -19,7 +19,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  void drive(const double iX, const double iY, const double iZ);
+  void drive(const double iX, const double iY, const double iZ, const frc::Rotation2d iRotate);
 
 
  private:

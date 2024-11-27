@@ -10,6 +10,7 @@
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubIMU.h"
 #include <frc/Joystick.h>
 
 /**
@@ -38,6 +39,7 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
 
   SubDriveTrain * mSub = nullptr;
+  SubIMU * mIMU = nullptr;
   frc::Joystick joystick{OperatorConstants::joystickPort};
 
   void ConfigureBindings();

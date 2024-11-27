@@ -22,8 +22,8 @@ SubDriveTrain::SubDriveTrain()
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}   
 
- void SubDriveTrain::drive(const double iX, const double iY, const double iZ) {
-     mDrive->DriveCartesian(-iY, iX, iZ);
+ void SubDriveTrain::drive(const double iX, const double iY, const double iZ, const frc::Rotation2d iRotate) {
+     mDrive->DriveCartesian(-iY, iX, iZ, iRotate);
 }
 
 

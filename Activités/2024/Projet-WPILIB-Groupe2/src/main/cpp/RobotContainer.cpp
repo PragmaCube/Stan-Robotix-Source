@@ -14,11 +14,13 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
+  mIMU = new SubIMU;
+  mIMU->ResetAngle();
   mSub = new SubDriveTrain;
 
     mSub->SetDefaultCommand(frc2::RunCommand(
        [this] {
-         mSub->drive(joystick.GetX(), joystick.GetY(), joystick.GetZ());
+         mSub->drive(joystick.GetX(), joystick.GetY(), joystick.GetZ(), mIMU->getRotation2d());
         },
         {mSub}));
   // Configure the button bindings
@@ -40,7 +42,7 @@ void RobotContainer::ConfigureBindings() {
 
 void RobotContainer::drive(){
    mSub->drive(
-     joystick.GetX(), joystick.GetY(), joystick.GetZ()
+     joystick.GetX(), joystick.GetY(), joystick.GetZ(), mIMU->getRotation2d()
    );
 }
 
