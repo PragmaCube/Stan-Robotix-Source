@@ -14,7 +14,7 @@
  * they are needed.
  */
 
-namespace OperatorConstants {
+namespace DrivingConstants {
 
 inline constexpr int kDriverControllerPort = 0;
 
@@ -25,4 +25,12 @@ constexpr int motor4port = 4;
 constexpr int pigeon2port = 5;
 constexpr int joystickPort = 0;
 }  // namespace OperatorConstants
+
+namespace PIDConstants {
+    
+    constexpr double kTurnP = 0.2;
+    constexpr double kTurnI = 1.2;
+    constexpr double kTurnD = 0.1;
+
+}
 

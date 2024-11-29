@@ -8,10 +8,10 @@
 
 SubDriveTrain::SubDriveTrain()
 {
-    mMotor4 = new ctre::phoenix::motorcontrol::can::WPI_TalonSRX (OperatorConstants::motor4port);
-    mMotor2 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX (OperatorConstants::motor2port);
-    mMotor3 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX (OperatorConstants::motor3port);
-    mMotor1 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX (OperatorConstants::motor1port);
+    mMotor4 = new ctre::phoenix::motorcontrol::can::WPI_TalonSRX (DrivingConstants::motor4port);
+    mMotor2 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX (DrivingConstants::motor2port);
+    mMotor3 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX (DrivingConstants::motor3port);
+    mMotor1 = new ctre::phoenix::motorcontrol::can::WPI_VictorSPX (DrivingConstants::motor1port);
 
      mMotor4->SetInverted(true);        // Le filage est inverse pour ce moteur dans le robot.
      mMotor3->SetInverted(true); 
