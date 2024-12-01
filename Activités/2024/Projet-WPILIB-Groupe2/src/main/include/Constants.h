@@ -28,9 +28,9 @@ constexpr int joystickPort = 0;
 
 namespace PIDConstants {
     
-    constexpr double kTurnP = 0.2;
-    constexpr double kTurnI = 1.2;
-    constexpr double kTurnD = 0.1;
+    constexpr double kTurnP = 1;
+    constexpr double kTurnI = 0;
+    constexpr double kTurnD = 0;
 
 }
 

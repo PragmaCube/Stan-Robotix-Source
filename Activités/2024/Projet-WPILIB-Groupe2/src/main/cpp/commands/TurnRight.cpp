@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/TurnRight.h"
+#include <iostream>
 
 TurnRight::TurnRight(SubDriveTrain *iDriveTrain, SubIMU *iIMU) 
 {
@@ -15,11 +16,14 @@ TurnRight::TurnRight(SubDriveTrain *iDriveTrain, SubIMU *iIMU)
 // Called when the command is initially scheduled.
 void TurnRight::Initialize() {
   angleDebut = mIMU->getAngleYaw();
+  std::cout << mIMU->getAngleYaw();
+  std::cout << angleDebut;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void TurnRight::Execute() {
-  mDriveTrain->drive(0, 0, , mIMU->getRotation2d());
+  frc::PIDController pid(PIDConstants::kTurnP, PIDConstants::kTurnI, PIDConstants::kTurnD);
+  mDriveTrain->drive(0, 0, pid.Calculate(mIMU->getAngleYaw()-angleDebut), mIMU->getRotation2d());
 }
 
 // Called once the command ends or is interrupted.
@@ -27,5 +31,5 @@ void TurnRight::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool TurnRight::IsFinished() {
-return (mIMU->getAngleYaw()-angleDebut) > 72;
+return (mIMU->getAngleYaw()-angleDebut) > 90;
 }

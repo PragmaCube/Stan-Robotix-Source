@@ -28,5 +28,5 @@ class SubIMU : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  ctre::phoenix6::hardware::Pigeon2 mIMU{OperatorConstants::pigeon2port};
+  ctre::phoenix6::hardware::Pigeon2 mIMU{DrivingConstants::pigeon2port};
 };

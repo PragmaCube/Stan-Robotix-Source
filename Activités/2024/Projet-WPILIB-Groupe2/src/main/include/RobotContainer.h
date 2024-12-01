@@ -33,14 +33,14 @@ class RobotContainer {
 
   
   frc2::CommandXboxController m_driverController{
-      OperatorConstants::kDriverControllerPort};
+      DrivingConstants::kDriverControllerPort};
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
 
   SubDriveTrain * mSub = nullptr;
   SubIMU * mIMU = nullptr;
-  frc::Joystick joystick{OperatorConstants::joystickPort};
+  frc::Joystick joystick{DrivingConstants::joystickPort};
 
   void ConfigureBindings();
 };
