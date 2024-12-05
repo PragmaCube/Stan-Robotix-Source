@@ -23,7 +23,8 @@ void TurnRight::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void TurnRight::Execute() {
   frc::PIDController pid(PIDConstants::kTurnP, PIDConstants::kTurnI, PIDConstants::kTurnD);
-  mDriveTrain->drive(0, 0, pid.Calculate(mIMU->getAngleYaw()-angleDebut), mIMU->getRotation2d());
+  std::cout << "Test dans Execute" << std::endl;
+  // mDriveTrain->drive(0, 0, pid.Calculate(mIMU->getAngleYaw()-angleDebut), mIMU->getRotation2d());
 }
 
 // Called once the command ends or is interrupted.
@@ -31,5 +32,6 @@ void TurnRight::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool TurnRight::IsFinished() {
-return (mIMU->getAngleYaw()-angleDebut) > 90;
+  std::cout << "Test IsFinished" << std::endl;
+return ((mIMU->getAngleYaw()-angleDebut) > 90);
 }

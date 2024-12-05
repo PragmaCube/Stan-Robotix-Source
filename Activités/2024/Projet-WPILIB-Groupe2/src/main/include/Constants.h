@@ -34,3 +34,6 @@ namespace PIDConstants {
 
 }
 
+namespace ShooterConstants {
+    constexpr int motorShooter = 6;
+}

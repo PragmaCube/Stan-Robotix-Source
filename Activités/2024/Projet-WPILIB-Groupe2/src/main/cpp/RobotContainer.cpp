@@ -21,11 +21,11 @@ RobotContainer::RobotContainer() {
   mIMU->ResetAngle();
   mSub = new SubDriveTrain;
 
-    mSub->SetDefaultCommand(frc2::RunCommand(
-       [this] {
-         mSub->drive(joystick.GetX(), joystick.GetY(), joystick.GetZ(), mIMU->getRotation2d());
-        },
-        {mSub}));
+    // mSub->SetDefaultCommand(frc2::RunCommand(
+    //    [this] {
+    //      mSub->drive(joystick.GetX(), joystick.GetY(), joystick.GetZ(), mIMU->getRotation2d());
+    //     },
+    //     {mSub}));
   // Configure the button bindings
   ConfigureBindings();
 }
@@ -47,11 +47,11 @@ void RobotContainer::ConfigureBindings() {
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
 }
 
-void RobotContainer::drive(){
-   mSub->drive(
-     joystick.GetX(), joystick.GetY(), joystick.GetZ(), mIMU->getRotation2d()
-   );
-}
+// void RobotContainer::drive(){
+//    mSub->drive(
+//      joystick.GetX(), joystick.GetY(), joystick.GetZ(), mIMU->getRotation2d()
+//    );
+// }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
