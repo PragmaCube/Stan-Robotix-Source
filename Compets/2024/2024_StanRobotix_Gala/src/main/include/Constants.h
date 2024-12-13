@@ -22,21 +22,31 @@ inline constexpr int kDriverControllerPort = 0;
 
 
 namespace DriveTrainConstants {
+    namespace Swerve{
+        constexpr int kBackRightMotorID = 8; // done
+        constexpr int kBackRightMotor550ID = 1; // done
+        constexpr int kBackLeftMotorID = 2; // done
+        constexpr int kBackLefttMotor550ID = 7; // done
+        constexpr int kFrontRighttMotorID = 4; // done
+        constexpr int kFrontRightMotor550ID = 3; // done
+        constexpr int kFrontLeftMotorID = 6; // done   
+        constexpr int kFrontLeftMotor550ID = 5; // done
 
-    constexpr int kBackRightMotorID = 8; // done
-    constexpr int kBackRightMotor550ID = 1; // done
-    constexpr int kBackLeftMotorID = 2; // done
-    constexpr int kBackLefttMotor550ID = 7; // done
-    constexpr int kFrontRighttMotorID = 4; // done
-    constexpr int kFrontRightMotor550ID = 3; // done
-    constexpr int kFrontLeftMotorID = 6; // done   
-    constexpr int kFrontLeftMotor550ID = 5; // done
-
-    namespace PIDs{
-        constexpr double kP = 0.5;
-        constexpr double kI = 0.0;
-        constexpr double kD = 0.0;
+        namespace PIDs{
+            constexpr double kP = 0.5;
+            constexpr double kI = 0.0;
+            constexpr double kD = 0.0;
+     }
     }
+    
+    namespace Mecanum{
+        constexpr int kMotorL1Id = 0;
+        constexpr int kMotorL2Id = 1;
+        constexpr int kMotorR1Id = 2;
+        constexpr int kMotorR2Id = 3;
+    }
+
+    
 }
 
 namespace ChainConstants {

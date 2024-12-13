@@ -17,7 +17,9 @@ RobotContainer::RobotContainer() {
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
-
+  frc2::Trigger([this]{
+    return mJoystick.GetRawButtonPressed(1);
+  }).OnTrue(TurnRight(&mDriveTrain).ToPtr());
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
 }

@@ -5,29 +5,46 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/drive/DifferentialDrive.h>
-#include <frc/motorcontrol/Spark.h>
+#include <frc/drive/MecanumDrive.h>
+#include <ctre/phoenix6/Pigeon2.hpp>
+#include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
+#include <ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h>
 
 #include "Constants.h"
 
-class SubDriveTrain : public frc2::SubsystemBase {
+class SubDriveTrain : public frc2::SubsystemBase 
+{
  public:
-  SubDriveTrain();
+  SubDriveTrain();  
 
-  void arcadeDrive(double xSpeed, double zRotations);
-  void setCoef(int iPosition);
+  void setEnableDriveTrain(bool iEnable);
 
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
+  bool getEnableDriveTrain();
+
   void Periodic() override;
 
+  void mecanumDrive(float iX, float iY, float iZ, frc::Rotation2d iRotation2d);
+  void mecanumDrive(float iX, float iY, float iZ);
+
+  void setVitesse(float iVitesse);
+
+  int getVitesse();
+
  private:
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
 
-  // frc::DifferentialDrive mDrive(std::function< void(double)> mLeftMotors,
-  //   std::function< void(double)> mRightMotors);
+  bool mEnable = true;
 
-  // frc::DifferentialDrive mDrive(frc::Spark mLeftMotors, frc::Spark mRightMotors);
+  float mVitesse = 1;
+  
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* mMotorL1{}; // 0 is the RIO PWM port this is connected to
+  ctre::phoenix::motorcontrol::can::WPI_TalonSRX* mMotorL2{};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* mMotorR1{};
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX* mMotorR2{};
+
+  frc::MecanumDrive* mDrive;
+
+
+ private:
+
+  
 };

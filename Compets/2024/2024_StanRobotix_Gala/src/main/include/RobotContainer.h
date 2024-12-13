@@ -14,6 +14,7 @@
 
 #include "subsystems/Swerve.h"
 #include "subsystems/SubDriveTrain.h"
+#include "commands/TurnRight.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -39,6 +40,7 @@ class RobotContainer {
   // The robot's subsystems are defined here...
   Swerve mSwerve;
   frc::Joystick mJoystick{0};
+  SubDriveTrain mDriveTrain;
   
 
   void ConfigureBindings();

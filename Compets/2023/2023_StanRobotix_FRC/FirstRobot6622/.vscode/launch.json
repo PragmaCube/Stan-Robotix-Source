@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/michmich/Desktop/Programmation/Stan-Robotix-Source/Compets/2023/2023_StanRobotix_FRC/FirstRobot6622/src/main/cpp/subsystems",
+      "program": "/Users/michmich/Desktop/Programmation/Stan-Robotix-Source/Compets/2023/2023_StanRobotix_FRC/FirstRobot6622/src/main/cpp/subsystems/build/Debug/outDebug"
+    }
+  ]
+}
