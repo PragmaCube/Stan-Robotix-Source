@@ -13,7 +13,7 @@ SubShooter::SubShooter() {
 
 
   void SubShooter::invertRotation() {
-
+    isRotated = !isRotated;
   }
 
   void SubShooter::Shoot(){
