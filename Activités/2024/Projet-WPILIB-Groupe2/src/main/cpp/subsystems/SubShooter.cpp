@@ -7,7 +7,7 @@
 
 
 SubShooter::SubShooter() {
-     mMotorShooter = new rev::CANSparkMax (ShooterConstants::motorShooter);
+     mMotorShooter = new rev::CANSparkMax (ShooterConstants::motorShooter, rev::CANSparkMax::MotorType::kBrushless);
 }
 
 

@@ -27,4 +27,5 @@ class SubShooter : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   rev::CANSparkMax * mMotorShooter = nullptr;
+  bool isRotated = false;
 };
