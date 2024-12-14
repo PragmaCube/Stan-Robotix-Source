@@ -52,5 +52,6 @@ nt::GenericEntry* mCoefP = nullptr;
 nt::GenericEntry* mCoefI = nullptr;
 nt::GenericEntry* mCoefD = nullptr;
 
+
 frc::SimpleMotorFeedforward<units::meters> m_feedforward{1_V, 3_V / 1_mps};
 };

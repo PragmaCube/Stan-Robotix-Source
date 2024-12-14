@@ -5,6 +5,7 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
+#include <rev/CANSparkMax.h>
 #include "Constants.h"
 
 class SubShooter : public frc2::SubsystemBase {

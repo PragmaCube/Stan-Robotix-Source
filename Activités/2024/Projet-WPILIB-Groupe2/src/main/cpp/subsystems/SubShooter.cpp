@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SubShooter.h"
-#include <rev/CANSparkMax.h>
+
 
 
 SubShooter::SubShooter() {

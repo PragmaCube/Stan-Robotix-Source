@@ -22,15 +22,15 @@ constexpr int motor1port = 1;
 constexpr int motor2port = 2;
 constexpr int motor3port = 3;
 constexpr int motor4port = 4;
-constexpr int pigeon2port = 5;
+constexpr int pigeon2port = 0;
 constexpr int joystickPort = 0;
 }  // namespace OperatorConstants
 
 namespace PIDConstants {
     
-    constexpr double kTurnP = 10;
+    constexpr double kTurnP = 0.1;
     constexpr double kTurnI = 0;
-    constexpr double kTurnD = 0;
+    constexpr double kTurnD = 5;
 
 }
 
