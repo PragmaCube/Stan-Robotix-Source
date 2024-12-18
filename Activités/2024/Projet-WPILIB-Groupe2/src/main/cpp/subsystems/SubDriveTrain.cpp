@@ -23,7 +23,7 @@ SubDriveTrain::SubDriveTrain()
 void SubDriveTrain::Periodic() {}   
 
  void SubDriveTrain::drive(const double iX, const double iY, const double iZ, const frc::Rotation2d iRotate) {
-     mDrive->DriveCartesian(-iY * 0.6, iX * 0.6, iZ * 0.6, iRotate);
+     mDrive->DriveCartesian(-iY * 0.4, iX * 0.4, iZ * 0.4, iRotate);
 }
 
 

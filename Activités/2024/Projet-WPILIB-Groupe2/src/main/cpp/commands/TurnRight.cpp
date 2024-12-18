@@ -33,6 +33,6 @@ void TurnRight::End(bool interrupted) {}
 // Returns true when the command should end.
 bool TurnRight::IsFinished() {
   std::cout << "Angle debut : " << angleDebut << std::endl;
-return ((mIMU->getAngleYaw()-angleDebut) > 90);
+return (abs(90 - (mIMU->getAngleYaw()-angleDebut)) < 0.5);
 
 }
