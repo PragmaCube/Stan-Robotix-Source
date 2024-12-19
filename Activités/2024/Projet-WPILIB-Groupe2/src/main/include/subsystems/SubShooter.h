@@ -18,6 +18,8 @@ class SubShooter : public frc2::SubsystemBase {
 
   void stop();
 
+  void startAndStop();
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */

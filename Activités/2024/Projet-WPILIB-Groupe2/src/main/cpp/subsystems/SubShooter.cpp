@@ -17,11 +17,16 @@ SubShooter::SubShooter() {
   }
 
   void SubShooter::Shoot(){
-
+    mMotorShooter->Set(ShooterConstants::kShooterSpeed);
   }
 
   void SubShooter::stop(){
-        
+    mMotorShooter->StopMotor();
+  }
+
+  void SubShooter::startAndStop(){
+    mMotorShooter->Set(ShooterConstants::kShooterSpeed);
+    mMotorShooter->StopMotor();
   }
 
 // This method will be called once per scheduler run

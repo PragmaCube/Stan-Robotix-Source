@@ -11,6 +11,7 @@
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
+#include "subsystems/SubShooter.h"
 #include <frc/Joystick.h>
 
 /**
@@ -40,6 +41,7 @@ class RobotContainer {
 
   SubDriveTrain * mSub = nullptr;
   SubIMU * mIMU = nullptr;
+  SubShooter * mSubShooter = nullptr;
   frc::Joystick joystick{DrivingConstants::joystickPort};
 
   void ConfigureBindings();
