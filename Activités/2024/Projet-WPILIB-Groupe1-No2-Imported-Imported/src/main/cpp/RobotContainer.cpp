@@ -17,11 +17,11 @@ RobotContainer::RobotContainer() {
 
   mSubDrivetrain = new SubDrivetrain;
   mIMU = new SubIMU;
-
+  mIMU->reinitialiserAngle();
   ConfigureBindings();
   mSubDrivetrain->SetDefaultCommand(frc2::RunCommand(
     [this]{
-      mSubDrivetrain->Drive(-mJoystick.GetX(), -mJoystick.GetY(), mJoystick.GetZ(), mIMU->getRotation2d());
+      mSubDrivetrain->Drive(-mJoystick.GetY(), -mJoystick.GetX(), mJoystick.GetZ(), mIMU->getRotation2d());
       std::cout << -mJoystick.GetX() << " ; " << -mJoystick.GetY() << std::endl;
     },
     {mSubDrivetrain, mIMU}));

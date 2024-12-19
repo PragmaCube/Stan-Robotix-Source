@@ -16,3 +16,6 @@ frc::Rotation2d SubIMU::getRotation2d() {
 double SubIMU::getAngle() {
     return mIMU.GetAngle(); 
 }
+void SubIMU::reinitialiserAngle(){
+    mIMU.Reset();
+}

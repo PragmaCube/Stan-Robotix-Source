@@ -18,7 +18,7 @@ class SubIMU : public frc2::SubsystemBase {
   void Periodic() override;
   frc::Rotation2d getRotation2d();
   double getAngle();
-
+  void reinitialiserAngle();
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
