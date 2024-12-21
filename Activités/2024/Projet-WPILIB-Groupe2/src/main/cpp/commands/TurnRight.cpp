@@ -19,6 +19,7 @@ void TurnRight::Initialize() {
   angleDebut = mIMU->getAngleYaw();
   std::cout << mIMU->getAngleYaw() << std::endl;
   std::cout << angleDebut << std::endl;
+  mPIDController.SetTolerance(0.5);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -33,6 +34,6 @@ void TurnRight::End(bool interrupted) {}
 // Returns true when the command should end.
 bool TurnRight::IsFinished() {
   std::cout << "Angle debut : " << angleDebut << std::endl;
-return (abs(90 - (mIMU->getAngleYaw()-angleDebut)) < 0.5);
+return mPIDController.AtSetpoint();
 
 }
