@@ -7,7 +7,7 @@
 
 
 SubShooter::SubShooter() {
-     mMotorShooter = new rev::spark::SparkMax(ShooterConstants::motorShooter, rev::spark::SparkLowLevel::MotorType::kBrushless);
+     mMotorShooter = new rev::spark::SparkMax (ShooterConstants::motorShooter, rev::spark::SparkMax::MotorType::kBrushless);
 }
 
 
