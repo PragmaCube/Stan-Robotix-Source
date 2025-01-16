@@ -23,17 +23,17 @@ inline constexpr int kDriverControllerPort = 0;
 
 namespace DriveTrainConstants {
     constexpr int kBackRightMotorID = 8; 
-    constexpr int kBackRightMotor550ID = 7; 
-    constexpr int kFrontRighttMotorID = 6; 
-    constexpr int kFrontRightMotor550ID = 5; 
-    constexpr int kFrontLeftMotorID = 4;    
-    constexpr int kFrontLeftMotor550ID = 3;
-    constexpr int kBackLeftMotorID = 2; 
-    constexpr int kBackLefttMotor550ID = 1;  
+    constexpr int kBackRightMotor550ID = 1; 
+    constexpr int kFrontRighttMotorID = 4; 
+    constexpr int kFrontRightMotor550ID = 3; 
+    constexpr int kFrontLeftMotorID = 6;   
+    constexpr int kFrontLeftMotor550ID = 5;
+    constexpr int kBackLeftMotorID = 2;
+    constexpr int kBackLefttMotor550ID = 7;  
 
     namespace PIDs{
-        constexpr double kP = 0.2;
-        constexpr double kI = 0.0;
+        constexpr double kP = 0.6;
+        constexpr double kI = 0.1;
         constexpr double kD = 0.0;
     }
 }
