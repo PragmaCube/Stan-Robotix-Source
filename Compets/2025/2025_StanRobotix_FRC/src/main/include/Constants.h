@@ -29,12 +29,14 @@ namespace DriveTrainConstants {
     constexpr int kFrontLeftMotorID = 6;   
     constexpr int kFrontLeftMotor550ID = 5;
     constexpr int kBackLeftMotorID = 2;
-    constexpr int kBackLefttMotor550ID = 7;  
+    constexpr int kBackLefttMotor550ID = 7; 
+
+    constexpr float speedCap = 0.2; 
 
     namespace PIDs{
-        constexpr double kP = 0.6;
+        constexpr double kP = 4.0;
         constexpr double kI = 0.1;
-        constexpr double kD = 0.0;
+        constexpr double kD = 0.05;
     }
 }
 

@@ -33,6 +33,7 @@ class RobotContainer {
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
   SubDriveTrain * mDriveTrain = nullptr;
+  SubIMU mIMU;
   frc::Joystick mJoystick{0};
 
   void ConfigureBindings();

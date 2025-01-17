@@ -14,6 +14,7 @@
 #include <array>
 #include <vector>
 #include <frc/controller/PIDController.h>
+#include <subsystems/SubIMU.h>
 
 #include "Constants.h"
 
@@ -83,4 +84,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
   units::meters_per_second_t m_maxSpeed = 1_mps;
   units::radians_per_second_t m_maxSpeed0 = units::radians_per_second_t(std::numbers::pi);
 
+
+
+  SubIMU mIMU;
 };

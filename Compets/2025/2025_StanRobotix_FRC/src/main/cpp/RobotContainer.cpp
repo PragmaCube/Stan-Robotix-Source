@@ -43,6 +43,8 @@ RobotContainer::RobotContainer() {
     {mDriveTrain}));
   // Configure the button bindings
   ConfigureBindings();
+
+  mIMU.resetAngle();
 }
 
 void RobotContainer::ConfigureBindings() {
