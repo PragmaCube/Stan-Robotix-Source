@@ -44,3 +44,15 @@ namespace ChainConstants {
 
     constexpr int kMotorID = 2;
 }
+
+namespace Pivot {
+    namespace Algue{
+        constexpr float kP = 1;
+        constexpr float kI = 0;
+        constexpr float kD = 0;
+        constexpr int moteurPort = 7;
+    }
+    namespace Corail{
+
+    }
+}
