@@ -44,3 +44,20 @@ namespace ChainConstants {
 
     constexpr int kMotorID = 2;
 }
+
+namespace PivotConstants {
+    constexpr double kP = 1;
+    constexpr double kI = 0;
+    constexpr double kD = 0;
+
+    constexpr int moteurPivot = 1;
+    constexpr double pivotSetPoint1 = 0.5;
+    constexpr double pivotSetPoint2 = 0;
+}
+
+namespace JoystickButtons{
+    constexpr int PivotUpCmd = 1; // il faut changer
+    constexpr int PivotDownCmd = 2; // il faut changer
+    constexpr int SubPivotStart = 3; // il faut changer
+    constexpr int SubPivotStop = 4; // il faut changer
+}

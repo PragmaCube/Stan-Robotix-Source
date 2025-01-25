@@ -11,7 +11,9 @@
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
-
+#include "subsystems/SubPivot.h"
+#include "commands/PivotDown.h"
+#include "commands/PivotUp.h"
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -34,6 +36,7 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   SubDriveTrain * mDriveTrain = nullptr;
   SubIMU mIMU;
+  SubPivot * mSubPivot = nullptr;
   frc::Joystick mJoystick{0};
 
   void ConfigureBindings();
