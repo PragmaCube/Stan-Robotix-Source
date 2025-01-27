@@ -16,17 +16,31 @@ SubDriveTrain::SubDriveTrain()
 }
 
 // This method will be called once per scheduler run
-void SubDriveTrain::Periodic() {}
+void SubDriveTrain::Periodic() 
+{
+    frc::Rotation2d gyroAngle = mIMU.getRotation2d();
+
+    m_robotPose = m_odometry.Update(gyroAngle, m_swerveModulePositions);
+    std::cout << double(m_odometry.GetPose().X()) << std::endl << double(m_odometry.GetPose().Y()) << std::endl;
+}
 
 void SubDriveTrain::Init(){}
 
+// frc::SwerveModulePosition GetPosition()
+// {
+//     return {units::meter_t{m_driveEncoder.GetDistance()},
+//           units::radian_t{m_turningEncoder.GetDistance()};
+// }
+
+// Pour obtenir la position des modules
+// on multiple l'encodeur du drive motor par
+// le gear ratio, le perimetre des roues puis on le converti on metres
 
 void SubDriveTrain::Drive(float iX, float iY, float i0)
 {
     frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(m_maxSpeed * iY, m_maxSpeed * iX, m_maxSpeed0 * i0, mIMU.getRotation2d().Degrees());
 
     auto [fl, fr, bl, br] = m_kinematics.ToSwerveModuleStates(speeds);
-
 
     frc::Rotation2d flCurrentAngle(units::degree_t(m_frontLeft550AbsoluteEncoder.GetPosition() - 0.5) * 360);
     auto flOptimized = frc::SwerveModuleState::Optimize(fl, flCurrentAngle);
@@ -68,4 +82,3 @@ void SubDriveTrain::Drive(float iX, float iY, float i0)
 
     std::cout << double(mIMU.getRotation2d().Degrees()) << std::endl;
 }
-       
