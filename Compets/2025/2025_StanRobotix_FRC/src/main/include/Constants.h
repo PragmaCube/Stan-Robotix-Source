@@ -51,27 +51,9 @@ namespace PivotConstants {
     constexpr double kD = 0;
 
     constexpr int moteurPivot = 1;
-    constexpr double pivotSetPoint1 = 0.5;
-    constexpr double pivotSetPoint2 = 0;
+    constexpr double pivotSetPoint1 = 50;
+    constexpr double pivotSetPoint2 = 25;
 }
-
-namespace Pivot {
-    namespace Algue {
-        constexpr int moteurPort = 2;
-        constexpr double kP = 1;
-        constexpr double kI = 0;
-        constexpr double kD = 0;
-
-    }
-
-    namespace Corail {
-        constexpr int moteurPort = 3;
-        constexpr double kP = 1;
-        constexpr double kI = 0;
-        constexpr double kD = 0;
-    }
-}
-
 namespace JoystickButtons{
     constexpr int PivotUpCmd = 1; // il faut changer
     constexpr int PivotDownCmd = 2; // il faut changer
