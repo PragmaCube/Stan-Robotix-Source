@@ -100,10 +100,10 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
     
   wpi::array<frc::SwerveModulePosition, 4> m_swerveModulePositions = {
-      frc::SwerveModulePosition({units::meter_t(m_frontLeftEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter)  ,  units::radian_t(m_backRight550AbsoluteEncoder.GetPosition() - 0.5 * 360)}), 
-      frc::SwerveModulePosition({units::meter_t(m_frontRightEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter) , units::radian_t(m_frontRight550AbsoluteEncoder.GetPosition() - 0.5 * 360)}), 
-      frc::SwerveModulePosition({units::meter_t(m_backLeftEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter)   ,   units::radian_t(m_backLeft550AbsoluteEncoder.GetPosition() - 0.5 * 360)}), 
-      frc::SwerveModulePosition({units::meter_t(m_backRightEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter)  ,  units::radian_t(m_backRight550AbsoluteEncoder.GetPosition() - 0.5 * 360)})};
+      frc::SwerveModulePosition({units::meter_t(m_frontLeftEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter)  ,  (units::radian_t(m_backRight550AbsoluteEncoder.GetPosition() - 0.5) * std::numbers::pi)}), 
+      frc::SwerveModulePosition({units::meter_t(m_frontRightEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter) , (units::radian_t(m_frontRight550AbsoluteEncoder.GetPosition() - 0.5) * std::numbers::pi)}), 
+      frc::SwerveModulePosition({units::meter_t(m_backLeftEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter)   ,   (units::radian_t(m_backLeft550AbsoluteEncoder.GetPosition() - 0.5) * std::numbers::pi)}), 
+      frc::SwerveModulePosition({units::meter_t(m_backRightEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter)  ,  (units::radian_t(m_backRight550AbsoluteEncoder.GetPosition() - 0.5) * std::numbers::pi)})};
 
   frc::SwerveDriveOdometry<4> m_odometry{m_kinematics, mIMU.getRotation2d(), m_swerveModulePositions};
 
