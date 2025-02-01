@@ -14,6 +14,8 @@ class SubDriveTrain : public frc2::SubsystemBase {
  public:
   SubDriveTrain();
 
+  void setEnableDriveTrain(bool iEnable);
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -31,4 +33,6 @@ class SubDriveTrain : public frc2::SubsystemBase {
   ctre::phoenix::motorcontrol::can::WPI_VictorSPX * mMotor1 = nullptr;
   
   frc::MecanumDrive * mDrive = nullptr;
+
+  bool mEnable = true;
 };
