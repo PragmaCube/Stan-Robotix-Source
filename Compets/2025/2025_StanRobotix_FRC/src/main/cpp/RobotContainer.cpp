@@ -25,6 +25,10 @@ RobotContainer::RobotContainer() {
          {mSub}));
 
 
+  frc::SmartDashboard::PutNumber("AngleP", 0.03);
+  frc::SmartDashboard::PutNumber("AngleI", 0.1);
+  frc::SmartDashboard::PutNumber("AngleD", 0.005);
+
   ConfigureBindings();
 }
 
@@ -35,6 +39,10 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+
+frc2::Trigger([this] {
+    return joystick.GetRawButtonPressed(1);
+  }).OnTrue(GoToTag(mSub, mIMU).ToPtr());
 
  frc2::Trigger([this] {
     return joystick.GetRawButtonPressed(3);
@@ -48,4 +56,8 @@ void RobotContainer::ConfigureBindings() {
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);
+}
+
+void RobotContainer::setEnableDriveTrain(bool iBool){
+  mSub->setEnableDriveTrain(iBool);
 }

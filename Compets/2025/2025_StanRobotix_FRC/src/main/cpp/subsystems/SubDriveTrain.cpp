@@ -28,4 +28,9 @@ void SubDriveTrain::setEnableDriveTrain(bool iEnable)
 }
 
 void SubDriveTrain::drive(const double iX, const double iY, const double iZ, const frc::Rotation2d iRotate) {
-     mDrive->DriveCartesian(-iY * 0.7, iX * 0.7, iZ * 0.7, iRotate);
+     mDrive->DriveCartesian(-iY * 0.7, iX * 0.7, iZ * 0.7, iRotate);}
+
+bool SubDriveTrain::getEnableDriveTrain()
+{
+    return mEnable;
+}

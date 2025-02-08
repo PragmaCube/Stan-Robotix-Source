@@ -12,6 +12,7 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
 #include <frc/Joystick.h>
+#include "commands/GoToTag.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -27,6 +28,7 @@ class RobotContainer {
   frc2::CommandPtr GetAutonomousCommand();
 
   void drive();
+  void setEnableDriveTrain(bool iBool);
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed

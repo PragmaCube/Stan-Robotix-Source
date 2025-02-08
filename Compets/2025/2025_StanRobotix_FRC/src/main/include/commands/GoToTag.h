@@ -9,6 +9,7 @@
 #include <frc/shuffleboard/ShuffleboardTab.h>
 #include <networktables/GenericEntry.h>
 #include <frc/shuffleboard/BuiltInWidgets.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 #include "LimelightHelpers.h"
 #include "subsystems/SubDriveTrain.h"
@@ -18,13 +19,18 @@
 class GoToTag
     : public frc2::CommandHelper<frc2::Command, GoToTag> {
  public:
-  GoToTag(SubDriveTrain *iDriveTrain, SubIMU *iSubIMU);
+  GoToTag(SubDriveTrain *iDriveTrain, SubIMU *iIMU);
 
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;
   void End(bool interrupted) override;
  private:
+  frc::ShuffleboardTab& GoToTab = frc::Shuffleboard::GetTab("GoToTag");
+  double AngleP = 0.02;
+  double AngleI = 0.1;
+  double AngleD = 0.005;
+
   nt::GenericEntry* mCoefPAngle = nullptr;
   nt::GenericEntry* mCoefIAngle = nullptr;
   nt::GenericEntry* mCoefDAngle = nullptr;
@@ -45,6 +51,7 @@ class GoToTag
   frc::PIDController mPIDControllerY {1, 0, 0};
 
   double OutputAngle;
+
   double OutputX;
   double OutputY;
   float SetPoint;

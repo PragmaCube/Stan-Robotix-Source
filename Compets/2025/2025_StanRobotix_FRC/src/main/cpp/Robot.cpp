@@ -56,7 +56,13 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+  if (mJoystick.GetRawButton(2))
+  {
+    m_container.setEnableDriveTrain(true);
+  }
+
+}
 
 /**
  * This function is called periodically during test mode.

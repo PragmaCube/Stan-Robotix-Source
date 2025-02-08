@@ -15,6 +15,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
   SubDriveTrain();
 
   void setEnableDriveTrain(bool iEnable);
+  bool getEnableDriveTrain();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
