@@ -50,13 +50,29 @@ namespace PivotConstants {
     constexpr double kI = 0;
     constexpr double kD = 0;
 
-    constexpr int moteurPivot = 1;
+    constexpr int moteurPivot = 9;
     constexpr double pivotSetPoint1 = 50;
     constexpr double pivotSetPoint2 = 25;
 }
 namespace JoystickButtons{
-    constexpr int PivotUpCmd = 1; // il faut changer
-    constexpr int PivotDownCmd = 2; // il faut changer
-    constexpr int SubPivotStart = 3; // il faut changer
+    constexpr int PivotUpCmd = 5; // il faut changer
+    constexpr int PivotDownCmd = 3; // il faut changer
+    constexpr int SubPivotStart = 6; // il faut changer
     constexpr int SubPivotStop = 4; // il faut changer
+
+    constexpr int kIntakeInCmd = 7;
+    constexpr int kIntakeOutCmd = 8;
+    constexpr int kIntakeStartSub = 9;
+    constexpr int kIntakeStopSub = 10;
+    constexpr int kIntakeChangeRSub = 11;
+}
+
+namespace IntakeConstants {
+    constexpr int kIntakeMotorPort = 10;
+    constexpr double kIntakeSpeed = 0.6; //temporaire
+    constexpr double kNegativeIntakeSpeed = -0.6; //temporaire
+}
+
+namespace CommandConstants {
+    constexpr int kIterationsGoal = 49;
 }

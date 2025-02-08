@@ -23,6 +23,24 @@ void SubPivot::stopPivot(){
     mMoteurPivot->StopMotor();
 }
 
+void SubPivot::manualPivot(){
+    mMoteurPivot->Set(0.02);
+}
+
+void SubPivot::manualPivotReverse(){
+    mMoteurPivot->Set(-0.02);
+}
+
+// frc2::CommandPtr SubPivot::manualPivotCommand(){
+//     return this->RunOnce(
+//         [this] {mMoteurPivot->Set(0.01); });
+// }
+
+// frc2::CommandPtr SubPivot::manualPivotReverseCommand(){
+//     return this->RunOnce(
+//         [this] {mMoteurPivot->Set(-0.01); });
+// }
+
 bool SubPivot::isEnable(){
     return mEnable;
 }

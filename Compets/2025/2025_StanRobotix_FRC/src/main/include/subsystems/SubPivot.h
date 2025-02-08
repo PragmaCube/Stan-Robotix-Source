@@ -20,9 +20,18 @@ class SubPivot : public frc2::SubsystemBase {
 
   void stopPivot();
 
+  void manualPivot();
+
+  void manualPivotReverse();
+
+  // frc2::CommandPtr manualPivotCommand();
+
+  // frc2::CommandPtr manualPivotReverseCommand();
+
   bool atSetPoint();
 
   bool isEnable();
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */

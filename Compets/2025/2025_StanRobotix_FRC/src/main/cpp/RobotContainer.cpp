@@ -14,6 +14,7 @@ RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   mDriveTrain = new SubDriveTrain;
   mSubPivot = new SubPivot;
+  mSubIntake = new SubIntake;
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
     [this] {
     // float X = 0;
@@ -57,12 +58,40 @@ void RobotContainer::ConfigureBindings() {
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
 
   frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(JoystickButtons::kIntakeInCmd);
+  }).OnTrue(IntakeIn(mSubIntake).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(JoystickButtons::kIntakeOutCmd);
+  }).OnTrue(IntakeOut(mSubIntake).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(JoystickButtons::kIntakeStartSub);
+  }).OnTrue(frc2::RunCommand([this] {mSubIntake->Start();},{mSubIntake}).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(JoystickButtons::kIntakeStopSub);
+  }).OnTrue(frc2::RunCommand([this] {mSubIntake->Stop();},{mSubIntake}).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(JoystickButtons::kIntakeChangeRSub);
+  }).OnTrue(frc2::RunCommand([this] {mSubIntake->ChangeRotation();},{mSubIntake}).ToPtr());
+  
+  frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickButtons::PivotUpCmd);
-  }).OnTrue(PivotUp(mSubPivot).ToPtr());
+  }).OnTrue(frc2::RunCommand([this] {mSubPivot->manualPivotReverse();},{mSubPivot}).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickButtons::PivotDownCmd);
-  }).OnTrue(PivotDown(mSubPivot).ToPtr());
+  }).OnTrue(frc2::RunCommand([this] {mSubPivot->manualPivot();},{mSubPivot}).ToPtr());  
+
+  // frc2::Trigger([this] {
+  //   return mJoystick.GetRawButtonPressed(JoystickButtons::PivotUpCmd);
+  // }).OnTrue(PivotUp(mSubPivot).ToPtr());
+
+  // frc2::Trigger([this] {
+  //   return mJoystick.GetRawButtonPressed(JoystickButtons::PivotDownCmd);
+  // }).OnTrue(PivotDown(mSubPivot).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickButtons::SubPivotStart);
@@ -72,9 +101,11 @@ void RobotContainer::ConfigureBindings() {
     return mJoystick.GetRawButtonPressed(JoystickButtons::SubPivotStop);
   }).OnTrue(frc2::RunCommand([this] {mSubPivot->stopPivot();},{mSubPivot}).ToPtr());
 
+
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
