@@ -13,8 +13,8 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   mDriveTrain = new SubDriveTrain;
-  mSubPivot = new SubPivot;
-  mSubIntake = new SubIntake;
+  mSubAlgaePivot = new SubAlgaePivot;
+  mSubAlgaeIntake = new SubAlgaeIntake;
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
     [this] {
     // float X = 0;
@@ -58,48 +58,48 @@ void RobotContainer::ConfigureBindings() {
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickButtons::kIntakeInCmd);
-  }).OnTrue(IntakeIn(mSubIntake).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaeIntakeInCmd);
+  }).OnTrue(AlgaeIntakeIn(mSubAlgaeIntake).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickButtons::kIntakeOutCmd);
-  }).OnTrue(IntakeOut(mSubIntake).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaeIntakeOutCmd);
+  }).OnTrue(AlgaeIntakeOut(mSubAlgaeIntake).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickButtons::kIntakeStartSub);
-  }).OnTrue(frc2::RunCommand([this] {mSubIntake->Start();},{mSubIntake}).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaeIntakeManualIn);
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaeIntake->StartIn();},{mSubAlgaeIntake}).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickButtons::kIntakeStopSub);
-  }).OnTrue(frc2::RunCommand([this] {mSubIntake->Stop();},{mSubIntake}).ToPtr());
-
-  frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickButtons::kIntakeChangeRSub);
-  }).OnTrue(frc2::RunCommand([this] {mSubIntake->ChangeRotation();},{mSubIntake}).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaeIntakeManualOut);
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaeIntake->StartOut();},{mSubAlgaeIntake}).ToPtr());
   
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickButtons::PivotUpCmd);
-  }).OnTrue(frc2::RunCommand([this] {mSubPivot->manualPivotReverse();},{mSubPivot}).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaeIntakeStopSub);
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaeIntake->Stop();},{mSubAlgaeIntake}).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickButtons::PivotDownCmd);
-  }).OnTrue(frc2::RunCommand([this] {mSubPivot->manualPivot();},{mSubPivot}).ToPtr());  
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotUpCmd);
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->manualAlgaePivotReverse();},{mSubAlgaePivot}).ToPtr());
+
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotDownCmd);
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->manualAlgaePivot();},{mSubAlgaePivot}).ToPtr());  
 
   // frc2::Trigger([this] {
-  //   return mJoystick.GetRawButtonPressed(JoystickButtons::PivotUpCmd);
-  // }).OnTrue(PivotUp(mSubPivot).ToPtr());
+  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotUpCmd);
+  // }).OnTrue(PivotUp(mSubAlgaePivot).ToPtr());
 
   // frc2::Trigger([this] {
-  //   return mJoystick.GetRawButtonPressed(JoystickButtons::PivotDownCmd);
-  // }).OnTrue(PivotDown(mSubPivot).ToPtr());
+  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotDownCmd);
+  // }).OnTrue(PivotDown(mSubAlgaePivot).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickButtons::SubPivotStart);
-  }).OnTrue(frc2::RunCommand([this] {mSubPivot->runPivot();},{mSubPivot}).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::SubAlgaePivotStart);
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->runAlgaePivot();},{mSubAlgaePivot}).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickButtons::SubPivotStop);
-  }).OnTrue(frc2::RunCommand([this] {mSubPivot->stopPivot();},{mSubPivot}).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::SubAlgaePivotStop);
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->stopAlgaePivot();},{mSubAlgaePivot}).ToPtr());
 
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is

@@ -11,13 +11,13 @@
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
-#include "subsystems/SubPivot.h"
-#include "subsystems/SubIntake.h"
+#include "subsystems/SubAlgaePivot.h"
+#include "subsystems/SubAlgaeIntake.h"
 
-#include "commands/PivotDown.h"
-#include "commands/PivotUp.h"
-#include "commands/IntakeIn.h"
-#include "commands/IntakeOut.h"
+#include "commands/AlgaePivotDown.h"
+#include "commands/AlgaePivotUp.h"
+#include "commands/AlgaeIntakeIn.h"
+#include "commands/AlgaeIntakeOut.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -41,8 +41,8 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   SubDriveTrain * mDriveTrain = nullptr;
   SubIMU mIMU;
-  SubPivot * mSubPivot = nullptr;
-  SubIntake * mSubIntake = nullptr;
+  SubAlgaePivot * mSubAlgaePivot = nullptr;
+  SubAlgaeIntake * mSubAlgaeIntake = nullptr;
   frc::Joystick mJoystick{0};
 
   void ConfigureBindings();

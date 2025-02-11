@@ -31,7 +31,7 @@ namespace DriveTrainConstants {
     constexpr int kBackLeftMotorID = 2;
     constexpr int kBackLefttMotor550ID = 7; 
 
-    constexpr float speedCap = 0.2; 
+    constexpr float kSpeedCap = 0.2; 
 
     namespace PIDs{
         constexpr double kP = 4.0;
@@ -45,32 +45,32 @@ namespace ChainConstants {
     constexpr int kMotorID = 2;
 }
 
-namespace PivotConstants {
+namespace AlgaePivotConstants {
     constexpr double kP = 1;
     constexpr double kI = 0;
     constexpr double kD = 0;
 
-    constexpr int moteurPivot = 9;
-    constexpr double pivotSetPoint1 = 50;
-    constexpr double pivotSetPoint2 = 25;
+    constexpr int kAlgaePivotMotorID = 9;
+    constexpr double kAlgaePivotSetPoint1 = 50;
+    constexpr double kAlgaePivotSetPoint2 = 25;
 }
-namespace JoystickButtons{
-    constexpr int PivotUpCmd = 5; // il faut changer
-    constexpr int PivotDownCmd = 3; // il faut changer
-    constexpr int SubPivotStart = 6; // il faut changer
-    constexpr int SubPivotStop = 4; // il faut changer
+namespace JoystickBindingsConstants{
+    constexpr int kAlgaePivotUpCmd = 5; // il faut changer
+    constexpr int kAlgaePivotDownCmd = 3; // il faut changer
+    constexpr int SubAlgaePivotStart = 6; // il faut changer
+    constexpr int SubAlgaePivotStop = 4; // il faut changer
 
-    constexpr int kIntakeInCmd = 7;
-    constexpr int kIntakeOutCmd = 8;
-    constexpr int kIntakeStartSub = 9;
-    constexpr int kIntakeStopSub = 10;
-    constexpr int kIntakeChangeRSub = 11;
+    constexpr int kAlgaeIntakeInCmd = 7;
+    constexpr int kAlgaeIntakeOutCmd = 8;
+    constexpr int kAlgaeIntakeManualIn = 9;
+    constexpr int kAlgaeIntakeStopSub = 10;
+    constexpr int kAlgaeIntakeManualOut = 11;
 }
 
-namespace IntakeConstants {
-    constexpr int kIntakeMotorPort = 10;
-    constexpr double kIntakeSpeed = 0.6; //temporaire
-    constexpr double kNegativeIntakeSpeed = -0.6; //temporaire
+namespace AlgaeIntakeConstants {
+    constexpr int kAlgaeIntakeMotorPort = 10;
+    constexpr double kAlgaeIntakeSpeed = 0.6; //temporaire
+    constexpr double kNegativeAlgaeIntakeSpeed = -0.6; //temporaire
 }
 
 namespace CommandConstants {
