@@ -57,7 +57,6 @@ namespace AlgaePivotConstants {
 namespace JoystickBindingsConstants{
     constexpr int kAlgaePivotUpCmd = 5; // il faut changer
     constexpr int kAlgaePivotDownCmd = 3; // il faut changer
-    constexpr int SubAlgaePivotStart = 6; // il faut changer
     constexpr int SubAlgaePivotStop = 4; // il faut changer
 
     constexpr int kAlgaeIntakeInCmd = 7;

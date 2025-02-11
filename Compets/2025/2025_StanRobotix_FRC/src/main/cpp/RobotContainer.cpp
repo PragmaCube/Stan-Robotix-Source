@@ -67,15 +67,15 @@ void RobotContainer::ConfigureBindings() {
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaeIntakeManualIn);
-  }).OnTrue(frc2::RunCommand([this] {mSubAlgaeIntake->StartIn();},{mSubAlgaeIntake}).ToPtr());
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaeIntake->AlgaeIntake();},{mSubAlgaeIntake}).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaeIntakeManualOut);
-  }).OnTrue(frc2::RunCommand([this] {mSubAlgaeIntake->StartOut();},{mSubAlgaeIntake}).ToPtr());
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaeIntake->AlgaeOutake();},{mSubAlgaeIntake}).ToPtr());
   
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaeIntakeStopSub);
-  }).OnTrue(frc2::RunCommand([this] {mSubAlgaeIntake->Stop();},{mSubAlgaeIntake}).ToPtr());
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaeIntake->AlgaeIntakeStop();},{mSubAlgaeIntake}).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotUpCmd);
@@ -92,10 +92,6 @@ void RobotContainer::ConfigureBindings() {
   // frc2::Trigger([this] {
   //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotDownCmd);
   // }).OnTrue(PivotDown(mSubAlgaePivot).ToPtr());
-
-  frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::SubAlgaePivotStart);
-  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->runAlgaePivot();},{mSubAlgaePivot}).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::SubAlgaePivotStop);
