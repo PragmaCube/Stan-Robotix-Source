@@ -44,3 +44,8 @@ namespace ChainConstants {
 
     constexpr int kMotorID = 2;
 }
+
+namespace LimitSwitchs {
+    constexpr int Port1 = 0;
+    constexpr int Port2 = 1;
+}

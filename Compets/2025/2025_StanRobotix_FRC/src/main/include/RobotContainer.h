@@ -7,10 +7,11 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/Joystick.h>
-
+#include <iostream>
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubLimitSwitch.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -34,7 +35,9 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   SubDriveTrain * mDriveTrain = nullptr;
   SubIMU mIMU;
+  SubLimitSwitch * mLimit = nullptr;
   frc::Joystick mJoystick{0};
 
   void ConfigureBindings();
+  void LimitSwitch();
 };

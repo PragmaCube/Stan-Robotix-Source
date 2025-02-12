@@ -13,6 +13,7 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   mDriveTrain = new SubDriveTrain;
+  mLimit = new SubLimitSwitch(LimitSwitchs::Port1,LimitSwitchs::Port2);
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
     [this] {
     // float X = 0;
@@ -58,6 +59,17 @@ void RobotContainer::ConfigureBindings() {
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+}
+
+void RobotContainer::LimitSwitch() {
+  if (mLimit->getState(LimitSwitchs::Port1))
+  {
+      std::cout << "Limit 1 appuyée" << std::endl;
+  }
+  if (mLimit->getState(LimitSwitchs::Port2))
+  {
+      std::cout << "Limit 2 appuyée" << std::endl;
+  }
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {

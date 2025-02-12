@@ -4,13 +4,21 @@
 
 #include "subsystems/SubLimitSwitch.h"
 
-SubLimitSwitch::SubLimitSwitch(int iPort){
-    *input = frc::DigitalInput(iPort);
-};
+SubLimitSwitch::SubLimitSwitch(int iPort, int iPort2){
+    input = new frc::DigitalInput{iPort};
+    input2 = new frc::DigitalInput{iPort2};
+}
 
-bool SubLimitSwitch::getState(){
-    return input->Get();
-};
+bool SubLimitSwitch::getState(int iPort){
+    if (input->GetChannel() == iPort)
+        {
+            return input->Get();
+        }
+    else if (input2->GetChannel() == iPort)
+    {
+        return input2->Get();
+    }
+}
 
 // This method will be called once per scheduler run
 void SubLimitSwitch::Periodic() {}

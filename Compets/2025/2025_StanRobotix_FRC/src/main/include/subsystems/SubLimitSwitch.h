@@ -10,9 +10,8 @@
 
 class SubLimitSwitch : public frc2::SubsystemBase {
  public:
-  SubLimitSwitch(int);
-  bool getState();
-
+  SubLimitSwitch(int,int);
+  bool getState(int);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -22,4 +21,5 @@ class SubLimitSwitch : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   frc::DigitalInput * input = nullptr;
+  frc::DigitalInput * input2 = nullptr;
 };
