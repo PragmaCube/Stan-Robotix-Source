@@ -29,6 +29,8 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   bool isEnable();
 
+  units::volt_t feedforward();
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -39,6 +41,7 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
   frc::PIDController mPIDController{AlgaePivotConstants::kP, AlgaePivotConstants::kI, AlgaePivotConstants::kD};
+  frc::ArmFeedforward * feedForward = nullptr;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

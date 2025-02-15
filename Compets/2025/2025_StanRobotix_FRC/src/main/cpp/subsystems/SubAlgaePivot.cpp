@@ -6,6 +6,7 @@
 
 SubAlgaePivot::SubAlgaePivot(){
     mAlgaePivotMotor = new rev::spark::SparkMax (AlgaePivotConstants::kAlgaePivotMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+    feedForward = new frc::ArmFeedforward ();
 }
 
 // This method will be called once per scheduler run
@@ -16,7 +17,7 @@ void SubAlgaePivot::setSetPoint(double iPoint){
 }
 
 void SubAlgaePivot::runAlgaePivotPID(){
-    mAlgaePivotMotor->SetVoltage(mPIDController.Calculate(mAlgaePivotMotor->GetEncoder().GetPosition(), mPIDController.GetSetpoint()) );
+    mAlgaePivotMotor->SetVoltage(mPIDController.Calculate(mAlgaePivotMotor->GetEncoder().GetPosition(), mPIDController.GetSetpoint()) + );
 }
 
 void SubAlgaePivot::stopAlgaePivot(){
