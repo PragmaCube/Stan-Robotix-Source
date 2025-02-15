@@ -22,19 +22,20 @@ inline constexpr int kDriverControllerPort = 0;
 
 
 namespace DriveTrainConstants {
-    constexpr int kBackRightMotorID = 8; 
+    constexpr int kBackRightMotorID = 2; 
     constexpr int kBackRightMotor550ID = 1; 
     constexpr int kFrontRighttMotorID = 4; 
     constexpr int kFrontRightMotor550ID = 3; 
     constexpr int kFrontLeftMotorID = 6;   
     constexpr int kFrontLeftMotor550ID = 5;
-    constexpr int kBackLeftMotorID = 2;
+    constexpr int kBackLeftMotorID = 8;
     constexpr int kBackLefttMotor550ID = 7; 
 
     constexpr float speedCap = 0.2; 
 
     namespace PIDs{
-        constexpr double kP = 4.0;
+        // constexpr double kP = 4.0; Garder la valeure
+        constexpr double kP = 3.0;
         constexpr double kI = 0.1;
         constexpr double kD = 0.05;
     }
