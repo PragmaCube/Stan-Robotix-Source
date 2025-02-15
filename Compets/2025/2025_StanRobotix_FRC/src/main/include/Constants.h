@@ -50,7 +50,7 @@ namespace AlgaePivotConstants {
     constexpr double kI = 0;
     constexpr double kD = 0;
 
-    constexpr int kAlgaePivotMotorID = 9;
+    constexpr int kAlgaePivotMotorID = 11;
     constexpr double kAlgaePivotSetPoint1 = 50;
     constexpr double kAlgaePivotSetPoint2 = 25;
 }

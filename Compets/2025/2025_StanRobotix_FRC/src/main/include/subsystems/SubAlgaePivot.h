@@ -8,6 +8,7 @@
 #include <rev/SparkMax.h>
 #include <rev/RelativeEncoder.h>
 #include <frc/controller/PIDController.h>
+#include <frc/controller/ArmFeedforward.h>
 #include "Constants.h"
 
 class SubAlgaePivot : public frc2::SubsystemBase {

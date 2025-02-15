@@ -16,7 +16,7 @@ void SubAlgaePivot::setSetPoint(double iPoint){
 }
 
 void SubAlgaePivot::runAlgaePivotPID(){
-    mAlgaePivotMotor->Set(mPIDController.Calculate(mAlgaePivotMotor->GetEncoder().GetPosition()));
+    mAlgaePivotMotor->SetVoltage(mPIDController.Calculate(mAlgaePivotMotor->GetEncoder().GetPosition(), mPIDController.GetSetpoint()) );
 }
 
 void SubAlgaePivot::stopAlgaePivot(){
