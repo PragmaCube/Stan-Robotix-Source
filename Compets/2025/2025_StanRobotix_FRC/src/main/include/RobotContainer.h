@@ -25,7 +25,7 @@ class RobotContainer {
   RobotContainer();
 
   frc2::CommandPtr GetAutonomousCommand();
-
+  void LimitSwitch();
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
@@ -39,5 +39,5 @@ class RobotContainer {
   frc::Joystick mJoystick{0};
 
   void ConfigureBindings();
-  void LimitSwitch();
+  
 };

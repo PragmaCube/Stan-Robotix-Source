@@ -46,6 +46,17 @@ RobotContainer::RobotContainer() {
   ConfigureBindings();
 
   mIMU.resetAngle();
+
+  mLimit->SetDefaultCommand(frc2::RunCommand(
+    [this] {
+  if (mLimit->getState(LimitSwitchs::Port1))
+  {
+      std::cout << "Limit 1 appuyée" << std::endl;
+  }
+  if (mLimit->getState(LimitSwitchs::Port2))
+  {
+      std::cout << "Limit 2 appuyée" << std::endl;
+  }},{mLimit}));
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -62,14 +73,7 @@ void RobotContainer::ConfigureBindings() {
 }
 
 void RobotContainer::LimitSwitch() {
-  if (mLimit->getState(LimitSwitchs::Port1))
-  {
-      std::cout << "Limit 1 appuyée" << std::endl;
-  }
-  if (mLimit->getState(LimitSwitchs::Port2))
-  {
-      std::cout << "Limit 2 appuyée" << std::endl;
-  }
+  
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
