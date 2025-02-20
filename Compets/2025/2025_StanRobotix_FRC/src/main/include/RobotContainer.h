@@ -7,6 +7,7 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/Joystick.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
@@ -30,7 +31,10 @@ class RobotContainer {
  public:
   RobotContainer();
 
+  void periodic();
+  void Initialize();
   frc2::CommandPtr GetAutonomousCommand();
+
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed

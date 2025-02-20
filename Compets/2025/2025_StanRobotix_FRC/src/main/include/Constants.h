@@ -54,11 +54,11 @@ namespace AlgaePivotConstants {
     constexpr double kAlgaePivotSetPoint1 = 50;
     constexpr double kAlgaePivotSetPoint2 = 25;
 
-    namespace FeedForward {
-        constexpr units::volt_t kS = units::volt_t(10);
-        constexpr units::volt_t kG = units::volt_t(10);
+    // namespace FeedForward {
+    //     constexpr units::volt_t kS = units::volt_t(10);
+    //     constexpr units::volt_t kG = units::volt_t(10);
         
-    }
+    // }
 }
 namespace JoystickBindingsConstants{
     constexpr int kAlgaePivotUpCmd = 5; // il faut changer
@@ -76,6 +76,9 @@ namespace AlgaeIntakeConstants {
     constexpr int kAlgaeIntakeMotorPort = 10;
     constexpr double kAlgaeIntakeSpeed = 0.6; //temporaire
     constexpr double kNegativeAlgaeIntakeSpeed = -0.6; //temporaire
+
+    constexpr double kG = 0.19; 
+    constexpr double kS = kG + 0.05;
 }
 
 namespace CommandConstants {

@@ -4,11 +4,16 @@
 
 #pragma once
 
+#include <iostream>
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
 #include <rev/RelativeEncoder.h>
 #include <frc/controller/PIDController.h>
 #include <frc/controller/ArmFeedforward.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <rev/SparkRelativeEncoder.h>
+#include <frc/controller/ArmFeedforward.h>
+
 #include "Constants.h"
 
 class SubAlgaePivot : public frc2::SubsystemBase {
@@ -29,8 +34,11 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   bool isEnable();
 
-  units::volt_t feedforward();
+  int sgn(int x);
 
+  units::radian_t getAlgaePivotEncoderPosition();
+
+  units::angular_velocity::radians_per_second_t getAlgaePivotEncoderVelocity();
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -42,6 +50,8 @@ class SubAlgaePivot : public frc2::SubsystemBase {
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
   frc::PIDController mPIDController{AlgaePivotConstants::kP, AlgaePivotConstants::kI, AlgaePivotConstants::kD};
   frc::ArmFeedforward * feedForward = nullptr;
+  double velocityUp = 0;
+  double velocityDown = 0;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

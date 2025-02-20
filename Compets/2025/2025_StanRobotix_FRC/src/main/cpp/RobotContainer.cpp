@@ -47,6 +47,13 @@ RobotContainer::RobotContainer() {
   ConfigureBindings();
 
   mIMU.resetAngle();
+
+  frc::SmartDashboard::PutNumber("armVoltage", 0.2274);
+}
+
+
+void RobotContainer::periodic(){
+  // std::cout << double(mSubAlgaePivot->getAlgaePivotEncoderPosition()) << std::endl;
 }
 
 void RobotContainer::ConfigureBindings() {
