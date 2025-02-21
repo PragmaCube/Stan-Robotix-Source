@@ -13,6 +13,7 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   mDriveTrain = new SubDriveTrain;
+  mIMU = new SubIMU;
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
     [this] {
     // float X = 0;
@@ -44,7 +45,7 @@ RobotContainer::RobotContainer() {
   // Configure the button bindings
   ConfigureBindings();
 
-  mIMU.resetAngle();
+  mIMU->resetAngle();
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -54,6 +55,11 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+  
+  frc2::Trigger([this] {
+    return mJoystick.GetRawButtonPressed(6);
+  }).OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();},{mIMU}).ToPtr());  
+
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
