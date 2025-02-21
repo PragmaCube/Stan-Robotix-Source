@@ -12,12 +12,12 @@ AlgaePivotDown::AlgaePivotDown(SubAlgaePivot * iAlgaePivot) {
 
 // Called when the command is initially scheduled.
 void AlgaePivotDown::Initialize() {
-  mAlgaePivot->setSetPoint(AlgaePivotConstants::kAlgaePivotSetPoint2);
+  mAlgaePivot->SetSetPoint(AlgaePivotConstants::kAlgaePivotSetPoint2);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaePivotDown::Execute() {
-  mAlgaePivot->runAlgaePivotPID();
+  mAlgaePivot->manualAlgaePivot();
 }
 
 // Called once the command ends or is interrupted.

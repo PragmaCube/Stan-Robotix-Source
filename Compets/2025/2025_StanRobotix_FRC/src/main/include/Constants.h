@@ -51,8 +51,8 @@ namespace AlgaePivotConstants {
     constexpr double kD = 0;
 
     constexpr int kAlgaePivotMotorID = 9;
-    constexpr double kAlgaePivotSetPoint1 = 50;
-    constexpr double kAlgaePivotSetPoint2 = 25;
+    constexpr double kAlgaePivotSetPoint1 = 0.2;
+    constexpr double kAlgaePivotSetPoint2 = -0.2;
 
     // namespace FeedForward {
     //     constexpr units::volt_t kS = units::volt_t(10);
@@ -61,8 +61,11 @@ namespace AlgaePivotConstants {
     // }
 }
 namespace JoystickBindingsConstants{
-    constexpr int kAlgaePivotUpCmd = 5; // il faut changer
-    constexpr int kAlgaePivotDownCmd = 3; // il faut changer
+    constexpr int kAlgaePivotUpCmd = 2; // il faut changer
+    constexpr int kAlgaePivotDownCmd = 1; // il faut changer
+
+    constexpr int kAlgaePivotUpSub = 5; // il faut changer
+    constexpr int kAlgaePivotDownSub = 3; // il faut changer
     constexpr int SubAlgaePivotStop = 4; // il faut changer
 
     constexpr int kAlgaeIntakeInCmd = 7;

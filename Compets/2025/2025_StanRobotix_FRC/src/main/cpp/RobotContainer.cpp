@@ -53,7 +53,7 @@ RobotContainer::RobotContainer() {
   frc::SmartDashboard::PutNumber("kP", 0);
   frc::SmartDashboard::PutNumber("kI", 0);
   frc::SmartDashboard::PutNumber("kD", 0);
-  frc::SmartDashboard::PutNumber("kG", 0);
+  frc::SmartDashboard::PutNumber("kG", 0.19);
 }
 
 
@@ -70,12 +70,12 @@ void RobotContainer::ConfigureBindings() {
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaeIntakeInCmd);
-  }).OnTrue(AlgaeIntakeIn(mSubAlgaeIntake).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotDownCmd);
+  }).OnTrue(AlgaePivotDown(mSubAlgaePivot).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaeIntakeOutCmd);
-  }).OnTrue(AlgaeIntakeOut(mSubAlgaeIntake).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotUpCmd);
+  }).OnTrue(AlgaePivotUp(mSubAlgaePivot).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaeIntakeManualIn);
@@ -90,12 +90,12 @@ void RobotContainer::ConfigureBindings() {
   }).OnTrue(frc2::RunCommand([this] {mSubAlgaeIntake->AlgaeIntakeStop();},{mSubAlgaeIntake}).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotUpCmd);
-  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->manualAlgaePivotReverse();},{mSubAlgaePivot}).ToPtr());
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotUpSub);
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->manualAlgaePivot(frc::SmartDashboard::GetNumber("SetPointUp", -0.2274));},{mSubAlgaePivot}).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotDownCmd);
-  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->manualAlgaePivot();},{mSubAlgaePivot}).ToPtr());  
+    return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotDownSub);
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->manualAlgaePivot(frc::SmartDashboard::GetNumber("SetPointDown", 0.2274));},{mSubAlgaePivot}).ToPtr());  
 
   // frc2::Trigger([this] {
   //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotUpCmd);

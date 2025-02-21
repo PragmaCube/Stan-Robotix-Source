@@ -20,38 +20,25 @@ class SubAlgaePivot : public frc2::SubsystemBase {
  public:
   SubAlgaePivot();
 
-  void setSetPoint(double);
-
-  void runAlgaePivotPID();
-
   void stopAlgaePivot();
 
   void manualAlgaePivot();
 
-  void manualAlgaePivotReverse();
-  
-  bool atSetPoint();
-
-  bool isEnable();
-
-  int sgn(int x);
-
-  units::radian_t getAlgaePivotEncoderPosition();
-
-  units::angular_velocity::radians_per_second_t getAlgaePivotEncoderVelocity();
+  void manualAlgaePivot(int);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
+
+  bool atSetPoint();
+
+  void SetSetPoint(double);
 
  private:
   bool mEnable = true;
 
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
   frc::PIDController mPIDController{frc::SmartDashboard::GetNumber("kP", 0), frc::SmartDashboard::GetNumber("kI", 0), frc::SmartDashboard::GetNumber("kD", 0)};
-  frc::ArmFeedforward * feedForward = nullptr;
-  double velocityUp = 0;
-  double velocityDown = 0;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

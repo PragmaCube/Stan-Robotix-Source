@@ -10,14 +10,13 @@ AlgaePivotUp::AlgaePivotUp(SubAlgaePivot * iAlgaePivot) {
   AddRequirements(mAlgaePivot);
 }
 
-// Called when the command is initially scheduled.
 void AlgaePivotUp::Initialize() {
-  mAlgaePivot->setSetPoint(AlgaePivotConstants::kAlgaePivotSetPoint1);
+  mAlgaePivot->SetSetPoint(AlgaePivotConstants::kAlgaePivotSetPoint1);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaePivotUp::Execute() {
-  mAlgaePivot->runAlgaePivotPID();
+  mAlgaePivot->manualAlgaePivot();
 }
 
 // Called once the command ends or is interrupted.
