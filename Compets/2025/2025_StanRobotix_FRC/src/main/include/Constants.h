@@ -46,8 +46,8 @@ namespace ChainConstants {
 }
 
 namespace AlgaePivotConstants {
-    constexpr double kP = 1;
-    constexpr double kI = 0;
+    constexpr double kP = 0.4;
+    constexpr double kI = 0.07;
     constexpr double kD = 0;
 
     constexpr int kAlgaePivotMotorID = 11;
@@ -73,7 +73,6 @@ namespace JoystickBindingsConstants{
 }
 
 namespace AlgaeIntakeConstants {
-    constexpr int kAlgaeIntakeMotorPort = 10;
     constexpr double kAlgaeIntakeSpeed = 0.6; //temporaire
     constexpr double kNegativeAlgaeIntakeSpeed = -0.6; //temporaire
 

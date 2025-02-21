@@ -34,19 +34,21 @@ int SubAlgaePivot::sgn(int x){
 }
 
 void SubAlgaePivot::manualAlgaePivot(){
+    mPIDController.SetSetpoint(frc::SmartDashboard::GetNumber("SetPointUp", -0.2));
     //mAlgaePivotMotor->SetVoltage(units::volt_t(AlgaeIntakeConstants::kG) * cos((mAlgaePivotMotor->GetEncoder().GetPosition() + 4.54766) / 64 * std::numbers::pi) + units::volt_t(AlgaeIntakeConstants::kS) * sgn(units::rad_per_s(mAlgeaPivotMotor->rev::RelativeEncoder::GetVelocity())) + AlgaeIntakeConstants::kV * sgn(units::rad_per_s(mAlgeaPivotMotor->rev::RelativeEncoder::GetVelocity())) + AlgaeIntakeConstants::kA * ((units::rad_per_s(mAlgeaPivotMotor->rev::RelativeEncoder::GetVelocity())-velocity) / 0.02));
-    mAlgaePivotMotor->SetVoltage(-units::volt_t(AlgaeIntakeConstants::kG) * cos((mAlgaePivotMotor->GetEncoder().GetPosition() + 4.54766) / 64 * std::numbers::pi) + units::voltage::volt_t(frc::SmartDashboard::GetNumber("armVoltage", 0.2274)));  
+   mAlgaePivotMotor->SetVoltage(-(units::volt_t(AlgaeIntakeConstants::kG * cos((mAlgaePivotMotor->GetEncoder().GetPosition() + 4.54766) / 64 * std::numbers::pi))) + units::volt_t(mPIDController.Calculate((mAlgaePivotMotor->GetEncoder().GetPosition() + 4.54766) / 64 * std::numbers::pi) * 13));  
     //    mAlgaePivotMotor->SetVoltage((-units::volt_t(frc::SmartDashboard::GetNumber("armVoltage", 0.2274)) * cos((mAlgaePivotMotor->GetEncoder().GetPosition() + 4.54766) / 64 * std::numbers::pi)));  
-    std::cout << mAlgaePivotMotor->GetEncoder().GetVelocity() / 64.0 * 2.0 / 60.0 * std::numbers::pi << std::endl;
+    std::cout << mAlgaePivotMotor->GetEncoder().GetPosition() + 10.44766 << std::endl;
    // velocityUp = units::rad_per_s(mAlgeaPivotMoteur->rev::RelativeEncoder::GetVelocity());
 }
 
 void SubAlgaePivot::manualAlgaePivotReverse(){
+    mPIDController.SetSetpoint(frc::SmartDashboard::GetNumber("SetPointDown", 0.2274));
     //mAlgaePivotMotor->SetVoltage(-(units::voltage::volt_t(frc::SmartDashboard::GetNumber("armVoltage", 0.2274)) * cos((mAlgaePivotMotor->GetEncoder().GetPosition() + 4.54766) / 64 * std::numbers::pi)));
     //std::cout << (mAlgaePivotMotor->GetEncoder().GetPosition() + 4.54766 + 8) / 64 * std::numbers::pi << std::endl;
-   mAlgaePivotMotor->SetVoltage(-(units::volt_t(AlgaeIntakeConstants::kG) * cos((mAlgaePivotMotor->GetEncoder().GetPosition() + 4.54766) / 64 * std::numbers::pi) + units::voltage::volt_t(frc::SmartDashboard::GetNumber("armVoltage", 0.2274))));  
+   mAlgaePivotMotor->SetVoltage(-(units::volt_t(AlgaeIntakeConstants::kG * cos((mAlgaePivotMotor->GetEncoder().GetPosition() + 4.54766) / 64 * std::numbers::pi))) + units::volt_t(mPIDController.Calculate((mAlgaePivotMotor->GetEncoder().GetPosition() + 4.54766) / 64 * std::numbers::pi) * 13));  
    // mAlgaePivotMotor->SetVoltage(-(units::volt_t(frc::SmartDashboard::GetNumber("armVoltage", 0.2274)) * cos((mAlgaePivotMotor->GetEncoder().GetPosition() + 4.54766) / 64 * std::numbers::pi)));  
-    std::cout << mAlgaePivotMotor->GetEncoder().GetVelocity() / 64.0 * 2.0 / 60.0 * std::numbers::pi << std::endl;
+    std::cout << mAlgaePivotMotor->GetEncoder().GetPosition() + 10.44766 << std::endl;
 }
 
 bool SubAlgaePivot::atSetPoint(){

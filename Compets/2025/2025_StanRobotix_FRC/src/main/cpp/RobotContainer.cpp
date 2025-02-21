@@ -48,7 +48,9 @@ RobotContainer::RobotContainer() {
 
   mIMU.resetAngle();
 
-  frc::SmartDashboard::PutNumber("armVoltage", 0.2274);
+  frc::SmartDashboard::PutNumber("SetPointDown", 0.2274);
+  frc::SmartDashboard::PutNumber("SetPointUp", -0.2274);
+
 }
 
 
