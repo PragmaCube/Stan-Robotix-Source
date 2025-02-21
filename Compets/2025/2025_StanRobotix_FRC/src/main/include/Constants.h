@@ -46,11 +46,11 @@ namespace ChainConstants {
 }
 
 namespace AlgaePivotConstants {
-    constexpr double kP = 0.4;
+    constexpr double kP = 0.5;
     constexpr double kI = 0.07;
     constexpr double kD = 0;
 
-    constexpr int kAlgaePivotMotorID = 11;
+    constexpr int kAlgaePivotMotorID = 9;
     constexpr double kAlgaePivotSetPoint1 = 50;
     constexpr double kAlgaePivotSetPoint2 = 25;
 

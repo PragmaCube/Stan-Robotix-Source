@@ -15,7 +15,7 @@ RobotContainer::RobotContainer() {
   mDriveTrain = new SubDriveTrain;
   mSubAlgaePivot = new SubAlgaePivot;
   mSubAlgaeIntake = new SubAlgaeIntake;
-  mDriveTrain->SetDefaultCommand(frc2::RunCommand(
+/*  mDriveTrain->SetDefaultCommand(frc2::RunCommand(
     [this] {
     // float X = 0;
     // float Y = 0;
@@ -42,7 +42,7 @@ RobotContainer::RobotContainer() {
 
     mDriveTrain->Drive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ());
     },
-    {mDriveTrain}));
+    {mDriveTrain})); */
   // Configure the button bindings
   ConfigureBindings();
 
@@ -50,7 +50,10 @@ RobotContainer::RobotContainer() {
 
   frc::SmartDashboard::PutNumber("SetPointDown", 0.2274);
   frc::SmartDashboard::PutNumber("SetPointUp", -0.2274);
-
+  frc::SmartDashboard::PutNumber("kP", 0);
+  frc::SmartDashboard::PutNumber("kI", 0);
+  frc::SmartDashboard::PutNumber("kD", 0);
+  frc::SmartDashboard::PutNumber("kG", 0);
 }
 
 

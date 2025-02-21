@@ -5,7 +5,7 @@
 #include "subsystems/SubAlgaeIntake.h"
 
 SubAlgaeIntake::SubAlgaeIntake() {
-    mAlgaeIntakeMotor = new rev::spark::SparkMax (AlgaeIntakeConstants::kAlgaeIntakeMotorPort, rev::spark::SparkLowLevel::MotorType::kBrushless);
+   // mAlgaeIntakeMotor = new rev::spark::SparkMax (AlgaeIntakeConstants::kAlgaeIntakeMotorPort, rev::spark::SparkLowLevel::MotorType::kBrushless);
 };
 
 // This method will be called once per scheduler run

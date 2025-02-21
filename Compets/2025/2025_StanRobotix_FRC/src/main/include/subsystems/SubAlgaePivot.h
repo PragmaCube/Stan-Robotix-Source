@@ -48,7 +48,7 @@ class SubAlgaePivot : public frc2::SubsystemBase {
   bool mEnable = true;
 
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
-  frc::PIDController mPIDController{AlgaePivotConstants::kP, AlgaePivotConstants::kI, AlgaePivotConstants::kD};
+  frc::PIDController mPIDController{frc::SmartDashboard::GetNumber("kP", 0), frc::SmartDashboard::GetNumber("kI", 0), frc::SmartDashboard::GetNumber("kD", 0)};
   frc::ArmFeedforward * feedForward = nullptr;
   double velocityUp = 0;
   double velocityDown = 0;
