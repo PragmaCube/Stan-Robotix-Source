@@ -40,6 +40,15 @@ namespace DriveTrainConstants {
     }
 }
 
+namespace PathPlannerConstants {
+    constexpr double kPTranslation = 5.0;
+    constexpr double kITranslation = 0.0;
+    constexpr double kDTranslation = 0.0;
+    constexpr double kPRotation = 0.0;
+    constexpr double kIRotation = 0.0;
+    constexpr double kDRotation = 0.0;
+}
+
 namespace ChainConstants {
 
     constexpr int kMotorID = 2;

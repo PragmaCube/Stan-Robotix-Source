@@ -7,6 +7,12 @@
         {
           "type": "path",
           "data": {
+            "pathName": "Tout droit"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
             "pathName": "Example Path"
           }
         }

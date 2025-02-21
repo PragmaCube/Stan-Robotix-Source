@@ -2,8 +2,6 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-
-#include <iostream>
 #include "subsystems/SubDriveTrain.h"
 
 SubDriveTrain::SubDriveTrain()
@@ -18,22 +16,21 @@ SubDriveTrain::SubDriveTrain()
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() 
 {
-    frc::Rotation2d gyroAngle = mIMU.getRotation2d();
+    /*frc::Rotation2d gyroAngle = mIMU.getRotation2d();
 
-    m_robotPose = m_odometry.Update(gyroAngle, m_swerveModulePositions);
-    std::cout << double(m_odometry.GetPose().X()) << std::endl << double(m_odometry.GetPose().Y()) << std::endl;
+    m_robotPose = m_odometry.Update(gyroAngle, m_swerveModulePositions);*/
 }
 
 void SubDriveTrain::Init()
 {
-    pathplanner::AutoBuilder::configure(
+    /*pathplanner::AutoBuilder::configure(
     [this](){ return getPose(); }, // Robot pose supplier
     [this](frc::Pose2d pose){ resetPose(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
     [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
     [this](auto speeds, auto feedforwards){ driveRobotRelative(speeds); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
     std::make_shared<pathplanner::PPHolonomicDriveController>( // PPHolonomicController is the built in path following controller for holonomic drive trains
-        pathplanner::PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
-        pathplanner::PIDConstants(5.0, 0.0, 0.0) // Rotation PID constants
+        pathplanner::PIDConstants(PathPlannerConstants::kPTranslation, PathPlannerConstants::kITranslation, PathPlannerConstants::kDTranslation), // Translation PID constants
+        pathplanner::PIDConstants(PathPlannerConstants::kPRotation, PathPlannerConstants::kIRotation, PathPlannerConstants::kDRotation) // Rotation PID constants
     ),
     config, // The robot configuration
     []() {
@@ -48,7 +45,7 @@ void SubDriveTrain::Init()
         return false;
     },
     this // Reference to this subsystem to set requirements
-  );
+  );*/
 }
 
 // Pour obtenir la position des modules b
@@ -98,8 +95,6 @@ void SubDriveTrain::Drive(float iX, float iY, float i0)
     m_backRight550PID.SetSetpoint(double(brOptimized.angle.Radians() / (2*std::numbers::pi)) + 0.5);
     m_backRight550.Set(m_backRight550PID.Calculate(m_backRight550AbsoluteEncoder.GetPosition()));
     m_backRight.Set(double(brOptimized.speed / m_maxSpeed) * DriveTrainConstants::speedCap);
-
-    std::cout << double(mIMU.getRotation2d().Degrees()) << std::endl;
 }
 
 frc::Pose2d SubDriveTrain::getPose()

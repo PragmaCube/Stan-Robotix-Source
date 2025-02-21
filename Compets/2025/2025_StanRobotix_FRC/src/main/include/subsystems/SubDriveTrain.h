@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include <pathplanner/lib/auto/AutoBuilder.h>
+/*#include <pathplanner/lib/auto/AutoBuilder.h>
 #include <pathplanner/lib/config/RobotConfig.h>
-#include <pathplanner/lib/controllers/PPHolonomicDriveController.h>
+#include <pathplanner/lib/controllers/PPHolonomicDriveController.h>*/
 #include <frc2/command/SubsystemBase.h>
 #include <frc/geometry/Translation2d.h>
 #include <frc/geometry/Pose2d.h>
@@ -49,7 +49,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
   // Load the RobotConfig from the GUI settings. You should probably
   // store this in your Constants file
-  pathplanner::RobotConfig config = pathplanner::RobotConfig::fromGUISettings();
+  // pathplanner::RobotConfig config = pathplanner::RobotConfig::fromGUISettings();
 
   // Configure the AutoBuilder last
 
@@ -119,7 +119,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
       frc::SwerveModulePosition({units::meter_t(m_backLeftEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter)   ,   (units::radian_t(m_backLeft550AbsoluteEncoder.GetPosition() - 0.5) * std::numbers::pi)}), 
       frc::SwerveModulePosition({units::meter_t(m_backRightEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter)  ,  (units::radian_t(m_backRight550AbsoluteEncoder.GetPosition() - 0.5) * std::numbers::pi)})};
 
-  frc::SwerveDriveOdometry<4> m_odometry{m_kinematics, mIMU.getRotation2d(), m_swerveModulePositions};
+  //frc::SwerveDriveOdometry<4> m_odometry{m_kinematics, mIMU.getRotation2d(), m_swerveModulePositions};
 
   SubIMU mIMU;
 };
