@@ -85,5 +85,5 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
   frc::SwerveDriveOdometry<4> * m_odometry;
 
-  SubIMU mIMU;
+  SubIMU * mIMU = nullptr;
 };

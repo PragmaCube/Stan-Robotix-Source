@@ -12,27 +12,31 @@ SubDriveTrain::SubDriveTrain()
     m_frontRightModule = new SwerveModule{DriveTrainConstants::kFrontRightMotorID, DriveTrainConstants::kFrontRightMotor550ID};
     m_backLeftModule = new SwerveModule{DriveTrainConstants::kBackLeftMotorID, DriveTrainConstants::kBackLeftMotor550ID};
     m_backRightModule = new SwerveModule{DriveTrainConstants::kBackRightMotorID, DriveTrainConstants::kBackRightMotor550ID};
-    m_robotPose = new frc::Pose2d(units::meter_t(0),units::meter_t(0),mIMU.getRotation2d());
+    mIMU = new SubIMU;
+    m_robotPose = new frc::Pose2d(units::meter_t(0),units::meter_t(0),mIMU->getRotation2d());
     m_swerveModulePositions = new wpi::array<frc::SwerveModulePosition, 4>{
-    m_frontLeftModule->getModulePosition(),
-    m_frontRightModule->getModulePosition(),
-    m_backLeftModule->getModulePosition(),
-    m_backRightModule->getModulePosition()};
-    m_odometry = new frc::SwerveDriveOdometry<4>{m_kinematics, mIMU.getRotation2d(), *m_swerveModulePositions};
-
+                    m_frontLeftModule->getModulePosition(),
+                    m_frontRightModule->getModulePosition(),
+                    m_backLeftModule->getModulePosition(),
+                    m_backRightModule->getModulePosition()};
+    m_odometry = new frc::SwerveDriveOdometry<4>{m_kinematics, mIMU->getRotation2d(), *m_swerveModulePositions};
 }
 
 // This method will be called once per scheduler run
-void SubDriveTrain::Periodic() 
+void SubDriveTrain::Periodic()
 {
-    frc::Rotation2d gyroAngle = mIMU.getRotation2d();
-    // *m_swerveModulePositions = wpi::array<frc::SwerveModulePosition, 4>{
-    // m_frontLeftModule->getModulePosition(),
-    // m_frontRightModule->getModulePosition(),
-    // m_backLeftModule->getModulePosition(),
-    // m_backRightModule->getModulePosition()};
+    m_frontLeftModule->refreshModule();
+    m_frontRightModule->refreshModule();
+    m_backLeftModule->refreshModule();
+    m_backRightModule->refreshModule();
+    frc::Rotation2d gyroAngle = mIMU->getRotation2d();
+    *m_swerveModulePositions = wpi::array<frc::SwerveModulePosition, 4>{
+                    m_frontLeftModule->getModulePosition(),
+                    m_frontRightModule->getModulePosition(),
+                    m_backLeftModule->getModulePosition(),
+                    m_backRightModule->getModulePosition()};
     *m_robotPose = m_odometry->Update(gyroAngle, *m_swerveModulePositions);
-
+    std::cout << (double)m_robotPose->X() << std::endl << (double)m_robotPose->Y() << std::endl;
 }
 
 void SubDriveTrain::Init()
@@ -64,7 +68,7 @@ void SubDriveTrain::Init()
 
 void SubDriveTrain::Drive(float iX, float iY, float i0)
 {
-    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(m_maxSpeed * iY, m_maxSpeed * iX, m_maxSpeed0 * i0, mIMU.getRotation2d().Degrees());
+    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(m_maxSpeed * iY, m_maxSpeed * iX, m_maxSpeed0 * i0, mIMU->getRotation2d().Degrees());
 
     auto [fl, fr, bl, br] = m_kinematics.ToSwerveModuleStates(speeds);
 
@@ -90,7 +94,7 @@ frc::ChassisSpeeds SubDriveTrain::getRobotRelativeSpeeds()
                                                                                                             m_frontRightModule->getModuleState(),
                                                                                                             m_backLeftModule->getModuleState(),
                                                                                                             m_backRightModule->getModuleState()));
-    frc::ChassisSpeeds robotRelativeSpeeds = frc::ChassisSpeeds::FromRobotRelativeSpeeds(forward,sideways,angular,mIMU.getRotation2d());
+    frc::ChassisSpeeds robotRelativeSpeeds = frc::ChassisSpeeds::FromRobotRelativeSpeeds(forward,sideways,angular,mIMU->getRotation2d());
     return robotRelativeSpeeds;
 }
 

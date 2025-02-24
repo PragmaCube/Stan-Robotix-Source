@@ -14,33 +14,39 @@ SwerveModule::SwerveModule(int iNeo550MotorID, int iNeoMotorID)
     m_Neo550Encoder = new rev::spark::SparkRelativeEncoder{m_MotorNeo550->GetEncoder()};
     m_Neo550AbsoluteEncoder = new rev::spark::SparkAbsoluteEncoder{m_MotorNeo550->GetAbsoluteEncoder()};
     m_ModuleState = new frc::SwerveModuleState{units::meters_per_second_t(m_Neo550Encoder->GetVelocity()*m_gearRatio*m_wheelPerimeter),
-                                              frc::Rotation2d(units::radian_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * std::numbers::pi)};
+                                              units::radian_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * std::numbers::pi};
     m_ModulePosition = new frc::SwerveModulePosition{units::meter_t(m_Neo550Encoder->GetPosition()*m_gearRatio*m_wheelPerimeter),
-                                              frc::Rotation2d(units::radian_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * std::numbers::pi)};
+                                              units::radian_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * std::numbers::pi};
 }
 
 frc::SwerveModulePosition SwerveModule::getModulePosition()
 {
-    *m_ModulePosition = frc::SwerveModulePosition{units::meter_t(m_Neo550Encoder->GetPosition()*m_gearRatio*m_wheelPerimeter),
-                                                 frc::Rotation2d(units::radian_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * std::numbers::pi)};
+    // *m_ModulePosition = frc::SwerveModulePosition{units::meter_t(m_Neo550Encoder->GetPosition()*m_gearRatio*m_wheelPerimeter),
+    //                                              units::radian_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * std::numbers::pi};
     return *m_ModulePosition;
 }
 
-double SwerveModule::OptimizeAngle(frc::SwerveModuleState * iDesiredState)
+frc::SwerveModuleState SwerveModule::getModuleState()
 {
+    // *m_ModuleState = frc::SwerveModuleState{units::meters_per_second_t(m_Neo550Encoder->GetVelocity()*m_gearRatio*m_wheelPerimeter),
+    //                                         units::radian_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * std::numbers::pi};
+    return *m_ModuleState;
+}
+
+frc::SwerveModuleState SwerveModule::OptimizeState(frc::SwerveModuleState * iDesiredState)
+{
+    frc::SwerveModuleState * OptimizedState = iDesiredState;
     frc::Rotation2d Neo550CurrentAngle(units::degree_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * 360);
-    iDesiredState->Optimize(Neo550CurrentAngle);
-    iDesiredState->CosineScale(Neo550CurrentAngle);
-    iDesiredState->angle;
-    double OptimizedAngle(m_ModuleState->angle.Radians());
-    return OptimizedAngle;
+    OptimizedState->Optimize(Neo550CurrentAngle);
+    OptimizedState->CosineScale(Neo550CurrentAngle);
+    return *OptimizedState;
 }
 
 void SwerveModule::setDesiredState(frc::SwerveModuleState * iDesiredState)
 {
-    m_Neo550PID->SetSetpoint(OptimizeAngle(iDesiredState) / (2*std::numbers::pi) + 0.5);
+    m_Neo550PID->SetSetpoint(double(OptimizeState(iDesiredState).angle.Radians()));
     m_MotorNeo550->Set(m_Neo550PID->Calculate(m_Neo550AbsoluteEncoder->GetPosition()));
-    m_MotorNeo->Set(OptimizeAngle(iDesiredState) * DriveTrainConstants::speedCap);
+    m_MotorNeo->Set(double(OptimizeState(iDesiredState).speed * (1 / m_maxSpeed) * DriveTrainConstants::speedCap));
 }
 
 void SwerveModule::setNeoInverted(bool iInverted)
@@ -48,9 +54,10 @@ void SwerveModule::setNeoInverted(bool iInverted)
     m_MotorNeo->SetInverted(iInverted);
 }
 
-frc::SwerveModuleState SwerveModule::getModuleState()
+void SwerveModule::refreshModule()
 {
     *m_ModuleState = frc::SwerveModuleState{units::meters_per_second_t(m_Neo550Encoder->GetVelocity()*m_gearRatio*m_wheelPerimeter),
-                                            frc::Rotation2d(units::radian_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * std::numbers::pi)};
-    return *m_ModuleState;
+                                            units::radian_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * std::numbers::pi};
+    *m_ModulePosition = frc::SwerveModulePosition{units::meter_t(m_Neo550Encoder->GetPosition()*m_gearRatio*m_wheelPerimeter),
+                                                 units::radian_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * std::numbers::pi};
 }

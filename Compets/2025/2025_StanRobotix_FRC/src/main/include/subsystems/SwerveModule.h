@@ -22,13 +22,15 @@ class SwerveModule{
 
   frc::SwerveModulePosition getModulePosition();
 
-  double OptimizeAngle(frc::SwerveModuleState * iDesiredState);
+  frc::SwerveModuleState getModuleState();
+
+  frc::SwerveModuleState OptimizeState(frc::SwerveModuleState * iDesiredState);
 
   void setDesiredState(frc::SwerveModuleState * iDesiredState);
 
   void setNeoInverted(bool iInvertion);
 
-  frc::SwerveModuleState getModuleState();
+  void refreshModule();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -42,10 +44,11 @@ class SwerveModule{
   rev::spark::SparkAbsoluteEncoder * m_Neo550AbsoluteEncoder;
   frc::PIDController * m_Neo550PID;
 
-  // frc::SwerveModuleState m_ModuleState;
   frc::SwerveModuleState * m_ModuleState;
   frc::SwerveModulePosition * m_ModulePosition;
   
+  units::meters_per_second_t m_maxSpeed = 1_mps;
+  units::radians_per_second_t m_maxSpeed0 = units::radians_per_second_t(std::numbers::pi);
   float m_gearRatio = 5.08;
   double m_wheelPerimeter = 1 / (3 * 0.0254 * std::numbers::pi);
 };
