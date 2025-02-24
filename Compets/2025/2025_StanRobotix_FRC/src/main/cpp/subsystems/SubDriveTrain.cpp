@@ -11,14 +11,15 @@ SubDriveTrain::SubDriveTrain()
     m_frontRightModule = new SwerveModule{DriveTrainConstants::kFrontRightMotorID, DriveTrainConstants::kFrontRightMotor550ID};
     m_backLeftModule = new SwerveModule{DriveTrainConstants::kBackLeftMotorID, DriveTrainConstants::kBackLeftMotor550ID};
     m_backRightModule = new SwerveModule{DriveTrainConstants::kBackRightMotorID, DriveTrainConstants::kBackRightMotor550ID};
+    // m_robotPose = new frc::Pose2d(units::meter_t(0),units::meter_t(0),mIMU.getRotation2d());
 }
 
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() 
 {
-    frc::Rotation2d gyroAngle = mIMU.getRotation2d();
+    // frc::Rotation2d gyroAngle = mIMU.getRotation2d();
 
-    m_robotPose = m_odometry.Update(gyroAngle, m_swerveModulePositions);
+    // *m_robotPose = m_odometry.Update(gyroAngle, m_swerveModulePositions);
 }
 
 void SubDriveTrain::Init()
@@ -62,12 +63,12 @@ void SubDriveTrain::Drive(float iX, float iY, float i0)
 
 frc::Pose2d SubDriveTrain::getPose()
 {
-    return m_robotPose;
+    // return *m_robotPose;
 }
 
 void SubDriveTrain::resetPose(frc::Pose2d iRobotPose)
 {
-    m_robotPose = iRobotPose;
+    // *m_robotPose = iRobotPose;
 }
 
 frc::ChassisSpeeds SubDriveTrain::getRobotRelativeSpeeds()

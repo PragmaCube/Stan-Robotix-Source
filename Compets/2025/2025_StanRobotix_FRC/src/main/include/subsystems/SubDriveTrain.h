@@ -113,7 +113,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
   units::meters_per_second_t m_maxSpeed = 1_mps;
   units::radians_per_second_t m_maxSpeed0 = units::radians_per_second_t(std::numbers::pi);
-  frc::Pose2d m_robotPose = frc::Pose2d(units::meter_t(0),units::meter_t(0),mIMU.getRotation2d());
+  // frc::Pose2d * m_robotPose;
   float m_gearRatio = 5.08;
   double m_wheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 
