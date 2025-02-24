@@ -16,9 +16,9 @@ SubDriveTrain::SubDriveTrain()
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() 
 {
-    /*frc::Rotation2d gyroAngle = mIMU.getRotation2d();
+    frc::Rotation2d gyroAngle = mIMU.getRotation2d();
 
-    m_robotPose = m_odometry.Update(gyroAngle, m_swerveModulePositions);*/
+    m_robotPose = m_odometry.Update(gyroAngle, m_swerveModulePositions);
 }
 
 void SubDriveTrain::Init()

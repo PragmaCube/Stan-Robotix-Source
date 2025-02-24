@@ -18,7 +18,7 @@
 class SwerveModule{
  public:
   SwerveModule();
-  SwerveModule(int iNeo550MotorID, int iNeoMotorID);
+  SwerveModule(int iNeoMotorID, int iNeo550MotorID);
 
   frc::SwerveModulePosition getModulePosition();
 
@@ -47,5 +47,5 @@ class SwerveModule{
   frc::SwerveModulePosition * m_ModulePosition;
   
   float m_gearRatio = 5.08;
-  double m_wheelPerimeter = 3 * 0.0254 * std::numbers::pi;
+  double m_wheelPerimeter = 1 / (3 * 0.0254 * std::numbers::pi);
 };

@@ -128,7 +128,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
     m_frontRightModule->getModulePosition(),
     m_backLeftModule->getModulePosition(),
     m_backRightModule->getModulePosition()};
-    
+
   frc::SwerveDriveOdometry<4> m_odometry{m_kinematics, mIMU.getRotation2d(), m_swerveModulePositions};
 
   SubIMU mIMU;
