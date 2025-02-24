@@ -31,7 +31,7 @@ namespace DriveTrainConstants {
     constexpr int kBackLeftMotorID = 8;
     constexpr int kBackLefttMotor550ID = 7; 
 
-    constexpr float speedCap = 0.2; 
+    constexpr float kSpeedCap = 0.2; 
 
     namespace PIDs{
         // constexpr double kP = 4.0; Garder la valeure
@@ -44,4 +44,61 @@ namespace DriveTrainConstants {
 namespace ChainConstants {
 
     constexpr int kMotorID = 2;
+}
+
+namespace AlgaePivotConstants {
+    constexpr double kP = 0.5;
+    constexpr double kI = 0.07;
+    constexpr double kD = 0;
+
+    constexpr int kAlgaePivotMotorID = 9;
+    constexpr double kAlgaePivotSetPoint1 = 0.2;
+    constexpr double kAlgaePivotSetPoint2 = -0.2;
+
+    // namespace FeedForward {
+    //     constexpr units::volt_t kS = units::volt_t(10);
+    //     constexpr units::volt_t kG = units::volt_t(10);
+        
+    // }
+}
+namespace JoystickBindingsConstants{
+    constexpr int kAlgaePivotUpCmd = 2; // il faut changer
+    constexpr int kAlgaePivotDownCmd = 1; // il faut changer
+
+    constexpr int kAlgaePivotUpSub = 5; // il faut changer
+    constexpr int kAlgaePivotDownSub = 3; // il faut changer
+    constexpr int SubAlgaePivotStop = 4; // il faut changer
+
+    constexpr int kCoralPivotUpSub = 5; // il faut changer
+    constexpr int kCoralPivotDownSub = 3; // il faut changer
+    constexpr int SubCoralPivotStop = 4; // il faut changer
+
+    constexpr int kAlgaeIntakeInCmd = 7;
+    constexpr int kAlgaeIntakeOutCmd = 8;
+    constexpr int kAlgaeIntakeManualIn = 9;
+    constexpr int kAlgaeIntakeStopSub = 10;
+    constexpr int kAlgaeIntakeManualOut = 11;
+}
+
+namespace AlgaeIntakeConstants {
+    constexpr double kAlgaeIntakeSpeed = 0.6; //temporaire
+    constexpr double kNegativeAlgaeIntakeSpeed = -0.6; //temporaire
+
+    constexpr double kG = 0.19; 
+    constexpr double kS = kG + 0.05;
+}
+
+namespace CommandConstants {
+    constexpr int kIterationsGoal = 49;
+}
+
+namespace CoralPivotConstants {
+    constexpr double kP = 0.5;
+    constexpr double kI = 0.07;
+    constexpr double kD = 0;
+
+    constexpr int kCoralPivotMotorID = 18;
+    constexpr double kCoralPivotSetPoint1 = 0.2;
+    constexpr double kCoralPivotSetPoint2 = -0.2;
+    constexpr double kG = 0;
 }

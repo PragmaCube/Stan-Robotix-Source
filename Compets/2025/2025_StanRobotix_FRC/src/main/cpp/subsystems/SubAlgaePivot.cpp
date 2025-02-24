@@ -1,0 +1,52 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+#include "subsystems/SubAlgaePivot.h"
+#include <cmath>
+
+
+SubAlgaePivot::SubAlgaePivot(){
+    mAlgaePivotMotor = new rev::spark::SparkMax (AlgaePivotConstants::kAlgaePivotMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+}
+
+// This method will be called once per scheduler run
+void SubAlgaePivot::Periodic() {}
+
+void SubAlgaePivot::stopAlgaePivot(){
+    mAlgaePivotMotor->StopMotor();
+}
+
+void SubAlgaePivot::manualAlgaePivot(){
+    double kG = frc::SmartDashboard::GetNumber("kG", 0.19);
+    double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + 11.7) / 80 * 2 * std::numbers::pi;
+    double CalculatedPID = mPIDController.Calculate((mAlgaePivotMotor->GetEncoder().GetPosition() + 11.7) / 80) * 13;
+
+    mAlgaePivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID));  
+
+//  std::cout << (mAlgaePivotMotor->GetEncoder().GetPosition() + 11.7) / 80 << std::endl;
+}
+
+void SubAlgaePivot::manualAlgaePivot(int Setpoint){
+    mPIDController.SetSetpoint(Setpoint);
+    
+    double kG = frc::SmartDashboard::GetNumber("kG", 0.19);
+    double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + 11.7) / 80 * 2 * std::numbers::pi;
+    double CalculatedPID = mPIDController.Calculate((mAlgaePivotMotor->GetEncoder().GetPosition() + 11.7) / 80) * 13;
+
+    mAlgaePivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID));  
+}
+
+bool SubAlgaePivot::atSetPoint(){
+    return mPIDController.AtSetpoint();
+}
+
+void SubAlgaePivot::SetSetPoint(double iSetPoint){
+    mPIDController.SetSetpoint(iSetPoint);
+}
+
+/*
+    le setpoint doit etre donné en tours, même type que le cout.
+    le cout renvoi la position du pivot entre -1 et 1, avec 0 comme pivot horizontale.
+    le PID devrait calculer une valeur aussi entre -1 et 1, qui se fait multiplier par 13 pour avoir une nombre utilisable de volts.
+*/

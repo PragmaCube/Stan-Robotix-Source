@@ -7,10 +7,19 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/Joystick.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubAlgaePivot.h"
+#include "subsystems/SubCoralPivot.h"
+#include "subsystems/SubAlgaeIntake.h"
+
+#include "commands/AlgaePivotDown.h"
+#include "commands/AlgaePivotUp.h"
+#include "commands/AlgaeIntakeIn.h"
+#include "commands/AlgaeIntakeOut.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -23,7 +32,10 @@ class RobotContainer {
  public:
   RobotContainer();
 
+  void periodic();
+  void Initialize();
   frc2::CommandPtr GetAutonomousCommand();
+
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -34,6 +46,9 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   SubDriveTrain * mDriveTrain = nullptr;
   SubIMU * mIMU = nullptr;
+  SubAlgaePivot * mSubAlgaePivot = nullptr;
+  SubAlgaeIntake * mSubAlgaeIntake = nullptr;
+  SubCoralPivot * mSubCoralPivot = nullptr;
   frc::Joystick mJoystick{0};
 
   void ConfigureBindings();
