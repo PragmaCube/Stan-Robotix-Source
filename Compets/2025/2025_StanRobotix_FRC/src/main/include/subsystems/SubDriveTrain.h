@@ -22,10 +22,12 @@
 #include <vector>
 #include <frc/controller/PIDController.h>
 #include <units/velocity.h>
+#include <units/angle.h>
 #include <wpi/array.h>
 
 #include "Constants.h"
 #include "subsystems/SubIMU.h"
+#include "subsystems/SwerveModule.h"
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
@@ -69,7 +71,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
 
-  rev::spark::SparkMax m_frontLeft{DriveTrainConstants::kFrontLeftMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
+  /*rev::spark::SparkMax m_frontLeft{DriveTrainConstants::kFrontLeftMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
   rev::spark::SparkMax m_frontLeft550{DriveTrainConstants::kFrontLeftMotor550ID, rev::spark::SparkLowLevel::MotorType::kBrushless};
 
   rev::spark::SparkRelativeEncoder m_frontLeftEncoder = m_frontLeft.GetEncoder();
@@ -102,9 +104,12 @@ class SubDriveTrain : public frc2::SubsystemBase {
   rev::spark::SparkRelativeEncoder m_backRightEncoder = m_backRight.GetEncoder();
   rev::spark::SparkRelativeEncoder m_backRight550Encoder = m_backRight550.GetEncoder();
   rev::spark::SparkAbsoluteEncoder  m_backRight550AbsoluteEncoder = m_backRight550.GetAbsoluteEncoder();
-  frc::PIDController m_backRight550PID {DriveTrainConstants::PIDs::kP , DriveTrainConstants::PIDs::kI , DriveTrainConstants::PIDs::kD};
+  frc::PIDController m_backRight550PID {DriveTrainConstants::PIDs::kP , DriveTrainConstants::PIDs::kI , DriveTrainConstants::PIDs::kD};*/
   
-  
+  SwerveModule * m_frontLeftModule;
+  SwerveModule * m_frontRightModule;
+  SwerveModule * m_backLeftModule;
+  SwerveModule * m_backRightModule;
 
   units::meters_per_second_t m_maxSpeed = 1_mps;
   units::radians_per_second_t m_maxSpeed0 = units::radians_per_second_t(std::numbers::pi);
@@ -112,14 +117,19 @@ class SubDriveTrain : public frc2::SubsystemBase {
   float m_gearRatio = 5.08;
   double m_wheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 
-    
-  wpi::array<frc::SwerveModulePosition, 4> m_swerveModulePositions = {
+  /*wpi::array<frc::SwerveModulePosition, 4> m_swerveModulePositions = {
       frc::SwerveModulePosition({units::meter_t(m_frontLeftEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter)  ,  (units::radian_t(m_backRight550AbsoluteEncoder.GetPosition() - 0.5) * std::numbers::pi)}), 
       frc::SwerveModulePosition({units::meter_t(m_frontRightEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter) , (units::radian_t(m_frontRight550AbsoluteEncoder.GetPosition() - 0.5) * std::numbers::pi)}), 
       frc::SwerveModulePosition({units::meter_t(m_backLeftEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter)   ,   (units::radian_t(m_backLeft550AbsoluteEncoder.GetPosition() - 0.5) * std::numbers::pi)}), 
       frc::SwerveModulePosition({units::meter_t(m_backRightEncoder.GetPosition()*m_gearRatio*m_wheelPerimeter)  ,  (units::radian_t(m_backRight550AbsoluteEncoder.GetPosition() - 0.5) * std::numbers::pi)})};
-
-  //frc::SwerveDriveOdometry<4> m_odometry{m_kinematics, mIMU.getRotation2d(), m_swerveModulePositions};
+  */
+ wpi::array<frc::SwerveModulePosition, 4> m_swerveModulePositions = {
+    m_frontLeftModule->getModulePosition(),
+    m_frontRightModule->getModulePosition(),
+    m_backLeftModule->getModulePosition(),
+    m_backRightModule->getModulePosition()};
+    
+  frc::SwerveDriveOdometry<4> m_odometry{m_kinematics, mIMU.getRotation2d(), m_swerveModulePositions};
 
   SubIMU mIMU;
 };

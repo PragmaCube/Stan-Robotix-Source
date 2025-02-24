@@ -24,12 +24,12 @@ inline constexpr int kDriverControllerPort = 0;
 namespace DriveTrainConstants {
     constexpr int kBackRightMotorID = 2; 
     constexpr int kBackRightMotor550ID = 1; 
-    constexpr int kFrontRighttMotorID = 4; 
+    constexpr int kFrontRightMotorID = 4; 
     constexpr int kFrontRightMotor550ID = 3; 
     constexpr int kFrontLeftMotorID = 6;   
     constexpr int kFrontLeftMotor550ID = 5;
     constexpr int kBackLeftMotorID = 8;
-    constexpr int kBackLefttMotor550ID = 7; 
+    constexpr int kBackLeftMotor550ID = 7; 
 
     constexpr float speedCap = 0.2; 
 
