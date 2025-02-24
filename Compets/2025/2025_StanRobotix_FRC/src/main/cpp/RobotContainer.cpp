@@ -14,7 +14,6 @@ RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   mDriveTrain = new SubDriveTrain;
   mIMU = new SubIMU;
-  //m_PeriodeAuto = new frc2::CommandPtr(pathplanner::PathPlannerAuto("Test Auto").ToPtr());
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
     [this] {
     mDriveTrain->Drive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ());
@@ -46,6 +45,5 @@ void RobotContainer::ConfigureBindings() {
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  // return pathplanner::PathPlannerAuto("Test Auto").ToPtr();
-  return autos::ExampleAuto(&m_subsystem);
+  return autos::ExampleAuto(mDriveTrain);
 }

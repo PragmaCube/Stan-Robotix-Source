@@ -8,7 +8,9 @@
 
 #include "commands/ExampleCommand.h"
 
-frc2::CommandPtr autos::ExampleAuto(ExampleSubsystem* subsystem) {
-  return frc2::cmd::Sequence(subsystem->ExampleMethodCommand(),
-                             ExampleCommand(subsystem).ToPtr());
+frc2::CommandPtr autos::ExampleAuto(SubDriveTrain* mDrivetrain) {
+  return frc2::cmd::Sequence(//subsystem->ExampleMethodCommand(),
+                             //ExampleCommand(subsystem).ToPtr(),
+                             DriveForward(mDrivetrain, 2_m).ToPtr(),
+                             DriveRotate(mDrivetrain, 180_deg).ToPtr());
 }
