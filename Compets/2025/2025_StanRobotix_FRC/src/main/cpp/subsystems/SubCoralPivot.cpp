@@ -7,7 +7,7 @@
 
 
 SubCoralPivot::SubCoralPivot(){
-    mCoralPivotMotor = new rev::spark::SparkMax (CoralPivotConstants::kCoralPivotMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+    mCoralPivotMotor = new rev::spark::SparkMax (CoralConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
 }
 
 // This method will be called once per scheduler run
@@ -17,24 +17,24 @@ void SubCoralPivot::stopCoralPivot(){
     mCoralPivotMotor->StopMotor();
 }
 
-void SubCoralPivot::manualCoralPivot(){
+void SubCoralPivot::Pivot(){
     double kG = frc::SmartDashboard::GetNumber("kGCoral", 0.19);
     double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80 * 2 * std::numbers::pi;
     double CalculatedPID = mPIDController.Calculate((mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80) * 13;
 
-    mCoralPivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID));  
+    mCoralPivotMotor->SetVoltage(-(units::volt_t(kG)));  
 
 //  std::cout << (mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80 << std::endl;
 }
 
-void SubCoralPivot::manualCoralPivot(int Setpoint){
-    mPIDController.SetSetpoint(Setpoint);
+void SubCoralPivot::Pivot(int Sens){
+    // mPIDController.SetSetpoint(Setpoint);
     
     double kG = frc::SmartDashboard::GetNumber("kGCoral", 0.19);
     double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80 * 2 * std::numbers::pi;
     double CalculatedPID = mPIDController.Calculate((mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80) * 13;
 
-    mCoralPivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID));  
+    mCoralPivotMotor->SetVoltage(Sens * (units::volt_t(kG)));  
 }
 
 bool SubCoralPivot::atSetPoint(){

@@ -20,11 +20,11 @@ class SubAlgaePivot : public frc2::SubsystemBase {
  public:
   SubAlgaePivot();
 
-  void stopAlgaePivot();
+  void Stop();
 
-  void manualAlgaePivot();
+  void Pivot();
 
-  void manualAlgaePivot(int);
+  void Pivot(int);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */

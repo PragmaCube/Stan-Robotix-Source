@@ -17,13 +17,13 @@ void AlgaeIntakeIn::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaeIntakeIn::Execute() {
-  mAlgaeIntake->AlgaeIntake();
+  mAlgaeIntake->Intake();
   i++;
 }
 
 // Called once the command ends or is interrupted.
 void AlgaeIntakeIn::End(bool interrupted) {
-  mAlgaeIntake->AlgaeIntakeStop();
+  mAlgaeIntake->Stop();
 }
 
 // Returns true when the command should end.

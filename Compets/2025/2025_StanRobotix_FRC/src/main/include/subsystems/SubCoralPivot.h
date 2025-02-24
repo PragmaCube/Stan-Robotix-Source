@@ -22,9 +22,9 @@ class SubCoralPivot : public frc2::SubsystemBase {
 
   void stopCoralPivot();
 
-  void manualCoralPivot();
+  void Pivot();
 
-  void manualCoralPivot(int);
+  void Pivot(int);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */

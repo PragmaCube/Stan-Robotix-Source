@@ -46,59 +46,68 @@ namespace ChainConstants {
     constexpr int kMotorID = 2;
 }
 
-namespace AlgaePivotConstants {
-    constexpr double kP = 0.5;
-    constexpr double kI = 0.07;
-    constexpr double kD = 0;
+namespace AlgaeConstants {
+    namespace Pivot{
+        constexpr double kP = 0.5;
+        constexpr double kI = 0.07;
+        constexpr double kD = 0;
 
-    constexpr int kAlgaePivotMotorID = 9;
-    constexpr double kAlgaePivotSetPoint1 = 0.2;
-    constexpr double kAlgaePivotSetPoint2 = -0.2;
+        constexpr int kMotorID = 9;
+        constexpr double kAlgaePivotSetPoint1 = 0.2;
+        constexpr double kAlgaePivotSetPoint2 = -0.2;
+    }
 
-    // namespace FeedForward {
-    //     constexpr units::volt_t kS = units::volt_t(10);
-    //     constexpr units::volt_t kG = units::volt_t(10);
-        
-    // }
-}
-namespace JoystickBindingsConstants{
-    constexpr int kAlgaePivotUpCmd = 2; // il faut changer
-    constexpr int kAlgaePivotDownCmd = 1; // il faut changer
+    namespace Intake{
+        constexpr double kAlgaeIntakeSpeed = 0.6; //temporaire
+        constexpr double kNegativeAlgaeIntakeSpeed = -0.6; //temporaire
 
-    constexpr int kAlgaePivotUpSub = 5; // il faut changer
-    constexpr int kAlgaePivotDownSub = 3; // il faut changer
-    constexpr int SubAlgaePivotStop = 4; // il faut changer
-
-    constexpr int kCoralPivotUpSub = 5; // il faut changer
-    constexpr int kCoralPivotDownSub = 3; // il faut changer
-    constexpr int SubCoralPivotStop = 4; // il faut changer
-
-    constexpr int kAlgaeIntakeInCmd = 7;
-    constexpr int kAlgaeIntakeOutCmd = 8;
-    constexpr int kAlgaeIntakeManualIn = 9;
-    constexpr int kAlgaeIntakeStopSub = 10;
-    constexpr int kAlgaeIntakeManualOut = 11;
+        constexpr double kG = 0.19; 
+        constexpr double kS = kG + 0.05;
+    }
 }
 
-namespace AlgaeIntakeConstants {
-    constexpr double kAlgaeIntakeSpeed = 0.6; //temporaire
-    constexpr double kNegativeAlgaeIntakeSpeed = -0.6; //temporaire
 
-    constexpr double kG = 0.19; 
-    constexpr double kS = kG + 0.05;
+namespace CoralConstants {
+    namespace Pivot{
+        constexpr double kP = 0.5;
+        constexpr double kI = 0.07;
+        constexpr double kD = 0;
+
+        constexpr int kMotorID = 18;
+        constexpr double kCoralPivotSetPoint1 = 0.2;
+        constexpr double kCoralPivotSetPoint2 = -0.2;
+        constexpr double kG = 0;
+    }
+    
+    namespace Intake{
+        constexpr int kMotorID = 0;
+    }
 }
 
 namespace CommandConstants {
     constexpr int kIterationsGoal = 49;
 }
 
-namespace CoralPivotConstants {
-    constexpr double kP = 0.5;
-    constexpr double kI = 0.07;
-    constexpr double kD = 0;
+namespace JoystickBindingsConstants{
+    namespace Algae{
+        constexpr int kPivotUp = 5; // il faut changer
+        constexpr int kPivotDown = 3; // il faut changer
+        constexpr int kPivotStop = 12; // il faut changer
 
-    constexpr int kCoralPivotMotorID = 18;
-    constexpr double kCoralPivotSetPoint1 = 0.2;
-    constexpr double kCoralPivotSetPoint2 = -0.2;
-    constexpr double kG = 0;
+        constexpr int kManualIn = 9;
+        constexpr int kManualOut = 10;
+        constexpr int kIntakeStop = 11;
+    }
+    
+    namespace Coral{
+        constexpr int kPivotUp = 6; // il faut changer
+        constexpr int kPivotDown = 4; // il faut changer
+
+        constexpr int kManualIn = 7;
+        constexpr int kManualOut = 8;
+    }
+
+    constexpr int kAlgaeIntakeInCmd = 20; // Mauvais IDs pour rendre les commandes inactives pour le moment
+    constexpr int kAlgaeIntakeOutCmd = 21; // Mauvais IDs pour rendre les commandes inactives pour le moment
+
 }

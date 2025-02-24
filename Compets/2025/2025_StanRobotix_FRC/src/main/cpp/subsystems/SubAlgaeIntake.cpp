@@ -11,14 +11,14 @@ SubAlgaeIntake::SubAlgaeIntake() {
 // This method will be called once per scheduler run
 void SubAlgaeIntake::Periodic() {}
 
-void SubAlgaeIntake::AlgaeOutake() {
-    mAlgaeIntakeMotor->Set(AlgaeIntakeConstants::kAlgaeIntakeSpeed);
+void SubAlgaeIntake::Outake() {
+    mAlgaeIntakeMotor->Set(AlgaeConstants::Intake::kAlgaeIntakeSpeed);
 }
 
-void SubAlgaeIntake::AlgaeIntake() {
-    mAlgaeIntakeMotor->Set(-AlgaeIntakeConstants::kAlgaeIntakeSpeed);
+void SubAlgaeIntake::Intake() {
+    mAlgaeIntakeMotor->Set(-AlgaeConstants::Intake::kAlgaeIntakeSpeed);
 }
 
-void SubAlgaeIntake::AlgaeIntakeStop() {
+void SubAlgaeIntake::Stop() {
     mAlgaeIntakeMotor->StopMotor();
 }

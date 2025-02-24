@@ -7,17 +7,17 @@
 
 
 SubAlgaePivot::SubAlgaePivot(){
-    mAlgaePivotMotor = new rev::spark::SparkMax (AlgaePivotConstants::kAlgaePivotMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+    mAlgaePivotMotor = new rev::spark::SparkMax (AlgaeConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
 }
 
 // This method will be called once per scheduler run
 void SubAlgaePivot::Periodic() {}
 
-void SubAlgaePivot::stopAlgaePivot(){
+void SubAlgaePivot::Stop(){
     mAlgaePivotMotor->StopMotor();
 }
 
-void SubAlgaePivot::manualAlgaePivot(){
+void SubAlgaePivot::Pivot(){
     double kG = frc::SmartDashboard::GetNumber("kG", 0.19);
     double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + 11.7) / 80 * 2 * std::numbers::pi;
     double CalculatedPID = mPIDController.Calculate((mAlgaePivotMotor->GetEncoder().GetPosition() + 11.7) / 80) * 13;
@@ -27,7 +27,7 @@ void SubAlgaePivot::manualAlgaePivot(){
 //  std::cout << (mAlgaePivotMotor->GetEncoder().GetPosition() + 11.7) / 80 << std::endl;
 }
 
-void SubAlgaePivot::manualAlgaePivot(int Setpoint){
+void SubAlgaePivot::Pivot(int Setpoint){
     mPIDController.SetSetpoint(Setpoint);
     
     double kG = frc::SmartDashboard::GetNumber("kG", 0.19);

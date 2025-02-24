@@ -15,6 +15,7 @@
 #include "subsystems/SubAlgaePivot.h"
 #include "subsystems/SubCoralPivot.h"
 #include "subsystems/SubAlgaeIntake.h"
+#include "subsystems/SubCoralIntake.h"
 
 #include "commands/AlgaePivotDown.h"
 #include "commands/AlgaePivotUp.h"
@@ -49,6 +50,7 @@ class RobotContainer {
   SubAlgaePivot * mSubAlgaePivot = nullptr;
   SubAlgaeIntake * mSubAlgaeIntake = nullptr;
   SubCoralPivot * mSubCoralPivot = nullptr;
+  SubCoralIntake * mSubCoralIntake = nullptr;
   frc::Joystick mJoystick{0};
 
   void ConfigureBindings();
