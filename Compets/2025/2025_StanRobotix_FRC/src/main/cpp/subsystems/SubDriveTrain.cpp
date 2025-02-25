@@ -8,7 +8,8 @@
 
 SubDriveTrain::SubDriveTrain()
 {
-    m_backLeft.SetInverted(true);
+    m_frontLeft.SetInverted(false);
+    m_backRight.SetInverted(false);
     m_frontRight550PID.EnableContinuousInput(0, 1);
     m_frontLeft550PID.EnableContinuousInput(0, 1);
     m_backLeft550PID.EnableContinuousInput(0, 1);
@@ -16,8 +17,8 @@ SubDriveTrain::SubDriveTrain()
 }
 
 // This method will be called once per scheduler run
-void SubDriveTrain::Periodic() {
-}
+void SubDriveTrain::Periodic() {}
+
 
 void SubDriveTrain::Init(){}
 
@@ -67,7 +68,5 @@ void SubDriveTrain::Drive(float iX, float iY, float i0)
     m_backRight550.Set(m_backRight550PID.Calculate(m_backRight550AbsoluteEncoder.GetPosition()));
     m_backRight.Set(double(brOptimized.speed / m_maxSpeed) * DriveTrainConstants::kSpeedCap);
 
-   // std::cout << double(mIMU.getRotation2d().Degrees()) << std::endl;
-    std::cout << m_backRight550AbsoluteEncoder.GetPosition() <<std::endl;
 }
        

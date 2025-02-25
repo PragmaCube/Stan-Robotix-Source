@@ -4,9 +4,10 @@
 
 #include "commands/AlgaeIntakeOut.h"
 
-AlgaeIntakeOut::AlgaeIntakeOut(SubAlgaeIntake *iSubAlgaeIntake) {
+AlgaeIntakeOut::AlgaeIntakeOut(SubAlgaeIntake *iSubAlgaeIntake, frc::Joystick *iJoystick) {
   // Use addRequirements() here to declare subsystem dependencies.
   mAlgaeIntake = iSubAlgaeIntake;
+  mJoystick = iJoystick;
   AddRequirements(mAlgaeIntake);
 }
 
@@ -16,7 +17,6 @@ void AlgaeIntakeOut::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void AlgaeIntakeOut::Execute() {
   mAlgaeIntake->Outake();
-  i++;
 }
 
 // Called once the command ends or is interrupted.
@@ -26,7 +26,5 @@ void AlgaeIntakeOut::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool AlgaeIntakeOut::IsFinished() {
-return (i == CommandConstants::kIterationsGoal);
+return mJoystick->GetRawButtonReleased(JoystickBindingsConstants::Algae::kManualOut);
 }
-
-//50 iterations pour 1s car 1s/20ms = 50

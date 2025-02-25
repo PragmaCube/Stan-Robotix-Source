@@ -51,7 +51,7 @@ class RobotContainer {
   SubAlgaeIntake * mSubAlgaeIntake = nullptr;
   SubCoralPivot * mSubCoralPivot = nullptr;
   SubCoralIntake * mSubCoralIntake = nullptr;
-  frc::Joystick mJoystick{0};
+  frc::Joystick * mJoystick = nullptr;
 
   void ConfigureBindings();
 };

@@ -22,14 +22,14 @@ inline constexpr int kDriverControllerPort = 0;
 
 
 namespace DriveTrainConstants {
-    constexpr int kBackRightMotorID = 2; 
-    constexpr int kBackRightMotor550ID = 1; 
-    constexpr int kFrontRighttMotorID = 4; 
-    constexpr int kFrontRightMotor550ID = 3; 
-    constexpr int kFrontLeftMotorID = 6;   
-    constexpr int kFrontLeftMotor550ID = 5;
-    constexpr int kBackLeftMotorID = 8;
-    constexpr int kBackLefttMotor550ID = 7; 
+    constexpr int kBackRightMotorID = 6; 
+    constexpr int kBackRightMotor550ID = 5; 
+    constexpr int kFrontRighttMotorID = 8; 
+    constexpr int kFrontRightMotor550ID = 7; 
+    constexpr int kFrontLeftMotorID = 2;   
+    constexpr int kFrontLeftMotor550ID = 1;
+    constexpr int kBackLeftMotorID = 4;
+    constexpr int kBackLefttMotor550ID = 3; 
 
     constexpr float kSpeedCap = 0.2; 
 
@@ -58,10 +58,13 @@ namespace AlgaeConstants {
     }
 
     namespace Intake{
-        constexpr double kAlgaeIntakeOutSpeed = 0.6; //temporaire
-        constexpr double kAlgaeIntakeInSpeed = 0.6;
+        constexpr int kMotorID = 10;
 
-        constexpr int kMotorId = 10;
+        constexpr double kAlgaeIntakeSpeed = 0.15; //temporaire
+        constexpr double kNegativeAlgaeIntakeSpeed = -0.15; //temporaire
+
+        constexpr double kG = 0.19; 
+        constexpr double kS = kG + 0.05;
     }
 }
 
@@ -80,8 +83,6 @@ namespace CoralConstants {
     
     namespace Intake{
         constexpr int kMotorID = 12;
-        constexpr double kCoralIntakeOutSpeed = 0.6; //temporaire
-        constexpr double kCoralIntakeInSpeed = 0.6;
     }
 }
 
@@ -93,19 +94,20 @@ namespace JoystickBindingsConstants{
     namespace Algae{
         constexpr int kPivotUp = 5; // il faut changer
         constexpr int kPivotDown = 3; // il faut changer
-        constexpr int kPivotStop = 2; // il faut changer
+        constexpr int kPivotStop = 12; // il faut changer
 
         constexpr int kManualIn = 9;
         constexpr int kManualOut = 10;
-        constexpr int kIntakeStop = 12;
+        constexpr int kIntakeStop = 11;
     }
     
     namespace Coral{
         constexpr int kPivotUp = 6; // il faut changer
         constexpr int kPivotDown = 4; // il faut changer
+        constexpr int kPivotStop = 1;
 
         constexpr int kManualIn = 7;
-        constexpr int kManualOut = 8;        
+        constexpr int kManualOut = 8;
     }
 
     constexpr int kAlgaeIntakeInCmd = 20; // Mauvais IDs pour rendre les commandes inactives pour le moment

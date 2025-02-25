@@ -6,9 +6,10 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
-#include <subsystems/SubAlgaeIntake.h>
 #include <frc/Joystick.h>
-#include <iostream>
+
+#include "subsystems/SubCoralIntake.h"
+#include "Constants.h"
 
 
 /**
@@ -18,13 +19,13 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class AlgaeIntakeOut
-    : public frc2::CommandHelper<frc2::Command, AlgaeIntakeOut> {
+class CoralIntake
+    : public frc2::CommandHelper<frc2::Command, CoralIntake> {
  public:
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  AlgaeIntakeOut(SubAlgaeIntake*, frc::Joystick*);
+  CoralIntake(SubCoralIntake*, frc::Joystick*);
 
   void Initialize() override;
 
@@ -35,6 +36,8 @@ class AlgaeIntakeOut
   bool IsFinished() override;
 
   private:
-  SubAlgaeIntake* mAlgaeIntake;
-  frc::Joystick* mJoystick = nullptr;
+
+  SubCoralIntake * mCoralIntake = nullptr;
+  frc::Joystick * mJoystick = nullptr;
+
 };

@@ -6,8 +6,11 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
-#include <subsystems/SubAlgaeIntake.h>
+#include <frc/Joystick.h>
 #include <iostream>
+
+#include "subsystems/SubAlgaeIntake.h"
+#include "Constants.h"
 
 
 /**
@@ -23,7 +26,7 @@ class AlgaeIntakeIn
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  AlgaeIntakeIn(SubAlgaeIntake*);
+  AlgaeIntakeIn(SubAlgaeIntake*, frc::Joystick*);
 
   void Initialize() override;
 
@@ -34,6 +37,6 @@ class AlgaeIntakeIn
   bool IsFinished() override;
 
   private:
-  SubAlgaeIntake* mAlgaeIntake;
-  int i = 0;
+  SubAlgaeIntake* mAlgaeIntake = nullptr;
+  frc::Joystick* mJoystick = nullptr;
 };
