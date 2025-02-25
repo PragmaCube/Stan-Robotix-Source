@@ -46,7 +46,6 @@ void SwerveModule::setDesiredState(frc::SwerveModuleState iDesiredState)
     m_Neo550PID->SetSetpoint(double(iDesiredState.angle.Radians() / (2 * std::numbers::pi)) + 0.5);
     m_MotorNeo550->Set(m_Neo550PID->Calculate(m_Neo550AbsoluteEncoder->GetPosition()));
     m_MotorNeo->Set(double(iDesiredState.speed * (1 / units::meters_per_second_t(DriveTrainConstants::kMaxSpeed)) * DriveTrainConstants::kSpeedCap));
-    // std::cout << m_Neo550AbsoluteEncoder->GetPosition() << std::endl;
 }
 
 void SwerveModule::setNeoInverted(bool iInverted)

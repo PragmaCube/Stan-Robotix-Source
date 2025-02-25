@@ -22,12 +22,6 @@ SubDriveTrain::SubDriveTrain()
     // Initialization of the IMU
     mIMU = new SubIMU;
 
-    // m_swerveModulePositions = new wpi::array<frc::SwerveModulePosition, 4>{
-    //                 m_frontLeftModule->getModulePosition(),
-    //                 m_frontRightModule->getModulePosition(),
-    //                 m_backLeftModule->getModulePosition(),
-    //                 m_backRightModule->getModulePosition()};
-
     // Initialization of the swerve kinematics with the SwerveModules' location
     m_kinematics = new frc::SwerveDriveKinematics<4>{*m_frontLeftLocation, *m_frontRightLocation, *m_backLeftLocation, *m_backRightLocation};
     // Initialization of the robot's pose
@@ -48,11 +42,6 @@ void SubDriveTrain::Periodic()
     m_frontRightModule->refreshModule();
     m_backLeftModule->refreshModule();
     m_backRightModule->refreshModule();
-    // *m_swerveModulePositions = wpi::array<frc::SwerveModulePosition, 4>{
-    //                 m_frontLeftModule->getModulePosition(),
-    //                 m_frontRightModule->getModulePosition(),
-    //                 m_backLeftModule->getModulePosition(),
-    //                 m_backRightModule->getModulePosition()};
 
     // Update of the robot's pose with the robot's rotation and an array of the SwerveModules' position
     frc::Rotation2d gyroAngle = mIMU->getRotation2d();
@@ -61,8 +50,6 @@ void SubDriveTrain::Periodic()
                     m_frontRightModule->getModulePosition(),
                     m_backLeftModule->getModulePosition(),
                     m_backRightModule->getModulePosition()});
-    // std::cout << (double)m_robotPose->X() << std::endl << (double)m_robotPose->Y() << std::endl;
-    // std::cout << double(mIMU->getRotation2d().Degrees()) << std::endl;
 }
 
 void SubDriveTrain::Init()
@@ -71,34 +58,33 @@ void SubDriveTrain::Init()
     m_backLeftModule->setNeoInverted(true);
 
     // Configurating the pathplanner
-//     pathplanner::AutoBuilder::configure(
-//     [this](){ return getPose(); }, // Robot pose supplier
-//     [this](frc::Pose2d pose){ resetPose(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
-//     [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-//     [this](auto speeds, auto feedforwards){ driveRobotRelative(speeds); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
-//     std::make_shared<pathplanner::PPHolonomicDriveController>( // PPHolonomicController is the built in path following controller for holonomic drive trains
-//         pathplanner::PIDConstants(PathPlannerConstants::kPTranslation, PathPlannerConstants::kITranslation, PathPlannerConstants::kDTranslation), // Translation PID constants
-//         pathplanner::PIDConstants(PathPlannerConstants::kPRotation, PathPlannerConstants::kIRotation, PathPlannerConstants::kDRotation) // Rotation PID constants
-//     ),
-//     config, // The robot configuration
-//     []() {
-//         // Boolean supplier that controls when the path will be mirrored for the red alliance
-//         // This will flip the path being followed to the red side of the field.
-//         // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
+    pathplanner::AutoBuilder::configure(
+    [this](){ return getPose(); }, // Robot pose supplier
+    [this](frc::Pose2d pose){ resetPose(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
+    [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+    [this](auto speeds, auto feedforwards){ driveRobotRelative(speeds); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
+    std::make_shared<pathplanner::PPHolonomicDriveController>( // PPHolonomicController is the built in path following controller for holonomic drive trains
+        pathplanner::PIDConstants(PathPlannerConstants::kPTranslation, PathPlannerConstants::kITranslation, PathPlannerConstants::kDTranslation), // Translation PID constants
+        pathplanner::PIDConstants(PathPlannerConstants::kPRotation, PathPlannerConstants::kIRotation, PathPlannerConstants::kDRotation) // Rotation PID constants
+    ),
+    config, // The robot configuration
+    []() {
+        // Boolean supplier that controls when the path will be mirrored for the red alliance
+        // This will flip the path being followed to the red side of the field.
+        // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
 
-//         auto alliance = frc::DriverStation::GetAlliance();
-//         if (alliance) {
-//             return alliance.value() == frc::DriverStation::Alliance::kRed;
-//         }
-//         return false;
-//     },
-//     this // Reference to this subsystem to set requirements
-//   );
+        auto alliance = frc::DriverStation::GetAlliance();
+        if (alliance) {
+            return alliance.value() == frc::DriverStation::Alliance::kRed;
+        }
+        return false;
+    },
+    this // Reference to this subsystem to set requirements
+  );
 }
 
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0)
 {
-    // std::cout << iX << std::endl << iY << std::endl << i0 << std::endl;
     // Creating a ChassisSpeeds from the wanted speeds and the robot's rotation
     frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iY,
                                                                             units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iX,
