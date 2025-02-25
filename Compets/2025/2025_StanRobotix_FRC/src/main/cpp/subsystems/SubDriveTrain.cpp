@@ -54,14 +54,15 @@ void SubDriveTrain::Periodic()
     //                 m_backLeftModule->getModulePosition(),
     //                 m_backRightModule->getModulePosition()};
 
-    // Update of the robot's pose with the robot's roation and an array of the SwerveModules' position
+    // Update of the robot's pose with the robot's rotation and an array of the SwerveModules' position
     frc::Rotation2d gyroAngle = mIMU->getRotation2d();
     *m_robotPose = m_odometry->Update(gyroAngle, {
                     m_frontLeftModule->getModulePosition(),
                     m_frontRightModule->getModulePosition(),
                     m_backLeftModule->getModulePosition(),
                     m_backRightModule->getModulePosition()});
-    std::cout << (double)m_robotPose->X() << std::endl << (double)m_robotPose->Y() << std::endl;
+    // std::cout << (double)m_robotPose->X() << std::endl << (double)m_robotPose->Y() << std::endl;
+    // std::cout << double(mIMU->getRotation2d().Degrees()) << std::endl;
 }
 
 void SubDriveTrain::Init()
@@ -97,20 +98,21 @@ void SubDriveTrain::Init()
 
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0)
 {
+    // std::cout << iX << std::endl << iY << std::endl << i0 << std::endl;
     // Creating a ChassisSpeeds from the wanted speeds and the robot's rotation
     frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iY,
                                                                             units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iX,
                                                                             units::radians_per_second_t(DriveTrainConstants::kMaxSpeed0) * i0,
-                                                                            mIMU->getRotation2d().Degrees());
+                                                                            mIMU->getRotation2d());
 
     // Transforming the ChassisSpeeds into four SwerveModuleState for each SwerveModule
     auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
 
     // Setting the desired state of each SwerveModule to the corresponding SwerveModuleState
-    m_frontLeftModule->setDesiredState(&fl);
-    m_frontRightModule->setDesiredState(&fr);
-    m_backLeftModule->setDesiredState(&bl);
-    m_backRightModule->setDesiredState(&br);
+    m_frontLeftModule->setDesiredState(fl);
+    m_frontRightModule->setDesiredState(fr);
+    m_backLeftModule->setDesiredState(bl);
+    m_backRightModule->setDesiredState(br);
 }
 
 frc::Pose2d SubDriveTrain::getPose()
@@ -141,8 +143,8 @@ void SubDriveTrain::driveRobotRelative(frc::ChassisSpeeds speeds)
     auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
 
     // Setting the desired state of each SwerveModule to the corresponding SwerveModuleState
-    m_frontLeftModule->setDesiredState(&fl);
-    m_frontRightModule->setDesiredState(&fr);
-    m_backLeftModule->setDesiredState(&bl);
-    m_backRightModule->setDesiredState(&br);
+    m_frontLeftModule->setDesiredState(m_frontLeftModule->OptimizeState(fl));
+    m_frontRightModule->setDesiredState(m_frontRightModule->OptimizeState(fr));
+    m_backLeftModule->setDesiredState(m_backLeftModule->OptimizeState(bl));
+    m_backRightModule->setDesiredState(m_backRightModule->OptimizeState(br));
 }

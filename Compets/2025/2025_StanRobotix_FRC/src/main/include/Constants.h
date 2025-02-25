@@ -27,14 +27,14 @@ inline constexpr int kDriverControllerPort = 0;
 
 
 namespace DriveTrainConstants {
-    constexpr int kBackRightMotorID = 2; 
-    constexpr int kBackRightMotor550ID = 1; 
-    constexpr int kFrontRightMotorID = 4; 
-    constexpr int kFrontRightMotor550ID = 3; 
-    constexpr int kFrontLeftMotorID = 6;   
-    constexpr int kFrontLeftMotor550ID = 5;
-    constexpr int kBackLeftMotorID = 8;
-    constexpr int kBackLeftMotor550ID = 7; 
+    constexpr int kBackRightMotorID = 6; 
+    constexpr int kBackRightMotor550ID = 5; 
+    constexpr int kFrontRightMotorID = 8; 
+    constexpr int kFrontRightMotor550ID = 7; 
+    constexpr int kFrontLeftMotorID = 2;   
+    constexpr int kFrontLeftMotor550ID = 1;
+    constexpr int kBackLeftMotorID = 4;
+    constexpr int kBackLeftMotor550ID = 3; 
 
     constexpr float kSpeedCap = 0.2; 
     constexpr float kMaxSpeed = 1;
@@ -43,10 +43,11 @@ namespace DriveTrainConstants {
     constexpr double kWheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 
     namespace PIDs{
-        constexpr double kP = 4.0;
+        constexpr double kP = 4;
         constexpr double kI = 0.1;
         constexpr double kD = 0.05;
     }
+
 }
 
 namespace PathPlannerConstants {
