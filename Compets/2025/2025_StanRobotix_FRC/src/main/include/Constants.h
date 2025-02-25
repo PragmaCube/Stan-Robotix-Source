@@ -4,6 +4,11 @@
 
 #pragma once
 
+#include <units/length.h>
+#include <units/angle.h>
+#include <units/velocity.h>
+#include <numbers>
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -31,7 +36,11 @@ namespace DriveTrainConstants {
     constexpr int kBackLeftMotorID = 8;
     constexpr int kBackLeftMotor550ID = 7; 
 
-    constexpr float speedCap = 0.2; 
+    constexpr float kSpeedCap = 0.2; 
+    constexpr float kMaxSpeed = 1;
+    constexpr double kMaxSpeed0 = std::numbers::pi;
+    constexpr double kGearRatio = 1 / 5.08;
+    constexpr double kWheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 
     namespace PIDs{
         constexpr double kP = 4.0;
@@ -47,6 +56,9 @@ namespace PathPlannerConstants {
     constexpr double kPRotation = 0.0;
     constexpr double kIRotation = 0.0;
     constexpr double kDRotation = 0.0;
+
+    constexpr double kStartingPoseX = 0;
+    constexpr double kStartingPoseY = 0;
 }
 
 namespace ChainConstants {

@@ -14,13 +14,9 @@
 #include <frc/kinematics/SwerveDriveOdometry.h>
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/DriverStation.h>
-#include <rev/SparkMax.h>
-#include <rev/RelativeEncoder.h>
-#include <rev/AbsoluteEncoder.h>
 #include <tuple>
 #include <array>
 #include <vector>
-#include <frc/controller/PIDController.h>
 #include <units/velocity.h>
 #include <units/angle.h>
 #include <wpi/array.h>
@@ -32,18 +28,22 @@
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
   SubDriveTrain();
-
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
+// Method that drives the robot in field relative drive
   void driveFieldRelative(float iX, float iY, float i0);
 
+// Method that returns a ChassisSpeeds from the robot relative speeds
   frc::ChassisSpeeds getRobotRelativeSpeeds();
+// Method that drives the robot in robot relative drive
   void driveRobotRelative(frc::ChassisSpeeds speeds);
 
+// Method that returns the robot's pose
   frc::Pose2d getPose();
+// Method that redefines the robot's pose with its input
   void resetPose(frc::Pose2d iRobotPose);
 
   void Init();
@@ -56,31 +56,30 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
  private:
 
-  // Locations for the swerve drive modules relative to the robot center.
+  // Declaring the locations of the SwerveModules
   frc::Translation2d * m_frontLeftLocation;
   frc::Translation2d * m_frontRightLocation;
   frc::Translation2d * m_backLeftLocation;
   frc::Translation2d * m_backRightLocation;
 
-  // Creating my kinematics object using the module locations.
-  frc::SwerveDriveKinematics<4> * m_kinematics;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
+  // Declaring the four SwerveModule objects
   SwerveModule * m_frontLeftModule;
   SwerveModule * m_frontRightModule;
   SwerveModule * m_backLeftModule;
   SwerveModule * m_backRightModule;
 
-  units::meters_per_second_t m_maxSpeed = 1_mps;
-  units::radians_per_second_t m_maxSpeed0 = units::radians_per_second_t(std::numbers::pi);
-  frc::Pose2d * m_robotPose;
-  float m_gearRatio = 5.08;
-  double m_wheelPerimeter = 3 * 0.0254 * std::numbers::pi;
-
   // wpi::array<frc::SwerveModulePosition, 4> * m_swerveModulePositions;
 
+  // Declaring my swerve kinematics object
+  frc::SwerveDriveKinematics<4> * m_kinematics;
+  // Declaring the robot pose object
+  frc::Pose2d * m_robotPose;
+  // Declaring the swerve odometry object
   frc::SwerveDriveOdometry<4> * m_odometry;
 
+  // Declaring the IMU object
   SubIMU * mIMU = nullptr;
 };

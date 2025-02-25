@@ -18,18 +18,24 @@
 class SwerveModule{
  public:
   SwerveModule();
+// Constructeur de la classe avec un motorID pour le Neo et un pour le Neo550
   SwerveModule(int iNeoMotorID, int iNeo550MotorID);
 
+// Méthode qui retourne le SwerveModulePosition du module
   frc::SwerveModulePosition getModulePosition();
-
+// Méthode qui retourne le SwerveModuleState du module
   frc::SwerveModuleState getModuleState();
 
+// Méthode qui retourne un SwerveModuleState optimisé à partir du SwerveModuleState désiré
   frc::SwerveModuleState OptimizeState(frc::SwerveModuleState * iDesiredState);
 
+// Méthode qui fait rouler le module à partir du SwerveModuleState désiré
   void setDesiredState(frc::SwerveModuleState * iDesiredState);
 
+// Méthode qui inverse le moteur Neo du module
   void setNeoInverted(bool iInvertion);
 
+// Méthode qui met à jour le SwerveModulePosition et le SwerveModuleState du module
   void refreshModule();
 
  private:
@@ -46,9 +52,4 @@ class SwerveModule{
 
   frc::SwerveModuleState * m_ModuleState;
   frc::SwerveModulePosition * m_ModulePosition;
-  
-  units::meters_per_second_t m_maxSpeed = 1_mps;
-  units::radians_per_second_t m_maxSpeed0 = units::radians_per_second_t(std::numbers::pi);
-  float m_gearRatio = 1 / 5.08;
-  double m_wheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 };
