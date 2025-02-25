@@ -25,6 +25,8 @@ class SubCoralPivot : public frc2::SubsystemBase {
   void Pivot();
 
   void Pivot(int);
+
+  void Pivot(double);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -38,7 +40,7 @@ class SubCoralPivot : public frc2::SubsystemBase {
   bool mEnable = true;
 
   rev::spark::SparkMax * mCoralPivotMotor = nullptr;
-  frc::PIDController mPIDController{frc::SmartDashboard::GetNumber("kP", 0), frc::SmartDashboard::GetNumber("kI", 0), frc::SmartDashboard::GetNumber("kD", 0)};
+  frc::PIDController mPIDController{frc::SmartDashboard::GetNumber("kPCoral", 0), frc::SmartDashboard::GetNumber("kICoral", 0), frc::SmartDashboard::GetNumber("kDCoral", 0)};
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

@@ -58,11 +58,10 @@ namespace AlgaeConstants {
     }
 
     namespace Intake{
-        constexpr double kAlgaeIntakeSpeed = 0.6; //temporaire
-        constexpr double kNegativeAlgaeIntakeSpeed = -0.6; //temporaire
+        constexpr double kAlgaeIntakeOutSpeed = 0.6; //temporaire
+        constexpr double kAlgaeIntakeInSpeed = 0.6;
 
-        constexpr double kG = 0.19; 
-        constexpr double kS = kG + 0.05;
+        constexpr int kMotorId = 10; // pas vrai, juste temporaire
     }
 }
 
@@ -81,6 +80,8 @@ namespace CoralConstants {
     
     namespace Intake{
         constexpr int kMotorID = 0;
+        constexpr double kCoralIntakeOutSpeed = 0.6; //temporaire
+        constexpr double kCoralIntakeInSpeed = 0.6;
     }
 }
 
@@ -92,11 +93,11 @@ namespace JoystickBindingsConstants{
     namespace Algae{
         constexpr int kPivotUp = 5; // il faut changer
         constexpr int kPivotDown = 3; // il faut changer
-        constexpr int kPivotStop = 12; // il faut changer
+        constexpr int kPivotStop = 2; // il faut changer
 
         constexpr int kManualIn = 9;
         constexpr int kManualOut = 10;
-        constexpr int kIntakeStop = 11;
+        constexpr int kIntakeStop = 12;
     }
     
     namespace Coral{
@@ -104,7 +105,7 @@ namespace JoystickBindingsConstants{
         constexpr int kPivotDown = 4; // il faut changer
 
         constexpr int kManualIn = 7;
-        constexpr int kManualOut = 8;
+        constexpr int kManualOut = 8;        
     }
 
     constexpr int kAlgaeIntakeInCmd = 20; // Mauvais IDs pour rendre les commandes inactives pour le moment

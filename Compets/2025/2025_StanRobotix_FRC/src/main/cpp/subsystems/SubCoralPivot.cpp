@@ -11,7 +11,11 @@ SubCoralPivot::SubCoralPivot(){
 }
 
 // This method will be called once per scheduler run
-void SubCoralPivot::Periodic() {}
+void SubCoralPivot::Periodic() {
+    mPIDController.SetP(frc::SmartDashboard::GetNumber("kPCoral", 0));
+    mPIDController.SetI(frc::SmartDashboard::GetNumber("kICoral", 0));
+    mPIDController.SetD(frc::SmartDashboard::GetNumber("kDCoral", 0));
+}
 
 void SubCoralPivot::stopCoralPivot(){
     mCoralPivotMotor->StopMotor();
@@ -22,19 +26,27 @@ void SubCoralPivot::Pivot(){
     double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80 * 2 * std::numbers::pi;
     double CalculatedPID = mPIDController.Calculate((mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80) * 13;
 
-    mCoralPivotMotor->SetVoltage(-(units::volt_t(kG)));  
+    mCoralPivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID));  
 
 //  std::cout << (mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80 << std::endl;
 }
 
-void SubCoralPivot::Pivot(int Sens){
-    // mPIDController.SetSetpoint(Setpoint);
-    
+void SubCoralPivot::Pivot(int Sens){    
     double kG = frc::SmartDashboard::GetNumber("kGCoral", 0.19);
     double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80 * 2 * std::numbers::pi;
     double CalculatedPID = mPIDController.Calculate((mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80) * 13;
 
     mCoralPivotMotor->SetVoltage(Sens * (units::volt_t(kG)));  
+}
+
+void SubCoralPivot::Pivot(double Setpoint){
+    mPIDController.SetSetpoint(Setpoint);
+    
+    double kG = frc::SmartDashboard::GetNumber("kGCoral", 0.19);
+    double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80 * 2 * std::numbers::pi;
+    double CalculatedPID = mPIDController.Calculate((mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80) * 13;
+
+    mCoralPivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID));  
 }
 
 bool SubCoralPivot::atSetPoint(){
@@ -44,9 +56,3 @@ bool SubCoralPivot::atSetPoint(){
 void SubCoralPivot::SetSetPoint(double iSetPoint){
     mPIDController.SetSetpoint(iSetPoint);
 }
-
-/*
-    le setpoint doit etre donné en tours, même type que le cout.
-    le cout renvoi la position du pivot entre -1 et 1, avec 0 comme pivot horizontale.
-    le PID devrait calculer une valeur aussi entre -1 et 1, qui se fait multiplier par 13 pour avoir une nombre utilisable de volts.
-*/

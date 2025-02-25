@@ -15,6 +15,7 @@ class SubCoralIntake : public frc2::SubsystemBase {
 
   void Intake();
   void Outtake();
+  void stop();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
