@@ -61,7 +61,7 @@ namespace AlgaeConstants {
         constexpr double kAlgaeIntakeOutSpeed = 0.6; //temporaire
         constexpr double kAlgaeIntakeInSpeed = 0.6;
 
-        constexpr int kMotorId = 10; // pas vrai, juste temporaire
+        constexpr int kMotorId = 10;
     }
 }
 
@@ -72,14 +72,14 @@ namespace CoralConstants {
         constexpr double kI = 0.07;
         constexpr double kD = 0;
 
-        constexpr int kMotorID = 18;
+        constexpr int kMotorID = 11;
         constexpr double kCoralPivotSetPoint1 = 0.2;
         constexpr double kCoralPivotSetPoint2 = -0.2;
         constexpr double kG = 0;
     }
     
     namespace Intake{
-        constexpr int kMotorID = 0;
+        constexpr int kMotorID = 12;
         constexpr double kCoralIntakeOutSpeed = 0.6; //temporaire
         constexpr double kCoralIntakeInSpeed = 0.6;
     }
