@@ -38,11 +38,10 @@ class SubDriveTrain : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  void Drive(float iX, float iY, float i0);
-
-  void driveRobotRelative(frc::ChassisSpeeds speeds);
+  void driveFieldRelative(float iX, float iY, float i0);
 
   frc::ChassisSpeeds getRobotRelativeSpeeds();
+  void driveRobotRelative(frc::ChassisSpeeds speeds);
 
   frc::Pose2d getPose();
   void resetPose(frc::Pose2d iRobotPose);
@@ -58,15 +57,13 @@ class SubDriveTrain : public frc2::SubsystemBase {
  private:
 
   // Locations for the swerve drive modules relative to the robot center.
-  frc::Translation2d m_frontLeftLocation{0.355_m, 0.355_m};
-  frc::Translation2d m_frontRightLocation{0.355_m, -0.355_m};
-  frc::Translation2d m_backLeftLocation{-0.355_m, 0.355_m};
-  frc::Translation2d m_backRightLocation{-0.355_m, -0.355_m};
+  frc::Translation2d * m_frontLeftLocation;
+  frc::Translation2d * m_frontRightLocation;
+  frc::Translation2d * m_backLeftLocation;
+  frc::Translation2d * m_backRightLocation;
 
   // Creating my kinematics object using the module locations.
-  frc::SwerveDriveKinematics<4> m_kinematics{
-    m_frontLeftLocation, m_frontRightLocation, m_backLeftLocation,
-    m_backRightLocation};
+  frc::SwerveDriveKinematics<4> * m_kinematics;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
@@ -81,7 +78,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
   float m_gearRatio = 5.08;
   double m_wheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 
-  wpi::array<frc::SwerveModulePosition, 4> * m_swerveModulePositions;
+  // wpi::array<frc::SwerveModulePosition, 4> * m_swerveModulePositions;
 
   frc::SwerveDriveOdometry<4> * m_odometry;
 

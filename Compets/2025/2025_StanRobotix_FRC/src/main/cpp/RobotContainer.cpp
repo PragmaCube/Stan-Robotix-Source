@@ -17,7 +17,7 @@ RobotContainer::RobotContainer() {
   //m_PeriodeAuto = new frc2::CommandPtr(pathplanner::PathPlannerAuto("Test Auto").ToPtr());
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
     [this] {
-    mDriveTrain->Drive(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ());
+    mDriveTrain->driveFieldRelative(mJoystick.GetX(), mJoystick.GetY(), mJoystick.GetZ());
     },
     {mDriveTrain}));
   // Configure the button bindings

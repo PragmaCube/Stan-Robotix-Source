@@ -49,6 +49,6 @@ class SwerveModule{
   
   units::meters_per_second_t m_maxSpeed = 1_mps;
   units::radians_per_second_t m_maxSpeed0 = units::radians_per_second_t(std::numbers::pi);
-  float m_gearRatio = 5.08;
-  double m_wheelPerimeter = 1 / (3 * 0.0254 * std::numbers::pi);
+  float m_gearRatio = 1 / 5.08;
+  double m_wheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 };
