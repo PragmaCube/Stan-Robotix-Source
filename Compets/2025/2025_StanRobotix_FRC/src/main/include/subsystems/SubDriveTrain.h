@@ -35,10 +35,10 @@ class SubDriveTrain : public frc2::SubsystemBase {
  private:
 
   // Locations for the swerve drive modules relative to the robot center.
-  frc::Translation2d m_frontLeftLocation{0.355_m, 0.355_m};
-  frc::Translation2d m_frontRightLocation{0.355_m, -0.355_m};
-  frc::Translation2d m_backLeftLocation{-0.355_m, 0.355_m};
-  frc::Translation2d m_backRightLocation{-0.355_m, -0.355_m};
+  frc::Translation2d m_frontLeftLocation{0.3683_m, 0.3556_m};
+  frc::Translation2d m_frontRightLocation{0.3683_m, -0.3556_m};
+  frc::Translation2d m_backLeftLocation{-0.3683_m, 0.3556_m};
+  frc::Translation2d m_backRightLocation{-0.3683_m, -0.3556_m};
 
   // Creating my kinematics object using the module locations.
   frc::SwerveDriveKinematics<4> m_kinematics{

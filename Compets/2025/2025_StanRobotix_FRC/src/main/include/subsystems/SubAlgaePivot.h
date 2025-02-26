@@ -37,6 +37,8 @@ class SubAlgaePivot : public frc2::SubsystemBase {
  private:
   bool mEnable = true;
 
+  const double kOffset = 11.7;
+
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
   frc::PIDController mPIDController{frc::SmartDashboard::GetNumber("kP", 0), frc::SmartDashboard::GetNumber("kI", 0), frc::SmartDashboard::GetNumber("kD", 0)};
   // Components (e.g. motor controllers and sensors) should generally be
