@@ -43,7 +43,7 @@ class SubCoralPivot : public frc2::SubsystemBase {
   bool mEnable = true;
 
   rev::spark::SparkMax * mCoralPivotMotor = nullptr;
-  frc::PIDController mPIDController{frc::SmartDashboard::GetNumber("kP", 0), frc::SmartDashboard::GetNumber("kI", 0), frc::SmartDashboard::GetNumber("kD", 0)};
+  frc::PIDController mPIDController{0.2, 0, 0};
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

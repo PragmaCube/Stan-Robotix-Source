@@ -20,12 +20,12 @@ RobotContainer::RobotContainer() {
   mSubCoralIntake = new SubCoralIntake;
   mJoystick = new frc::Joystick{0};
 
-// mDriveTrain->SetDefaultCommand(frc2::RunCommand(
-//     [this] {
-//     mDriveTrain->Drive(-mJoystick.GetX(), -mJoystick.GetY(), -mJoystick.GetZ());
-//     },
-//     {mDriveTrain}));
-  // Configure the button bindings
+mDriveTrain->SetDefaultCommand(frc2::RunCommand(
+    [this] {
+    mDriveTrain->Drive(-mJoystick->GetX(), -mJoystick->GetY(), -mJoystick->GetZ());
+    },
+    {mDriveTrain}));
+
   ConfigureBindings();
 
   mIMU->resetAngle();
@@ -58,12 +58,11 @@ void RobotContainer::ConfigureBindings() {
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kManualIn);
-  }).OnTrue(frc2::RunCommand([this] {mSubCoralIntake->Intake();},{mSubCoralIntake}).ToPtr());
+  }).OnTrue(CoralIntake(mSubCoralIntake, mJoystick).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kManualOut);
-  }).OnTrue(frc2::RunCommand([this] {mSubCoralIntake->Outtake();},{mSubCoralIntake}).ToPtr());
-
+  }).OnTrue(CoralOuttake(mSubCoralIntake, mJoystick).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Algae::kManualIn);

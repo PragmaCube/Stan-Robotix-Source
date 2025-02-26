@@ -21,6 +21,8 @@
 #include "commands/AlgaePivotUp.h"
 #include "commands/AlgaeIntakeIn.h"
 #include "commands/AlgaeIntakeOut.h"
+#include "commands/CoralIntake.h"
+#include "commands/CoralOuttake.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since

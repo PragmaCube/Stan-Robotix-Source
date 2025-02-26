@@ -60,8 +60,8 @@ namespace AlgaeConstants {
     namespace Intake{
         constexpr int kMotorID = 10;
 
-        constexpr double kAlgaeIntakeSpeed = 0.15; //temporaire
-        constexpr double kNegativeAlgaeIntakeSpeed = -0.15; //temporaire
+        constexpr double kAlgaeIntakeSpeed = 0.2; //temporaire
+        constexpr double kNegativeAlgaeIntakeSpeed = -0.2; //temporaire
 
         constexpr double kG = 0.19; 
         constexpr double kS = kG + 0.05;
