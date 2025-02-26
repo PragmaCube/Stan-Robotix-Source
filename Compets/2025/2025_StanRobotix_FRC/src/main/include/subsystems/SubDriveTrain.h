@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include <pathplanner/lib/auto/AutoBuilder.h>
-#include <pathplanner/lib/config/RobotConfig.h>
-#include <pathplanner/lib/controllers/PPHolonomicDriveController.h>
+// #include <pathplanner/lib/auto/AutoBuilder.h>
+// #include <pathplanner/lib/config/RobotConfig.h>
+// #include <pathplanner/lib/controllers/PPHolonomicDriveController.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc/geometry/Translation2d.h>
 #include <frc/geometry/Pose2d.h>
@@ -50,7 +50,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
   // Load the RobotConfig from the GUI settings. You should probably
   // store this in your Constants file
-  pathplanner::RobotConfig config = pathplanner::RobotConfig::fromGUISettings();
+  // pathplanner::RobotConfig config = pathplanner::RobotConfig::fromGUISettings();
 
   // Configure the AutoBuilder last
 

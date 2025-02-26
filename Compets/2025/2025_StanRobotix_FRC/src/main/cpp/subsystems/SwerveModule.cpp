@@ -4,7 +4,7 @@
 
 #include "subsystems/SwerveModule.h"
 
-SwerveModule::SwerveModule(int iNeo550MotorID, int iNeoMotorID)
+SwerveModule::SwerveModule(int iNeoMotorID, int iNeo550MotorID)
 {
     // Initialization of the motor controllers with the motorID constructor input
     m_MotorNeo = new rev::spark::SparkMax{iNeoMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
@@ -35,22 +35,24 @@ frc::SwerveModulePosition SwerveModule::getModulePosition()
 
 frc::SwerveModuleState SwerveModule::OptimizeState(frc::SwerveModuleState iDesiredState)
 {
-    frc::SwerveModuleState OptimizedState = iDesiredState;
+    // frc::SwerveModuleState OptimizedState = iDesiredState;
     frc::Rotation2d Neo550CurrentAngle(units::degree_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * 360);
-    OptimizedState.Optimize(Neo550CurrentAngle);
-    OptimizedState.CosineScale(Neo550CurrentAngle);
+    frc::SwerveModuleState OptimizedState = frc::SwerveModuleState::Optimize(iDesiredState, Neo550CurrentAngle);
+    OptimizedState.speed *= (OptimizedState.angle - Neo550CurrentAngle).Cos();
+    // OptimizedState.Optimize(Neo550CurrentAngle);
+    // OptimizedState.CosineScale(Neo550CurrentAngle);
     return OptimizedState;
 }
 
 void SwerveModule::setDesiredState(frc::SwerveModuleState iDesiredState)
 {
-    frc::SwerveModuleState OptimizedState = OptimizeState(iDesiredState);
-    m_Neo550PID->SetSetpoint(double(OptimizedState.angle.Radians()));
-    m_MotorNeo550->Set(m_Neo550PID->Calculate(m_Neo550AbsoluteEncoder->GetPosition()));
-    m_MotorNeo->Set(double(OptimizedState.speed * (1 / units::meters_per_second_t(DriveTrainConstants::kMaxSpeed)) * DriveTrainConstants::kSpeedCap));
-//     m_Neo550PID->SetSetpoint(double(iDesiredState.angle.Radians()));
+//     frc::SwerveModuleState OptimizedState = OptimizeState(iDesiredState);
+//     m_Neo550PID->SetSetpoint(double(OptimizedState.angle.Radians()));
 //     m_MotorNeo550->Set(m_Neo550PID->Calculate(m_Neo550AbsoluteEncoder->GetPosition()));
-//     m_MotorNeo->Set(double(iDesiredState.speed * (1 / units::meters_per_second_t(DriveTrainConstants::kMaxSpeed)) * DriveTrainConstants::kSpeedCap));
+//     m_MotorNeo->Set(double(OptimizedState.speed * (1 / units::meters_per_second_t(DriveTrainConstants::kMaxSpeed)) * DriveTrainConstants::kSpeedCap));
+    m_Neo550PID->SetSetpoint(double(iDesiredState.angle.Radians() / (2 * std::numbers::pi)) + 0.5);
+    m_MotorNeo550->Set(m_Neo550PID->Calculate(m_Neo550AbsoluteEncoder->GetPosition()));
+    m_MotorNeo->Set(double(iDesiredState.speed * (1 / units::meters_per_second_t(DriveTrainConstants::kMaxSpeed)) * DriveTrainConstants::kSpeedCap));
 }
 
 void SwerveModule::setNeoInverted(bool iInverted)
