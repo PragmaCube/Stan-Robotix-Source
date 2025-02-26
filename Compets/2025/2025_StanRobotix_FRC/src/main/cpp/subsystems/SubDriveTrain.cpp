@@ -8,10 +8,10 @@
 SubDriveTrain::SubDriveTrain()
 {
     // Initialization of the SwerveModules' location relative to the robot center
-    m_frontLeftLocation = new frc::Translation2d{0.355_m, 0.355_m};
-    m_frontRightLocation = new frc::Translation2d{0.355_m, -0.355_m};
-    m_backLeftLocation = new frc::Translation2d{-0.355_m, 0.355_m};
-    m_backRightLocation = new frc::Translation2d{-0.355_m, -0.355_m};
+    m_frontLeftLocation = new frc::Translation2d{0.3683_m, 0.3556_m};
+    m_frontRightLocation = new frc::Translation2d{0.3683_m, -0.3556_m};
+    m_backLeftLocation = new frc::Translation2d{-0.3683_m, 0.3556_m};
+    m_backRightLocation = new frc::Translation2d{-0.3683_m, -0.3556_m};
 
     // Initialization of the SwerveModules with the motor IDs
     m_frontLeftModule = new SwerveModule{DriveTrainConstants::kFrontLeftMotorID,DriveTrainConstants::kFrontLeftMotor550ID};
@@ -95,14 +95,14 @@ void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0)
     auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
 
     // Setting the desired state of each SwerveModule to the corresponding SwerveModuleState
-    m_frontLeftModule->setDesiredState(m_frontLeftModule->OptimizeState(fl));
-    m_frontRightModule->setDesiredState(m_frontRightModule->OptimizeState(fr));
-    m_backLeftModule->setDesiredState(m_backLeftModule->OptimizeState(bl));
-    m_backRightModule->setDesiredState(m_backRightModule->OptimizeState(br));
-    // m_frontLeftModule->setDesiredState(fl);
-    // m_frontRightModule->setDesiredState(fr);
-    // m_backLeftModule->setDesiredState(bl);
-    // m_backRightModule->setDesiredState(br);
+    // m_frontLeftModule->setDesiredState(m_frontLeftModule->OptimizeState(fl));
+    // m_frontRightModule->setDesiredState(m_frontRightModule->OptimizeState(fr));
+    // m_backLeftModule->setDesiredState(m_backLeftModule->OptimizeState(bl));
+    // m_backRightModule->setDesiredState(m_backRightModule->OptimizeState(br));
+    m_frontLeftModule->setDesiredState(fl);
+    m_frontRightModule->setDesiredState(fr);
+    m_backLeftModule->setDesiredState(bl);
+    m_backRightModule->setDesiredState(br);
 }
 
 frc::Pose2d SubDriveTrain::getPose()
