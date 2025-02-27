@@ -8,7 +8,10 @@
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/Joystick.h>
 #include <pathplanner/lib/commands/PathPlannerAuto.h>
+#include <pathplanner/lib/auto/AutoBuilder.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc2/command/Command.h>
+#include <memory>
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
@@ -32,6 +35,9 @@ class RobotContainer {
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
       OperatorConstants::kDriverControllerPort};
+
+  // Build an auto chooser. This will use frc2::cmd::None() as the default option.
+  frc::SendableChooser<frc2::Command *> autoChooser;
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;

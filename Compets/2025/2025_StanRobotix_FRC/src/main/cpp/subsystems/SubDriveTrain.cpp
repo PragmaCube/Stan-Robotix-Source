@@ -74,13 +74,11 @@ void SubDriveTrain::Periodic()
                     m_frontRightModule->getModulePosition(),
                     m_backLeftModule->getModulePosition(),
                     m_backRightModule->getModulePosition()});
+    
+   std::cout << double(m_odometry->GetPose().X()) << std::endl << double(m_odometry->GetPose().Y()) << std::endl;
 }
 
-void SubDriveTrain::Init()
-{
-    // One of the motors need to be inverted
-    m_backLeftModule->setNeoInverted(true);
-}
+void SubDriveTrain::Init() {}
 
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0)
 {

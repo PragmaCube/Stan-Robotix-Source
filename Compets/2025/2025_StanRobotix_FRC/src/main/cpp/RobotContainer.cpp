@@ -25,10 +25,13 @@ RobotContainer::RobotContainer() {
 
   mIMU->resetAngle();
 
+
+  autoChooser = pathplanner::AutoBuilder::buildAutoChooser("Courbes");
+
   // Build an auto chooser. This will use frc2::cmd::None() as the default option.
   // frc::SendableChooser<frc2::Command *> autoChooser = pathplanner::AutoBuilder::buildAutoChooser("Default Auto");
   
-  // frc::SmartDashboard::PutData("Auto Chooser", &autoChooser);
+  frc::SmartDashboard::PutData("Auto Chooser", &autoChooser);
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -52,5 +55,6 @@ void RobotContainer::ConfigureBindings() {
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return pathplanner::PathPlannerAuto("Courbes").ToPtr();
+  // return *autoChooser.GetSelected();
   // return autos::ExampleAuto(&m_subsystem);
 }
