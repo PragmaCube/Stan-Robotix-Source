@@ -23,6 +23,7 @@
 #include "commands/AlgaeIntakeOut.h"
 #include "commands/CoralIntake.h"
 #include "commands/CoralOuttake.h"
+#include "commands/TestShuffleBoard.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -53,6 +54,7 @@ class RobotContainer {
   SubAlgaeIntake * mSubAlgaeIntake = nullptr;
   SubCoralPivot * mSubCoralPivot = nullptr;
   SubCoralIntake * mSubCoralIntake = nullptr;
+  TestShuffleBoard * mTestSuffleBoard = nullptr;
   frc::Joystick * mJoystick = nullptr;
 
   void ConfigureBindings();

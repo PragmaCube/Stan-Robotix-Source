@@ -39,6 +39,7 @@ mDriveTrain->SetDefaultCommand(frc2::RunCommand(
   frc::SmartDashboard::PutNumber("kD", 0);
   frc::SmartDashboard::PutNumber("kG", 0.19);
   frc::SmartDashboard::PutNumber("kGCoral", 0.19);
+  frc::SmartDashboard::PutBoolean("TestShuffleBoard", mTestSuffleBoard->IsFinished());
 }
 
 
