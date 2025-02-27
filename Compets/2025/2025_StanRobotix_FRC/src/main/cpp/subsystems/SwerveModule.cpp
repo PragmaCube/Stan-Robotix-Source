@@ -37,8 +37,6 @@ frc::SwerveModuleState SwerveModule::OptimizeState(frc::SwerveModuleState iDesir
 {
     frc::SwerveModuleState OptimizedState = iDesiredState;
     frc::Rotation2d Neo550CurrentAngle(units::degree_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * 360);
-    // frc::SwerveModuleState OptimizedState = frc::SwerveModuleState::Optimize(iDesiredState, Neo550CurrentAngle);
-    // OptimizedState.speed *= (OptimizedState.angle - Neo550CurrentAngle).Cos();
     OptimizedState.Optimize(Neo550CurrentAngle);
     OptimizedState.CosineScale(Neo550CurrentAngle);
     return OptimizedState;
@@ -46,13 +44,10 @@ frc::SwerveModuleState SwerveModule::OptimizeState(frc::SwerveModuleState iDesir
 
 void SwerveModule::setDesiredState(frc::SwerveModuleState iDesiredState)
 {
-//     frc::SwerveModuleState OptimizedState = OptimizeState(iDesiredState);
-//     m_Neo550PID->SetSetpoint(double(OptimizedState.angle.Radians()));
-//     m_MotorNeo550->Set(m_Neo550PID->Calculate(m_Neo550AbsoluteEncoder->GetPosition()));
-//     m_MotorNeo->Set(double(OptimizedState.speed * (1 / units::meters_per_second_t(DriveTrainConstants::kMaxSpeed)) * DriveTrainConstants::kSpeedCap));
-    m_Neo550PID->SetSetpoint(double(iDesiredState.angle.Radians() / (2 * std::numbers::pi)) + 0.5);
+    frc::SwerveModuleState OptimizedState = OptimizeState(iDesiredState);
+    m_Neo550PID->SetSetpoint(double(OptimizedState.angle.Radians() / (2 * std::numbers::pi)) + 0.5);
     m_MotorNeo550->Set(m_Neo550PID->Calculate(m_Neo550AbsoluteEncoder->GetPosition()));
-    m_MotorNeo->Set(double(iDesiredState.speed * (1 / units::meters_per_second_t(DriveTrainConstants::kMaxSpeed)) * DriveTrainConstants::kSpeedCap));
+    m_MotorNeo->Set(double(OptimizedState.speed * (1 / units::meters_per_second_t(DriveTrainConstants::kMaxSpeed)) * DriveTrainConstants::kSpeedCap));
 }
 
 void SwerveModule::setNeoInverted(bool iInverted)

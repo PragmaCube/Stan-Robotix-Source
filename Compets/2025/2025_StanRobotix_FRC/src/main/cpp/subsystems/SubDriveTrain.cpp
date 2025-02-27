@@ -94,14 +94,10 @@ void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0)
     auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
 
     // Setting the desired state of each SwerveModule to the corresponding SwerveModuleState
-    m_frontLeftModule->setDesiredState(m_frontLeftModule->OptimizeState(fl));
-    m_frontRightModule->setDesiredState(m_frontRightModule->OptimizeState(fr));
-    m_backLeftModule->setDesiredState(m_backLeftModule->OptimizeState(bl));
-    m_backRightModule->setDesiredState(m_backRightModule->OptimizeState(br));
-    // m_frontLeftModule->setDesiredState(fl);
-    // m_frontRightModule->setDesiredState(fr);
-    // m_backLeftModule->setDesiredState(bl);
-    // m_backRightModule->setDesiredState(br);
+    m_frontLeftModule->setDesiredState(fl);
+    m_frontRightModule->setDesiredState(fr);
+    m_backLeftModule->setDesiredState(bl);
+    m_backRightModule->setDesiredState(br);
 }
 
 frc::Pose2d SubDriveTrain::getPose()
@@ -132,12 +128,8 @@ void SubDriveTrain::driveRobotRelative(frc::ChassisSpeeds speeds)
     auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
 
     // Setting the desired state of each SwerveModule to the corresponding SwerveModuleState
-    m_frontLeftModule->setDesiredState(m_frontLeftModule->OptimizeState(fl));
-    m_frontRightModule->setDesiredState(m_frontRightModule->OptimizeState(fr));
-    m_backLeftModule->setDesiredState(m_backLeftModule->OptimizeState(bl));
-    m_backRightModule->setDesiredState(m_backRightModule->OptimizeState(br));
-    // m_frontLeftModule->setDesiredState(fl);
-    // m_frontRightModule->setDesiredState(fr);
-    // m_backLeftModule->setDesiredState(bl);
-    // m_backRightModule->setDesiredState(br);
+    m_frontLeftModule->setDesiredState(fl);
+    m_frontRightModule->setDesiredState(fr);
+    m_backLeftModule->setDesiredState(bl);
+    m_backRightModule->setDesiredState(br);
 }
