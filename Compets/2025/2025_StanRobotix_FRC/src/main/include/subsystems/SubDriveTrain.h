@@ -13,6 +13,7 @@
 #include <frc/kinematics/SwerveDriveKinematics.h>
 #include <frc/kinematics/SwerveDriveOdometry.h>
 #include <frc/kinematics/SwerveModulePosition.h>
+#include <frc/kinematics/ChassisSpeeds.h>
 #include <frc/DriverStation.h>
 #include <tuple>
 #include <array>
@@ -51,8 +52,6 @@ class SubDriveTrain : public frc2::SubsystemBase {
   // Load the RobotConfig from the GUI settings. You should probably
   // store this in your Constants file
   pathplanner::RobotConfig config = pathplanner::RobotConfig::fromGUISettings();
-
-  // Configure the AutoBuilder last
 
  private:
 

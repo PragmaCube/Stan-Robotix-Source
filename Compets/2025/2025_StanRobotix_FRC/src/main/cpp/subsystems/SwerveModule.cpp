@@ -35,12 +35,12 @@ frc::SwerveModulePosition SwerveModule::getModulePosition()
 
 frc::SwerveModuleState SwerveModule::OptimizeState(frc::SwerveModuleState iDesiredState)
 {
-    // frc::SwerveModuleState OptimizedState = iDesiredState;
+    frc::SwerveModuleState OptimizedState = iDesiredState;
     frc::Rotation2d Neo550CurrentAngle(units::degree_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * 360);
-    frc::SwerveModuleState OptimizedState = frc::SwerveModuleState::Optimize(iDesiredState, Neo550CurrentAngle);
-    OptimizedState.speed *= (OptimizedState.angle - Neo550CurrentAngle).Cos();
-    // OptimizedState.Optimize(Neo550CurrentAngle);
-    // OptimizedState.CosineScale(Neo550CurrentAngle);
+    // frc::SwerveModuleState OptimizedState = frc::SwerveModuleState::Optimize(iDesiredState, Neo550CurrentAngle);
+    // OptimizedState.speed *= (OptimizedState.angle - Neo550CurrentAngle).Cos();
+    OptimizedState.Optimize(Neo550CurrentAngle);
+    OptimizedState.CosineScale(Neo550CurrentAngle);
     return OptimizedState;
 }
 
