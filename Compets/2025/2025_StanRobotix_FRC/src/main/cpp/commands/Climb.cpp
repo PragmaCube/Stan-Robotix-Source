@@ -2,30 +2,24 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/AlgaePivotDown.h"
+#include "commands/Climb.h"
 
-AlgaePivotDown::AlgaePivotDown(SubAlgaePivot * iAlgaePivot) {
+Climb::Climb() {
   // Use addRequirements() here to declare subsystem dependencies.
-  mAlgaePivot = iAlgaePivot;
-  AddRequirements(mAlgaePivot);
 }
 
 // Called when the command is initially scheduled.
-void AlgaePivotDown::Initialize() {
-  mAlgaePivot->SetPIDEnable(true);
-}
+void Climb::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void AlgaePivotDown::Execute() {
-  mAlgaePivot->Pivot(0.3);
+void Climb::Execute() {
+  
 }
 
 // Called once the command ends or is interrupted.
-void AlgaePivotDown::End(bool interrupted) {
-  mAlgaePivot->SetPIDEnable(false);
-}
+void Climb::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool AlgaePivotDown::IsFinished() {
-  return mAlgaePivot->atSetPoint();
+bool Climb::IsFinished() {
+  return false;
 }

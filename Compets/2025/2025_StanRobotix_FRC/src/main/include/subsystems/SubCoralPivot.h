@@ -43,6 +43,7 @@ class SubCoralPivot : public frc2::SubsystemBase {
   bool mEnable = true;
 
   const double kOffset =  -14.7857;
+  const double kG = 0.19;
 
   rev::spark::SparkMax * mCoralPivotMotor = nullptr;
   frc::PIDController mPIDController{0.2, 0, 0};

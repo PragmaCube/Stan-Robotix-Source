@@ -24,7 +24,7 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   void Pivot();
 
-  void Pivot(int);
+  void Pivot(double);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -34,13 +34,21 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   void SetSetPoint(double);
 
+  void SetPIDEnable(bool);
+
+  void Climb();
+
+  void StayStill();
+
  private:
   bool mEnable = true;
 
-  const double kOffset = 11.7;
+  const double kG = 0.18;
+  const double kOffset = 33.6426;
+  bool PIDEnable = true;
 
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
-  frc::PIDController mPIDController{frc::SmartDashboard::GetNumber("kP", 0), frc::SmartDashboard::GetNumber("kI", 0), frc::SmartDashboard::GetNumber("kD", 0)};
+  frc::PIDController mPIDController{0.2, 0, 0};
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

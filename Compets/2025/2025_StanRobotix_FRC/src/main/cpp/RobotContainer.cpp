@@ -52,9 +52,17 @@ void RobotContainer::ConfigureBindings() {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
   
+  // frc2::Trigger([this] {
+  //   return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::kResetIMU);
+  // }).OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();},{mIMU}).ToPtr());  
+
+   frc2::Trigger([this] {
+    return mJoystick->GetRawButtonPressed(12);
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->StayStill();},{mSubAlgaePivot}).ToPtr());
+
   frc2::Trigger([this] {
-    return mJoystick->GetRawButtonPressed(2);
-  }).OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();},{mIMU}).ToPtr());  
+    return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::kClimb);
+  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->Climb();},{mSubAlgaePivot}).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kManualIn);
@@ -71,40 +79,26 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Algae::kManualOut);
   }).OnTrue(AlgaeIntakeOut(mSubAlgaeIntake, mJoystick).ToPtr());
-  
-  frc2::Trigger([this] {
-    return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Algae::kIntakeStop);
-  }).OnTrue(frc2::RunCommand([this] {mSubAlgaeIntake->Stop();},{mSubAlgaeIntake}).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Algae::kPivotUp);
-  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->Pivot(frc::SmartDashboard::GetNumber("SetPointUp", -0.2274));},{mSubAlgaePivot}).ToPtr());
+  }).OnTrue(AlgaePivotUp(mSubAlgaePivot).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Algae::kPivotDown);
-  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->Pivot(frc::SmartDashboard::GetNumber("SetPointDown", 0.2274));},{mSubAlgaePivot}).ToPtr());  
+  }).OnTrue(AlgaePivotDown(mSubAlgaePivot).ToPtr());  
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kPivotUp);
-  }).OnTrue(frc2::RunCommand([this] {mSubCoralPivot->PivotUp();},{mSubCoralPivot}).ToPtr());
+  }).OnTrue(frc2::RunCommand([this] {mSubCoralPivot->Pivot(-1.15);},{mSubCoralPivot}).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kPivotDown);
-  }).OnTrue(frc2::RunCommand([this] {mSubCoralPivot->Pivot(1);},{mSubCoralPivot}).ToPtr());  
+  }).OnTrue(frc2::RunCommand([this] {mSubCoralPivot->Pivot(-0.1);},{mSubCoralPivot}).ToPtr());  
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kPivotStop);
   }).OnTrue(frc2::RunCommand([this] {mSubCoralPivot->Stop();},{mSubCoralPivot}).ToPtr());  
-
-
-
-  // frc2::Trigger([this] {
-  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotUpCmd);
-  // }).OnTrue(PivotUp(mSubAlgaePivot).ToPtr());
-
-  // frc2::Trigger([this] {
-  //   return mJoystick.GetRawButtonPressed(JoystickBindingsConstants::kAlgaePivotDownCmd);
-  // }).OnTrue(PivotDown(mSubAlgaePivot).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Algae::kPivotStop);

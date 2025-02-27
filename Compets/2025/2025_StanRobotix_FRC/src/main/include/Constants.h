@@ -91,14 +91,15 @@ namespace CommandConstants {
 }
 
 namespace JoystickBindingsConstants{
+    // constexpr int kResetIMU = 12;
+
     namespace Algae{
         constexpr int kPivotUp = 5; // il faut changer
         constexpr int kPivotDown = 3; // il faut changer
-        constexpr int kPivotStop = 12; // il faut changer
+        constexpr int kPivotStop = 2; // il faut changer
 
         constexpr int kManualIn = 9;
         constexpr int kManualOut = 10;
-        constexpr int kIntakeStop = 11;
     }
     
     namespace Coral{
@@ -109,6 +110,8 @@ namespace JoystickBindingsConstants{
         constexpr int kManualIn = 7;
         constexpr int kManualOut = 8;
     }
+
+    constexpr int kClimb = 11;
 
     constexpr int kAlgaeIntakeInCmd = 20; // Mauvais IDs pour rendre les commandes inactives pour le moment
     constexpr int kAlgaeIntakeOutCmd = 21; // Mauvais IDs pour rendre les commandes inactives pour le moment

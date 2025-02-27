@@ -12,11 +12,11 @@ SubCoralIntake::SubCoralIntake() {
 void SubCoralIntake::Periodic() {}
 
 void SubCoralIntake::Intake(){
-    mCoralIntakeMotor->Set(0.3);
+    mCoralIntakeMotor->Set(0.45);
 }
 
 void SubCoralIntake::Outtake(){
-    mCoralIntakeMotor->Set(-0.3);
+    mCoralIntakeMotor->Set(-0.6);
 }
 
 void SubCoralIntake::Stop(){

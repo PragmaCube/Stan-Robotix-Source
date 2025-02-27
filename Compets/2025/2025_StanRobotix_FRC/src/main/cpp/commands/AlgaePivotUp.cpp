@@ -11,17 +11,17 @@ AlgaePivotUp::AlgaePivotUp(SubAlgaePivot * iAlgaePivot) {
 }
 
 void AlgaePivotUp::Initialize() {
-  mAlgaePivot->SetSetPoint(AlgaeConstants::Pivot::kAlgaePivotSetPoint1);
+  mAlgaePivot->SetPIDEnable(true);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaePivotUp::Execute() {
-  mAlgaePivot->Pivot();
+  mAlgaePivot->Pivot(1.5);
 }
 
 // Called once the command ends or is interrupted.
 void AlgaePivotUp::End(bool interrupted) {
-  mAlgaePivot->Stop();
+  mAlgaePivot->SetPIDEnable(false);
 }
 
 // Returns true when the command should end.
