@@ -28,5 +28,9 @@
   "brModuleY": -0.3556,
   "bumperOffsetX": 0.0,
   "bumperOffsetY": 0.0,
-  "robotFeatures": []
+  "robotFeatures": [
+    "{\"name\":\"Coral Pivot\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.368,\"y\":0.0},\"size\":{\"width\":0.4,\"length\":0.1},\"borderRadius\":0.0,\"strokeWidth\":0.015,\"filled\":false}}",
+    "{\"name\":\"Algae Pivot\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":-0.05,\"y\":-0.356},\"size\":{\"width\":0.1,\"length\":0.4},\"borderRadius\":0.0,\"strokeWidth\":0.015,\"filled\":false}}",
+    "{\"name\":\"Little Arm\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.22,\"y\":-0.356},\"size\":{\"width\":0.1,\"length\":0.1},\"borderRadius\":0.0,\"strokeWidth\":0.015,\"filled\":false}}"
+  ]
 }
