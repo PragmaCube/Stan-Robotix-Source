@@ -8,6 +8,7 @@
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/Joystick.h>
 #include <pathplanner/lib/commands/PathPlannerAuto.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
@@ -38,7 +39,8 @@ class RobotContainer {
   SubIMU * mIMU = nullptr;
   frc::Joystick mJoystick{0};
 
-  //frc2::CommandPtr * m_PeriodeAuto = nullptr;
+  //frc2::CommandPtr * m_PeriodeAuto;
+  // frc::SendableChooser<frc2::Command *> autoChooser;
 
   void ConfigureBindings();
 };
