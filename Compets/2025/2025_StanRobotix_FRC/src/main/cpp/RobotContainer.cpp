@@ -46,6 +46,6 @@ void RobotContainer::ConfigureBindings() {
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  // return pathplanner::PathPlannerAuto("Test Auto").ToPtr();
-  return autos::ExampleAuto(&m_subsystem);
+  return pathplanner::PathPlannerAuto("Test Auto").ToPtr();
+  // return autos::ExampleAuto(&m_subsystem);
 }

@@ -7,7 +7,7 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/Joystick.h>
-//#include <pathplanner/lib/commands/PathPlannerAuto.h>
+#include <pathplanner/lib/commands/PathPlannerAuto.h>
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
