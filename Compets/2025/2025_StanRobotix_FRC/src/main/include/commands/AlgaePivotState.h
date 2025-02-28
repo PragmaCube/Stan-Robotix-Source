@@ -7,6 +7,9 @@
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
 
+#include "subsystems/SubCoralPivot.h"
+#include "subsystems/SubAlgaePivot.h"
+
 /**
  * An example command.
  *
@@ -20,7 +23,7 @@ class AlgaePivotState
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  AlgaePivotState();
+  AlgaePivotState(SubAlgaePivot * iSubAlgaePivot, SubCoralPivot * iSubCoralPivot, StatesAlgae);
 
   void Initialize() override;
 
@@ -29,4 +32,11 @@ class AlgaePivotState
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+
+  private:
+
+  SubAlgaePivot * mSubAlgaePivot;
+  SubCoralPivot * mSubCoralPivot;
+
+  StatesAlgae mState;
 };

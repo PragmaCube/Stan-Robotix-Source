@@ -4,11 +4,36 @@
 
 #include "commands/CoralPivotState.h"
 
-CoralPivotState::CoralPivotState(SubCoralPivot * iCoralPivot, StatesCoral iState) {
+CoralPivotState::CoralPivotState(SubCoralPivot * iCoralPivot) {
   // Use addRequirements() here to declare subsystem dependencies.
   mCoralPivot = iCoralPivot;
-  AddRequirements(mCoralPivot); 
-  mState = iState;
+  AddRequirements(mCoralPivot);
+  if (i == 4) {
+    i = 0;
+  }
+  switch (i)
+  {
+  case 0:
+    mState = StatesCoral::relaché;
+    break;
+
+  case 1:
+    mState = StatesCoral::horizontale;
+    break;
+
+  case 2:
+    mState = StatesCoral::shoot;
+    break;
+
+  case 3:
+    mState = StatesCoral::vertical;
+    break;
+  
+  default:
+    mState = StatesCoral::replié;
+    break;
+  }
+  i++;
 }
 
 // Called when the command is initially scheduled.

@@ -22,7 +22,7 @@ class CoralPivotState
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  CoralPivotState(SubCoralPivot * iCoralPivot, StatesCoral);
+  CoralPivotState(SubCoralPivot * iCoralPivot);
 
   void Initialize() override;
 
@@ -35,6 +35,8 @@ class CoralPivotState
   private:
 
   SubCoralPivot * mCoralPivot;
+
+  int i = 0;
 
   StatesCoral mState;
 };
