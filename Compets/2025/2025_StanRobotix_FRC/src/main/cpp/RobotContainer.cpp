@@ -26,7 +26,7 @@ RobotContainer::RobotContainer() {
   mIMU->resetAngle();
 
 
-  autoChooser = pathplanner::AutoBuilder::buildAutoChooser("Courbes");
+  autoChooser = pathplanner::AutoBuilder::buildAutoChooser("New Auto 1m");
 
   // Build an auto chooser. This will use frc2::cmd::None() as the default option.
   // frc::SendableChooser<frc2::Command *> autoChooser = pathplanner::AutoBuilder::buildAutoChooser("Default Auto");
