@@ -16,6 +16,14 @@
 
 #include "Constants.h"
 
+enum StatesCoral {
+  relaché,
+  horizontale,
+  shoot,
+  vertical,
+  replié
+};
+
 class SubCoralPivot : public frc2::SubsystemBase {
  public:
   SubCoralPivot();
@@ -34,8 +42,12 @@ class SubCoralPivot : public frc2::SubsystemBase {
 
   void SetPIDEnable(bool);
 
+  StatesCoral GetState();
+
+  void SetState(StatesCoral);
+
  private:
-  bool mEnable = true;
+  StatesCoral mState;
 
   const double kOffset =  -14.7857;
   const double kG = 0.23;

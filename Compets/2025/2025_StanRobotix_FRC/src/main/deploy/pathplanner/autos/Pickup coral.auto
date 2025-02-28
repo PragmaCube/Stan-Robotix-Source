@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Starting path"
+                  "pathName": "go to reef"
                 }
               },
               {
@@ -26,7 +26,7 @@
         {
           "type": "named",
           "data": {
-            "name": null
+            "name": "AlgaeIntakeIn"
           }
         },
         {

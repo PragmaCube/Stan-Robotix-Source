@@ -48,6 +48,14 @@ void SubAlgaePivot::StayStill(){
     mAlgaePivotMotor->SetVoltage(units::volt_t(-0.75));
 }
 
+StatesAlgae SubAlgaePivot::GetState(){
+    return mState;
+}
+
+void SubAlgaePivot::SetState(StatesAlgae iState){
+    mState = iState;
+}
+
 
 /*
     le setpoint doit etre donné en tours, même type que le cout.

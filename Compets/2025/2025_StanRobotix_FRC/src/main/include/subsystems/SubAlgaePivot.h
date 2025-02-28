@@ -16,6 +16,13 @@
 
 #include "Constants.h"
 
+ enum StatesAlgae {
+    cage,
+    horizontale,
+    pickAlgae,
+    replié
+  };
+
 class SubAlgaePivot : public frc2::SubsystemBase {
  public:
   SubAlgaePivot();
@@ -38,8 +45,15 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   void StayStill();
 
+  StatesAlgae GetState();
+
+  void SetState(StatesAlgae);
+
  private:
-  bool mEnable = true;
+
+ 
+
+  StatesAlgae mState;
 
   const double kG = 0.2;
   const double kOffset = 33.6426;
