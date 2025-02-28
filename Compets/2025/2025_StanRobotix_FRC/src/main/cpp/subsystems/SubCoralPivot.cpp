@@ -15,19 +15,6 @@ void SubCoralPivot::Periodic() {
    // std::cout << cos((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi) << std::endl;
 }
 
-void SubCoralPivot::stopCoralPivot(){
-    mCoralPivotMotor->StopMotor();
-}
-
-void SubCoralPivot::Pivot(){
-    double kG = frc::SmartDashboard::GetNumber("kGCoral", 0.19);
-    double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi;
-    double CalculatedPID = mPIDController.Calculate((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi) * 13;
-
-    mCoralPivotMotor->SetVoltage(-(units::volt_t(kG)));  
-
-//  std::cout << (mCoralPivotMotor->GetEncoder().GetPosition() + 11.7) / 80 << std::endl;
-}
 
 void SubCoralPivot::Pivot(float SetPoint){
     mPIDController.SetSetpoint(SetPoint);
@@ -35,16 +22,7 @@ void SubCoralPivot::Pivot(float SetPoint){
     double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi;
     double CalculatedPID = mPIDController.Calculate((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi) * 13;
 
-    mCoralPivotMotor->SetVoltage(-(units::volt_t(kG)) * cos(pivotPositionRad) + units::volt_t(CalculatedPID));  
-}
-
-void SubCoralPivot::PivotUp(){
-    mPIDController.SetSetpoint(-1.2);
-    double kG = 0.23;
-    double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi;
-    double CalculatedPID = mPIDController.Calculate((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi) * 13;
-
-    mCoralPivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID));
+    mCoralPivotMotor->SetVoltage(-(units::volt_t(kG)) * cos(pivotPositionRad) + units::volt_t(CalculatedPID) * PIDEnable);  
 }
 
 void SubCoralPivot::Stop(){
@@ -57,6 +35,10 @@ bool SubCoralPivot::atSetPoint(){
 
 void SubCoralPivot::SetSetPoint(double iSetPoint){
     mPIDController.SetSetpoint(iSetPoint);
+}
+
+void SubCoralPivot::SetPIDEnable(bool iState){
+    PIDEnable = iState;
 }
 
 /*

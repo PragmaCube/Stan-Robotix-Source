@@ -19,13 +19,6 @@ void SubAlgaePivot::Stop(){
     mAlgaePivotMotor->StopMotor();
 }
 
-void SubAlgaePivot::Pivot(){
-    double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi;
-    double CalculatedPID = mPIDController.Calculate((mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi) * 13;
-
-    mAlgaePivotMotor->SetVoltage((units::volt_t(kG * cos(pivotPositionRad))));  
-}
-
 void SubAlgaePivot::Pivot(double Setpoint){
     mPIDController.SetSetpoint(Setpoint);
     
@@ -48,11 +41,11 @@ void SubAlgaePivot::SetPIDEnable(bool iState){
 }
 
 void SubAlgaePivot::Climb(){
-    mAlgaePivotMotor->SetVoltage(units::volt_t(-2));
+    mAlgaePivotMotor->SetVoltage(units::volt_t(-2.5));
 }
 
 void SubAlgaePivot::StayStill(){
-    mAlgaePivotMotor->SetVoltage(units::volt_t(-0.65));
+    mAlgaePivotMotor->SetVoltage(units::volt_t(-0.75));
 }
 
 

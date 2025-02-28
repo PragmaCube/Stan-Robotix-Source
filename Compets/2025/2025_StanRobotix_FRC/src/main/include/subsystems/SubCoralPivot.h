@@ -20,14 +20,7 @@ class SubCoralPivot : public frc2::SubsystemBase {
  public:
   SubCoralPivot();
 
-  void stopCoralPivot();
-
-  void Pivot();
-
   void Pivot(float);
-
-  void PivotUp();
-  void PivotDown();
 
   void Stop();
   /**
@@ -39,11 +32,14 @@ class SubCoralPivot : public frc2::SubsystemBase {
 
   void SetSetPoint(double);
 
+  void SetPIDEnable(bool);
+
  private:
   bool mEnable = true;
 
   const double kOffset =  -14.7857;
-  const double kG = 0.19;
+  const double kG = 0.23;
+  bool PIDEnable = true;
 
   rev::spark::SparkMax * mCoralPivotMotor = nullptr;
   frc::PIDController mPIDController{0.2, 0, 0};

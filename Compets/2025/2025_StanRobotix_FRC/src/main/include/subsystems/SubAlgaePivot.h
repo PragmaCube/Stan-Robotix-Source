@@ -22,8 +22,6 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   void Stop();
 
-  void Pivot();
-
   void Pivot(double);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -43,7 +41,7 @@ class SubAlgaePivot : public frc2::SubsystemBase {
  private:
   bool mEnable = true;
 
-  const double kG = 0.18;
+  const double kG = 0.2;
   const double kOffset = 33.6426;
   bool PIDEnable = true;
 

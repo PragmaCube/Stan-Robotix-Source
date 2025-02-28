@@ -90,11 +90,11 @@ void RobotContainer::ConfigureBindings() {
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kPivotUp);
-  }).OnTrue(frc2::RunCommand([this] {mSubCoralPivot->Pivot(-1.15);},{mSubCoralPivot}).ToPtr());
+  }).OnTrue(CoralPivotUp(mSubCoralPivot).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kPivotDown);
-  }).OnTrue(frc2::RunCommand([this] {mSubCoralPivot->Pivot(-0.1);},{mSubCoralPivot}).ToPtr());  
+  }).OnTrue(CoralPivotDown(mSubCoralPivot).ToPtr());  
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kPivotStop);
