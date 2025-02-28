@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Starting path"
+                  "pathName": "Go to reef"
                 }
               }
             ]
@@ -27,6 +27,6 @@
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Competition Autos",
   "choreoAuto": false
 }
