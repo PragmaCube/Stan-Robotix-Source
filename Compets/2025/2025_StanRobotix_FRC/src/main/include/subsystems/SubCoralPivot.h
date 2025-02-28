@@ -16,6 +16,11 @@
 
 #include "Constants.h"
 
+
+
+class SubCoralPivot : public frc2::SubsystemBase {
+
+ public:
 enum StatesCoral {
   relaché,
   horizontale,
@@ -24,8 +29,6 @@ enum StatesCoral {
   replié
 };
 
-class SubCoralPivot : public frc2::SubsystemBase {
- public:
   SubCoralPivot();
 
   void Pivot(float);
@@ -36,7 +39,7 @@ class SubCoralPivot : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  bool atSetPoint();
+  bool AtSetPoint();
 
   void SetSetPoint(double);
 
@@ -47,7 +50,11 @@ class SubCoralPivot : public frc2::SubsystemBase {
   void SetState(StatesCoral);
 
  private:
-  StatesCoral mState;
+  
+
+  
+
+StatesCoral mState;
 
   const double kOffset =  -14.7857;
   const double kG = 0.23;

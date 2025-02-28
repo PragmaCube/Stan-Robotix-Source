@@ -22,3 +22,7 @@ void SubAlgaeIntake::Intake() {
 void SubAlgaeIntake::Stop() {
     mAlgaeIntakeMotor->StopMotor();
 }
+
+void SubAlgaeIntake::KeepAlgae(){
+    mAlgaeIntakeMotor->Set(0.15);
+}

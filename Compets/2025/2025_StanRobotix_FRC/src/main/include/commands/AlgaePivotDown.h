@@ -7,8 +7,11 @@
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc/controller/PIDController.h>
+
 #include "Constants.h"
+
 #include "subsystems/SubAlgaePivot.h"
+#include "commands/AlgaeIntakeIn.h"
 
 /**
  * An example command.
@@ -34,6 +37,8 @@ class AlgaePivotDown
   bool IsFinished() override;
 
 private:
+
+  frc::Joystick * mJoystick;
 
   SubAlgaePivot * mAlgaePivot;
   int i = 0;

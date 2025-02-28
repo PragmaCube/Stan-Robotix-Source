@@ -16,6 +16,12 @@
 
 #include "Constants.h"
 
+
+
+class SubAlgaePivot : public frc2::SubsystemBase {
+
+ public:
+
  enum StatesAlgae {
     cage,
     horizontale,
@@ -23,8 +29,6 @@
     replié
   };
 
-class SubAlgaePivot : public frc2::SubsystemBase {
- public:
   SubAlgaePivot();
 
   void Stop();
@@ -58,6 +62,7 @@ class SubAlgaePivot : public frc2::SubsystemBase {
   const double kG = 0.2;
   const double kOffset = 33.6426;
   bool PIDEnable = true;
+
 
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
   frc::PIDController mPIDController{0.2, 0, 0};

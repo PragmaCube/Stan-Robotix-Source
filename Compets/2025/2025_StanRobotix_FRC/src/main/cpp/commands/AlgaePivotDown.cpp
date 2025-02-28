@@ -17,7 +17,7 @@ void AlgaePivotDown::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaePivotDown::Execute() {
-  mAlgaePivot->Pivot(0.3);
+  mAlgaePivot->Pivot(0.7);
 }
 
 // Called once the command ends or is interrupted.

@@ -18,6 +18,8 @@ class SubAlgaeIntake : public frc2::SubsystemBase {
   void Intake();
   
   void Stop();
+
+  void KeepAlgae();
   
   /**
    * Will be called periodically whenever the CommandScheduler runs.

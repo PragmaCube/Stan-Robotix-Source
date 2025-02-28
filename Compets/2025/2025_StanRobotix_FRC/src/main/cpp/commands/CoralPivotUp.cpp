@@ -26,5 +26,5 @@ void CoralPivotUp::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool CoralPivotUp::IsFinished() {
-  return mCoralPivot->atSetPoint();
+  return mCoralPivot->AtSetPoint();
 }

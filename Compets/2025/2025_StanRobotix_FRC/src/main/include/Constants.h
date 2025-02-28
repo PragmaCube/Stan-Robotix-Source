@@ -94,18 +94,18 @@ namespace JoystickBindingsConstants{
     // constexpr int kResetIMU = 12;
 
     namespace Algae{
-        constexpr int kPivotUp = 5; // il faut changer
-        constexpr int kPivotDown = 3; // il faut changer
-        constexpr int kPivotStop = 2; // il faut changer
+        constexpr int kPivotUp = 5; 
+        constexpr int kPivotDown = 3;
+        constexpr int kPivotStop = 2; // Inutile a enlever apres la phase de tests
 
         constexpr int kManualIn = 9;
         constexpr int kManualOut = 10;
     }
     
     namespace Coral{
-        constexpr int kPivotUp = 6; // il faut changer
-        constexpr int kPivotDown = 4; // il faut changer
-        constexpr int kPivotStop = 1;
+        constexpr int kPivotUp = 6;
+        constexpr int kPivotDown = 4;
+        constexpr int kPivotStop = 1; // inutile a enlever apres la phase de tests
 
         constexpr int kManualIn = 7;
         constexpr int kManualOut = 8;

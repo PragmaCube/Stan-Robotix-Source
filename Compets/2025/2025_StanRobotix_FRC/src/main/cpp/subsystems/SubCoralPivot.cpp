@@ -29,7 +29,7 @@ void SubCoralPivot::Stop(){
     mCoralPivotMotor->StopMotor();
 }
 
-bool SubCoralPivot::atSetPoint(){
+bool SubCoralPivot::AtSetPoint(){
     return mPIDController.AtSetpoint();
 }
 
@@ -41,7 +41,7 @@ void SubCoralPivot::SetPIDEnable(bool iState){
     PIDEnable = iState;
 }
 
-StatesCoral SubCoralPivot::GetState(){
+SubCoralPivot::StatesCoral SubCoralPivot::GetState(){
     return mState;
 }
 

@@ -35,4 +35,8 @@ class CoralPivotDown
   private:
 
   SubCoralPivot * mCoralPivot;
+
+
+  bool ReachedSetPoint = false; // true if the pivot reached its setpoint once.
+  int Timer = -1; // Incremented in each iteration of the code, meaning each 20ms.
 };
