@@ -1,0 +1,32 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Go to reef"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Go take algae"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "Competition Autos",
+  "choreoAuto": false
+}

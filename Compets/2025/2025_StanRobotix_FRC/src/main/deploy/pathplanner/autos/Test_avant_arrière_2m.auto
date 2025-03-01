@@ -7,13 +7,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Put coral"
+            "pathName": "Avant_2_metre"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Arrière_2_metre"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Competition Autos",
+  "folder": null,
   "choreoAuto": false
 }
