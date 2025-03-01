@@ -7,25 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "go to reef"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "AlgaeIntakeIn"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 2.0
+            "pathName": "Forward_2_metres"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Go take algae"
+            "pathName": "Backward_2_metres"
           }
         }
       ]

@@ -26,5 +26,5 @@ void AlgaePivotUp::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool AlgaePivotUp::IsFinished() {
-  return mAlgaePivot->atSetPoint();
+  return mAlgaePivot->AtSetPoint();
 }

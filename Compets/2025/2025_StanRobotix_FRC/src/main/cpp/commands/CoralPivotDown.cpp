@@ -12,6 +12,8 @@ CoralPivotDown::CoralPivotDown(SubCoralPivot * iCoralPivot) {
 // Called when the command is initially scheduled.
 void CoralPivotDown::Initialize() {
   mCoralPivot->SetPIDEnable(true);
+  ReachedSetPoint = false;
+  Timer = -1;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -31,5 +33,5 @@ void CoralPivotDown::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool CoralPivotDown::IsFinished() {
-  return (mCoralPivot->AtSetPoint()) && (Timer >= 25);
+  return (mCoralPivot->AtSetPoint()) && (Timer >= 50);
 }

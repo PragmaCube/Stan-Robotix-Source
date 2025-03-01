@@ -39,7 +39,7 @@ class SubAlgaePivot : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  bool atSetPoint();
+  bool AtSetPoint();
 
   void SetSetPoint(double);
 
@@ -59,7 +59,7 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   StatesAlgae mState;
 
-  const double kG = 0.2;
+  const double kG = 0.22;
   const double kOffset = 33.6426;
   bool PIDEnable = true;
 

@@ -12,7 +12,7 @@ SubCoralPivot::SubCoralPivot(){
 
 // This method will be called once per scheduler run
 void SubCoralPivot::Periodic() {
-   // std::cout << cos((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi) << std::endl;
+   std::cout << cos((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi) << std::endl; //  
 }
 
 

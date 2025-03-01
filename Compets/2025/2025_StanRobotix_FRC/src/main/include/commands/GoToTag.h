@@ -6,12 +6,12 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
-#include <frc/controller/PIDController.h>
 
-#include "Constants.h"
+#include "commands/CoralPivotUp.h"
 
-#include "subsystems/SubAlgaePivot.h"
-#include "commands/AlgaeIntakeIn.h"
+#include "subsystems/SubDriveTrain.h"
+
+#include "LimelightHelpers.h"
 
 /**
  * An example command.
@@ -20,13 +20,13 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class AlgaePivotDown
-    : public frc2::CommandHelper<frc2::Command, AlgaePivotDown> {
+class GoToTag
+    : public frc2::CommandHelper<frc2::Command, GoToTag> {
  public:
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  AlgaePivotDown(SubAlgaePivot * iAlgaePivot);
+  GoToTag(SubDriveTrain*, SubIMU*, SubCoralPivot*);
 
   void Initialize() override;
 
@@ -36,12 +36,16 @@ class AlgaePivotDown
 
   bool IsFinished() override;
 
-private:
+  private :
+  frc::PIDController mPIDControllerAngle {0.02, 0.1, 0.005};
+  frc::PIDController mPIDControllerX {1.3, 0.05, 0.05};
+  frc::PIDController mPIDControllerY {1.6, 0.03, 0.005};
 
-  frc::Joystick * mJoystick;
+  double OutputAngle;
+  double OutputX;
+  double OutputY;
 
-  SubAlgaePivot * mAlgaePivot;
-
-  int Timer = -1; // true if the pivot reached its setpoint once.
-  bool ReachedSetPoint = false; // Incremented in each iteration of the code, meaning each 20ms.
+  SubDriveTrain * mSubDriveTrain;
+  SubIMU * mSubIMU;
+  SubCoralPivot * mSubCoralPivot;
 };
