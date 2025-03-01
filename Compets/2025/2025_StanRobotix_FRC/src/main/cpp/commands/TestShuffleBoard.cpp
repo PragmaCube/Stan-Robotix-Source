@@ -10,6 +10,8 @@ TestShuffleBoard::TestShuffleBoard() {
 
 // Called when the command is initially scheduled.
 void TestShuffleBoard::Initialize() {
+  frc::SmartDashboard::PutBoolean("TestShuffleBoard",true);
+
 i = 0;
 }
 
@@ -20,10 +22,11 @@ void TestShuffleBoard::Execute() {
 
 // Called once the command ends or is interrupted.
 void TestShuffleBoard::End(bool interrupted) {
-  i = 0;
+  frc::SmartDashboard::PutBoolean("TestShuffleBoard",false);
+
 }
 
 // Returns true when the command should end.
 bool TestShuffleBoard::IsFinished() {
-  return i = 50;
+  return i == 50;
 }

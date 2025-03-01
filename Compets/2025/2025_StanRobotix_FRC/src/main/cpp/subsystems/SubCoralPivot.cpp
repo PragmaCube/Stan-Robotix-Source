@@ -12,7 +12,7 @@ SubCoralPivot::SubCoralPivot(){
 
 // This method will be called once per scheduler run
 void SubCoralPivot::Periodic() {
-   std::cout << (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi << std::endl;
+ //  std::cout << (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi << std::endl;
 }
 
 void SubCoralPivot::stopCoralPivot(){
@@ -38,7 +38,7 @@ void SubCoralPivot::Pivot(float Sens){
 
     mCoralPivotMotor->SetVoltage(Sens * (units::volt_t(kG)));  
     
-    std::cout << 1 << std::endl;
+  //  std::cout << 1 << std::endl;
 }
 
 void SubCoralPivot::PivotUp(){

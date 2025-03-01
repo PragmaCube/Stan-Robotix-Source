@@ -19,13 +19,14 @@ RobotContainer::RobotContainer() {
   mSubCoralPivot = new SubCoralPivot;
   mSubCoralIntake = new SubCoralIntake;
   mJoystick = new frc::Joystick{0};
-
+  mTestShuffleBoard = new TestShuffleBoard;
+/*
 mDriveTrain->SetDefaultCommand(frc2::RunCommand(
     [this] {
     mDriveTrain->Drive(-mJoystick->GetX(), -mJoystick->GetY(), -mJoystick->GetZ());
     },
     {mDriveTrain}));
-
+*/
   ConfigureBindings();
 
   mIMU->resetAngle();
@@ -39,15 +40,21 @@ mDriveTrain->SetDefaultCommand(frc2::RunCommand(
   frc::SmartDashboard::PutNumber("kD", 0);
   frc::SmartDashboard::PutNumber("kG", 0.19);
   frc::SmartDashboard::PutNumber("kGCoral", 0.19);
-  frc::SmartDashboard::PutBoolean("TestShuffleBoard", mTestSuffleBoard->IsFinished());
+  frc::SmartDashboard::PutBoolean("TestShuffleBoard", mTestShuffleBoard->IsFinished());
 }
 
 
-void RobotContainer::periodic(){}
+void RobotContainer::periodic(){
+}
 
 void RobotContainer::ConfigureBindings() {
-  // Configure your trigger bindings here
 
+   frc2::Trigger([this] {
+    return mJoystick->GetRawButtonPressed(1);
+  }).OnTrue(TestShuffleBoard().ToPtr());
+
+  // Configure your trigger bindings here
+/*
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
   frc2::Trigger([this] {
     return m_subsystem.ExampleCondition();
@@ -113,6 +120,7 @@ void RobotContainer::ConfigureBindings() {
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+  */
 
 }
 
