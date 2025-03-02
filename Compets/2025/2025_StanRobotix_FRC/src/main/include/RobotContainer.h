@@ -13,9 +13,23 @@
 #include <frc2/command/Command.h>
 #include <memory>
 
+
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubAlgaePivot.h"
+#include "subsystems/SubCoralPivot.h"
+#include "subsystems/SubAlgaeIntake.h"
+#include "subsystems/SubCoralIntake.h"
+
+#include "commands/AlgaePivotDown.h"
+#include "commands/AlgaePivotUp.h"
+#include "commands/AlgaeIntakeIn.h"
+#include "commands/AlgaeIntakeOut.h"
+#include "commands/CoralIntake.h"
+#include "commands/CoralOuttake.h"
+#include "commands/CoralPivotUp.h"
+#include "commands/CoralPivotDown.h"
 
 
 /**
@@ -29,7 +43,10 @@ class RobotContainer {
  public:
   RobotContainer();
 
+  void periodic();
+  void Initialize();
   frc2::CommandPtr GetAutonomousCommand();
+
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -43,7 +60,11 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   SubDriveTrain * mDriveTrain = nullptr;
   SubIMU * mIMU = nullptr;
-  frc::Joystick mJoystick{0};
+  SubAlgaePivot * mSubAlgaePivot = nullptr;
+  SubAlgaeIntake * mSubAlgaeIntake = nullptr;
+  SubCoralPivot * mSubCoralPivot = nullptr;
+  SubCoralIntake * mSubCoralIntake = nullptr;
+  frc::Joystick * mJoystick = nullptr;
 
   //frc2::CommandPtr * m_PeriodeAuto;
   // frc::SendableChooser<frc2::Command *> autoChooser;

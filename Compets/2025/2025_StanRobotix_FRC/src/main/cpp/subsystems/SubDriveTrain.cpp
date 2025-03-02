@@ -77,7 +77,7 @@ void SubDriveTrain::Periodic()
     
    std::cout << double(m_odometry->GetPose().X()) << std::endl << double(m_odometry->GetPose().Y()) << std::endl;
 }
-
+   
 void SubDriveTrain::Init() {}
 
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0)
@@ -118,6 +118,7 @@ frc::ChassisSpeeds SubDriveTrain::getRobotRelativeSpeeds()
     // Creating a ChassisSpeeds from these speeds and the robot's rotation and returning it
     frc::ChassisSpeeds robotRelativeSpeeds = frc::ChassisSpeeds::FromRobotRelativeSpeeds(forward,sideways,angular,mIMU->getRotation2d());
     return robotRelativeSpeeds;
+
 }
 
 void SubDriveTrain::driveRobotRelative(frc::ChassisSpeeds speeds)

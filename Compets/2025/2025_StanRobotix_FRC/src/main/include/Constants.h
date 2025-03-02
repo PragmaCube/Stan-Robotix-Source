@@ -43,7 +43,8 @@ namespace DriveTrainConstants {
     constexpr double kWheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 
     namespace PIDs{
-        constexpr double kP = 4;
+        // constexpr double kP = 4.0; Garder la valeure
+        constexpr double kP = 3.0;
         constexpr double kI = 0.1;
         constexpr double kD = 0.05;
     }
@@ -65,4 +66,76 @@ namespace PathPlannerConstants {
 namespace ChainConstants {
 
     constexpr int kMotorID = 2;
+}
+
+namespace AlgaeConstants {
+    namespace Pivot{
+        constexpr double kP = 0.5;
+        constexpr double kI = 0.07;
+        constexpr double kD = 0;
+
+        constexpr int kMotorID = 9;
+        constexpr double kAlgaePivotSetPoint1 = 0.2;
+        constexpr double kAlgaePivotSetPoint2 = -0.2;
+    }
+
+    namespace Intake{
+        constexpr int kMotorID = 10;
+
+        constexpr double kAlgaeIntakeSpeed = 0.2; //temporaire
+        constexpr double kNegativeAlgaeIntakeSpeed = -0.2; //temporaire
+
+        constexpr double kG = 0.19; 
+        constexpr double kS = kG + 0.05;
+    }
+}
+
+
+namespace CoralConstants {
+    namespace Pivot{
+        constexpr double kP = 0.5;
+        constexpr double kI = 0.07;
+        constexpr double kD = 0;
+
+        constexpr int kMotorID = 11;
+        constexpr double kCoralPivotSetPoint1 = 0.2;
+        constexpr double kCoralPivotSetPoint2 = -0.2;
+        constexpr double kG = 0;
+    }
+    
+    namespace Intake{
+        constexpr int kMotorID = 12;
+    }
+}
+
+namespace CommandConstants {
+    constexpr int kIterationsGoal = 49;
+}
+
+namespace JoystickBindingsConstants{
+    // constexpr int kResetIMU = 12;
+
+    namespace Algae{
+        constexpr int kPivotUp = 5; 
+        constexpr int kPivotDown = 3;
+        constexpr int kPivotStop = 2; // Inutile a enlever apres la phase de tests
+
+        constexpr int kManualIn = 9;
+        constexpr int kManualOut = 10;
+    }
+    
+    namespace Coral{
+        constexpr int kPivotUp = 6;
+        constexpr int kPivotDown = 4;
+        constexpr int kPivotStop = 1; // inutile a enlever apres la phase de tests
+
+        constexpr int kManualIn = 7;
+        constexpr int kManualOut = 8;
+    }
+
+    constexpr int kClimb = 11;
+
+    constexpr int kAlgaeIntakeInCmd = 20; // Mauvais IDs pour rendre les commandes inactives pour le moment
+    constexpr int kAlgaeIntakeOutCmd = 21; // Mauvais IDs pour rendre les commandes inactives pour le moment
+
 }
