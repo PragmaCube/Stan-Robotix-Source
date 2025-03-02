@@ -8,12 +8,13 @@ CoralIntake::CoralIntake(SubCoralIntake *iCoralIntake, frc::Joystick *iJoystick 
   // Use addRequirements() here to declare subsystem dependencies.
   mCoralIntake = iCoralIntake;
   mJoystick = iJoystick;
-
   AddRequirements(mCoralIntake);
 }
 
 // Called when the command is initially scheduled.
-void CoralIntake::Initialize() {}
+void CoralIntake::Initialize() {
+  mCoralIntake->SetCommandsState(true);
+}
 
 // Called repeatedly when this Command is scheduled to run
 void CoralIntake::Execute() {

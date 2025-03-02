@@ -25,7 +25,7 @@ RobotContainer::RobotContainer() {
 
 mDriveTrain->SetDefaultCommand(frc2::RunCommand(
     [this] {
-    mDriveTrain->driveFieldRelative(mJoystick->GetX(), -mJoystick->GetY(), -mJoystick->GetZ());
+    mDriveTrain->driveFieldRelative(-mJoystick->GetX(), -mJoystick->GetY(), -mJoystick->GetZ());
     },
     {mDriveTrain}));
 
@@ -41,12 +41,15 @@ mDriveTrain->SetDefaultCommand(frc2::RunCommand(
   pathplanner::NamedCommands::registerCommand("Pivot coral down", std::move(CoralPivotDown(mSubCoralPivot).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Coral intake", std::move(CoralIntake(mSubCoralIntake, mJoystick).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Coral outtake", std::move(CoralOuttake(mSubCoralIntake, mJoystick).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Stop coral intake", std::move(StopCoralIntake(mSubCoralIntake).ToPtr()));
 
   pathplanner::NamedCommands::registerCommand("Pivot algae up", std::move(AlgaePivotUp(mSubAlgaePivot).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Pivot Algae down", std::move(AlgaePivotDown(mSubAlgaePivot).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Pivot algae down", std::move(AlgaePivotDown(mSubAlgaePivot).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Algae full intake", std::move(AlgaeFullIntake(mJoystick, mSubAlgaeIntake, mSubAlgaePivot).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Algae intake", std::move(AlgaeIntakeIn(mSubAlgaeIntake, mJoystick).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Algae outtake", std::move(AlgaeIntakeOut(mSubAlgaeIntake, mJoystick).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Stop algae intake", std::move(StopAlgaeIntake(mSubAlgaeIntake).ToPtr()));
+
 
 
 

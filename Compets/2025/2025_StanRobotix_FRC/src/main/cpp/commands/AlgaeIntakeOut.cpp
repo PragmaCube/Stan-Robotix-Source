@@ -12,7 +12,9 @@ AlgaeIntakeOut::AlgaeIntakeOut(SubAlgaeIntake *iSubAlgaeIntake, frc::Joystick *i
 }
 
 // Called when the command is initially scheduled.
-void AlgaeIntakeOut::Initialize() {}
+void AlgaeIntakeOut::Initialize() {
+  mAlgaeIntake->SetCommandsState(true);
+}
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaeIntakeOut::Execute() {

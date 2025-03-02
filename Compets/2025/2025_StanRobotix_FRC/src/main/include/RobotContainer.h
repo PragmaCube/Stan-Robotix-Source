@@ -28,11 +28,14 @@
 #include "commands/AlgaeIntakeIn.h"
 #include "commands/AlgaeIntakeOut.h"
 #include "commands/AlgaeFullIntake.h"
+#include "commands/StopAlgaeIntake.h"
 
 #include "commands/CoralIntake.h"
 #include "commands/CoralOuttake.h"
 #include "commands/CoralPivotUp.h"
 #include "commands/CoralPivotDown.h"
+#include "commands/StopCoralIntake.h"
+
 #include "commands/GoToTag.h"
 
 

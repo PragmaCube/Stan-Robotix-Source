@@ -9,6 +9,30 @@
           "data": {
             "pathName": "Put coral"
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Pivot coral up"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral outtake"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.75
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop coral intake"
+          }
         }
       ]
     }
