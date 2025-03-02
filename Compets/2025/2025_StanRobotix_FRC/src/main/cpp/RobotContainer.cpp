@@ -41,10 +41,19 @@ mDriveTrain->SetDefaultCommand(frc2::RunCommand(
   frc::SmartDashboard::PutNumber("kG", 0.19);
   frc::SmartDashboard::PutNumber("kGCoral", 0.19);
   frc::SmartDashboard::PutBoolean("TestShuffleBoard", mTestShuffleBoard->IsFinished());
+
+  frc::Shuffleboard::GetTab("SmartDashboard")
+    .AddCamera("camera Tab","Limelight + usb",std::span<const std::string>({ "http://10.66.22.11:5800/" }))
+    .WithWidget(frc::BuiltInWidgets::kCameraStream);
+
+ mTab = &frc::Shuffleboard::GetTab("Test tab");
+ NumberTest = mTab->Add("truc", 1);
+
 }
 
 
 void RobotContainer::periodic(){
+  std::cout << mTab << std::endl;
 }
 
 void RobotContainer::ConfigureBindings() {

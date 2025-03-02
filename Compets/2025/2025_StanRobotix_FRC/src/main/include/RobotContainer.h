@@ -8,6 +8,7 @@
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/Joystick.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/shuffleboard/Shuffleboard.h>
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
@@ -24,6 +25,9 @@
 #include "commands/CoralIntake.h"
 #include "commands/CoralOuttake.h"
 #include "commands/TestShuffleBoard.h"
+#include <networktables/NetworkTableEntry.h>
+#include <frc/shuffleboard/ShuffleboardTab.h>
+#include <networktables/NetworkTableEntry.h>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -42,6 +46,8 @@ class RobotContainer {
 
 
  private:
+  frc::ShuffleboardTab* mTab;
+  nt::NetworkTableEntry NumberTest;
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
       OperatorConstants::kDriverControllerPort};
