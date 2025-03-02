@@ -28,7 +28,7 @@
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
-  SubDriveTrain();
+  SubDriveTrain(SubIMU*);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */

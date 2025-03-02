@@ -27,5 +27,5 @@ void CoralOuttake::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool CoralOuttake::IsFinished() {
-  return mJoystick->GetRawButtonReleased(JoystickBindingsConstants::Coral::kManualOut);
+  return (mJoystick->GetRawButtonReleased(JoystickBindingsConstants::Coral::kManualOut)) || (!mCoralIntake->GetCommandsState());
 }

@@ -26,5 +26,5 @@ void AlgaeIntakeOut::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool AlgaeIntakeOut::IsFinished() {
-return mJoystick->GetRawButtonReleased(JoystickBindingsConstants::Algae::kManualOut);
+return (mJoystick->GetRawButtonReleased(JoystickBindingsConstants::Algae::kManualOut)) || (!mAlgaeIntake->GetCommandsState());
 }

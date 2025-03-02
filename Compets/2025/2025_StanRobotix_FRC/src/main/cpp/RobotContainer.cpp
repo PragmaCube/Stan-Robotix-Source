@@ -14,10 +14,10 @@ RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   
   //m_PeriodeAuto = new frc2::CommandPtr(pathplanner::PathPlannerAuto("Test Auto").ToPtr());
-  
-  mDriveTrain = new SubDriveTrain;
-  mSubAlgaePivot = new SubAlgaePivot;
+
   mIMU = new SubIMU;
+  mDriveTrain = new SubDriveTrain{mIMU};
+  mSubAlgaePivot = new SubAlgaePivot;
   mSubAlgaeIntake = new SubAlgaeIntake;
   mSubCoralPivot = new SubCoralPivot;
   mSubCoralIntake = new SubCoralIntake;
@@ -32,6 +32,24 @@ mDriveTrain->SetDefaultCommand(frc2::RunCommand(
   ConfigureBindings();
 
   mIMU->resetAngle();
+
+
+
+  pathplanner::NamedCommands::registerCommand("Go to tag", std::move(GoToTag(mDriveTrain, mIMU, mSubCoralPivot).ToPtr()));
+
+  pathplanner::NamedCommands::registerCommand("Pivot coral up", std::move(CoralPivotUp(mSubCoralPivot).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Pivot coral down", std::move(CoralPivotDown(mSubCoralPivot).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Coral intake", std::move(CoralIntake(mSubCoralIntake, mJoystick).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Coral outtake", std::move(CoralOuttake(mSubCoralIntake, mJoystick).ToPtr()));
+
+  pathplanner::NamedCommands::registerCommand("Pivot algae up", std::move(AlgaePivotUp(mSubAlgaePivot).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Pivot Algae down", std::move(AlgaePivotDown(mSubAlgaePivot).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Algae full intake", std::move(AlgaeFullIntake(mJoystick, mSubAlgaeIntake, mSubAlgaePivot).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Algae intake", std::move(AlgaeIntakeIn(mSubAlgaeIntake, mJoystick).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Algae outtake", std::move(AlgaeIntakeOut(mSubAlgaeIntake, mJoystick).ToPtr()));
+
+
+
 
   autoChooser = pathplanner::AutoBuilder::buildAutoChooser("New Auto 1m");
 

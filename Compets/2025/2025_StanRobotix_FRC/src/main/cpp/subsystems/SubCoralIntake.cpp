@@ -22,3 +22,11 @@ void SubCoralIntake::Outtake(){
 void SubCoralIntake::Stop(){
     mCoralIntakeMotor->StopMotor();
 }
+
+void SubCoralIntake::SetCommandsState(bool iState){
+    CommandsEnabled = iState;
+}
+
+bool SubCoralIntake::GetCommandsState(){
+    return CommandsEnabled;
+}

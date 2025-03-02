@@ -23,7 +23,11 @@ class SubCoralIntake : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
+  void SetCommandsState(bool);
+  bool GetCommandsState();
+
  private:
+  bool CommandsEnabled = true;
 
   rev::spark::SparkMax * mCoralIntakeMotor = nullptr;
   // Components (e.g. motor controllers and sensors) should generally be

@@ -20,6 +20,9 @@ class SubAlgaeIntake : public frc2::SubsystemBase {
   void Stop();
 
   void KeepAlgae();
+
+  void SetCommandsState(bool);
+  bool GetCommandsState();
   
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -27,6 +30,7 @@ class SubAlgaeIntake : public frc2::SubsystemBase {
   void Periodic() override;
 
  private:
+  bool CommandsEnabled = true;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   rev::spark::SparkMax * mAlgaeIntakeMotor = nullptr;

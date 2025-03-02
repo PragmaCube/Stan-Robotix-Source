@@ -11,6 +11,7 @@
 #include <pathplanner/lib/auto/AutoBuilder.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/Command.h>
+#include <pathplanner/lib/auto/NamedCommands.h>
 #include <memory>
 
 
@@ -26,10 +27,13 @@
 #include "commands/AlgaePivotUp.h"
 #include "commands/AlgaeIntakeIn.h"
 #include "commands/AlgaeIntakeOut.h"
+#include "commands/AlgaeFullIntake.h"
+
 #include "commands/CoralIntake.h"
 #include "commands/CoralOuttake.h"
 #include "commands/CoralPivotUp.h"
 #include "commands/CoralPivotDown.h"
+#include "commands/GoToTag.h"
 
 
 /**
