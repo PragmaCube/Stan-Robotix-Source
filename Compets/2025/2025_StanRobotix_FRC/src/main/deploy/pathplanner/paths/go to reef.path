@@ -3,29 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.6403716216216213,
-        "y": 6.5942567567567565
+        "x": 7.15,
+        "y": 7.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.757010135135135,
-        "y": 6.238513513513513
+        "x": 6.166268086677197,
+        "y": 6.738964703738611
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.8490340909090905,
-        "y": 5.1966619318181815
+        "x": 5.145340909090908,
+        "y": 6.562769886363636
       },
       "prevControl": {
-        "x": 2.791686117936117,
-        "y": 6.244128148034397
+        "x": 5.411393557350459,
+        "y": 6.674575061909548
+      },
+      "nextControl": {
+        "x": 4.914864891604034,
+        "y": 6.465915328580381
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 3.609715909090909,
+        "y": 5.535696022727272
+      },
+      "prevControl": {
+        "x": 4.643313874737779,
+        "y": 6.211950551122431
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "AtReef"
+      "linkedName": "Comp Gauche AtReef"
     }
   ],
   "rotationTargets": [],
@@ -33,22 +49,22 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.0,
-    "maxAcceleration": 3.0,
-    "maxAngularVelocity": 540.0,
+    "maxVelocity": 1.0,
+    "maxAcceleration": 5.0,
+    "maxAngularVelocity": 180.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 31.47683934958395
+    "rotation": -59.99999999999999
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Comp Gauche Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 1.123302714075337
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

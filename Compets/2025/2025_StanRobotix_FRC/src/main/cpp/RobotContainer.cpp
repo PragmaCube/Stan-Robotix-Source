@@ -25,7 +25,7 @@ RobotContainer::RobotContainer() {
 
 mDriveTrain->SetDefaultCommand(frc2::RunCommand(
     [this] {
-    mDriveTrain->Drive(-mJoystick->GetX(), -mJoystick->GetY(), -mJoystick->GetZ());
+    mDriveTrain->driveFieldRelative(mJoystick->GetX(), -mJoystick->GetY(), -mJoystick->GetZ());
     },
     {mDriveTrain}));
 

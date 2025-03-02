@@ -26,12 +26,12 @@ void GoToTag::Execute() {
   OutputX = mPIDControllerX.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(0), 0) ; 
   OutputY = mPIDControllerY.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(2), 3) ;
 
-  mSubDriveTrain->Drive(-OutputX, 0, -OutputAngle); 
+  mSubDriveTrain->driveFieldRelative(-OutputX, 0, -OutputAngle); 
 }
 
 // Called once the command ends or is interrupted.
 void GoToTag::End(bool interrupted) {
-  mSubDriveTrain->Drive(0, 0, 0);
+  mSubDriveTrain->driveFieldRelative(0, 0, 0);
 }
 
 // Returns true when the command should end.

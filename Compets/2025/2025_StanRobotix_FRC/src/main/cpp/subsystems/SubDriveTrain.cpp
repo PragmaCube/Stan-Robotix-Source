@@ -75,7 +75,7 @@ void SubDriveTrain::Periodic()
                     m_backLeftModule->getModulePosition(),
                     m_backRightModule->getModulePosition()});
     
-   std::cout << double(m_odometry->GetPose().X()) << std::endl << double(m_odometry->GetPose().Y()) << std::endl;
+//    std::cout << double(m_odometry->GetPose().X()) << std::endl << double(m_odometry->GetPose().Y()) << std::endl;
 }
    
 void SubDriveTrain::Init() {}
