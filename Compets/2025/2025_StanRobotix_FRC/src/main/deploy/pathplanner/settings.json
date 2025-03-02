@@ -2,21 +2,33 @@
   "robotWidth": 0.8636,
   "robotLength": 0.889,
   "holonomicMode": true,
-  "pathFolders": [],
-  "autoFolders": [],
-  "defaultMaxVel": 3.0,
-  "defaultMaxAccel": 3.0,
-  "defaultMaxAngVel": 540.0,
+  "pathFolders": [
+    "Comp Centre Paths",
+    "Comp Centre-Droite Paths",
+    "Comp Centre-Gauche Paths",
+    "Comp Droite Paths",
+    "Comp Gauche Paths",
+    "Test Paths"
+  ],
+  "autoFolders": [
+    "Practice Autos",
+    "Competition Autos",
+    "Test Autos"
+  ],
+  "defaultMaxVel": 1.0,
+  "defaultMaxAccel": 5.0,
+  "defaultMaxAngVel": 180.0,
   "defaultMaxAngAccel": 720.0,
   "defaultNominalVoltage": 12.0,
-  "robotMass": 74.088,
-  "robotMOI": 6.883,
+  "robotMass": 40.0,
+  "robotMOI": 2.6193496,
   "robotTrackwidth": 0.546,
   "driveWheelRadius": 0.038,
   "driveGearing": 5.08,
-  "maxDriveSpeed": 5.45,
+  "maxDriveSpeed": 10.0,
   "driveMotorType": "NEO",
-  "driveCurrentLimit": 40.0,
+  "driveCurrentLimit": 30.0,
+
   "wheelCOF": 1.2,
   "flModuleX": 0.3683,
   "flModuleY": 0.3556,
@@ -29,8 +41,9 @@
   "bumperOffsetX": 0.0,
   "bumperOffsetY": 0.0,
   "robotFeatures": [
-    "{\"name\":\"Coral Pivot\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.368,\"y\":0.0},\"size\":{\"width\":0.4,\"length\":0.1},\"borderRadius\":0.0,\"strokeWidth\":0.015,\"filled\":false}}",
-    "{\"name\":\"Algae Pivot\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":-0.05,\"y\":-0.356},\"size\":{\"width\":0.1,\"length\":0.4},\"borderRadius\":0.0,\"strokeWidth\":0.015,\"filled\":false}}",
-    "{\"name\":\"Little Arm\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.22,\"y\":-0.356},\"size\":{\"width\":0.1,\"length\":0.1},\"borderRadius\":0.0,\"strokeWidth\":0.015,\"filled\":false}}"
+    "{\"name\":\"Pivot_Algae\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.0,\"y\":-0.37},\"size\":{\"width\":0.1,\"length\":0.3},\"borderRadius\":0.0,\"strokeWidth\":0.02,\"filled\":false}}",
+    "{\"name\":\"Gabriel\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.25,\"y\":-0.37},\"size\":{\"width\":0.1,\"length\":0.1},\"borderRadius\":0.0,\"strokeWidth\":0.02,\"filled\":false}}",
+    "{\"name\":\"Pivot_coral\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.38,\"y\":0.0},\"size\":{\"width\":0.3,\"length\":0.1},\"borderRadius\":0.0,\"strokeWidth\":0.02,\"filled\":false}}"
+
   ]
 }

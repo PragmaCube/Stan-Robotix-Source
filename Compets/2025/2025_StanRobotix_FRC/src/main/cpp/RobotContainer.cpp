@@ -12,6 +12,9 @@
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
+  
+  //m_PeriodeAuto = new frc2::CommandPtr(pathplanner::PathPlannerAuto("Test Auto").ToPtr());
+  
   mDriveTrain = new SubDriveTrain;
   mSubAlgaePivot = new SubAlgaePivot;
   mIMU = new SubIMU;
@@ -30,15 +33,12 @@ mDriveTrain->SetDefaultCommand(frc2::RunCommand(
 
   mIMU->resetAngle();
 
-  frc::SmartDashboard::PutNumber("SetPointDown", 0.2274);
-  frc::SmartDashboard::PutNumber("SetPointUp", -0.2274);
-  frc::SmartDashboard::PutNumber("SetPointDownCoral", 0.2274);
-  frc::SmartDashboard::PutNumber("SetPointUpCoral", -0.2274);
-  frc::SmartDashboard::PutNumber("kP", 0);
-  frc::SmartDashboard::PutNumber("kI", 0);
-  frc::SmartDashboard::PutNumber("kD", 0);
-  frc::SmartDashboard::PutNumber("kG", 0.19);
-  frc::SmartDashboard::PutNumber("kGCoral", 0.19);
+  autoChooser = pathplanner::AutoBuilder::buildAutoChooser("New Auto 1m");
+
+  // Build an auto chooser. This will use frc2::cmd::None() as the default option.
+  // frc::SendableChooser<frc2::Command *> autoChooser = pathplanner::AutoBuilder::buildAutoChooser("Default Auto");
+  
+  frc::SmartDashboard::PutData("Auto Chooser", &autoChooser);
 }
 
 
@@ -51,7 +51,8 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
-  
+
+
   // frc2::Trigger([this] {
   //   return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::kResetIMU);
   // }).OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();},{mIMU}).ToPtr());  
@@ -111,5 +112,7 @@ void RobotContainer::ConfigureBindings() {
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  return autos::ExampleAuto(&m_subsystem);
+  return pathplanner::PathPlannerAuto("Test_avant_arrière_2m").ToPtr();
+  // return *autoChooser.GetSelected();
+  // return autos::ExampleAuto(&m_subsystem);
 }

@@ -4,87 +4,81 @@
 
 #pragma once
 
+#include <pathplanner/lib/auto/AutoBuilder.h>
+#include <pathplanner/lib/config/RobotConfig.h>
+#include <pathplanner/lib/controllers/PPHolonomicDriveController.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc/geometry/Translation2d.h>
+#include <frc/geometry/Pose2d.h>
 #include <frc/kinematics/SwerveDriveKinematics.h>
-#include <rev/SparkMax.h>
-#include <rev/RelativeEncoder.h>
-#include <rev/AbsoluteEncoder.h>
+#include <frc/kinematics/SwerveDriveOdometry.h>
+#include <frc/kinematics/SwerveModulePosition.h>
+#include <frc/kinematics/ChassisSpeeds.h>
+#include <frc/DriverStation.h>
 #include <tuple>
 #include <array>
 #include <vector>
-#include <frc/controller/PIDController.h>
-#include <subsystems/SubIMU.h>
+#include <units/velocity.h>
+#include <units/angle.h>
+#include <wpi/array.h>
 
 #include "Constants.h"
+#include "subsystems/SubIMU.h"
+#include "subsystems/SwerveModule.h"
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
   SubDriveTrain();
-
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
-  void Drive(float iX, float iY, float i0); 
-  void Drive(float iX, float iY, float i0, float angle);
+// Method that drives the robot in field relative drive
+  void driveFieldRelative(float iX, float iY, float i0);
+
+// Method that returns a ChassisSpeeds from the robot relative speeds
+  frc::ChassisSpeeds getRobotRelativeSpeeds();
+// Method that drives the robot in robot relative drive
+  void driveRobotRelative(frc::ChassisSpeeds speeds);
+
+// Method that returns the robot's pose
+  frc::Pose2d getPose();
+// Method that redefines the robot's pose with its input
+  void resetPose(frc::Pose2d iRobotPose);
 
   void Init();
 
+  // Load the RobotConfig from the GUI settings. You should probably
+  // store this in your Constants file
+  pathplanner::RobotConfig config = pathplanner::RobotConfig::fromGUISettings();
+
  private:
 
-  // Locations for the swerve drive modules relative to the robot center.
-  frc::Translation2d m_frontLeftLocation{0.3683_m, 0.3556_m};
-  frc::Translation2d m_frontRightLocation{0.3683_m, -0.3556_m};
-  frc::Translation2d m_backLeftLocation{-0.3683_m, 0.3556_m};
-  frc::Translation2d m_backRightLocation{-0.3683_m, -0.3556_m};
+  // Declaring the locations of the SwerveModules
+  frc::Translation2d * m_frontLeftLocation;
+  frc::Translation2d * m_frontRightLocation;
+  frc::Translation2d * m_backLeftLocation;
+  frc::Translation2d * m_backRightLocation;
 
-  // Creating my kinematics object using the module locations.
-  frc::SwerveDriveKinematics<4> m_kinematics{
-    m_frontLeftLocation, m_frontRightLocation, m_backLeftLocation,
-    m_backRightLocation};
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
+  // Declaring the four SwerveModule objects
+  SwerveModule * m_frontLeftModule;
+  SwerveModule * m_frontRightModule;
+  SwerveModule * m_backLeftModule;
+  SwerveModule * m_backRightModule;
 
-  rev::spark::SparkMax m_frontLeft{DriveTrainConstants::kFrontLeftMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
-  rev::spark::SparkMax m_frontLeft550{DriveTrainConstants::kFrontLeftMotor550ID, rev::spark::SparkLowLevel::MotorType::kBrushless};
+  // wpi::array<frc::SwerveModulePosition, 4> * m_swerveModulePositions;
 
-  rev::spark::SparkRelativeEncoder m_frontLeft550Encoder = m_frontLeft550.GetEncoder();
-  rev::spark::SparkAbsoluteEncoder  m_frontLeft550AbsoluteEncoder = m_frontLeft550.GetAbsoluteEncoder();
-  frc::PIDController m_frontLeft550PID {DriveTrainConstants::PIDs::kP , DriveTrainConstants::PIDs::kI , DriveTrainConstants::PIDs::kD};
+  // Declaring my swerve kinematics object
+  frc::SwerveDriveKinematics<4> * m_kinematics;
+  // Declaring the robot pose object
+  frc::Pose2d * m_robotPose;
+  // Declaring the swerve odometry object
+  frc::SwerveDriveOdometry<4> * m_odometry;
 
-
-  rev::spark::SparkMax m_frontRight{DriveTrainConstants::kFrontRighttMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
-  rev::spark::SparkMax m_frontRight550{DriveTrainConstants::kFrontRightMotor550ID, rev::spark::SparkLowLevel::MotorType::kBrushless};
-
-  rev::spark::SparkRelativeEncoder m_frontRight550Encoder = m_frontRight550.GetEncoder();
-  rev::spark::SparkAbsoluteEncoder  m_frontRight550AbsoluteEncoder = m_frontRight550.GetAbsoluteEncoder();
-  frc::PIDController m_frontRight550PID {DriveTrainConstants::PIDs::kP , DriveTrainConstants::PIDs::kI , DriveTrainConstants::PIDs::kD};
-
-
-  rev::spark::SparkMax m_backLeft{DriveTrainConstants::kBackLeftMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
-  rev::spark::SparkMax m_backLeft550{DriveTrainConstants::kBackLefttMotor550ID, rev::spark::SparkLowLevel::MotorType::kBrushless};
-
-  rev::spark::SparkRelativeEncoder m_backLeft550Encoder = m_backLeft550.GetEncoder();
-  rev::spark::SparkAbsoluteEncoder  m_backLeft550AbsoluteEncoder = m_backLeft550.GetAbsoluteEncoder();
-  frc::PIDController m_backLeft550PID {DriveTrainConstants::PIDs::kP , DriveTrainConstants::PIDs::kI , DriveTrainConstants::PIDs::kD};
-
-
-  rev::spark::SparkMax m_backRight{DriveTrainConstants::kBackRightMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
-  rev::spark::SparkMax m_backRight550{DriveTrainConstants::kBackRightMotor550ID, rev::spark::SparkLowLevel::MotorType::kBrushless};
-
-  rev::spark::SparkRelativeEncoder m_backRight550Encoder = m_backRight550.GetEncoder();
-  rev::spark::SparkAbsoluteEncoder  m_backRight550AbsoluteEncoder = m_backRight550.GetAbsoluteEncoder();
-  frc::PIDController m_backRight550PID {DriveTrainConstants::PIDs::kP , DriveTrainConstants::PIDs::kI , DriveTrainConstants::PIDs::kD};
-  
-  
-
-  units::meters_per_second_t m_maxSpeed = 1_mps;
-  units::radians_per_second_t m_maxSpeed0 = units::radians_per_second_t(std::numbers::pi);
-
-
-
-  SubIMU mIMU;
+  // Declaring the IMU object
+  SubIMU * mIMU = nullptr;
 };

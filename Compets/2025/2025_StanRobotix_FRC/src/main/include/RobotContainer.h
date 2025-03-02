@@ -7,7 +7,12 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/Joystick.h>
+#include <pathplanner/lib/commands/PathPlannerAuto.h>
+#include <pathplanner/lib/auto/AutoBuilder.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc2/command/Command.h>
+#include <memory>
+
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
@@ -25,6 +30,7 @@
 #include "commands/CoralOuttake.h"
 #include "commands/CoralPivotUp.h"
 #include "commands/CoralPivotDown.h"
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -47,6 +53,9 @@ class RobotContainer {
   frc2::CommandXboxController m_driverController{
       OperatorConstants::kDriverControllerPort};
 
+  // Build an auto chooser. This will use frc2::cmd::None() as the default option.
+  frc::SendableChooser<frc2::Command *> autoChooser;
+
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
   SubDriveTrain * mDriveTrain = nullptr;
@@ -56,6 +65,9 @@ class RobotContainer {
   SubCoralPivot * mSubCoralPivot = nullptr;
   SubCoralIntake * mSubCoralIntake = nullptr;
   frc::Joystick * mJoystick = nullptr;
+
+  //frc2::CommandPtr * m_PeriodeAuto;
+  // frc::SendableChooser<frc2::Command *> autoChooser;
 
   void ConfigureBindings();
 };
