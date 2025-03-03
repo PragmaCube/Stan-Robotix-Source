@@ -20,6 +20,7 @@ RobotContainer::RobotContainer() {
   mSubCoralIntake = new SubCoralIntake;
   mJoystick = new frc::Joystick{0};
   mTestShuffleBoard = new TestShuffleBoard;
+
 /*
 mDriveTrain->SetDefaultCommand(frc2::RunCommand(
     [this] {
@@ -30,6 +31,7 @@ mDriveTrain->SetDefaultCommand(frc2::RunCommand(
   ConfigureBindings();
 
   mIMU->resetAngle();
+  
 
   frc::SmartDashboard::PutNumber("SetPointDown", 0.2274);
   frc::SmartDashboard::PutNumber("SetPointUp", -0.2274);
@@ -48,11 +50,14 @@ mDriveTrain->SetDefaultCommand(frc2::RunCommand(
   NumberTest = mTab->Add("turc", 0.5).WithWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
 
 */
+
+
 }
 
 
 void RobotContainer::periodic(){
  // std::cout << NumberTest->GetDouble(0.0) << std::endl;
+frc::Shuffleboard::Update(); 
 }
 
 void RobotContainer::ConfigureBindings() {
