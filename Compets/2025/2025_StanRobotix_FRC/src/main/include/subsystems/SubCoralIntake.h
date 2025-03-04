@@ -13,8 +13,7 @@ class SubCoralIntake : public frc2::SubsystemBase {
  public:
   SubCoralIntake();
 
-  void Intake();
-  void Outtake();
+  void Intake(double);
 
   void Stop();
 

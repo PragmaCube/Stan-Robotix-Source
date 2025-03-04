@@ -8,11 +8,13 @@
 
 SubCoralPivot::SubCoralPivot(){
     mCoralPivotMotor = new rev::spark::SparkMax (CoralConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+    mPIDController.SetTolerance(0.1);
 }
 
 // This method will be called once per scheduler run
 void SubCoralPivot::Periodic() {
-   std::cout << cos((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi) << std::endl; //  
+//    std::cout << cos((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi) << std::endl; //  
+    // std::cout << (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi << std::endl;
 }
 
 
@@ -47,6 +49,11 @@ SubCoralPivot::StatesCoral SubCoralPivot::GetState(){
 
 void SubCoralPivot::SetState(StatesCoral iState){
     mState = iState;
+}
+
+void SubCoralPivot::CounterGravity(){
+    double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi;   
+    mCoralPivotMotor->SetVoltage(-units::volt_t(kG) * cos(pivotPositionRad));
 }
 
 /*

@@ -15,7 +15,7 @@
     "Competition Autos",
     "Test Autos"
   ],
-  "defaultMaxVel": 1.0,
+  "defaultMaxVel": 0.5,
   "defaultMaxAccel": 5.0,
   "defaultMaxAngVel": 180.0,
   "defaultMaxAngAccel": 720.0,
@@ -28,7 +28,6 @@
   "maxDriveSpeed": 10.0,
   "driveMotorType": "NEO",
   "driveCurrentLimit": 30.0,
-
   "wheelCOF": 1.2,
   "flModuleX": 0.3683,
   "flModuleY": 0.3556,
@@ -44,6 +43,5 @@
     "{\"name\":\"Pivot_Algae\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.0,\"y\":-0.37},\"size\":{\"width\":0.1,\"length\":0.3},\"borderRadius\":0.0,\"strokeWidth\":0.02,\"filled\":false}}",
     "{\"name\":\"Gabriel\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.25,\"y\":-0.37},\"size\":{\"width\":0.1,\"length\":0.1},\"borderRadius\":0.0,\"strokeWidth\":0.02,\"filled\":false}}",
     "{\"name\":\"Pivot_coral\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.38,\"y\":0.0},\"size\":{\"width\":0.3,\"length\":0.1},\"borderRadius\":0.0,\"strokeWidth\":0.02,\"filled\":false}}"
-
   ]
 }

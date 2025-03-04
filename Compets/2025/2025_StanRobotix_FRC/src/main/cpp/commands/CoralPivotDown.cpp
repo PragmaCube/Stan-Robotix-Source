@@ -18,7 +18,7 @@ void CoralPivotDown::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void CoralPivotDown::Execute() {
-  mCoralPivot->Pivot(-0.1);
+  mCoralPivot->Pivot(0.45);
   if ((mCoralPivot->AtSetPoint()) || (ReachedSetPoint))
   {
     ReachedSetPoint = true;

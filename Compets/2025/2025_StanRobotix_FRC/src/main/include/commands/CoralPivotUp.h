@@ -35,4 +35,7 @@ class CoralPivotUp
   private:
 
   SubCoralPivot * mCoralPivot;
+
+  bool ReachedSetPoint = false;
+  int Timer = -1;
 };

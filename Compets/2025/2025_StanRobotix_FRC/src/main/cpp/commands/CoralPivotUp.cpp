@@ -12,19 +12,28 @@ CoralPivotUp::CoralPivotUp(SubCoralPivot * iCoralPivot) {
 // Called when the command is initially scheduled.
 void CoralPivotUp::Initialize() {
   mCoralPivot->SetPIDEnable(true);
+  ReachedSetPoint = false;
+  Timer = -1;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void CoralPivotUp::Execute() {
   mCoralPivot->Pivot(-1.15);
+  if ((mCoralPivot->AtSetPoint()) || (ReachedSetPoint))
+  {
+    ReachedSetPoint = true;
+    Timer++;
+  }
+  std::cout << mCoralPivot->AtSetPoint() << std::endl;
 }
 
 // Called once the command ends or is interrupted.
 void CoralPivotUp::End(bool interrupted) {
   mCoralPivot->SetPIDEnable(false);
+  std::cout << "Coral Pivot Up Fini" << std::endl;
 }
 
 // Returns true when the command should end.
 bool CoralPivotUp::IsFinished() {
-  return mCoralPivot->AtSetPoint();
+  return (mCoralPivot->AtSetPoint()) && (Timer >= 75);
 }

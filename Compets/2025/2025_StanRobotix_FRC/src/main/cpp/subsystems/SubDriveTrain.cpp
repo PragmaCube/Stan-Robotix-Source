@@ -19,6 +19,9 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     m_backLeftModule = new SwerveModule{DriveTrainConstants::kBackLeftMotorID, DriveTrainConstants::kBackLeftMotor550ID};
     m_backRightModule = new SwerveModule{DriveTrainConstants::kBackRightMotorID, DriveTrainConstants::kBackRightMotor550ID};
 
+    m_frontLeftModule->setNeoInverted(false);
+
+
     // Initialization of the IMU
     mIMU = iIMU;
 
@@ -76,6 +79,7 @@ void SubDriveTrain::Periodic()
                     m_backRightModule->getModulePosition()});
     
 //    std::cout << double(m_odometry->GetPose().X()) << std::endl << double(m_odometry->GetPose().Y()) << std::endl;
+    // std::cout << double(mIMU->getRotation2d().Degrees()) << std::endl;
 }
    
 void SubDriveTrain::Init() {}

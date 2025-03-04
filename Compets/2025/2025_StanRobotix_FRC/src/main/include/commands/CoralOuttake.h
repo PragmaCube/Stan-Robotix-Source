@@ -7,6 +7,7 @@
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc/Joystick.h>
+#include <frc/XboxController.h>
 
 #include "subsystems/SubCoralIntake.h"
 #include "Constants.h"
@@ -24,7 +25,7 @@ class CoralOuttake
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  CoralOuttake(SubCoralIntake*, frc::Joystick*);
+  CoralOuttake(SubCoralIntake*, frc::XboxController*);
 
   void Initialize() override;
 
@@ -36,6 +37,7 @@ class CoralOuttake
 
   private :
   SubCoralIntake * mCoralIntake = nullptr;
-  frc::Joystick * mJoystick = nullptr;
+  frc::XboxController* mJoystick = nullptr;
   
+  int Timer = -1;
 };

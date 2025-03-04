@@ -26,7 +26,7 @@ class GoToTag
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  GoToTag(SubDriveTrain*, SubIMU*, SubCoralPivot*);
+  GoToTag(SubDriveTrain*, SubIMU*);
 
   void Initialize() override;
 
@@ -45,7 +45,8 @@ class GoToTag
   double OutputX;
   double OutputY;
 
+  int Timer = -1;
+
   SubDriveTrain * mSubDriveTrain;
   SubIMU * mSubIMU;
-  SubCoralPivot * mSubCoralPivot;
-};
+  };

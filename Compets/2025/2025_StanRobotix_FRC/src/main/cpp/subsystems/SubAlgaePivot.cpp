@@ -56,6 +56,14 @@ void SubAlgaePivot::SetState(SubAlgaePivot::StatesAlgae iState){
     mState = iState;
 }
 
+void SubAlgaePivot::PivotUpSmooth(){
+    mAlgaePivotMotor->SetVoltage(units::volt_t(0.75));
+}
+
+void SubAlgaePivot::CounterGravity(){
+    double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi;
+    mAlgaePivotMotor->SetVoltage(units::volt_t(kG) * cos(pivotPositionRad));
+}
 
 /*
     le setpoint doit etre donné en tours, même type que le cout.

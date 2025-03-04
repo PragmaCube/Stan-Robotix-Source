@@ -12,13 +12,11 @@ CoralIntake::CoralIntake(SubCoralIntake *iCoralIntake, frc::Joystick *iJoystick 
 }
 
 // Called when the command is initially scheduled.
-void CoralIntake::Initialize() {
-  mCoralIntake->SetCommandsState(true);
-}
+void CoralIntake::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void CoralIntake::Execute() {
-  mCoralIntake->Intake();
+  mCoralIntake->Intake(0.45);
 }
 
 // Called once the command ends or is interrupted.
@@ -28,5 +26,5 @@ void CoralIntake::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool CoralIntake::IsFinished() {
-  return (mJoystick->GetRawButtonReleased(JoystickBindingsConstants::Coral::kManualIn)) || (!mCoralIntake->GetCommandsState());
+  return mJoystick->GetRawButtonReleased(JoystickBindingsConstants::Coral::kManualIn);
 }

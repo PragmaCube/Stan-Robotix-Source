@@ -12,10 +12,8 @@
 class SubAlgaeIntake : public frc2::SubsystemBase {
  public:
   SubAlgaeIntake();
-
-  void Outake();
   
-  void Intake();
+  void Intake(double);
   
   void Stop();
 

@@ -49,6 +49,8 @@ enum StatesCoral {
 
   void SetState(StatesCoral);
 
+  void CounterGravity();
+
  private:
   
 

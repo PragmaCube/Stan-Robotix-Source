@@ -13,13 +13,13 @@ AlgaePivotDown::AlgaePivotDown(SubAlgaePivot * iAlgaePivot) {
 // Called when the command is initially scheduled.
 void AlgaePivotDown::Initialize() {
   mAlgaePivot->SetPIDEnable(true);
-  Timer = -1;
   ReachedSetPoint = false;
+  Timer = -1;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaePivotDown::Execute() {
-  mAlgaePivot->Pivot(0.7);
+  mAlgaePivot->Pivot(0.2);
   if ((mAlgaePivot->AtSetPoint()) || ReachedSetPoint)
   {    
     ReachedSetPoint = true;

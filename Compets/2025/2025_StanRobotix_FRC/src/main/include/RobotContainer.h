@@ -28,15 +28,17 @@
 #include "commands/AlgaeIntakeIn.h"
 #include "commands/AlgaeIntakeOut.h"
 #include "commands/AlgaeFullIntake.h"
-#include "commands/StopAlgaeIntake.h"
 
 #include "commands/CoralIntake.h"
 #include "commands/CoralOuttake.h"
 #include "commands/CoralPivotUp.h"
 #include "commands/CoralPivotDown.h"
-#include "commands/StopCoralIntake.h"
+
+#include "commands/Climb.h"
+#include "commands/ClimbPivotUp.h"
 
 #include "commands/GoToTag.h"
+#include "commands/SequentialGoToTag.h"
 
 
 /**
@@ -72,9 +74,13 @@ class RobotContainer {
   SubCoralPivot * mSubCoralPivot = nullptr;
   SubCoralIntake * mSubCoralIntake = nullptr;
   frc::Joystick * mJoystick = nullptr;
+  frc::XboxController * mJoystickSecondaire = nullptr;
 
   //frc2::CommandPtr * m_PeriodeAuto;
   // frc::SendableChooser<frc2::Command *> autoChooser;
 
   void ConfigureBindings();
+
+  private:
+  frc::Pose2d PoseInit = {units::meter_t(1.227), units::meter_t(5.865), units::radian_t(0)};
 };

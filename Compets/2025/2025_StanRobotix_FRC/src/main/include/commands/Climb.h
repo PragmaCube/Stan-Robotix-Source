@@ -6,9 +6,6 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
-#include <frc/Joystick.h>
-
-#include "subsystems/SubAlgaePivot.h"
 
 /**
  * An example command.
@@ -23,7 +20,7 @@ class Climb
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  Climb(SubAlgaePivot * iAlgaePivot, frc::Joystick * iJoystick);
+  Climb();
 
   void Initialize() override;
 
@@ -32,9 +29,4 @@ class Climb
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-
-  private :
-
-  SubAlgaePivot * mAlgaePivot;  
-  frc::Joystick * mJoystick;
 };

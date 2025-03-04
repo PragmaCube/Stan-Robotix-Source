@@ -4,7 +4,7 @@
 
 #include "commands/AlgaeIntakeOut.h"
 
-AlgaeIntakeOut::AlgaeIntakeOut(SubAlgaeIntake *iSubAlgaeIntake, frc::Joystick *iJoystick) {
+AlgaeIntakeOut::AlgaeIntakeOut(SubAlgaeIntake *iSubAlgaeIntake, frc::XboxController *iJoystick) {
   // Use addRequirements() here to declare subsystem dependencies.
   mAlgaeIntake = iSubAlgaeIntake;
   mJoystick = iJoystick;
@@ -13,12 +13,13 @@ AlgaeIntakeOut::AlgaeIntakeOut(SubAlgaeIntake *iSubAlgaeIntake, frc::Joystick *i
 
 // Called when the command is initially scheduled.
 void AlgaeIntakeOut::Initialize() {
-  mAlgaeIntake->SetCommandsState(true);
+  Timer = -1;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaeIntakeOut::Execute() {
-  mAlgaeIntake->Outake();
+  mAlgaeIntake->Intake(0.2);
+  Timer++;
 }
 
 // Called once the command ends or is interrupted.
@@ -28,5 +29,5 @@ void AlgaeIntakeOut::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool AlgaeIntakeOut::IsFinished() {
-return (mJoystick->GetRawButtonReleased(JoystickBindingsConstants::Algae::kManualOut)) || (!mAlgaeIntake->GetCommandsState());
+  return Timer >= 50;
 }

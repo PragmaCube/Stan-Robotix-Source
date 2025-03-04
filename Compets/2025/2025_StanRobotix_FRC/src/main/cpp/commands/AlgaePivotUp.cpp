@@ -12,11 +12,18 @@ AlgaePivotUp::AlgaePivotUp(SubAlgaePivot * iAlgaePivot) {
 
 void AlgaePivotUp::Initialize() {
   mAlgaePivot->SetPIDEnable(true);
+  ReachedSetPoint = false;
+  Timer = -1;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaePivotUp::Execute() {
   mAlgaePivot->Pivot(1.5);
+  if((mAlgaePivot->AtSetPoint()) || (ReachedSetPoint))
+  {
+    ReachedSetPoint = true;
+    Timer++;
+  }
 }
 
 // Called once the command ends or is interrupted.
@@ -26,5 +33,5 @@ void AlgaePivotUp::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool AlgaePivotUp::IsFinished() {
-  return mAlgaePivot->AtSetPoint();
+  return (mAlgaePivot->AtSetPoint()) && (Timer >= 25);
 }

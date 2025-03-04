@@ -36,7 +36,7 @@ namespace DriveTrainConstants {
     constexpr int kBackLeftMotorID = 4;
     constexpr int kBackLeftMotor550ID = 3; 
 
-    constexpr float kSpeedCap = 0.2; 
+    constexpr float kSpeedCap = 0.4; 
     constexpr float kMaxSpeed = 1;
     constexpr double kMaxSpeed0 = std::numbers::pi;
     constexpr double kGearRatio = 1 / 5.08;
@@ -59,8 +59,8 @@ namespace PathPlannerConstants {
     constexpr double kIRotation = 0.0;
     constexpr double kDRotation = 0.0;
 
-    constexpr double kStartingPoseX = 0;
-    constexpr double kStartingPoseY = 0;
+    constexpr double kStartingPoseX = 1.227;
+    constexpr double kStartingPoseY = 5.865;
 }
 
 namespace ChainConstants {
@@ -118,22 +118,23 @@ namespace JoystickBindingsConstants{
     namespace Algae{
         constexpr int kPivotUp = 5; 
         constexpr int kPivotDown = 3;
-        constexpr int kPivotStop = 2; // Inutile a enlever apres la phase de tests
 
         constexpr int kManualIn = 9;
-        constexpr int kManualOut = 10;
+        // constexpr int kManualOut = 10;
     }
     
     namespace Coral{
         constexpr int kPivotUp = 6;
         constexpr int kPivotDown = 4;
-        constexpr int kPivotStop = 1; // inutile a enlever apres la phase de tests
 
         constexpr int kManualIn = 7;
-        constexpr int kManualOut = 8;
+        // constexpr int kManualOut = 8;
     }
+    constexpr int kGoToTag = 2;
 
     constexpr int kClimb = 11;
+
+    constexpr int kResetIMU = 8;
 
     constexpr int kAlgaeIntakeInCmd = 20; // Mauvais IDs pour rendre les commandes inactives pour le moment
     constexpr int kAlgaeIntakeOutCmd = 21; // Mauvais IDs pour rendre les commandes inactives pour le moment

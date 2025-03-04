@@ -46,12 +46,15 @@ class SubAlgaePivot : public frc2::SubsystemBase {
   void SetPIDEnable(bool);
 
   void Climb();
+  void PivotUpSmooth();
 
   void StayStill();
 
   StatesAlgae GetState();
 
   void SetState(StatesAlgae);
+
+  void CounterGravity();
 
  private:
 

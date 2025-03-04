@@ -12,13 +12,11 @@ AlgaeIntakeIn::AlgaeIntakeIn(SubAlgaeIntake *iSubAlgaeIntake, frc::Joystick *iJo
 }
 
 // Called when the command is initially scheduled.
-void AlgaeIntakeIn::Initialize() {
-  mAlgaeIntake->SetCommandsState(true);
-}
+void AlgaeIntakeIn::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaeIntakeIn::Execute() {
-  mAlgaeIntake->Intake();
+  mAlgaeIntake->Intake(-0.2);
 }
 
 // Called once the command ends or is interrupted.
@@ -28,5 +26,5 @@ void AlgaeIntakeIn::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool AlgaeIntakeIn::IsFinished() {
-  return (mJoystick->GetRawButtonReleased(JoystickBindingsConstants::Algae::kManualIn)) || (!mAlgaeIntake->GetCommandsState());
+  return mJoystick->GetRawButtonReleased(JoystickBindingsConstants::Algae::kManualIn);
 }

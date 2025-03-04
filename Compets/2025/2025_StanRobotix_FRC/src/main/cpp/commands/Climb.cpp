@@ -4,27 +4,20 @@
 
 #include "commands/Climb.h"
 
-Climb::Climb(SubAlgaePivot * iAlgaePivot, frc::Joystick * iJoystick) {
-  mAlgaePivot = iAlgaePivot;
-  AddRequirements(mAlgaePivot);
-
-  mJoystick = iJoystick;
+Climb::Climb() {
+  // Use addRequirements() here to declare subsystem dependencies.
 }
 
 // Called when the command is initially scheduled.
 void Climb::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void Climb::Execute() {
-  mAlgaePivot->Climb();
-}
+void Climb::Execute() {}
 
 // Called once the command ends or is interrupted.
-void Climb::End(bool interrupted) {
-  mAlgaePivot->StayStill();
-}
+void Climb::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool Climb::IsFinished() {
-  return mJoystick->GetRawButtonReleased(JoystickBindingsConstants::kClimb);
+  return false;
 }

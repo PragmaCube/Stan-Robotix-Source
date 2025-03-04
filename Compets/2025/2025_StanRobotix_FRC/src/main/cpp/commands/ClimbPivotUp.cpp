@@ -2,25 +2,26 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/StopAlgaeIntake.h"
+#include "commands/ClimbPivotUp.h"
 
-StopAlgaeIntake::StopAlgaeIntake(SubAlgaeIntake * iSubAlgaeIntake) {
+ClimbPivotUp::ClimbPivotUp(SubAlgaePivot * iSubAlgaePivot) {
   // Use addRequirements() here to declare subsystem dependencies.
-  mSubAlgaeIntake = iSubAlgaeIntake;
+  mSubAlgaePivot = iSubAlgaePivot;
+  AddRequirements(mSubAlgaePivot);
 }
 
 // Called when the command is initially scheduled.
-void StopAlgaeIntake::Initialize() {}
+void ClimbPivotUp::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void StopAlgaeIntake::Execute() {
-  mSubAlgaeIntake->SetCommandsState(false);
+void ClimbPivotUp::Execute() {
+  mSubAlgaePivot->PivotUpSmooth();
 }
 
 // Called once the command ends or is interrupted.
-void StopAlgaeIntake::End(bool interrupted) {}
+void ClimbPivotUp::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool StopAlgaeIntake::IsFinished() {
-  return !mSubAlgaeIntake->GetCommandsState();
+bool ClimbPivotUp::IsFinished() {
+  return false;
 }

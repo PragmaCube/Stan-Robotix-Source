@@ -36,5 +36,7 @@ class AlgaePivotUp
 private:
 
   SubAlgaePivot * mAlgaePivot;
-  int i = 0;
+
+  bool ReachedSetPoint = false;
+  int Timer = -1;
 };

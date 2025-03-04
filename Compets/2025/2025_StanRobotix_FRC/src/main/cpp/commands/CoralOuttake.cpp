@@ -4,7 +4,7 @@
 
 #include "commands/CoralOuttake.h"
 
-CoralOuttake::CoralOuttake(SubCoralIntake *iCoralIntake, frc::Joystick *iJoystick ) {
+CoralOuttake::CoralOuttake(SubCoralIntake *iCoralIntake, frc::XboxController *iJoystick ) {
   // Use addRequirements() here to declare subsystem dependencies.
   mCoralIntake = iCoralIntake;
   mJoystick = iJoystick;
@@ -13,12 +13,13 @@ CoralOuttake::CoralOuttake(SubCoralIntake *iCoralIntake, frc::Joystick *iJoystic
 
 // Called when the command is initially scheduled.
 void CoralOuttake::Initialize() {
-  mCoralIntake->SetCommandsState(true);
+  Timer = -1;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void CoralOuttake::Execute() {
-  mCoralIntake->Outtake();
+  mCoralIntake->Intake(-0.6);
+  Timer++;
 }
 
 // Called once the command ends or is interrupted.
@@ -28,5 +29,5 @@ void CoralOuttake::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool CoralOuttake::IsFinished() {
-  return (mJoystick->GetRawButtonReleased(JoystickBindingsConstants::Coral::kManualOut)) || (!mCoralIntake->GetCommandsState());
+  return Timer >= 50;
 }
