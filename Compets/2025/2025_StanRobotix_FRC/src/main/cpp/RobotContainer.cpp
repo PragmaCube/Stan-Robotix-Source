@@ -19,7 +19,6 @@ RobotContainer::RobotContainer() {
   mSubCoralPivot = new SubCoralPivot;
   mSubCoralIntake = new SubCoralIntake;
   mJoystick = new frc::Joystick{0};
-  mTestShuffleBoard = new TestShuffleBoard;
 
 /*
 mDriveTrain->SetDefaultCommand(frc2::RunCommand(
@@ -32,26 +31,7 @@ mDriveTrain->SetDefaultCommand(frc2::RunCommand(
 
   mIMU->resetAngle();
   
-
-  frc::SmartDashboard::PutNumber("SetPointDown", 0.2274);
-  frc::SmartDashboard::PutNumber("SetPointUp", -0.2274);
-  frc::SmartDashboard::PutNumber("SetPointDownCoral", 0.2274);
-  frc::SmartDashboard::PutNumber("SetPointUpCoral", -0.2274);
-  frc::SmartDashboard::PutNumber("kP", 0);
-  frc::SmartDashboard::PutNumber("kI", 0);
-  frc::SmartDashboard::PutNumber("kD", 0);
-  frc::SmartDashboard::PutNumber("kG", 0.19);
-  frc::SmartDashboard::PutNumber("kGCoral", 0.19);
-  frc::SmartDashboard::PutBoolean("TestShuffleBoard", mTestShuffleBoard->IsFinished());
-/*
-  frc::Shuffleboard::GetTab("SmartDashboard").AddCamera("camera Tab","Limelight + usb",std::span<const std::string>({ "http://10.66.22.11:5800/" })).WithWidget(frc::BuiltInWidgets::kCameraStream);
-
-  mTab = &frc::Shuffleboard::GetTab("Test tab");
-  NumberTest = mTab->Add("turc", 0.5).WithWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
-
-*/
-
-
+  mTabGeneral->AddCamera("camera Tab","Limelight + usb",std::span<const std::string>({ "http://10.66.22.11:5800/" })).WithWidget(frc::BuiltInWidgets::kCameraStream);
 }
 
 

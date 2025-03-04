@@ -60,53 +60,9 @@ class RobotContainer {
   SubAlgaeIntake * mSubAlgaeIntake = nullptr;
   SubCoralPivot * mSubCoralPivot = nullptr;
   SubCoralIntake * mSubCoralIntake = nullptr;
-  TestShuffleBoard * mTestShuffleBoard = nullptr;
   frc::Joystick * mJoystick = nullptr;
 
   void ConfigureBindings();
 
-  frc::ShuffleboardTab &mTabGeneral = frc::Shuffleboard::GetTab("Main Tab");
-/*
-  //Commandes
-  frc::SuppliedValueWidget<bool> mCmdAlgaeFullIntake = ;
-  frc::SuppliedValueWidget<bool> mCmdAlgaeIntakeIn = ;
-  frc::SuppliedValueWidget<bool> mCmdAlgaeIntakeOut = ;
-  frc::SuppliedValueWidget<bool> mCmdAlgaePivotDown = ;
-  //frc::SuppliedValueWidget<bool> mCmdAlgaePivotState = ;
-  frc::SuppliedValueWidget<bool> mCmdAlgaePivotUp = ;
-  frc::SuppliedValueWidget<bool> mCmdAutos = ;
-  frc::SuppliedValueWidget<bool> mCmdClimb = ;
-  frc::SuppliedValueWidget<bool> mCmdCoralIntake = ;
-  frc::SuppliedValueWidget<bool> mCmdCoralOuttake = ;
-  frc::SuppliedValueWidget<bool> mCmdCoralPivotDown = ;
-  frc::SuppliedValueWidget<bool> mCmdCoralPivotUp = ;
-  frc::SuppliedValueWidget<bool> mCmdGoToTag = ;
-  frc::SuppliedValueWidget<bool> mCmdStopAlgaeIntake = ;
-  frc::SuppliedValueWidget<bool> mCmdStopCoralIntake = ;
-  */
-  frc::SuppliedValueWidget<bool> &mCmdTestShuffleBoard = mTabGeneral.AddBoolean("mTestShuffleBoard",[this]{return mTestSuffleBoard->IsFinished();}).WithWidget(frc::BuiltInWidgets::kBooleanBox);
-
-  //Valeurs non modifiables
-  nt::GenericEntry * NumberTestConstant = mTabGeneral.Add("turc", 0.5).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
-
-  //Valeurs modifiables
-  nt::GenericEntry * NumberTestChangeable = mTabGeneral.Add("turc modifiable", 0.5).WithWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
-  /*
-  nt::GenericEntry AlgaeIntakeSpeed = ;
-  nt::GenericEntry AlgaeOuttakeSpeed = ;
-  nt::GenericEntry AlgaeSetPoint = ;
-  nt::GenericEntry AlgaekG = ;
-  nt::GenericEntry AlgaeClimb = ;
-  nt::GenericEntry AlgaeStayStill = ;
-  nt::GenericEntry CoralIntakeSpeed = ;
-  nt::GenericEntry CoralOuttakeSpeed = ;
-  nt::GenericEntry CoralPivotSetPoint = ;
-  nt::GenericEntry CoralPivotkG = ;
-*/
-  //Capteurs
-  frc::ComplexWidget * CameraFeed = &mTabGeneral.AddCamera("cameras","Limelight + usb",std::span<const std::string>({ "http://10.66.22.11:5800/" })).WithWidget(frc::BuiltInWidgets::kCameraStream);
-
-
-  //Commandes pour isFinished
-  TestShuffleBoard * mTestSuffleBoard = nullptr;
+  frc::ShuffleboardTab * mTabGeneral = &frc::Shuffleboard::GetTab("Main Tab");
 };
