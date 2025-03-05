@@ -30,20 +30,19 @@ mDriveTrain->SetDefaultCommand(frc2::RunCommand(
   ConfigureBindings();
 
   mIMU->resetAngle();
-  
+  mTabGeneral->Add("TestShuffleBoard",false);
   mTabGeneral->AddCamera("camera Tab","Limelight + usb",std::span<const std::string>({ "http://10.66.22.11:5800/" })).WithWidget(frc::BuiltInWidgets::kCameraStream);
 }
 
 
 void RobotContainer::periodic(){
- // std::cout << NumberTest->GetDouble(0.0) << std::endl;
-frc::Shuffleboard::Update(); 
+ // std::cout << NumberTest->GetDouble(0.0) << std::endl; 
 }
 
 void RobotContainer::ConfigureBindings() {
 
    frc2::Trigger([this] {
-    return mJoystick->GetRawButtonPressed(1);
+    return mJoystick->GetRawButtonPressed(3);
   }).OnTrue(TestShuffleBoard().ToPtr());
 
   // Configure your trigger bindings here
