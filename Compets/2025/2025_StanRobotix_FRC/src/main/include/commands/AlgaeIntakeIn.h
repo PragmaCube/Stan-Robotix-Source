@@ -26,7 +26,7 @@ class AlgaeIntakeIn
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  AlgaeIntakeIn(SubAlgaeIntake*, frc::Joystick*);
+  AlgaeIntakeIn(SubAlgaeIntake*);
 
   void Initialize() override;
 
@@ -38,5 +38,4 @@ class AlgaeIntakeIn
 
   private:
   SubAlgaeIntake* mAlgaeIntake = nullptr;
-  frc::Joystick* mJoystick = nullptr;
 };

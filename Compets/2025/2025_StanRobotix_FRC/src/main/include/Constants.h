@@ -133,7 +133,7 @@ namespace JoystickBindingsConstants{
         constexpr int kPivotDown = 3;
 
         constexpr int kManualIn = 9;
-        // constexpr int kManualOut = 10;
+            constexpr int kManualPivotUp = 10;
     }
     
     namespace Coral{
@@ -141,7 +141,6 @@ namespace JoystickBindingsConstants{
         constexpr int kPivotDown = 4;
 
         constexpr int kManualIn = 7;
-        // constexpr int kManualOut = 8;
     }
     constexpr int kGoToTag = 2;
 

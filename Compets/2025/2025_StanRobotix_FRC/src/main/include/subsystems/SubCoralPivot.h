@@ -61,7 +61,7 @@ enum StatesCoral {
 StatesCoral mState;
 
   const double kOffset =  -16.925;
-  const double kG = 0.39;
+  const double kG = 0.43;
   bool PIDEnable = true;
 
   rev::spark::SparkMax * mCoralPivotMotor = nullptr;

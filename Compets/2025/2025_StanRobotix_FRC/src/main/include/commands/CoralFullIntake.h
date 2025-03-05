@@ -7,15 +7,20 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/ParallelCommandGroup.h>
 
-#include "commands/AlgaePivotDown.h"
-#include "commands/AlgaeIntakeIn.h"
+#include "commands/CoralPivotDown.h"
+#include "commands/CoralIntake.h"
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-class AlgaeFullIntake
+class CoralFullIntake
     : public frc2::CommandHelper<frc2::ParallelCommandGroup,
-                                 AlgaeFullIntake> {
+                                 CoralFullIntake> {
  public:
-  AlgaeFullIntake(SubAlgaeIntake*, SubAlgaePivot*);
+  CoralFullIntake(SubCoralPivot*, SubCoralIntake*);
+
+  private:
+
+  SubCoralPivot * mSubCoralPivot;
+  SubCoralIntake * mSubCoralIntake;
 };

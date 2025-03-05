@@ -17,23 +17,16 @@
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
-#include "subsystems/SubDriveTrain.h"
-#include "subsystems/SubAlgaePivot.h"
-#include "subsystems/SubCoralPivot.h"
-#include "subsystems/SubReefPivot.h"
-#include "subsystems/SubAlgaeIntake.h"
-#include "subsystems/SubCoralIntake.h"
 
-#include "commands/AlgaePivotDown.h"
 #include "commands/AlgaePivotUp.h"
-#include "commands/AlgaeIntakeIn.h"
 #include "commands/AlgaeIntakeOut.h"
 #include "commands/AlgaeFullIntake.h"
 
-#include "commands/CoralIntake.h"
 #include "commands/CoralOuttake.h"
 #include "commands/CoralPivotUp.h"
-#include "commands/CoralPivotDown.h"
+#include "commands/CoralFullIntake.h"
+
+#include "commands/ReefPivotUp.h"
 
 #include "commands/Climb.h"
 #include "commands/ClimbPivotUp.h"

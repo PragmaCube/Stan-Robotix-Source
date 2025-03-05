@@ -8,14 +8,15 @@
 
 SubReefPivot::SubReefPivot(){
     mReefPivotMotor = new rev::spark::SparkMax (ReefConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+    mReefIntakeMotor = new rev::spark::SparkMax (13,  rev::spark::SparkLowLevel::MotorType::kBrushless);
 }
 
 // This method will be called once per scheduler run
 void SubReefPivot::Periodic() {
-   std::cout << cos((mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi) << std::endl;
+    std::cout << (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi << std::endl;
 }
 
-void SubReefPivot::Stop(){
+void SubReefPivot::StopPivot(){
     mReefPivotMotor->StopMotor();
 }
 
@@ -25,7 +26,8 @@ void SubReefPivot::Pivot(double Setpoint){
     double pivotPositionRad = (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi;
     double CalculatedPID = mPIDController.Calculate((mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi) * 13;
 
-    mReefPivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID) * PIDEnable);  //  
+    mReefPivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID) * PIDEnable);  //   
+    // std::cout << CalculatedPID << std::endl;
 }
 
 bool SubReefPivot::AtSetPoint(){
@@ -42,4 +44,17 @@ void SubReefPivot::SetPIDEnable(bool iState){
 
 void SubReefPivot::StayStill(){
     mReefPivotMotor->SetVoltage(units::volt_t(-0.75));
+}
+
+void SubReefPivot::CounterGravity(){
+    double pivotPositionRad = (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi;
+    mReefPivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))));
+}
+
+void SubReefPivot::Intake(double iPercent){
+    mReefIntakeMotor->Set(iPercent);
+}
+
+void SubReefPivot::StopIntake(){
+    mReefIntakeMotor->StopMotor();
 }

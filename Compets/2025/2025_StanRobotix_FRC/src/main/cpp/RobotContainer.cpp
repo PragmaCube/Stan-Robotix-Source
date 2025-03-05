@@ -44,29 +44,44 @@ RobotContainer::RobotContainer() {
     },
     {mSubAlgaePivot}));
 
+  mSubReefPivot->SetDefaultCommand(frc2::RunCommand(
+    [this] {
+      mSubReefPivot->StopPivot();
+      mSubReefPivot->StopIntake();
+    },
+    {mSubReefPivot}));
+
   mSubCoralIntake->SetDefaultCommand(frc2::RunCommand(
     [this] {
       mSubCoralIntake->Stop();
     },
     {mSubCoralIntake}));
 
+   mSubAlgaeIntake->SetDefaultCommand(frc2::RunCommand(
+    [this] {
+      mSubAlgaeIntake->Stop();
+    },
+    {mSubAlgaeIntake}));
+
   ConfigureBindings();
 
   mIMU->resetAngle();
 
-
+  frc::SmartDashboard::PutNumber("Angle P", 0.15);
+  frc::SmartDashboard::PutNumber("Angle I", 0);
+  frc::SmartDashboard::PutNumber("Angle D", 0.015);
 
   pathplanner::NamedCommands::registerCommand("Go to tag", std::move(SequentialGoToTag(mDriveTrain, mIMU, mSubCoralPivot, mSubCoralIntake).ToPtr()));
 
   pathplanner::NamedCommands::registerCommand("Pivot coral up", std::move(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Pivot coral down", std::move(CoralPivotDown(mSubCoralPivot).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Coral intake", std::move(CoralIntake(mSubCoralIntake, mJoystick).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Coral intake", std::move(CoralIntake(mSubCoralIntake).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Coral outtake", std::move(CoralOuttake(mSubCoralIntake, mJoystickSecondaire).ToPtr()));
 
   pathplanner::NamedCommands::registerCommand("Pivot algae up", std::move(AlgaePivotUp(mSubAlgaePivot).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Pivot algae down", std::move(AlgaePivotDown(mSubAlgaePivot).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Algae full intake", std::move(AlgaeFullIntake(mJoystick, mSubAlgaeIntake, mSubAlgaePivot).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Algae intake", std::move(AlgaeIntakeIn(mSubAlgaeIntake, mJoystick).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Algae full intake", std::move(AlgaeFullIntake(mSubAlgaeIntake, mSubAlgaePivot).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Algae intake", std::move(AlgaeIntakeIn(mSubAlgaeIntake).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Algae outtake", std::move(AlgaeIntakeOut(mSubAlgaeIntake, mJoystickSecondaire).ToPtr()));
 
 
@@ -78,7 +93,7 @@ RobotContainer::RobotContainer() {
   // Build an auto chooser. This will use frc2::cmd::None() as the default option.
   // frc::SendableChooser<frc2::Command *> autoChooser = pathplanner::AutoBuilder::buildAutoChooser("Default Auto");
   
-  frc::SmartDashboard::PutData("Auto Chooser", &autoChooser);
+  // frc::SmartDashboard::PutData("Auto Chooser", &autoChooser);
 }
 
 
@@ -94,15 +109,15 @@ void RobotContainer::ConfigureBindings() {
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButton(1);
-  }).WhileTrue(frc2::RunCommand([this] {mSubReefPivot->Pivot(0.2);},{mSubReefPivot}).ToPtr());  
+  }).WhileTrue(ReefPivotUp(mSubReefPivot).ToPtr());  
 
   frc2::Trigger([this] {
-    return mJoystick->GetRawButton(10);
+    return mJoystick->GetRawButton(JoystickBindingsConstants::Algae::kManualPivotUp);
   }).WhileTrue(ClimbPivotUp(mSubAlgaePivot).ToPtr());  
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::kGoToTag);
-  }).OnTrue(SequentialGoToTag(mDriveTrain, mIMU, mSubCoralPivot, mSubCoralIntake).ToPtr());
+  }).OnTrue(GoToTag(mDriveTrain, mIMU).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::kResetIMU);
@@ -118,15 +133,15 @@ void RobotContainer::ConfigureBindings() {
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButton(JoystickBindingsConstants::Coral::kManualIn);
-  }).WhileTrue(CoralIntake(mSubCoralIntake, mJoystick).ToPtr());
+  }).WhileTrue(CoralIntake(mSubCoralIntake).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystickSecondaire->GetLeftBumperButtonPressed();
   }).OnTrue(CoralOuttake(mSubCoralIntake, mJoystickSecondaire).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Algae::kManualIn);
-  }).OnTrue(AlgaeIntakeIn(mSubAlgaeIntake, mJoystick).ToPtr());
+    return mJoystick->GetRawButton(JoystickBindingsConstants::Algae::kManualIn);
+  }).WhileTrue(AlgaeIntakeIn(mSubAlgaeIntake).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystickSecondaire->GetRightBumperButtonPressed();

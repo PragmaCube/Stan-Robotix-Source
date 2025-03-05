@@ -2,29 +2,27 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/CoralIntake.h"
+#include "commands/ReefPivotDown.h"
 
-CoralIntake::CoralIntake(SubCoralIntake *iCoralIntake) {
+ReefPivotDown::ReefPivotDown(SubReefPivot * iSubReefPivot) {
   // Use addRequirements() here to declare subsystem dependencies.
-  mCoralIntake = iCoralIntake;
-  
-  AddRequirements(mCoralIntake);
+  mSubReefPivot = iSubReefPivot;
+  AddRequirements(mSubReefPivot);
 }
 
 // Called when the command is initially scheduled.
-void CoralIntake::Initialize() {}
+void ReefPivotDown::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void CoralIntake::Execute() {
-  mCoralIntake->Intake(0.45);
+void ReefPivotDown::Execute() {
+  mSubReefPivot->Pivot(0.2);
+  mSubReefPivot->Intake(0.3);
 }
 
 // Called once the command ends or is interrupted.
-void CoralIntake::End(bool interrupted) {
-  mCoralIntake->Stop();
-}
+void ReefPivotDown::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool CoralIntake::IsFinished() {
+bool ReefPivotDown::IsFinished() {
   return false;
 }

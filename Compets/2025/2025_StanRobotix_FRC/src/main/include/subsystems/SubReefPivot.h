@@ -24,7 +24,7 @@ class SubReefPivot : public frc2::SubsystemBase {
 
   SubReefPivot();
 
-  void Stop();
+  void StopPivot();
 
   void Pivot(double);
   /**
@@ -40,6 +40,12 @@ class SubReefPivot : public frc2::SubsystemBase {
 
   void StayStill();
 
+  void CounterGravity();
+
+  void Intake(double);
+
+  void StopIntake();
+
 
  private:
 
@@ -49,7 +55,9 @@ class SubReefPivot : public frc2::SubsystemBase {
 
 
   rev::spark::SparkMax * mReefPivotMotor = nullptr;
-  frc::PIDController mPIDController{0.2, 0, 0};
+  rev::spark::SparkMax * mReefIntakeMotor = nullptr;
+
+  frc::PIDController mPIDController{0.05, 0, 0};
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

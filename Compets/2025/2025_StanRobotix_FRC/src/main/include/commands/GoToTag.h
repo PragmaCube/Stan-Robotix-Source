@@ -38,11 +38,11 @@ class GoToTag
   bool IsFinished() override;
 
   private :
-    // frc::PIDController mPIDControllerAngle {0.08, 0, 0.017};
-    // frc::PIDController mPIDControllerX {0.8, 0, 0.0};
-    frc::PIDController mPIDControllerAngle {0.15, 0, 0.015};
-    frc::PIDController mPIDControllerX {0.8, 0, 0.0};
-    frc::PIDController mPIDControllerY {1.0, 0, 0.1};
+    // frc::PIDController mPIDControllerY {0, 0, 0};
+    // frc::PIDController mPIDControllerX {0, 0, 0.0};
+    frc::PIDController mPIDControllerAngle {0.05, 0, 0.005565};
+    frc::PIDController mPIDControllerX {0.8, 0, 0.002};
+    frc::PIDController mPIDControllerY {0.95, 0, 0.12};
 
     double OutputAngle;
     double OutputX;
