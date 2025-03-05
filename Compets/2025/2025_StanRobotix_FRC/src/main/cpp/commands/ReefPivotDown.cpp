@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/ReefPivotDown.h"
+#include <frc/shuffleboard/Shuffleboard.h>
 
 ReefPivotDown::ReefPivotDown(SubReefPivot * iSubReefPivot) {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -11,7 +12,10 @@ ReefPivotDown::ReefPivotDown(SubReefPivot * iSubReefPivot) {
 }
 
 // Called when the command is initially scheduled.
-void ReefPivotDown::Initialize() {}
+void ReefPivotDown::Initialize() {
+    frc::Shuffleboard::GetTab("Main Tab").Add("ReefPivotDown", true).GetEntry()->SetBoolean(true);
+
+}
 
 // Called repeatedly when this Command is scheduled to run
 void ReefPivotDown::Execute() {
@@ -20,7 +24,10 @@ void ReefPivotDown::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void ReefPivotDown::End(bool interrupted) {}
+void ReefPivotDown::End(bool interrupted) {
+    frc::Shuffleboard::GetTab("Main Tab").Add("ReefPivotDown", true).GetEntry()->SetBoolean(false);
+
+}
 
 // Returns true when the command should end.
 bool ReefPivotDown::IsFinished() {

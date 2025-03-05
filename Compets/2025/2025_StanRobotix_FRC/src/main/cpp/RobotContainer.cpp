@@ -94,6 +94,22 @@ RobotContainer::RobotContainer() {
   // frc::SendableChooser<frc2::Command *> autoChooser = pathplanner::AutoBuilder::buildAutoChooser("Default Auto");
   
   // frc::SmartDashboard::PutData("Auto Chooser", &autoChooser);
+  mTabGeneral->Add("ReefPivotUp",false);
+  mTabGeneral->Add("ReefPivotDown",false);
+  mTabGeneral->Add("GoToTag",false);
+  mTabGeneral->Add("CoralPivotUp",false);
+  mTabGeneral->Add("CoralPivotDown",false);
+  mTabGeneral->Add("CoralOuttake",false);
+  mTabGeneral->Add("CoralIntake",false);
+  mTabGeneral->Add("ClimbPivotUp",false);
+  mTabGeneral->Add("Climb",false);
+  mTabGeneral->Add("Autos",false);
+  mTabGeneral->Add("AlgaePivotUp",false);
+  mTabGeneral->Add("AlgaePivotDown",false);
+  mTabGeneral->Add("AlgaeIntakeIn",false);
+  mTabGeneral->Add("AlgaeIntakeOut",false);
+  
+  mTabGeneral->AddCamera("camera Tab","Limelight + usb",std::span<const std::string>({ "http://10.66.22.11:5800/" })).WithWidget(frc::BuiltInWidgets::kCameraStream);
 }
 
 

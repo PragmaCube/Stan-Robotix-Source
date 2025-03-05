@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/CoralPivotDown.h"
+#include <frc/shuffleboard/Shuffleboard.h>
 
 CoralPivotDown::CoralPivotDown(SubCoralPivot * iCoralPivot) {
   mCoralPivot = iCoralPivot;
@@ -14,6 +15,8 @@ void CoralPivotDown::Initialize() {
   mCoralPivot->SetPIDEnable(true);
   ReachedSetPoint = false;
   Timer = -1;
+    frc::Shuffleboard::GetTab("Main Tab").Add("CoralPivotDown", true).GetEntry()->SetBoolean(true);
+
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -29,6 +32,8 @@ void CoralPivotDown::Execute() {
 // Called once the command ends or is interrupted.
 void CoralPivotDown::End(bool interrupted) {
   mCoralPivot->SetPIDEnable(false);
+    frc::Shuffleboard::GetTab("Main Tab").Add("CoralPivotDown", true).GetEntry()->SetBoolean(false);
+
 }
 
 // Returns true when the command should end.

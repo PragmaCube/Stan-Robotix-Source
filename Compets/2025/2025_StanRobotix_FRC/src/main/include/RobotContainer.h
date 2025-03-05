@@ -13,6 +13,8 @@
 #include <frc2/command/Command.h>
 #include <pathplanner/lib/auto/NamedCommands.h>
 #include <memory>
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/ShuffleboardTab.h>
 
 
 #include "Constants.h"
@@ -79,4 +81,5 @@ class RobotContainer {
 
   private:
   frc::Pose2d PoseInit = {units::meter_t(1.227), units::meter_t(5.865), units::radian_t(0)};
+  frc::ShuffleboardTab * mTabGeneral = &frc::Shuffleboard::GetTab("Main Tab");
 };

@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/GoToTag.h"
+#include <frc/shuffleboard/Shuffleboard.h>
 
 GoToTag::GoToTag(SubDriveTrain * iSubDriveTrain, SubIMU * iSubIMU) {
   mSubDriveTrain = iSubDriveTrain;
@@ -27,6 +28,8 @@ void GoToTag::Initialize() {
   mPIDControllerAngle.SetTolerance(0.1);
   mPIDControllerY.SetTolerance(0.1);
 
+    frc::Shuffleboard::GetTab("Main Tab").Add("GoToTag", true).GetEntry()->SetBoolean(true);
+
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -50,7 +53,10 @@ void GoToTag::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void GoToTag::End(bool interrupted) {}
+void GoToTag::End(bool interrupted) {
+    frc::Shuffleboard::GetTab("Main Tab").Add("GoToTag", true).GetEntry()->SetBoolean(false);
+
+}
 
 // Returns true when the command should end.
 bool GoToTag::IsFinished() {
