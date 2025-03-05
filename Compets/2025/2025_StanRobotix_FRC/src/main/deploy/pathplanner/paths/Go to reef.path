@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.15,
-        "y": 7.0
+        "x": 7.14,
+        "y": 7.251
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.166268086677197,
-        "y": 6.738964703738611
+        "x": 6.122224040771243,
+        "y": 7.251
       },
       "isLocked": false,
       "linkedName": null
@@ -64,7 +64,7 @@
   "folder": "Comp Gauche Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -179.98392455139586
   },
   "useDefaultConstraints": true
 }

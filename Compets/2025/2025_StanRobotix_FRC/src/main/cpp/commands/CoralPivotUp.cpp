@@ -4,8 +4,11 @@
 
 #include "commands/CoralPivotUp.h"
 
-CoralPivotUp::CoralPivotUp(SubCoralPivot * iCoralPivot) {
+CoralPivotUp::CoralPivotUp(SubCoralPivot * iCoralPivot, SubCoralIntake * iCoralIntake) {
   mCoralPivot = iCoralPivot;
+  mCoralIntake = iCoralIntake;
+
+  AddRequirements(mCoralIntake);
   AddRequirements(mCoralPivot);
 }
 
@@ -18,13 +21,13 @@ void CoralPivotUp::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void CoralPivotUp::Execute() {
-  mCoralPivot->Pivot(-1.15);
+  mCoralIntake->SetVoltage(0.25);
+  mCoralPivot->Pivot(-1.3);
   if ((mCoralPivot->AtSetPoint()) || (ReachedSetPoint))
   {
     ReachedSetPoint = true;
     Timer++;
   }
-  std::cout << mCoralPivot->AtSetPoint() << std::endl;
 }
 
 // Called once the command ends or is interrupted.
@@ -35,5 +38,5 @@ void CoralPivotUp::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool CoralPivotUp::IsFinished() {
-  return (mCoralPivot->AtSetPoint()) && (Timer >= 75);
+  return (mCoralPivot->AtSetPoint()) && (Timer >= 50);
 }

@@ -21,12 +21,14 @@ RobotContainer::RobotContainer() {
   mSubAlgaeIntake = new SubAlgaeIntake;
   mSubCoralPivot = new SubCoralPivot;
   mSubCoralIntake = new SubCoralIntake;
+  mSubReefPivot = new SubReefPivot;
+
   mJoystick = new frc::Joystick{0};
   mJoystickSecondaire = new frc::XboxController{1};
 
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
       [this] {
-      mDriveTrain->driveFieldRelative(-mJoystick->GetX(), -mJoystick->GetY(), -mJoystick->GetZ());
+      mDriveTrain->driveFieldRelative(-mJoystick->GetX(), -mJoystick->GetY(), -mJoystick->GetZ(), (-(mJoystick->GetThrottle()) / 2) + 0.5);
       },
       {mDriveTrain}));
 
@@ -42,15 +44,21 @@ RobotContainer::RobotContainer() {
     },
     {mSubAlgaePivot}));
 
+  mSubCoralIntake->SetDefaultCommand(frc2::RunCommand(
+    [this] {
+      mSubCoralIntake->Stop();
+    },
+    {mSubCoralIntake}));
+
   ConfigureBindings();
 
   mIMU->resetAngle();
 
 
 
-  pathplanner::NamedCommands::registerCommand("Go to tag", std::move(SequentialGoToTag(mDriveTrain, mIMU, mSubCoralPivot).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Go to tag", std::move(SequentialGoToTag(mDriveTrain, mIMU, mSubCoralPivot, mSubCoralIntake).ToPtr()));
 
-  pathplanner::NamedCommands::registerCommand("Pivot coral up", std::move(CoralPivotUp(mSubCoralPivot).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Pivot coral up", std::move(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Pivot coral down", std::move(CoralPivotDown(mSubCoralPivot).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Coral intake", std::move(CoralIntake(mSubCoralIntake, mJoystick).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Coral outtake", std::move(CoralOuttake(mSubCoralIntake, mJoystickSecondaire).ToPtr()));
@@ -84,7 +92,9 @@ void RobotContainer::ConfigureBindings() {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
 
-
+  frc2::Trigger([this] {
+    return mJoystick->GetRawButton(1);
+  }).WhileTrue(frc2::RunCommand([this] {mSubReefPivot->Pivot(0.2);},{mSubReefPivot}).ToPtr());  
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButton(10);
@@ -92,7 +102,7 @@ void RobotContainer::ConfigureBindings() {
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::kGoToTag);
-  }).OnTrue(SequentialGoToTag(mDriveTrain, mIMU, mSubCoralPivot).ToPtr());
+  }).OnTrue(SequentialGoToTag(mDriveTrain, mIMU, mSubCoralPivot, mSubCoralIntake).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::kResetIMU);
@@ -102,13 +112,13 @@ void RobotContainer::ConfigureBindings() {
     return mJoystick->GetRawButtonPressed(12);
   }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->StayStill();},{mSubAlgaePivot}).ToPtr());
 
-  // frc2::Trigger([this] {
-  //   return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::kClimb);
-  // }).OnTrue(Climb(mSubAlgaePivot, mJoystick).ToPtr());
+  frc2::Trigger([this] {
+    return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::kClimb);
+  }).OnTrue(Climb(mSubAlgaePivot, mJoystick).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kManualIn);
-  }).OnTrue(CoralIntake(mSubCoralIntake, mJoystick).ToPtr());
+    return mJoystick->GetRawButton(JoystickBindingsConstants::Coral::kManualIn);
+  }).WhileTrue(CoralIntake(mSubCoralIntake, mJoystick).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystickSecondaire->GetLeftBumperButtonPressed();
@@ -132,7 +142,7 @@ void RobotContainer::ConfigureBindings() {
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kPivotUp);
-  }).OnTrue(CoralPivotUp(mSubCoralPivot).ToPtr());
+  }).OnTrue(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kPivotDown);
@@ -147,7 +157,8 @@ void RobotContainer::ConfigureBindings() {
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   mDriveTrain->resetPose(PoseInit);
-  return pathplanner::PathPlannerAuto("Comp Gauche").ToPtr();
+  return pathplanner::PathPlannerAuto("Comp Gauche Bizârre").ToPtr();
+
   // return *autoChooser.GetSelected();
   // return autos::ExampleAuto(&m_subsystem);
 }

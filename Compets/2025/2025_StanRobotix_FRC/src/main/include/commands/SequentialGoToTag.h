@@ -10,9 +10,11 @@
 #include "subsystems/SubCoralPivot.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
+#include "subsystems/SubCoralIntake.h"
 
 #include "commands/GoToTag.h"
 #include "commands/CoralPivotUp.h"
+
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
@@ -21,11 +23,12 @@ class SequentialGoToTag
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  SequentialGoToTag> {
  public:
-  SequentialGoToTag(SubDriveTrain*, SubIMU*, SubCoralPivot*);
+  SequentialGoToTag(SubDriveTrain*, SubIMU*, SubCoralPivot*, SubCoralIntake*);
 
   private :
 
   SubCoralPivot  * mSubCoralPivot;
   SubDriveTrain * mSubDriveTrain;
   SubIMU * mSubIMU;
+  SubCoralIntake * mSubCoralIntake;
 };

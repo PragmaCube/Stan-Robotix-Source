@@ -37,7 +37,8 @@ class CoralIntake
 
   private:
 
+  int Counter = 0;
+
   SubCoralIntake * mCoralIntake = nullptr;
   frc::Joystick * mJoystick = nullptr;
-
 };

@@ -15,6 +15,7 @@
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/kinematics/ChassisSpeeds.h>
 #include <frc/DriverStation.h>
+#include <frc/Joystick.h>
 #include <tuple>
 #include <array>
 #include <vector>
@@ -35,12 +36,12 @@ class SubDriveTrain : public frc2::SubsystemBase {
   void Periodic() override;
 
 // Method that drives the robot in field relative drive
-  void driveFieldRelative(float iX, float iY, float i0);
+  void driveFieldRelative(float iX, float iY, float i0, double SpeedModulation);
 
 // Method that returns a ChassisSpeeds from the robot relative speeds
   frc::ChassisSpeeds getRobotRelativeSpeeds();
 // Method that drives the robot in robot relative drive
-  void driveRobotRelative(frc::ChassisSpeeds speeds);
+  void driveRobotRelative(frc::ChassisSpeeds speeds, double SpeedModulation);
 
 // Method that returns the robot's pose
   frc::Pose2d getPose();

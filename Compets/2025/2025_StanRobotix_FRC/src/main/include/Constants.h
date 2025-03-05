@@ -36,7 +36,7 @@ namespace DriveTrainConstants {
     constexpr int kBackLeftMotorID = 4;
     constexpr int kBackLeftMotor550ID = 3; 
 
-    constexpr float kSpeedCap = 0.4; 
+    constexpr float kSpeedCap = 0.6; 
     constexpr float kMaxSpeed = 1;
     constexpr double kMaxSpeed0 = std::numbers::pi;
     constexpr double kGearRatio = 1 / 5.08;
@@ -105,6 +105,19 @@ namespace CoralConstants {
     
     namespace Intake{
         constexpr int kMotorID = 12;
+    }
+}
+
+namespace ReefConstants {
+    namespace Pivot{
+        constexpr double kP = 0.5;
+        constexpr double kI = 0.07;
+        constexpr double kD = 0;
+
+        constexpr int kMotorID = 16;
+        constexpr double kReefPivotSetPoint1 = 0.2;
+        constexpr double kReefPivotSetPoint2 = -0.2;
+        constexpr double kG = 0;
     }
 }
 

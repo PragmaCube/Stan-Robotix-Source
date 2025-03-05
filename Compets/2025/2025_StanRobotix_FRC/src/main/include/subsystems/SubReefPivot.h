@@ -18,18 +18,11 @@
 
 
 
-class SubAlgaePivot : public frc2::SubsystemBase {
+class SubReefPivot : public frc2::SubsystemBase {
 
  public:
 
- enum StatesAlgae {
-    cage,
-    horizontale,
-    pickAlgae,
-    replié
-  };
-
-  SubAlgaePivot();
+  SubReefPivot();
 
   void Stop();
 
@@ -45,29 +38,17 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   void SetPIDEnable(bool);
 
-  void Climb();
-  void PivotUpSmooth();
-
   void StayStill();
 
-  StatesAlgae GetState();
-
-  void SetState(StatesAlgae);
-
-  void CounterGravity();
 
  private:
 
- 
-
-  StatesAlgae mState;
-
-  const double kG = 0.35;
-  const double kOffset = 33.6426;
+  const double kG = 0.25;
+  const double kOffset = 5.27;
   bool PIDEnable = true;
 
 
-  rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
+  rev::spark::SparkMax * mReefPivotMotor = nullptr;
   frc::PIDController mPIDController{0.2, 0, 0};
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

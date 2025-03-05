@@ -30,7 +30,7 @@ class SwerveModule{
   frc::SwerveModuleState OptimizeState(frc::SwerveModuleState iDesiredState);
 
 // Méthode qui fait rouler le module à partir du SwerveModuleState désiré
-  void setDesiredState(frc::SwerveModuleState iDesiredState);
+  void setDesiredState(frc::SwerveModuleState iDesiredState, double SpeedModulation);
 
 // Méthode qui inverse le moteur Neo du module
   void setNeoInverted(bool iInvertion);

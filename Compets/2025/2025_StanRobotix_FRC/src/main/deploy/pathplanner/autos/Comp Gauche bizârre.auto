@@ -5,22 +5,21 @@
     "data": {
       "commands": [
         {
-          "type": "parallel",
+          "type": "path",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Go to reef"
-                }
-              }
-            ]
+            "pathName": "Put coral"
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "Go take algae"
+            "name": "Pivot coral up"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral outtake"
           }
         }
       ]

@@ -6,6 +6,7 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
+#include <frc/kinematics/ChassisSpeeds.h>
 
 #include "commands/CoralPivotUp.h"
 
@@ -37,16 +38,22 @@ class GoToTag
   bool IsFinished() override;
 
   private :
-  frc::PIDController mPIDControllerAngle {0.02, 0.1, 0.005};
-  frc::PIDController mPIDControllerX {1.3, 0.05, 0.05};
-  frc::PIDController mPIDControllerY {1.6, 0.03, 0.005};
+    // frc::PIDController mPIDControllerAngle {0.08, 0, 0.017};
+    // frc::PIDController mPIDControllerX {0.8, 0, 0.0};
+    frc::PIDController mPIDControllerAngle {0.15, 0, 0.015};
+    frc::PIDController mPIDControllerX {0.8, 0, 0.0};
+    frc::PIDController mPIDControllerY {1.0, 0, 0.1};
 
-  double OutputAngle;
-  double OutputX;
-  double OutputY;
+    double OutputAngle;
+    double OutputX;
+    double OutputY;
 
-  int Timer = -1;
+    frc::ChassisSpeeds speeds;    
 
-  SubDriveTrain * mSubDriveTrain;
-  SubIMU * mSubIMU;
+    int Timer = -1;
+
+    int TimerSkip = 0;
+
+    SubDriveTrain * mSubDriveTrain;
+    SubIMU * mSubIMU;
   };

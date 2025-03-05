@@ -7,6 +7,7 @@
 
 SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
 {
+
     // Initialization of the SwerveModules' location relative to the robot center
     m_frontLeftLocation = new frc::Translation2d{0.3683_m, 0.3556_m};
     m_frontRightLocation = new frc::Translation2d{0.3683_m, -0.3556_m};
@@ -40,7 +41,7 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
       [this](){ return getPose(); }, // Robot pose supplier
       [this](frc::Pose2d pose){ resetPose(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
       [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-      [this](auto speeds, auto feedforwards){ driveRobotRelative(speeds); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
+      [this](auto speeds, auto feedforwards){ driveRobotRelative(speeds, 1); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
       std::make_shared<pathplanner::PPHolonomicDriveController>( // PPHolonomicController is the built in path following controller for holonomic drive trains
       pathplanner::PIDConstants(PathPlannerConstants::kPTranslation, PathPlannerConstants::kITranslation, PathPlannerConstants::kDTranslation), // Translation PID constants
       pathplanner::PIDConstants(PathPlannerConstants::kPRotation, PathPlannerConstants::kIRotation, PathPlannerConstants::kDRotation) // Rotation PID constants
@@ -84,7 +85,7 @@ void SubDriveTrain::Periodic()
    
 void SubDriveTrain::Init() {}
 
-void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0)
+void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double SpeedModulation)
 {
     // Creating a ChassisSpeeds from the wanted speeds and the robot's rotation
     frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iY,
@@ -96,10 +97,10 @@ void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0)
     auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
 
     // Setting the desired state of each SwerveModule to the corresponding SwerveModuleState
-    m_frontLeftModule->setDesiredState(fl);
-    m_frontRightModule->setDesiredState(fr);
-    m_backLeftModule->setDesiredState(bl);
-    m_backRightModule->setDesiredState(br);
+    m_frontLeftModule->setDesiredState(fl, SpeedModulation);
+    m_frontRightModule->setDesiredState(fr, SpeedModulation);
+    m_backLeftModule->setDesiredState(bl, SpeedModulation);
+    m_backRightModule->setDesiredState(br, SpeedModulation);
 }
 
 frc::Pose2d SubDriveTrain::getPose()
@@ -125,14 +126,14 @@ frc::ChassisSpeeds SubDriveTrain::getRobotRelativeSpeeds()
 
 }
 
-void SubDriveTrain::driveRobotRelative(frc::ChassisSpeeds speeds)
+void SubDriveTrain::driveRobotRelative(frc::ChassisSpeeds speeds, double SpeedModulation)
 {
     // Tansforming the ChassisSpeeds into four SwerveModuleState for each SwerveModule
     auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
 
     // Setting the desired state of each SwerveModule to the corresponding SwerveModuleState
-    m_frontLeftModule->setDesiredState(fl);
-    m_frontRightModule->setDesiredState(fr);
-    m_backLeftModule->setDesiredState(bl);
-    m_backRightModule->setDesiredState(br);
+    m_frontLeftModule->setDesiredState(fl, SpeedModulation);
+    m_frontRightModule->setDesiredState(fr, SpeedModulation);
+    m_backLeftModule->setDesiredState(bl, SpeedModulation);
+    m_backRightModule->setDesiredState(br, SpeedModulation);
 }

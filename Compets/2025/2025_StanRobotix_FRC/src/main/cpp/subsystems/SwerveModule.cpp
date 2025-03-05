@@ -37,12 +37,12 @@ frc::SwerveModuleState SwerveModule::OptimizeState(frc::SwerveModuleState iDesir
     return OptimizedState;
 }
 
-void SwerveModule::setDesiredState(frc::SwerveModuleState iDesiredState)
+void SwerveModule::setDesiredState(frc::SwerveModuleState iDesiredState, double SpeedModulation)
 {
     frc::SwerveModuleState OptimizedState = OptimizeState(iDesiredState);
     m_Neo550PID->SetSetpoint(double(OptimizedState.angle.Radians() / (2 * std::numbers::pi)) + 0.5);
     m_MotorNeo550->Set(m_Neo550PID->Calculate(m_Neo550AbsoluteEncoder->GetPosition()));
-    m_MotorNeo->Set(double(OptimizedState.speed * (1 / units::meters_per_second_t(DriveTrainConstants::kMaxSpeed)) * DriveTrainConstants::kSpeedCap));
+    m_MotorNeo->Set(double(OptimizedState.speed * (1 / units::meters_per_second_t(DriveTrainConstants::kMaxSpeed)) * DriveTrainConstants::kSpeedCap * SpeedModulation));
     // std::cout << m_Neo550PID->Calculate(m_Neo550AbsoluteEncoder->GetPosition()) << std::endl;
 }
 

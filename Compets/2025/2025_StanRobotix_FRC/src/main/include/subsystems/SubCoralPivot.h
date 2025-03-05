@@ -51,6 +51,8 @@ enum StatesCoral {
 
   void CounterGravity();
 
+  void SetVoltage(double);
+
  private:
   
 
@@ -59,11 +61,11 @@ enum StatesCoral {
 StatesCoral mState;
 
   const double kOffset =  -16.925;
-  const double kG = 0.23;
+  const double kG = 0.39;
   bool PIDEnable = true;
 
   rev::spark::SparkMax * mCoralPivotMotor = nullptr;
-  frc::PIDController mPIDController{0.2, 0, 0};
+  frc::PIDController mPIDController{0.2, 0.001, 0};
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

@@ -16,7 +16,7 @@ void AlgaeIntakeIn::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaeIntakeIn::Execute() {
-  mAlgaeIntake->Intake(-0.2);
+  mAlgaeIntake->Intake(-0.3);
 }
 
 // Called once the command ends or is interrupted.

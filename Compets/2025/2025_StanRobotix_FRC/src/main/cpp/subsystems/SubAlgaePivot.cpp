@@ -57,7 +57,7 @@ void SubAlgaePivot::SetState(SubAlgaePivot::StatesAlgae iState){
 }
 
 void SubAlgaePivot::PivotUpSmooth(){
-    mAlgaePivotMotor->SetVoltage(units::volt_t(0.75));
+    mAlgaePivotMotor->SetVoltage(units::volt_t(0.95));
 }
 
 void SubAlgaePivot::CounterGravity(){

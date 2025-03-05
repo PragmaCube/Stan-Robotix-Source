@@ -26,3 +26,7 @@ void SubCoralIntake::SetCommandsState(bool iState){
 bool SubCoralIntake::GetCommandsState(){
     return CommandsEnabled;
 }
+
+void SubCoralIntake::SetVoltage(double iVoltage){
+    mCoralIntakeMotor->SetVoltage(units::volt_t(iVoltage));
+}

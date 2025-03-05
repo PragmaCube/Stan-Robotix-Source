@@ -20,6 +20,7 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubAlgaePivot.h"
 #include "subsystems/SubCoralPivot.h"
+#include "subsystems/SubReefPivot.h"
 #include "subsystems/SubAlgaeIntake.h"
 #include "subsystems/SubCoralIntake.h"
 
@@ -73,6 +74,8 @@ class RobotContainer {
   SubAlgaeIntake * mSubAlgaeIntake = nullptr;
   SubCoralPivot * mSubCoralPivot = nullptr;
   SubCoralIntake * mSubCoralIntake = nullptr;
+  SubReefPivot * mSubReefPivot = nullptr;
+
   frc::Joystick * mJoystick = nullptr;
   frc::XboxController * mJoystickSecondaire = nullptr;
 

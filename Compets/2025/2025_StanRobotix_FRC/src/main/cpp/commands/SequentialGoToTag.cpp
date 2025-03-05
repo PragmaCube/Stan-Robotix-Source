@@ -7,12 +7,13 @@
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-SequentialGoToTag::SequentialGoToTag(SubDriveTrain * iSubDriveTrain, SubIMU * iSubIMU, SubCoralPivot * iSubCoralPivot) {
+SequentialGoToTag::SequentialGoToTag(SubDriveTrain * iSubDriveTrain, SubIMU * iSubIMU, SubCoralPivot * iSubCoralPivot, SubCoralIntake * iSubCoralIntake) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand{}, BarCommand{});
   mSubDriveTrain = iSubDriveTrain;
   mSubIMU = iSubIMU;
   mSubCoralPivot = iSubCoralPivot;
+  mSubCoralIntake = iSubCoralIntake;
 
-  AddCommands(CoralPivotUp(mSubCoralPivot), GoToTag(mSubDriveTrain, mSubIMU));
+  AddCommands(CoralPivotUp(mSubCoralPivot, mSubCoralIntake), GoToTag(mSubDriveTrain, mSubIMU)); // 
 }

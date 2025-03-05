@@ -4,10 +4,11 @@
 
 #include "commands/CoralIntake.h"
 
-CoralIntake::CoralIntake(SubCoralIntake *iCoralIntake, frc::Joystick *iJoystick ) {
+CoralIntake::CoralIntake(SubCoralIntake *iCoralIntake, frc::Joystick *iJoystick) {
   // Use addRequirements() here to declare subsystem dependencies.
   mCoralIntake = iCoralIntake;
   mJoystick = iJoystick;
+  
   AddRequirements(mCoralIntake);
 }
 
@@ -26,5 +27,5 @@ void CoralIntake::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool CoralIntake::IsFinished() {
-  return mJoystick->GetRawButtonReleased(JoystickBindingsConstants::Coral::kManualIn);
+  return false;
 }
