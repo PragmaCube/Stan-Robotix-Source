@@ -18,6 +18,9 @@
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/ShuffleboardTab.h>
+
 #include "commands/AlgaePivotUp.h"
 #include "commands/AlgaeIntakeOut.h"
 #include "commands/AlgaeFullIntake.h"
@@ -50,9 +53,12 @@ class RobotContainer {
   void Initialize();
 
   enum Auto{
-    Gauche,
-    Centre,
-    Droite
+    RougeGauche,
+    RougeCentre,
+    RougeDroite,
+    BleuGauche,
+    BleuCentre,
+    BleuDroite
   };
 
   frc2::CommandPtr GetAutonomousCommand(Auto);
@@ -87,4 +93,5 @@ class RobotContainer {
   private:
 
   frc::Pose2d PoseInit;
+  frc::ShuffleboardTab * mTabGeneral = &frc::Shuffleboard::GetTab("Main Tab");
 };

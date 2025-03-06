@@ -20,7 +20,7 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     m_backLeftModule = new SwerveModule{DriveTrainConstants::kBackLeftMotorID, DriveTrainConstants::kBackLeftMotor550ID};
     m_backRightModule = new SwerveModule{DriveTrainConstants::kBackRightMotorID, DriveTrainConstants::kBackRightMotor550ID};
 
-    m_frontLeftModule->setNeoInverted(false);
+    m_frontLeftModule->setNeoInverted(true);
 
 
     // Initialization of the IMU
@@ -29,7 +29,27 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     // Initialization of the swerve kinematics with the SwerveModules' location
     m_kinematics = new frc::SwerveDriveKinematics<4>{*m_frontLeftLocation, *m_frontRightLocation, *m_backLeftLocation, *m_backRightLocation};
     // Initialization of the robot's pose
-    m_robotPose = new frc::Pose2d{units::meter_t(PathPlannerConstants::kStartingPoseX), units::meter_t(PathPlannerConstants::kStartingPoseY), mIMU->getRotation2d()};
+    switch (StartPose)
+    {
+    case RougeGauche:
+        m_robotPose = new frc::Pose2d{units::meter_t(0), units::meter_t(0), mIMU->getRotation2d()};
+        break;
+    case RougeCentre:
+        m_robotPose = new frc::Pose2d{units::meter_t(0), units::meter_t(0), mIMU->getRotation2d()};
+        break;
+    case RougeDroite:
+        m_robotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(7.93), mIMU->getRotation2d()};
+        break;
+    case BleuGauche:
+        m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(7.261), mIMU->getRotation2d()};
+        break;
+    case BleuCentre:
+        m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(4.010), mIMU->getRotation2d()};
+        break;
+    case BleuDroite:
+        m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(0.789), mIMU->getRotation2d()};
+        break;
+    }
     // Initialization of the swerve odometry with the kinematics, the robot's rotation, an array of the SwerveModules' position, and the robot's pose
     m_odometry = new frc::SwerveDriveOdometry<4>{*m_kinematics, mIMU->getRotation2d(), {
                     m_frontLeftModule->getModulePosition(),

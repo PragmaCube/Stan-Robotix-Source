@@ -5,27 +5,21 @@
     "data": {
       "commands": [
         {
+          "type": "path",
+          "data": {
+            "pathName": "Centre"
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "Pivot coral down"
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.25
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "Pivot coral up"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Centre_Start"
           }
         },
         {
@@ -50,6 +44,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Competition Autos",
+  "folder": "Rouge",
   "choreoAuto": false
 }

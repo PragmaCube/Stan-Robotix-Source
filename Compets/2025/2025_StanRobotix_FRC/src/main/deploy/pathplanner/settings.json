@@ -8,15 +8,18 @@
     "Comp Centre-Gauche Paths",
     "Comp Droite Paths",
     "Comp Gauche Paths",
+    "Rouge",
+    "New New Folder",
     "Test Paths"
   ],
   "autoFolders": [
-    "Practice Autos",
     "Competition Autos",
+    "Rouge",
+    "Practice Autos",
     "Test Autos"
   ],
   "defaultMaxVel": 0.5,
-  "defaultMaxAccel": 5.0,
+  "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 180.0,
   "defaultMaxAngAccel": 720.0,
   "defaultNominalVoltage": 12.0,

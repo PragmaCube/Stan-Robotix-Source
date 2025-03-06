@@ -18,7 +18,7 @@ void AlgaeIntakeOut::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaeIntakeOut::Execute() {
-  mAlgaeIntake->Intake(0.2);
+  mAlgaeIntake->Intake(0.35);
   Timer++;
 }
 

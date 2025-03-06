@@ -15,20 +15,17 @@ CoralPivotUp::CoralPivotUp(SubCoralPivot * iCoralPivot, SubCoralIntake * iCoralI
 // Called when the command is initially scheduled.
 void CoralPivotUp::Initialize() {
   mCoralPivot->SetPIDEnable(true);
-  Timer = -1;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void CoralPivotUp::Execute() {
   mCoralIntake->SetVoltage(0.25);
   mCoralPivot->Pivot(-1.3);
-  Timer++;
 }
 
 // Called once the command ends or is interrupted.
 void CoralPivotUp::End(bool interrupted) {
   mCoralPivot->SetPIDEnable(false);
-  std::cout << "Coral Pivot Up Fini" << std::endl;
 }
 
 // Returns true when the command should end.

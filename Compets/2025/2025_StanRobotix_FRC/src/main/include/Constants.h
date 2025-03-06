@@ -59,8 +59,8 @@ namespace PathPlannerConstants {
     constexpr double kIRotation = 0.0;
     constexpr double kDRotation = 0.0;
 
-    constexpr double kStartingPoseX = 1.227;
-    constexpr double kStartingPoseY = 5.865;
+    constexpr double kStartingPoseX = 8.0;
+    constexpr double kStartingPoseY = 0.789;
 }
 
 namespace ChainConstants {

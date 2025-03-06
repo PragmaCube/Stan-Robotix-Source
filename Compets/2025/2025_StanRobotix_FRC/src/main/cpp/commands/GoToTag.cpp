@@ -3,6 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/GoToTag.h"
+#include <frc/shuffleboard/Shuffleboard.h>
+
 
 GoToTag::GoToTag(SubDriveTrain * iSubDriveTrain, SubIMU * iSubIMU) {
   mSubDriveTrain = iSubDriveTrain;
@@ -25,7 +27,9 @@ void GoToTag::Initialize() {
 
   mPIDControllerX.SetTolerance(0.1);
   mPIDControllerAngle.SetTolerance(0.1);
-  mPIDControllerY.SetTolerance(0.1);
+  mPIDControllerY.SetTolerance(0.2);
+
+  frc::Shuffleboard::GetTab("Main Tab").Add("GoToTag", true).GetEntry()->SetBoolean(true);
 
 }
 
@@ -34,9 +38,10 @@ void GoToTag::Execute() {
   OutputAngle = mPIDControllerAngle.Calculate(LimelightHelpers::getTX(""), 0) ; 
   // std::cout << LimelightHelpers::getTX("") << std::endl;
   OutputX = mPIDControllerX.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(0), 0) ; 
-  OutputY = mPIDControllerY.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(2), -0.4) ;
+  OutputY = mPIDControllerY.Calculate(LimelightHelpers::getCameraPose_TargetSpace().at(2), -0.3) ;
 
-  speeds = frc::ChassisSpeeds{units::meters_per_second_t(OutputY), -units::meters_per_second_t(OutputX), units::radians_per_second_t(OutputAngle)};
+  speeds = frc::ChassisSpeeds{units::meters_per_second_t(OutputY), 
+  -units::meters_per_second_t(OutputX), units::radians_per_second_t(OutputAngle)};
 
   mSubDriveTrain->driveRobotRelative(speeds, 1); 
 
@@ -50,7 +55,9 @@ void GoToTag::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void GoToTag::End(bool interrupted) {}
+void GoToTag::End(bool interrupted) {
+  frc::Shuffleboard::GetTab("Main Tab").Add("GoToTag", true).GetEntry()->SetBoolean(false);
+}
 
 // Returns true when the command should end.
 bool GoToTag::IsFinished() {

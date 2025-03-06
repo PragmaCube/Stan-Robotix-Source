@@ -94,6 +94,9 @@ RobotContainer::RobotContainer() {
   // frc::SendableChooser<frc2::Command *> autoChooser = pathplanner::AutoBuilder::buildAutoChooser("Default Auto");
   
   // frc::SmartDashboard::PutData("Auto Chooser", &autoChooser);
+
+  mTabGeneral->AddCamera("camera Tab","Limelight + usb",std::span<const std::string>({ "http://10.66.22.11:5800/" })).WithWidget(frc::BuiltInWidgets::kCameraStream);
+  mTabGeneral->Add("GoToTag",false);
 }
 
 
@@ -127,9 +130,9 @@ void RobotContainer::ConfigureBindings() {
     return mJoystick->GetRawButtonPressed(12);
   }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->StayStill();},{mSubAlgaePivot}).ToPtr());
 
-  frc2::Trigger([this] {
-    return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::kClimb);
-  }).OnTrue(Climb(mSubAlgaePivot, mJoystick).ToPtr());
+  // frc2::Trigger([this] {
+  //   return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::kClimb);
+  // }).OnTrue(Climb(mSubAlgaePivot, mJoystick).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButton(JoystickBindingsConstants::Coral::kManualIn);
@@ -174,21 +177,15 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {
 
   switch (iStartingPoint)
   {
-  case Gauche:
-    PoseInit = {units::meter_t(7.917), units::meter_t(7.261), units::degree_t(std::numbers::pi)};
-    mDriveTrain->resetPose(PoseInit);
+  case BleuGauche:
     return pathplanner::PathPlannerAuto("Comp Gauche").ToPtr();
     break;
 
-  case Centre:
-    PoseInit = {units::meter_t(7.957), units::meter_t(4.010), units::radian_t(std::numbers::pi)};
-    mDriveTrain->resetPose(PoseInit);
+  case BleuCentre:
     return pathplanner::PathPlannerAuto("Comp Centre").ToPtr();
     break;
 
-  case Droite:
-    PoseInit = {units::meter_t(7.868), units::meter_t(0.789), units::radian_t(std::numbers::pi)};
-    mDriveTrain->resetPose(PoseInit);
+  case BleuDroite:
     return pathplanner::PathPlannerAuto("Comp Droite").ToPtr();
     break;
   }

@@ -60,7 +60,7 @@ enum StatesCoral {
 
 StatesCoral mState;
 
-  const double kOffset =  -16.1678;
+  const double kOffset =  -14.667;
   const double kG = 0.43;
   bool PIDEnable = true;
 
