@@ -13,7 +13,7 @@ SubReefPivot::SubReefPivot(){
 
 // This method will be called once per scheduler run
 void SubReefPivot::Periodic() {
-    std::cout << (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi << std::endl;
+    // std::cout << (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi << std::endl;
 }
 
 void SubReefPivot::StopPivot(){

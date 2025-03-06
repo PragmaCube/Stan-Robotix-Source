@@ -3,7 +3,38 @@
   "command": {
     "type": "sequential",
     "data": {
-      "commands": []
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Droite_Start"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.25
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Go to tag"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Pivot coral up"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral outtake"
+          }
+        }
+      ]
     }
   },
   "resetOdom": true,

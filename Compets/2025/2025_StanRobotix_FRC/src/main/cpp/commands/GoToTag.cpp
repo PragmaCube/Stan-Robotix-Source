@@ -42,7 +42,7 @@ void GoToTag::Execute() {
 
   Timer++;
 
-  if (int(LimelightHelpers::getFiducialID()) != 1){
+  if (int(LimelightHelpers::getTV()) == 0){
     TimerSkip++;
   } else {
     TimerSkip = 0;
@@ -54,5 +54,5 @@ void GoToTag::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool GoToTag::IsFinished() {
-  return ((int(LimelightHelpers::getFiducialID()) != 1) && (TimerSkip >= 5))  || ((mPIDControllerAngle.AtSetpoint()) && (mPIDControllerX.AtSetpoint()) && (mPIDControllerY.AtSetpoint()));
+  return ((int(LimelightHelpers::getTV()) == 0) && (TimerSkip >= 5))  || ((mPIDControllerAngle.AtSetpoint()) && (mPIDControllerX.AtSetpoint()) && (mPIDControllerY.AtSetpoint()));
 }

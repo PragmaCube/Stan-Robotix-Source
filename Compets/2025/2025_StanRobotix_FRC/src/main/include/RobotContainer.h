@@ -48,7 +48,14 @@ class RobotContainer {
 
   void periodic();
   void Initialize();
-  frc2::CommandPtr GetAutonomousCommand();
+
+  enum Auto{
+    Gauche,
+    Centre,
+    Droite
+  };
+
+  frc2::CommandPtr GetAutonomousCommand(Auto);
 
 
  private:
@@ -78,5 +85,6 @@ class RobotContainer {
   void ConfigureBindings();
 
   private:
-  frc::Pose2d PoseInit = {units::meter_t(1.227), units::meter_t(5.865), units::radian_t(0)};
+
+  frc::Pose2d PoseInit;
 };

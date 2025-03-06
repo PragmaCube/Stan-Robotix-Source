@@ -3,45 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.14,
-        "y": 7.251
+        "x": 7.868,
+        "y": 0.789
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.122224040771243,
-        "y": 7.251
+        "x": 6.771125,
+        "y": 1.008375000000001
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.145340909090908,
-        "y": 6.562769886363636
+        "x": 5.0057386363636365,
+        "y": 1.3775426136363638
       },
       "prevControl": {
-        "x": 5.411393557350459,
-        "y": 6.674575061909548
+        "x": 5.604395136129329,
+        "y": 1.2218919236972843
       },
       "nextControl": {
-        "x": 4.914864891604034,
-        "y": 6.465915328580381
+        "x": 4.507159090909091,
+        "y": 1.5071732954545451
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.609715909090909,
-        "y": 5.535696022727272
+        "x": 3.3305113636363637,
+        "y": 2.0755539772727265
       },
       "prevControl": {
-        "x": 4.643313874737779,
-        "y": 6.211950551122431
+        "x": 4.088352272727272,
+        "y": 1.7066051136363638
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Comp Gauche AtReef"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -58,13 +58,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -59.99999999999999
+    "rotation": 59.826479970355734
   },
   "reversed": false,
-  "folder": "Comp Gauche Paths",
+  "folder": "Comp Droite Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -179.98392455139586
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

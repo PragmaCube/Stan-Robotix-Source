@@ -144,8 +144,8 @@ void RobotContainer::ConfigureBindings() {
   }).WhileTrue(AlgaeIntakeIn(mSubAlgaeIntake).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystickSecondaire->GetRightBumperButtonPressed();
-  }).OnTrue(AlgaeIntakeOut(mSubAlgaeIntake, mJoystickSecondaire).ToPtr());
+    return mJoystickSecondaire->GetRightBumperButton();
+  }).WhileTrue(AlgaeIntakeOut(mSubAlgaeIntake, mJoystickSecondaire).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Algae::kPivotUp);
@@ -169,10 +169,30 @@ void RobotContainer::ConfigureBindings() {
 
 }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
+frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {
   // An example command will be run in autonomous
-  mDriveTrain->resetPose(PoseInit);
-  return pathplanner::PathPlannerAuto("Comp Gauche Bizârre").ToPtr();
+
+  switch (iStartingPoint)
+  {
+  case Gauche:
+    PoseInit = {units::meter_t(7.917), units::meter_t(7.261), units::degree_t(std::numbers::pi)};
+    mDriveTrain->resetPose(PoseInit);
+    return pathplanner::PathPlannerAuto("Comp Gauche").ToPtr();
+    break;
+
+  case Centre:
+    PoseInit = {units::meter_t(7.957), units::meter_t(4.010), units::radian_t(std::numbers::pi)};
+    mDriveTrain->resetPose(PoseInit);
+    return pathplanner::PathPlannerAuto("Comp Centre").ToPtr();
+    break;
+
+  case Droite:
+    PoseInit = {units::meter_t(7.868), units::meter_t(0.789), units::radian_t(std::numbers::pi)};
+    mDriveTrain->resetPose(PoseInit);
+    return pathplanner::PathPlannerAuto("Comp Droite").ToPtr();
+    break;
+  }
+  
 
   // return *autoChooser.GetSelected();
   // return autos::ExampleAuto(&m_subsystem);
