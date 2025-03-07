@@ -32,13 +32,13 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     switch (StartPose)
     {
     case RougeGauche:
-        m_robotPose = new frc::Pose2d{units::meter_t(0), units::meter_t(0), mIMU->getRotation2d()};
+        m_robotPose = new frc::Pose2d{units::meter_t(9.97), units::meter_t(0.769), mIMU->getRotation2d()};
         break;
     case RougeCentre:
-        m_robotPose = new frc::Pose2d{units::meter_t(0), units::meter_t(0), mIMU->getRotation2d()};
+        m_robotPose = new frc::Pose2d{units::meter_t(9.97), units::meter_t(4.030), mIMU->getRotation2d()};
         break;
     case RougeDroite:
-        m_robotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(7.93), mIMU->getRotation2d()};
+        m_robotPose = new frc::Pose2d{units::meter_t(9.97), units::meter_t(7.93), mIMU->getRotation2d()};
         break;
     case BleuGauche:
         m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(7.261), mIMU->getRotation2d()};
@@ -48,6 +48,9 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
         break;
     case BleuDroite:
         m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(0.789), mIMU->getRotation2d()};
+        break;
+    case Test:
+        m_robotPose = new frc::Pose2d{units::meter_t(7), units::meter_t(4), mIMU->getRotation2d()};
         break;
     }
     // Initialization of the swerve odometry with the kinematics, the robot's rotation, an array of the SwerveModules' position, and the robot's pose

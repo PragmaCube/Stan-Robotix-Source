@@ -34,6 +34,8 @@
 #include "commands/Climb.h"
 #include "commands/ClimbPivotUp.h"
 
+#include "commands/ManualReefPivot.h"
+
 #include "commands/GoToTag.h"
 #include "commands/SequentialGoToTag.h"
 
@@ -58,7 +60,8 @@ class RobotContainer {
     RougeDroite,
     BleuGauche,
     BleuCentre,
-    BleuDroite
+    BleuDroite,
+    Test
   };
 
   frc2::CommandPtr GetAutonomousCommand(Auto);

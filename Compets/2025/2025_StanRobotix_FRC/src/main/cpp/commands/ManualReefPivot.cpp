@@ -2,32 +2,27 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/AlgaeIntakeOut.h"
+#include "commands/ManualReefPivot.h"
 
-AlgaeIntakeOut::AlgaeIntakeOut(SubAlgaeIntake *iSubAlgaeIntake, frc::XboxController *iJoystick) {
+ManualReefPivot::ManualReefPivot(SubReefPivot * iSubReefPivot) {
   // Use addRequirements() here to declare subsystem dependencies.
-  mAlgaeIntake = iSubAlgaeIntake;
-  mJoystick = iJoystick;
-  AddRequirements(mAlgaeIntake);
+  mSubReefPivot = iSubReefPivot;
+  AddRequirements(mSubReefPivot);
 }
 
 // Called when the command is initially scheduled.
-void AlgaeIntakeOut::Initialize() {
-  Timer = -1;
-}
+void ManualReefPivot::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void AlgaeIntakeOut::Execute() {
-  mAlgaeIntake->Intake(0.45);
-  Timer++;
+void ManualReefPivot::Execute() {
+  mSubReefPivot->SetPivotVoltage(2);
+  mSubReefPivot->Intake(-0.4);
 }
 
 // Called once the command ends or is interrupted.
-void AlgaeIntakeOut::End(bool interrupted) {
-  mAlgaeIntake->Stop();
-}
+void ManualReefPivot::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool AlgaeIntakeOut::IsFinished() {
+bool ManualReefPivot::IsFinished() {
   return false;
 }

@@ -37,7 +37,8 @@ class SubDriveTrain : public frc2::SubsystemBase {
     RougeDroite,
     BleuGauche,
     BleuCentre,
-    BleuDroite
+    BleuDroite,
+    Test
   };
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -93,5 +94,5 @@ class SubDriveTrain : public frc2::SubsystemBase {
   SubIMU * mIMU = nullptr;
 
   frc::Pose2d CoordonneesInit;
-  StartPoses StartPose = BleuDroite;
+  StartPoses StartPose = Test;
 };

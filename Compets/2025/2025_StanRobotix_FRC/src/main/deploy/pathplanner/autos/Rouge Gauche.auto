@@ -7,19 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Centre"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Pivot coral down"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Pivot coral up"
+            "pathName": "Gauche"
           }
         },
         {

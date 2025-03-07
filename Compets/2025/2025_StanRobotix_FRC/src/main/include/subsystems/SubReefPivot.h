@@ -46,6 +46,8 @@ class SubReefPivot : public frc2::SubsystemBase {
 
   void StopIntake();
 
+  void SetPivotVoltage(double);
+
 
  private:
 

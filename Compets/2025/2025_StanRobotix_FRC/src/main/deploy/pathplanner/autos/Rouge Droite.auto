@@ -5,27 +5,9 @@
     "data": {
       "commands": [
         {
-          "type": "named",
-          "data": {
-            "name": "Pivot coral down"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.25
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Pivot coral up"
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "Gauche_Start"
+            "pathName": "Droite"
           }
         },
         {
@@ -50,6 +32,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Competition Autos",
+  "folder": "Rouge",
   "choreoAuto": false
 }

@@ -15,7 +15,7 @@ SubCoralPivot::SubCoralPivot(){
 void SubCoralPivot::Periodic() {
     // std::cout << cos((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi) << std::endl; //  
     // std::cout << (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi << std::endl;
-    std::cout << mCoralPivotMotor->GetEncoder().GetPosition() << std::endl;
+    // std::cout << mCoralPivotMotor->GetEncoder().GetPosition() << std::endl;
 }
 
 

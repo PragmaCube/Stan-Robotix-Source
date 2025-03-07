@@ -58,3 +58,7 @@ void SubReefPivot::Intake(double iPercent){
 void SubReefPivot::StopIntake(){
     mReefIntakeMotor->StopMotor();
 }
+
+void SubReefPivot::SetPivotVoltage(double iVoltage){
+    mReefPivotMotor->SetVoltage(units::volt_t(iVoltage));
+}

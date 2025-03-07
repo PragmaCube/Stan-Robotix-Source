@@ -71,7 +71,7 @@ RobotContainer::RobotContainer() {
   frc::SmartDashboard::PutNumber("Angle I", 0);
   frc::SmartDashboard::PutNumber("Angle D", 0.015);
 
-  pathplanner::NamedCommands::registerCommand("Go to tag", std::move(SequentialGoToTag(mDriveTrain, mIMU, mSubCoralPivot, mSubCoralIntake).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Go to tag", std::move(GoToTag(mDriveTrain, mIMU).ToPtr()));
 
   pathplanner::NamedCommands::registerCommand("Pivot coral up", std::move(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Pivot coral down", std::move(CoralPivotDown(mSubCoralPivot).ToPtr()));
@@ -130,6 +130,10 @@ void RobotContainer::ConfigureBindings() {
     return mJoystick->GetRawButtonPressed(12);
   }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->StayStill();},{mSubAlgaePivot}).ToPtr());
 
+  frc2::Trigger([this] {
+    return mJoystick->GetRawButton(11);
+  }).WhileTrue(ManualReefPivot(mSubReefPivot).ToPtr());
+
   // frc2::Trigger([this] {
   //   return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::kClimb);
   // }).OnTrue(Climb(mSubAlgaePivot, mJoystick).ToPtr());
@@ -178,19 +182,33 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {
   switch (iStartingPoint)
   {
   case BleuGauche:
-    return pathplanner::PathPlannerAuto("Comp Gauche").ToPtr();
+    return pathplanner::PathPlannerAuto("Bleu Gauche").ToPtr();
     break;
 
   case BleuCentre:
-    return pathplanner::PathPlannerAuto("Comp Centre").ToPtr();
+    return pathplanner::PathPlannerAuto("Bleu Centre").ToPtr();
     break;
 
   case BleuDroite:
-    return pathplanner::PathPlannerAuto("Comp Droite").ToPtr();
+    return pathplanner::PathPlannerAuto("Bleu Droite").ToPtr();
+    break;
+  
+  case RougeGauche:
+    return pathplanner::PathPlannerAuto("Rouge Gauche").ToPtr();
+    break;
+
+  case RougeCentre:
+    return pathplanner::PathPlannerAuto("Rouge Centre").ToPtr();
+    break;
+
+  case RougeDroite:
+    return pathplanner::PathPlannerAuto("Rouge Droite").ToPtr();
+    break;
+
+  case Test:
+    return pathplanner::PathPlannerAuto("Test").ToPtr();
     break;
   }
-  
-
   // return *autoChooser.GetSelected();
   // return autos::ExampleAuto(&m_subsystem);
 }

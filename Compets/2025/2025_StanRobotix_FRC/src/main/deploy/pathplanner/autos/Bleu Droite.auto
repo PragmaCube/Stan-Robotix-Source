@@ -5,27 +5,9 @@
     "data": {
       "commands": [
         {
-          "type": "named",
-          "data": {
-            "name": "Pivot coral down"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.25
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Pivot coral up"
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "Centre_Start"
+            "pathName": "Droite_Start"
           }
         },
         {

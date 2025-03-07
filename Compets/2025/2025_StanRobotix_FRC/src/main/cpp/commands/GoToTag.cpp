@@ -52,6 +52,8 @@ void GoToTag::Execute() {
   } else {
     TimerSkip = 0;
   }
+
+  std::cout << "Gototag actif" << std::endl;
 }
 
 // Called once the command ends or is interrupted.
