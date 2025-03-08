@@ -47,7 +47,7 @@ void SubReefPivot::StayStill(){
 }
 
 void SubReefPivot::CounterGravity(){
-    double pivotPositionRad = (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi;
+    double pivotPositionRad = (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 16 * 2 * std::numbers::pi;
     mReefPivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))));
 }
 

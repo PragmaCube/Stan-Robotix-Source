@@ -32,13 +32,13 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     switch (StartPose)
     {
     case RougeGauche:
-        m_robotPose = new frc::Pose2d{units::meter_t(9.97), units::meter_t(0.769), mIMU->getRotation2d()};
+        m_robotPose = new frc::Pose2d{units::meter_t(9.97), units::meter_t(0.769), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
         break;
     case RougeCentre:
-        m_robotPose = new frc::Pose2d{units::meter_t(9.97), units::meter_t(4.030), mIMU->getRotation2d()};
+        m_robotPose = new frc::Pose2d{units::meter_t(9.97), units::meter_t(4.030), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
         break;
     case RougeDroite:
-        m_robotPose = new frc::Pose2d{units::meter_t(9.97), units::meter_t(7.93), mIMU->getRotation2d()};
+        m_robotPose = new frc::Pose2d{units::meter_t(9.97), units::meter_t(7.3), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
         break;
     case BleuGauche:
         m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(7.261), mIMU->getRotation2d()};
@@ -47,7 +47,7 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
         m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(4.010), mIMU->getRotation2d()};
         break;
     case BleuDroite:
-        m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(0.789), mIMU->getRotation2d()};
+        m_robotPose = new frc::Pose2d{units::meter_t(7.58), units::meter_t(0.774), mIMU->getRotation2d()};
         break;
     case Test:
         m_robotPose = new frc::Pose2d{units::meter_t(7), units::meter_t(4), mIMU->getRotation2d()};
@@ -73,12 +73,7 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
       []() {
           // Boolean supplier that controls when the path will be mirrored for the red alliance
           // This will flip the path being followed to the red side of the field.
-          // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
-
-          auto alliance = frc::DriverStation::GetAlliance();
-          if (alliance) {
-              return alliance.value() == frc::DriverStation::Alliance::kRed;
-          }
+          // THE ORIGIN WILL REMAIN ON THE BLUE SIDE  
           return false;
       },
       this // Reference to this subsystem to set requirements

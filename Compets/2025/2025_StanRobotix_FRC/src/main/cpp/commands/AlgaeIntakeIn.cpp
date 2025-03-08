@@ -19,9 +19,7 @@ void AlgaeIntakeIn::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void AlgaeIntakeIn::End(bool interrupted) {
-  mAlgaeIntake->KeepAlgae();
-}
+void AlgaeIntakeIn::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool AlgaeIntakeIn::IsFinished() {

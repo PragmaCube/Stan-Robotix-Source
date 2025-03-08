@@ -25,6 +25,12 @@
         {
           "type": "named",
           "data": {
+            "name": "Pivot coral up"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "Coral outtake"
           }
         }

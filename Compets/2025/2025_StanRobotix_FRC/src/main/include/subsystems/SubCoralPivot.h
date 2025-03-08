@@ -53,6 +53,8 @@ enum StatesCoral {
 
   void SetVoltage(double);
 
+  double GetPosition();
+
  private:
   
 
@@ -60,8 +62,8 @@ enum StatesCoral {
 
 StatesCoral mState;
 
-  const double kOffset =  -14.667;
-  const double kG = 0.43;
+  const double kOffset =  -4.667;
+  const double kG = 1.05;
   bool PIDEnable = true;
 
   rev::spark::SparkMax * mCoralPivotMotor = nullptr;

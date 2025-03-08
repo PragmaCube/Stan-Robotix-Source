@@ -15,7 +15,7 @@ void ManualReefPivot::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void ManualReefPivot::Execute() {
-  mSubReefPivot->SetPivotVoltage(2);
+  mSubReefPivot->SetPivotVoltage(1);
   mSubReefPivot->Intake(-0.4);
 }
 

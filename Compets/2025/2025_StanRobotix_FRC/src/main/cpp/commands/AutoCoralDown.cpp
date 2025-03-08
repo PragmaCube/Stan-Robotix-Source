@@ -2,30 +2,27 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/AlgaeIntakeOut.h"
+#include "commands/AutoCoralDown.h"
 
-AlgaeIntakeOut::AlgaeIntakeOut(SubAlgaeIntake *iSubAlgaeIntake, frc::XboxController *iJoystick) {
+AutoCoralDown::AutoCoralDown(SubCoralPivot * iSubCoralPivot) {
   // Use addRequirements() here to declare subsystem dependencies.
-  mAlgaeIntake = iSubAlgaeIntake;
-  mJoystick = iJoystick;
-  AddRequirements(mAlgaeIntake);
+  mSubCoralPivot = iSubCoralPivot;
+  AddRequirements(mSubCoralPivot);
 }
 
 // Called when the command is initially scheduled.
-void AlgaeIntakeOut::Initialize() {
-  Timer = -1;
-}
+void AutoCoralDown::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void AlgaeIntakeOut::Execute() {
-  mAlgaeIntake->Intake(0.45);
+void AutoCoralDown::Execute() {
+  mSubCoralPivot->SetVoltage(0.9);
   Timer++;
 }
 
 // Called once the command ends or is interrupted.
-void AlgaeIntakeOut::End(bool interrupted) {}
+void AutoCoralDown::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool AlgaeIntakeOut::IsFinished() {
-  return false;
+bool AutoCoralDown::IsFinished() {
+  return Timer >= 35;
 }

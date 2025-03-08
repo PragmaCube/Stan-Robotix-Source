@@ -25,6 +25,12 @@
         {
           "type": "named",
           "data": {
+            "name": "Pivot coral down 0.5s"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "Coral outtake"
           }
         }

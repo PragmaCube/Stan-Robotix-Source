@@ -36,6 +36,8 @@
 
 #include "commands/ManualReefPivot.h"
 
+#include "commands/AutoCoralDown.h"
+
 #include "commands/GoToTag.h"
 #include "commands/SequentialGoToTag.h"
 

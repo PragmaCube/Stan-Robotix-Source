@@ -20,11 +20,6 @@ void GoToTag::Initialize() {
 
   mSubDriveTrain->driveFieldRelative(0, 0, 0, 1);
 
-
-  // mPIDControllerX.SetP(frc::SmartDashboard::GetNumber("Angle P", 0.15));
-  // mPIDControllerX.SetI(frc::SmartDashboard::GetNumber("Angle I", 0));
-  // mPIDControllerX.SetD(frc::SmartDashboard::GetNumber("Angle D", 0.015));
-
   mPIDControllerX.SetTolerance(0.1);
   mPIDControllerAngle.SetTolerance(0.1);
   mPIDControllerY.SetTolerance(0.2);

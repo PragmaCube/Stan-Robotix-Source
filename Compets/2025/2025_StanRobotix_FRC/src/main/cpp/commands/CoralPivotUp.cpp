@@ -19,8 +19,13 @@ void CoralPivotUp::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void CoralPivotUp::Execute() {
+  // if (mCoralPivot->GetPosition() >= -1.15)
+  // {
+    
+  // }
+
   mCoralIntake->SetVoltage(0.25);
-  mCoralPivot->Pivot(-1.3);
+    mCoralPivot->SetVoltage(-2.75 * cos(mCoralPivot->GetPosition()));
 }
 
 // Called once the command ends or is interrupted.
@@ -30,5 +35,5 @@ void CoralPivotUp::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool CoralPivotUp::IsFinished() {
-  return (mCoralPivot->AtSetPoint());
+  return false;
 }

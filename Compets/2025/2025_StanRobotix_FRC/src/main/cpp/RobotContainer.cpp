@@ -46,7 +46,7 @@ RobotContainer::RobotContainer() {
 
   mSubReefPivot->SetDefaultCommand(frc2::RunCommand(
     [this] {
-      mSubReefPivot->StopPivot();
+      mSubReefPivot->CounterGravity();
       mSubReefPivot->StopIntake();
     },
     {mSubReefPivot}));
@@ -67,14 +67,11 @@ RobotContainer::RobotContainer() {
 
   mIMU->resetAngle();
 
-  frc::SmartDashboard::PutNumber("Angle P", 0.15);
-  frc::SmartDashboard::PutNumber("Angle I", 0);
-  frc::SmartDashboard::PutNumber("Angle D", 0.015);
-
   pathplanner::NamedCommands::registerCommand("Go to tag", std::move(GoToTag(mDriveTrain, mIMU).ToPtr()));
 
   pathplanner::NamedCommands::registerCommand("Pivot coral up", std::move(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Pivot coral down", std::move(CoralPivotDown(mSubCoralPivot).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Pivot coral down 0.5s", std::move(AutoCoralDown(mSubCoralPivot).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Coral intake", std::move(CoralIntake(mSubCoralIntake).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Coral outtake", std::move(CoralOuttake(mSubCoralIntake, mJoystickSecondaire).ToPtr()));
 
@@ -128,7 +125,7 @@ void RobotContainer::ConfigureBindings() {
 
    frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(12);
-  }).OnTrue(frc2::RunCommand([this] {mSubAlgaePivot->StayStill();},{mSubAlgaePivot}).ToPtr());
+  }).OnTrue(AutoCoralDown(mSubCoralPivot).ToPtr());
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButton(11);
@@ -163,12 +160,12 @@ void RobotContainer::ConfigureBindings() {
   }).OnTrue(AlgaePivotDown(mSubAlgaePivot).ToPtr());  
 
   frc2::Trigger([this] {
-    return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kPivotUp);
-  }).OnTrue(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr());
+    return mJoystick->GetRawButton(JoystickBindingsConstants::Coral::kPivotUp);
+  }).WhileTrue(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr());
 
   frc2::Trigger([this] {
-    return mJoystick->GetRawButtonPressed(JoystickBindingsConstants::Coral::kPivotDown);
-  }).OnTrue(CoralPivotDown(mSubCoralPivot).ToPtr());  
+    return mJoystick->GetRawButton(JoystickBindingsConstants::Coral::kPivotDown);
+  }).WhileTrue(CoralPivotDown(mSubCoralPivot).ToPtr());  
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.

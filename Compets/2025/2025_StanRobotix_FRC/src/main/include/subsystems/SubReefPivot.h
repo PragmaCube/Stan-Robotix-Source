@@ -51,7 +51,7 @@ class SubReefPivot : public frc2::SubsystemBase {
 
  private:
 
-  const double kG = 0.25;
+  const double kG = 0.27;
   const double kOffset = 5.27;
   bool PIDEnable = true;
 

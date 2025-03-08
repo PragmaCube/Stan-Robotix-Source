@@ -18,20 +18,22 @@ void CoralPivotDown::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void CoralPivotDown::Execute() {
-  mCoralPivot->Pivot(0.45);
-  if ((mCoralPivot->AtSetPoint()) || (ReachedSetPoint))
-  {
-    ReachedSetPoint = true;
-    Timer++;
-  }
+  // mCoralPivot->Pivot(0.45);
+  // if ((mCoralPivot->AtSetPoint()) || (ReachedSetPoint))
+  // {
+  //   ReachedSetPoint = true;
+  //   Timer++;
+  // }
+  mCoralPivot->SetVoltage(0.55);
 }
 
 // Called once the command ends or is interrupted.
 void CoralPivotDown::End(bool interrupted) {
-  mCoralPivot->SetPIDEnable(false);
+  // mCoralPivot->SetPIDEnable(false);
 }
 
 // Returns true when the command should end.
 bool CoralPivotDown::IsFinished() {
-  return (mCoralPivot->AtSetPoint()) && (Timer >= 50);
+  return false;
+  // (mCoralPivot->AtSetPoint()) && (Timer >= 50);
 }
