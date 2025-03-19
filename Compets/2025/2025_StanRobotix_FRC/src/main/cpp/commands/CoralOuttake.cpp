@@ -18,7 +18,7 @@ void CoralOuttake::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void CoralOuttake::Execute() {
-  mCoralIntake->Intake(-0.7);
+  mCoralIntake->Intake(-0.6);
   Timer++;
 }
 

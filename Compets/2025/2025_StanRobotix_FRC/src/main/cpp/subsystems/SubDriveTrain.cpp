@@ -32,13 +32,13 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     switch (StartPose)
     {
     case RougeGauche:
-        m_robotPose = new frc::Pose2d{units::meter_t(9.97), units::meter_t(0.769), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
+        m_robotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(0.769), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
         break;
     case RougeCentre:
-        m_robotPose = new frc::Pose2d{units::meter_t(9.97), units::meter_t(4.030), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
+        m_robotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(4.030), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
         break;
     case RougeDroite:
-        m_robotPose = new frc::Pose2d{units::meter_t(9.97), units::meter_t(7.3), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
+        m_robotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(7.3), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
         break;
     case BleuGauche:
         m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(7.261), mIMU->getRotation2d()};

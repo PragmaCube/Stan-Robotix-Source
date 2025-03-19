@@ -125,8 +125,8 @@ void RobotContainer::ConfigureBindings() {
 
    frc2::Trigger([this] {
     return mJoystick->GetRawButtonPressed(12);
-  }).OnTrue(AutoCoralDown(mSubCoralPivot).ToPtr());
-
+  }).OnTrue(ReefPivotDown(mSubReefPivot).ToPtr());
+  
   frc2::Trigger([this] {
     return mJoystick->GetRawButton(11);
   }).WhileTrue(ManualReefPivot(mSubReefPivot).ToPtr());

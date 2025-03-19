@@ -15,7 +15,7 @@ void AutoCoralDown::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void AutoCoralDown::Execute() {
-  mSubCoralPivot->SetVoltage(0.9);
+  mSubCoralPivot->SetVoltage(0.55);
   Timer++;
 }
 

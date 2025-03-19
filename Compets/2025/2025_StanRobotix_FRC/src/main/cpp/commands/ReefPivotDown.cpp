@@ -15,7 +15,7 @@ void ReefPivotDown::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void ReefPivotDown::Execute() {
-  mSubReefPivot->Pivot(0.2);
+  mSubReefPivot->Pivot(-0.9);
   mSubReefPivot->Intake(0.3);
 }
 

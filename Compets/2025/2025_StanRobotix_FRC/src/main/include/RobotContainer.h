@@ -30,6 +30,7 @@
 #include "commands/CoralFullIntake.h"
 
 #include "commands/ReefPivotUp.h"
+#include "commands/ReefPivotDown.h"
 
 #include "commands/Climb.h"
 #include "commands/ClimbPivotUp.h"

@@ -94,5 +94,5 @@ class SubDriveTrain : public frc2::SubsystemBase {
   SubIMU * mIMU = nullptr;
 
   frc::Pose2d CoordonneesInit;
-  StartPoses StartPose = Test;
+  StartPoses StartPose = RougeCentre;
 };
