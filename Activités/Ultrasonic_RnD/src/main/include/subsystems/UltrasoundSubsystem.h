@@ -5,12 +5,15 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/Ultrasonic.h>
+#include <frc/AnalogInput.h>
 
 
 class UltrasoundSubsystem : public frc2::SubsystemBase {
  public:
   UltrasoundSubsystem();
+  
+  double getVoltage();
+  int getValue();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -18,7 +21,8 @@ class UltrasoundSubsystem : public frc2::SubsystemBase {
   void Periodic() override;
 
  private:
-  frc::Ultrasonic m_rangeFinder{1, 2};
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+
+  frc::AnalogInput* mUltrasonic;
 };

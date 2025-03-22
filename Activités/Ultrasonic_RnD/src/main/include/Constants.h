@@ -19,3 +19,9 @@ namespace OperatorConstants {
 inline constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
+
+// temporary name
+namespace UltrasonicConstants {
+    constexpr int kUltrasonicChannel = 0;
+
+}

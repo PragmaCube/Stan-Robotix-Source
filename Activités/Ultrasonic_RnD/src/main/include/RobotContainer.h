@@ -10,6 +10,7 @@
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/UltrasoundSubsystem.h"
+
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -30,6 +31,8 @@ class RobotContainer {
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
+
+  UltrasoundSubsystem* mUltrasound;
 
   void ConfigureBindings();
 };

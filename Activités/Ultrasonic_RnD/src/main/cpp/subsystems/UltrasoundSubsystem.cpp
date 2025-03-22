@@ -3,11 +3,24 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/UltrasoundSubsystem.h"
+#include "Constants.h"
+
 #include <iostream>
-UltrasoundSubsystem::UltrasoundSubsystem() = default;
+
+UltrasoundSubsystem::UltrasoundSubsystem() {
+    mUltrasonic = new frc::AnalogInput{UltrasonicConstants::kUltrasonicChannel};
+};
 
 // This method will be called once per scheduler run
 void UltrasoundSubsystem::Periodic() {
-    units::meter_t distance = m_rangeFinder.GetRange();
-    std::cout << double(distance) << std::endl;
+    std::cout << getVoltage();
+    std::cout << getValue();
+}
+
+double UltrasoundSubsystem::getVoltage() {
+    return mUltrasonic->GetVoltage();
+}
+
+int UltrasoundSubsystem::getValue() {
+    return mUltrasonic->GetValue();
 }
