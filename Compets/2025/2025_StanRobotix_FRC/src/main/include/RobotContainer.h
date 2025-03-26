@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <frc2/command/button/CommandJoystick.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/Joystick.h>
@@ -72,8 +73,7 @@ class RobotContainer {
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  frc2::CommandXboxController m_driverController{
-      OperatorConstants::kDriverControllerPort};
+  frc2::CommandJoystick * m_commandJoystick = nullptr;
 
   // Build an auto chooser. This will use frc2::cmd::None() as the default option.
   frc::SendableChooser<frc2::Command *> autoChooser;
