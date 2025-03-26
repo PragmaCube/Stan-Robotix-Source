@@ -13,8 +13,9 @@ UltrasoundSubsystem::UltrasoundSubsystem() {
 
 // This method will be called once per scheduler run
 void UltrasoundSubsystem::Periodic() {
-    std::cout << getVoltage();
-    std::cout << getValue();
+    std::cout << "Voltage:" << getVoltage() << std::endl;
+    std::cout << "Valeur: " << getValue() << std::endl;
+    std::cout << "Valeur de mPot:" << getPot() << std::endl;
 }
 
 double UltrasoundSubsystem::getVoltage() {
@@ -23,4 +24,7 @@ double UltrasoundSubsystem::getVoltage() {
 
 int UltrasoundSubsystem::getValue() {
     return mUltrasonic->GetValue();
+}
+double UltrasoundSubsystem::getPot() {
+    return mPot.Get();
 }

@@ -6,6 +6,9 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/AnalogInput.h>
+#include <frc/AnalogPotentiometer.h>
+
+#include "Constants.h"
 
 
 class UltrasoundSubsystem : public frc2::SubsystemBase {
@@ -14,6 +17,7 @@ class UltrasoundSubsystem : public frc2::SubsystemBase {
   
   double getVoltage();
   int getValue();
+  double getPot();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -25,4 +29,5 @@ class UltrasoundSubsystem : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   frc::AnalogInput* mUltrasonic;
+  frc::AnalogPotentiometer* mPot{UltrasonicConstants::kUltrasonicChannel, UltrasonicConstants::kUltrasonicFullRange, UltrasonicConstants::kUltrasonicOffset};
 };
