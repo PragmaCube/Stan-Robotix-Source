@@ -74,6 +74,7 @@ class RobotContainer {
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandJoystick * m_commandJoystick = nullptr;
+  frc2::CommandXboxController * m_commandXbox = nullptr;
 
   // Build an auto chooser. This will use frc2::cmd::None() as the default option.
   frc::SendableChooser<frc2::Command *> autoChooser;

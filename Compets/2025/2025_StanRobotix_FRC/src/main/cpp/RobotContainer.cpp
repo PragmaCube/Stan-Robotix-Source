@@ -16,6 +16,8 @@ RobotContainer::RobotContainer() {
   //m_PeriodeAuto = new frc2::CommandPtr(pathplanner::PathPlannerAuto("Test Auto").ToPtr());
 
   m_commandJoystick = new frc2::CommandJoystick{0};
+  m_commandXbox = new frc2::CommandXboxController{1};
+
   mIMU = new SubIMU;
   mDriveTrain = new SubDriveTrain{mIMU};
   mSubAlgaePivot = new SubAlgaePivot;
@@ -25,7 +27,7 @@ RobotContainer::RobotContainer() {
   mSubReefPivot = new SubReefPivot;
 
   mJoystick = new frc::Joystick{2};
-  mJoystickSecondaire = new frc::XboxController{1};
+  mJoystickSecondaire = new frc::XboxController{3};
 
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
       [this] {
@@ -104,7 +106,7 @@ void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
 
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-  frc2::Trigger([this] {
+  /*frc2::Trigger([this] {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
 
@@ -162,20 +164,37 @@ void RobotContainer::ConfigureBindings() {
 
   frc2::Trigger([this] {
     return mJoystick->GetRawButton(JoystickBindingsConstants::Coral::kPivotUp);
-  }).WhileTrue(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr());
+  }).WhileTrue(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr());*/
 
+  m_commandJoystick->Button(1).WhileTrue(ReefPivotUp(mSubReefPivot).ToPtr());  
 
+  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kManualPivotUp).WhileTrue(ClimbPivotUp(mSubAlgaePivot).ToPtr());  
 
+  m_commandJoystick->Button(JoystickBindingsConstants::kGoToTag).OnTrue(GoToTag(mDriveTrain, mIMU).ToPtr());
 
+  m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).WhileTrue(frc2::RunCommand([this] {mIMU->resetAngle();},{mIMU}).ToPtr());  
 
-  std::function<bool()> mCoralPivotDownButton = std::bind(&frc::Joystick::GetRawButton, mJoystick, 6);
+  m_commandJoystick->Button(12).OnTrue(ReefPivotDown(mSubReefPivot).ToPtr());
+  
+  m_commandJoystick->Button(11).WhileTrue(ManualReefPivot(mSubReefPivot).ToPtr());
 
-  m_commandJoystick->Button(6).WhileTrue(frc2::RunCommand(
-      [this] {
-      std::cout << "Hello" << std::endl;
-      }).ToPtr());
+  // m_commandJoystick->Button(JoystickBindingsConstants::kClimb).OnTrue(Climb(mSubAlgaePivot, mJoystick).ToPtr());
 
-  frc2::Trigger(std::bind(&frc::Joystick::GetRawButton, mJoystick, JoystickBindingsConstants::Coral::kPivotDown)).WhileTrue(CoralPivotDown(mSubCoralPivot).ToPtr());  
+  m_commandJoystick->Button(JoystickBindingsConstants::Coral::kManualIn).WhileTrue(CoralIntake(mSubCoralIntake).ToPtr());
+
+  m_commandXbox->LeftBumper().OnTrue(CoralOuttake(mSubCoralIntake, mJoystickSecondaire).ToPtr());
+
+  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kManualIn).WhileTrue(AlgaeIntakeIn(mSubAlgaeIntake).ToPtr());
+
+  m_commandXbox->RightBumper().WhileTrue(AlgaeIntakeOut(mSubAlgaeIntake, mJoystickSecondaire).ToPtr());
+
+  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kPivotUp).OnTrue(AlgaePivotUp(mSubAlgaePivot).ToPtr());
+
+  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kPivotDown).OnTrue(AlgaePivotDown(mSubAlgaePivot).ToPtr());
+
+  m_commandJoystick->Button(JoystickBindingsConstants::Coral::kPivotUp).WhileTrue(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr());
+
+  m_commandJoystick->Button(JoystickBindingsConstants::Coral::kPivotDown).WhileTrue(CoralPivotDown(mSubCoralPivot).ToPtr());
 
 /*
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
