@@ -4,6 +4,11 @@
 
 #pragma once
 
+#include <units/length.h>
+#include <units/angle.h>
+#include <units/velocity.h>
+#include <numbers>
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -22,22 +27,28 @@ inline constexpr int kDriverControllerPort = 0;
 
 
 namespace DriveTrainConstants {
-    constexpr int kBackRightMotorID = 2; 
-    constexpr int kBackRightMotor550ID = 1; 
-    constexpr int kFrontRighttMotorID = 4; 
-    constexpr int kFrontRightMotor550ID = 3; 
-    constexpr int kFrontLeftMotorID = 6;   
-    constexpr int kFrontLeftMotor550ID = 5;
-    constexpr int kBackLeftMotorID = 8;
-    constexpr int kBackLefttMotor550ID = 7; 
+    constexpr int kBackRightMotorID = 6; 
+    constexpr int kBackRightMotor550ID = 5; 
+    constexpr int kFrontRightMotorID = 8; 
+    constexpr int kFrontRightMotor550ID = 7; 
+    constexpr int kFrontLeftMotorID = 2;   
+    constexpr int kFrontLeftMotor550ID = 1;
+    constexpr int kBackLeftMotorID = 4;
+    constexpr int kBackLeftMotor550ID = 3; 
 
-    constexpr float speedCap = 0.2; 
+    constexpr float kSpeedCap = 0.6; 
+    constexpr float kMaxSpeed = 1;
+    constexpr double kMaxSpeed0 = std::numbers::pi;
+    constexpr double kGearRatio = 1 / 5.08;
+    constexpr double kWheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 
     namespace PIDs{
-        constexpr double kP = 4.0;
+        // constexpr double kP = 4.0; Garder la valeure
+        constexpr double kP = 3.0;
         constexpr double kI = 0.1;
         constexpr double kD = 0.05;
     }
+
 }
 
 namespace DriveCommandsConstants {
@@ -47,9 +58,97 @@ namespace DriveCommandsConstants {
     constexpr double kPRotation = 5.0;
     constexpr double kIRotation = 0.0;
     constexpr double kDRotation = 0.0;
+
+    constexpr double kStartingPoseX = 1.227;
+    constexpr double kStartingPoseY = 5.865;
 }
 
 namespace ChainConstants {
 
     constexpr int kMotorID = 2;
+}
+
+namespace AlgaeConstants {
+    namespace Pivot{
+        constexpr double kP = 0.5;
+        constexpr double kI = 0.07;
+        constexpr double kD = 0;
+
+        constexpr int kMotorID = 9;
+        constexpr double kAlgaePivotSetPoint1 = 0.2;
+        constexpr double kAlgaePivotSetPoint2 = -0.2;
+    }
+
+    namespace Intake{
+        constexpr int kMotorID = 10;
+
+        constexpr double kAlgaeIntakeSpeed = 0.2; //temporaire
+        constexpr double kNegativeAlgaeIntakeSpeed = -0.2; //temporaire
+
+        constexpr double kG = 0.19; 
+        constexpr double kS = kG + 0.05;
+    }
+}
+
+
+namespace CoralConstants {
+    namespace Pivot{
+        constexpr double kP = 0.5;
+        constexpr double kI = 0.07;
+        constexpr double kD = 0;
+
+        constexpr int kMotorID = 11;
+        constexpr double kCoralPivotSetPoint1 = 0.2;
+        constexpr double kCoralPivotSetPoint2 = -0.2;
+        constexpr double kG = 0;
+    }
+    
+    namespace Intake{
+        constexpr int kMotorID = 12;
+    }
+}
+
+namespace ReefConstants {
+    namespace Pivot{
+        constexpr double kP = 0.5;
+        constexpr double kI = 0.07;
+        constexpr double kD = 0;
+
+        constexpr int kMotorID = 16;
+        constexpr double kReefPivotSetPoint1 = 0.2;
+        constexpr double kReefPivotSetPoint2 = -0.2;
+        constexpr double kG = 0;
+    }
+}
+
+namespace CommandConstants {
+    constexpr int kIterationsGoal = 49;
+}
+
+namespace JoystickBindingsConstants{
+    // constexpr int kResetIMU = 12;
+
+    namespace Algae{
+        constexpr int kPivotUp = 5; 
+        constexpr int kPivotDown = 3;
+
+        constexpr int kManualIn = 9;
+            constexpr int kManualPivotUp = 10;
+    }
+    
+    namespace Coral{
+        constexpr int kPivotUp = 6;
+        constexpr int kPivotDown = 4;
+
+        constexpr int kManualIn = 7;
+    }
+    constexpr int kGoToTag = 2;
+
+    constexpr int kClimb = 11;
+
+    constexpr int kResetIMU = 8;
+
+    constexpr int kAlgaeIntakeInCmd = 20; // Mauvais IDs pour rendre les commandes inactives pour le moment
+    constexpr int kAlgaeIntakeOutCmd = 21; // Mauvais IDs pour rendre les commandes inactives pour le moment
+
 }

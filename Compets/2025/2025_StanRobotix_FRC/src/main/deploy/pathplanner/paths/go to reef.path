@@ -3,29 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.0,
-        "y": 7.0
+        "x": 7.14,
+        "y": 7.251
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.0,
-        "y": 7.0
+        "x": 6.122224040771243,
+        "y": 7.251
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.0,
-        "y": 7.0
+        "x": 5.145340909090908,
+        "y": 6.562769886363636
       },
       "prevControl": {
-        "x": 6.0,
-        "y": 7.0
+        "x": 5.411393557350459,
+        "y": 6.674575061909548
+      },
+      "nextControl": {
+        "x": 4.914864891604034,
+        "y": 6.465915328580381
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 3.609715909090909,
+        "y": 5.535696022727272
+      },
+      "prevControl": {
+        "x": 4.643313874737779,
+        "y": 6.211950551122431
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Tout droit fin"
+      "linkedName": "Comp Gauche AtReef"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +58,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -59.99999999999999
   },
   "reversed": false,
-  "folder": "Test Paths",
+  "folder": "Comp Gauche Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -179.98392455139586
   },
   "useDefaultConstraints": true
 }

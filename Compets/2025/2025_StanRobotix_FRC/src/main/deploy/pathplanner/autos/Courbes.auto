@@ -7,13 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Tout droit"
+            "pathName": "Test1"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Vers droite"
+            "pathName": "Test2"
           }
         }
       ]

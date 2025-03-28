@@ -3,7 +3,7 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.0,
+        "x": 7.0,
         "y": 7.0
       },
       "prevControl": null,
@@ -12,11 +12,11 @@
         "y": 7.0
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Tout droit fin"
     },
     {
       "anchor": {
-        "x": 7.0,
+        "x": 5.0,
         "y": 7.0
       },
       "prevControl": {
@@ -25,7 +25,7 @@
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Tout droit fin"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],

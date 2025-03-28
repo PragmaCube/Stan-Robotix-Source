@@ -1,0 +1,55 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "AlgaeIntakeIn"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AlgaeIntakeOut"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AlgaePivotDown"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AlgaePivotUp"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Climb"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "CoralIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "CoralOuttake"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}

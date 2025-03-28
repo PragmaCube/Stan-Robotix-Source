@@ -7,19 +7,25 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Tout droit"
+            "pathName": "Put coral"
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "Vers droite"
+            "name": "Pivot coral up"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral outtake"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Test Autos",
+  "folder": "Competition Autos",
   "choreoAuto": false
 }

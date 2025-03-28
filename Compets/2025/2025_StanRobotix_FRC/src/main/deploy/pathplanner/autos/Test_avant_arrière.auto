@@ -7,19 +7,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Tout droit"
+            "pathName": "Forward_2_metres"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Vers droite"
+            "pathName": "Backward_2_metres"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Test Autos",
+  "folder": null,
   "choreoAuto": false
 }
