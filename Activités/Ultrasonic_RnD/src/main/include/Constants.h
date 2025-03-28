@@ -24,5 +24,5 @@ inline constexpr int kDriverControllerPort = 0;
 namespace UltrasonicConstants {
     constexpr int kUltrasonicChannel = 0;
     constexpr double kUltrasonicFullRange = 3846;
-    constexpr double kUltrasonicOffset = -229;
+    constexpr double kUltrasonicOffset = 229;
 }
