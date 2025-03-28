@@ -12,7 +12,6 @@
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-  
   //m_PeriodeAuto = new frc2::CommandPtr(pathplanner::PathPlannerAuto("Test Auto").ToPtr());
 
   mIMU = new SubIMU;
