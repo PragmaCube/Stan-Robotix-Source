@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/CoralPivotUp.h"
+#include <frc/shuffleboard/Shuffleboard.h>
 
 CoralPivotUp::CoralPivotUp(SubCoralPivot * iCoralPivot, SubCoralIntake * iCoralIntake) {
   mCoralPivot = iCoralPivot;
@@ -15,6 +16,7 @@ CoralPivotUp::CoralPivotUp(SubCoralPivot * iCoralPivot, SubCoralIntake * iCoralI
 // Called when the command is initially scheduled.
 void CoralPivotUp::Initialize() {
   mCoralPivot->SetPIDEnable(true);
+  // frc::Shuffleboard::GetTab("Main Tab").Add("CoralPivotUp", true).GetEntry()->SetBoolean(true);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -31,6 +33,8 @@ void CoralPivotUp::Execute() {
 // Called once the command ends or is interrupted.
 void CoralPivotUp::End(bool interrupted) {
   mCoralPivot->SetPIDEnable(false);
+  std::cout << "Coral Pivot Up Fini" << std::endl;
+  // frc::Shuffleboard::GetTab("Main Tab").Add("CoralPivotUp", true).GetEntry()->SetBoolean(false);
 }
 
 // Returns true when the command should end.

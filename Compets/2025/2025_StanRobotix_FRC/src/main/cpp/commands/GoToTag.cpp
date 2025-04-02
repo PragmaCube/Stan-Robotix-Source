@@ -5,7 +5,6 @@
 #include "commands/GoToTag.h"
 #include <frc/shuffleboard/Shuffleboard.h>
 
-
 GoToTag::GoToTag(SubDriveTrain * iSubDriveTrain, SubIMU * iSubIMU) {
   mSubDriveTrain = iSubDriveTrain;
   mSubIMU = iSubIMU;
@@ -25,6 +24,8 @@ void GoToTag::Initialize() {
   mPIDControllerY.SetTolerance(0.2);
 
   frc::Shuffleboard::GetTab("Main Tab").Add("GoToTag", true).GetEntry()->SetBoolean(true);
+
+    frc::Shuffleboard::GetTab("Main Tab").Add("GoToTag", true).GetEntry()->SetBoolean(true);
 
 }
 

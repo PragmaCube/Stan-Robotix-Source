@@ -14,6 +14,8 @@
 #include <frc2/command/Command.h>
 #include <pathplanner/lib/auto/NamedCommands.h>
 #include <memory>
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/ShuffleboardTab.h>
 
 
 #include "Constants.h"

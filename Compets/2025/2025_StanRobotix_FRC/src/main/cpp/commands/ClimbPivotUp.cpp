@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/ClimbPivotUp.h"
+#include <frc/shuffleboard/Shuffleboard.h>
 
 ClimbPivotUp::ClimbPivotUp(SubAlgaePivot * iSubAlgaePivot) {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -11,7 +12,10 @@ ClimbPivotUp::ClimbPivotUp(SubAlgaePivot * iSubAlgaePivot) {
 }
 
 // Called when the command is initially scheduled.
-void ClimbPivotUp::Initialize() {}
+void ClimbPivotUp::Initialize() {
+  frc::Shuffleboard::GetTab("Main Tab").Add("ClimbPivotUp", true).GetEntry()->SetBoolean(true);
+
+}
 
 // Called repeatedly when this Command is scheduled to run
 void ClimbPivotUp::Execute() {
@@ -19,7 +23,10 @@ void ClimbPivotUp::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void ClimbPivotUp::End(bool interrupted) {}
+void ClimbPivotUp::End(bool interrupted) {
+  frc::Shuffleboard::GetTab("Main Tab").Add("ClimbPivotUp", true).GetEntry()->SetBoolean(false);
+
+}
 
 // Returns true when the command should end.
 bool ClimbPivotUp::IsFinished() {
