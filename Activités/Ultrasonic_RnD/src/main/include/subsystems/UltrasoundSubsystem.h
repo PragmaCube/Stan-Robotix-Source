@@ -16,9 +16,9 @@ class UltrasoundSubsystem : public frc2::SubsystemBase {
   UltrasoundSubsystem();
   
   double getVoltage();
-  int getValue();
+  double getValue();
   double getPot();
-  double valueToInch(double value);
+  //double valueToCm(double value);
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -30,5 +30,5 @@ class UltrasoundSubsystem : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   frc::AnalogInput* mUltrasonic;
-  // frc::AnalogPotentiometer* mPot;
+  frc::AnalogPotentiometer* mPot;
 };

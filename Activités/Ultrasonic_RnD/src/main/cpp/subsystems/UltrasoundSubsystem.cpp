@@ -9,31 +9,29 @@
 
 UltrasoundSubsystem::UltrasoundSubsystem() {
     mUltrasonic = new frc::AnalogInput{UltrasonicConstants::kUltrasonicChannel};
-    // mPot = new frc::AnalogPotentiometer{UltrasonicConstants::kUltrasonicChannel, UltrasonicConstants::kUltrasonicFullRange, UltrasonicConstants::kUltrasonicOffset};
-};
+    mPot = new frc::AnalogPotentiometer{mUltrasonic, UltrasonicConstants::kUltrasonicFullRange, UltrasonicConstants::kUltrasonicOffset};
+}
 
 // This method will be called once per scheduler run
 void UltrasoundSubsystem::Periodic() {
     std::cout << "Voltage:" << getVoltage() << std::endl;
     std::cout << "Valeur: " << getValue() << std::endl;
-    std::cout << "Valeur convertie:" << valueToInch(double(getValue())) << std::endl;
-    // std::cout << "Valeur de mPot:" << getPot() << std::endl;
+    // std::cout << "Valeur convertie:" << valueToInch(double(getValue())) << std::endl;
+    std::cout << "Valeur de mPot:" << getPot() << std::endl;
 }
 
 double UltrasoundSubsystem::getVoltage() {
     return mUltrasonic->GetVoltage();
 }
 
-int UltrasoundSubsystem::getValue() {
-    return mUltrasonic->GetValue();
+double UltrasoundSubsystem::getValue() {
+    return double(mUltrasonic->GetValue())/58.0;
 }
 
-/*
 double UltrasoundSubsystem::getPot() {
     return mPot->Get();
 }
-*/
 
-double UltrasoundSubsystem::valueToInch(double value) {
-    return (14.0 / 3617.0) * value + (18496.0 / 3617);
-}
+/*double UltrasoundSubsystem::valueToInch(double value) {
+    return (14.0 / 3617.0) * value + (18496.0 / 3617.0);
+}*/
