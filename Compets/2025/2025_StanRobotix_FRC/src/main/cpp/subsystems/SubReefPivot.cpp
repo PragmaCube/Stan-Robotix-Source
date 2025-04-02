@@ -13,7 +13,7 @@ SubReefPivot::SubReefPivot(){
 
 // This method will be called once per scheduler run
 void SubReefPivot::Periodic() {
-    std::cout << (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi << std::endl;
+    // std::cout << (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi << std::endl;
 }
 
 void SubReefPivot::StopPivot(){
@@ -47,7 +47,7 @@ void SubReefPivot::StayStill(){
 }
 
 void SubReefPivot::CounterGravity(){
-    double pivotPositionRad = (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi;
+    double pivotPositionRad = (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 16 * 2 * std::numbers::pi;
     mReefPivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))));
 }
 
@@ -57,4 +57,8 @@ void SubReefPivot::Intake(double iPercent){
 
 void SubReefPivot::StopIntake(){
     mReefIntakeMotor->StopMotor();
+}
+
+void SubReefPivot::SetPivotVoltage(double iVoltage){
+    mReefPivotMotor->SetVoltage(units::volt_t(iVoltage));
 }

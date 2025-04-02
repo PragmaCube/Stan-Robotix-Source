@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.609715909090909,
-        "y": 5.535696022727272
+        "x": 3.410284090909112,
+        "y": 5.994389204545193
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.852006006369609,
-        "y": 6.187459890382755
+        "x": 2.6525741881878124,
+        "y": 6.646153072200676
       },
       "isLocked": false,
       "linkedName": "Comp Gauche AtReef"
@@ -34,9 +34,9 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 0.5,
-    "maxAcceleration": 5.0,
-    "maxAngularVelocity": 180.0,
-    "maxAngularAcceleration": 720.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 22.5,
+    "maxAngularAcceleration": 180.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },

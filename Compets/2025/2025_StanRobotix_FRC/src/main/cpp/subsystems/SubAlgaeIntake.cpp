@@ -20,7 +20,7 @@ void SubAlgaeIntake::Stop() {
 }
 
 void SubAlgaeIntake::KeepAlgae(){
-    mAlgaeIntakeMotor->Set(-0.2);
+    mAlgaeIntakeMotor->Set(-0.13);
 }
 
 void SubAlgaeIntake::SetCommandsState(bool iState){
@@ -30,3 +30,4 @@ void SubAlgaeIntake::SetCommandsState(bool iState){
 bool SubAlgaeIntake::GetCommandsState(){
     return CommandsEnabled;
 }
+

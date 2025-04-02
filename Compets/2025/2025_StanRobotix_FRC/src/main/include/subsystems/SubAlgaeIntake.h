@@ -21,6 +21,8 @@ class SubAlgaeIntake : public frc2::SubsystemBase {
 
   void SetCommandsState(bool);
   bool GetCommandsState();
+
+  void SetMotorControllerMode();
   
   /**
    * Will be called periodically whenever the CommandScheduler runs.

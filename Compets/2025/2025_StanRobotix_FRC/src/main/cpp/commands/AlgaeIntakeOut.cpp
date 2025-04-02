@@ -21,18 +21,16 @@ void AlgaeIntakeOut::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaeIntakeOut::Execute() {
-  mAlgaeIntake->Intake(0.2);
+  mAlgaeIntake->Intake(0.45);
   Timer++;
 }
 
 // Called once the command ends or is interrupted.
 void AlgaeIntakeOut::End(bool interrupted) {
-  mAlgaeIntake->Stop();
-    frc::Shuffleboard::GetTab("Main Tab").Add("AlgaeintakeOut", true).GetEntry()->SetBoolean(false);
-
+    // frc::Shuffleboard::GetTab("Main Tab").Add("AlgaeintakeOut", true).GetEntry()->SetBoolean(false);
 }
 
 // Returns true when the command should end.
 bool AlgaeIntakeOut::IsFinished() {
-  return Timer >= 50;
+  return false;
 }

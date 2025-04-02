@@ -36,7 +36,7 @@ namespace DriveTrainConstants {
     constexpr int kBackLeftMotorID = 4;
     constexpr int kBackLeftMotor550ID = 3; 
 
-    constexpr float kSpeedCap = 0.6; 
+    constexpr float kSpeedCap = 0.9; 
     constexpr float kMaxSpeed = 1;
     constexpr double kMaxSpeed0 = std::numbers::pi;
     constexpr double kGearRatio = 1 / 5.08;
@@ -59,8 +59,8 @@ namespace DriveCommandsConstants {
     constexpr double kIRotation = 0.0;
     constexpr double kDRotation = 0.0;
 
-    constexpr double kStartingPoseX = 1.227;
-    constexpr double kStartingPoseY = 5.865;
+    constexpr double kStartingPoseX = 8.0;
+    constexpr double kStartingPoseY = 0.789;
 }
 
 namespace ChainConstants {

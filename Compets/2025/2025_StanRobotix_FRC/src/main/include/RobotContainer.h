@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <frc2/command/button/CommandJoystick.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/Joystick.h>
@@ -20,6 +21,9 @@
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/ShuffleboardTab.h>
+
 #include "commands/AlgaePivotUp.h"
 #include "commands/AlgaeIntakeOut.h"
 #include "commands/AlgaeFullIntake.h"
@@ -29,9 +33,14 @@
 #include "commands/CoralFullIntake.h"
 
 #include "commands/ReefPivotUp.h"
+#include "commands/ReefPivotDown.h"
 
 #include "commands/Climb.h"
 #include "commands/ClimbPivotUp.h"
+
+#include "commands/ManualReefPivot.h"
+
+#include "commands/AutoCoralDown.h"
 
 #include "commands/GoToTag.h"
 #include "commands/SequentialGoToTag.h"
@@ -50,13 +59,24 @@ class RobotContainer {
 
   void periodic();
   void Initialize();
-  frc2::CommandPtr GetAutonomousCommand();
+
+  enum Auto{
+    RougeGauche,
+    RougeCentre,
+    RougeDroite,
+    BleuGauche,
+    BleuCentre,
+    BleuDroite,
+    Test
+  };
+
+  frc2::CommandPtr GetAutonomousCommand(Auto);
 
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  frc2::CommandXboxController m_driverController{
-      OperatorConstants::kDriverControllerPort};
+  frc2::CommandJoystick * m_commandJoystick = nullptr;
+  frc2::CommandXboxController * m_commandXbox = nullptr;
 
   // Build an auto chooser. This will use frc2::cmd::None() as the default option.
   frc::SendableChooser<frc2::Command *> autoChooser;
@@ -80,6 +100,7 @@ class RobotContainer {
   void ConfigureBindings();
 
   private:
-  frc::Pose2d PoseInit = {units::meter_t(1.227), units::meter_t(5.865), units::radian_t(0)};
+
+  frc::Pose2d PoseInit;
   frc::ShuffleboardTab * mTabGeneral = &frc::Shuffleboard::GetTab("Main Tab");
 };

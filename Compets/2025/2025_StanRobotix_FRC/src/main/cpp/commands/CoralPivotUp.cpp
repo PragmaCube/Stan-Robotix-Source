@@ -16,27 +16,28 @@ CoralPivotUp::CoralPivotUp(SubCoralPivot * iCoralPivot, SubCoralIntake * iCoralI
 // Called when the command is initially scheduled.
 void CoralPivotUp::Initialize() {
   mCoralPivot->SetPIDEnable(true);
-  Timer = -1;
-    frc::Shuffleboard::GetTab("Main Tab").Add("CoralPivotUp", true).GetEntry()->SetBoolean(true);
-
+  // frc::Shuffleboard::GetTab("Main Tab").Add("CoralPivotUp", true).GetEntry()->SetBoolean(true);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void CoralPivotUp::Execute() {
+  // if (mCoralPivot->GetPosition() >= -1.15)
+  // {
+    
+  // }
+
   mCoralIntake->SetVoltage(0.25);
-  mCoralPivot->Pivot(-1.3);
-  Timer++;
+    mCoralPivot->SetVoltage(-2.75 * cos(mCoralPivot->GetPosition()));
 }
 
 // Called once the command ends or is interrupted.
 void CoralPivotUp::End(bool interrupted) {
   mCoralPivot->SetPIDEnable(false);
   std::cout << "Coral Pivot Up Fini" << std::endl;
-    frc::Shuffleboard::GetTab("Main Tab").Add("CoralPivotUp", true).GetEntry()->SetBoolean(false);
-
+  // frc::Shuffleboard::GetTab("Main Tab").Add("CoralPivotUp", true).GetEntry()->SetBoolean(false);
 }
 
 // Returns true when the command should end.
 bool CoralPivotUp::IsFinished() {
-  return (mCoralPivot->AtSetPoint());
+  return false;
 }

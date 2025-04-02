@@ -13,9 +13,9 @@ SubCoralPivot::SubCoralPivot(){
 
 // This method will be called once per scheduler run
 void SubCoralPivot::Periodic() {
-    // std::cout << cos((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi) << std::endl; //  
+    // std::cout << cos((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi) << std::endl; //  
     // std::cout << (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi << std::endl;
-    std::cout << mCoralPivotMotor->GetEncoder().GetPosition() << std::endl;
+    // std::cout << mCoralPivotMotor->GetEncoder().GetPosition() << std::endl;
 }
 
 
@@ -53,12 +53,16 @@ void SubCoralPivot::SetState(StatesCoral iState){
 }
 
 void SubCoralPivot::CounterGravity(){
-    double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi;   
-    mCoralPivotMotor->SetVoltage(-units::volt_t(kG) * cos(pivotPositionRad));
+    double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi;   
+    mCoralPivotMotor->SetVoltage(-units::volt_t(kG) * cos(pivotPositionRad)); //  
 }
 
 void SubCoralPivot::SetVoltage(double iVoltage){
     mCoralPivotMotor->SetVoltage(units::volt_t(iVoltage));
+}
+
+double SubCoralPivot::GetPosition(){
+    return (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi;
 }
 
 /*

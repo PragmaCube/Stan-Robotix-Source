@@ -21,7 +21,7 @@ void AlgaePivotUp::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaePivotUp::Execute() {
-  mAlgaePivot->Pivot(1.0);
+  mAlgaePivot->Pivot(1.3);
   if((mAlgaePivot->AtSetPoint()) || (ReachedSetPoint))
   {
     ReachedSetPoint = true;

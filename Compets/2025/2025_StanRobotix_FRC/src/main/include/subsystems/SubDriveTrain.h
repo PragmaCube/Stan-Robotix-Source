@@ -30,6 +30,16 @@
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
   SubDriveTrain(SubIMU*);
+
+  enum StartPoses{
+    RougeGauche,
+    RougeCentre,
+    RougeDroite,
+    BleuGauche,
+    BleuCentre,
+    BleuDroite,
+    Test
+  };
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -82,4 +92,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
   // Declaring the IMU object
   SubIMU * mIMU = nullptr;
+
+  frc::Pose2d CoordonneesInit;
+  StartPoses StartPose = RougeCentre;
 };
