@@ -14,10 +14,13 @@
 #include <frc2/command/Command.h>
 #include <pathplanner/lib/auto/NamedCommands.h>
 #include <memory>
+#include <iostream>
 
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
+#include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubLimitSwitch.h"
 
 #include <frc/shuffleboard/Shuffleboard.h>
 #include <frc/shuffleboard/ShuffleboardTab.h>
@@ -70,7 +73,6 @@ class RobotContainer {
 
   frc2::CommandPtr GetAutonomousCommand(Auto);
 
-
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandJoystick * m_commandJoystick = nullptr;
@@ -82,6 +84,9 @@ class RobotContainer {
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
   SubDriveTrain * mDriveTrain = nullptr;
+  
+  SubLimitSwitch * mLimit = nullptr;
+  
   SubIMU * mIMU = nullptr;
   SubAlgaePivot * mSubAlgaePivot = nullptr;
   SubAlgaeIntake * mSubAlgaeIntake = nullptr;

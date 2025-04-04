@@ -68,6 +68,11 @@ namespace ChainConstants {
     constexpr int kMotorID = 2;
 }
 
+namespace LimitSwitchs {
+    constexpr int Port1 = 0;
+    constexpr int Port2 = 1;
+}
+
 namespace AlgaeConstants {
     namespace Pivot{
         constexpr double kP = 0.5;
@@ -150,5 +155,4 @@ namespace JoystickBindingsConstants{
 
     constexpr int kAlgaeIntakeInCmd = 20; // Mauvais IDs pour rendre les commandes inactives pour le moment
     constexpr int kAlgaeIntakeOutCmd = 21; // Mauvais IDs pour rendre les commandes inactives pour le moment
-
 }

@@ -23,6 +23,8 @@ RobotContainer::RobotContainer() {
   mSubCoralPivot = new SubCoralPivot;
   mSubCoralIntake = new SubCoralIntake;
   mSubReefPivot = new SubReefPivot;
+  
+  mLimit = new SubLimitSwitch(LimitSwitchs::Port1,LimitSwitchs::Port2);
 
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
       [this] {
@@ -66,6 +68,16 @@ RobotContainer::RobotContainer() {
 
   ConfigureBindings();
 
+  mLimit->SetDefaultCommand(frc2::RunCommand(
+    [this] {
+  if (mLimit->getState(LimitSwitchs::Port1))
+  {
+      std::cout << "Limit 1 appuyée" << std::endl;
+  }
+  if (mLimit->getState(LimitSwitchs::Port2))
+  {
+      std::cout << "Limit 2 appuyée" << std::endl;
+  }},{mLimit}));
   mIMU->resetAngle();
 
   pathplanner::NamedCommands::registerCommand("Go to tag", std::move(GoToTag(mDriveTrain, mIMU).ToPtr()));
