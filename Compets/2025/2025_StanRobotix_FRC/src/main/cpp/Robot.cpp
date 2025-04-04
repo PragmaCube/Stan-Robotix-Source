@@ -6,7 +6,11 @@
 
 #include <frc2/command/CommandScheduler.h>
 
-Robot::Robot() {}
+Robot::Robot() {
+  // camera1 = frc::CameraServer::StartAutomaticCapture(0);
+  // cameraSelection = nt::NetworkTableInstance::GetDefault().GetTable("")->GetEntry("CameraSelection");
+  // cameraSelection.SetString(camera1.GetName());
+}
 
 /**
  * This function is called every 20 ms, no matter the mode. Use
@@ -18,6 +22,8 @@ Robot::Robot() {}
  */
 void Robot::RobotPeriodic() {
   frc2::CommandScheduler::GetInstance().Run();
+  m_container.periodic();
+
 }
 
 /**
@@ -34,7 +40,7 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
-  m_autonomousCommand = m_container.GetAutonomousCommand();
+  m_autonomousCommand = m_container.GetAutonomousCommand(RobotContainer::RougeCentre);
 
   if (m_autonomousCommand) {
     m_autonomousCommand->Schedule();
@@ -56,7 +62,9 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+
+}
 
 /**
  * This function is called periodically during test mode.

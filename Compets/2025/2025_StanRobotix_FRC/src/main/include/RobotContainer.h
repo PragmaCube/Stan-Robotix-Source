@@ -4,14 +4,48 @@
 
 #pragma once
 
+#include <frc2/command/button/CommandJoystick.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/Joystick.h>
+#include <pathplanner/lib/commands/PathPlannerAuto.h>
+#include <pathplanner/lib/auto/AutoBuilder.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <frc2/command/Command.h>
+#include <pathplanner/lib/auto/NamedCommands.h>
+#include <memory>
 #include <iostream>
+
+
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubLimitSwitch.h"
+
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/ShuffleboardTab.h>
+
+#include "commands/AlgaePivotUp.h"
+#include "commands/AlgaeIntakeOut.h"
+#include "commands/AlgaeFullIntake.h"
+
+#include "commands/CoralOuttake.h"
+#include "commands/CoralPivotUp.h"
+#include "commands/CoralFullIntake.h"
+
+#include "commands/ReefPivotUp.h"
+#include "commands/ReefPivotDown.h"
+
+#include "commands/Climb.h"
+#include "commands/ClimbPivotUp.h"
+
+#include "commands/ManualReefPivot.h"
+
+#include "commands/AutoCoralDown.h"
+
+#include "commands/GoToTag.h"
+#include "commands/SequentialGoToTag.h"
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -24,20 +58,52 @@ class RobotContainer {
  public:
   RobotContainer();
 
-  frc2::CommandPtr GetAutonomousCommand();
-  void LimitSwitch();
+  void periodic();
+  void Initialize();
+
+  enum Auto{
+    RougeGauche,
+    RougeCentre,
+    RougeDroite,
+    BleuGauche,
+    BleuCentre,
+    BleuDroite,
+    Test
+  };
+
+  frc2::CommandPtr GetAutonomousCommand(Auto);
+
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  frc2::CommandXboxController m_driverController{
-      OperatorConstants::kDriverControllerPort};
+  frc2::CommandJoystick * m_commandJoystick = nullptr;
+  frc2::CommandXboxController * m_commandXbox = nullptr;
+
+  // Build an auto chooser. This will use frc2::cmd::None() as the default option.
+  frc::SendableChooser<frc2::Command *> autoChooser;
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
   SubDriveTrain * mDriveTrain = nullptr;
-  SubIMU mIMU;
+  
   SubLimitSwitch * mLimit = nullptr;
-  frc::Joystick mJoystick{0};
+  
+  SubIMU * mIMU = nullptr;
+  SubAlgaePivot * mSubAlgaePivot = nullptr;
+  SubAlgaeIntake * mSubAlgaeIntake = nullptr;
+  SubCoralPivot * mSubCoralPivot = nullptr;
+  SubCoralIntake * mSubCoralIntake = nullptr;
+  SubReefPivot * mSubReefPivot = nullptr;
+
+  frc::Joystick * mJoystick = nullptr;
+  frc::XboxController * mJoystickSecondaire = nullptr;
+
+  //frc2::CommandPtr * m_PeriodeAuto;
+  // frc::SendableChooser<frc2::Command *> autoChooser;
 
   void ConfigureBindings();
-  
+
+  private:
+
+  frc::Pose2d PoseInit;
+  frc::ShuffleboardTab * mTabGeneral = &frc::Shuffleboard::GetTab("Main Tab");
 };
