@@ -43,6 +43,8 @@
 #include "commands/GoToTag.h"
 #include "commands/SequentialGoToTag.h"
 
+#include <photon/PhotonCamera.h>
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -101,4 +103,6 @@ class RobotContainer {
 
   frc::Pose2d PoseInit;
   frc::ShuffleboardTab * mTabGeneral = &frc::Shuffleboard::GetTab("Main Tab");
+
+  photon::PhotonCamera usbCam{"USB_CAM"};
 };

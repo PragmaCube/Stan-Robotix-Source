@@ -23,7 +23,7 @@ RobotContainer::RobotContainer() {
   mSubCoralPivot = new SubCoralPivot;
   mSubCoralIntake = new SubCoralIntake;
   mSubReefPivot = new SubReefPivot;
-
+/*
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
       [this] {
       mDriveTrain->driveFieldRelative(-m_commandJoystick->GetHID().GetX(),
@@ -32,7 +32,7 @@ RobotContainer::RobotContainer() {
                                       (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
       },
       {mDriveTrain}));
-
+*/
   mSubCoralPivot->SetDefaultCommand(frc2::RunCommand(
     [this] {
       mSubCoralPivot->CounterGravity();
@@ -98,7 +98,12 @@ RobotContainer::RobotContainer() {
 }
 
 
-void RobotContainer::periodic(){}
+void RobotContainer::periodic(){
+  photon::PhotonPipelineResult CamResults = usbCam.GetLatestResult();
+  if (CamResults.HasTargets()){
+      std::cout << "target detected" << std::endl;
+  }
+}
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
