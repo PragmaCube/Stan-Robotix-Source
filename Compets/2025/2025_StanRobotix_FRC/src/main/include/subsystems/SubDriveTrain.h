@@ -14,18 +14,17 @@
 #include <frc/kinematics/SwerveDriveOdometry.h>
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/kinematics/ChassisSpeeds.h>
+#include <frc/estimator/SwerveDrivePoseEstimator.h>
 #include <frc/DriverStation.h>
 #include <frc/Joystick.h>
-#include <tuple>
-#include <array>
-#include <vector>
-#include <units/velocity.h>
-#include <units/angle.h>
-#include <wpi/array.h>
+#include <frc/Timer.h>
+#include <units/math.h>
+
 
 #include "Constants.h"
 #include "subsystems/SubIMU.h"
 #include "subsystems/SwerveModule.h"
+#include "LimelightHelpers.h"
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
@@ -86,9 +85,11 @@ class SubDriveTrain : public frc2::SubsystemBase {
   // Declaring my swerve kinematics object
   frc::SwerveDriveKinematics<4> * m_kinematics;
   // Declaring the robot pose object
-  frc::Pose2d * m_robotPose;
+  frc::Pose2d * m_startingRobotPose;
   // Declaring the swerve odometry object
   frc::SwerveDriveOdometry<4> * m_odometry;
+
+  frc::SwerveDrivePoseEstimator<4> * m_poseEstimator;
 
   // Declaring the IMU object
   SubIMU * mIMU = nullptr;

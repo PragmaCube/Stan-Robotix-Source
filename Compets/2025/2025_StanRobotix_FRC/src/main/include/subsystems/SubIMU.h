@@ -20,6 +20,10 @@ class SubIMU : public frc2::SubsystemBase {
 
   frc::Rotation2d getRotation2d();
 
+  double getAngleYaw();
+
+  double getRate();
+
   void resetAngle();
 
  private:

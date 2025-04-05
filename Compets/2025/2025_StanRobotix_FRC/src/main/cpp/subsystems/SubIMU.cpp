@@ -14,6 +14,15 @@ frc::Rotation2d SubIMU::getRotation2d()
     return mIMU.GetRotation2d();
 }
 
+double SubIMU::getAngleYaw()
+{
+    return mIMU.GetYaw().GetValue().value();
+}
+
+double SubIMU::getRate()
+{
+    return mIMU.GetRate();
+}
 
 void SubIMU::resetAngle()
 {
