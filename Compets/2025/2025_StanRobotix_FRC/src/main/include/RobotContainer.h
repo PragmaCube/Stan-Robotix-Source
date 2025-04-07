@@ -19,7 +19,6 @@
 
 
 #include "Constants.h"
-#include "subsystems/ExampleSubsystem.h"
 
 #include <frc/shuffleboard/Shuffleboard.h>
 #include <frc/shuffleboard/ShuffleboardTab.h>
@@ -82,7 +81,6 @@ class RobotContainer {
   frc::SendableChooser<frc2::Command *> autoChooser;
 
   // The robot's subsystems are defined here...
-  ExampleSubsystem m_subsystem;
   SubDriveTrain * mDriveTrain = nullptr;
   SubIMU * mIMU = nullptr;
   SubAlgaePivot * mSubAlgaePivot = nullptr;

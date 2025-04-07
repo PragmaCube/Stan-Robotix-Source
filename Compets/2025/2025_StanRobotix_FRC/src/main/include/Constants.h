@@ -51,7 +51,7 @@ namespace DriveTrainConstants {
 
 }
 
-namespace DriveCommandsConstants {
+namespace PathPlannerConstants {
     constexpr double kPTranslation = 5.0;
     constexpr double kITranslation = 0.0;
     constexpr double kDTranslation = 0.0;
