@@ -91,6 +91,9 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
   frc::SwerveDrivePoseEstimator<4> * m_poseEstimator;
 
+  wpi::array<double, 3> * visionMeasurementStdDevs;
+  wpi::array<double, 3> * stateStdDevs;
+
   // Declaring the IMU object
   SubIMU * mIMU = nullptr;
 
