@@ -22,6 +22,7 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
 
     m_frontLeftModule->setNeoInverted(true);
 
+    visionMeasurementStdDevs = new wpi::array<double, 3>{0, 0, 0};
 
     // Initialization of the IMU
     mIMU = iIMU;
@@ -101,21 +102,28 @@ void SubDriveTrain::Periodic()
     
     LimelightHelpers::SetRobotOrientation("", mIMU->getAngleYaw(), 0, 0, 0, 0, 0);
 
-    frc::Pose3d visionMeasurement3d = ObjectToRobotPose(
-      m_objectInField, m_robotToCamera, m_cameraToObjectEntryRef);
+    // frc::Pose3d visionMeasurement3d = ObjectToRobotPose(
+    //   m_objectInField, m_robotToCamera, m_cameraToObjectEntryRef);
 
     bool rejectUpdate = false;
-    if (frc::units::math::abs(mIMU->getRate()) > 360)
+    LimelightHelpers::SetRobotOrientation("", m_poseEstimator->GetEstimatedPosition().Rotation().Degrees().value(), 0, 0, 0, 0, 0);
+    LimelightHelpers::PoseEstimate mt2 = LimelightHelpers::getBotPoseEstimate("", "tagCount");
+
+    if (mIMU->getRate() > 360 || mIMU->getRate() < -360)
     {
         rejectUpdate = true;
     }
-    else if ()
+    else if (mt2.tagCount == 0)
     {
-        /* code */
+        rejectUpdate = true;
+    }
+
+    if(!rejectUpdate)
+    {
+        m_poseEstimator-> SetVisionMeasurementStdDevs(visionMeasurementStdDevs);
+        m_poseEstimator->AddVisionMeasurement(mt2.pose, frc::Timer::GetFPGATimestamp());
     }
     
-
-    m_poseEstimator->AddVisionMeasurement( , frc::Timer::GetFPGATimestamp());
 }
    
 void SubDriveTrain::Init() {}
