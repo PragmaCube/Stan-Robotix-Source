@@ -95,15 +95,28 @@ RobotContainer::RobotContainer() {
 
   mTabGeneral->AddCamera("camera Tab","Limelight + usb",std::span<const std::string>({ "http://10.66.22.11:5800/" })).WithWidget(frc::BuiltInWidgets::kCameraStream);
   mTabGeneral->Add("GoToTag",false);
+
 }
 
 
 void RobotContainer::periodic(){
+if (i == 50){
   photon::PhotonPipelineResult CamResults = usbCam.GetLatestResult();
   if (CamResults.HasTargets()){
       std::cout << "target detected" << std::endl;
+      std::cout << CamResults.GetBestTarget().GetYaw() << std::endl;
   }
+  else {
+    std::cout << "non" << std::endl;
+  }
+  i = 0;
+  }
+else {
+  i++;
 }
+}
+
+
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
