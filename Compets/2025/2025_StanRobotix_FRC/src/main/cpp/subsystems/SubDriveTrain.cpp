@@ -105,7 +105,6 @@ void SubDriveTrain::Periodic()
     LimelightHelpers::SetRobotOrientation("", m_poseEstimator->GetEstimatedPosition().Rotation().Degrees().value(), 0, 0, 0, 0, 0);
     LimelightHelpers::SetRobotOrientation("", mIMU->getAngleYaw(), 0, 0, 0, 0, 0);
     LimelightHelpers::PoseEstimate mt2 = LimelightHelpers::getBotPoseEstimate_wpiBlue_MegaTag2("");
-
     if (mIMU->getRate() > 360 || mIMU->getRate() < -360)
     {
         rejectUpdate = true;
