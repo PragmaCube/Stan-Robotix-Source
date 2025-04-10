@@ -125,6 +125,15 @@ namespace CommandConstants {
     constexpr int kIterationsGoal = 49;
 }
 
+namespace Vision {
+    namespace GoToAlgae {
+        constexpr double kP = 0;
+        constexpr double kI = 0;
+        constexpr double kD = 0;
+        constexpr double kError = 0;
+    }
+}
+
 namespace JoystickBindingsConstants{
     // constexpr int kResetIMU = 12;
 

@@ -19,3 +19,15 @@ frc::Pose2d SubCameraVision::tragetPose() {
 bool SubCameraVision::isTarget() {
     return CamResults.HasTargets();
 }
+
+double SubCameraVision::getPitch() {
+    return target.GetPitch();
+}
+
+double SubCameraVision::getYaw() {
+    return target.GetYaw();
+}
+
+double SubCameraVision::getSkew() {
+    return target.GetSkew();
+}

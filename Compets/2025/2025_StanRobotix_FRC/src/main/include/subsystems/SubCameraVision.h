@@ -19,6 +19,10 @@ class SubCameraVision : public frc2::SubsystemBase {
 
   bool isTarget();
 
+  double getYaw();
+  double getPitch();
+  double getSkew();
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
