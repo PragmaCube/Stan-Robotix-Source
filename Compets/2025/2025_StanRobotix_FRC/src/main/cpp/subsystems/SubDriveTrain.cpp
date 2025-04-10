@@ -22,7 +22,7 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
 
     m_frontLeftModule->setNeoInverted(true);
 
-    visionMeasurementStdDevs = new wpi::array<double, 3>{0, 0, 0};
+    visionMeasurementStdDevs = new wpi::array<double, 3>{0.7, 0.7, 99999};
 
     // Initialization of the IMU
     mIMU = iIMU;
@@ -62,6 +62,8 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
                     m_backLeftModule->getModulePosition(),
                     m_backRightModule->getModulePosition()}, *m_startingRobotPose};
 
+    m_poseEstimator->SetVisionMeasurementStdDevs(*visionMeasurementStdDevs);
+
     pathplanner::AutoBuilder::configure(
       [this](){ return getPose(); }, // Robot pose supplier
       [this](frc::Pose2d pose){ resetPose(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
@@ -99,16 +101,10 @@ void SubDriveTrain::Periodic()
                     m_backLeftModule->getModulePosition(),
                     m_backRightModule->getModulePosition()});
 
-    
-    LimelightHelpers::SetRobotOrientation("", mIMU->getAngleYaw(), 0, 0, 0, 0, 0);
-
-    // frc::Pose3d visionMeasurement3d = ObjectToRobotPose(
-    //   m_objectInField, m_robotToCamera, m_cameraToObjectEntryRef);
-
     bool rejectUpdate = false;
     LimelightHelpers::SetRobotOrientation("", m_poseEstimator->GetEstimatedPosition().Rotation().Degrees().value(), 0, 0, 0, 0, 0);
-    LimelightHelpers::PoseEstimate mt2 = LimelightHelpers::getBotPoseEstimate("", "tagCount");
-
+    LimelightHelpers::SetRobotOrientation("", mIMU->getAngleYaw(), 0, 0, 0, 0, 0);
+    LimelightHelpers::PoseEstimate mt2 = LimelightHelpers::getBotPoseEstimate_wpiBlue_MegaTag2("");
     if (mIMU->getRate() > 360 || mIMU->getRate() < -360)
     {
         rejectUpdate = true;
@@ -120,7 +116,6 @@ void SubDriveTrain::Periodic()
 
     if(!rejectUpdate)
     {
-        m_poseEstimator-> SetVisionMeasurementStdDevs(visionMeasurementStdDevs);
         m_poseEstimator->AddVisionMeasurement(mt2.pose, frc::Timer::GetFPGATimestamp());
     }
     
