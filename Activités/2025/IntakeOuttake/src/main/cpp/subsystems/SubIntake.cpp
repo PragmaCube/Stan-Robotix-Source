@@ -8,11 +8,17 @@
 SubIntake::SubIntake() {
     mSparkMax = new rev::spark::SparkMax{SubIntakeConstants::kSubIntakeDeviceId, rev::spark::SparkLowLevel::MotorType::kBrushless};
 }
-void SubIntake::StartMotor(){
-    mSparkMax.Set(1.0)
+void SubIntake::Intake() {
+    mSparkMax->Set(SubIntakeConstants::kSubIntakeForceMul);
 }
 
-void StopMotor(){}
+void SubIntake::Outtake() {
+    mSparkMax->Set(-SubIntakeConstants::kSubIntakeForceMul);
+}
+
+void SubIntake::StopMotor() {
+    mSparkMax->Set(0.0);
+}
 
 // This method will be called once per scheduler run
 void SubIntake::Periodic() {}

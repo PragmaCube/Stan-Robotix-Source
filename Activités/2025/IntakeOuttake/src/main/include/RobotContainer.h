@@ -6,9 +6,11 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
+#include <frc2/command/button/JoystickButton.h>
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
+#include "subsystems/SubIntake.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -30,6 +32,10 @@ class RobotContainer {
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
+  SubIntake* mIntake;
+  frc::GenericHID* mJoystick;
+  frc2::JoystickButton* mButton1;
+  frc2::JoystickButton* mButton2;
 
   void ConfigureBindings();
 };

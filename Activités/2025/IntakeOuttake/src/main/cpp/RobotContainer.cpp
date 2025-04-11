@@ -8,9 +8,15 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include "commands/Intake.h"
+#include "commands/Outtake.h"
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
+  mIntake = new SubIntake{};
+  mJoystick = new frc::GenericHID{0};
+  mButton1 = new frc2::JoystickButton{mJoystick, 1};
+  mButton2 = new frc2::JoystickButton{mJoystick, 2};
 
   // Configure the button bindings
   ConfigureBindings();
@@ -24,6 +30,14 @@ void RobotContainer::ConfigureBindings() {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
 
+  frc2::Trigger([this] {
+    return mButton1->Get();
+  }).OnTrue(Intake(mIntake, mButton1).ToPtr());
+
+  frc2::Trigger([this] {
+    return mButton2->Get();
+  }).OnTrue(Outtake(mIntake, mButton2).ToPtr());
+  
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());

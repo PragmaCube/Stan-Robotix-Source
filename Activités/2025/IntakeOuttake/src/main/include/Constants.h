@@ -22,4 +22,5 @@ inline constexpr int kDriverControllerPort = 0;
 
 namespace SubIntakeConstants {
     constexpr int kSubIntakeDeviceId = 0;
+    constexpr double kSubIntakeForceMul = 0.5;
 } 
