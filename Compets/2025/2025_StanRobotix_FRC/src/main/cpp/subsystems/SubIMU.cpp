@@ -9,13 +9,13 @@ SubIMU::SubIMU() = default;
 // This method will be called once per scheduler run
 void SubIMU::Periodic() {}
 
-frc::Rotation2d SubIMU::getRotation2d()
+frc::Rotation2d SubIMU::GetRotation2d()
 {
     return mIMU.GetRotation2d();
 }
 
 
-void SubIMU::resetAngle()
+void SubIMU::ResetAngle()
 {
     mIMU.Reset();
 }

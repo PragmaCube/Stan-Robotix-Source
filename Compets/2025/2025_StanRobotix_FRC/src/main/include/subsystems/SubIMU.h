@@ -18,9 +18,9 @@ class SubIMU : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  frc::Rotation2d getRotation2d();
+  frc::Rotation2d GetRotation2d();
 
-  void resetAngle();
+  void ResetAngle();
 
  private:
 

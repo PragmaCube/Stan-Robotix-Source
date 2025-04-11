@@ -63,7 +63,7 @@ RobotContainer::RobotContainer() {
 
   ConfigureBindings();
 
-  mIMU->resetAngle();
+  mIMU->ResetAngle();
 
   pathplanner::NamedCommands::registerCommand("Go to tag", std::move(GoToTag(mDriveTrain, mIMU).ToPtr()));
 
@@ -116,7 +116,7 @@ void RobotContainer::ConfigureBindings() {
 
   m_commandJoystick->Button(JoystickBindingsConstants::kGoToTag).OnTrue(GoToTag(mDriveTrain, mIMU).ToPtr());
 
-  m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).WhileTrue(frc2::RunCommand([this] {mIMU->resetAngle();},{mIMU}).ToPtr());  
+  m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).WhileTrue(frc2::RunCommand([this] {mIMU->ResetAngle();},{mIMU}).ToPtr());  
 
   m_commandJoystick->Button(12).OnTrue(ReefPivotDown(mSubReefPivot).ToPtr());
   m_commandJoystick->Button(11).WhileTrue(ManualReefPivot(mSubReefPivot).ToPtr());

@@ -23,10 +23,14 @@ namespace OperatorConstants {
 
 inline constexpr int kDriverControllerPort = 0;
 
-}  // namespace OperatorConstants
+}
 
 
 namespace DriveTrainConstants {
+    /* These names are refering to the robot oriented position of the motor controllers.
+    Meaning the back is generally refering to the side where the battery is held.
+    These IDs should be changed if you make changes in the position of the motor controller
+    or changes in the way you want the robot to be oriented. */
     constexpr int kBackRightMotorID = 6; 
     constexpr int kBackRightMotor550ID = 5; 
     constexpr int kFrontRightMotorID = 8; 
@@ -36,19 +40,20 @@ namespace DriveTrainConstants {
     constexpr int kBackLeftMotorID = 4;
     constexpr int kBackLeftMotor550ID = 3; 
 
-    constexpr float kSpeedCap = 0.9; 
+
+    constexpr float kSpeedCap = 0.9; // Percentage of the max speed of the swerve wheels you want to use.
     constexpr float kMaxSpeed = 1;
-    constexpr double kMaxSpeed0 = std::numbers::pi;
+    constexpr double kMaxSpeed0 = std::numbers::pi; 
+
     constexpr double kGearRatio = 1 / 5.08;
     constexpr double kWheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 
     namespace PIDs{
-        // constexpr double kP = 4.0; Garder la valeure
+        // PID constants for the motor controllers that control the orientation of the swerve wheels. Could be tuned better.
         constexpr double kP = 3.0;
         constexpr double kI = 0.1;
         constexpr double kD = 0.05;
     }
-
 }
 
 namespace PathPlannerConstants {
@@ -58,48 +63,43 @@ namespace PathPlannerConstants {
     constexpr double kPRotation = 5.0;
     constexpr double kIRotation = 0.0;
     constexpr double kDRotation = 0.0;
-
-    constexpr double kStartingPoseX = 8.0;
-    constexpr double kStartingPoseY = 0.789;
-}
-
-namespace ChainConstants {
-
-    constexpr int kMotorID = 2;
 }
 
 namespace AlgaeConstants {
     namespace Pivot{
+        constexpr int kMotorID = 9;
+
+        // PID constants for the Pivot
         constexpr double kP = 0.5;
         constexpr double kI = 0.07;
         constexpr double kD = 0;
 
-        constexpr int kMotorID = 9;
-        constexpr double kAlgaePivotSetPoint1 = 0.2;
-        constexpr double kAlgaePivotSetPoint2 = -0.2;
+        // Setpoints for the PID of the pivot.
+        constexpr double kPositionUp = 0.2;
+        constexpr double kPositionDown = -0.2;
     }
 
     namespace Intake{
         constexpr int kMotorID = 10;
 
-        constexpr double kAlgaeIntakeSpeed = 0.2; //temporaire
-        constexpr double kNegativeAlgaeIntakeSpeed = -0.2; //temporaire
-
-        constexpr double kG = 0.19; 
-        constexpr double kS = kG + 0.05;
+        constexpr double kIntakeOutput = 0.2; //temporaire
+        constexpr double kOuttakeOutput = -0.2; //temporaire
     }
 }
 
 
 namespace CoralConstants {
     namespace Pivot{
+        constexpr int kMotorID = 11;
+
+        // PID constants for the pivot.
         constexpr double kP = 0.5;
         constexpr double kI = 0.07;
         constexpr double kD = 0;
 
-        constexpr int kMotorID = 11;
-        constexpr double kCoralPivotSetPoint1 = 0.2;
-        constexpr double kCoralPivotSetPoint2 = -0.2;
+        // Setpoints for the PID of the pivot.
+        constexpr double kPositionUp = 0.2;
+        constexpr double kPositionDown = -0.2;
         constexpr double kG = 0;
     }
     
@@ -110,45 +110,38 @@ namespace CoralConstants {
 
 namespace ReefConstants {
     namespace Pivot{
+        constexpr int kMotorID = 16;
+
+        // PID constants for the ReefPivot/Gabriel.
         constexpr double kP = 0.5;
         constexpr double kI = 0.07;
         constexpr double kD = 0;
 
-        constexpr int kMotorID = 16;
-        constexpr double kReefPivotSetPoint1 = 0.2;
-        constexpr double kReefPivotSetPoint2 = -0.2;
+        // Setpoints for the PID of the pivot.
+        constexpr double kPositionUp = 0.2;
+        constexpr double kPositionDown = -0.2;
         constexpr double kG = 0;
     }
 }
 
-namespace CommandConstants {
-    constexpr int kIterationsGoal = 49;
-}
-
 namespace JoystickBindingsConstants{
-    // constexpr int kResetIMU = 12;
-
     namespace Algae{
         constexpr int kPivotUp = 5; 
         constexpr int kPivotDown = 3;
 
-        constexpr int kManualIn = 9;
-            constexpr int kManualPivotUp = 10;
+        constexpr int kManualIn = 9; // Manual just means that you need to keep the button pressed for the command to stay active.
+        constexpr int kManualPivotUp = 10; // Idem.
     }
     
     namespace Coral{
         constexpr int kPivotUp = 6;
         constexpr int kPivotDown = 4;
 
-        constexpr int kManualIn = 7;
+        constexpr int kManualIn = 7; // Manual just means that you need to keep the button pressed for the command to stay active.
     }
     constexpr int kGoToTag = 2;
 
     constexpr int kClimb = 11;
 
     constexpr int kResetIMU = 8;
-
-    constexpr int kAlgaeIntakeInCmd = 20; // Mauvais IDs pour rendre les commandes inactives pour le moment
-    constexpr int kAlgaeIntakeOutCmd = 21; // Mauvais IDs pour rendre les commandes inactives pour le moment
-
 }

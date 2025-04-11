@@ -5,23 +5,23 @@
 #pragma once
 
 #include <frc2/command/button/CommandJoystick.h>
-#include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
+#include <frc2/command/CommandPtr.h>
 #include <frc/Joystick.h>
+
 #include <pathplanner/lib/commands/PathPlannerAuto.h>
 #include <pathplanner/lib/auto/AutoBuilder.h>
-#include <frc/smartdashboard/SmartDashboard.h>
-#include <frc2/command/Command.h>
 #include <pathplanner/lib/auto/NamedCommands.h>
+
+#include <frc2/command/Command.h>
 #include <memory>
+
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/shuffleboard/Shuffleboard.h>
 #include <frc/shuffleboard/ShuffleboardTab.h>
 
 
 #include "Constants.h"
-
-#include <frc/shuffleboard/Shuffleboard.h>
-#include <frc/shuffleboard/ShuffleboardTab.h>
 
 #include "commands/AlgaePivotUp.h"
 #include "commands/AlgaeIntakeOut.h"
@@ -33,11 +33,10 @@
 
 #include "commands/ReefPivotUp.h"
 #include "commands/ReefPivotDown.h"
+#include "commands/ManualReefPivot.h"
 
 #include "commands/Climb.h"
 #include "commands/ClimbPivotUp.h"
-
-#include "commands/ManualReefPivot.h"
 
 #include "commands/AutoCoralDown.h"
 
@@ -59,8 +58,13 @@ class RobotContainer {
   void periodic();
   void Initialize();
 
+/* Enum to be able to change quicky the autonomous phase during competition days.
+   You should insert the right item name at line 43 of the Robot.cpp to change the autonomous phase you want to use. 
+   Warning : you also need to change line 97 of the SubDriveTrain.h consequently for the robot to understand that he is at the right starting position.
+   If you do not do so, the robot will try to reach the position where he needs to be from the wrong position where he thinks he is.
+   What you would then observe is the robot moving very fast in an unwanted direction independently from the chosen max speed. */
   enum Auto{
-    RougeGauche,
+    RougeGauche, // All these names correspond to autonomous phases used from different starting points. Starting points to which those names refer to.
     RougeCentre,
     RougeDroite,
     BleuGauche,
@@ -73,32 +77,30 @@ class RobotContainer {
 
 
  private:
+  void ConfigureBindings();
+  
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  frc2::CommandJoystick * m_commandJoystick = nullptr;
-  frc2::CommandXboxController * m_commandXbox = nullptr;
+  frc2::CommandJoystick * m_commandJoystick;
+  frc2::CommandXboxController * m_commandXbox;
 
   // Build an auto chooser. This will use frc2::cmd::None() as the default option.
   frc::SendableChooser<frc2::Command *> autoChooser;
 
   // The robot's subsystems are defined here...
-  SubDriveTrain * mDriveTrain = nullptr;
-  SubIMU * mIMU = nullptr;
-  SubAlgaePivot * mSubAlgaePivot = nullptr;
-  SubAlgaeIntake * mSubAlgaeIntake = nullptr;
-  SubCoralPivot * mSubCoralPivot = nullptr;
-  SubCoralIntake * mSubCoralIntake = nullptr;
-  SubReefPivot * mSubReefPivot = nullptr;
+  SubDriveTrain * mDriveTrain;
 
-  frc::Joystick * mJoystick = nullptr;
-  frc::XboxController * mJoystickSecondaire = nullptr;
+  SubIMU * mIMU;
 
-  //frc2::CommandPtr * m_PeriodeAuto;
-  // frc::SendableChooser<frc2::Command *> autoChooser;
+  SubAlgaePivot * mSubAlgaePivot;
+  SubAlgaeIntake * mSubAlgaeIntake;
 
-  void ConfigureBindings();
+  SubCoralPivot * mSubCoralPivot;
+  SubCoralIntake * mSubCoralIntake;
 
-  private:
+  SubReefPivot * mSubReefPivot;
 
-  frc::Pose2d PoseInit;
+  frc::Joystick * mJoystick;
+  frc::XboxController * mJoystickSecondaire;
+
   frc::ShuffleboardTab * mTabGeneral = &frc::Shuffleboard::GetTab("Main Tab");
 };
