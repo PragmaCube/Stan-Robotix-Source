@@ -23,7 +23,7 @@ class SubIMU : public frc2::SubsystemBase {
   void ResetAngle();
 
  private:
-
+  
   ctre::phoenix6::hardware::Pigeon2 mIMU{1};
 
   // Components (e.g. motor controllers and sensors) should generally be

@@ -29,17 +29,18 @@
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
-  SubDriveTrain(SubIMU*);
-
   enum StartPoses{
-    RougeGauche,
-    RougeCentre,
-    RougeDroite,
-    BleuGauche,
-    BleuCentre,
-    BleuDroite,
-    Test
-  };
+      RedLeft,
+      RedCenter,
+      RedRight,
+      BlueLeft,
+      BlueCenter,
+      BlueRight,
+      Test
+    };
+
+  SubDriveTrain(SubIMU*, int);
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -83,16 +84,17 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
   // wpi::array<frc::SwerveModulePosition, 4> * m_swerveModulePositions;
 
-  // Declaring my swerve kinematics object
+  // Declaring the swerve kinematics object
   frc::SwerveDriveKinematics<4> * m_kinematics;
+
   // Declaring the robot pose object
   frc::Pose2d * m_robotPose;
+
   // Declaring the swerve odometry object
   frc::SwerveDriveOdometry<4> * m_odometry;
 
   // Declaring the IMU object
-  SubIMU * mIMU = nullptr;
+  SubIMU * mIMU;
 
-  frc::Pose2d CoordonneesInit;
-  StartPoses StartPose = RougeCentre;
+  StartPoses StartPose = RedLeft;
 };

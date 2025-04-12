@@ -11,7 +11,7 @@ SubAlgaeIntake::SubAlgaeIntake() {
 // This method will be called once per scheduler run
 void SubAlgaeIntake::Periodic() {}
 
-void SubAlgaeIntake::Intake(double iPercentage) {
+void SubAlgaeIntake::SetPercentage(double iPercentage) {
     mAlgaeIntakeMotor->Set(iPercentage);
 }
 
@@ -21,13 +21,5 @@ void SubAlgaeIntake::Stop() {
 
 void SubAlgaeIntake::KeepAlgae(){
     mAlgaeIntakeMotor->Set(-0.13);
-}
-
-void SubAlgaeIntake::SetCommandsState(bool iState){
-    CommandsEnabled = iState;
-}
-
-bool SubAlgaeIntake::GetCommandsState(){
-    return CommandsEnabled;
 }
 

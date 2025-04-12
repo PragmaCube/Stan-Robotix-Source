@@ -11,20 +11,12 @@ SubCoralIntake::SubCoralIntake() {
 // This method will be called once per scheduler run
 void SubCoralIntake::Periodic() {}
 
-void SubCoralIntake::Intake(double iPercent){
+void SubCoralIntake::SetPercentage(double iPercent){
     mCoralIntakeMotor->Set(iPercent);
 }
 
 void SubCoralIntake::Stop(){
     mCoralIntakeMotor->StopMotor();
-}
-
-void SubCoralIntake::SetCommandsState(bool iState){
-    CommandsEnabled = iState;
-}
-
-bool SubCoralIntake::GetCommandsState(){
-    return CommandsEnabled;
 }
 
 void SubCoralIntake::SetVoltage(double iVoltage){

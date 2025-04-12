@@ -11,9 +11,7 @@ SubAlgaePivot::SubAlgaePivot(){
 }
 
 // This method will be called once per scheduler run
-void SubAlgaePivot::Periodic() {
-   // std::cout << cos((mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi) << std::endl;
-}
+void SubAlgaePivot::Periodic() {}
 
 void SubAlgaePivot::Stop(){
     mAlgaePivotMotor->StopMotor();
@@ -32,10 +30,6 @@ bool SubAlgaePivot::AtSetPoint(){
     return mPIDController.AtSetpoint();
 }
 
-void SubAlgaePivot::SetSetPoint(double iSetPoint){
-    mPIDController.SetSetpoint(iSetPoint);
-}
-
 void SubAlgaePivot::SetPIDEnable(bool iState){
     PIDEnable = iState;
 }
@@ -46,14 +40,6 @@ void SubAlgaePivot::Climb(){
 
 void SubAlgaePivot::StayStill(){
     mAlgaePivotMotor->SetVoltage(units::volt_t(-0.75));
-}
-
-SubAlgaePivot::StatesAlgae SubAlgaePivot::GetState(){
-    return mState;
-}
-
-void SubAlgaePivot::SetState(SubAlgaePivot::StatesAlgae iState){
-    mState = iState;
 }
 
 void SubAlgaePivot::PivotUpSmooth(){

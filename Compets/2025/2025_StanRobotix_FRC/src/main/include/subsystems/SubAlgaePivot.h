@@ -22,13 +22,6 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
  public:
 
- enum StatesAlgae {
-    cage,
-    horizontale,
-    pickAlgae,
-    replié
-  };
-
   SubAlgaePivot();
 
   void Stop();
@@ -41,8 +34,6 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   bool AtSetPoint();
 
-  void SetSetPoint(double);
-
   void SetPIDEnable(bool);
 
   void Climb();
@@ -50,18 +41,10 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   void StayStill();
 
-  StatesAlgae GetState();
-
-  void SetState(StatesAlgae);
 
   void CounterGravity();
 
  private:
-
- 
-
-  StatesAlgae mState;
-
   const double kG = 0.35;
   const double kOffset = 33.6426;
   bool PIDEnable = true;

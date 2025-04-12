@@ -14,7 +14,7 @@ RobotContainer::RobotContainer() {
   m_commandXbox = new frc2::CommandXboxController{1};
 
   mIMU = new SubIMU;
-  mDriveTrain = new SubDriveTrain{mIMU};
+  mDriveTrain = new SubDriveTrain{mIMU, int(mAutonomousPhase)};
   mSubAlgaePivot = new SubAlgaePivot;
   mSubAlgaeIntake = new SubAlgaeIntake;
   mSubCoralPivot = new SubCoralPivot;
@@ -76,8 +76,8 @@ RobotContainer::RobotContainer() {
   pathplanner::NamedCommands::registerCommand("Pivot algae up", std::move(AlgaePivotUp(mSubAlgaePivot).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Pivot algae down", std::move(AlgaePivotDown(mSubAlgaePivot).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Algae full intake", std::move(AlgaeFullIntake(mSubAlgaeIntake, mSubAlgaePivot).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Algae intake", std::move(AlgaeIntakeIn(mSubAlgaeIntake).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Algae outtake", std::move(AlgaeIntakeOut(mSubAlgaeIntake, mJoystickSecondaire).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Algae intake", std::move(AlgaeIntake(mSubAlgaeIntake).ToPtr()));
+  pathplanner::NamedCommands::registerCommand("Algae outtake", std::move(AlgaeOuttake(mSubAlgaeIntake, mJoystickSecondaire).ToPtr()));
 
 
 
@@ -104,8 +104,8 @@ RobotContainer::RobotContainer() {
   mTabGeneral->Add("Autos",false);
   mTabGeneral->Add("AlgaePivotUp",false);
   mTabGeneral->Add("AlgaePivotDown",false);
-  mTabGeneral->Add("AlgaeIntakeIn",false);
-  mTabGeneral->Add("AlgaeIntakeOut",false);
+  mTabGeneral->Add("AlgaeIntake",false);
+  mTabGeneral->Add("AlgaeOuttake",false);
 }
 
 
@@ -127,8 +127,8 @@ void RobotContainer::ConfigureBindings() {
   m_commandJoystick->Button(JoystickBindingsConstants::Coral::kManualIn).WhileTrue(CoralIntake(mSubCoralIntake).ToPtr());
   m_commandXbox->LeftBumper().OnTrue(CoralOuttake(mSubCoralIntake, mJoystickSecondaire).ToPtr());
 
-  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kManualIn).WhileTrue(AlgaeIntakeIn(mSubAlgaeIntake).ToPtr());
-  m_commandXbox->RightBumper().WhileTrue(AlgaeIntakeOut(mSubAlgaeIntake, mJoystickSecondaire).ToPtr());
+  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kManualIn).WhileTrue(AlgaeIntake(mSubAlgaeIntake).ToPtr());
+  m_commandXbox->RightBumper().WhileTrue(AlgaeOuttake(mSubAlgaeIntake, mJoystickSecondaire).ToPtr());
 
   m_commandJoystick->Button(JoystickBindingsConstants::Algae::kPivotUp).OnTrue(AlgaePivotUp(mSubAlgaePivot).ToPtr());
   m_commandJoystick->Button(JoystickBindingsConstants::Algae::kPivotDown).OnTrue(AlgaePivotDown(mSubAlgaePivot).ToPtr());  
@@ -141,29 +141,29 @@ void RobotContainer::ConfigureBindings() {
 frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {
   // An example command will be run in autonomous
 
-  switch (iStartingPoint)
+  switch (mAutonomousPhase)
   {
-  case BleuGauche:
+  case BlueLeft:
     return pathplanner::PathPlannerAuto("Bleu Gauche").ToPtr();
     break;
 
-  case BleuCentre:
+  case BlueCenter:
     return pathplanner::PathPlannerAuto("Bleu Centre").ToPtr();
     break;
 
-  case BleuDroite:
+  case BlueRight:
     return pathplanner::PathPlannerAuto("Bleu Droite").ToPtr();
     break;
   
-  case RougeGauche:
+  case RedLeft:
     return pathplanner::PathPlannerAuto("Rouge Gauche").ToPtr();
     break;
 
-  case RougeCentre:
+  case RedCenter:
     return pathplanner::PathPlannerAuto("Rouge Centre").ToPtr();
     break;
 
-  case RougeDroite:
+  case RedRight:
     return pathplanner::PathPlannerAuto("Rouge Droite").ToPtr();
     break;
 

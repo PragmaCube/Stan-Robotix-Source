@@ -21,16 +21,9 @@
 class SubCoralPivot : public frc2::SubsystemBase {
 
  public:
-enum StatesCoral {
-  relaché,
-  horizontale,
-  shoot,
-  vertical,
-  replié
-};
-
   SubCoralPivot();
 
+  // Method used to 
   void Pivot(float);
 
   void Stop();
@@ -39,30 +32,26 @@ enum StatesCoral {
    */
   void Periodic() override;
 
+  // Returns true when the PID of the pivot reached its setpoint given the tolerance.
   bool AtSetPoint();
 
-  void SetSetPoint(double);
-
+  // Set the value of the boolean PIDEnable.
   void SetPIDEnable(bool);
 
-  StatesCoral GetState();
-
-  void SetState(StatesCoral);
-
-  void CounterGravity();
+  // Method used to send the sufficient voltage to the pivot for it to counter the force of gravity.
+  void CounterGravity(); 
 
   void SetVoltage(double);
 
+  // Method to get the position of the encoder of the pivot.
   double GetPosition();
 
  private:
-  
 
-  
-
-StatesCoral mState;
-
+  // Offset used to make the pivot's horizontal position the zero.
   const double kOffset =  -4.667;
+
+  // Constant found by tests. Used in the counter gravity method to send the appropriate voltage.
   const double kG = 1.38;
   bool PIDEnable = true;
 

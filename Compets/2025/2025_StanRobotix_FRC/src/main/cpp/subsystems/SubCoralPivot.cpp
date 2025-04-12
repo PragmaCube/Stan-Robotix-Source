@@ -12,11 +12,7 @@ SubCoralPivot::SubCoralPivot(){
 }
 
 // This method will be called once per scheduler run
-void SubCoralPivot::Periodic() {
-    // std::cout << cos((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi) << std::endl; //  
-    // std::cout << (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi << std::endl;
-    // std::cout << mCoralPivotMotor->GetEncoder().GetPosition() << std::endl;
-}
+void SubCoralPivot::Periodic() {}
 
 
 void SubCoralPivot::Pivot(float SetPoint){
@@ -36,20 +32,8 @@ bool SubCoralPivot::AtSetPoint(){
     return mPIDController.AtSetpoint();
 }
 
-void SubCoralPivot::SetSetPoint(double iSetPoint){
-    mPIDController.SetSetpoint(iSetPoint);
-}
-
 void SubCoralPivot::SetPIDEnable(bool iState){
     PIDEnable = iState;
-}
-
-SubCoralPivot::StatesCoral SubCoralPivot::GetState(){
-    return mState;
-}
-
-void SubCoralPivot::SetState(StatesCoral iState){
-    mState = iState;
 }
 
 void SubCoralPivot::CounterGravity(){

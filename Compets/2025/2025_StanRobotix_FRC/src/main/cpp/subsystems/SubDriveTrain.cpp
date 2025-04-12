@@ -5,7 +5,7 @@
 #include <iostream>
 #include "subsystems/SubDriveTrain.h"
 
-SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
+SubDriveTrain::SubDriveTrain(SubIMU * iIMU, int iStartingPose)
 {
 
     // Initialization of the SwerveModules' location relative to the robot center
@@ -29,24 +29,24 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     // Initialization of the swerve kinematics with the SwerveModules' location
     m_kinematics = new frc::SwerveDriveKinematics<4>{*m_frontLeftLocation, *m_frontRightLocation, *m_backLeftLocation, *m_backRightLocation};
     // Initialization of the robot's pose
-    switch (StartPose)
+    switch (iStartingPose)
     {
-    case RougeGauche:
+    case RedLeft:
         m_robotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(0.769), mIMU->GetRotation2d() + frc::Rotation2d(units::degree_t(180))};
         break;
-    case RougeCentre:
+    case RedCenter:
         m_robotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(4.030), mIMU->GetRotation2d() + frc::Rotation2d(units::degree_t(180))};
         break;
-    case RougeDroite:
+    case RedRight:
         m_robotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(7.3), mIMU->GetRotation2d() + frc::Rotation2d(units::degree_t(180))};
         break;
-    case BleuGauche:
+    case BlueLeft:
         m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(7.261), mIMU->GetRotation2d()};
         break;
-    case BleuCentre:
+    case BlueCenter:
         m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(4.010), mIMU->GetRotation2d()};
         break;
-    case BleuDroite:
+    case BlueRight:
         m_robotPose = new frc::Pose2d{units::meter_t(7.58), units::meter_t(0.774), mIMU->GetRotation2d()};
         break;
     case Test:
@@ -96,9 +96,6 @@ void SubDriveTrain::Periodic()
                     m_frontRightModule->GetModulePosition(),
                     m_backLeftModule->GetModulePosition(),
                     m_backRightModule->GetModulePosition()});
-    
-//    std::cout << double(m_odometry->GetPose().X()) << std::endl << double(m_odometry->GetPose().Y()) << std::endl;
-    // std::cout << double(mIMU->GetRotation2d().Degrees()) << std::endl;
 }
    
 void SubDriveTrain::Init() {}

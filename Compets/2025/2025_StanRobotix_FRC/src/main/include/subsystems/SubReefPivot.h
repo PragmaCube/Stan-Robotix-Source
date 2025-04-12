@@ -34,8 +34,6 @@ class SubReefPivot : public frc2::SubsystemBase {
 
   bool AtSetPoint();
 
-  void SetSetPoint(double);
-
   void SetPIDEnable(bool);
 
   void StayStill();

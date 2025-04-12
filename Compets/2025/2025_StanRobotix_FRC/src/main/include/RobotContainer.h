@@ -24,7 +24,7 @@
 #include "Constants.h"
 
 #include "commands/AlgaePivotUp.h"
-#include "commands/AlgaeIntakeOut.h"
+#include "commands/AlgaeOuttake.h"
 #include "commands/AlgaeFullIntake.h"
 
 #include "commands/CoralOuttake.h"
@@ -58,18 +58,19 @@ class RobotContainer {
   void periodic();
   void Initialize();
 
-/* Enum to be able to change quicky the autonomous phase during competition days.
-   You should insert the right item name at line 43 of the Robot.cpp to change the autonomous phase you want to use. 
-   Warning : you also need to change line 97 of the SubDriveTrain.h consequently for the robot to understand that he is at the right starting position.
-   If you do not do so, the robot will try to reach the position where he needs to be from the wrong position where he thinks he is.
-   What you would then observe is the robot moving very fast in an unwanted direction independently from the chosen max speed. */
+/* Enum to be able to change quickly the autonomous phase during competition days.
+   You should insert the right item name at line 108 (mAutonomousPhase variable) of this file to change the autonomous
+   you want to use and adjust its starting position.
+   Warning : the code is made to change the autonomous used and the starting position just by changing line 108 of this file.
+   However, if these aren't changed in accordance with each other (which should never happen with this architecture to be clear), 
+   what you are going to observe is the robot moving very fast in an unwanted direction with a speed independent from the speed caps you defined.*/
   enum Auto{
-    RougeGauche, // All these names correspond to autonomous phases used from different starting points. Starting points to which those names refer to.
-    RougeCentre,
-    RougeDroite,
-    BleuGauche,
-    BleuCentre,
-    BleuDroite,
+    RedLeft, // All these names correspond to autonomous phases used from different starting points. Starting points to which those names refer to.
+    RedCenter,
+    RedRight,
+    BlueLeft,
+    BlueCenter,
+    BlueRight,
     Test
   };
 
@@ -103,4 +104,6 @@ class RobotContainer {
   frc::XboxController * mJoystickSecondaire;
 
   frc::ShuffleboardTab * mTabGeneral = &frc::Shuffleboard::GetTab("Main Tab");
+
+  Auto mAutonomousPhase = RedCenter;
 };

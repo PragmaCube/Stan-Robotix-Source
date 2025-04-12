@@ -32,16 +32,8 @@ bool SubReefPivot::AtSetPoint(){
     return mPIDController.AtSetpoint();
 }
 
-void SubReefPivot::SetSetPoint(double iSetPoint){
-    mPIDController.SetSetpoint(iSetPoint);
-}
-
 void SubReefPivot::SetPIDEnable(bool iState){
     PIDEnable = iState;
-}
-
-void SubReefPivot::StayStill(){
-    mReefPivotMotor->SetVoltage(units::volt_t(-0.75));
 }
 
 void SubReefPivot::CounterGravity(){
