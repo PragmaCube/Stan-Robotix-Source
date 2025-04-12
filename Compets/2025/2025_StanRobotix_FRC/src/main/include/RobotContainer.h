@@ -43,6 +43,8 @@
 #include "commands/GoToTag.h"
 #include "commands/SequentialGoToTag.h"
 
+#include "commands/VisionGoToAlgae.h"
+
 #include <photon/PhotonCamera.h>
 
 
@@ -92,6 +94,8 @@ class RobotContainer {
   SubCoralPivot * mSubCoralPivot = nullptr;
   SubCoralIntake * mSubCoralIntake = nullptr;
   SubReefPivot * mSubReefPivot = nullptr;
+
+  SubCameraVision * mSubCameraVision = nullptr;
 
   frc::Joystick * mJoystick = nullptr;
   frc::XboxController * mJoystickSecondaire = nullptr;

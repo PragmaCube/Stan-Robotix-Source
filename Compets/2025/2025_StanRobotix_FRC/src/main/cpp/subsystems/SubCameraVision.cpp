@@ -17,17 +17,22 @@ frc::Pose2d SubCameraVision::tragetPose() {
 }
 
 bool SubCameraVision::isTarget() {
-    return CamResults.HasTargets();
+ //   return CamResults.HasTargets();
+ return 0;
 }
 
 double SubCameraVision::getPitch() {
-    return target.GetPitch();
+ //   return target.GetPitch();
+  return 0;
+
 }
 
 double SubCameraVision::getYaw() {
-    return target.GetYaw();
+    return usbCam.GetLatestResult().GetBestTarget().GetYaw();
 }
 
 double SubCameraVision::getSkew() {
-    return target.GetSkew();
+   // return target.GetSkew();<
+    return 0;
+
 }

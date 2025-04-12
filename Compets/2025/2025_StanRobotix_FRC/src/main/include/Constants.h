@@ -127,10 +127,10 @@ namespace CommandConstants {
 
 namespace Vision {
     namespace GoToAlgae {
-        constexpr double kP = 0;
+        constexpr double kP = 0.1;
         constexpr double kI = 0;
         constexpr double kD = 0;
-        constexpr double kError = 0;
+        constexpr double kError = 1;
     }
 }
 

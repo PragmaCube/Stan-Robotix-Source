@@ -8,7 +8,6 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <photon/PhotonCamera.h>
-#include <photon/targeting/PhotonTrackedTarget.h>
 
 
 class SubCameraVision : public frc2::SubsystemBase {
@@ -32,6 +31,4 @@ class SubCameraVision : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   photon::PhotonCamera usbCam{"USB_CAM"};
-  photon::PhotonPipelineResult CamResults = usbCam.GetLatestResult();
-  photon::PhotonTrackedTarget target = CamResults.GetBestTarget();
 };
