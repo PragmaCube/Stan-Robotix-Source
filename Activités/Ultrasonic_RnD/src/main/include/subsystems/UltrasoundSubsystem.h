@@ -17,7 +17,6 @@ class UltrasoundSubsystem : public frc2::SubsystemBase {
   
   double getVoltage();
   double getValue();
-  double getPot();
   //double valueToCm(double value);
 
   /**
@@ -30,5 +29,5 @@ class UltrasoundSubsystem : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   frc::AnalogInput* mUltrasonic;
-  frc::AnalogPotentiometer* mPot;
+
 };
