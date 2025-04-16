@@ -64,6 +64,8 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
 
     m_poseEstimator->SetVisionMeasurementStdDevs(*visionMeasurementStdDevs);
 
+    mt2 = LimelightHelpers::getBotPoseEstimate_wpiBlue_MegaTag2("");
+
     pathplanner::AutoBuilder::configure(
       [this](){ return getPose(); }, // Robot pose supplier
       [this](frc::Pose2d pose){ resetPose(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
@@ -102,9 +104,9 @@ void SubDriveTrain::Periodic()
                     m_backRightModule->getModulePosition()});
 
     bool rejectUpdate = false;
-    LimelightHelpers::SetRobotOrientation("", m_poseEstimator->GetEstimatedPosition().Rotation().Degrees().value(), 0, 0, 0, 0, 0);
+    // LimelightHelpers::SetRobotOrientation("", m_poseEstimator->GetEstimatedPosition().Rotation().Degrees().value(), 0, 0, 0, 0, 0);
     LimelightHelpers::SetRobotOrientation("", mIMU->getAngleYaw(), 0, 0, 0, 0, 0);
-    LimelightHelpers::PoseEstimate mt2 = LimelightHelpers::getBotPoseEstimate_wpiBlue_MegaTag2("");
+    mt2 = LimelightHelpers::getBotPoseEstimate_wpiBlue_MegaTag2("");
     if (mIMU->getRate() > 360 || mIMU->getRate() < -360)
     {
         rejectUpdate = true;
@@ -118,7 +120,6 @@ void SubDriveTrain::Periodic()
     {
         m_poseEstimator->AddVisionMeasurement(mt2.pose, frc::Timer::GetFPGATimestamp());
     }
-    
 }
    
 void SubDriveTrain::Init() {}
