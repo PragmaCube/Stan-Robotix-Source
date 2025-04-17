@@ -7,7 +7,8 @@
 #include <frc2/command/button/Trigger.h>
 #include <frc2/command/RunCommand.h>
 
-RobotContainer::RobotContainer() {
+RobotContainer::RobotContainer()
+{
   // Initialize all of your commands and subsystems here
 
   m_commandJoystick = new frc2::CommandJoystick{0};
@@ -26,44 +27,50 @@ RobotContainer::RobotContainer() {
   mSubReefIntake = new SubReefIntake;
 
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
-      [this] {
-      mDriveTrain->driveFieldRelative(-m_commandJoystick->GetHID().GetX(),
-                                      -m_commandJoystick->GetHID().GetY(),
-                                      -m_commandJoystick->GetHID().GetZ(),
-                                      (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
+      [this]
+      {
+        mDriveTrain->driveFieldRelative(-m_commandJoystick->GetHID().GetX(),
+                                        -m_commandJoystick->GetHID().GetY(),
+                                        -m_commandJoystick->GetHID().GetZ(),
+                                        (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
       },
       {mDriveTrain}));
 
   mSubCoralPivot->SetDefaultCommand(frc2::RunCommand(
-    [this] {
-      mSubCoralPivot->CounterGravity();
-    },
-    {mSubCoralPivot}));
+      [this]
+      {
+        mSubCoralPivot->CounterGravity();
+      },
+      {mSubCoralPivot}));
 
   mSubAlgaePivot->SetDefaultCommand(frc2::RunCommand(
-    [this] {
-      mSubAlgaePivot->CounterGravity();
-    },
-    {mSubAlgaePivot}));
+      [this]
+      {
+        mSubAlgaePivot->CounterGravity();
+      },
+      {mSubAlgaePivot}));
 
   mSubReefPivot->SetDefaultCommand(frc2::RunCommand(
-    [this] {
-      mSubReefPivot->CounterGravity();
-      mSubReefIntake->Stop();
-    },
-    {mSubReefPivot}));
+      [this]
+      {
+        mSubReefPivot->CounterGravity();
+        mSubReefIntake->Stop();
+      },
+      {mSubReefPivot}));
 
   mSubCoralIntake->SetDefaultCommand(frc2::RunCommand(
-    [this] {
-      mSubCoralIntake->Stop();
-    },
-    {mSubCoralIntake}));
+      [this]
+      {
+        mSubCoralIntake->Stop();
+      },
+      {mSubCoralIntake}));
 
-   mSubAlgaeIntake->SetDefaultCommand(frc2::RunCommand(
-    [this] {
-      mSubAlgaeIntake->Stop();
-    },
-    {mSubAlgaeIntake}));
+  mSubAlgaeIntake->SetDefaultCommand(frc2::RunCommand(
+      [this]
+      {
+        mSubAlgaeIntake->Stop();
+      },
+      {mSubAlgaeIntake}));
 
   ConfigureBindings();
 
@@ -84,39 +91,33 @@ RobotContainer::RobotContainer() {
   pathplanner::NamedCommands::registerCommand("Algae intake", std::move(AlgaeIntake(mSubAlgaeIntake).ToPtr()));
   pathplanner::NamedCommands::registerCommand("Algae outtake", std::move(AlgaeOuttake(mSubAlgaeIntake, mJoystickSecondaire).ToPtr()));
 
-
-
-
-
   autoChooser = pathplanner::AutoBuilder::buildAutoChooser("New Auto 1m");
 
   // Build an auto chooser. This will use frc2::cmd::None() as the default option.
   // frc::SendableChooser<frc2::Command *> autoChooser = pathplanner::AutoBuilder::buildAutoChooser("Default Auto");
-  
+
   // frc::SmartDashboard::PutData("Auto Chooser", &autoChooser);
-  
-  mTabGeneral->AddCamera("camera Tab","Limelight + usb",std::span<const std::string>({ "http://10.66.22.11:5800/" })).WithWidget(frc::BuiltInWidgets::kCameraStream);
-  mTabGeneral->Add("GoToTag",false);
-  mTabGeneral->Add("ReefPivotUp",false);
-  mTabGeneral->Add("ReefPivotDown",false);
-  mTabGeneral->Add("GoToTag",false);
-  mTabGeneral->Add("CoralPivotUp",false);
-  mTabGeneral->Add("CoralPivotDown",false);
-  mTabGeneral->Add("CoralOuttake",false);
-  mTabGeneral->Add("CoralIntake",false);
-  mTabGeneral->Add("ClimbPivotUp",false);
-  mTabGeneral->Add("Climb",false);
-  mTabGeneral->Add("Autos",false);
-  mTabGeneral->Add("AlgaePivotUp",false);
-  mTabGeneral->Add("AlgaePivotDown",false);
-  mTabGeneral->Add("AlgaeIntake",false);
-  mTabGeneral->Add("AlgaeOuttake",false);
+
+  mTabGeneral->AddCamera("camera Tab", "Limelight + usb", std::span<const std::string>({"http://10.66.22.11:5800/"})).WithWidget(frc::BuiltInWidgets::kCameraStream);
+  mTabGeneral->Add("GoToTag", false);
+  mTabGeneral->Add("ReefPivotUp", false);
+  mTabGeneral->Add("ReefPivotDown", false);
+  mTabGeneral->Add("GoToTag", false);
+  mTabGeneral->Add("CoralPivotUp", false);
+  mTabGeneral->Add("CoralPivotDown", false);
+  mTabGeneral->Add("CoralOuttake", false);
+  mTabGeneral->Add("CoralIntake", false);
+  mTabGeneral->Add("ClimbPivotUp", false);
+  mTabGeneral->Add("Climb", false);
+  mTabGeneral->Add("Autos", false);
+  mTabGeneral->Add("AlgaePivotUp", false);
+  mTabGeneral->Add("AlgaePivotDown", false);
+  mTabGeneral->Add("AlgaeIntake", false);
+  mTabGeneral->Add("AlgaeOuttake", false);
 }
 
-
-void RobotContainer::periodic(){}
-
-void RobotContainer::ConfigureBindings() {
+void RobotContainer::ConfigureBindings()
+{
   // Configure your trigger bindings here
 
   m_commandJoystick->Button(JoystickBindingsConstants::kGoToTag).OnTrue(GoToTag(mDriveTrain, mIMU).ToPtr());
@@ -125,7 +126,7 @@ void RobotContainer::ConfigureBindings() {
 
   m_commandJoystick->Button(12).OnTrue(ReefPivotDown(mSubReefPivot, mSubReefIntake).ToPtr());
   m_commandJoystick->Button(11).WhileTrue(ManualReefPivot(mSubReefPivot, mSubReefIntake).ToPtr());
-  m_commandJoystick->Button(1).WhileTrue(ReefPivotUp(mSubReefPivot, mSubReefIntake).ToPtr());  
+  m_commandJoystick->Button(1).WhileTrue(ReefPivotUp(mSubReefPivot, mSubReefIntake).ToPtr());
 
   // m_commandJoystick->Button(JoystickBindingsConstants::kClimb).OnTrue(Climb(mSubAlgaePivot, mJoystick).ToPtr());
 
@@ -136,14 +137,15 @@ void RobotContainer::ConfigureBindings() {
   m_commandXbox->RightBumper().WhileTrue(AlgaeOuttake(mSubAlgaeIntake, mJoystickSecondaire).ToPtr());
 
   m_commandJoystick->Button(JoystickBindingsConstants::Algae::kPivotUp).OnTrue(AlgaePivotUp(mSubAlgaePivot).ToPtr());
-  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kPivotDown).OnTrue(AlgaePivotDown(mSubAlgaePivot).ToPtr());  
-  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kManualPivotUp).WhileTrue(ClimbPivotUp(mSubAlgaePivot).ToPtr());  
+  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kPivotDown).OnTrue(AlgaePivotDown(mSubAlgaePivot).ToPtr());
+  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kManualPivotUp).WhileTrue(ClimbPivotUp(mSubAlgaePivot).ToPtr());
 
   m_commandJoystick->Button(JoystickBindingsConstants::Coral::kPivotUp).WhileTrue(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr());
   m_commandJoystick->Button(JoystickBindingsConstants::Coral::kPivotDown).WhileTrue(CoralPivotDown(mSubCoralPivot).ToPtr());
 }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {
+frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint)
+{
   // An example command will be run in autonomous
 
   switch (mAutonomousPhase)
@@ -159,7 +161,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {
   case BlueRight:
     return pathplanner::PathPlannerAuto("Bleu Droite").ToPtr();
     break;
-  
+
   case RedLeft:
     return pathplanner::PathPlannerAuto("Rouge Gauche").ToPtr();
     break;

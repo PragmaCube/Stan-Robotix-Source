@@ -48,7 +48,7 @@ namespace DriveTrainConstants {
     constexpr double kGearRatio = 1 / 5.08;
     constexpr double kWheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 
-    namespace PIDs{
+    namespace PIDs {
         // PID constants for the motor controllers that control the orientation of the swerve wheels. Could be tuned better.
         constexpr double kP = 3.0;
         constexpr double kI = 0.1;
@@ -66,20 +66,26 @@ namespace PathPlannerConstants {
 }
 
 namespace AlgaeConstants {
-    namespace Pivot{
+    namespace Pivot {
         constexpr int kMotorID = 9;
 
         // PID constants for the Pivot
-        constexpr double kP = 0.5;
-        constexpr double kI = 0.07;
+        constexpr double kP = 0.2;
+        constexpr double kI = 0;
         constexpr double kD = 0;
 
         // Setpoints for the PID of the pivot.
         constexpr double kPositionUp = 0.2;
         constexpr double kPositionDown = -0.2;
+        
+        // Voltage used to counter the force of gravity
+        const double kG = 0.35;
+
+        // Offset used to make the pivot's horizontal position the zero.
+        const double kOffset = 33.6426;
     }
 
-    namespace Intake{
+    namespace Intake {
         constexpr int kMotorID = 10;
 
         constexpr double kIntakeOutput = 0.2; //temporaire
@@ -89,43 +95,53 @@ namespace AlgaeConstants {
 
 
 namespace CoralConstants {
-    namespace Pivot{
+    namespace Pivot {
         constexpr int kMotorID = 11;
 
         // PID constants for the pivot.
-        constexpr double kP = 0.5;
-        constexpr double kI = 0.07;
+        constexpr double kP = 0.2;
+        constexpr double kI = 0.001;
         constexpr double kD = 0;
 
         // Setpoints for the PID of the pivot.
         constexpr double kPositionUp = 0.2;
         constexpr double kPositionDown = -0.2;
-        constexpr double kG = 0;
+        
+        // Voltage used to counter the force of gravity.
+        constexpr double kG = 1.38;
+
+        // Offset used to make the pivot's horizontal position the zero.
+        constexpr double kOffset =  -4.667;
     }
     
-    namespace Intake{
+    namespace Intake {
         constexpr int kMotorID = 12;
     }
 }
 
 namespace ReefConstants {
-    namespace Pivot{
+    namespace Pivot {
         constexpr int kMotorID = 16;
 
         // PID constants for the ReefPivot/Gabriel.
-        constexpr double kP = 0.5;
-        constexpr double kI = 0.07;
+        constexpr double kP = 0.14;
+        constexpr double kI = 0;
         constexpr double kD = 0;
 
         // Setpoints for the PID of the pivot.
         constexpr double kPositionUp = 0.2;
         constexpr double kPositionDown = -0.2;
-        constexpr double kG = 0;
+        
+        // Voltage used to counter the force of gravity.
+        constexpr double kG = 0.27;
+
+        // Offset used to make the pivot's horizontal position the zero.
+        constexpr double kOffset = 5.27;
     }
 }
 
 namespace JoystickBindingsConstants{
-    namespace Algae{
+    namespace Algae {
         constexpr int kPivotUp = 5; 
         constexpr int kPivotDown = 3;
 
@@ -133,7 +149,7 @@ namespace JoystickBindingsConstants{
         constexpr int kManualPivotUp = 10; // Idem.
     }
     
-    namespace Coral{
+    namespace Coral {
         constexpr int kPivotUp = 6;
         constexpr int kPivotDown = 4;
 

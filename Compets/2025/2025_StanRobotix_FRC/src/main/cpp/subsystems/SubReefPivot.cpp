@@ -5,37 +5,44 @@
 #include "subsystems/SubReefPivot.h"
 #include <cmath>
 
+SubReefPivot::SubReefPivot()
+{
+    mMotor = new rev::spark::SparkMax{ReefConstants::Pivot::kMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
 
-SubReefPivot::SubReefPivot(){
-    mMotor = new rev::spark::SparkMax (ReefConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+    mPIDController = new frc::PIDController{ReefConstants::Pivot::kP, ReefConstants::Pivot::kI, ReefConstants::Pivot::kD};
 }
 
 // This method will be called once per scheduler run
-void SubReefPivot::Periodic(){}
+void SubReefPivot::Periodic() {}
 
-void SubReefPivot::StopPivot(){
+void SubReefPivot::StopPivot()
+{
     mMotor->StopMotor();
 }
 
-void SubReefPivot::SetPosition(double Setpoint){
-    mPIDController.SetSetpoint(Setpoint);
-    
-    double pivotPositionRad = (mMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi;
-    double CalculatedPID = mPIDController.Calculate((mMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi) * 13;
+void SubReefPivot::SetPosition(double Setpoint)
+{
+    mPIDController->SetSetpoint(Setpoint);
 
-    mMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID));  //   
+    double pivotPositionRad = (mMotor->GetEncoder().GetPosition() + ReefConstants::Pivot::kOffset) / 20 * 2 * std::numbers::pi;
+    double CalculatedPID = mPIDController->Calculate((mMotor->GetEncoder().GetPosition() + ReefConstants::Pivot::kOffset) / 20 * 2 * std::numbers::pi) * 13;
+
+    mMotor->SetVoltage(-(units::volt_t(ReefConstants::Pivot::kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID)); //
     // std::cout << CalculatedPID << std::endl;
 }
 
-bool SubReefPivot::AtSetPoint(){
-    return mPIDController.AtSetpoint();
+bool SubReefPivot::AtSetPoint()
+{
+    return mPIDController->AtSetpoint();
 }
 
-void SubReefPivot::CounterGravity(){
-    double pivotPositionRad = (mMotor->GetEncoder().GetPosition() + kOffset) / 16 * 2 * std::numbers::pi;
-    mMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))));
+void SubReefPivot::CounterGravity()
+{
+    double pivotPositionRad = (mMotor->GetEncoder().GetPosition() + ReefConstants::Pivot::kOffset) / 16 * 2 * std::numbers::pi;
+    mMotor->SetVoltage(-(units::volt_t(ReefConstants::Pivot::kG * cos(pivotPositionRad))));
 }
 
-void SubReefPivot::SetVoltage(double iVoltage){
+void SubReefPivot::SetVoltage(double iVoltage)
+{
     mMotor->SetVoltage(units::volt_t(iVoltage));
 }

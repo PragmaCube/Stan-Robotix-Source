@@ -4,17 +4,20 @@
 
 #include "subsystems/SubReefIntake.h"
 
-SubReefIntake::SubReefIntake(){
-    mMotor = new rev::spark::SparkMax (13,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+SubReefIntake::SubReefIntake()
+{
+    mMotor = new rev::spark::SparkMax(13, rev::spark::SparkLowLevel::MotorType::kBrushless);
 }
 
 // This method will be called once per scheduler run
 void SubReefIntake::Periodic() {}
 
-void SubReefIntake::SetPercentage(double iPercent){
+void SubReefIntake::SetPercentage(double iPercent)
+{
     mMotor->Set(iPercent);
 }
 
-void SubReefIntake::Stop(){
+void SubReefIntake::Stop()
+{
     mMotor->StopMotor();
 }

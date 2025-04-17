@@ -43,14 +43,10 @@ class SubReefPivot : public frc2::SubsystemBase {
   void StopPivot();
 
  private:
-  // Voltage used to counter the force of gravity.
-  const double kG = 0.27;
-  
-  const double kOffset = 5.27;
 
   rev::spark::SparkMax * mMotor = nullptr;
 
-  frc::PIDController mPIDController{0.14, 0, 0};
+  frc::PIDController * mPIDController;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

@@ -48,17 +48,11 @@ class SubCoralPivot : public frc2::SubsystemBase {
   void Stop();
 
  private:
-
-  // Offset used to make the pivot's horizontal position the zero.
-  const double kOffset =  -4.667;
-
-  // Voltage used to counter the force of gravity.
-  const double kG = 1.38;
   
   bool PIDEnable = true;
 
   rev::spark::SparkMax * mCoralPivotMotor = nullptr;
-  frc::PIDController mPIDController{0.2, 0.001, 0};
+  frc::PIDController * mPIDController;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

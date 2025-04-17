@@ -44,13 +44,9 @@ class SubAlgaePivot : public frc2::SubsystemBase {
   void Stop();
 
  private:
-  // Voltage used to counter the force of gravity
-  const double kG = 0.35;
-
-  const double kOffset = 33.6426;
 
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
-  frc::PIDController mPIDController{0.2, 0, 0};
+  frc::PIDController * mPIDController = nullptr;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

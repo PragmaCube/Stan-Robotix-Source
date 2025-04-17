@@ -59,8 +59,6 @@ class SubDriveTrain : public frc2::SubsystemBase {
 // Method that redefines the robot's pose with its input
   void resetPose(frc::Pose2d iRobotPose);
 
-  void Init();
-
   // Load the RobotConfig from the GUI settings. You should probably
   // store this in your Constants file
   pathplanner::RobotConfig config = pathplanner::RobotConfig::fromGUISettings();

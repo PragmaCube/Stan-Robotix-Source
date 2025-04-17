@@ -5,46 +5,54 @@
 #include "subsystems/SubAlgaePivot.h"
 #include <cmath>
 
-
-SubAlgaePivot::SubAlgaePivot(){
-    mAlgaePivotMotor = new rev::spark::SparkMax (AlgaeConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+SubAlgaePivot::SubAlgaePivot()
+{
+    mAlgaePivotMotor = new rev::spark::SparkMax{AlgaeConstants::Pivot::kMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
+    mPIDController = new frc::PIDController{AlgaeConstants::Pivot::kP, AlgaeConstants::Pivot::kI, AlgaeConstants::Pivot::kD};
 }
 
 // This method will be called once per scheduler run
 void SubAlgaePivot::Periodic() {}
 
-void SubAlgaePivot::Stop(){
+void SubAlgaePivot::Stop()
+{
     mAlgaePivotMotor->StopMotor();
 }
 
-void SubAlgaePivot::SetPosition(double Setpoint){
-    mPIDController.SetSetpoint(Setpoint);
-    
-    double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi;
-    double CalculatedPID = mPIDController.Calculate((mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi) * 13;
+void SubAlgaePivot::SetPosition(double Setpoint)
+{
+    mPIDController->SetSetpoint(Setpoint);
 
-    mAlgaePivotMotor->SetVoltage((units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID));  //  
+    double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + AlgaeConstants::Pivot::kOffset) / 80 * 2 * std::numbers::pi;
+    double CalculatedPID = mPIDController->Calculate((mAlgaePivotMotor->GetEncoder().GetPosition() + AlgaeConstants::Pivot::kOffset) / 80 * 2 * std::numbers::pi) * 13;
+
+    mAlgaePivotMotor->SetVoltage((units::volt_t(AlgaeConstants::Pivot::kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID)); //
 }
 
-bool SubAlgaePivot::AtSetPoint(){
-    return mPIDController.AtSetpoint();
+bool SubAlgaePivot::AtSetPoint()
+{
+    return mPIDController->AtSetpoint();
 }
 
-void SubAlgaePivot::Climb(){
+void SubAlgaePivot::Climb()
+{
     mAlgaePivotMotor->SetVoltage(units::volt_t(-2.5));
 }
 
-void SubAlgaePivot::StayStill(){
+void SubAlgaePivot::StayStill()
+{
     mAlgaePivotMotor->SetVoltage(units::volt_t(-0.75));
 }
 
-void SubAlgaePivot::PivotUpSmooth(){
+void SubAlgaePivot::PivotUpSmooth()
+{
     mAlgaePivotMotor->SetVoltage(units::volt_t(0.95));
 }
 
-void SubAlgaePivot::CounterGravity(){
-    double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi;
-    mAlgaePivotMotor->SetVoltage(units::volt_t(kG) * cos(pivotPositionRad));
+void SubAlgaePivot::CounterGravity()
+{
+    double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + AlgaeConstants::Pivot::kOffset) / 80 * 2 * std::numbers::pi;
+    mAlgaePivotMotor->SetVoltage(units::volt_t(AlgaeConstants::Pivot::kG) * cos(pivotPositionRad));
 }
 
 /*

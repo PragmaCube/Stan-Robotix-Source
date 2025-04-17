@@ -4,21 +4,25 @@
 
 #include "subsystems/SubCoralIntake.h"
 
-SubCoralIntake::SubCoralIntake() {
-    mCoralIntakeMotor = new rev::spark::SparkMax (CoralConstants::Intake::kMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless);
+SubCoralIntake::SubCoralIntake()
+{
+    mCoralIntakeMotor = new rev::spark::SparkMax(CoralConstants::Intake::kMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless);
 }
 
 // This method will be called once per scheduler run
 void SubCoralIntake::Periodic() {}
 
-void SubCoralIntake::SetPercentage(double iPercent){
+void SubCoralIntake::SetPercentage(double iPercent)
+{
     mCoralIntakeMotor->Set(iPercent);
 }
 
-void SubCoralIntake::Stop(){
+void SubCoralIntake::Stop()
+{
     mCoralIntakeMotor->StopMotor();
 }
 
-void SubCoralIntake::SetVoltage(double iVoltage){
+void SubCoralIntake::SetVoltage(double iVoltage)
+{
     mCoralIntakeMotor->SetVoltage(units::volt_t(iVoltage));
 }
