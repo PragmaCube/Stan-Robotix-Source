@@ -54,6 +54,9 @@ enum StatesCoral {
   void SetVoltage(double);
 
   double GetPosition();
+  
+// Method that gets set as the Subsystem's default command 
+  void DefaultCommand();
 
  private:
   

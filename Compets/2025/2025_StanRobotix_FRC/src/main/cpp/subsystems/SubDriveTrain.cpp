@@ -5,20 +5,20 @@
 #include <iostream>
 #include "subsystems/SubDriveTrain.h"
 
-SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
+SubDriveTrain::SubDriveTrain(SubIMU * iIMU, frc2::CommandJoystick * iCommandJoystick)
 {
 
     // Initialization of the SwerveModules' location relative to the robot center
-    m_frontLeftLocation = new frc::Translation2d{0.3683_m, 0.3556_m};
+    m_frontLeftLocation  = new frc::Translation2d{0.3683_m, 0.3556_m};
     m_frontRightLocation = new frc::Translation2d{0.3683_m, -0.3556_m};
-    m_backLeftLocation = new frc::Translation2d{-0.3683_m, 0.3556_m};
-    m_backRightLocation = new frc::Translation2d{-0.3683_m, -0.3556_m};
+    m_backLeftLocation   = new frc::Translation2d{-0.3683_m, 0.3556_m};
+    m_backRightLocation  = new frc::Translation2d{-0.3683_m, -0.3556_m};
 
     // Initialization of the SwerveModules with the motor IDs
-    m_frontLeftModule = new SwerveModule{DriveTrainConstants::kFrontLeftMotorID,DriveTrainConstants::kFrontLeftMotor550ID};
+    m_frontLeftModule  = new SwerveModule{DriveTrainConstants::kFrontLeftMotorID , DriveTrainConstants::kFrontLeftMotor550ID};
     m_frontRightModule = new SwerveModule{DriveTrainConstants::kFrontRightMotorID, DriveTrainConstants::kFrontRightMotor550ID};
-    m_backLeftModule = new SwerveModule{DriveTrainConstants::kBackLeftMotorID, DriveTrainConstants::kBackLeftMotor550ID};
-    m_backRightModule = new SwerveModule{DriveTrainConstants::kBackRightMotorID, DriveTrainConstants::kBackRightMotor550ID};
+    m_backLeftModule   = new SwerveModule{DriveTrainConstants::kBackLeftMotorID  , DriveTrainConstants::kBackLeftMotor550ID};
+    m_backRightModule  = new SwerveModule{DriveTrainConstants::kBackRightMotorID , DriveTrainConstants::kBackRightMotor550ID};
 
     m_frontLeftModule->setNeoInverted(true);
 
@@ -26,6 +26,8 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
 
     // Initialization of the IMU
     mIMU = iIMU;
+
+    // Initialization of the CommandJoystick
 
     // Initialization of the swerve kinematics with the SwerveModules' location
     m_kinematics = new frc::SwerveDriveKinematics<4>{*m_frontLeftLocation, *m_frontRightLocation, *m_backLeftLocation, *m_backRightLocation};
@@ -60,7 +62,8 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
                     m_frontLeftModule->getModulePosition(),
                     m_frontRightModule->getModulePosition(),
                     m_backLeftModule->getModulePosition(),
-                    m_backRightModule->getModulePosition()}, *m_startingRobotPose};
+                    m_backRightModule->getModulePosition()},
+                    *m_startingRobotPose};
 
     m_poseEstimator->SetVisionMeasurementStdDevs(*visionMeasurementStdDevs);
 
@@ -175,4 +178,12 @@ void SubDriveTrain::driveRobotRelative(frc::ChassisSpeeds speeds, double SpeedMo
     m_frontRightModule->setDesiredState(fr, SpeedModulation);
     m_backLeftModule->setDesiredState(bl, SpeedModulation);
     m_backRightModule->setDesiredState(br, SpeedModulation);
+}
+
+void SubDriveTrain::DefaultCommand()
+{
+    driveFieldRelative(-m_commandJoystick->GetHID().GetX(),
+                       -m_commandJoystick->GetHID().GetY(),
+                       -m_commandJoystick->GetHID().GetZ(),
+                       (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
 }

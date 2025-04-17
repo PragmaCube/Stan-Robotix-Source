@@ -55,6 +55,9 @@ class SubAlgaePivot : public frc2::SubsystemBase {
   void SetState(StatesAlgae);
 
   void CounterGravity();
+  
+// Method that gets set as the Subsystem's default command 
+  void DefaultCommand();
 
  private:
 

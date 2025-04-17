@@ -8,6 +8,7 @@
 #include <pathplanner/lib/config/RobotConfig.h>
 #include <pathplanner/lib/controllers/PPHolonomicDriveController.h>
 #include <frc2/command/SubsystemBase.h>
+#include <frc2/command/button/CommandJoystick.h>
 #include <frc/geometry/Translation2d.h>
 #include <frc/geometry/Pose2d.h>
 #include <frc/kinematics/SwerveDriveKinematics.h>
@@ -28,7 +29,7 @@
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
-  SubDriveTrain(SubIMU*);
+  SubDriveTrain(SubIMU * iIMU, frc2::CommandJoystick * iCommandJoystick);
 
   enum StartPoses{
     RougeGauche,
@@ -56,6 +57,9 @@ class SubDriveTrain : public frc2::SubsystemBase {
   frc::Pose2d getPose();
 // Method that redefines the robot's pose with its input
   void resetPose(frc::Pose2d iRobotPose);
+
+// Method that gets set as the Subsystem's default command 
+  void DefaultCommand();
 
   void Init();
 
@@ -97,9 +101,11 @@ class SubDriveTrain : public frc2::SubsystemBase {
   // Declaring the IMU object
   SubIMU * mIMU = nullptr;
 
+  // Declaring the CommandJoystick object
+  frc2::CommandJoystick * m_commandJoystick;
+
   frc::Pose2d CoordonneesInit;
   StartPoses StartPose = RougeCentre;
 
-  
   LimelightHelpers::PoseEstimate mt2;
 };

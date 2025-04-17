@@ -6,20 +6,24 @@
 #include <cmath>
 
 
-SubAlgaePivot::SubAlgaePivot(){
+SubAlgaePivot::SubAlgaePivot()
+{
     mAlgaePivotMotor = new rev::spark::SparkMax (AlgaeConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
 }
 
 // This method will be called once per scheduler run
-void SubAlgaePivot::Periodic() {
+void SubAlgaePivot::Periodic() 
+{
    // std::cout << cos((mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi) << std::endl;
 }
 
-void SubAlgaePivot::Stop(){
+void SubAlgaePivot::Stop()
+{
     mAlgaePivotMotor->StopMotor();
 }
 
-void SubAlgaePivot::Pivot(double Setpoint){
+void SubAlgaePivot::Pivot(double Setpoint)
+{
     mPIDController.SetSetpoint(Setpoint);
     
     double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi;
@@ -28,41 +32,55 @@ void SubAlgaePivot::Pivot(double Setpoint){
     mAlgaePivotMotor->SetVoltage((units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID) * PIDEnable);  //  
 }
 
-bool SubAlgaePivot::AtSetPoint(){
+bool SubAlgaePivot::AtSetPoint()
+{
     return mPIDController.AtSetpoint();
 }
 
-void SubAlgaePivot::SetSetPoint(double iSetPoint){
+void SubAlgaePivot::SetSetPoint(double iSetPoint)
+{
     mPIDController.SetSetpoint(iSetPoint);
 }
 
-void SubAlgaePivot::SetPIDEnable(bool iState){
+void SubAlgaePivot::SetPIDEnable(bool iState)
+{
     PIDEnable = iState;
 }
 
-void SubAlgaePivot::Climb(){
+void SubAlgaePivot::Climb()
+{
     mAlgaePivotMotor->SetVoltage(units::volt_t(-2.5));
 }
 
-void SubAlgaePivot::StayStill(){
+void SubAlgaePivot::StayStill()
+{
     mAlgaePivotMotor->SetVoltage(units::volt_t(-0.75));
 }
 
-SubAlgaePivot::StatesAlgae SubAlgaePivot::GetState(){
+SubAlgaePivot::StatesAlgae SubAlgaePivot::GetState()
+{
     return mState;
 }
 
-void SubAlgaePivot::SetState(SubAlgaePivot::StatesAlgae iState){
+void SubAlgaePivot::SetState(SubAlgaePivot::StatesAlgae iState)
+{
     mState = iState;
 }
 
-void SubAlgaePivot::PivotUpSmooth(){
+void SubAlgaePivot::PivotUpSmooth()
+{
     mAlgaePivotMotor->SetVoltage(units::volt_t(0.95));
 }
 
-void SubAlgaePivot::CounterGravity(){
+void SubAlgaePivot::CounterGravity()
+{
     double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi;
     mAlgaePivotMotor->SetVoltage(units::volt_t(kG) * cos(pivotPositionRad));
+}
+
+void SubAlgaePivot::DefaultCommand()
+{
+    CounterGravity();
 }
 
 /*

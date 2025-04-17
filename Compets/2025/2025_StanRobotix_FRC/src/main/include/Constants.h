@@ -114,10 +114,14 @@ namespace ReefConstants {
         constexpr double kI = 0.07;
         constexpr double kD = 0;
 
-        constexpr int kMotorID = 16;
+        constexpr int kPivotMotorID = 16;
         constexpr double kReefPivotSetPoint1 = 0.2;
         constexpr double kReefPivotSetPoint2 = -0.2;
         constexpr double kG = 0;
+    }
+
+    namespace Intake{
+        constexpr int kIntakeMotorID = 13;
     }
 }
 

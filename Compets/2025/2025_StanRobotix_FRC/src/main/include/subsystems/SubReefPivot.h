@@ -48,6 +48,8 @@ class SubReefPivot : public frc2::SubsystemBase {
 
   void SetPivotVoltage(double);
 
+// Method that gets set as the Subsystem's default command 
+  void DefaultCommand();
 
  private:
 

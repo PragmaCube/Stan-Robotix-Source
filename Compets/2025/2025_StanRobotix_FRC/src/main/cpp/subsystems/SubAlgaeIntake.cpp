@@ -4,30 +4,40 @@
 
 #include "subsystems/SubAlgaeIntake.h"
 
-SubAlgaeIntake::SubAlgaeIntake() {
+SubAlgaeIntake::SubAlgaeIntake()
+{
    mAlgaeIntakeMotor = new rev::spark::SparkMax (AlgaeConstants::Intake::kMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless);
-};
+}
 
 // This method will be called once per scheduler run
 void SubAlgaeIntake::Periodic() {}
 
-void SubAlgaeIntake::Intake(double iPercentage) {
+void SubAlgaeIntake::Intake(double iPercentage)
+{
     mAlgaeIntakeMotor->Set(iPercentage);
 }
 
-void SubAlgaeIntake::Stop() {
+void SubAlgaeIntake::Stop()
+{
     mAlgaeIntakeMotor->StopMotor();
 }
 
-void SubAlgaeIntake::KeepAlgae(){
+void SubAlgaeIntake::KeepAlgae()
+{
     mAlgaeIntakeMotor->Set(-0.13);
 }
 
-void SubAlgaeIntake::SetCommandsState(bool iState){
+void SubAlgaeIntake::SetCommandsState(bool iState)
+{
     CommandsEnabled = iState;
 }
 
-bool SubAlgaeIntake::GetCommandsState(){
+bool SubAlgaeIntake::GetCommandsState()
+{
     return CommandsEnabled;
 }
 
+void SubAlgaeIntake::DefaultCommand()
+{
+    Stop();
+}

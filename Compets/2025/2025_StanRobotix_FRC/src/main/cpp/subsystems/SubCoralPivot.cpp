@@ -65,6 +65,11 @@ double SubCoralPivot::GetPosition(){
     return (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi;
 }
 
+void SubCoralPivot::DefaultCommand()
+{
+    CounterGravity();
+}
+
 /*
     le setpoint doit etre donné en tours, même type que le cout.
     le cout renvoi la position du pivot entre -1 et 1, avec 0 comme pivot horizontale.

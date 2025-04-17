@@ -26,6 +26,9 @@ class SubCoralIntake : public frc2::SubsystemBase {
   bool GetCommandsState();
 
   void SetVoltage(double);
+  
+// Method that gets set as the Subsystem's default command 
+  void DefaultCommand();
 
  private:
   bool CommandsEnabled = true;

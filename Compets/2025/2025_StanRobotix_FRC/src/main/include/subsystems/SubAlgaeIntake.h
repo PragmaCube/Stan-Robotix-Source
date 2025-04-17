@@ -24,6 +24,9 @@ class SubAlgaeIntake : public frc2::SubsystemBase {
 
   void SetMotorControllerMode();
   
+// Method that gets set as the Subsystem's default command 
+  void DefaultCommand();
+  
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */

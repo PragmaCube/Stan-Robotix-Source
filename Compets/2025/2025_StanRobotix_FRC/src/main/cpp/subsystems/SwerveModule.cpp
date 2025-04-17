@@ -43,7 +43,6 @@ void SwerveModule::setDesiredState(frc::SwerveModuleState iDesiredState, double 
     m_Neo550PID->SetSetpoint(double(OptimizedState.angle.Radians() / (2 * std::numbers::pi)) + 0.5);
     m_MotorNeo550->Set(m_Neo550PID->Calculate(m_Neo550AbsoluteEncoder->GetPosition()));
     m_MotorNeo->Set(double(OptimizedState.speed * (1 / units::meters_per_second_t(DriveTrainConstants::kMaxSpeed)) * DriveTrainConstants::kSpeedCap * SpeedModulation));
-    // std::cout << m_Neo550PID->Calculate(m_Neo550AbsoluteEncoder->GetPosition()) << std::endl;
 }
 
 void SwerveModule::setNeoInverted(bool iInverted)
@@ -53,15 +52,11 @@ void SwerveModule::setNeoInverted(bool iInverted)
 
 frc::SwerveModuleState SwerveModule::getModuleState()
 {
-//     *m_ModuleState = frc::SwerveModuleState{units::meters_per_second_t(m_Neo550Encoder->GetVelocity()*DriveTrainConstants::kGearRatio*DriveTrainConstants::kWheelPerimeter),
-//                                             frc::Rotation2d(units::radian_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * 2 * std::numbers::pi)};
     return *m_ModuleState;
 }
 
 frc::SwerveModulePosition SwerveModule::getModulePosition()
 {
-    // *m_ModulePosition = frc::SwerveModulePosition{units::meter_t(m_Neo550Encoder->GetPosition()*DriveTrainConstants::kGearRatio*DriveTrainConstants::kWheelPerimeter),
-    //                                              frc::Rotation2d(units::radian_t(m_Neo550AbsoluteEncoder->GetPosition() - 0.5) * 2 * std::numbers::pi)};
     return *m_ModulePosition;
 }
 
