@@ -24,38 +24,31 @@ class SubReefPivot : public frc2::SubsystemBase {
 
   SubReefPivot();
 
-  void StopPivot();
-
-  void Pivot(double);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
-  bool AtSetPoint();
+  // Takes as a parameter an angle in radians and uses a PID to make the pivot reach that angle.
+  void SetPosition(double);
 
-  void SetPIDEnable(bool);
+  bool AtSetPoint();
 
   void StayStill();
 
   void CounterGravity();
 
-  void Intake(double);
+  void SetVoltage(double);
 
-  void StopIntake();
-
-  void SetPivotVoltage(double);
-
+  void StopPivot();
 
  private:
-
+  // Voltage used to counter the force of gravity.
   const double kG = 0.27;
+  
   const double kOffset = 5.27;
-  bool PIDEnable = true;
 
-
-  rev::spark::SparkMax * mReefPivotMotor = nullptr;
-  rev::spark::SparkMax * mReefIntakeMotor = nullptr;
+  rev::spark::SparkMax * mMotor = nullptr;
 
   frc::PIDController mPIDController{0.14, 0, 0};
   // Components (e.g. motor controllers and sensors) should generally be

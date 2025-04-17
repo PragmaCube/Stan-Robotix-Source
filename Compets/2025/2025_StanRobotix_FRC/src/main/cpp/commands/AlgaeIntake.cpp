@@ -19,7 +19,7 @@ void AlgaeIntake::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaeIntake::Execute() {
-  mAlgaeIntake->Intake(-0.45);
+  mAlgaeIntake->SetPercentage(-0.45);
 }
 
 // Called once the command ends or is interrupted.

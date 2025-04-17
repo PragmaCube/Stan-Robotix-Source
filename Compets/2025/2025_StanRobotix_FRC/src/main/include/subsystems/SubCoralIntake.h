@@ -18,6 +18,7 @@ class SubCoralIntake : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
+
   void SetVoltage(double);
   void SetPercentage(double);
   void Stop();

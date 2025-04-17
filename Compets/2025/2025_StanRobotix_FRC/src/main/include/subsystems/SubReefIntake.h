@@ -5,29 +5,26 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include "Constants.h"
 #include <rev/SparkMax.h>
-#include <iostream>
 
-class SubAlgaeIntake : public frc2::SubsystemBase {
+
+class SubReefIntake : public frc2::SubsystemBase {
  public:
-  SubAlgaeIntake();
-  
-  void Stop();
+  SubReefIntake();
 
-  /* Sets a voltage to keep the algae in the mechanism. This method is useful when the motor of the intake is in idle mode,
-   * which is the case when you need to use them for the climbing phase. */
-  void KeepAlgae();
-  
-  void SetPercentage(double);
-  
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
+  void SetPercentage(double);
+
+  void Stop();
+
  private:
+
+  rev::spark::SparkMax * mMotor = nullptr;
+
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  rev::spark::SparkMax * mAlgaeIntakeMotor = nullptr;
 };

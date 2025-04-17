@@ -15,11 +15,15 @@ RobotContainer::RobotContainer() {
 
   mIMU = new SubIMU;
   mDriveTrain = new SubDriveTrain{mIMU, int(mAutonomousPhase)};
+
   mSubAlgaePivot = new SubAlgaePivot;
   mSubAlgaeIntake = new SubAlgaeIntake;
+
   mSubCoralPivot = new SubCoralPivot;
   mSubCoralIntake = new SubCoralIntake;
+
   mSubReefPivot = new SubReefPivot;
+  mSubReefIntake = new SubReefIntake;
 
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
       [this] {
@@ -45,7 +49,7 @@ RobotContainer::RobotContainer() {
   mSubReefPivot->SetDefaultCommand(frc2::RunCommand(
     [this] {
       mSubReefPivot->CounterGravity();
-      mSubReefPivot->StopIntake();
+      mSubReefIntake->Stop();
     },
     {mSubReefPivot}));
 
@@ -65,6 +69,7 @@ RobotContainer::RobotContainer() {
 
   mIMU->ResetAngle();
 
+  // These are the named commands declarations. These commands are used in the pathplanner software to create autonomous phases.
   pathplanner::NamedCommands::registerCommand("Go to tag", std::move(GoToTag(mDriveTrain, mIMU).ToPtr()));
 
   pathplanner::NamedCommands::registerCommand("Pivot coral up", std::move(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr()));
@@ -118,9 +123,9 @@ void RobotContainer::ConfigureBindings() {
 
   m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).WhileTrue(frc2::RunCommand([this] {mIMU->ResetAngle();},{mIMU}).ToPtr());  
 
-  m_commandJoystick->Button(12).OnTrue(ReefPivotDown(mSubReefPivot).ToPtr());
-  m_commandJoystick->Button(11).WhileTrue(ManualReefPivot(mSubReefPivot).ToPtr());
-  m_commandJoystick->Button(1).WhileTrue(ReefPivotUp(mSubReefPivot).ToPtr());  
+  m_commandJoystick->Button(12).OnTrue(ReefPivotDown(mSubReefPivot, mSubReefIntake).ToPtr());
+  m_commandJoystick->Button(11).WhileTrue(ManualReefPivot(mSubReefPivot, mSubReefIntake).ToPtr());
+  m_commandJoystick->Button(1).WhileTrue(ReefPivotUp(mSubReefPivot, mSubReefIntake).ToPtr());  
 
   // m_commandJoystick->Button(JoystickBindingsConstants::kClimb).OnTrue(Climb(mSubAlgaePivot, mJoystick).ToPtr());
 

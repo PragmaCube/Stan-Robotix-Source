@@ -13,7 +13,6 @@ AlgaePivotDown::AlgaePivotDown(SubAlgaePivot * iAlgaePivot) {
 
 // Called when the command is initially scheduled.
 void AlgaePivotDown::Initialize() {
-  mAlgaePivot->SetPIDEnable(true);
   ReachedSetPoint = false;
   Timer = -1;
   frc::Shuffleboard::GetTab("Main Tab").Add("AlgaePivotDown", true).GetEntry()->SetBoolean(true);
@@ -22,7 +21,7 @@ void AlgaePivotDown::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AlgaePivotDown::Execute() {
-  mAlgaePivot->Pivot(0.7);
+  mAlgaePivot->SetPosition(0.7);
   if ((mAlgaePivot->AtSetPoint()) || ReachedSetPoint)
   {    
     ReachedSetPoint = true;
@@ -33,7 +32,6 @@ void AlgaePivotDown::Execute() {
 
 // Called once the command ends or is interrupted.
 void AlgaePivotDown::End(bool interrupted) {
-  mAlgaePivot->SetPIDEnable(false);
   frc::Shuffleboard::GetTab("Main Tab").Add("AlgaePivotDown", true).GetEntry()->SetBoolean(false);
 
 }

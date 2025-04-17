@@ -23,14 +23,13 @@ class SubCoralPivot : public frc2::SubsystemBase {
  public:
   SubCoralPivot();
 
-  // Method used to 
-  void Pivot(float);
-
-  void Stop();
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
+
+  // Takes as a parameter an angle in radians and uses a PID to make the pivot reach that angle.
+  void SetPosition(double);
 
   // Returns true when the PID of the pivot reached its setpoint given the tolerance.
   bool AtSetPoint();
@@ -46,13 +45,16 @@ class SubCoralPivot : public frc2::SubsystemBase {
   // Method to get the position of the encoder of the pivot.
   double GetPosition();
 
+  void Stop();
+
  private:
 
   // Offset used to make the pivot's horizontal position the zero.
   const double kOffset =  -4.667;
 
-  // Constant found by tests. Used in the counter gravity method to send the appropriate voltage.
+  // Voltage used to counter the force of gravity.
   const double kG = 1.38;
+  
   bool PIDEnable = true;
 
   rev::spark::SparkMax * mCoralPivotMotor = nullptr;

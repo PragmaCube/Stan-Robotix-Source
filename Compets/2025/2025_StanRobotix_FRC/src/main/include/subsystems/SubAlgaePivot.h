@@ -24,31 +24,30 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   SubAlgaePivot();
 
-  void Stop();
-
-  void Pivot(double);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
-  bool AtSetPoint();
+  // Takes as a parameter an angle in radians and uses a PID to make the pivot reach that angle.
+  void SetPosition(double);
 
-  void SetPIDEnable(bool);
+  bool AtSetPoint();
 
   void Climb();
   void PivotUpSmooth();
 
   void StayStill();
 
-
   void CounterGravity();
 
- private:
-  const double kG = 0.35;
-  const double kOffset = 33.6426;
-  bool PIDEnable = true;
+  void Stop();
 
+ private:
+  // Voltage used to counter the force of gravity
+  const double kG = 0.35;
+
+  const double kOffset = 33.6426;
 
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
   frc::PIDController mPIDController{0.2, 0, 0};

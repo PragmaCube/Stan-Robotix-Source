@@ -21,7 +21,7 @@ void CoralOuttake::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void CoralOuttake::Execute() {
-  mCoralIntake->Intake(-0.6);
+  mCoralIntake->SetPercentage(-0.6);
   Timer++;
 }
 

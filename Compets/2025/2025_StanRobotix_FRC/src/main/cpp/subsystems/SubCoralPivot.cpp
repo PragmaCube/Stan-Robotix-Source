@@ -15,7 +15,7 @@ SubCoralPivot::SubCoralPivot(){
 void SubCoralPivot::Periodic() {}
 
 
-void SubCoralPivot::Pivot(float SetPoint){
+void SubCoralPivot::SetPosition(double SetPoint){
     mPIDController.SetSetpoint(SetPoint);
     
     double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi;

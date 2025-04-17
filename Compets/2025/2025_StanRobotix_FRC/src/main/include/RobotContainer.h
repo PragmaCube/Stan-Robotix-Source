@@ -99,6 +99,7 @@ class RobotContainer {
   SubCoralIntake * mSubCoralIntake;
 
   SubReefPivot * mSubReefPivot;
+  SubReefIntake * mSubReefIntake;
 
   frc::Joystick * mJoystick;
   frc::XboxController * mJoystickSecondaire;

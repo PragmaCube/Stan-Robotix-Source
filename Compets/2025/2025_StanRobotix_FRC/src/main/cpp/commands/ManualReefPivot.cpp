@@ -4,10 +4,12 @@
 
 #include "commands/ManualReefPivot.h"
 
-ManualReefPivot::ManualReefPivot(SubReefPivot * iSubReefPivot) {
+ManualReefPivot::ManualReefPivot(SubReefPivot * iSubReefPivot, SubReefIntake * iSubReefIntake){
   // Use addRequirements() here to declare subsystem dependencies.
   mSubReefPivot = iSubReefPivot;
+  mSubReefIntake = iSubReefIntake;
   AddRequirements(mSubReefPivot);
+  AddRequirements(mSubReefIntake);
 }
 
 // Called when the command is initially scheduled.
@@ -15,8 +17,8 @@ void ManualReefPivot::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void ManualReefPivot::Execute() {
-  mSubReefPivot->SetPivotVoltage(1);
-  mSubReefPivot->Intake(-0.4);
+  mSubReefPivot->SetVoltage(1);
+  mSubReefIntake->SetPercentage(-0.4);
 }
 
 // Called once the command ends or is interrupted.

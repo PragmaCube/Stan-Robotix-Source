@@ -5,10 +5,12 @@
 #include "commands/ReefPivotUp.h"
 #include <frc/shuffleboard/Shuffleboard.h>
 
-ReefPivotUp::ReefPivotUp(SubReefPivot * iSubReefPivot) {
+ReefPivotUp::ReefPivotUp(SubReefPivot * iSubReefPivot, SubReefIntake * iSubReefIntake) {
   // Use addRequirements() here to declare subsystem dependencies.
   mSubReefPivot = iSubReefPivot;
+  mSubReefIntake = iSubReefIntake;
   AddRequirements(mSubReefPivot);
+  AddRequirements(mSubReefIntake);
 }
 
 // Called when the command is initially scheduled.
@@ -19,8 +21,8 @@ void ReefPivotUp::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ReefPivotUp::Execute() {
-  mSubReefPivot->Pivot(-0.4);
-  mSubReefPivot->Intake(0.9);
+  mSubReefPivot->SetPosition(-0.4);
+  mSubReefIntake->SetPercentage(0.9);
 }
 
 // Called once the command ends or is interrupted.

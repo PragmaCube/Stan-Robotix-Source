@@ -21,7 +21,7 @@ void CoralIntake::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void CoralIntake::Execute() {
-  mCoralIntake->Intake(0.45);
+  mCoralIntake->SetPercentage(0.45);
 }
 
 // Called once the command ends or is interrupted.
