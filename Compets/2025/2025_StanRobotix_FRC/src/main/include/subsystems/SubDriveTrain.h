@@ -61,8 +61,6 @@ class SubDriveTrain : public frc2::SubsystemBase {
 // Method that gets set as the Subsystem's default command 
   void DefaultCommand();
 
-  void Init();
-
   // Load the RobotConfig from the GUI settings. You should probably
   // store this in your Constants file
   pathplanner::RobotConfig config = pathplanner::RobotConfig::fromGUISettings();

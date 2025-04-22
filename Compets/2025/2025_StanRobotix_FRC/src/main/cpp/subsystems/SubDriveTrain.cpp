@@ -9,9 +9,9 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU, frc2::CommandJoystick * iCommandJoys
 {
 
     // Initialization of the SwerveModules' location relative to the robot center
-    m_frontLeftLocation  = new frc::Translation2d{0.3683_m, 0.3556_m};
-    m_frontRightLocation = new frc::Translation2d{0.3683_m, -0.3556_m};
-    m_backLeftLocation   = new frc::Translation2d{-0.3683_m, 0.3556_m};
+    m_frontLeftLocation  = new frc::Translation2d{ 0.3683_m,  0.3556_m};
+    m_frontRightLocation = new frc::Translation2d{ 0.3683_m, -0.3556_m};
+    m_backLeftLocation   = new frc::Translation2d{-0.3683_m,  0.3556_m};
     m_backRightLocation  = new frc::Translation2d{-0.3683_m, -0.3556_m};
 
     // Initialization of the SwerveModules with the motor IDs
@@ -58,12 +58,7 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU, frc2::CommandJoystick * iCommandJoys
     }
 
     // Initialization of the swerve pose estimator with the kinematics, the robot's rotation, an array of the SwerveModules' position, and the robot's pose
-    m_poseEstimator = new frc::SwerveDrivePoseEstimator<4>{*m_kinematics, mIMU->getRotation2d(), {
-                    m_frontLeftModule->getModulePosition(),
-                    m_frontRightModule->getModulePosition(),
-                    m_backLeftModule->getModulePosition(),
-                    m_backRightModule->getModulePosition()},
-                    *m_startingRobotPose};
+    m_poseEstimator = new frc::SwerveDrivePoseEstimator<4>{*m_kinematics, mIMU->getRotation2d(), {m_frontLeftModule->getModulePosition(), m_frontRightModule->getModulePosition(), m_backLeftModule->getModulePosition(), m_backRightModule->getModulePosition()}, *m_startingRobotPose};
 
     m_poseEstimator->SetVisionMeasurementStdDevs(*visionMeasurementStdDevs);
 
@@ -100,11 +95,10 @@ void SubDriveTrain::Periodic()
 
     // Update of the robot's pose with the robot's rotation and an array of the SwerveModules' position
     frc::Rotation2d gyroAngle = mIMU->getRotation2d();
-    m_poseEstimator->Update(gyroAngle, {
-                    m_frontLeftModule->getModulePosition(),
-                    m_frontRightModule->getModulePosition(),
-                    m_backLeftModule->getModulePosition(),
-                    m_backRightModule->getModulePosition()});
+    m_poseEstimator->Update(gyroAngle, {m_frontLeftModule->getModulePosition(),
+                                        m_frontRightModule->getModulePosition(),
+                                        m_backLeftModule->getModulePosition(),
+                                        m_backRightModule->getModulePosition()});
 
     bool rejectUpdate = false;
     // LimelightHelpers::SetRobotOrientation("", m_poseEstimator->GetEstimatedPosition().Rotation().Degrees().value(), 0, 0, 0, 0, 0);
@@ -119,13 +113,11 @@ void SubDriveTrain::Periodic()
         rejectUpdate = true;
     }
 
-    if(!rejectUpdate)
+    if (!rejectUpdate)
     {
         m_poseEstimator->AddVisionMeasurement(mt2.pose, frc::Timer::GetFPGATimestamp());
     }
 }
-   
-void SubDriveTrain::Init() {}
 
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double SpeedModulation)
 {
@@ -163,9 +155,8 @@ frc::ChassisSpeeds SubDriveTrain::getRobotRelativeSpeeds()
                                                                                                             m_backLeftModule->getModuleState(),
                                                                                                             m_backRightModule->getModuleState()});
     // Creating a ChassisSpeeds from these speeds and the robot's rotation and returning it
-    frc::ChassisSpeeds robotRelativeSpeeds = frc::ChassisSpeeds::FromRobotRelativeSpeeds(forward,sideways,angular,mIMU->getRotation2d());
+    frc::ChassisSpeeds robotRelativeSpeeds = frc::ChassisSpeeds::FromRobotRelativeSpeeds(forward, sideways, angular, mIMU->getRotation2d());
     return robotRelativeSpeeds;
-
 }
 
 void SubDriveTrain::driveRobotRelative(frc::ChassisSpeeds speeds, double SpeedModulation)

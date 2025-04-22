@@ -5,63 +5,73 @@
 #include "subsystems/SubCoralPivot.h"
 #include <cmath>
 
-
-SubCoralPivot::SubCoralPivot(){
-    mCoralPivotMotor = new rev::spark::SparkMax (CoralConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+SubCoralPivot::SubCoralPivot()
+{
+    mCoralPivotMotor = new rev::spark::SparkMax{CoralConstants::Pivot::kMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
     mPIDController.SetTolerance(0.1);
 }
 
 // This method will be called once per scheduler run
-void SubCoralPivot::Periodic() {
-    // std::cout << cos((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi) << std::endl; //  
+void SubCoralPivot::Periodic()
+{
+    // std::cout << cos((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi) << std::endl; //
     // std::cout << (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi << std::endl;
     // std::cout << mCoralPivotMotor->GetEncoder().GetPosition() << std::endl;
 }
 
-
-void SubCoralPivot::Pivot(float SetPoint){
+void SubCoralPivot::Pivot(float SetPoint)
+{
     mPIDController.SetSetpoint(SetPoint);
-    
+
     double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi;
     double CalculatedPID = mPIDController.Calculate((mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 64 * 2 * std::numbers::pi) * 13;
 
-    mCoralPivotMotor->SetVoltage(-(units::volt_t(kG)) * cos(pivotPositionRad) + units::volt_t(CalculatedPID) * PIDEnable);
+    mCoralPivotMotor->SetVoltage(-(units::volt_t(kG))*cos(pivotPositionRad) + units::volt_t(CalculatedPID) * PIDEnable);
 }
 
-void SubCoralPivot::Stop(){
+void SubCoralPivot::Stop()
+{
     mCoralPivotMotor->StopMotor();
 }
 
-bool SubCoralPivot::AtSetPoint(){
+bool SubCoralPivot::AtSetPoint()
+{
     return mPIDController.AtSetpoint();
 }
 
-void SubCoralPivot::SetSetPoint(double iSetPoint){
+void SubCoralPivot::SetSetPoint(double iSetPoint)
+{
     mPIDController.SetSetpoint(iSetPoint);
 }
 
-void SubCoralPivot::SetPIDEnable(bool iState){
+void SubCoralPivot::SetPIDEnable(bool iState)
+{
     PIDEnable = iState;
 }
 
-SubCoralPivot::StatesCoral SubCoralPivot::GetState(){
+SubCoralPivot::StatesCoral SubCoralPivot::GetState()
+{
     return mState;
 }
 
-void SubCoralPivot::SetState(StatesCoral iState){
+void SubCoralPivot::SetState(StatesCoral iState)
+{
     mState = iState;
 }
 
-void SubCoralPivot::CounterGravity(){
-    double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi;   
-    mCoralPivotMotor->SetVoltage(-units::volt_t(kG) * cos(pivotPositionRad)); //  
+void SubCoralPivot::CounterGravity()
+{
+    double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi;
+    mCoralPivotMotor->SetVoltage(-units::volt_t(kG) * cos(pivotPositionRad)); //
 }
 
-void SubCoralPivot::SetVoltage(double iVoltage){
+void SubCoralPivot::SetVoltage(double iVoltage)
+{
     mCoralPivotMotor->SetVoltage(units::volt_t(iVoltage));
 }
 
-double SubCoralPivot::GetPosition(){
+double SubCoralPivot::GetPosition()
+{
     return (mCoralPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi;
 }
 

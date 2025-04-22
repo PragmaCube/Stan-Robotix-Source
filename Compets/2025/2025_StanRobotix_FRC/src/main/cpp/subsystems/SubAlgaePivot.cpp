@@ -5,16 +5,15 @@
 #include "subsystems/SubAlgaePivot.h"
 #include <cmath>
 
-
 SubAlgaePivot::SubAlgaePivot()
 {
-    mAlgaePivotMotor = new rev::spark::SparkMax (AlgaeConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+    mAlgaePivotMotor = new rev::spark::SparkMax(AlgaeConstants::Pivot::kMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless);
 }
 
 // This method will be called once per scheduler run
-void SubAlgaePivot::Periodic() 
+void SubAlgaePivot::Periodic()
 {
-   // std::cout << cos((mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi) << std::endl;
+    // std::cout << cos((mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi) << std::endl;
 }
 
 void SubAlgaePivot::Stop()
@@ -25,11 +24,11 @@ void SubAlgaePivot::Stop()
 void SubAlgaePivot::Pivot(double Setpoint)
 {
     mPIDController.SetSetpoint(Setpoint);
-    
+
     double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi;
     double CalculatedPID = mPIDController.Calculate((mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi) * 13;
 
-    mAlgaePivotMotor->SetVoltage((units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID) * PIDEnable);  //  
+    mAlgaePivotMotor->SetVoltage((units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID) * PIDEnable);
 }
 
 bool SubAlgaePivot::AtSetPoint()

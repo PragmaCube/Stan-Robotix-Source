@@ -6,7 +6,7 @@
 
 SubCoralIntake::SubCoralIntake()
 {
-    mCoralIntakeMotor = new rev::spark::SparkMax (CoralConstants::Intake::kMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless);
+    mCoralIntakeMotor = new rev::spark::SparkMax{CoralConstants::Intake::kMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
 }
 
 // This method will be called once per scheduler run
