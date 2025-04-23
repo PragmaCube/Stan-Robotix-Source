@@ -27,7 +27,7 @@ class VisionGoToAlgae
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  VisionGoToAlgae(SubDriveTrain*, SubCameraVision*, SubIMU*);
+  VisionGoToAlgae(SubDriveTrain*, SubCameraVision*);
 
   void Initialize() override;
 
@@ -40,7 +40,6 @@ class VisionGoToAlgae
   private:
   SubDriveTrain * mSubDriveTrain;
   SubCameraVision * mSubVision;
-  SubIMU * mSubIMU;
   double PIDOut;
   frc::PIDController * mPIDController;
 };

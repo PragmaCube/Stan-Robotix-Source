@@ -4,21 +4,18 @@
 
 #include "commands/VisionGoToAlgae.h"
 
-VisionGoToAlgae::VisionGoToAlgae(SubDriveTrain *iSubDrive, SubCameraVision *iSubCamera, SubIMU *iSubIMU)
+VisionGoToAlgae::VisionGoToAlgae(SubDriveTrain *iSubDrive, SubCameraVision *iSubCamera)
 {
   // Use addRequirements() here to declare subsystem dependencies.
   mSubDriveTrain = iSubDrive;
   mSubVision = iSubCamera;
-mSubIMU = iSubIMU;
   AddRequirements(mSubDriveTrain);
   AddRequirements(mSubVision);
-  AddRequirements(mSubIMU);
 
 
 
-  // mSubIMU = new SubIMU;
-  mPIDController = new frc::PIDController{0.1, 0, 0};
-  // mSubVision = new SubCameraVision;
+  mPIDController = new frc::PIDController{0.05, 0, 0};
+
   // mSubDriveTrain = new SubDriveTrain{mSubIMU};
   
 
@@ -34,17 +31,27 @@ void VisionGoToAlgae::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void VisionGoToAlgae::Execute()
 {
+
   PIDOut = mPIDController->Calculate(mSubVision->getYaw(), 0.0);
-  std::cout << mPIDController->Calculate(mSubVision->getYaw(), 0.0) << std::endl;
-  // mSubDriveTrain->driveFieldRelative(0,0,PIDOut/3,0.5);
+
+
+   mSubDriveTrain->driveFieldRelative(0,0,PIDOut/3,0.5);
+       
+
+
 
 }
 
 // Called once the command ends or is interrupted.
-void VisionGoToAlgae::End(bool interrupted) {}
+void VisionGoToAlgae::End(bool interrupted) {
+  mSubDriveTrain->driveFieldRelative(0,0,0,0);
+}
 
 // Returns true when the command should end.
 bool VisionGoToAlgae::IsFinished()
 {
+  std::cout << mSubVision->getYaw() << std::endl;
+  std::cout << mPIDController->GetSetpoint() << std::endl;
+
   return mPIDController->AtSetpoint();
 }

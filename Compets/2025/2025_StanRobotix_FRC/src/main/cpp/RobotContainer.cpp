@@ -23,7 +23,7 @@ RobotContainer::RobotContainer() {
   //mSubCoralPivot = new SubCoralPivot;
   mSubCoralIntake = new SubCoralIntake;
   mSubReefPivot = new SubReefPivot;
-  //mSubCameraVision = new SubCameraVision;
+  mSubCameraVision = new SubCameraVision;
 /*
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
       [this] {
@@ -130,7 +130,7 @@ void RobotContainer::ConfigureBindings() {
   m_commandJoystick->Button(11).WhileTrue(ManualReefPivot(mSubReefPivot).ToPtr());
  // m_commandJoystick->Button(1).WhileTrue(ReefPivotUp(mSubReefPivot).ToPtr());  
 */
- m_commandJoystick->Button(1).WhileTrue(VisionGoToAlgae(mDriveTrain, mSubCameraVision, mIMU).ToPtr());  
+ m_commandJoystick->Button(1).OnTrue(VisionGoToAlgae(mDriveTrain, mSubCameraVision).ToPtr());  
 
   // m_commandJoystick->Button(JoystickBindingsConstants::kClimb).OnTrue(Climb(mSubAlgaePivot, mJoystick).ToPtr());
 /*
