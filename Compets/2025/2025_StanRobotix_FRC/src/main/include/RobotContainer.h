@@ -43,6 +43,8 @@
 #include "commands/GoToTag.h"
 #include "commands/SequentialGoToTag.h"
 
+#include "subsystems/SubElevator.h"
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -80,17 +82,15 @@ class RobotContainer {
   frc::SendableChooser<frc2::Command *> autoChooser;
 
   // The robot's subsystems are defined here...
-  ExampleSubsystem m_subsystem;
-  SubDriveTrain * mDriveTrain = nullptr;
-  SubIMU * mIMU = nullptr;
-  SubAlgaePivot * mSubAlgaePivot = nullptr;
-  SubAlgaeIntake * mSubAlgaeIntake = nullptr;
-  SubCoralPivot * mSubCoralPivot = nullptr;
-  SubCoralIntake * mSubCoralIntake = nullptr;
-  SubReefPivot * mSubReefPivot = nullptr;
-
-  frc::Joystick * mJoystick = nullptr;
-  frc::XboxController * mJoystickSecondaire = nullptr;
+  // ExampleSubsystem m_subsystem;
+  // SubDriveTrain * mDriveTrain = nullptr;
+  // SubIMU * mIMU = nullptr;
+  // SubAlgaePivot * mSubAlgaePivot = nullptr;
+  // SubAlgaeIntake * mSubAlgaeIntake = nullptr;
+  // SubCoralPivot * mSubCoralPivot = nullptr;
+  // SubCoralIntake * mSubCoralIntake = nullptr;
+  // SubReefPivot * mSubReefPivot = nullptr;
+  SubElevator * mSubElevator = nullptr;
 
   //frc2::CommandPtr * m_PeriodeAuto;
   // frc::SendableChooser<frc2::Command *> autoChooser;

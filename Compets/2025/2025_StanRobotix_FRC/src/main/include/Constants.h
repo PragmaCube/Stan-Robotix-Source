@@ -121,6 +121,13 @@ namespace ReefConstants {
     }
 }
 
+namespace ElevatorConstants {
+    constexpr double kP = 0;
+    constexpr double kI = 0;
+    constexpr double kD = 0;
+    constexpr int kMotorID = 5;
+}
+
 namespace CommandConstants {
     constexpr int kIterationsGoal = 49;
 }

@@ -16,71 +16,72 @@ RobotContainer::RobotContainer() {
   m_commandJoystick = new frc2::CommandJoystick{0};
   m_commandXbox = new frc2::CommandXboxController{1};
 
-  mIMU = new SubIMU;
-  mDriveTrain = new SubDriveTrain{mIMU};
-  mSubAlgaePivot = new SubAlgaePivot;
-  mSubAlgaeIntake = new SubAlgaeIntake;
-  mSubCoralPivot = new SubCoralPivot;
-  mSubCoralIntake = new SubCoralIntake;
-  mSubReefPivot = new SubReefPivot;
+  // mIMU = new SubIMU;
+  // mDriveTrain = new SubDriveTrain{mIMU};
+  // mSubAlgaePivot = new SubAlgaePivot;
+  // mSubAlgaeIntake = new SubAlgaeIntake;
+  // mSubCoralPivot = new SubCoralPivot;
+  // mSubCoralIntake = new SubCoralIntake;
+  // mSubReefPivot = new SubReefPivot;
+  mSubElevator = new SubElevator;
 
-  mDriveTrain->SetDefaultCommand(frc2::RunCommand(
-      [this] {
-      mDriveTrain->driveFieldRelative(-m_commandJoystick->GetHID().GetX(),
-                                      -m_commandJoystick->GetHID().GetY(),
-                                      -m_commandJoystick->GetHID().GetZ(),
-                                      (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
-      },
-      {mDriveTrain}));
+  // mDriveTrain->SetDefaultCommand(frc2::RunCommand(
+  //     [this] {
+  //     mDriveTrain->driveFieldRelative(-m_commandJoystick->GetHID().GetX(),
+  //                                     -m_commandJoystick->GetHID().GetY(),
+  //                                     -m_commandJoystick->GetHID().GetZ(),
+  //                                     (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
+  //     },
+  //     {mDriveTrain}));
 
-  mSubCoralPivot->SetDefaultCommand(frc2::RunCommand(
-    [this] {
-      mSubCoralPivot->CounterGravity();
-    },
-    {mSubCoralPivot}));
+  // mSubCoralPivot->SetDefaultCommand(frc2::RunCommand(
+  //   [this] {
+  //     mSubCoralPivot->CounterGravity();
+  //   },
+  //   {mSubCoralPivot}));
 
-  mSubAlgaePivot->SetDefaultCommand(frc2::RunCommand(
-    [this] {
-      mSubAlgaePivot->CounterGravity();
-    },
-    {mSubAlgaePivot}));
+  // mSubAlgaePivot->SetDefaultCommand(frc2::RunCommand(
+  //   [this] {
+  //     mSubAlgaePivot->CounterGravity();
+  //   },
+  //   {mSubAlgaePivot}));
 
-  mSubReefPivot->SetDefaultCommand(frc2::RunCommand(
-    [this] {
-      mSubReefPivot->CounterGravity();
-      mSubReefPivot->StopIntake();
-    },
-    {mSubReefPivot}));
+  // mSubReefPivot->SetDefaultCommand(frc2::RunCommand(
+  //   [this] {
+  //     mSubReefPivot->CounterGravity();
+  //     mSubReefPivot->StopIntake();
+  //   },
+  //   {mSubReefPivot}));
 
-  mSubCoralIntake->SetDefaultCommand(frc2::RunCommand(
-    [this] {
-      mSubCoralIntake->Stop();
-    },
-    {mSubCoralIntake}));
+  // mSubCoralIntake->SetDefaultCommand(frc2::RunCommand(
+  //   [this] {
+  //     mSubCoralIntake->Stop();
+  //   },
+  //   {mSubCoralIntake}));
 
-   mSubAlgaeIntake->SetDefaultCommand(frc2::RunCommand(
-    [this] {
-      mSubAlgaeIntake->Stop();
-    },
-    {mSubAlgaeIntake}));
+  //  mSubAlgaeIntake->SetDefaultCommand(frc2::RunCommand(
+  //   [this] {
+  //     mSubAlgaeIntake->Stop();
+  //   },
+  //   {mSubAlgaeIntake}));
 
   ConfigureBindings();
 
-  mIMU->resetAngle();
+  // mIMU->resetAngle();
 
-  pathplanner::NamedCommands::registerCommand("Go to tag", std::move(GoToTag(mDriveTrain, mIMU).ToPtr()));
+  // pathplanner::NamedCommands::registerCommand("Go to tag", std::move(GoToTag(mDriveTrain, mIMU).ToPtr()));
 
-  pathplanner::NamedCommands::registerCommand("Pivot coral up", std::move(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Pivot coral down", std::move(CoralPivotDown(mSubCoralPivot).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Pivot coral down 0.5s", std::move(AutoCoralDown(mSubCoralPivot).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Coral intake", std::move(CoralIntake(mSubCoralIntake).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Coral outtake", std::move(CoralOuttake(mSubCoralIntake, mJoystickSecondaire).ToPtr()));
+  // pathplanner::NamedCommands::registerCommand("Pivot coral up", std::move(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr()));
+  // pathplanner::NamedCommands::registerCommand("Pivot coral down", std::move(CoralPivotDown(mSubCoralPivot).ToPtr()));
+  // pathplanner::NamedCommands::registerCommand("Pivot coral down 0.5s", std::move(AutoCoralDown(mSubCoralPivot).ToPtr()));
+  // pathplanner::NamedCommands::registerCommand("Coral intake", std::move(CoralIntake(mSubCoralIntake).ToPtr()));
+  // pathplanner::NamedCommands::registerCommand("Coral outtake", std::move(CoralOuttake(mSubCoralIntake, m_commandXbox->GetHID()).ToPtr()));
 
-  pathplanner::NamedCommands::registerCommand("Pivot algae up", std::move(AlgaePivotUp(mSubAlgaePivot).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Pivot algae down", std::move(AlgaePivotDown(mSubAlgaePivot).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Algae full intake", std::move(AlgaeFullIntake(mSubAlgaeIntake, mSubAlgaePivot).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Algae intake", std::move(AlgaeIntakeIn(mSubAlgaeIntake).ToPtr()));
-  pathplanner::NamedCommands::registerCommand("Algae outtake", std::move(AlgaeIntakeOut(mSubAlgaeIntake, mJoystickSecondaire).ToPtr()));
+  // pathplanner::NamedCommands::registerCommand("Pivot algae up", std::move(AlgaePivotUp(mSubAlgaePivot).ToPtr()));
+  // pathplanner::NamedCommands::registerCommand("Pivot algae down", std::move(AlgaePivotDown(mSubAlgaePivot).ToPtr()));
+  // pathplanner::NamedCommands::registerCommand("Algae full intake", std::move(AlgaeFullIntake(mSubAlgaeIntake, mSubAlgaePivot).ToPtr()));
+  // pathplanner::NamedCommands::registerCommand("Algae intake", std::move(AlgaeIntakeIn(mSubAlgaeIntake).ToPtr()));
+  // pathplanner::NamedCommands::registerCommand("Algae outtake", std::move(AlgaeIntakeOut(mSubAlgaeIntake, m_commandXbox->GetHID()).ToPtr()));
 
 
 
@@ -103,28 +104,30 @@ void RobotContainer::periodic(){}
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
 
-  m_commandJoystick->Button(JoystickBindingsConstants::kGoToTag).OnTrue(GoToTag(mDriveTrain, mIMU).ToPtr());
+  // m_commandJoystick->Button(JoystickBindingsConstants::kGoToTag).OnTrue(GoToTag(mDriveTrain, mIMU).ToPtr());
 
-  m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).WhileTrue(frc2::RunCommand([this] {mIMU->resetAngle();},{mIMU}).ToPtr());  
+  // m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).WhileTrue(frc2::RunCommand([this] {mIMU->resetAngle();},{mIMU}).ToPtr());  
 
-  m_commandJoystick->Button(12).OnTrue(ReefPivotDown(mSubReefPivot).ToPtr());
-  m_commandJoystick->Button(11).WhileTrue(ManualReefPivot(mSubReefPivot).ToPtr());
-  m_commandJoystick->Button(1).WhileTrue(ReefPivotUp(mSubReefPivot).ToPtr());  
+  // m_commandJoystick->Button(12).OnTrue(ReefPivotDown(mSubReefPivot).ToPtr());
+  // m_commandJoystick->Button(11).WhileTrue(ManualReefPivot(mSubReefPivot).ToPtr());
+  // m_commandJoystick->Button(1).WhileTrue(ReefPivotUp(mSubReefPivot).ToPtr());  
 
   // m_commandJoystick->Button(JoystickBindingsConstants::kClimb).OnTrue(Climb(mSubAlgaePivot, mJoystick).ToPtr());
 
-  m_commandJoystick->Button(JoystickBindingsConstants::Coral::kManualIn).WhileTrue(CoralIntake(mSubCoralIntake).ToPtr());
-  m_commandXbox->LeftBumper().OnTrue(CoralOuttake(mSubCoralIntake, mJoystickSecondaire).ToPtr());
+  // m_commandJoystick->Button(JoystickBindingsConstants::Coral::kManualIn).WhileTrue(CoralIntake(mSubCoralIntake).ToPtr());
+  // m_commandXbox->LeftBumper().OnTrue(CoralOuttake(mSubCoralIntake, mJoystickSecondaire).ToPtr());
 
-  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kManualIn).WhileTrue(AlgaeIntakeIn(mSubAlgaeIntake).ToPtr());
-  m_commandXbox->RightBumper().WhileTrue(AlgaeIntakeOut(mSubAlgaeIntake, mJoystickSecondaire).ToPtr());
+  // m_commandJoystick->Button(JoystickBindingsConstants::Algae::kManualIn).WhileTrue(AlgaeIntakeIn(mSubAlgaeIntake).ToPtr());
+  // m_commandXbox->RightBumper().WhileTrue(AlgaeIntakeOut(mSubAlgaeIntake, mJoystickSecondaire).ToPtr());
 
-  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kPivotUp).OnTrue(AlgaePivotUp(mSubAlgaePivot).ToPtr());
-  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kPivotDown).OnTrue(AlgaePivotDown(mSubAlgaePivot).ToPtr());  
-  m_commandJoystick->Button(JoystickBindingsConstants::Algae::kManualPivotUp).WhileTrue(ClimbPivotUp(mSubAlgaePivot).ToPtr());  
+  // m_commandJoystick->Button(JoystickBindingsConstants::Algae::kPivotUp).OnTrue(AlgaePivotUp(mSubAlgaePivot).ToPtr());
+  // m_commandJoystick->Button(JoystickBindingsConstants::Algae::kPivotDown).OnTrue(AlgaePivotDown(mSubAlgaePivot).ToPtr());  
+  // m_commandJoystick->Button(JoystickBindingsConstants::Algae::kManualPivotUp).WhileTrue(ClimbPivotUp(mSubAlgaePivot).ToPtr());  
 
-  m_commandJoystick->Button(JoystickBindingsConstants::Coral::kPivotUp).WhileTrue(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr());
-  m_commandJoystick->Button(JoystickBindingsConstants::Coral::kPivotDown).WhileTrue(CoralPivotDown(mSubCoralPivot).ToPtr());
+  // m_commandJoystick->Button(JoystickBindingsConstants::Coral::kPivotUp).WhileTrue(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr());
+  // m_commandJoystick->Button(JoystickBindingsConstants::Coral::kPivotDown).WhileTrue(CoralPivotDown(mSubCoralPivot).ToPtr());
+  m_commandJoystick->Button(7).WhileTrue(frc2::RunCommand(std::function<void()>(std::bind(&SubElevator::manualUp, mSubElevator))).ToPtr());
+  m_commandJoystick->Button(8).WhileTrue(frc2::RunCommand(std::function<void()>(std::bind(&SubElevator::manualDown, mSubElevator))).ToPtr());
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {
