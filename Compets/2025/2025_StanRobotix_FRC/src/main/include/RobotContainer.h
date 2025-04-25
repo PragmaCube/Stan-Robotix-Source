@@ -22,26 +22,26 @@
 #include <frc/shuffleboard/Shuffleboard.h>
 #include <frc/shuffleboard/ShuffleboardTab.h>
 
-#include "commands/AlgaePivotUp.h"
-#include "commands/AlgaeIntakeOut.h"
-#include "commands/AlgaeFullIntake.h"
+// #include "commands/AlgaePivotUp.h"
+// #include "commands/AlgaeIntakeOut.h"
+// #include "commands/AlgaeFullIntake.h"
 
-#include "commands/CoralOuttake.h"
-#include "commands/CoralPivotUp.h"
-#include "commands/CoralFullIntake.h"
+// #include "commands/CoralOuttake.h"
+// #include "commands/CoralPivotUp.h"
+// #include "commands/CoralFullIntake.h"
 
-#include "commands/ReefPivotUp.h"
-#include "commands/ReefPivotDown.h"
+// #include "commands/ReefPivotUp.h"
+// #include "commands/ReefPivotDown.h"
 
-#include "commands/Climb.h"
-#include "commands/ClimbPivotUp.h"
+// #include "commands/Climb.h"
+// #include "commands/ClimbPivotUp.h"
 
-#include "commands/ManualReefPivot.h"
+// #include "commands/ManualReefPivot.h"
 
-#include "commands/AutoCoralDown.h"
+// #include "commands/AutoCoralDown.h"
 
-#include "commands/GoToTag.h"
-#include "commands/SequentialGoToTag.h"
+// #include "commands/GoToTag.h"
+// #include "commands/SequentialGoToTag.h"
 
 #include "subsystems/SubElevator.h"
 
