@@ -4,7 +4,6 @@
 
 #include "subsystems/UltrasoundSubsystem.h"
 #include "Constants.h"
-
 #include <iostream>
 
 UltrasoundSubsystem::UltrasoundSubsystem() {
