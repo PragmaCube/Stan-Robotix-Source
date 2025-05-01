@@ -9,7 +9,6 @@
     "Comp Droite Paths",
     "Comp Gauche Paths",
     "Rouge",
-    "New New Folder",
     "Test Paths"
   ],
   "autoFolders": [
@@ -18,9 +17,9 @@
     "Practice Autos",
     "Test Autos"
   ],
-  "defaultMaxVel": 0.5,
+  "defaultMaxVel": 1.0,
   "defaultMaxAccel": 3.0,
-  "defaultMaxAngVel": 22.5,
+  "defaultMaxAngVel": 90.0,
   "defaultMaxAngAccel": 180.0,
   "defaultNominalVoltage": 12.0,
   "robotMass": 40.0,
