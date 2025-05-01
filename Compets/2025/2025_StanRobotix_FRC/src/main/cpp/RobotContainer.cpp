@@ -164,5 +164,5 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {
   //   break;
   // }
   // return *autoChooser.GetSelected();
-  // return autos::ExampleAuto(&m_subsystem);
+  return autos::ExampleAuto(&m_subsystem);
 }

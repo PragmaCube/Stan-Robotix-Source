@@ -82,7 +82,7 @@ class RobotContainer {
   frc::SendableChooser<frc2::Command *> autoChooser;
 
   // The robot's subsystems are defined here...
-  // ExampleSubsystem m_subsystem;
+  ExampleSubsystem m_subsystem;
   // SubDriveTrain * mDriveTrain = nullptr;
   // SubIMU * mIMU = nullptr;
   // SubAlgaePivot * mSubAlgaePivot = nullptr;
