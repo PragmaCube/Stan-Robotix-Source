@@ -65,7 +65,8 @@ RobotContainer::RobotContainer() {
   //   },
   //   {mSubAlgaeIntake}));
 
-   mSubElevator->SetDefaultCommand(frc2::RunCommand(std::function<void()>(std::bind(&SubElevator::DefaultCommand, mSubElevator)), {mSubElevator}));
+   mSubElevator->SetDefaultCommand(frc2::RunCommand(
+    [this] {mSubElevator->DefaultCommand();}, {mSubElevator}));
 
   ConfigureBindings();
 
@@ -128,8 +129,10 @@ void RobotContainer::ConfigureBindings() {
 
   // m_commandJoystick->Button(JoystickBindingsConstants::Coral::kPivotUp).WhileTrue(CoralPivotUp(mSubCoralPivot, mSubCoralIntake).ToPtr());
   // m_commandJoystick->Button(JoystickBindingsConstants::Coral::kPivotDown).WhileTrue(CoralPivotDown(mSubCoralPivot).ToPtr());
-  m_commandJoystick->Button(7).WhileTrue(frc2::RunCommand(std::function<void()>(std::bind(&SubElevator::manualUp, mSubElevator))).ToPtr());
-  m_commandJoystick->Button(8).WhileTrue(frc2::RunCommand(std::function<void()>(std::bind(&SubElevator::manualDown, mSubElevator))).ToPtr());
+  m_commandJoystick->Button(7).WhileTrue(frc2::RunCommand([this] {mSubElevator->manualUp();}, {mSubElevator}).ToPtr());
+  m_commandJoystick->Button(8).WhileTrue(frc2::RunCommand([this] {mSubElevator->manualDown();}, {mSubElevator}).ToPtr());
+  m_commandJoystick->Button(9).WhileTrue(frc2::RunCommand([this] {mSubElevator->SetPosition(1);}, {mSubElevator}).ToPtr());
+  m_commandJoystick->Button(10).WhileTrue(frc2::RunCommand([this] {mSubElevator->SetPosition(-1);}, {mSubElevator}).ToPtr());
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {

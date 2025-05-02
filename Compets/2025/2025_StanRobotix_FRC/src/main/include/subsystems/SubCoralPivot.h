@@ -12,7 +12,6 @@
 #include <frc/controller/ArmFeedforward.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <rev/SparkRelativeEncoder.h>
-#include <frc/controller/ArmFeedforward.h>
 
 #include "Constants.h"
 

@@ -6,6 +6,8 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
+#include <frc/controller/PIDController.h>
+#include <rev/SparkRelativeEncoder.h>
 
 #include "Constants.h"
 
@@ -25,10 +27,18 @@ class SubElevator : public frc2::SubsystemBase {
 
   void DefaultCommand();
 
+  void SetPosition(double iSetpoint);
+
+  void CounterGravity();
+
+  int sgn(double iInput);
+
   void Periodic() override;
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   rev::spark::SparkMax * mElevatorMotor;
+  frc::PIDController * mPIDController;
+  rev::spark::SparkRelativeEncoder * mRelativeEncoder;
 };

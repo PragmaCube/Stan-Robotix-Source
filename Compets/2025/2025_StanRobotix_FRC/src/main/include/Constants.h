@@ -125,6 +125,9 @@ namespace ElevatorConstants {
     constexpr double kP = 0;
     constexpr double kI = 0;
     constexpr double kD = 0;
+    constexpr double kS = 0;
+    constexpr double kG = 0;
+    constexpr double kOffset = 0;
     constexpr int kMotorID = 5;
 }
 
