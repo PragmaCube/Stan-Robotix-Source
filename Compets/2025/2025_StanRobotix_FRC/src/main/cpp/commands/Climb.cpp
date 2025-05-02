@@ -23,9 +23,9 @@ void Climb::Initialize() {
 void Climb::Execute() {
   if (mJoystick->GetRawButton(JoystickBindingsConstants::kClimb))
   {
-    mSubAlgaePivot->Climb();
+    mSubAlgaePivot->SetVoltage(AlgaeConstants::Pivot::ClimbRiseVoltage);
   } else if (mJoystick->GetRawButton(JoystickBindingsConstants::kClimb) == false) {
-    mSubAlgaePivot->StayStill();
+    mSubAlgaePivot->SetVoltage(AlgaeConstants::Pivot::ClimbNeutralVoltage);
   }
 
 }

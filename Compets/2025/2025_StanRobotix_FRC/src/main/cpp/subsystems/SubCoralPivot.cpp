@@ -15,14 +15,20 @@ SubCoralPivot::SubCoralPivot()
 // This method will be called once per scheduler run
 void SubCoralPivot::Periodic() {}
 
+double SubCoralPivot::GetAngle()
+{
+    // Returns the angle of the pivot in radians. This is done by dividing the encoder's position by the gear ratio (20 in this case) and multiplying by 2pi.
+    // The horizontal position is 0 radians with the offset.
+    return (mCoralPivotMotor->GetEncoder().GetPosition() + CoralConstants::Pivot::kOffset) / 20 * 2 * std::numbers::pi;
+}
+
 void SubCoralPivot::SetPosition(double SetPoint)
 {
     mPIDController->SetSetpoint(SetPoint);
+    double pivotAngle = GetAngle();
+    double OutputPID = mPIDController->Calculate(GetAngle()) * 13;
 
-    double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + CoralConstants::Pivot::kOffset) / 64 * 2 * std::numbers::pi;
-    double CalculatedPID = mPIDController->Calculate((mCoralPivotMotor->GetEncoder().GetPosition() + CoralConstants::Pivot::kOffset) / 64 * 2 * std::numbers::pi) * 13;
-
-    mCoralPivotMotor->SetVoltage(-(units::volt_t(CoralConstants::Pivot::kG))*cos(pivotPositionRad) + units::volt_t(CalculatedPID) * PIDEnable);
+    mCoralPivotMotor->SetVoltage(CoralConstants::Pivot::kG * cos(pivotAngle) + units::volt_t(OutputPID) * PIDEnable);
 }
 
 void SubCoralPivot::Stop()
@@ -42,18 +48,13 @@ void SubCoralPivot::SetPIDEnable(bool iState)
 
 void SubCoralPivot::CounterGravity()
 {
-    double pivotPositionRad = (mCoralPivotMotor->GetEncoder().GetPosition() + CoralConstants::Pivot::kOffset) / 20 * 2 * std::numbers::pi;
-    mCoralPivotMotor->SetVoltage(-units::volt_t(CoralConstants::Pivot::kG) * cos(pivotPositionRad)); //
+    double pivotAngle = GetAngle();
+    mCoralPivotMotor->SetVoltage(CoralConstants::Pivot::kG * cos(pivotAngle)); //
 }
 
 void SubCoralPivot::SetVoltage(double iVoltage)
 {
     mCoralPivotMotor->SetVoltage(units::volt_t(iVoltage));
-}
-
-double SubCoralPivot::GetPosition()
-{
-    return (mCoralPivotMotor->GetEncoder().GetPosition() + CoralConstants::Pivot::kOffset) / 20 * 2 * std::numbers::pi;
 }
 
 /*

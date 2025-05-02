@@ -19,7 +19,7 @@ void ClimbPivotUp::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ClimbPivotUp::Execute() {
-  mSubAlgaePivot->PivotUpSmooth();
+  mSubAlgaePivot->SetVoltage(AlgaeConstants::Pivot::PivotUpVoltage);
 }
 
 // Called once the command ends or is interrupted.

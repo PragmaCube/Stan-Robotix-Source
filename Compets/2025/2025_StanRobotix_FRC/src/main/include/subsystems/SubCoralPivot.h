@@ -43,7 +43,7 @@ class SubCoralPivot : public frc2::SubsystemBase {
   void SetVoltage(double);
 
   // Method to get the position of the encoder of the pivot.
-  double GetPosition();
+  double GetAngle();
 
   void Stop();
 

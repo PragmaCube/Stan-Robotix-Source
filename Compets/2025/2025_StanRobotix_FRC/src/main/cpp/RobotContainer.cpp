@@ -178,6 +178,4 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint)
     return pathplanner::PathPlannerAuto("Test").ToPtr();
     break;
   }
-  // return *autoChooser.GetSelected();
-  // return autos::ExampleAuto(&m_subsystem);
 }

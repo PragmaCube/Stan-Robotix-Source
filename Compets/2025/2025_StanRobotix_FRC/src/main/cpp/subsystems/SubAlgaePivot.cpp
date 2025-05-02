@@ -14,6 +14,11 @@ SubAlgaePivot::SubAlgaePivot()
 // This method will be called once per scheduler run
 void SubAlgaePivot::Periodic() {}
 
+double SubAlgaePivot::GetAngle()
+{
+    return (mAlgaePivotMotor->GetEncoder().GetPosition() + AlgaeConstants::Pivot::kOffset) / AlgaeConstants::Pivot::gearRatio * 2*std::numbers::pi;
+}
+
 void SubAlgaePivot::Stop()
 {
     mAlgaePivotMotor->StopMotor();
@@ -22,11 +27,10 @@ void SubAlgaePivot::Stop()
 void SubAlgaePivot::SetPosition(double Setpoint)
 {
     mPIDController->SetSetpoint(Setpoint);
+    double pivotAngle = GetAngle();
+    double Output = mPIDController->Calculate(pivotAngle) * 13;
 
-    double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + AlgaeConstants::Pivot::kOffset) / 80 * 2 * std::numbers::pi;
-    double CalculatedPID = mPIDController->Calculate((mAlgaePivotMotor->GetEncoder().GetPosition() + AlgaeConstants::Pivot::kOffset) / 80 * 2 * std::numbers::pi) * 13;
-
-    mAlgaePivotMotor->SetVoltage((units::volt_t(AlgaeConstants::Pivot::kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID)); //
+    mAlgaePivotMotor->SetVoltage((AlgaeConstants::Pivot::kG * cos(pivotAngle)) + units::volt_t(Output));
 }
 
 bool SubAlgaePivot::AtSetPoint()
@@ -34,25 +38,14 @@ bool SubAlgaePivot::AtSetPoint()
     return mPIDController->AtSetpoint();
 }
 
-void SubAlgaePivot::Climb()
-{
-    mAlgaePivotMotor->SetVoltage(units::volt_t(-2.5));
-}
-
-void SubAlgaePivot::StayStill()
-{
-    mAlgaePivotMotor->SetVoltage(units::volt_t(-0.75));
-}
-
-void SubAlgaePivot::PivotUpSmooth()
-{
-    mAlgaePivotMotor->SetVoltage(units::volt_t(0.95));
+void SubAlgaePivot::SetVoltage(units::volt_t iVoltage){
+    mAlgaePivotMotor->SetVoltage(iVoltage);
 }
 
 void SubAlgaePivot::CounterGravity()
 {
-    double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + AlgaeConstants::Pivot::kOffset) / 80 * 2 * std::numbers::pi;
-    mAlgaePivotMotor->SetVoltage(units::volt_t(AlgaeConstants::Pivot::kG) * cos(pivotPositionRad));
+    double pivotAngle = GetAngle();
+    mAlgaePivotMotor->SetVoltage(AlgaeConstants::Pivot::kG * cos(pivotAngle));
 }
 
 /*

@@ -27,7 +27,7 @@ void CoralPivotUp::Execute() {
   // }
 
   mCoralIntake->SetVoltage(0.25);
-    mCoralPivot->SetVoltage(-2.75 * cos(mCoralPivot->GetPosition()));
+    mCoralPivot->SetVoltage(-2.75 * cos(mCoralPivot->GetAngle()));
 }
 
 // Called once the command ends or is interrupted.

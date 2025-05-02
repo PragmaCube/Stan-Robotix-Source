@@ -7,6 +7,7 @@
 #include <units/length.h>
 #include <units/angle.h>
 #include <units/velocity.h>
+#include <units/voltage.h>
 #include <numbers>
 
 /**
@@ -69,7 +70,7 @@ namespace AlgaeConstants {
     namespace Pivot {
         constexpr int kMotorID = 9;
 
-        // PID constants for the Pivot
+        // PID constants for the Pivot.
         constexpr double kP = 0.2;
         constexpr double kI = 0;
         constexpr double kD = 0;
@@ -78,11 +79,22 @@ namespace AlgaeConstants {
         constexpr double kPositionUp = 0.2;
         constexpr double kPositionDown = -0.2;
         
-        // Voltage used to counter the force of gravity
-        const double kG = 0.35;
+        // Voltage used to counter the force of gravity.
+        constexpr units::volt_t kG = units::volt_t(0.35);
+
+        // Voltage needed to elevate the robot during the climb phase.
+        constexpr units::volt_t ClimbRiseVoltage = units::volt_t(-2.5);
+
+        // Voltage needed to make the pivot stay in the same position while supporting the robots weight.
+        constexpr units::volt_t ClimbNeutralVoltage = units::volt_t(-0.75);
+
+        // Voltage used to manually make the pivot go up after the climbing phase.
+        constexpr units::volt_t PivotUpVoltage = units::volt_t(0.95);
 
         // Offset used to make the pivot's horizontal position the zero.
-        const double kOffset = 33.6426;
+        constexpr double kOffset = 33.6426;
+
+        constexpr double gearRatio = 80;
     }
 
     namespace Intake {
@@ -108,7 +120,7 @@ namespace CoralConstants {
         constexpr double kPositionDown = -0.2;
         
         // Voltage used to counter the force of gravity.
-        constexpr double kG = 1.38;
+        constexpr units::volt_t kG = units::volt_t(-1.38);
 
         // Offset used to make the pivot's horizontal position the zero.
         constexpr double kOffset =  -4.667;

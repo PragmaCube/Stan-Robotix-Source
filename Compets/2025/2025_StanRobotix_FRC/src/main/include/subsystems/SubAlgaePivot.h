@@ -29,15 +29,15 @@ class SubAlgaePivot : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
+  // Returns the angle of the pivot in radians.
+  double GetAngle();
+
   // Takes as a parameter an angle in radians and uses a PID to make the pivot reach that angle.
   void SetPosition(double);
 
   bool AtSetPoint();
 
-  void Climb();
-  void PivotUpSmooth();
-
-  void StayStill();
+  void SetVoltage(units::volt_t);
 
   void CounterGravity();
 
