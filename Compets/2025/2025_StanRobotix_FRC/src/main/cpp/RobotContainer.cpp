@@ -65,6 +65,8 @@ RobotContainer::RobotContainer() {
   //   },
   //   {mSubAlgaeIntake}));
 
+   mSubElevator->SetDefaultCommand(frc2::RunCommand(std::function<void()>(std::bind(&SubElevator::DefaultCommand, mSubElevator)), {mSubElevator}));
+
   ConfigureBindings();
 
   // mIMU->resetAngle();

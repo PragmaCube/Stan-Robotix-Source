@@ -14,10 +14,20 @@ void SubElevator::Periodic() {}
 
 void SubElevator::manualUp()
 {
-    mElevatorMotor->Set(-0.01);
+    mElevatorMotor->Set(-0.03);
 }
 
 void SubElevator::manualDown()
 {
-    mElevatorMotor->Set(0.01);
+    mElevatorMotor->Set(0.03);
+}
+
+void SubElevator::Stop()
+{
+    mElevatorMotor->StopMotor();
+}
+
+void SubElevator::DefaultCommand()
+{
+    Stop();
 }

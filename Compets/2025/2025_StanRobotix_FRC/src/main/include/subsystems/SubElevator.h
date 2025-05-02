@@ -21,6 +21,10 @@ class SubElevator : public frc2::SubsystemBase {
 
   void manualDown();
 
+  void Stop();
+
+  void DefaultCommand();
+
   void Periodic() override;
 
  private:
