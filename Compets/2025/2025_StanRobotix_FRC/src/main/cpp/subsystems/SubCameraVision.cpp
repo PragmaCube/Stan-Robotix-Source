@@ -31,8 +31,7 @@ double SubCameraVision::getYaw() {
     return usbCam.GetLatestResult().GetBestTarget().GetYaw();
 }
 
-double SubCameraVision::getSkew() {
+std::vector<photon::TargetCorner> SubCameraVision::getCorner() {
    // return target.GetSkew();<
-    return 0;
-
+    return usbCam.GetLatestResult().GetBestTarget().GetMinAreaRectCorners();
 }

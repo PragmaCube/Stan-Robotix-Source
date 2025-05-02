@@ -35,23 +35,25 @@ void VisionGoToAlgae::Execute()
   PIDOut = mPIDController->Calculate(mSubVision->getYaw(), 0.0);
 
 
-   mSubDriveTrain->driveFieldRelative(0,0,PIDOut/3,0.5);
-       
+  // mSubDriveTrain->driveFieldRelative(0,0,PIDOut/3,0.5);
 
+  std::cout << "pos 0 du vect X = " << mSubVision->getCorner().at(0).x << " Y = " << mSubVision->getCorner().at(0).y << std::endl;
+  std::cout << "pos 1 du vect X = " << mSubVision->getCorner().at(1).x << " Y = " << mSubVision->getCorner().at(1).y << std::endl;
+  std::cout << "largeur de la balle = " << (mSubVision->getCorner().at(1).x - mSubVision->getCorner().at(0).x) << std::endl;
 
 
 }
 
 // Called once the command ends or is interrupted.
 void VisionGoToAlgae::End(bool interrupted) {
-  mSubDriveTrain->driveFieldRelative(0,0,0,0);
+ // mSubDriveTrain->driveFieldRelative(0,0,0,0);
 }
 
 // Returns true when the command should end.
 bool VisionGoToAlgae::IsFinished()
 {
-  std::cout << mSubVision->getYaw() << std::endl;
-  std::cout << mPIDController->GetSetpoint() << std::endl;
+ // std::cout << mSubVision->getYaw() << std::endl;
+ // std::cout << mPIDController->GetSetpoint() << std::endl;
 
   return mPIDController->AtSetpoint();
 }

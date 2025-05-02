@@ -21,6 +21,7 @@ class SubCameraVision : public frc2::SubsystemBase {
   double getYaw();
   double getPitch();
   double getSkew();
+  std::vector<photon::TargetCorner> getCorner();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
