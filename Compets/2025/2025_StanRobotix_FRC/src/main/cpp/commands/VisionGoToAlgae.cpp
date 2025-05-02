@@ -49,6 +49,7 @@ void VisionGoToAlgae::Execute()
         else{
             std::cout << "largeur de la balle = " << (mSubVision->getCorner().at(0).x - mSubVision->getCorner().at(iVect + 1).x) << std::endl;
         }
+        gotAValue = true;
       }
       iVect++;
     }
