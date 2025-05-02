@@ -12,17 +12,12 @@ UltrasoundSubsystem::UltrasoundSubsystem() {
 
 // This method will be called once per scheduler run
 void UltrasoundSubsystem::Periodic() {
-    std::cout << "Voltage:" << getVoltage() << std::endl;
     std::cout << "Valeur: " << getValue() << std::endl;
-
 }
 
-double UltrasoundSubsystem::getVoltage() {
-    return mUltrasonic->GetVoltage();
-}
 
 double UltrasoundSubsystem::getValue() {
-    return double(mUltrasonic->GetVoltage())*100;
+    return double(mUltrasonic->GetVoltage()) * UltrasonicConstants::kSecondsToCm;
 }
 
 

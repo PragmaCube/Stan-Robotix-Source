@@ -17,7 +17,7 @@ class UltrasoundSubsystem : public frc2::SubsystemBase {
   
   double getVoltage();
   double getValue();
-  //double valueToCm(double value);
+ 
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
