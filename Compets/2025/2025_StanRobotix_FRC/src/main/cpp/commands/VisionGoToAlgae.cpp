@@ -26,7 +26,11 @@ VisionGoToAlgae::VisionGoToAlgae(SubDriveTrain *iSubDrive, SubCameraVision *iSub
 }
 
 // Called when the command is initially scheduled.
-void VisionGoToAlgae::Initialize() {}
+void VisionGoToAlgae::Initialize() {
+  i = 0;
+  gotAValue = false;
+  iVect = 0;
+}
 
 // Called repeatedly when this Command is scheduled to run
 void VisionGoToAlgae::Execute()
@@ -36,12 +40,24 @@ void VisionGoToAlgae::Execute()
 
 
   // mSubDriveTrain->driveFieldRelative(0,0,PIDOut/3,0.5);
-
-  std::cout << "pos 0 du vect X = " << mSubVision->getCorner().at(0).x << " Y = " << mSubVision->getCorner().at(0).y << std::endl;
-  std::cout << "pos 1 du vect X = " << mSubVision->getCorner().at(1).x << " Y = " << mSubVision->getCorner().at(1).y << std::endl;
-  std::cout << "largeur de la balle = " << (mSubVision->getCorner().at(1).x - mSubVision->getCorner().at(0).x) << std::endl;
-
-
+  if (i == 50){
+    while (!gotAValue){
+      if (mSubVision->getCorner().at(0).y == mSubVision->getCorner().at(iVect + 1).y){
+        if(mSubVision->getCorner().at(0).x < mSubVision->getCorner().at(iVect + 1).x){
+            std::cout << "largeur de la balle = " << (mSubVision->getCorner().at(iVect + 1).x - mSubVision->getCorner().at(0).x) << std::endl;
+        }
+        else{
+            std::cout << "largeur de la balle = " << (mSubVision->getCorner().at(0).x - mSubVision->getCorner().at(iVect + 1).x) << std::endl;
+        }
+      }
+      iVect++;
+    }
+  // std::cout << "pos 0 du vect X = " << mSubVision->getCorner().at(0).x << " Y = " << mSubVision->getCorner().at(0).y << std::endl;
+  // std::cout << "pos 1 du vect X = " << mSubVision->getCorner().at(1).x << " Y = " << mSubVision->getCorner().at(1).y << std::endl;
+  // std::cout << "largeur de la balle = " << (mSubVision->getCorner().at(1).x - mSubVision->getCorner().at(0).x) << std::endl;
+  i = 0;
+  }
+  i++;
 }
 
 // Called once the command ends or is interrupted.

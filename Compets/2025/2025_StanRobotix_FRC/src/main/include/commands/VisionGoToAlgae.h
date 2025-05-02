@@ -42,4 +42,7 @@ class VisionGoToAlgae
   SubCameraVision * mSubVision;
   double PIDOut;
   frc::PIDController * mPIDController;
+  int i;
+  bool gotAValue;
+  int iVect;
 };
