@@ -7,7 +7,23 @@
 
 
 SubAlgaePivot::SubAlgaePivot(){
-    mAlgaePivotMotor = new rev::spark::SparkMax (AlgaeConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+    mAlgaePivotMotor = new rev::spark::SparkMax{AlgaeConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless};
+    mMotorRelativeEncoder = new rev::spark::SparkRelativeEncoder{mAlgaePivotMotor->GetEncoder()};
+    
+    frc2::sysid::SysIdRoutine m_sysIdRoutine{
+        frc2::sysid::Config{std::nullopt, std::nullopt, std::nullopt, nullptr},
+        frc2::sysid::Mechanism{
+            [this](units::volt_t driveVoltage) {
+                mAlgaePivotMotor->SetVoltage(driveVoltage);
+            },
+            [this](frc::sysid::SysIdRoutineLog* log) {
+                log->Motor("Algae-Pivot")
+                    .voltage(mAlgaePivotMotor->Get() *
+                            frc::RobotController::GetBatteryVoltage())
+                    .position(units::meter_t{mMotorRelativeEncoder->GetPosition()})
+                    .velocity(units::meters_per_second_t{mMotorRelativeEncoder->GetVelocity()});
+            },
+            this}};
 }
 
 // This method will be called once per scheduler run
@@ -64,6 +80,8 @@ void SubAlgaePivot::CounterGravity(){
     double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi;
     mAlgaePivotMotor->SetVoltage(units::volt_t(kG) * cos(pivotPositionRad));
 }
+
+
 
 /*
     le setpoint doit etre donné en tours, même type que le cout.

@@ -11,6 +11,9 @@
 #include <cscore_oo.h>
 #include <cameraserver/CameraServer.h>
 
+#include "frc/DataLogManager.h"
+#include "URCL.h"
+
 #include "RobotContainer.h"
 
 class Robot : public frc::TimedRobot {

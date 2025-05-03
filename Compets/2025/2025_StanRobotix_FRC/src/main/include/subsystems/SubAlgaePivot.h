@@ -6,13 +6,13 @@
 
 #include <iostream>
 #include <frc2/command/SubsystemBase.h>
+#include <frc2/command/sysid/SysIdRoutine.h>
 #include <rev/SparkMax.h>
-#include <rev/RelativeEncoder.h>
+#include <rev/SparkRelativeEncoder.h>
 #include <frc/controller/PIDController.h>
 #include <frc/controller/ArmFeedforward.h>
 #include <frc/smartdashboard/SmartDashboard.h>
-#include <rev/SparkRelativeEncoder.h>
-#include <frc/controller/ArmFeedforward.h>
+#include <frc/RobotController.h>
 
 #include "Constants.h"
 
@@ -50,6 +50,8 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   void StayStill();
 
+
+
   StatesAlgae GetState();
 
   void SetState(StatesAlgae);
@@ -66,7 +68,7 @@ class SubAlgaePivot : public frc2::SubsystemBase {
   const double kOffset = 33.6426;
   bool PIDEnable = true;
 
-
+  rev::spark::SparkRelativeEncoder * mMotorRelativeEncoder;
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
   frc::PIDController mPIDController{0.2, 0, 0};
   // Components (e.g. motor controllers and sensors) should generally be

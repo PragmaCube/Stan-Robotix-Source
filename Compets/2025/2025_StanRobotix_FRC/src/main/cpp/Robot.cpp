@@ -10,6 +10,8 @@ Robot::Robot() {
   // camera1 = frc::CameraServer::StartAutomaticCapture(0);
   // cameraSelection = nt::NetworkTableInstance::GetDefault().GetTable("")->GetEntry("CameraSelection");
   // cameraSelection.SetString(camera1.GetName());
+  
+  URCL::Start(frc::DataLogManager::GetLog());
 }
 
 /**
@@ -22,7 +24,6 @@ Robot::Robot() {
  */
 void Robot::RobotPeriodic() {
   frc2::CommandScheduler::GetInstance().Run();
-  m_container.periodic();
 
 }
 
