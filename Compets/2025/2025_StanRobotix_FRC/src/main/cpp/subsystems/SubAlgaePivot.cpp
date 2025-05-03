@@ -10,7 +10,7 @@ SubAlgaePivot::SubAlgaePivot(){
     mAlgaePivotMotor = new rev::spark::SparkMax{AlgaeConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless};
     mMotorRelativeEncoder = new rev::spark::SparkRelativeEncoder{mAlgaePivotMotor->GetEncoder()};
     
-    frc2::sysid::SysIdRoutine m_sysIdRoutine{
+    m_sysIdRoutine = new frc2::sysid::SysIdRoutine{
         frc2::sysid::Config{std::nullopt, std::nullopt, std::nullopt, nullptr},
         frc2::sysid::Mechanism{
             [this](units::volt_t driveVoltage) {
@@ -81,7 +81,13 @@ void SubAlgaePivot::CounterGravity(){
     mAlgaePivotMotor->SetVoltage(units::volt_t(kG) * cos(pivotPositionRad));
 }
 
+frc2::CommandPtr SubAlgaePivot::SysIdQuasistatic(frc2::sysid::Direction direction) {
+  return m_sysIdRoutine->Quasistatic(direction);
+}
 
+frc2::CommandPtr SubAlgaePivot::SysIdDynamic(frc2::sysid::Direction direction) {
+  return m_sysIdRoutine->Dynamic(direction);
+}
 
 /*
     le setpoint doit etre donné en tours, même type que le cout.

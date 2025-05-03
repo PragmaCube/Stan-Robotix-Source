@@ -50,7 +50,8 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   void StayStill();
 
-
+  frc2::CommandPtr SysIdQuasistatic(frc2::sysid::Direction direction);
+  frc2::CommandPtr SysIdDynamic(frc2::sysid::Direction direction);
 
   StatesAlgae GetState();
 
@@ -67,6 +68,8 @@ class SubAlgaePivot : public frc2::SubsystemBase {
   const double kG = 0.35;
   const double kOffset = 33.6426;
   bool PIDEnable = true;
+
+  frc2::sysid::SysIdRoutine * m_sysIdRoutine;
 
   rev::spark::SparkRelativeEncoder * mMotorRelativeEncoder;
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
