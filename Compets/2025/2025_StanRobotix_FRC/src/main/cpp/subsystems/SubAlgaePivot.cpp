@@ -14,7 +14,7 @@ SubAlgaePivot::SubAlgaePivot(){
         frc2::sysid::Config{std::nullopt, std::nullopt, std::nullopt, nullptr},
         frc2::sysid::Mechanism{
             [this](units::volt_t driveVoltage) {
-                mAlgaePivotMotor->SetVoltage(driveVoltage);
+                ManualVoltage(driveVoltage);
             },
             [this](frc::sysid::SysIdRoutineLog* log) {
                 log->Motor("Algae-Pivot")
@@ -29,6 +29,11 @@ SubAlgaePivot::SubAlgaePivot(){
 // This method will be called once per scheduler run
 void SubAlgaePivot::Periodic() {
    // std::cout << cos((mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi) << std::endl;
+}
+
+void SubAlgaePivot::ManualVoltage(units::volt_t iVoltage)
+{
+    mAlgaePivotMotor->SetVoltage(iVoltage * 0.25);
 }
 
 void SubAlgaePivot::Stop(){

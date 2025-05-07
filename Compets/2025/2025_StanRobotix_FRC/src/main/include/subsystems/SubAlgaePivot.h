@@ -50,6 +50,8 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   void StayStill();
 
+  void ManualVoltage(units::volt_t iVoltage);
+
   frc2::CommandPtr SysIdQuasistatic(frc2::sysid::Direction direction);
   frc2::CommandPtr SysIdDynamic(frc2::sysid::Direction direction);
 
