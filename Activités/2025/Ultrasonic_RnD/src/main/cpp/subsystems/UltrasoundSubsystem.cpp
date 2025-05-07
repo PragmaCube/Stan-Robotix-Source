@@ -12,7 +12,7 @@ UltrasoundSubsystem::UltrasoundSubsystem() {
 
 // This method will be called once per scheduler run
 void UltrasoundSubsystem::Periodic() {
-    std::cout << "Valeur: " << getValue() << std::endl;
+    // std::cout << "Valeur: " << getValue() << std::endl;
 }
 
 

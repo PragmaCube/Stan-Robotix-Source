@@ -30,3 +30,11 @@ namespace UltrasonicConstants {
     constexpr int kUltrasonicChannel = 0;
     constexpr double kSecondsToCm = 100.0;
 }
+
+namespace AvancerConstants {
+    constexpr double kSpeed = 0.1;
+    constexpr double kMinDistance = 30;
+    constexpr double kMaxDistance = 400;
+    constexpr double kTargetDistance = 30;
+    constexpr double kErrorMargin = 5;
+}
