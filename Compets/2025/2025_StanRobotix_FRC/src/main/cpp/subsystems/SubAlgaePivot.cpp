@@ -9,7 +9,10 @@
 SubAlgaePivot::SubAlgaePivot(){
     mAlgaePivotMotor = new rev::spark::SparkMax{AlgaeConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless};
     mMotorRelativeEncoder = new rev::spark::SparkRelativeEncoder{mAlgaePivotMotor->GetEncoder()};
-    
+    mArmFeedForward = new frc::ArmFeedforward{AlgaeConstants::Pivot::kS, AlgaeConstants::Pivot::kG, AlgaeConstants::Pivot::kV, AlgaeConstants::Pivot::kA};
+    mPIDController = new frc::PIDController{AlgaeConstants::Pivot::kP, AlgaeConstants::Pivot::kI, AlgaeConstants::Pivot::kD};
+    mProfiledPIDController = new frc::ProfiledPIDController<units::radians>{AlgaeConstants::Pivot::kP, AlgaeConstants::Pivot::kI, AlgaeConstants::Pivot::kD, {}};
+
     m_sysIdRoutine = new frc2::sysid::SysIdRoutine{
         frc2::sysid::Config{std::nullopt, std::nullopt, std::nullopt, nullptr},
         frc2::sysid::Mechanism{
@@ -41,20 +44,20 @@ void SubAlgaePivot::Stop(){
 }
 
 void SubAlgaePivot::Pivot(double Setpoint){
-    mPIDController.SetSetpoint(Setpoint);
+    mPIDController->SetSetpoint(Setpoint);
     
     double pivotPositionRad = (mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi;
-    double CalculatedPID = mPIDController.Calculate((mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi) * 13;
+    double CalculatedPID = mPIDController->Calculate((mAlgaePivotMotor->GetEncoder().GetPosition() + kOffset) / 80 * 2 * std::numbers::pi) * 13;
 
     mAlgaePivotMotor->SetVoltage((units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID) * PIDEnable);  //  
 }
 
 bool SubAlgaePivot::AtSetPoint(){
-    return mPIDController.AtSetpoint();
+    return mPIDController->AtSetpoint();
 }
 
 void SubAlgaePivot::SetSetPoint(double iSetPoint){
-    mPIDController.SetSetpoint(iSetPoint);
+    mPIDController->SetSetpoint(iSetPoint);
 }
 
 void SubAlgaePivot::SetPIDEnable(bool iState){

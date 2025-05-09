@@ -7,6 +7,8 @@
 #include <units/length.h>
 #include <units/angle.h>
 #include <units/velocity.h>
+#include <units/voltage.h>
+#include <frc/controller/ArmFeedforward.h>
 #include <numbers>
 
 /**
@@ -70,13 +72,23 @@ namespace ChainConstants {
 
 namespace AlgaeConstants {
     namespace Pivot{
-        constexpr double kP = 0.5;
-        constexpr double kI = 0.07;
+        constexpr double kP = 0.2;
+        constexpr double kI = 0;
         constexpr double kD = 0;
 
         constexpr int kMotorID = 9;
         constexpr double kAlgaePivotSetPoint1 = 0.2;
         constexpr double kAlgaePivotSetPoint2 = -0.2;
+
+        // constexpr units::rad_per_s ProfileMaxVelocity = units::rad_per_s(std::numbers::pi * 0.5);
+        // constexpr units::rad_per_s_sq ProfileMaxAcceleration = units::rad_per_s_sq(std::numbers::pi);
+
+        // constexpr frc::ProfiledPIDController<units::radians>::Constraints = frc::ProfiledPIDController<units::radians>::Constraints(units::rad_per_s(std::numbers::pi * 0.5), units::rad_per_s_sq(std::numbers::pi));
+
+        constexpr units::volt_t kS = units::volt_t(0.16695);
+        constexpr units::volt_t kG = units::volt_t(0.11896);
+        constexpr units::unit_t<frc::ArmFeedforward::kv_unit> kV = units::unit_t<frc::ArmFeedforward::kv_unit>(5.9157E-06);
+        constexpr units::unit_t<frc::ArmFeedforward::ka_unit> kA = units::unit_t<frc::ArmFeedforward::ka_unit>(2.0288E-05);
     }
 
     namespace Intake{

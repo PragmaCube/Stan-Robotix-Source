@@ -10,6 +10,7 @@
 #include <rev/SparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
 #include <frc/controller/PIDController.h>
+#include <frc/controller/ProfiledPIDController.h>
 #include <frc/controller/ArmFeedforward.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/RobotController.h>
@@ -75,7 +76,9 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
   rev::spark::SparkRelativeEncoder * mMotorRelativeEncoder;
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
-  frc::PIDController mPIDController{0.2, 0, 0};
+  frc::PIDController * mPIDController;
+  frc::ProfiledPIDController<units::radians> * mProfiledPIDController;
+  frc::ArmFeedforward * mArmFeedForward;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };
