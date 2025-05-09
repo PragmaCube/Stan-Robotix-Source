@@ -19,7 +19,7 @@ void Avancer::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void Avancer::Execute() {
-  mDriveTrain->mecanumDrive(AvancerConstants::kSpeed, AvancerConstants::kSpeed, 0);
+  mDriveTrain->mecanumDrive(0.25, 0, -0.25);
   std::cout << "Commande executée!" << std::endl;
 }
 

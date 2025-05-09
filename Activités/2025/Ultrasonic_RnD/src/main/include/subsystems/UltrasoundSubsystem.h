@@ -27,5 +27,4 @@ class UltrasoundSubsystem : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   frc::AnalogInput* mUltrasonic;
-
 };

@@ -32,7 +32,7 @@ namespace UltrasonicConstants {
 }
 
 namespace AvancerConstants {
-    constexpr double kSpeed = 0.1;
+    constexpr double kSpeed = 0.2;
     constexpr double kMinDistance = 30;
     constexpr double kMaxDistance = 400;
     constexpr double kTargetDistance = 30;
