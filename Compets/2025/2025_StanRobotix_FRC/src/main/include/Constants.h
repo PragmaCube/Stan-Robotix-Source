@@ -90,6 +90,11 @@ namespace AlgaeConstants {
     }
 }
 
+namespace UltrasonicConstants {
+    constexpr int kUltrasonicChannel = 0;
+    constexpr double kSecondsToCm = 100.0;
+}
+
 
 namespace CoralConstants {
     namespace Pivot{
