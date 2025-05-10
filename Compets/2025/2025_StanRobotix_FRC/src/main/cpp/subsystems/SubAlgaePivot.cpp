@@ -8,10 +8,23 @@
 
 SubAlgaePivot::SubAlgaePivot(){
     mAlgaePivotMotor = new rev::spark::SparkMax{AlgaeConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless};
-    mMotorRelativeEncoder = new rev::spark::SparkRelativeEncoder{mAlgaePivotMotor->GetEncoder()};
     mArmFeedForward = new frc::ArmFeedforward{AlgaeConstants::Pivot::kS, AlgaeConstants::Pivot::kG, AlgaeConstants::Pivot::kV, AlgaeConstants::Pivot::kA};
     mPIDController = new frc::PIDController{AlgaeConstants::Pivot::kP, AlgaeConstants::Pivot::kI, AlgaeConstants::Pivot::kD};
     mProfiledPIDController = new frc::ProfiledPIDController<units::radians>{AlgaeConstants::Pivot::kP, AlgaeConstants::Pivot::kI, AlgaeConstants::Pivot::kD, {}};
+    mSparkMaxConfig = new rev::spark::SparkMaxConfig{};
+
+    mSparkMaxConfig->signals.PrimaryEncoderPositionPeriodMs(5);
+    mSparkMaxConfig->signals.PrimaryEncoderPositionAlwaysOn(true);
+    mSparkMaxConfig->signals.PrimaryEncoderVelocityPeriodMs(5);
+    mSparkMaxConfig->signals.PrimaryEncoderVelocityAlwaysOn(true);
+    mSparkMaxConfig->signals.AppliedOutputPeriodMs(5);
+    mSparkMaxConfig->signals.AppliedOutputAlwaysOn(true);
+    mSparkMaxConfig->encoder.PositionConversionFactor(0.0125);
+    mSparkMaxConfig->encoder.VelocityConversionFactor(0.0125);
+
+    mAlgaePivotMotor->Configure(*mSparkMaxConfig, rev::spark::SparkBase::ResetMode::kNoResetSafeParameters, rev::spark::SparkBase::PersistMode::kNoPersistParameters);
+    
+    mMotorRelativeEncoder = new rev::spark::SparkRelativeEncoder{mAlgaePivotMotor->GetEncoder()};
 
     m_sysIdRoutine = new frc2::sysid::SysIdRoutine{
         frc2::sysid::Config{std::nullopt, std::nullopt, std::nullopt, nullptr},
