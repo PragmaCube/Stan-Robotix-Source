@@ -9,6 +9,9 @@
 #include <units/velocity.h>
 #include <numbers>
 
+#include <frc/controller/ElevatorFeedforward.h>
+#include <frc/controller/ProfiledPIDController.h>
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -125,10 +128,22 @@ namespace ElevatorConstants {
     constexpr double kP = 0;
     constexpr double kI = 0;
     constexpr double kD = 0;
-    constexpr double kS = 0;
-    constexpr double kG = 0;
+    constexpr units::volt_t kS = units::volt_t(0.0);
+    constexpr units::volt_t kG = units::volt_t(0.0);
+    constexpr units::unit_t<frc::ElevatorFeedforward::kv_unit> kV = units::unit_t<frc::ElevatorFeedforward::kv_unit>(0.0);
+    constexpr units::unit_t<frc::ElevatorFeedforward::ka_unit> kA = units::unit_t<frc::ElevatorFeedforward::ka_unit>(0.0);
+    constexpr frc::ProfiledPIDController<units::radians>::Constraints kConstraints = {0_rad_per_s, 0_rad_per_s_sq};
+    constexpr units::radian_t kTolerance = units::radian_t(std::numbers::pi * 0.02);
     constexpr double kOffset = 0;
     constexpr int kMotorID = 5;
+
+    namespace Commands{
+        constexpr double kL1Setpoint = 0.0;
+        constexpr double kL2Setpoint = 0.0;
+        constexpr double kL3Setpoint = 0.0;
+        constexpr double kL4Setpoint = 0.0;
+        constexpr double kPlayerStationSetpoint = 0.0;
+    }
 }
 
 namespace CommandConstants {

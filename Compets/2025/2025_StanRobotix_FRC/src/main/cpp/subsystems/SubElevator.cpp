@@ -9,7 +9,10 @@ SubElevator::SubElevator()
     mElevatorMotor = new rev::spark::SparkMax{ElevatorConstants::kMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
     mPIDController = new frc::PIDController{ElevatorConstants::kP, ElevatorConstants::kI, ElevatorConstants::kD};
     mRelativeEncoder = new rev::spark::SparkRelativeEncoder{mElevatorMotor->GetEncoder()};
+    mProfiledPIDController = new frc::ProfiledPIDController<units::radians>{ElevatorConstants::kP, ElevatorConstants::kI, ElevatorConstants::kD, ElevatorConstants::kConstraints};
+    mFeedForward = new frc::ElevatorFeedforward{ElevatorConstants::kS, ElevatorConstants::kG, ElevatorConstants::kV, ElevatorConstants::kA};
     mPIDController->SetTolerance(0.01);
+    mProfiledPIDController->SetTolerance(ElevatorConstants::kTolerance);
 }
 
 // This method will be called once per scheduler run
@@ -32,16 +35,21 @@ void SubElevator::Stop()
 
 void SubElevator::CounterGravity()
 {
-    mElevatorMotor->SetVoltage(-units::voltage::volt_t(ElevatorConstants::kG));
+    mElevatorMotor->SetVoltage(ElevatorConstants::kG * -1);
 }
 
 void SubElevator::SetPosition(double iSetpoint)
 {
     mPIDController->SetSetpoint(iSetpoint);
     double elevatorPositionMeters = (-(mRelativeEncoder->GetPosition() + ElevatorConstants::kOffset) / 20 * 0.14);
-    double CalculatedPID = mPIDController->Calculate(elevatorPositionMeters) * 13;
+    units::volt_t CalculatedPID = units::volt_t(mPIDController->Calculate(elevatorPositionMeters) * 13);
 
-    mElevatorMotor->SetVoltage(-units::voltage::volt_t(CalculatedPID + ElevatorConstants::kG + ElevatorConstants::kS * sgn(-mRelativeEncoder->GetVelocity())));
+    mElevatorMotor->SetVoltage((CalculatedPID + ElevatorConstants::kG + ElevatorConstants::kS * sgn(-mRelativeEncoder->GetVelocity())) * -1);
+}
+
+void SubElevator::SetPositionFeedForward(double iSetpoint)
+{
+    mProfiledPIDController->SetGoal
 }
 
 int SubElevator::sgn(double iInput)
@@ -58,6 +66,11 @@ int SubElevator::sgn(double iInput)
     {
         return 0;
     }
+}
+
+bool SubElevator::AtSetpoint()
+{
+    return mPIDController->AtSetpoint();
 }
 
 void SubElevator::DefaultCommand()

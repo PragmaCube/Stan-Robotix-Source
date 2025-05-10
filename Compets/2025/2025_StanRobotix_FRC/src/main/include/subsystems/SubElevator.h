@@ -7,6 +7,8 @@
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
 #include <frc/controller/PIDController.h>
+#include <frc/controller/ProfiledPIDController.h>
+#include <frc/controller/ElevatorFeedforward.h>
 #include <rev/SparkRelativeEncoder.h>
 
 #include "Constants.h"
@@ -19,6 +21,10 @@ class SubElevator : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs.
    */
 
+  bool AtSetpoint();
+
+  bool AtSetpointFeedForward();
+
   void manualUp();
 
   void manualDown();
@@ -28,6 +34,8 @@ class SubElevator : public frc2::SubsystemBase {
   void DefaultCommand();
 
   void SetPosition(double iSetpoint);
+
+  void SetPositionFeedForward(double iSetpoint);
 
   void CounterGravity();
 
@@ -40,5 +48,7 @@ class SubElevator : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
   rev::spark::SparkMax * mElevatorMotor;
   frc::PIDController * mPIDController;
+  frc::ProfiledPIDController<units::radians> * mProfiledPIDController;
+  frc::ElevatorFeedforward * mFeedForward;
   rev::spark::SparkRelativeEncoder * mRelativeEncoder;
 };
