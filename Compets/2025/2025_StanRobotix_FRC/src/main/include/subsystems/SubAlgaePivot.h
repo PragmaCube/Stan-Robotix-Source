@@ -35,10 +35,12 @@ class SubAlgaePivot : public frc2::SubsystemBase {
   // Takes as a parameter an angle in radians and uses a PID to make the pivot reach that angle.
   void SetPosition(double);
 
+  // Returns true when the PID of the pivot reached its setpoint given the tolerance.
   bool AtSetPoint();
 
   void SetVoltage(units::volt_t);
 
+  // Method used to send the sufficient voltage to the pivot for it to counter the force of gravity.
   void CounterGravity();
 
   void Stop();

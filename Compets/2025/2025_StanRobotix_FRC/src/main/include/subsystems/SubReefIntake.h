@@ -17,6 +17,7 @@ class SubReefIntake : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
+  // Takes a percentage as a parameter and sends this percentage of the maximum voltage of the battery (13 Volts) to the motor.
   void SetPercentage(double);
 
   void Stop();

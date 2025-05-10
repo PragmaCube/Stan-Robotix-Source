@@ -34,22 +34,17 @@ class SubCoralPivot : public frc2::SubsystemBase {
   // Returns true when the PID of the pivot reached its setpoint given the tolerance.
   bool AtSetPoint();
 
-  // Set the value of the boolean PIDEnable.
-  void SetPIDEnable(bool);
-
   // Method used to send the sufficient voltage to the pivot for it to counter the force of gravity.
   void CounterGravity(); 
 
   void SetVoltage(double);
 
-  // Method to get the position of the encoder of the pivot.
+  // Returns the angle of the pivot in radians.
   double GetAngle();
 
   void Stop();
 
  private:
-  
-  bool PIDEnable = true;
 
   rev::spark::SparkMax * mCoralPivotMotor = nullptr;
   frc::PIDController * mPIDController;

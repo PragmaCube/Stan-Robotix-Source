@@ -13,6 +13,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <rev/SparkRelativeEncoder.h>
 #include <frc/controller/ArmFeedforward.h>
+#include <cmath>
 
 #include "Constants.h"
 
@@ -34,13 +35,12 @@ class SubReefPivot : public frc2::SubsystemBase {
 
   bool AtSetPoint();
 
-  void StayStill();
-
   void CounterGravity();
 
   void SetVoltage(double);
 
-  void StopPivot();
+ // Stops using the pivot's motor.
+  void Stop();
 
  private:
 

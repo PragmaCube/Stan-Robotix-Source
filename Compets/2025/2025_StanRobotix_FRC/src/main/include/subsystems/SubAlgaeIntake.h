@@ -15,7 +15,8 @@ class SubAlgaeIntake : public frc2::SubsystemBase {
   
   void Stop();
 
-  /* Sets a voltage to keep the algae in the mechanism. This method is useful when the motor of the intake is in idle mode,
+  /* Sets a voltage to keep the algae in the mechanism. This method is 
+   * useful when the motor of the intake is in idle mode,
    * which is the case when you need to use them for the climbing phase. */
   void KeepAlgae();
   

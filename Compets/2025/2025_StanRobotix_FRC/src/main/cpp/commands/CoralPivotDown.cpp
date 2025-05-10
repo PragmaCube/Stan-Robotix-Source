@@ -12,7 +12,6 @@ CoralPivotDown::CoralPivotDown(SubCoralPivot * iCoralPivot) {
 
 // Called when the command is initially scheduled.
 void CoralPivotDown::Initialize() {
-  mCoralPivot->SetPIDEnable(true);
   ReachedSetPoint = false;
   Timer = -1;
     frc::Shuffleboard::GetTab("Main Tab").Add("CoralPivotDown", true).GetEntry()->SetBoolean(true);

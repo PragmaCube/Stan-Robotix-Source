@@ -47,9 +47,3 @@ void SubAlgaePivot::CounterGravity()
     double pivotAngle = GetAngle();
     mAlgaePivotMotor->SetVoltage(AlgaeConstants::Pivot::kG * cos(pivotAngle));
 }
-
-/*
-    le setpoint doit etre donné en tours, même type que le cout.
-    le cout renvoi la position du pivot entre -1 et 1, avec 0 comme pivot horizontale.
-    le PID devrait calculer une valeur aussi entre -1 et 1, qui se fait multiplier par 13 pour avoir une nombre utilisable de volts.
-*/

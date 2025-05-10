@@ -28,7 +28,7 @@ void SubCoralPivot::SetPosition(double SetPoint)
     double pivotAngle = GetAngle();
     double OutputPID = mPIDController->Calculate(GetAngle()) * 13;
 
-    mCoralPivotMotor->SetVoltage(CoralConstants::Pivot::kG * cos(pivotAngle) + units::volt_t(OutputPID) * PIDEnable);
+    mCoralPivotMotor->SetVoltage(CoralConstants::Pivot::kG * cos(pivotAngle) + units::volt_t(OutputPID));
 }
 
 void SubCoralPivot::Stop()
@@ -39,11 +39,6 @@ void SubCoralPivot::Stop()
 bool SubCoralPivot::AtSetPoint()
 {
     return mPIDController->AtSetpoint();
-}
-
-void SubCoralPivot::SetPIDEnable(bool iState)
-{
-    PIDEnable = iState;
 }
 
 void SubCoralPivot::CounterGravity()

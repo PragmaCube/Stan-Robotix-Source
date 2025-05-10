@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SubReefPivot.h"
-#include <cmath>
 
 SubReefPivot::SubReefPivot()
 {
@@ -15,7 +14,7 @@ SubReefPivot::SubReefPivot()
 // This method will be called once per scheduler run
 void SubReefPivot::Periodic() {}
 
-void SubReefPivot::StopPivot()
+void SubReefPivot::Stop()
 {
     mMotor->StopMotor();
 }
