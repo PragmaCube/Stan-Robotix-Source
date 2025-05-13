@@ -137,12 +137,16 @@ namespace ElevatorConstants {
     constexpr double kOffset = 0;
     constexpr int kMotorID = 5;
 
+    constexpr double kConvertionToMetersFactor = 0.14;
+    constexpr double kConvertionToRadiansFactor = 2 * std::numbers::pi;
+    constexpr double kGearRatio = 0.05;
+
     namespace Commands{
-        constexpr double kL1Setpoint = 0.0;
-        constexpr double kL2Setpoint = 0.0;
-        constexpr double kL3Setpoint = 0.0;
-        constexpr double kL4Setpoint = 0.0;
-        constexpr double kPlayerStationSetpoint = 0.0;
+        constexpr units::radian_t kL1Setpoint = 0.0_rad;
+        constexpr units::radian_t kL2Setpoint = 0.0_rad;
+        constexpr units::radian_t kL3Setpoint = 0.0_rad;
+        constexpr units::radian_t kL4Setpoint = 0.0_rad;
+        constexpr units::radian_t kPlayerStationSetpoint = 0.0_rad;
     }
 }
 

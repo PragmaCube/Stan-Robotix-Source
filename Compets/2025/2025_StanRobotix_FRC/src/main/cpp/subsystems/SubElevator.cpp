@@ -7,12 +7,22 @@
 SubElevator::SubElevator()
 {
     mElevatorMotor = new rev::spark::SparkMax{ElevatorConstants::kMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
+
     mPIDController = new frc::PIDController{ElevatorConstants::kP, ElevatorConstants::kI, ElevatorConstants::kD};
-    mRelativeEncoder = new rev::spark::SparkRelativeEncoder{mElevatorMotor->GetEncoder()};
-    mProfiledPIDController = new frc::ProfiledPIDController<units::radians>{ElevatorConstants::kP, ElevatorConstants::kI, ElevatorConstants::kD, ElevatorConstants::kConstraints};
-    mFeedForward = new frc::ElevatorFeedforward{ElevatorConstants::kS, ElevatorConstants::kG, ElevatorConstants::kV, ElevatorConstants::kA};
     mPIDController->SetTolerance(0.01);
+    mProfiledPIDController = new frc::ProfiledPIDController<units::radians>{ElevatorConstants::kP, ElevatorConstants::kI, ElevatorConstants::kD, ElevatorConstants::kConstraints};
     mProfiledPIDController->SetTolerance(ElevatorConstants::kTolerance);
+
+    mFeedForward = new frc::ElevatorFeedforward{ElevatorConstants::kS, ElevatorConstants::kG, ElevatorConstants::kV, ElevatorConstants::kA};
+
+    mSparkMaxConfig = new rev::spark::SparkMaxConfig{};
+
+    mSparkMaxConfig->encoder.PositionConversionFactor(ElevatorConstants::kGearRatio);
+    mSparkMaxConfig->encoder.VelocityConversionFactor(ElevatorConstants::kGearRatio);
+
+    mElevatorMotor->Configure(*mSparkMaxConfig, rev::spark::SparkBase::ResetMode::kNoResetSafeParameters, rev::spark::SparkBase::PersistMode::kNoPersistParameters);
+
+    mRelativeEncoder = new rev::spark::SparkRelativeEncoder{mElevatorMotor->GetEncoder()};
 }
 
 // This method will be called once per scheduler run
@@ -35,21 +45,25 @@ void SubElevator::Stop()
 
 void SubElevator::CounterGravity()
 {
-    mElevatorMotor->SetVoltage(ElevatorConstants::kG * -1);
+    mElevatorMotor->SetVoltage(ElevatorConstants::kG);
 }
 
 void SubElevator::SetPosition(double iSetpoint)
 {
     mPIDController->SetSetpoint(iSetpoint);
-    double elevatorPositionMeters = (-(mRelativeEncoder->GetPosition() + ElevatorConstants::kOffset) / 20 * 0.14);
+    double elevatorPositionMeters = ((mRelativeEncoder->GetPosition() + ElevatorConstants::kOffset) * ElevatorConstants::kConvertionToMetersFactor);
     units::volt_t CalculatedPID = units::volt_t(mPIDController->Calculate(elevatorPositionMeters) * 13);
 
-    mElevatorMotor->SetVoltage((CalculatedPID + ElevatorConstants::kG + ElevatorConstants::kS * sgn(-mRelativeEncoder->GetVelocity())) * -1);
+    mElevatorMotor->SetVoltage(CalculatedPID + ElevatorConstants::kG + ElevatorConstants::kS * sgn(-mRelativeEncoder->GetVelocity()));
 }
 
-void SubElevator::SetPositionFeedForward(double iSetpoint)
+void SubElevator::SetPositionFeedForward(units::radian_t iGoal)
 {
-    mProfiledPIDController->SetGoal
+    mProfiledPIDController->SetGoal(iGoal);
+
+    double desiredVelocity = mProfiledPIDController->Calculate(units::radian_t((mRelativeEncoder->GetPosition() + ElevatorConstants::kOffset) * ElevatorConstants::kConvertionToRadiansFactor));
+
+    mElevatorMotor->SetVoltage(mFeedForward->Calculate(units::radians_per_second_t(mRelativeEncoder->GetVelocity() * ElevatorConstants::kConvertionToRadiansFactor), units::radians_per_second_t(desiredVelocity), units::second_t(0.020)));
 }
 
 int SubElevator::sgn(double iInput)
@@ -71,6 +85,11 @@ int SubElevator::sgn(double iInput)
 bool SubElevator::AtSetpoint()
 {
     return mPIDController->AtSetpoint();
+}
+
+bool SubElevator::AtSetpointFeedForward()
+{
+    return mProfiledPIDController->AtGoal();
 }
 
 void SubElevator::DefaultCommand()

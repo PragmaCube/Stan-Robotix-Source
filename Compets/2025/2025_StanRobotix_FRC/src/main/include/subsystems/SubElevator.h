@@ -6,6 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
+#include <rev/config/SparkMaxConfig.h>
 #include <frc/controller/PIDController.h>
 #include <frc/controller/ProfiledPIDController.h>
 #include <frc/controller/ElevatorFeedforward.h>
@@ -35,7 +36,7 @@ class SubElevator : public frc2::SubsystemBase {
 
   void SetPosition(double iSetpoint);
 
-  void SetPositionFeedForward(double iSetpoint);
+  void SetPositionFeedForward(units::radian_t iGoal);
 
   void CounterGravity();
 
@@ -51,4 +52,5 @@ class SubElevator : public frc2::SubsystemBase {
   frc::ProfiledPIDController<units::radians> * mProfiledPIDController;
   frc::ElevatorFeedforward * mFeedForward;
   rev::spark::SparkRelativeEncoder * mRelativeEncoder;
+  rev::spark::SparkMaxConfig * mSparkMaxConfig;
 };

@@ -37,5 +37,5 @@ class ElevatorL1
  private:
   
   SubElevator * mSubElevator;
-  double mSetpoint;
+  units::radian_t mSetpoint;
 };

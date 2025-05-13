@@ -20,7 +20,7 @@ void ElevatorL1::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ElevatorL1::Execute()
 {
-  mSubElevator->SetPosition(mSetpoint);
+  mSubElevator->SetPositionFeedForward(mSetpoint);
 }
 
 // Called once the command ends or is interrupted.
@@ -29,5 +29,5 @@ void ElevatorL1::End(bool interrupted) {}
 // Returns true when the command should end.
 bool ElevatorL1::IsFinished()
 {
-  return mSubElevator->AtSetpoint();
+  return mSubElevator->AtSetpointFeedForward();
 }
