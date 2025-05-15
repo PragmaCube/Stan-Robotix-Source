@@ -11,8 +11,17 @@
 #include <frc/controller/ProfiledPIDController.h>
 #include <frc/controller/ElevatorFeedforward.h>
 #include <rev/SparkRelativeEncoder.h>
+#include <frc/Timer.h>
 
 #include "Constants.h"
+
+enum ElevatorLevels{
+  L1,
+  L2,
+  L3,
+  L4,
+  CoralSource
+};
 
 class SubElevator : public frc2::SubsystemBase {
  public:
@@ -38,6 +47,8 @@ class SubElevator : public frc2::SubsystemBase {
 
   void SetPositionFeedForward(units::radian_t iGoal);
 
+  void MesureCurrentTime();
+
   void CounterGravity();
 
   int sgn(double iInput);
@@ -53,4 +64,6 @@ class SubElevator : public frc2::SubsystemBase {
   frc::ElevatorFeedforward * mFeedForward;
   rev::spark::SparkRelativeEncoder * mRelativeEncoder;
   rev::spark::SparkMaxConfig * mSparkMaxConfig;
+
+  units::second_t mLastTime;
 };

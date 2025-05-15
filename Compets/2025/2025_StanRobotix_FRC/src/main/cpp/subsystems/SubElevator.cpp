@@ -61,9 +61,18 @@ void SubElevator::SetPositionFeedForward(units::radian_t iGoal)
 {
     mProfiledPIDController->SetGoal(iGoal);
 
-    double desiredVelocity = mProfiledPIDController->Calculate(units::radian_t((mRelativeEncoder->GetPosition() + ElevatorConstants::kOffset) * ElevatorConstants::kConvertionToRadiansFactor));
+    units::meters_per_second_t desiredVelocity = units::meters_per_second_t(mProfiledPIDController->Calculate(units::radian_t((mRelativeEncoder->GetPosition() + ElevatorConstants::kOffset) * ElevatorConstants::kConvertionToMetersFactor)));
+    units::meters_per_second_t currentVelocity = units::meters_per_second_t(mRelativeEncoder->GetVelocity() * ElevatorConstants::kConvertionToMetersFactor);
+    // units::radians_per_second_squared_t desiredAcceleration = (mProfiledPIDController->GetSetpoint().velocity.value() - mLastVelocity) / (frc::Timer::GetFPGATimestamp() - mLastTime);
 
-    mElevatorMotor->SetVoltage(mFeedForward->Calculate(units::radians_per_second_t(mRelativeEncoder->GetVelocity() * ElevatorConstants::kConvertionToRadiansFactor), units::radians_per_second_t(desiredVelocity), units::second_t(0.020)));
+    mElevatorMotor->SetVoltage(mFeedForward->Calculate(currentVelocity, desiredVelocity, frc::Timer::GetFPGATimestamp() - mLastTime));
+
+    mLastTime = frc::Timer::GetFPGATimestamp();
+}
+
+void SubElevator::MesureCurrentTime()
+{
+    mLastTime = frc::Timer::GetFPGATimestamp();
 }
 
 int SubElevator::sgn(double iInput)
