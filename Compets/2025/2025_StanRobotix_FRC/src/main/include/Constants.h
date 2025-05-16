@@ -146,7 +146,7 @@ namespace ElevatorConstants {
         constexpr units::radian_t kL2Setpoint = 0.0_rad;
         constexpr units::radian_t kL3Setpoint = 0.0_rad;
         constexpr units::radian_t kL4Setpoint = 0.0_rad;
-        constexpr units::radian_t kPlayerStationSetpoint = 0.0_rad;
+        constexpr units::radian_t kCoralSourceSetpoint = 0.0_rad;
     }
 }
 
