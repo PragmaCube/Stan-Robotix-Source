@@ -8,9 +8,20 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include <frc2/command/RunCommand.h>
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
+  mIMU = new SubIMU;
+  mIMU->ResetAngle();
+
+  mSub = new SubDriveTrain;
+
+    mSub->SetDefaultCommand(frc2::RunCommand(
+        [this] {
+          mSub->drive(joystick.GetX(), joystick.GetY(), joystick.GetZ(), mIMU->getRotation2d());
+         },
+         {mSub}));
 
   // Configure the button bindings
   ConfigureBindings();
