@@ -42,10 +42,12 @@ void RobotContainer::ConfigureBindings() {
 
 void RobotContainer::setLED()
 {
-  if (abs(joystick.GetX()) > 0.5)
+  if (std::abs(joystick.GetX()) > 0.2)
   { 
     mLED.setMode(mLED.moving);
+    std::cout << "moving X " << joystick.GetX() << std::endl;
   }
+
   if (joystick.GetRawButtonPressed(7))
   {
     if (timer == 3)
@@ -58,15 +60,17 @@ void RobotContainer::setLED()
       timer++;
     }
   }
-  if (abs(joystick.GetY()) > 0.5)
+
+  if (std::abs(joystick.GetY()) > 0.2)
   {
     mLED.setMode(mLED.moving);
+    std::cout << "moving Y" << joystick.GetY() << std::endl;
   }
   if (joystick.GetRawButtonPressed(8))
   {
     mLED.setMode(mLED.immobile);
   }
-  if (abs(joystick.GetY()) < 0.2 && abs(joystick.GetX()) < 0.2){
+  if ((abs(joystick.GetY())) < 0.2 && abs(joystick.GetX()) < 0.2){
     mLED.setMode(mLED.immobile);
   }
 }
