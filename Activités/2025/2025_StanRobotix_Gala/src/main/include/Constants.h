@@ -29,3 +29,10 @@ namespace DrivingConstants {
     constexpr int joystickPort = 0;
     constexpr int pigeon2port = 5;
 }
+
+namespace DoorConstants {
+    constexpr int kSparkMaxDeviceID = 0;
+    constexpr double kP = 0;
+    constexpr double kI = 0;
+    constexpr double kD = 0;
+}
