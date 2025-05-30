@@ -35,21 +35,4 @@ class Robot : public frc::TimedRobot {
   std::optional<frc2::CommandPtr> m_autonomousCommand;
 
   RobotContainer m_container;
-  // PWM port 9
-  // Must be a PWM header, not MXP or DIO
-  frc::AddressableLED m_led{9};
-  std::array<frc::AddressableLED::LEDData, kLength>
-      m_ledBuffer;  // Reuse the buffer
-
-  // Our LED strip has a density of 120 LEDs per meter
-  units::meter_t kLedSpacing{1 / 120.0};
-
-  // Create an LED pattern that will display a rainbow across
-  // all hues at maximum saturation and half brightness
-  frc::LEDPattern m_rainbow = frc::LEDPattern::Rainbow(255, 128);
-
-  // Create a new pattern that scrolls the rainbow pattern across the LED
-  // strip, moving at a speed of 1 meter per second.
-  frc::LEDPattern m_scrollingRainbow =
-      m_rainbow.ScrollAtAbsoluteSpeed(1_mps, kLedSpacing);
 };

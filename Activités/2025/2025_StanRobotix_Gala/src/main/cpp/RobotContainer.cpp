@@ -40,6 +40,34 @@ void RobotContainer::ConfigureBindings() {
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
 }
 
+void RobotContainer::setLED()
+{
+  if (joystick.GetRawButtonPressed(1) || mLED.isMoving)
+  { 
+    mLED.setMode(mLED.moving);
+  }
+  if (joystick.GetRawButtonPressed(2) || mLED.isGiving)
+  {
+    if (timer == 3)
+    {
+      mLED.setMode(mLED.giving);
+      timer = 0;
+    }
+    else
+    {
+      timer++;
+    }
+  }
+  if (joystick.GetRawButtonPressed(3))
+  {
+    mLED.setMode(mLED.taking);
+  }
+  if (joystick.GetRawButtonPressed(4))
+  {
+    mLED.setMode(mLED.immobile);
+  }
+}
+
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);

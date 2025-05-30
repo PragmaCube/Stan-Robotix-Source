@@ -12,6 +12,8 @@
 #include "subsystems/SubDriveTrain.h"
 #include <frc/Joystick.h>
 #include "subsystems/SubIMU.h"
+#include "LED.h"
+#include <iostream>
 
 
 /**
@@ -26,6 +28,8 @@ class RobotContainer {
   RobotContainer();
 
   frc2::CommandPtr GetAutonomousCommand();
+  void setLED();
+  
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -37,6 +41,9 @@ class RobotContainer {
   SubDriveTrain * mSub = nullptr;
   SubIMU * mIMU = nullptr;
   frc::Joystick joystick{DrivingConstants::joystickPort};
+  LED mLED;
+
+  int timer = 3;
 
   void ConfigureBindings();
 };

@@ -6,11 +6,7 @@
 
 #include <frc2/command/CommandScheduler.h>
 
-Robot::Robot() {
-  m_led.SetLength(kLength);
-  m_led.SetData(m_ledBuffer);
-  m_led.Start();
-}
+Robot::Robot() {}
 
 /**
  * This function is called every 20 ms, no matter the mode. Use
@@ -21,12 +17,7 @@ Robot::Robot() {
  * LiveWindow and SmartDashboard integrated updating.
  */
 void Robot::RobotPeriodic() {
-  frc2::CommandScheduler::GetInstance().Run();
-  // Run the rainbow pattern and apply it to the buffer
-  m_scrollingRainbow.ApplyTo(m_ledBuffer);
-  // Set the LEDs
-  m_led.SetData(m_ledBuffer);
-}
+  frc2::CommandScheduler::GetInstance().Run();}
 
 /**
  * This function is called once each time the robot enters Disabled mode. You
@@ -64,7 +55,9 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+  m_container.setLED();
+}
 
 /**
  * This function is called periodically during test mode.
