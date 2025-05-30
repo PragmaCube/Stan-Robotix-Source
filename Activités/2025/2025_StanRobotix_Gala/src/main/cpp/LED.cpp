@@ -29,10 +29,11 @@ void LED::setMode(Mode iMode){
             isGiving = false;
             isTaking = false;
 
-            m_ledBuffer[firstPixelHue].SetRGB(0, 0, 0);
+            m_ledBuffer[firstPixelHue].SetRGB(255, 50, 0);
             firstPixelHue += 1;
             firstPixelHue %= 40;
             m_ledBuffer[firstPixelHue].SetRGB(255, 0, 0);
+            m_ledBuffer[(firstPixelHue + 1)%40].SetRGB(255, 0, 0);
             break;
         case giving:
             isImmobile = false; 
