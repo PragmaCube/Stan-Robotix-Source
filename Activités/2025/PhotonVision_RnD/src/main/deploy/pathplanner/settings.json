@@ -1,0 +1,50 @@
+{
+  "robotWidth": 0.8636,
+  "robotLength": 0.889,
+  "holonomicMode": true,
+  "pathFolders": [
+    "Comp Centre Paths",
+    "Comp Centre-Droite Paths",
+    "Comp Centre-Gauche Paths",
+    "Comp Droite Paths",
+    "Comp Gauche Paths",
+    "Rouge",
+    "New New Folder",
+    "Test Paths"
+  ],
+  "autoFolders": [
+    "Competition Autos",
+    "Rouge",
+    "Practice Autos",
+    "Test Autos"
+  ],
+  "defaultMaxVel": 0.5,
+  "defaultMaxAccel": 3.0,
+  "defaultMaxAngVel": 22.5,
+  "defaultMaxAngAccel": 180.0,
+  "defaultNominalVoltage": 12.0,
+  "robotMass": 40.0,
+  "robotMOI": 2.6193496,
+  "robotTrackwidth": 0.546,
+  "driveWheelRadius": 0.038,
+  "driveGearing": 5.08,
+  "maxDriveSpeed": 10.0,
+  "driveMotorType": "NEO",
+  "driveCurrentLimit": 30.0,
+  "wheelCOF": 1.2,
+  "flModuleX": 0.3683,
+  "flModuleY": 0.3556,
+  "frModuleX": 0.3683,
+  "frModuleY": -0.3556,
+  "blModuleX": -0.3683,
+  "blModuleY": 0.3556,
+  "brModuleX": -0.3683,
+  "brModuleY": -0.3556,
+  "bumperOffsetX": 0.0,
+  "bumperOffsetY": 0.0,
+  "robotFeatures": [
+    "{\"name\":\"Pivot_Algae\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.0,\"y\":-0.37},\"size\":{\"width\":0.1,\"length\":0.3},\"borderRadius\":0.0,\"strokeWidth\":0.02,\"filled\":false}}",
+    "{\"name\":\"Gabriel\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.25,\"y\":-0.37},\"size\":{\"width\":0.1,\"length\":0.1},\"borderRadius\":0.0,\"strokeWidth\":0.02,\"filled\":false}}",
+    "{\"name\":\"Pivot_coral\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.38,\"y\":0.0},\"size\":{\"width\":0.3,\"length\":0.1},\"borderRadius\":0.0,\"strokeWidth\":0.02,\"filled\":false}}"
+  ]
+}
