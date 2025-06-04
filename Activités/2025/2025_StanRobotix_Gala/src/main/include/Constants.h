@@ -31,8 +31,16 @@ namespace DrivingConstants {
 }
 
 namespace DoorConstants {
-    constexpr int kSparkMaxDeviceID = 0;
-    constexpr double kP = 0;
+    constexpr int kSparkMaxDeviceID = 5;
+    constexpr double kP = 1;
     constexpr double kI = 0;
     constexpr double kD = 0;
+    constexpr double kG = 0;
+    constexpr double kOffset = 0;
+    constexpr double gearRatio = 20.0;
+
+    namespace Positions {
+        constexpr int kOpen = 1;
+        constexpr int kClose = 0;
+    }
 }

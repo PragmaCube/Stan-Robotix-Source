@@ -6,15 +6,25 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
-#include <frc/controller/PIDController.h>
 
 #include "Constants.h"
 
 class SubDoor : public frc2::SubsystemBase {
  public:
+
+  enum Positions{
+    Open,
+    Close
+  };
+
   SubDoor();
-  void Open();
-  void Close();
+  double GetAngle();
+  void Stop();
+
+  void SetVoltage(units::volt_t);
+
+  // Method used to send the sufficient voltage to the pivot for it to counter the force of gravity.
+  void CounterGravity();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -26,5 +36,4 @@ class SubDoor : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   rev::spark::SparkMax* mSparkMax;
-  frc::PIDController* mPID;
 };

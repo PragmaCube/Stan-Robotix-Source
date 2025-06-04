@@ -6,12 +6,16 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
+#include <frc2/command/button/CommandJoystick.h>
+
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubDoor.h"
 #include <frc/Joystick.h>
 #include "subsystems/SubIMU.h"
+#include "commands/DoorPivotAt.h"
 #include "LED.h"
 #include <iostream>
 
@@ -40,7 +44,9 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   SubDriveTrain * mSub = nullptr;
   SubIMU * mIMU = nullptr;
-  frc::Joystick joystick{DrivingConstants::joystickPort};
+  SubDoor * mDoor = nullptr;
+  frc2::CommandJoystick * m_commandJoystick;
+  frc::Joystick * m_joystick;
   LED mLED;
 
   int timer = 3;

@@ -13,15 +13,19 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   mIMU = new SubIMU;
+  mDoor = new SubDoor;
   mIMU->ResetAngle();
 
   mSub = new SubDriveTrain;
 
-    mSub->SetDefaultCommand(frc2::RunCommand(
-        [this] {
-          mSub->drive(joystick.GetX(), joystick.GetY(), joystick.GetZ(), mIMU->getRotation2d());
-         },
-         {mSub}));
+  m_commandJoystick = new frc2::CommandJoystick{{DrivingConstants::joystickPort}};
+  m_joystick = &m_commandJoystick->GetHID();
+
+  mSub->SetDefaultCommand(frc2::RunCommand(
+      [this] {
+        mSub->drive(m_joystick->GetX(), m_joystick->GetY(), m_joystick->GetZ(), mIMU->getRotation2d());
+        },
+        {mSub}));
 
   // Configure the button bindings
   ConfigureBindings();
@@ -38,17 +42,19 @@ void RobotContainer::ConfigureBindings() {
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+  m_commandJoystick->Button(2).OnTrue(DoorPivotAt(mDoor, SubDoor::Positions::Close).ToPtr());
+  m_commandJoystick->Button(3).OnTrue(DoorPivotAt(mDoor, SubDoor::Positions::Open).ToPtr());
 }
 
 void RobotContainer::setLED()
 {
-  if (std::abs(joystick.GetX()) > 0.2)
+  if (std::abs(m_joystick->GetX()) > 0.2)
   { 
     mLED.setMode(mLED.moving);
-    std::cout << "moving X " << joystick.GetX() << std::endl;
+    // std::cout << "moving X " << m_joystick->GetX() << std::endl;
   }
 
-  if (joystick.GetRawButtonPressed(7))
+  if (m_joystick->GetRawButtonPressed(7))
   {
     if (timer == 3)
     {
@@ -61,16 +67,16 @@ void RobotContainer::setLED()
     }
   }
 
-  if (std::abs(joystick.GetY()) > 0.2)
+  if (std::abs(m_joystick->GetY()) > 0.2)
   {
     mLED.setMode(mLED.moving);
-    std::cout << "moving Y" << joystick.GetY() << std::endl;
+    // std::cout << "moving Y" << m_joystick->GetY() << std::endl;
   }
-  if (joystick.GetRawButtonPressed(8))
+  if (m_joystick->GetRawButtonPressed(8))
   {
     mLED.setMode(mLED.immobile);
   }
-  if ((abs(joystick.GetY())) < 0.2 && abs(joystick.GetX()) < 0.2){
+  if ((abs(m_joystick->GetY())) < 0.2 && abs(m_joystick->GetX()) < 0.2){
     mLED.setMode(mLED.immobile);
   }
 }
