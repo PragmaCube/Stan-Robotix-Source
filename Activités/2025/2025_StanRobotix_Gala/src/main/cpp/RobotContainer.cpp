@@ -6,6 +6,7 @@
 
 #include <frc2/command/button/Trigger.h>
 
+#include "commands/ArmPivotAt.h"
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 #include <frc2/command/RunCommand.h>
@@ -13,7 +14,7 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   mIMU = new SubIMU;
-  mDoor = new SubDoor;
+  mArms = new SubArms;
   mIMU->ResetAngle();
 
   mSub = new SubDriveTrain;
@@ -42,8 +43,8 @@ void RobotContainer::ConfigureBindings() {
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
-  m_commandJoystick->Button(2).OnTrue(DoorPivotAt(mDoor, SubDoor::Positions::Close).ToPtr());
-  m_commandJoystick->Button(3).OnTrue(DoorPivotAt(mDoor, SubDoor::Positions::Open).ToPtr());
+  m_commandJoystick->Button(2).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Down, SubArms::Positions::Down).ToPtr());
+  m_commandJoystick->Button(3).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Up, SubArms::Positions::Up).ToPtr());
 }
 
 void RobotContainer::setLED()

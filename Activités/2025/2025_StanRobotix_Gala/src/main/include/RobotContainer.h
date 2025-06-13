@@ -12,10 +12,9 @@
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
-#include "subsystems/SubDoor.h"
+#include "subsystems/SubArms.h"
 #include <frc/Joystick.h>
 #include "subsystems/SubIMU.h"
-#include "commands/DoorPivotAt.h"
 #include "LED.h"
 #include <iostream>
 
@@ -44,7 +43,7 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   SubDriveTrain * mSub = nullptr;
   SubIMU * mIMU = nullptr;
-  SubDoor * mDoor = nullptr;
+  SubArms * mArms = nullptr;
   frc2::CommandJoystick * m_commandJoystick;
   frc::Joystick * m_joystick;
   LED mLED;

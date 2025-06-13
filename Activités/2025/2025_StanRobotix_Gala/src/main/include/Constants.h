@@ -30,8 +30,9 @@ namespace DrivingConstants {
     constexpr int pigeon2port = 5;
 }
 
-namespace DoorConstants {
-    constexpr int kSparkMaxDeviceID = 5;
+namespace ArmsConstants {
+    constexpr int kSparkMaxRightDeviceID = 5;
+    constexpr int kSparkMaxLeftDeviceID = 6;
     constexpr double kP = 1;
     constexpr double kI = 0;
     constexpr double kD = 0;
@@ -40,7 +41,7 @@ namespace DoorConstants {
     constexpr double gearRatio = 20.0;
 
     namespace Positions {
-        constexpr int kOpen = 1;
-        constexpr int kClose = 0;
+        constexpr int kUp = 1;
+        constexpr int kDown = 0;
     }
 }
