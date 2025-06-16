@@ -41,7 +41,7 @@ class RobotContainer {
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
-  SubDriveTrain * mSub = nullptr;
+  SubDriveTrain * mDrivetrain = nullptr;
   SubIMU * mIMU = nullptr;
   SubArms * mArms = nullptr;
   frc2::CommandJoystick * m_commandJoystick;

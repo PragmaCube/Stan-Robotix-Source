@@ -17,17 +17,21 @@ RobotContainer::RobotContainer() {
   mArms = new SubArms;
   mIMU->ResetAngle();
 
-  mSub = new SubDriveTrain;
+  mDrivetrain = new SubDriveTrain{mIMU, 0};
 
   m_commandJoystick = new frc2::CommandJoystick{{DrivingConstants::joystickPort}};
   m_joystick = &m_commandJoystick->GetHID();
 
-  mSub->SetDefaultCommand(frc2::RunCommand(
-      [this] {
-        mSub->drive(m_joystick->GetX(), m_joystick->GetY(), m_joystick->GetZ(), mIMU->getRotation2d());
-        },
-        {mSub}));
-
+ /* mDrivetrain->SetDefaultCommand(frc2::RunCommand(
+      [this]
+      {
+        mDrivetrain->driveFieldRelative(-m_commandJoystick->GetHID().GetX(),
+                                        -m_commandJoystick->GetHID().GetY(),
+                                        -m_commandJoystick->GetHID().GetZ(),
+                                        (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
+      },
+      {mDrivetrain}));
+*/
   // Configure the button bindings
   ConfigureBindings();
 }

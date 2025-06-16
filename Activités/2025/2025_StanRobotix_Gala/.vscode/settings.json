@@ -2,6 +2,8 @@
     "files.associations": {
         "new": "cpp",
         "*.inc": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "cmath": "cpp",
+        "numbers": "cpp"
     }
 }

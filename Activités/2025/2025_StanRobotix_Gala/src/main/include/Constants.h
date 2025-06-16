@@ -30,10 +30,41 @@ namespace DrivingConstants {
     constexpr int pigeon2port = 5;
 }
 
+namespace DriveTrainConstants {
+    /* These names are refering to the robot oriented position of the motor controllers.
+    Meaning the back is generally refering to the side where the battery is held.
+    These IDs should be changed if you make changes in the position of the motor controller
+    or changes in the way you want the robot to be oriented. */
+    constexpr int kBackRightMotorID = 6; 
+    constexpr int kBackRightMotor550ID = 5; 
+    constexpr int kFrontRightMotorID = 8; 
+    constexpr int kFrontRightMotor550ID = 7; 
+    constexpr int kFrontLeftMotorID = 2;   
+    constexpr int kFrontLeftMotor550ID = 1;
+    constexpr int kBackLeftMotorID = 4;
+    constexpr int kBackLeftMotor550ID = 3; 
+
+
+    constexpr float kSpeedCap = 0.9; // Percentage of the max speed of the swerve wheels you want to use.
+    constexpr float kMaxSpeed = 1;
+    constexpr double kMaxSpeed0 = std::numbers::pi; 
+
+    constexpr double kGearRatio = 1 / 5.08;
+    constexpr double kWheelPerimeter = 3 * 0.0254 * std::numbers::pi;
+
+    namespace PIDs {
+        // PID constants for the motor controllers that control the orientation of the swerve wheels. Could be tuned better.
+        constexpr double kP = 3.0;
+        constexpr double kI = 0.1;
+        constexpr double kD = 0.05;
+    }
+}
+
+
 namespace ArmsConstants {
-    constexpr int kSparkMaxRightDeviceID = 5;
-    constexpr int kSparkMaxLeftDeviceID = 6;
-    constexpr double kP = 1;
+    constexpr int kSparkMaxRightDeviceID = 9;
+    constexpr int kSparkMaxLeftDeviceID = 10;
+    constexpr double kP = 0.2;
     constexpr double kI = 0;
     constexpr double kD = 0;
     constexpr double kG = 0;
