@@ -4,6 +4,9 @@
 
 #pragma once
 
+#include <units/length.h>
+#include <frc/util/Color.h>
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -20,14 +23,11 @@ inline constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
 
-
-namespace DrivingConstants {
-    constexpr int motor1port = 1;
-    constexpr int motor2port = 2;
-    constexpr int motor3port = 3;
-    constexpr int motor4port = 4;
-    constexpr int joystickPort = 0;
-    constexpr int pigeon2port = 5;
+namespace JoystickBindingsConstants {
+    namespace Arms {
+        constexpr int kArmsUp = 3;
+        constexpr int kArmsDown = 2;
+    }
 }
 
 namespace DriveTrainConstants {
@@ -60,6 +60,10 @@ namespace DriveTrainConstants {
     }
 }
 
+namespace LEDsConstants{
+    static constexpr int kLength = 40;
+    constexpr units::meter_t kLedSpacing = 0.03_m;
+}
 
 namespace ArmsConstants {
     constexpr int kSparkMaxRightDeviceID = 9;

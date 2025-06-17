@@ -19,7 +19,7 @@ RobotContainer::RobotContainer() {
 
   mDrivetrain = new SubDriveTrain{mIMU, 0};
 
-  m_commandJoystick = new frc2::CommandJoystick{{DrivingConstants::joystickPort}};
+  m_commandJoystick = new frc2::CommandJoystick{OperatorConstants::kDriverControllerPort};
   m_joystick = &m_commandJoystick->GetHID();
 
  /* mDrivetrain->SetDefaultCommand(frc2::RunCommand(
@@ -47,23 +47,22 @@ void RobotContainer::ConfigureBindings() {
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
-  m_commandJoystick->Button(2).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Down, SubArms::Positions::Down).ToPtr());
-  m_commandJoystick->Button(3).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Up, SubArms::Positions::Up).ToPtr());
+  m_commandJoystick->Button(JoystickBindingsConstants::Arms::kArmsDown).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Down, SubArms::Positions::Down).ToPtr());
+  m_commandJoystick->Button(JoystickBindingsConstants::Arms::kArmsUp).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Up, SubArms::Positions::Up).ToPtr());
 }
 
 void RobotContainer::setLED()
 {
-  if (std::abs(m_joystick->GetX()) > 0.2)
+  if (abs(m_joystick->GetX()) > 0.2 || abs(m_joystick->GetY()) > 0.2 ||  abs(m_joystick->GetZ()) > 0.2)
   { 
     mLED.setMode(mLED.moving);
-    // std::cout << "moving X " << m_joystick->GetX() << std::endl;
   }
 
-  if (m_joystick->GetRawButtonPressed(7))
+  if (m_joystick->GetRawButton(JoystickBindingsConstants::Arms::kArmsUp) || m_joystick->GetRawButton(JoystickBindingsConstants::Arms::kArmsDown))
   {
-    if (timer == 3)
+    if (timer == 5)
     {
-      mLED.setMode(mLED.giving);
+      mLED.setMode(mLED.waving);
       timer = 0;
     }
     else
@@ -72,16 +71,13 @@ void RobotContainer::setLED()
     }
   }
 
-  if (std::abs(m_joystick->GetY()) > 0.2)
+  if (m_joystick->GetRawButtonPressed(5))
   {
-    mLED.setMode(mLED.moving);
-    // std::cout << "moving Y" << m_joystick->GetY() << std::endl;
+    mLED.setMode(mLED.talking);
   }
-  if (m_joystick->GetRawButtonPressed(8))
+
+  if (std::abs(m_joystick->GetX()) < 0.2 || abs(m_joystick->GetY()) < 0.2 ||  abs(m_joystick->GetZ()) < 0.2)
   {
-    mLED.setMode(mLED.immobile);
-  }
-  if ((abs(m_joystick->GetY())) < 0.2 && abs(m_joystick->GetX()) < 0.2){
     mLED.setMode(mLED.immobile);
   }
 }

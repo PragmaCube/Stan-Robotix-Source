@@ -48,7 +48,7 @@ class RobotContainer {
   frc::Joystick * m_joystick;
   LED mLED;
 
-  int timer = 3;
+  int timer = 0;
 
   void ConfigureBindings();
 };
