@@ -64,15 +64,15 @@ namespace DriveTrainConstants {
 namespace ArmsConstants {
     constexpr int kSparkMaxRightDeviceID = 9;
     constexpr int kSparkMaxLeftDeviceID = 10;
-    constexpr double kP = 0.2;
+    constexpr double kP = 0.07;
     constexpr double kI = 0;
     constexpr double kD = 0;
-    constexpr double kG = 0;
-    constexpr double kOffset = 0;
+    constexpr double kG = 0.02;
+    constexpr double kOffset = 0.25;
     constexpr double gearRatio = 20.0;
 
     namespace Positions {
-        constexpr int kUp = 1;
-        constexpr int kDown = 0;
+        constexpr double kUp = 1;
+        constexpr double kDown = 0;
     }
 }

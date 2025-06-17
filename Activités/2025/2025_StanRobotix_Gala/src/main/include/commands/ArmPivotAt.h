@@ -37,8 +37,8 @@ class ArmsPivotAt
   SubArms * mArms;
   SubArms::Positions mPositionLeft;
   SubArms::Positions mPositionRight;
-  int mSetpointLeft;
-  int mSetpointRight;
+  double mSetpointLeft;
+  double mSetpointRight;
   frc::PIDController * mPIDRight;
   frc::PIDController * mPIDLeft;
 };

@@ -23,7 +23,7 @@ SubDriveTrain::SubDriveTrain(SubIMU *iIMU, int iStartingPose)
     m_frontLeftModule->SetNeoInverted(true);
 
     // Initialization of the IMU
-    mIMU = iIMU;
+     mIMU = iIMU;
 
     // Initialization of the swerve kinematics with the SwerveModules' location
     m_kinematics = new frc::SwerveDriveKinematics<4>{*m_frontLeftLocation, *m_frontRightLocation, *m_backLeftLocation, *m_backRightLocation};
