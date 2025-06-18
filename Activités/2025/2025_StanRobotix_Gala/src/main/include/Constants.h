@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
+#include <frc/controller/ProfiledPIDController.h>
 
 #include <units/length.h>
 #include <frc/util/Color.h>
@@ -22,6 +23,11 @@ namespace OperatorConstants {
 inline constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
+
+namespace DrivingConstants {
+    constexpr int joystickPort = 0;
+    constexpr int pigeon2port = 1;
+}
 
 namespace JoystickBindingsConstants {
     namespace Arms {
@@ -68,15 +74,15 @@ namespace LEDsConstants{
 namespace ArmsConstants {
     constexpr int kSparkMaxRightDeviceID = 9;
     constexpr int kSparkMaxLeftDeviceID = 10;
-    constexpr double kP = 0.2;
-    constexpr double kI = 0;
+    constexpr double kP = 0.1;
+    constexpr double kI = 0.01;
     constexpr double kD = 0;
-    constexpr double kG = 0;
-    constexpr double kOffset = 0;
+    constexpr double kG = 0.02;
+    constexpr double kOffset = 0.25;
     constexpr double gearRatio = 20.0;
 
     namespace Positions {
-        constexpr int kUp = 1;
-        constexpr int kDown = 0;
+        constexpr double kUp = 1;
+        constexpr double kDown = 0;
     }
 }

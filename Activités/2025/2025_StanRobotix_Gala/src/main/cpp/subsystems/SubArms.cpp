@@ -10,10 +10,14 @@ SubArms::SubArms() {
     mSparkMaxLeft = new rev::spark::SparkMax{ArmsConstants::kSparkMaxLeftDeviceID, rev::spark::SparkLowLevel::MotorType::kBrushless};
     mSparkMaxRight->SetInverted(false);
     mSparkMaxLeft->SetInverted(true);
+    mPIDRight = new frc::PIDController{ArmsConstants::kP, ArmsConstants::kI, ArmsConstants::kD};
+    mPIDLeft = new frc::PIDController{ArmsConstants::kP, ArmsConstants::kI, ArmsConstants::kD};
 };
 
 // This method will be called once per scheduler run
-void SubArms::Periodic() {}
+void SubArms::Periodic() {
+
+}
 
 double SubArms::GetAngleRight()
 {
@@ -46,4 +50,32 @@ void SubArms::CounterGravity()
 
     double pivotAngleLeft = GetAngleLeft();
     mSparkMaxLeft->SetVoltage(units::voltage::volt_t(ArmsConstants::kG * cos(pivotAngleLeft)));
+}
+
+void SubArms::GoToPlace(double iSetPointRight, double iSetPointLeft){
+    if (iSetPointLeft != PastSetPointLeft)
+        {
+            mPIDLeft->SetSetpoint(iSetPointLeft + 0.15);
+            PastSetPointLeft = iSetPointLeft;
+        }
+    if (iSetPointRight != PastSetPointRight)
+        {
+            mPIDRight->SetSetpoint(1 - iSetPointRight + 0.15);
+            PastSetPointRight = iSetPointRight;
+        }
+    pivotAngleRight = GetAngleRight();
+    OutputRight = mPIDRight->Calculate(pivotAngleRight) * 13;
+
+    SetVoltageRight(units::volt_t(ArmsConstants::kG * cos(pivotAngleRight)) + units::volt_t(OutputRight));
+  
+    pivotAngleLeft = GetAngleLeft();
+    OutputLeft = mPIDLeft->Calculate(pivotAngleLeft) * 13;
+
+    SetVoltageLeft(units::volt_t(ArmsConstants::kG * cos(pivotAngleLeft)) + units::volt_t(OutputLeft));
+
+    if (i == 30) {
+    std::cout << "right error = " << iSetPointRight - pivotAngleRight << std::endl;
+    std::cout << "left error = " << iSetPointLeft - pivotAngleLeft << std::endl;
+    i = 0;}
+    else {i++;}
 }
