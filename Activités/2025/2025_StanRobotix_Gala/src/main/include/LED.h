@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+/*#include <iostream>
 #include <array>
 #include <frc/AddressableLED.h>
 #include <frc/LEDPattern.h>
@@ -40,4 +40,4 @@ class LED {
     std::array<frc::AddressableLED::LEDData, kLength> m_ledBuffer;  // Reuse the buffer
     // Store what the last hue of the first pixel is
     int firstPixelHue = 0;
-};
+};*/

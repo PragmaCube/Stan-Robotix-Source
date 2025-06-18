@@ -1,4 +1,4 @@
-#include "LED.h"
+/*#include "LED.h"
 
 LED::LED()
 {
@@ -79,4 +79,4 @@ void LED::setMode(Mode iMode){
             break;
     };
     m_led.SetData(m_ledBuffer);
-}
+}*/

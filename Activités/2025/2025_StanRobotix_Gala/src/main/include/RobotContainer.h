@@ -31,7 +31,7 @@ class RobotContainer {
   RobotContainer();
 
   frc2::CommandPtr GetAutonomousCommand();
-  void setLED();
+  //void setLED();
   
 
  private:
@@ -46,7 +46,7 @@ class RobotContainer {
   SubArms * mArms = nullptr;
   frc2::CommandJoystick * m_commandJoystick;
   frc::Joystick * m_joystick;
-  LED mLED;
+  //LED mLED;
 
   int timer = 0;
 

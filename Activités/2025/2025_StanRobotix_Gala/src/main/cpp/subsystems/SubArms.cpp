@@ -74,8 +74,8 @@ void SubArms::GoToPlace(double iSetPointRight, double iSetPointLeft){
     SetVoltageLeft(units::volt_t(ArmsConstants::kG * cos(pivotAngleLeft)) + units::volt_t(OutputLeft));
 
     if (i == 30) {
-    std::cout << "right error = " << iSetPointRight - pivotAngleRight << std::endl;
-    std::cout << "left error = " << iSetPointLeft - pivotAngleLeft << std::endl;
+    std::cout << "setpoint right = " << iSetPointRight << std::endl;
+    std::cout << "setpoint left = " << iSetPointLeft << std::endl;
     i = 0;}
     else {i++;}
 }

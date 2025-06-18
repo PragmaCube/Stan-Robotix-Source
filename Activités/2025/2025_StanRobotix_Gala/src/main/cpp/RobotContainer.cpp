@@ -24,7 +24,7 @@ RobotContainer::RobotContainer() {
 
   mSub->SetDefaultCommand(frc2::RunCommand(
       [this] {
-        mSub->driveRobotRelativeFromJoystick(m_joystick->GetX(), m_joystick->GetY(), -m_joystick->GetZ(), 0.2);
+        mSub->driveRobotRelativeFromJoystick(m_joystick->GetX(), m_joystick->GetY(), -m_joystick->GetZ(), 0.4);
         },
         {mSub}));
 
@@ -53,7 +53,7 @@ void RobotContainer::ConfigureBindings() {
   m_commandJoystick->Button(JoystickBindingsConstants::Arms::kArmsUp).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Up, SubArms::Positions::Up).ToPtr());
   m_commandJoystick->Button(1).WhileTrue(frc2::RunCommand([this] {mIMU->ResetAngle();}, {mIMU}).ToPtr());
 }
-
+/*
 void RobotContainer::setLED()
 {
   if (abs(m_joystick->GetX()) > 0.2 || abs(m_joystick->GetY()) > 0.2 ||  abs(m_joystick->GetZ()) > 0.2)
@@ -84,7 +84,7 @@ void RobotContainer::setLED()
     mLED.setMode(mLED.immobile);
   }
 }
-
+*/
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);

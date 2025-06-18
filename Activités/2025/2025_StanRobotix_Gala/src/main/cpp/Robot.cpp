@@ -58,7 +58,7 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  m_container.setLED();
+ // m_container.setLED();
 }
 
 /**
