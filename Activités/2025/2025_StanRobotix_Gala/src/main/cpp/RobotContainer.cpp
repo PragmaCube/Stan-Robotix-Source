@@ -22,16 +22,16 @@ RobotContainer::RobotContainer() {
   m_commandJoystick = new frc2::CommandJoystick{OperatorConstants::kDriverControllerPort};
   m_joystick = &m_commandJoystick->GetHID();
 
- /* mDrivetrain->SetDefaultCommand(frc2::RunCommand(
+  mDrivetrain->SetDefaultCommand(frc2::RunCommand(
       [this]
       {
-        mDrivetrain->driveFieldRelative(-m_commandJoystick->GetHID().GetX(),
-                                        -m_commandJoystick->GetHID().GetY(),
-                                        -m_commandJoystick->GetHID().GetZ(),
-                                        (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
+        mDrivetrain->driveRobotRelativeFromJoystick(-m_commandJoystick->GetHID().GetX(),
+                                                    -m_commandJoystick->GetHID().GetY(),
+                                                    -m_commandJoystick->GetHID().GetZ(),
+                                                    (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
       },
       {mDrivetrain}));
-*/
+
   // Configure the button bindings
   ConfigureBindings();
 }
@@ -47,39 +47,45 @@ void RobotContainer::ConfigureBindings() {
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
-  m_commandJoystick->Button(JoystickBindingsConstants::Arms::kArmsDown).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Down, SubArms::Positions::Down).ToPtr());
-  m_commandJoystick->Button(JoystickBindingsConstants::Arms::kArmsUp).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Up, SubArms::Positions::Up).ToPtr());
+  // m_commandJoystick->Button(JoystickBindingsConstants::Arms::kArmsDown).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Down, SubArms::Positions::Down).ToPtr());
+  // m_commandJoystick->Button(JoystickBindingsConstants::Arms::kArmsUp).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Up, SubArms::Positions::Up).ToPtr());
 }
 
 void RobotContainer::setLED()
 {
-  if (abs(m_joystick->GetX()) > 0.2 || abs(m_joystick->GetY()) > 0.2 ||  abs(m_joystick->GetZ()) > 0.2)
-  { 
-    mLED.setMode(mLED.moving);
-  }
+  mLED.setWhite();
+  // if (abs(m_joystick->GetX()) > 0.2 || abs(m_joystick->GetY()) > 0.2 ||  abs(m_joystick->GetZ()) > 0.2)
+  // {
+  //   if (!mLED.isMoving)
+  //   {
+  //     std::cout << "moving" << std::endl;
+  //     mLED.setMode(mLED.moving);
+  //   }
+  // }
 
-  if (m_joystick->GetRawButton(JoystickBindingsConstants::Arms::kArmsUp) || m_joystick->GetRawButton(JoystickBindingsConstants::Arms::kArmsDown))
-  {
-    if (timer == 5)
-    {
-      mLED.setMode(mLED.waving);
-      timer = 0;
-    }
-    else
-    {
-      timer++;
-    }
-  }
+  // else if (m_joystick->GetRawButtonPressed(JoystickBindingsConstants::Arms::kArmsUp) || m_joystick->GetRawButtonPressed(JoystickBindingsConstants::Arms::kArmsDown))
+  // {
+  //   std::cout << "waving" << std::endl;
+  //   mLED.setMode(mLED.waving);
+  // }
 
-  if (m_joystick->GetRawButtonPressed(5))
-  {
-    mLED.setMode(mLED.talking);
-  }
+  // else if (m_joystick->GetRawButtonPressed(5))
+  // {
+  //   std::cout << "talking" << std::endl;
+  //   mLED.setMode(mLED.talking);
+  // }
 
-  if (std::abs(m_joystick->GetX()) < 0.2 || abs(m_joystick->GetY()) < 0.2 ||  abs(m_joystick->GetZ()) < 0.2)
-  {
-    mLED.setMode(mLED.immobile);
-  }
+  // else if (m_joystick->GetRawButtonPressed(4))
+  // {
+  //   std::cout << "immobile" << std::endl;
+  //   mLED.setMode(mLED.immobile);
+  // }
+
+  // else if (m_joystick->GetRawButtonPressed(6))
+  // {
+  //   std::cout << "test" << std::endl;
+  //   mLED.setMode(mLED.test);
+  // }
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
