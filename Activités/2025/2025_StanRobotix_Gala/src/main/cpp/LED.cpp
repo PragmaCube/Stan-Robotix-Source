@@ -10,7 +10,6 @@ LED::LED()
     addGradiant(frc::Color("#0000ff"), frc::Color("#000000"), 9, m_RedBlueGradiant);
     m_RedBlueLEDPattern = new frc::LEDPattern{frc::LEDPattern::Gradient(frc::LEDPattern::kContinuous, *m_RedBlueGradiant)};
 
-    m_RainbowLEDPattern->ScrollAtAbsoluteSpeed(0.5_mps, LEDsConstants::kLedSpacing);
     m_RedBlueLEDPattern->ScrollAtAbsoluteSpeed(0.5_mps, LEDsConstants::kLedSpacing);
 }
 
@@ -55,6 +54,7 @@ void LED::setWhite()
     {
         m_ledBuffer[i].SetRGB(255, 50, 0);
     }
+    m_ledBuffer[20].SetRGB(255, 255, 255);
     m_led.SetData(m_ledBuffer);
 }
 
@@ -117,10 +117,7 @@ void LED::setMode(Mode iMode){
             isMoving = false;
             isWaving = false;
             isTalking = false;
-            for (int i = 0; i < LEDsConstants::kLength; i++)
-            {
-                m_ledBuffer[i].SetRGB(255, 255, 255);
-            }
+            setWhite();
     };
     m_led.SetData(m_ledBuffer);
 }

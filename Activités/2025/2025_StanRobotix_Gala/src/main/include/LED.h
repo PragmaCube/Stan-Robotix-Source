@@ -40,7 +40,6 @@ class LED {
     // PWM port 9
     // Must be a PWM header, not MXP or DIO
     frc::AddressableLED m_led{LEDsConstants::kLEDPort};  // Ce code est un code test, le port sur lequel se trouvera les LED est encore à changer.
-    frc::LEDPattern * m_RainbowLEDPattern;
     frc::LEDPattern * m_RedBlueLEDPattern;
     std::vector<frc::Color> * m_RedBlueGradiant;
     std::array<frc::AddressableLED::LEDData, LEDsConstants::kLength> m_ledBuffer;  // Reuse the buffer

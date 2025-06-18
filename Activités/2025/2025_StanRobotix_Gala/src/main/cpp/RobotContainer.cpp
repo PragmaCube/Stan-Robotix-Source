@@ -53,39 +53,39 @@ void RobotContainer::ConfigureBindings() {
 
 void RobotContainer::setLED()
 {
-  mLED.setWhite();
-  // if (abs(m_joystick->GetX()) > 0.2 || abs(m_joystick->GetY()) > 0.2 ||  abs(m_joystick->GetZ()) > 0.2)
-  // {
-  //   if (!mLED.isMoving)
-  //   {
-  //     std::cout << "moving" << std::endl;
-  //     mLED.setMode(mLED.moving);
-  //   }
-  // }
+  // mLED.setWhite();
+  if (abs(m_joystick->GetX()) > 0.2 || abs(m_joystick->GetY()) > 0.2 ||  abs(m_joystick->GetZ()) > 0.2)
+  {
+    if (!mLED.isMoving)
+    {
+      std::cout << "moving" << std::endl;
+      mLED.setMode(mLED.moving);
+    }
+  }
 
-  // else if (m_joystick->GetRawButtonPressed(JoystickBindingsConstants::Arms::kArmsUp) || m_joystick->GetRawButtonPressed(JoystickBindingsConstants::Arms::kArmsDown))
-  // {
-  //   std::cout << "waving" << std::endl;
-  //   mLED.setMode(mLED.waving);
-  // }
+  else if (m_joystick->GetRawButtonPressed(JoystickBindingsConstants::Arms::kArmsUp) || m_joystick->GetRawButtonPressed(JoystickBindingsConstants::Arms::kArmsDown))
+  {
+    std::cout << "waving" << std::endl;
+    mLED.setMode(mLED.waving);
+  }
 
-  // else if (m_joystick->GetRawButtonPressed(5))
-  // {
-  //   std::cout << "talking" << std::endl;
-  //   mLED.setMode(mLED.talking);
-  // }
+  else if (m_joystick->GetRawButtonPressed(5))
+  {
+    std::cout << "talking" << std::endl;
+    mLED.setMode(mLED.talking);
+  }
 
-  // else if (m_joystick->GetRawButtonPressed(4))
-  // {
-  //   std::cout << "immobile" << std::endl;
-  //   mLED.setMode(mLED.immobile);
-  // }
+  else if (m_joystick->GetRawButtonPressed(4))
+  {
+    std::cout << "immobile" << std::endl;
+    mLED.setMode(mLED.immobile);
+  }
 
-  // else if (m_joystick->GetRawButtonPressed(6))
-  // {
-  //   std::cout << "test" << std::endl;
-  //   mLED.setMode(mLED.test);
-  // }
+  else if (m_joystick->GetRawButtonPressed(6))
+  {
+    std::cout << "test" << std::endl;
+    mLED.setMode(mLED.test);
+  }
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
