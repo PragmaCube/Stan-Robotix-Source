@@ -7,6 +7,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
 #include <frc/controller/PIDController.h>
+#include <frc/controller/ProfiledPIDController.h>
 
 #include "Constants.h"
 
@@ -42,8 +43,8 @@ class SubArms : public frc2::SubsystemBase {
   rev::spark::SparkMax * mSparkMaxRight;
   rev::spark::SparkMax * mSparkMaxLeft;
   int i = 0;
-  double PastSetPointLeft = 0;
   double PastSetPointRight = 0;
+  double PastSetPointLeft = 0;
   frc::PIDController * mPIDRight;
   frc::PIDController * mPIDLeft;
   double pivotAngleLeft;

@@ -55,12 +55,12 @@ void SubArms::CounterGravity()
 void SubArms::GoToPlace(double iSetPointRight, double iSetPointLeft){
     if (iSetPointLeft != PastSetPointLeft)
         {
-            mPIDLeft->SetSetpoint(iSetPointLeft);
+            mPIDLeft->SetSetpoint(iSetPointLeft + 0.15);
             PastSetPointLeft = iSetPointLeft;
         }
     if (iSetPointRight != PastSetPointRight)
         {
-            mPIDRight->SetSetpoint(iSetPointRight);
+            mPIDRight->SetSetpoint(1 - iSetPointRight + 0.15);
             PastSetPointRight = iSetPointRight;
         }
     pivotAngleRight = GetAngleRight();

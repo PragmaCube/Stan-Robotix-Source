@@ -21,17 +21,17 @@ RobotContainer::RobotContainer() {
 
   m_commandJoystick = new frc2::CommandJoystick{{DrivingConstants::joystickPort}};
   m_joystick = &m_commandJoystick->GetHID();
-/*
+
   mSub->SetDefaultCommand(frc2::RunCommand(
       [this] {
-        mSub->drive(m_joystick->GetX(), m_joystick->GetY(), m_joystick->GetZ(), mIMU->getRotation2d());
+        mSub->driveRobotRelativeFromJoystick(m_joystick->GetX(), m_joystick->GetY(), -m_joystick->GetZ(), 0.2);
         },
         {mSub}));
 
 
-*/
+
   mArms->SetDefaultCommand(frc2::RunCommand([this] {
-        mArms->GoToPlace(((m_joystick->GetThrottle() + 1) / 2), 0);
+        mArms->GoToPlace(((m_joystick->GetThrottle() + 1) / 2), ((m_joystick->GetThrottle() + 1) / 2));
         },
         {mArms})); 
   // Configure the button bindings
@@ -51,6 +51,7 @@ void RobotContainer::ConfigureBindings() {
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
   m_commandJoystick->Button(2).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Up, SubArms::Positions::Down).ToPtr());
   m_commandJoystick->Button(3).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Down, SubArms::Positions::Up).ToPtr());
+  m_commandJoystick->Button(1).WhileTrue(frc2::RunCommand([this] {mIMU->ResetAngle();}, {mIMU}).ToPtr());
 }
 
 void RobotContainer::setLED()

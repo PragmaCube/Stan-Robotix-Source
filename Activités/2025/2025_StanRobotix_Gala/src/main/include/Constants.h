@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
+#include <frc/controller/ProfiledPIDController.h>
 
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
@@ -27,7 +28,7 @@ namespace DrivingConstants {
     constexpr int motor3port = 3;
     constexpr int motor4port = 4;
     constexpr int joystickPort = 0;
-    constexpr int pigeon2port = 5;
+    constexpr int pigeon2port = 1;
 }
 
 namespace DriveTrainConstants {
@@ -64,8 +65,8 @@ namespace DriveTrainConstants {
 namespace ArmsConstants {
     constexpr int kSparkMaxRightDeviceID = 9;
     constexpr int kSparkMaxLeftDeviceID = 10;
-    constexpr double kP = 0.07;
-    constexpr double kI = 0;
+    constexpr double kP = 0.1;
+    constexpr double kI = 0.01;
     constexpr double kD = 0;
     constexpr double kG = 0.02;
     constexpr double kOffset = 0.25;

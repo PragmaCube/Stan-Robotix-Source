@@ -23,7 +23,7 @@ SubDriveTrain::SubDriveTrain(SubIMU *iIMU, int iStartingPose)
     m_frontLeftModule->SetNeoInverted(true);
 
     // Initialization of the IMU
-     mIMU = iIMU;
+    mIMU = iIMU;
 
     // Initialization of the swerve kinematics with the SwerveModules' location
     m_kinematics = new frc::SwerveDriveKinematics<4>{*m_frontLeftLocation, *m_frontRightLocation, *m_backLeftLocation, *m_backRightLocation};
@@ -117,6 +117,24 @@ frc::ChassisSpeeds SubDriveTrain::getRobotRelativeSpeeds()
 void SubDriveTrain::driveRobotRelative(frc::ChassisSpeeds speeds, double SpeedModulation)
 {
     // Tansforming the ChassisSpeeds into four SwerveModuleState for each SwerveModule
+    auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
+
+    // Setting the desired state of each SwerveModule to the corresponding SwerveModuleState
+    m_frontLeftModule->SetDesiredState(fl, SpeedModulation);
+    m_frontRightModule->SetDesiredState(fr, SpeedModulation);
+    m_backLeftModule->SetDesiredState(bl, SpeedModulation);
+    m_backRightModule->SetDesiredState(br, SpeedModulation);
+}
+
+void SubDriveTrain::driveRobotRelativeFromJoystick(float iX, float iY, float i0, double SpeedModulation)
+{
+    // Creating a ChassisSpeeds from the wanted speeds and the robot's rotation
+    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromRobotRelativeSpeeds(units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iY,
+                                                                            units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iX,
+                                                                            units::radians_per_second_t(DriveTrainConstants::kMaxSpeed0) * i0,
+                                                                            mIMU->getRotation2d());
+
+    // Transforming the ChassisSpeeds into four SwerveModuleState for each SwerveModule
     auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
 
     // Setting the desired state of each SwerveModule to the corresponding SwerveModuleState

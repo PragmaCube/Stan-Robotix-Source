@@ -50,6 +50,8 @@ class SubDriveTrain : public frc2::SubsystemBase {
   frc::ChassisSpeeds getRobotRelativeSpeeds();
 // Method that drives the robot in robot relative drive
   void driveRobotRelative(frc::ChassisSpeeds speeds, double SpeedModulation);
+  
+  void driveRobotRelativeFromJoystick(float iX, float iY, float i0, double SpeedModulation);
 
 // Method that returns the robot's pose
   frc::Pose2d getPose();
