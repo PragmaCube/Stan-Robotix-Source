@@ -18,25 +18,27 @@
 class SwerveModule{
  public:
   SwerveModule();
-// Constructeur de la classe avec un motorID pour le Neo et un pour le Neo550
+
+// Constructor that takes as parameters the IDs of the motor controllers for the Neo and Neo550 in one given module.
   SwerveModule(int iNeoMotorID, int iNeo550MotorID);
 
-// Méthode qui retourne le SwerveModulePosition du module
-  frc::SwerveModulePosition getModulePosition();
-// Méthode qui retourne le SwerveModuleState du module
-  frc::SwerveModuleState getModuleState();
+// Méthode that returns the SwerveModulePosition of the module.
+  frc::SwerveModulePosition GetModulePosition();
 
-// Méthode qui retourne un SwerveModuleState optimisé à partir du SwerveModuleState désiré
+// Method that returns the SwerveModuleState of the module
+  frc::SwerveModuleState GetModuleState();
+
+// Method that takes the desired SwerveModuleState as a parameter and returns an optimised SwerveModuleState.
   frc::SwerveModuleState OptimizeState(frc::SwerveModuleState iDesiredState);
 
-// Méthode qui fait rouler le module à partir du SwerveModuleState désiré
-  void setDesiredState(frc::SwerveModuleState iDesiredState, double SpeedModulation);
+// Method that takes the desired SwerveModuleState as a parameter and activates the motor controllers consequently.
+  void SetDesiredState(frc::SwerveModuleState iDesiredState, double SpeedModulation);
 
-// Méthode qui inverse le moteur Neo du module
-  void setNeoInverted(bool iInvertion);
+// Method that reverses the motors direction.
+  void SetNeoInverted(bool iInvertion);
 
-// Méthode qui met à jour le SwerveModulePosition et le SwerveModuleState du module
-  void refreshModule();
+// Method that updates the SwerveModulePosition and the SwerveModuleState of the module.
+  void RefreshModule();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be

@@ -11,7 +11,7 @@
 #include "Constants.h"
 
 #include "subsystems/SubAlgaePivot.h"
-#include "commands/AlgaeIntakeIn.h"
+#include "commands/AlgaeIntake.h"
 
 /**
  * An example command.

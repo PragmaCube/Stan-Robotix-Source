@@ -13,23 +13,19 @@ class SubCoralIntake : public frc2::SubsystemBase {
  public:
   SubCoralIntake();
 
-  void Intake(double);
-
-  void Stop();
-
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
-  void SetCommandsState(bool);
-  bool GetCommandsState();
 
   void SetVoltage(double);
 
- private:
-  bool CommandsEnabled = true;
+  void SetPercentage(double);
+  
+  void Stop();
 
+ private:
   rev::spark::SparkMax * mCoralIntakeMotor = nullptr;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

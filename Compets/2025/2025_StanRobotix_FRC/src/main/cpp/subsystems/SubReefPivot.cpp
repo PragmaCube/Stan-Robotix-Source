@@ -3,62 +3,45 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SubReefPivot.h"
-#include <cmath>
 
+SubReefPivot::SubReefPivot()
+{
+    mMotor = new rev::spark::SparkMax{ReefConstants::Pivot::kMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
 
-SubReefPivot::SubReefPivot(){
-    mReefPivotMotor = new rev::spark::SparkMax (ReefConstants::Pivot::kMotorID,  rev::spark::SparkLowLevel::MotorType::kBrushless);
-    mReefIntakeMotor = new rev::spark::SparkMax (13,  rev::spark::SparkLowLevel::MotorType::kBrushless);
+    mPIDController = new frc::PIDController{ReefConstants::Pivot::kP, ReefConstants::Pivot::kI, ReefConstants::Pivot::kD};
 }
 
 // This method will be called once per scheduler run
-void SubReefPivot::Periodic() {
-    // std::cout << (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi << std::endl;
+void SubReefPivot::Periodic() {}
+
+void SubReefPivot::Stop()
+{
+    mMotor->StopMotor();
 }
 
-void SubReefPivot::StopPivot(){
-    mReefPivotMotor->StopMotor();
-}
+void SubReefPivot::SetPosition(double Setpoint)
+{
+    mPIDController->SetSetpoint(Setpoint);
 
-void SubReefPivot::Pivot(double Setpoint){
-    mPIDController.SetSetpoint(Setpoint);
-    
-    double pivotPositionRad = (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi;
-    double CalculatedPID = mPIDController.Calculate((mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 20 * 2 * std::numbers::pi) * 13;
+    double pivotPositionRad = (mMotor->GetEncoder().GetPosition() + ReefConstants::Pivot::kOffset) / 20 * 2 * std::numbers::pi;
+    double CalculatedPID = mPIDController->Calculate((mMotor->GetEncoder().GetPosition() + ReefConstants::Pivot::kOffset) / 20 * 2 * std::numbers::pi) * 13;
 
-    mReefPivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID) * PIDEnable);  //   
+    mMotor->SetVoltage(-(units::volt_t(ReefConstants::Pivot::kG * cos(pivotPositionRad))) + units::volt_t(CalculatedPID)); //
     // std::cout << CalculatedPID << std::endl;
 }
 
-bool SubReefPivot::AtSetPoint(){
-    return mPIDController.AtSetpoint();
+bool SubReefPivot::AtSetPoint()
+{
+    return mPIDController->AtSetpoint();
 }
 
-void SubReefPivot::SetSetPoint(double iSetPoint){
-    mPIDController.SetSetpoint(iSetPoint);
+void SubReefPivot::CounterGravity()
+{
+    double pivotPositionRad = (mMotor->GetEncoder().GetPosition() + ReefConstants::Pivot::kOffset) / 16 * 2 * std::numbers::pi;
+    mMotor->SetVoltage(-(units::volt_t(ReefConstants::Pivot::kG * cos(pivotPositionRad))));
 }
 
-void SubReefPivot::SetPIDEnable(bool iState){
-    PIDEnable = iState;
-}
-
-void SubReefPivot::StayStill(){
-    mReefPivotMotor->SetVoltage(units::volt_t(-0.75));
-}
-
-void SubReefPivot::CounterGravity(){
-    double pivotPositionRad = (mReefPivotMotor->GetEncoder().GetPosition() + kOffset) / 16 * 2 * std::numbers::pi;
-    mReefPivotMotor->SetVoltage(-(units::volt_t(kG * cos(pivotPositionRad))));
-}
-
-void SubReefPivot::Intake(double iPercent){
-    mReefIntakeMotor->Set(iPercent);
-}
-
-void SubReefPivot::StopIntake(){
-    mReefIntakeMotor->StopMotor();
-}
-
-void SubReefPivot::SetPivotVoltage(double iVoltage){
-    mReefPivotMotor->SetVoltage(units::volt_t(iVoltage));
+void SubReefPivot::SetVoltage(double iVoltage)
+{
+    mMotor->SetVoltage(units::volt_t(iVoltage));
 }

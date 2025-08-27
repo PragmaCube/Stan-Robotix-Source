@@ -8,7 +8,7 @@
 #include <frc2/command/ParallelCommandGroup.h>
 
 #include "commands/AlgaePivotDown.h"
-#include "commands/AlgaeIntakeIn.h"
+#include "commands/AlgaeIntake.h"
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:

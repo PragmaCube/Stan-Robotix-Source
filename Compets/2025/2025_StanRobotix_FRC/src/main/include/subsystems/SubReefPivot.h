@@ -13,6 +13,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <rev/SparkRelativeEncoder.h>
 #include <frc/controller/ArmFeedforward.h>
+#include <cmath>
 
 #include "Constants.h"
 
@@ -24,42 +25,28 @@ class SubReefPivot : public frc2::SubsystemBase {
 
   SubReefPivot();
 
-  void StopPivot();
-
-  void Pivot(double);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
+  // Takes as a parameter an angle in radians and uses a PID to make the pivot reach that angle.
+  void SetPosition(double);
+
   bool AtSetPoint();
-
-  void SetSetPoint(double);
-
-  void SetPIDEnable(bool);
-
-  void StayStill();
 
   void CounterGravity();
 
-  void Intake(double);
+  void SetVoltage(double);
 
-  void StopIntake();
-
-  void SetPivotVoltage(double);
-
+ // Stops using the pivot's motor.
+  void Stop();
 
  private:
 
-  const double kG = 0.27;
-  const double kOffset = 5.27;
-  bool PIDEnable = true;
+  rev::spark::SparkMax * mMotor = nullptr;
 
-
-  rev::spark::SparkMax * mReefPivotMotor = nullptr;
-  rev::spark::SparkMax * mReefIntakeMotor = nullptr;
-
-  frc::PIDController mPIDController{0.14, 0, 0};
+  frc::PIDController * mPIDController;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

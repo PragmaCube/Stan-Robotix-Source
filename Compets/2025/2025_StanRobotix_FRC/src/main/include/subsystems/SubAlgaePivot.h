@@ -22,53 +22,33 @@ class SubAlgaePivot : public frc2::SubsystemBase {
 
  public:
 
- enum StatesAlgae {
-    cage,
-    horizontale,
-    pickAlgae,
-    replié
-  };
-
   SubAlgaePivot();
 
-  void Stop();
-
-  void Pivot(double);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
+  // Returns the angle of the pivot in radians.
+  double GetAngle();
+
+  // Takes as a parameter an angle in radians and uses a PID to make the pivot reach that angle.
+  void SetPosition(double);
+
+  // Returns true when the PID of the pivot reached its setpoint given the tolerance.
   bool AtSetPoint();
 
-  void SetSetPoint(double);
+  void SetVoltage(units::volt_t);
 
-  void SetPIDEnable(bool);
-
-  void Climb();
-  void PivotUpSmooth();
-
-  void StayStill();
-
-  StatesAlgae GetState();
-
-  void SetState(StatesAlgae);
-
+  // Method used to send the sufficient voltage to the pivot for it to counter the force of gravity.
   void CounterGravity();
+
+  void Stop();
 
  private:
 
- 
-
-  StatesAlgae mState;
-
-  const double kG = 0.35;
-  const double kOffset = 33.6426;
-  bool PIDEnable = true;
-
-
   rev::spark::SparkMax * mAlgaePivotMotor = nullptr;
-  frc::PIDController mPIDController{0.2, 0, 0};
+  frc::PIDController * mPIDController = nullptr;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

@@ -8,6 +8,7 @@
 #include <frc2/command/CommandHelper.h>
 
 #include "subsystems/SubReefPivot.h"
+#include "subsystems/SubReefIntake.h"
 
 /**
  * An example command.
@@ -22,7 +23,7 @@ class ManualReefPivot
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  ManualReefPivot(SubReefPivot*);
+  ManualReefPivot(SubReefPivot*, SubReefIntake*);
 
   void Initialize() override;
 
@@ -35,4 +36,5 @@ class ManualReefPivot
   private:
 
   SubReefPivot * mSubReefPivot;
+  SubReefIntake * mSubReefIntake;
 };

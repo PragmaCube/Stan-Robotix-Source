@@ -11,5 +11,5 @@ AlgaeFullIntake::AlgaeFullIntake(SubAlgaeIntake * iSubAlgaeIntake, SubAlgaePivot
   // Add your commands here, e.g.
   // AddCommands(FooCommand{}, BarCommand{});
   
-  AddCommands(AlgaePivotDown(iSubAlgaePivot), AlgaeIntakeIn(iSubAlgaeIntake));
+  AddCommands(AlgaePivotDown(iSubAlgaePivot), AlgaeIntake(iSubAlgaeIntake));
 }

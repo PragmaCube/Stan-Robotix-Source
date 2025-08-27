@@ -7,10 +7,8 @@
 #include <units/length.h>
 #include <units/angle.h>
 #include <units/velocity.h>
+#include <units/voltage.h>
 #include <numbers>
-
-#include <frc/controller/ElevatorFeedforward.h>
-#include <frc/controller/ProfiledPIDController.h>
 
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
@@ -26,10 +24,14 @@ namespace OperatorConstants {
 
 inline constexpr int kDriverControllerPort = 0;
 
-}  // namespace OperatorConstants
+}
 
 
 namespace DriveTrainConstants {
+    /* These names are refering to the robot oriented position of the motor controllers.
+    Meaning the back is generally refering to the side where the battery is held.
+    These IDs should be changed if you make changes in the position of the motor controller
+    or changes in the way you want the robot to be oriented. */
     constexpr int kBackRightMotorID = 6; 
     constexpr int kBackRightMotor550ID = 5; 
     constexpr int kFrontRightMotorID = 8; 
@@ -39,19 +41,20 @@ namespace DriveTrainConstants {
     constexpr int kBackLeftMotorID = 4;
     constexpr int kBackLeftMotor550ID = 3; 
 
-    constexpr float kSpeedCap = 0.9; 
+
+    constexpr float kSpeedCap = 0.9; // Percentage of the max speed of the swerve wheels you want to use.
     constexpr float kMaxSpeed = 1;
-    constexpr double kMaxSpeed0 = std::numbers::pi;
+    constexpr double kMaxSpeed0 = std::numbers::pi; 
+
     constexpr double kGearRatio = 1 / 5.08;
     constexpr double kWheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 
-    namespace PIDs{
-        // constexpr double kP = 4.0; Garder la valeure
+    namespace PIDs {
+        // PID constants for the motor controllers that control the orientation of the swerve wheels. Could be tuned better.
         constexpr double kP = 3.0;
         constexpr double kI = 0.1;
         constexpr double kD = 0.05;
     }
-
 }
 
 namespace PathPlannerConstants {
@@ -61,123 +64,112 @@ namespace PathPlannerConstants {
     constexpr double kPRotation = 5.0;
     constexpr double kIRotation = 0.0;
     constexpr double kDRotation = 0.0;
-
-    constexpr double kStartingPoseX = 8.0;
-    constexpr double kStartingPoseY = 0.789;
-}
-
-namespace ChainConstants {
-
-    constexpr int kMotorID = 2;
 }
 
 namespace AlgaeConstants {
-    namespace Pivot{
-        constexpr double kP = 0.5;
-        constexpr double kI = 0.07;
+    namespace Pivot {
+        constexpr int kMotorID = 9;
+
+        // PID constants for the Pivot.
+        constexpr double kP = 0.2;
+        constexpr double kI = 0;
         constexpr double kD = 0;
 
-        constexpr int kMotorID = 9;
-        constexpr double kAlgaePivotSetPoint1 = 0.2;
-        constexpr double kAlgaePivotSetPoint2 = -0.2;
+        // Setpoints for the PID of the pivot.
+        constexpr double kPositionUp = 0.2;
+        constexpr double kPositionDown = -0.2;
+        
+        // Voltage used to counter the force of gravity.
+        constexpr units::volt_t kG = units::volt_t(0.35);
+
+        // Voltage needed to elevate the robot during the climb phase.
+        constexpr units::volt_t ClimbRiseVoltage = units::volt_t(-2.5);
+
+        // Voltage needed to make the pivot stay in the same position while supporting the robots weight.
+        constexpr units::volt_t ClimbNeutralVoltage = units::volt_t(-0.75);
+
+        // Voltage used to manually make the pivot go up after the climbing phase.
+        constexpr units::volt_t PivotUpVoltage = units::volt_t(0.95);
+
+        // Offset used to make the pivot's horizontal position the zero.
+        constexpr double kOffset = 33.6426;
+
+        constexpr double gearRatio = 80;
     }
 
-    namespace Intake{
+    namespace Intake {
         constexpr int kMotorID = 10;
 
-        constexpr double kAlgaeIntakeSpeed = 0.2; //temporaire
-        constexpr double kNegativeAlgaeIntakeSpeed = -0.2; //temporaire
-
-        constexpr double kG = 0.19; 
-        constexpr double kS = kG + 0.05;
+        constexpr double kIntakeOutput = 0.2; //temporaire
+        constexpr double kOuttakeOutput = -0.2; //temporaire
     }
 }
 
 
 namespace CoralConstants {
-    namespace Pivot{
-        constexpr double kP = 0.5;
-        constexpr double kI = 0.07;
+    namespace Pivot {
+        constexpr int kMotorID = 11;
+
+        // PID constants for the pivot.
+        constexpr double kP = 0.2;
+        constexpr double kI = 0.001;
         constexpr double kD = 0;
 
-        constexpr int kMotorID = 11;
-        constexpr double kCoralPivotSetPoint1 = 0.2;
-        constexpr double kCoralPivotSetPoint2 = -0.2;
-        constexpr double kG = 0;
+        // Setpoints for the PID of the pivot.
+        constexpr double kPositionUp = 0.2;
+        constexpr double kPositionDown = -0.2;
+        
+        // Voltage used to counter the force of gravity.
+        constexpr units::volt_t kG = units::volt_t(-1.38);
+
+        // Offset used to make the pivot's horizontal position the zero.
+        constexpr double kOffset =  -4.667;
     }
     
-    namespace Intake{
+    namespace Intake {
         constexpr int kMotorID = 12;
     }
 }
 
 namespace ReefConstants {
-    namespace Pivot{
-        constexpr double kP = 0.5;
-        constexpr double kI = 0.07;
+    namespace Pivot {
+        constexpr int kMotorID = 16;
+
+        // PID constants for the ReefPivot/Gabriel.
+        constexpr double kP = 0.14;
+        constexpr double kI = 0;
         constexpr double kD = 0;
 
-        constexpr int kMotorID = 16;
-        constexpr double kReefPivotSetPoint1 = 0.2;
-        constexpr double kReefPivotSetPoint2 = -0.2;
-        constexpr double kG = 0;
+        // Setpoints for the PID of the pivot.
+        constexpr double kPositionUp = 0.2;
+        constexpr double kPositionDown = -0.2;
+        
+        // Voltage used to counter the force of gravity.
+        constexpr double kG = 0.27;
+
+        // Offset used to make the pivot's horizontal position the zero.
+        constexpr double kOffset = 5.27;
     }
-}
-
-namespace ElevatorConstants {
-    constexpr double kP = 0;
-    constexpr double kI = 0;
-    constexpr double kD = 0;
-    constexpr units::volt_t kS = units::volt_t(0.0);
-    constexpr units::volt_t kG = units::volt_t(0.0);
-    constexpr units::unit_t<frc::ElevatorFeedforward::kv_unit> kV = units::unit_t<frc::ElevatorFeedforward::kv_unit>(0.0);
-    constexpr units::unit_t<frc::ElevatorFeedforward::ka_unit> kA = units::unit_t<frc::ElevatorFeedforward::ka_unit>(0.0);
-    constexpr frc::ProfiledPIDController<units::radians>::Constraints kConstraints = {0_rad_per_s, 0_rad_per_s_sq};
-    constexpr units::radian_t kTolerance = units::radian_t(std::numbers::pi * 0.02);
-    constexpr double kOffset = 0;
-    constexpr int kMotorID = 5;
-
-    constexpr double kConvertionToMetersFactor = 0.14;
-    constexpr double kConvertionToRadiansFactor = 2 * std::numbers::pi;
-    constexpr double kGearRatio = 0.05;
-
-    namespace Commands{
-        constexpr units::radian_t kL1Setpoint = 0.0_rad;
-        constexpr units::radian_t kL2Setpoint = 0.0_rad;
-        constexpr units::radian_t kL3Setpoint = 0.0_rad;
-        constexpr units::radian_t kL4Setpoint = 0.0_rad;
-        constexpr units::radian_t kCoralSourceSetpoint = 0.0_rad;
-    }
-}
-
-namespace CommandConstants {
-    constexpr int kIterationsGoal = 49;
 }
 
 namespace JoystickBindingsConstants{
-    // constexpr int kResetIMU = 12;
-
-    namespace Algae{
+    namespace Algae {
         constexpr int kPivotUp = 5; 
         constexpr int kPivotDown = 3;
 
-        constexpr int kManualIn = 9;
-            constexpr int kManualPivotUp = 10;
+        constexpr int kManualIn = 9; // Manual just means that you need to keep the button pressed for the command to stay active.
+        constexpr int kManualPivotUp = 10; // Idem.
     }
     
-    namespace Coral{
+    namespace Coral {
         constexpr int kPivotUp = 6;
         constexpr int kPivotDown = 4;
 
-        constexpr int kManualIn = 7;
+        constexpr int kManualIn = 7; // Manual just means that you need to keep the button pressed for the command to stay active.
     }
     constexpr int kGoToTag = 2;
 
     constexpr int kClimb = 11;
 
     constexpr int kResetIMU = 8;
-
-    constexpr int kAlgaeIntakeInCmd = 20; // Mauvais IDs pour rendre les commandes inactives pour le moment
-    constexpr int kAlgaeIntakeOutCmd = 21; // Mauvais IDs pour rendre les commandes inactives pour le moment
-
 }

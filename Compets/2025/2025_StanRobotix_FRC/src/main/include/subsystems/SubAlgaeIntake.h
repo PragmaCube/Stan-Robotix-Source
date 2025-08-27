@@ -13,16 +13,14 @@ class SubAlgaeIntake : public frc2::SubsystemBase {
  public:
   SubAlgaeIntake();
   
-  void Intake(double);
-  
   void Stop();
 
+  /* Sets a voltage to keep the algae in the mechanism. This method is 
+   * useful when the motor of the intake is in idle mode,
+   * which is the case when you need to use them for the climbing phase. */
   void KeepAlgae();
-
-  void SetCommandsState(bool);
-  bool GetCommandsState();
-
-  void SetMotorControllerMode();
+  
+  void SetPercentage(double);
   
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -30,7 +28,6 @@ class SubAlgaeIntake : public frc2::SubsystemBase {
   void Periodic() override;
 
  private:
-  bool CommandsEnabled = true;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   rev::spark::SparkMax * mAlgaeIntakeMotor = nullptr;
