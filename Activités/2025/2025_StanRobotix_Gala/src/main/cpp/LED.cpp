@@ -2,17 +2,18 @@
 
 LED::LED()
 {
-    m_led.SetLength(kLength);
+    m_led.SetLength(LEDsConstants::kLength);
     m_led.Start();
-    m_RainbowLEDPattern = new frc::LEDPattern{frc::LEDPattern::Rainbow(255, 128)};
-    m_RedBlueGradiant.emplace_back(getGradiant(frc::Color("ff0000"), frc::Color("000000"), 9));
-    m_RedBlueGradiant.emplace_back(getGradiant(frc::Color("0000ff"), frc::Color("000000"), 9));
-    m_RedBlueLEDPattern = new frc::LEDPattern{frc::LEDPattern::Gradient(frc::LEDPattern::kContinuous, m_RedBlueGradiant)};
-    m_RainbowLEDPattern->ScrollAtAbsoluteSpeed(0.5_mps, LEDsConstants::kLedSpacing);
+    
+    m_RedBlueGradiant = new std::vector<frc::Color>{};
+    addGradiant(frc::Color("#ff0000"), frc::Color("#000000"), 9, m_RedBlueGradiant);
+    addGradiant(frc::Color("#0000ff"), frc::Color("#000000"), 9, m_RedBlueGradiant);
+    m_RedBlueLEDPattern = new frc::LEDPattern{frc::LEDPattern::Gradient(frc::LEDPattern::kContinuous, *m_RedBlueGradiant)};
+
     m_RedBlueLEDPattern->ScrollAtAbsoluteSpeed(0.5_mps, LEDsConstants::kLedSpacing);
 }
 
-std::vector<frc::Color> getGradiant(frc::Color iStartingColor, frc::Color iEndingColor, int iVectorSize)
+void LED::addGradiant(frc::Color iStartingColor, frc::Color iEndingColor, int iVectorSize, std::vector<frc::Color> * iModifiedVector)
 {
     int startingR = iStartingColor.red;
     int startingG = iStartingColor.green;
@@ -20,14 +21,41 @@ std::vector<frc::Color> getGradiant(frc::Color iStartingColor, frc::Color iEndin
     int endingR = iEndingColor.red;
     int endingG = iEndingColor.green;
     int endingB = iEndingColor.blue;
-    std::vector<frc::Color> gradiant;
     for (int i = 0; i <= iVectorSize; i++)
     {
-        gradiant.emplace_back(frc::Color(startingR - (startingR - endingR) / iVectorSize * i,
-                                         startingG - (startingG - endingG) / iVectorSize * i,
-                                         startingB - (startingB - endingB) / iVectorSize * i));
+        iModifiedVector->emplace_back(frc::Color(startingR - (startingR - endingR) / iVectorSize * i,
+                                                 startingG - (startingG - endingG) / iVectorSize * i,
+                                                 startingB - (startingB - endingB) / iVectorSize * i));
     }
-    return gradiant;
+}
+
+void LED::setMouthLEDs(int iMouthSize)
+{
+    for (int i = -iMouthSize; i <= iMouthSize; i++)
+    {
+        m_ledBuffer[LEDsConstants::kMouthCenter - i].SetRGB(255, 255, 255);
+    }
+}
+
+void LED::pulseLEDs(frc::Color iPulseColor)
+{
+    std::vector<frc::Color> * m_PulseGradiant = new std::vector<frc::Color>{};
+    addGradiant(frc::Color("#000000"), iPulseColor, 9, m_PulseGradiant);
+    addGradiant(iPulseColor, frc::Color("#000000"), 9, m_PulseGradiant);
+    frc::LEDPattern * m_PulseLEDPattern = new frc::LEDPattern{frc::LEDPattern::Gradient(frc::LEDPattern::kDiscontinuous, *m_PulseGradiant)};
+
+    m_PulseLEDPattern->ScrollAtAbsoluteSpeed(0.5_mps, LEDsConstants::kLedSpacing);
+    m_PulseLEDPattern->ApplyTo(m_ledBuffer);
+}
+
+void LED::setWhite()
+{
+    for (int i = 0; i < LEDsConstants::kLength; i++)
+    {
+        m_ledBuffer[i].SetRGB(255, 50, 0);
+    }
+    m_ledBuffer[20].SetRGB(255, 255, 255);
+    m_led.SetData(m_ledBuffer);
 }
 
 void LED::setMode(Mode iMode){
@@ -38,8 +66,7 @@ void LED::setMode(Mode iMode){
             isMoving = false;
             isWaving = false;
             isTalking = false;
-            m_RainbowLEDPattern->ApplyTo(m_ledBuffer);
-            m_led.SetData(m_ledBuffer);
+            pulseLEDs(frc::Color("#FFA500"));
             break;
         case moving:
         // Ces lignes permettent sont pour le moment seulement des lignes de test. Elles servent a faire en sorte que les led continuent de s'animer
@@ -50,21 +77,16 @@ void LED::setMode(Mode iMode){
             isWaving = false;
             isTalking = false;
             m_RedBlueLEDPattern->ApplyTo(m_ledBuffer);
-            m_led.SetData(m_ledBuffer);
+
             break;
         case waving:
             isImmobile = false; 
             isMoving = false;
             isWaving = true;
             isTalking = false;
-
-            firstPixelHue += 1;
-            firstPixelHue %= 3;
-            for (int i = 0; i < kLength; i += 3)
+            for (int i = 0; i < LEDsConstants::kLength; i++)
             {
-                m_ledBuffer[(firstPixelHue + i) % kLength].SetRGB(255, 0, 0);
-                m_ledBuffer[(firstPixelHue + 1 + i) % kLength].SetRGB(0, 255, 0);
-                m_ledBuffer[(firstPixelHue + 2 + i) % kLength].SetRGB(0, 0, 255);
+                m_ledBuffer[i].SetRGB(255, 255, 255);
             }
             break;
         case talking:
@@ -72,11 +94,30 @@ void LED::setMode(Mode iMode){
             isMoving = false;
             isWaving = false;
             isTalking = true;
-            for (int i = 0; i < kLength; i++)
+            srand(int(frc::Timer::GetFPGATimestamp() * 50));
+            if (m_MouthSize >= rand() % LEDsConstants::kMaxMouthSize)
             {
-                m_ledBuffer[i].SetRGB(255, 50, 0);
+                m_MouthSizeIncreasing = false;
             }
+            else{
+                m_MouthSizeIncreasing = true;
+            }
+            if (m_MouthSizeIncreasing)
+            {
+                m_MouthSize++;
+            }
+            else
+            {
+                m_MouthSize--;
+            }
+            setMouthLEDs(m_MouthSize);
             break;
+        case test:
+            isImmobile = false; 
+            isMoving = false;
+            isWaving = false;
+            isTalking = false;
+            setWhite();
     };
     m_led.SetData(m_ledBuffer);
 }*/
