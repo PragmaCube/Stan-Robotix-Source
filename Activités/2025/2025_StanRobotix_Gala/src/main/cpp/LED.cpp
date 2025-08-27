@@ -1,4 +1,4 @@
-#include "LED.h"
+/*#include "LED.h"
 
 LED::LED()
 {
@@ -120,4 +120,4 @@ void LED::setMode(Mode iMode){
             setWhite();
     };
     m_led.SetData(m_ledBuffer);
-}
+}*/

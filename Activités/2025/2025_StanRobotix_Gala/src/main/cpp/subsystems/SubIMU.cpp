@@ -8,7 +8,10 @@
 SubIMU::SubIMU() = default;
 
 // This method will be called once per scheduler run
-void SubIMU::Periodic() {}
+void SubIMU::Periodic() {
+   // std::cout << "r2d : " << double(getRotation2d().Degrees()) << std::endl;
+   // std::cout << "yaw : " << getAngleYaw() << std::endl;
+}
 
 void SubIMU::ResetAngle()
 {

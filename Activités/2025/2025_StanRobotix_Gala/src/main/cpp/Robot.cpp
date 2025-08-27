@@ -6,7 +6,9 @@
 
 #include <frc2/command/CommandScheduler.h>
 
-Robot::Robot() {}
+Robot::Robot() {
+  frc::CameraServer::StartAutomaticCapture();
+}
 
 /**
  * This function is called every 20 ms, no matter the mode. Use
@@ -56,7 +58,7 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  m_container.setLED();
+ // m_container.setLED();
 }
 
 /**

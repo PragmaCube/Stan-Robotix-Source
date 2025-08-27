@@ -36,8 +36,8 @@ void ArmsPivotAt::Initialize()
   }
   mPIDRight = new frc::PIDController{ArmsConstants::kP, ArmsConstants::kI, ArmsConstants::kD};
   mPIDLeft = new frc::PIDController{ArmsConstants::kP, ArmsConstants::kI, ArmsConstants::kD};
-  mPIDRight->SetTolerance(0.05);
-  mPIDLeft->SetTolerance(0.05);
+  mPIDRight->SetTolerance(0.5);
+  mPIDLeft->SetTolerance(0.5);
 }
 
 // Called repeatedly when this Command is scheduled to run

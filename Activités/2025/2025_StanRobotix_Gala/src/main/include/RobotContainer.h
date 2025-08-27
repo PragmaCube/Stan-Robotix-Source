@@ -31,7 +31,7 @@ class RobotContainer {
   RobotContainer();
 
   frc2::CommandPtr GetAutonomousCommand();
-  void setLED();
+  //void setLED();
   
 
  private:
@@ -41,12 +41,12 @@ class RobotContainer {
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
-  SubDriveTrain * mDrivetrain = nullptr;
+  SubDriveTrain * mSub = nullptr;
   SubIMU * mIMU = nullptr;
   SubArms * mArms = nullptr;
   frc2::CommandJoystick * m_commandJoystick;
   frc::Joystick * m_joystick;
-  LED mLED;
+  //LED mLED;
 
   void ConfigureBindings();
 };
