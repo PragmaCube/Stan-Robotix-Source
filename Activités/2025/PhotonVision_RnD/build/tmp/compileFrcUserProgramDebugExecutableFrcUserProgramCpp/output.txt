@@ -1,0 +1,84 @@
+See file:///C:/Prog/Stan-Robotix-Source/Activit%C3%A9s/2025/PhotonVision_RnD/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramDebugExecutableFrcUserProgramCpp.
+compiling ExampleCommand.cpp successful.
+
+compiling ExampleSubsystem.cpp successful.
+
+compiling Autos.cpp successful.
+
+compiling UltrasoundSubsystem.cpp successful.
+
+compiling SwerveModule.cpp successful.
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SwerveModule.cpp: In member function 'void SwerveModule::setNeoInverted(bool)':
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SwerveModule.cpp:51:28: warning: 'virtual void rev::spark::SparkBase::SetInverted(bool)' is deprecated: Use SparkBaseConfig.Inverted() with Configure() instead [-Wdeprecated-declarations]
+   51 |     m_MotorNeo->SetInverted(iInverted);
+      |     ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+In file included from C:\Users\robotix\.gradle\caches\8.11\transforms\be13fe5930302b98e7e66ef110bb1754\transformed\REVLib-cpp-2025.0.2-headers/rev/SparkMax.h:31,
+                 from C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\include/subsystems/SwerveModule.h:7,
+                 from C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SwerveModule.cpp:7:
+C:\Users\robotix\.gradle\caches\8.11\transforms\be13fe5930302b98e7e66ef110bb1754\transformed\REVLib-cpp-2025.0.2-headers/rev/SparkBase.h:174:10: note: declared here
+  174 |     void SetInverted(bool isInverted) override;
+      |          ^~~~~~~~~~~
+
+compiling SubCameraVision.cpp successful.
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SubCameraVision.cpp: In member function 'virtual void SubCameraVision::Periodic()':
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SubCameraVision.cpp:11:69: warning: 'photon::PhotonPipelineResult photon::PhotonCamera::GetLatestResult()' is deprecated: Replace with GetAllUnreadResults [-Wdeprecated-declarations]
+   11 |     photon::PhotonPipelineResult CamResults = usbCam.GetLatestResult();
+      |                                               ~~~~~~~~~~~~~~~~~~~~~~^~
+In file included from C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\include/subsystems/SubCameraVision.h:10,
+                 from C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SubCameraVision.cpp:5:
+C:\Users\robotix\.gradle\caches\8.11\transforms\96c7f72d57272eef39efe126ec82af9b\transformed\photonlib-cpp-v2025.3.1-headers/photon/PhotonCamera.h:92:3: note: declared here
+   92 |   GetLatestResult();
+      |   ^~~~~~~~~~~~~~~
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SubCameraVision.cpp: In member function 'double SubCameraVision::getYaw()':
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SubCameraVision.cpp:31:34: warning: 'photon::PhotonPipelineResult photon::PhotonCamera::GetLatestResult()' is deprecated: Replace with GetAllUnreadResults [-Wdeprecated-declarations]
+   31 |     return usbCam.GetLatestResult().GetBestTarget().GetYaw();
+      |            ~~~~~~~~~~~~~~~~~~~~~~^~
+C:\Users\robotix\.gradle\caches\8.11\transforms\96c7f72d57272eef39efe126ec82af9b\transformed\photonlib-cpp-v2025.3.1-headers/photon/PhotonCamera.h:92:3: note: declared here
+   92 |   GetLatestResult();
+      |   ^~~~~~~~~~~~~~~
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SubCameraVision.cpp: In member function 'std::vector<photon::TargetCorner> SubCameraVision::getCorner()':
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SubCameraVision.cpp:36:34: warning: 'photon::PhotonPipelineResult photon::PhotonCamera::GetLatestResult()' is deprecated: Replace with GetAllUnreadResults [-Wdeprecated-declarations]
+   36 |     return usbCam.GetLatestResult().GetBestTarget().GetMinAreaRectCorners();
+      |            ~~~~~~~~~~~~~~~~~~~~~~^~
+C:\Users\robotix\.gradle\caches\8.11\transforms\96c7f72d57272eef39efe126ec82af9b\transformed\photonlib-cpp-v2025.3.1-headers/photon/PhotonCamera.h:92:3: note: declared here
+   92 |   GetLatestResult();
+      |   ^~~~~~~~~~~~~~~
+
+compiling SubIMU.cpp successful.
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SubIMU.cpp: In member function 'double SubIMU::getRate()':
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SubIMU.cpp:27:25: warning: 'double ctre::phoenix6::hardware::Pigeon2::GetRate() const' is deprecated: This API is deprecated for removal in the 2026 season.Users should use GetAngularVelocityZWorld() instead.Note that AngularVelocityZWorld is CCW+, whereas this API is CW+. [-Wdeprecated-declarations]
+   27 |     return mIMU->GetRate();
+      |            ~~~~~~~~~~~~~^~
+In file included from C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\include/subsystems/SubIMU.h:7,
+                 from C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\subsystems\SubIMU.cpp:5:
+C:\Users\robotix\.gradle\caches\8.11\transforms\05775392fb511d52b378b384460538ba\transformed\wpiapi-cpp-25.3.1-headers/ctre/phoenix6/Pigeon2.hpp:134:12: note: declared here
+  134 |     double GetRate() const;
+      |            ^~~~~~~
+
+compiling VisionGoToAlgae.cpp successful.
+
+compiling GoToTag.cpp successful.
+In file included from C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\include/commands/GoToTag.h:13,
+                 from C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\commands\GoToTag.cpp:5:
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\include/LimelightHelpers.h: In function 'LimelightHelpers::PoseEstimate LimelightHelpers::getBotPoseEstimate(const std::string&, const std::string&)':
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\include/LimelightHelpers.h:472:30: warning: comparison of integer expressions of different signedness: 'std::vector<double>::size_type' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  472 |         if (poseArray.size() == expectedTotalVals)
+      |             ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+
+compiling Robot.cpp successful.
+
+compiling RobotContainer.cpp successful.
+In file included from C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\include/commands/GoToTag.h:13,
+                 from C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\RobotContainer.cpp:13:
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\include/LimelightHelpers.h: In function 'LimelightHelpers::PoseEstimate LimelightHelpers::getBotPoseEstimate(const std::string&, const std::string&)':
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\include/LimelightHelpers.h:472:30: warning: comparison of integer expressions of different signedness: 'std::vector<double>::size_type' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  472 |         if (poseArray.size() == expectedTotalVals)
+      |             ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\RobotContainer.cpp: In member function 'frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto)':
+C:\Prog\Stan-Robotix-Source\Activités\2025\PhotonVision_RnD\src\main\cpp\RobotContainer.cpp:87:1: warning: control reaches end of non-void function [-Wreturn-type]
+   87 | }
+      | ^
+
+compiling SubDriveTrain.cpp successful.
+
+Finished compileFrcUserProgramDebugExecutableFrcUserProgramCpp, see full log file:///C:/Prog/Stan-Robotix-Source/Activit%C3%A9s/2025/PhotonVision_RnD/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt.
