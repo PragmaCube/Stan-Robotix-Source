@@ -6,9 +6,13 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
+#include <frc/kinematics/ChassisSpeeds.h>
 
-#include "subsystems/SubCoralPivot.h"
-#include "subsystems/SubCoralIntake.h"
+#include "commands/CoralPivotUp.h"
+
+#include "subsystems/SubDriveTrain.h"
+
+#include "LimelightHelpers.h"
 
 /**
  * An example command.
@@ -17,13 +21,13 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CoralPivotUp
-    : public frc2::CommandHelper<frc2::Command, CoralPivotUp> {
+class GoToTag
+    : public frc2::CommandHelper<frc2::Command, GoToTag> {
  public:
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  CoralPivotUp(SubCoralPivot*, SubCoralIntake*);
+  GoToTag(SubDriveTrain*, SubIMU*);
 
   void Initialize() override;
 
@@ -33,8 +37,23 @@ class CoralPivotUp
 
   bool IsFinished() override;
 
-  private:
+  private :
+    // frc::PIDController mPIDControllerY {0, 0, 0};
+    // frc::PIDController mPIDControllerX {0, 0, 0.0};
+    frc::PIDController mPIDControllerAngle {0.05, 0, 0.005565};
+    frc::PIDController mPIDControllerX {0.8, 0, 0.002};
+    frc::PIDController mPIDControllerY {0.95, 0, 0.12};
 
-  SubCoralPivot * mCoralPivot;
-  SubCoralIntake * mCoralIntake;
-};
+    double OutputAngle;
+    double OutputX;
+    double OutputY;
+
+    frc::ChassisSpeeds speeds;    
+
+    int Timer = -1;
+
+    int TimerSkip = 0;
+
+    SubDriveTrain * mSubDriveTrain;
+    SubIMU * mSubIMU;
+  };

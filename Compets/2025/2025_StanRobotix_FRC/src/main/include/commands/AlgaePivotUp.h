@@ -6,9 +6,9 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
-
-#include "subsystems/SubCoralPivot.h"
-#include "subsystems/SubCoralIntake.h"
+#include <frc/controller/PIDController.h>
+#include "Constants.h"
+#include "subsystems/SubAlgaePivot.h"
 
 /**
  * An example command.
@@ -17,13 +17,13 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CoralPivotUp
-    : public frc2::CommandHelper<frc2::Command, CoralPivotUp> {
+class AlgaePivotUp
+    : public frc2::CommandHelper<frc2::Command, AlgaePivotUp> {
  public:
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  CoralPivotUp(SubCoralPivot*, SubCoralIntake*);
+  AlgaePivotUp(SubAlgaePivot * iAlgaePivot);
 
   void Initialize() override;
 
@@ -32,9 +32,11 @@ class CoralPivotUp
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+  
+private:
 
-  private:
+  SubAlgaePivot * mAlgaePivot;
 
-  SubCoralPivot * mCoralPivot;
-  SubCoralIntake * mCoralIntake;
+  bool ReachedSetPoint = false;
+  int Timer = -1;
 };

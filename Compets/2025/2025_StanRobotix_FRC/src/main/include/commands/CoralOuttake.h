@@ -6,9 +6,11 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
+#include <frc/Joystick.h>
+#include <frc/XboxController.h>
 
-#include "subsystems/SubCoralPivot.h"
 #include "subsystems/SubCoralIntake.h"
+#include "Constants.h"
 
 /**
  * An example command.
@@ -17,13 +19,13 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CoralPivotUp
-    : public frc2::CommandHelper<frc2::Command, CoralPivotUp> {
+class CoralOuttake
+    : public frc2::CommandHelper<frc2::Command, CoralOuttake> {
  public:
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  CoralPivotUp(SubCoralPivot*, SubCoralIntake*);
+  CoralOuttake(SubCoralIntake*, frc::XboxController*);
 
   void Initialize() override;
 
@@ -33,8 +35,9 @@ class CoralPivotUp
 
   bool IsFinished() override;
 
-  private:
-
-  SubCoralPivot * mCoralPivot;
-  SubCoralIntake * mCoralIntake;
+  private :
+  SubCoralIntake * mCoralIntake = nullptr;
+  frc::XboxController* mJoystick = nullptr;
+  
+  int Timer = -1;
 };
