@@ -8,7 +8,14 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc/controller/PIDController.h>
 
+<<<<<<< HEAD:Compets/2025/2025_StanRobotix_FRC/src/main/include/commands/AlgaePivotDown.h
+#include "Constants.h"
+
+#include "subsystems/SubAlgaePivot.h"
+#include "commands/AlgaeIntake.h"
+=======
 #include "subsystems/SubArms.h"
+>>>>>>> origin/master:Activités/2025/2025_StanRobotix_Gala/src/main/include/commands/ArmPivotAt.h
 
 /**
  * An example command.

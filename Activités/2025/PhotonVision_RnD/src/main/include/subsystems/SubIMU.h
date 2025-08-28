@@ -20,8 +20,14 @@ class SubIMU : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  frc::Rotation2d getRotation2d();
+  frc::Rotation2d GetRotation2d();
 
+<<<<<<< HEAD:Compets/2025/2025_StanRobotix_FRC/src/main/include/subsystems/SubIMU.h
+  void ResetAngle();
+
+ private:
+  
+=======
   double getAngleYaw();
 
   double getRate();
@@ -30,6 +36,7 @@ class SubIMU : public frc2::SubsystemBase {
 
  private:
 
+>>>>>>> origin/master:Activités/2025/PhotonVision_RnD/src/main/include/subsystems/SubIMU.h
   ctre::phoenix6::hardware::Pigeon2 * mIMU;
 
   // Components (e.g. motor controllers and sensors) should generally be

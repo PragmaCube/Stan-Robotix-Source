@@ -7,7 +7,6 @@
 #include <optional>
 
 #include <frc/TimedRobot.h>
-#include <frc2/command/CommandPtr.h>
 #include <cscore_oo.h>
 #include <cameraserver/CameraServer.h>
 
