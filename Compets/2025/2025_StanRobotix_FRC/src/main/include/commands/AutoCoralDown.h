@@ -1,8 +1,3 @@
-
-Compets/2025/2025_StanRobotix_FRC/src/main/include/commands/AutoCoralDown.h
-Viewed
-Original file line number 	Original file line 	Diff line number 	Diff line change
-@@ -1,40 +0,0 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
