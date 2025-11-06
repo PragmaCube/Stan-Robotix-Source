@@ -14,22 +14,21 @@
 #include <frc/kinematics/SwerveDriveOdometry.h>
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/kinematics/ChassisSpeeds.h>
+#include <frc/estimator/SwerveDrivePoseEstimator.h>
 #include <frc/DriverStation.h>
 #include <frc/Joystick.h>
-#include <tuple>
-#include <array>
-#include <vector>
-#include <units/velocity.h>
-#include <units/angle.h>
-#include <wpi/array.h>
+#include <frc/Timer.h>
+#include <units/math.h>
+
 
 #include "Constants.h"
 #include "subsystems/SubIMU.h"
 #include "subsystems/SwerveModule.h"
+#include "LimelightHelpers.h"
 
 class SubDriveTrain : public frc2::SubsystemBase {
  public:
-  SubDriveTrain(SubIMU*);
+  SubDriveTrain(SubIMU * iIMU);
 
   enum StartPoses{
     RougeGauche,
@@ -58,7 +57,8 @@ class SubDriveTrain : public frc2::SubsystemBase {
 // Method that redefines the robot's pose with its input
   void resetPose(frc::Pose2d iRobotPose);
 
-  void Init();
+// Method that gets set as the Subsystem's default command 
+  void DefaultCommand();
 
   // Load the RobotConfig from the GUI settings. You should probably
   // store this in your Constants file
@@ -86,13 +86,20 @@ class SubDriveTrain : public frc2::SubsystemBase {
   // Declaring my swerve kinematics object
   frc::SwerveDriveKinematics<4> * m_kinematics;
   // Declaring the robot pose object
-  frc::Pose2d * m_robotPose;
+  frc::Pose2d * m_startingRobotPose;
   // Declaring the swerve odometry object
   frc::SwerveDriveOdometry<4> * m_odometry;
+
+  frc::SwerveDrivePoseEstimator<4> * m_poseEstimator;
+
+  wpi::array<double, 3> * visionMeasurementStdDevs;
+  wpi::array<double, 3> * stateStdDevs;
 
   // Declaring the IMU object
   SubIMU * mIMU = nullptr;
 
   frc::Pose2d CoordonneesInit;
-  StartPoses StartPose = Test;
+  StartPoses StartPose = RougeCentre;
+
+  LimelightHelpers::PoseEstimate mt2;
 };

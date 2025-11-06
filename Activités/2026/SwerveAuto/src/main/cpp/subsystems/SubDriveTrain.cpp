@@ -9,19 +9,20 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
 {
 
     // Initialization of the SwerveModules' location relative to the robot center
-    m_frontLeftLocation = new frc::Translation2d{0.3683_m, 0.3556_m};
-    m_frontRightLocation = new frc::Translation2d{0.3683_m, -0.3556_m};
-    m_backLeftLocation = new frc::Translation2d{-0.3683_m, 0.3556_m};
-    m_backRightLocation = new frc::Translation2d{-0.3683_m, -0.3556_m};
+    m_frontLeftLocation  = new frc::Translation2d{ 0.3683_m,  0.3556_m};
+    m_frontRightLocation = new frc::Translation2d{ 0.3683_m, -0.3556_m};
+    m_backLeftLocation   = new frc::Translation2d{-0.3683_m,  0.3556_m};
+    m_backRightLocation  = new frc::Translation2d{-0.3683_m, -0.3556_m};
 
     // Initialization of the SwerveModules with the motor IDs
-    m_frontLeftModule = new SwerveModule{DriveTrainConstants::kFrontLeftMotorID,DriveTrainConstants::kFrontLeftMotor550ID};
+    m_frontLeftModule  = new SwerveModule{DriveTrainConstants::kFrontLeftMotorID , DriveTrainConstants::kFrontLeftMotor550ID};
     m_frontRightModule = new SwerveModule{DriveTrainConstants::kFrontRightMotorID, DriveTrainConstants::kFrontRightMotor550ID};
-    m_backLeftModule = new SwerveModule{DriveTrainConstants::kBackLeftMotorID, DriveTrainConstants::kBackLeftMotor550ID};
-    m_backRightModule = new SwerveModule{DriveTrainConstants::kBackRightMotorID, DriveTrainConstants::kBackRightMotor550ID};
+    m_backLeftModule   = new SwerveModule{DriveTrainConstants::kBackLeftMotorID  , DriveTrainConstants::kBackLeftMotor550ID};
+    m_backRightModule  = new SwerveModule{DriveTrainConstants::kBackRightMotorID , DriveTrainConstants::kBackRightMotor550ID};
 
     m_frontLeftModule->setNeoInverted(true);
 
+    visionMeasurementStdDevs = new wpi::array<double, 3>{0.7, 0.7, 99999};
 
     // Initialization of the IMU
     mIMU = iIMU;
@@ -32,33 +33,34 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     switch (StartPose)
     {
     case RougeGauche:
-        m_robotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(0.769), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
+        m_startingRobotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(0.769), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
         break;
     case RougeCentre:
-        m_robotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(4.030), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
+        m_startingRobotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(4.030), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
         break;
     case RougeDroite:
-        m_robotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(7.3), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
+        m_startingRobotPose = new frc::Pose2d{units::meter_t(9.972), units::meter_t(7.3), mIMU->getRotation2d() + frc::Rotation2d(units::degree_t(180))};
         break;
     case BleuGauche:
-        m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(7.261), mIMU->getRotation2d()};
+        m_startingRobotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(7.261), mIMU->getRotation2d()};
         break;
     case BleuCentre:
-        m_robotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(4.010), mIMU->getRotation2d()};
+        m_startingRobotPose = new frc::Pose2d{units::meter_t(8), units::meter_t(4.010), mIMU->getRotation2d()};
         break;
     case BleuDroite:
-        m_robotPose = new frc::Pose2d{units::meter_t(7.58), units::meter_t(0.774), mIMU->getRotation2d()};
+        m_startingRobotPose = new frc::Pose2d{units::meter_t(7.58), units::meter_t(0.774), mIMU->getRotation2d()};
         break;
     case Test:
-        m_robotPose = new frc::Pose2d{units::meter_t(7), units::meter_t(4), mIMU->getRotation2d()};
+        m_startingRobotPose = new frc::Pose2d{units::meter_t(7), units::meter_t(4), mIMU->getRotation2d()};
         break;
     }
-    // Initialization of the swerve odometry with the kinematics, the robot's rotation, an array of the SwerveModules' position, and the robot's pose
-    m_odometry = new frc::SwerveDriveOdometry<4>{*m_kinematics, mIMU->getRotation2d(), {
-                    m_frontLeftModule->getModulePosition(),
-                    m_frontRightModule->getModulePosition(),
-                    m_backLeftModule->getModulePosition(),
-                    m_backRightModule->getModulePosition()}, *m_robotPose};
+
+    // Initialization of the swerve pose estimator with the kinematics, the robot's rotation, an array of the SwerveModules' position, and the robot's pose
+    m_poseEstimator = new frc::SwerveDrivePoseEstimator<4>{*m_kinematics, mIMU->getRotation2d(), {m_frontLeftModule->getModulePosition(), m_frontRightModule->getModulePosition(), m_backLeftModule->getModulePosition(), m_backRightModule->getModulePosition()}, *m_startingRobotPose};
+
+    m_poseEstimator->SetVisionMeasurementStdDevs(*visionMeasurementStdDevs);
+
+    mt2 = LimelightHelpers::getBotPoseEstimate_wpiBlue_MegaTag2("");
 
     pathplanner::AutoBuilder::configure(
       [this](){ return getPose(); }, // Robot pose supplier
@@ -91,17 +93,29 @@ void SubDriveTrain::Periodic()
 
     // Update of the robot's pose with the robot's rotation and an array of the SwerveModules' position
     frc::Rotation2d gyroAngle = mIMU->getRotation2d();
-    *m_robotPose = m_odometry->Update(gyroAngle, {
-                    m_frontLeftModule->getModulePosition(),
-                    m_frontRightModule->getModulePosition(),
-                    m_backLeftModule->getModulePosition(),
-                    m_backRightModule->getModulePosition()});
-    
-//    std::cout << double(m_odometry->GetPose().X()) << std::endl << double(m_odometry->GetPose().Y()) << std::endl;
-    // std::cout << double(mIMU->getRotation2d().Degrees()) << std::endl;
+    m_poseEstimator->Update(gyroAngle, {m_frontLeftModule->getModulePosition(),
+                                        m_frontRightModule->getModulePosition(),
+                                        m_backLeftModule->getModulePosition(),
+                                        m_backRightModule->getModulePosition()});
+
+    bool rejectUpdate = false;
+    // LimelightHelpers::SetRobotOrientation("", m_poseEstimator->GetEstimatedPosition().Rotation().Degrees().value(), 0, 0, 0, 0, 0);
+    LimelightHelpers::SetRobotOrientation("", mIMU->getAngleYaw(), 0, 0, 0, 0, 0);
+    mt2 = LimelightHelpers::getBotPoseEstimate_wpiBlue_MegaTag2("");
+    if (mIMU->getRate() > 360 || mIMU->getRate() < -360)
+    {
+        rejectUpdate = true;
+    }
+    else if (mt2.tagCount == 0)
+    {
+        rejectUpdate = true;
+    }
+
+    if (!rejectUpdate)
+    {
+        m_poseEstimator->AddVisionMeasurement(mt2.pose, frc::Timer::GetFPGATimestamp());
+    }
 }
-   
-void SubDriveTrain::Init() {}
 
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double SpeedModulation)
 {
@@ -123,12 +137,12 @@ void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double Spee
 
 frc::Pose2d SubDriveTrain::getPose()
 {
-    return *m_robotPose;
+    return m_poseEstimator->GetEstimatedPosition();
 }
 
 void SubDriveTrain::resetPose(frc::Pose2d iRobotPose)
 {
-    *m_robotPose = iRobotPose;
+    m_poseEstimator->ResetPose(iRobotPose);
 }
 
 frc::ChassisSpeeds SubDriveTrain::getRobotRelativeSpeeds()
@@ -139,9 +153,8 @@ frc::ChassisSpeeds SubDriveTrain::getRobotRelativeSpeeds()
                                                                                                             m_backLeftModule->getModuleState(),
                                                                                                             m_backRightModule->getModuleState()});
     // Creating a ChassisSpeeds from these speeds and the robot's rotation and returning it
-    frc::ChassisSpeeds robotRelativeSpeeds = frc::ChassisSpeeds::FromRobotRelativeSpeeds(forward,sideways,angular,mIMU->getRotation2d());
+    frc::ChassisSpeeds robotRelativeSpeeds = frc::ChassisSpeeds::FromRobotRelativeSpeeds(forward, sideways, angular, mIMU->getRotation2d());
     return robotRelativeSpeeds;
-
 }
 
 void SubDriveTrain::driveRobotRelative(frc::ChassisSpeeds speeds, double SpeedModulation)
@@ -154,4 +167,12 @@ void SubDriveTrain::driveRobotRelative(frc::ChassisSpeeds speeds, double SpeedMo
     m_frontRightModule->setDesiredState(fr, SpeedModulation);
     m_backLeftModule->setDesiredState(bl, SpeedModulation);
     m_backRightModule->setDesiredState(br, SpeedModulation);
+}
+
+void SubDriveTrain::DefaultCommand()
+{
+    driveFieldRelative(-m_commandJoystick->GetHID().GetX(),
+                       -m_commandJoystick->GetHID().GetY(),
+                       -m_commandJoystick->GetHID().GetZ(),
+                       (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
 }

@@ -8,6 +8,8 @@
 
 #include <frc2/command/SubsystemBase.h> 
 
+#include "Constants.h"
+
 
 class SubIMU : public frc2::SubsystemBase {
  public:
@@ -20,11 +22,15 @@ class SubIMU : public frc2::SubsystemBase {
 
   frc::Rotation2d getRotation2d();
 
+  double getAngleYaw();
+
+  double getRate();
+
   void resetAngle();
 
  private:
 
-  ctre::phoenix6::hardware::Pigeon2 mIMU{1};
+  ctre::phoenix6::hardware::Pigeon2 * mIMU;
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

@@ -9,9 +9,6 @@
 #include <units/velocity.h>
 #include <numbers>
 
-#include <frc/controller/ElevatorFeedforward.h>
-#include <frc/controller/ProfiledPIDController.h>
-
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -24,9 +21,11 @@
 
 namespace OperatorConstants {
 
-inline constexpr int kDriverControllerPort = 0;
+    constexpr int kJoystickPortID = 0;
+    constexpr int kXboxControlerPortID = 1;
 
 }  // namespace OperatorConstants
+
 
 namespace DriveTrainConstants {
     constexpr int kBackRightMotorID = 6; 
@@ -53,6 +52,10 @@ namespace DriveTrainConstants {
 
 }
 
+namespace IMUConstants {
+    constexpr int kCanID = 1;
+}
+
 namespace PathPlannerConstants {
     constexpr double kPTranslation = 5.0;
     constexpr double kITranslation = 0.0;
@@ -63,4 +66,10 @@ namespace PathPlannerConstants {
 
     constexpr double kStartingPoseX = 8.0;
     constexpr double kStartingPoseY = 0.789;
+}
+
+namespace JoystickBindingsConstants{
+    constexpr int kGoToTag = 2;
+
+    constexpr int kResetIMU = 8;
 }
