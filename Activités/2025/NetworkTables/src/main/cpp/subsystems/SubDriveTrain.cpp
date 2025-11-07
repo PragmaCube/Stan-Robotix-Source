@@ -137,11 +137,11 @@ void SubDriveTrain::Init() {}
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double SpeedModulation)
 {
     // Creating a ChassisSpeeds from the wanted speeds and the robot's rotation
-    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iY,
-                                                                            units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iX,
+    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iX,
+                                                                            units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iY,
                                                                             units::radians_per_second_t(DriveTrainConstants::kMaxSpeed0) * i0,
                                                                             mIMU->getRotation2d());
-
+ 
     // Transforming the ChassisSpeeds into four SwerveModuleState for each SwerveModule
     auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
 

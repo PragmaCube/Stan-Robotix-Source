@@ -10,16 +10,16 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
-  m_commandJoystick = new frc2::CommandJoystick{0};
-  m_commandXbox = new frc2::CommandXboxController{1};
+  m_commandJoystick = new frc2::CommandJoystick{OperatorConstants::kJoystickControllerPort};
+  m_commandXbox = new frc2::CommandXboxController{OperatorConstants::kXboxControllerPort};
 
   mIMU = new SubIMU;
   mDriveTrain = new SubDriveTrain{mIMU};
 
   // mDriveTrain->SetDefaultCommand(frc2::RunCommand(
   //     [this] {
-  //     mDriveTrain->driveFieldRelative(-m_commandJoystick->GetHID().GetX(),
-  //                                     -m_commandJoystick->GetHID().GetY(),
+  //     mDriveTrain->driveFieldRelative(-m_commandJoystick->GetHID().GetY(),
+  //                                     -m_commandJoystick->GetHID().GetX(),
   //                                     -m_commandJoystick->GetHID().GetZ(),
   //                                     (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
   //     },
@@ -27,12 +27,12 @@ RobotContainer::RobotContainer() {
 
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
       [this] {
-      mDriveTrain->driveFieldRelative(-m_commandXbox->GetLeftX (),
-                                      -m_commandXbox->GetLeftY (),
-                                      -m_commandXbox->GetRightY (),
-                                      (0.2));
-      },
-      {mDriveTrain}));
+      mDriveTrain->driveFieldRelative(-m_commandXbox->GetLeftY (),
+                                      -m_commandXbox->GetLeftX (),
+                                      -m_commandXbox->GetRightX (),
+                                      (1 - m_commandXbox->GetRightTriggerAxis()));
+     },
+     {mDriveTrain}));
 
   ConfigureBindings();
 
@@ -40,14 +40,12 @@ RobotContainer::RobotContainer() {
 
   mTabGeneral->AddCamera("camera Tab","Limelight + usb",std::span<const std::string>({ "http://10.66.22.11:5800/" })).WithWidget(frc::BuiltInWidgets::kCameraStream);
   mTabGeneral->Add("GoToTag",false);
-
-  // mRobotPose = new wpi::SendableBuilder{}
-
-  // mDriveTrain->InitSendable();
 }
 
 void RobotContainer::ConfigureBindings() {
-  m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();}, {mIMU}).ToPtr());
+  // m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();}, {mIMU}).ToPtr());
+  
+  m_commandXbox->Y().OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();}, {mIMU}).ToPtr());
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {
