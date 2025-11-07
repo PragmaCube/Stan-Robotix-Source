@@ -23,43 +23,12 @@ RobotContainer::RobotContainer() {
 
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
       [this] {
-     mDriveTrain->driveFieldRelative(-m_commandJoystick->GetHID().GetX(),
-                                      -m_commandJoystick->GetHID().GetY(),
-                                      -m_commandJoystick->GetHID().GetZ(),
-                                      (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
+     mDriveTrain->driveFieldRelative(m_commandJoystick->GetHID().GetX(),
+                                     m_commandJoystick->GetHID().GetY(),
+                                     m_commandJoystick->GetHID().GetZ(),
+                                     (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
       },
       {mDriveTrain}));
-
-  // mSubCoralPivot->SetDefaultCommand(frc2::RunCommand(
-  //   [this] {
-  //     mSubCoralPivot->CounterGravity();
-  //   },
-  //   {mSubCoralPivot}));
-
-  // mSubAlgaePivot->SetDefaultCommand(frc2::RunCommand(
-  //   [this] {
-  //     mSubAlgaePivot->CounterGravity();
-  //   },
-  //   {mSubAlgaePivot}));
-
-  // mSubReefPivot->SetDefaultCommand(frc2::RunCommand(
-  //   [this] {
-  //     mSubReefPivot->CounterGravity();
-  //     mSubReefPivot->StopIntake();
-  //   },
-  //   {mSubReefPivot}));
-
-  // mSubCoralIntake->SetDefaultCommand(frc2::RunCommand(
-  //   [this] {
-  //     mSubCoralIntake->Stop();
-  //   },
-  //   {mSubCoralIntake}));
-
-  //  mSubAlgaeIntake->SetDefaultCommand(frc2::RunCommand(
-  //   [this] {
-  //     mSubAlgaeIntake->Stop();
-  //   },
-  //   {mSubAlgaeIntake}));
 
   ConfigureBindings();
 

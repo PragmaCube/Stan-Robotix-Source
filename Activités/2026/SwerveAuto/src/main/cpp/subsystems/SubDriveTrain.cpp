@@ -120,9 +120,9 @@ void SubDriveTrain::Periodic()
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double SpeedModulation)
 {
     // Creating a ChassisSpeeds from the wanted speeds and the robot's rotation
-    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iY,
-                                                                            units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iX,
-                                                                            units::radians_per_second_t(DriveTrainConstants::kMaxSpeed0) * i0,
+    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(-units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iY,
+                                                                            -units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iX,
+                                                                            -units::radians_per_second_t(DriveTrainConstants::kMaxSpeed0) * i0,
                                                                             mIMU->getRotation2d());
 
     // Transforming the ChassisSpeeds into four SwerveModuleState for each SwerveModule
@@ -167,12 +167,4 @@ void SubDriveTrain::driveRobotRelative(frc::ChassisSpeeds speeds, double SpeedMo
     m_frontRightModule->setDesiredState(fr, SpeedModulation);
     m_backLeftModule->setDesiredState(bl, SpeedModulation);
     m_backRightModule->setDesiredState(br, SpeedModulation);
-}
-
-void SubDriveTrain::DefaultCommand()
-{
-    driveFieldRelative(-m_commandJoystick->GetHID().GetX(),
-                       -m_commandJoystick->GetHID().GetY(),
-                       -m_commandJoystick->GetHID().GetZ(),
-                       (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
 }
