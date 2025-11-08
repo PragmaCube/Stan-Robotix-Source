@@ -43,7 +43,7 @@ RobotContainer::RobotContainer() {
 }
 
 void RobotContainer::ConfigureBindings() {
-  // m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();}, {mIMU}).ToPtr());
+  m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();}, {mIMU}).ToPtr());
   
   m_commandXbox->Y().OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();}, {mIMU}).ToPtr());
 }

@@ -24,9 +24,8 @@
 #include <wpi/array.h>
 #include <networktables/NetworkTableInstance.h>
 #include <networktables/NetworkTable.h>
-#include <networktables/DoubleTopic.h>
-#include <networktables/StringArrayTopic.h>
 #include <networktables/StructArrayTopic.h>
+#include <networktables/StructTopic.h>
 
 #include "Constants.h"
 #include "subsystems/SubIMU.h"
@@ -79,12 +78,13 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  // nt::NetworkTableInstance inst = nt::NetworkTableInstance::GetDefault();
-  // std::shared_ptr<nt::NetworkTable> table = inst.GetTable("Swerve");
-  // // std::array<nt::StructArrayTopic(table), 4> stuctArrayTopic;
-  // nt::StructArrayTopic<frc::SwerveModuleState> m_moduleStatesTopic;
-  // // std::array<nt::StructArrayPublisher, 4> m_moduleStatePublisher;
-  // nt::StructArrayPublisher<frc::SwerveModuleState> m_moduleStatesPublisher;
+  nt::NetworkTableInstance inst = nt::NetworkTableInstance::GetDefault();
+  std::shared_ptr<nt::NetworkTable> table = inst.GetTable("Swerve");
+  nt::StructArrayPublisher<frc::SwerveModuleState> m_currentModuleStatesPublisher;
+  nt::StructArrayPublisher<frc::SwerveModuleState> m_desiredModuleStatesPublisher;
+  nt::StructPublisher<frc::ChassisSpeeds> m_currentChassisSpeedsPublisher;
+  nt::StructPublisher<frc::ChassisSpeeds> m_desiredChassisSpeedsPublisher;
+  nt::StructPublisher<frc::Rotation2d> m_rotation2dPublisher;
 
   // Declaring the four SwerveModule objects
   SwerveModule * m_frontLeftModule;

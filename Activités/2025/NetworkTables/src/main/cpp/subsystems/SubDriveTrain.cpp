@@ -21,20 +21,13 @@ SubDriveTrain::SubDriveTrain(SubIMU *iIMU)
 
     m_frontLeftModule->setNeoInverted(true);
 
-    // m_moduleStatesTopic = nt::NetworkTable::GetStructArrayTopic("Swerve Module States", 4);
-    // m_moduleStatesTopic = table->GetStructArrayTopic("Swerve Module States", m_frontLeftModule->getModuleState());
+    // m_moduleStatesTopic = nt::NetworkTable::GetStructArrayTopic("Swerve Module States");
 
-    // m_moduleStatesPublisher = m_moduleStatesTopic.Publish();
-   
-    // strArrayTopic[0] = table->GetStringArrayTopic("Module State FL");
-    // strArrayTopic[1] = table->GetStringArrayTopic("Module State FR");
-    // strArrayTopic[2] = table->GetStringArrayTopic("Module State BL");
-    // strArrayTopic[3] = table->GetStringArrayTopic("Module State BR");
-
-    // m_moduleStatePublisher[0] = strArrayTopic[0].Publish();
-    // m_moduleStatePublisher[1] = strArrayTopic[1].Publish();
-    // m_moduleStatePublisher[2] = strArrayTopic[2].Publish();
-    // m_moduleStatePublisher[3] = strArrayTopic[3].Publish();
+    m_currentModuleStatesPublisher = table->GetStructArrayTopic<frc::SwerveModuleState>("Current SwerveModuleStates").Publish();
+    m_desiredModuleStatesPublisher = table->GetStructArrayTopic<frc::SwerveModuleState>("Desired SwerveModuleStates").Publish();
+    m_currentChassisSpeedsPublisher = table->GetStructTopic<frc::ChassisSpeeds>("Current ChassisSpeeds").Publish();
+    m_desiredChassisSpeedsPublisher = table->GetStructTopic<frc::ChassisSpeeds>("Desired ChassisSpeeds").Publish();
+    m_rotation2dPublisher = table->GetStructTopic<frc::Rotation2d>("Current Rotation2d").Publish();
 
     // Initialization of the IMU
     mIMU = iIMU;
@@ -107,21 +100,6 @@ void SubDriveTrain::Periodic()
     m_backLeftModule->refreshModule();
     m_backRightModule->refreshModule();
 
-    // m_moduleStatesPublisher.Set(std::array<frc::SwerveModuleState, 4>{
-    //                             m_frontLeftModule->getModuleState(),
-    //                             m_frontRightModule->getModuleState(),
-    //                             m_backLeftModule->getModuleState(),
-    //                             m_backRightModule->getModuleState()});
-
-    // m_moduleStatePublisher[0].Set(std::array<std::string, 2>{std::to_string(double_t(m_frontLeftModule->getModuleState().speed)), std::to_string(double_t(m_frontLeftModule->getModuleState().angle.Degrees()))});
-    // m_moduleStatePublisher[1].Set(std::array<std::string, 2>{std::to_string(double_t(m_frontRightModule->getModuleState().speed)), std::to_string(double_t(m_frontRightModule->getModuleState().angle.Degrees()))});
-    // m_moduleStatePublisher[2].Set(std::array<std::string, 2>{std::to_string(double_t(m_backLeftModule->getModuleState().speed)), std::to_string(double_t(m_backLeftModule->getModuleState().angle.Degrees()))});
-    // m_moduleStatePublisher[3].Set(std::array<std::string, 2>{std::to_string(double_t(m_backRightModule->getModuleState().speed)), std::to_string(double_t(m_backRightModule->getModuleState().angle.Degrees()))});
-    
-    // m_moduleStatePublisher[0].Set(m_frontLeftModule->getModuleState());
-    // m_moduleStatePublisher[1].Set(m_frontRightModule->getModuleState());
-    // m_moduleStatePublisher[2].Set(m_backLeftModule->getModuleState());
-    // m_moduleStatePublisher[3].Set(m_backRightModule->getModuleState());
 
     // Update of the robot's pose with the robot's rotation and an array of the SwerveModules' position
     frc::Rotation2d gyroAngle = mIMU->getRotation2d();
@@ -130,6 +108,15 @@ void SubDriveTrain::Periodic()
                     m_frontRightModule->getModulePosition(),
                     m_backLeftModule->getModulePosition(),
                     m_backRightModule->getModulePosition()});
+
+    m_currentModuleStatesPublisher.Set(std::array<frc::SwerveModuleState, 4>{
+                                m_frontLeftModule->getModuleState(),
+                                m_frontRightModule->getModuleState(),
+                                m_backLeftModule->getModuleState(),
+                                m_backRightModule->getModuleState()});
+
+    m_currentChassisSpeedsPublisher.Set(getRobotRelativeSpeeds());
+    m_rotation2dPublisher.Set(gyroAngle);
 }
 
 void SubDriveTrain::Init() {}
@@ -144,6 +131,9 @@ void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double Spee
  
     // Transforming the ChassisSpeeds into four SwerveModuleState for each SwerveModule
     auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
+
+    m_desiredChassisSpeedsPublisher.Set(speeds);
+    m_desiredModuleStatesPublisher.Set(std::array<frc::SwerveModuleState, 4>{fl, fr, bl, br});
 
     // Setting the desired state of each SwerveModule to the corresponding SwerveModuleState
     m_frontLeftModule->setDesiredState(fl, SpeedModulation);

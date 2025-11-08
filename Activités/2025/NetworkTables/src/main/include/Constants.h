@@ -155,8 +155,6 @@ namespace CommandConstants {
 }
 
 namespace JoystickBindingsConstants{
-    // constexpr int kResetIMU = 12;
-
     namespace Algae{
         constexpr int kPivotUp = 5; 
         constexpr int kPivotDown = 3;
