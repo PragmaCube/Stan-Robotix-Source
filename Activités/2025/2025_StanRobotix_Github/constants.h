@@ -1,4 +1,4 @@
 namespace pi
 {
-const pi=3.141592
+    const double pi=3.6622908939383428974789324879;
 }
