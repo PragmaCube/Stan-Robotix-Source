@@ -15,13 +15,8 @@
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/kinematics/ChassisSpeeds.h>
 #include <frc/DriverStation.h>
-#include <frc/Joystick.h>
-#include <tuple>
-#include <array>
-#include <vector>
 #include <units/velocity.h>
 #include <units/angle.h>
-#include <wpi/array.h>
 #include <networktables/NetworkTableInstance.h>
 #include <networktables/NetworkTable.h>
 #include <networktables/StructArrayTopic.h>
