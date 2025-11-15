@@ -76,9 +76,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
   nt::NetworkTableInstance inst = nt::NetworkTableInstance::GetDefault();
   std::shared_ptr<nt::NetworkTable> table = inst.GetTable("Swerve");
   nt::StructArrayPublisher<frc::SwerveModuleState> m_currentModuleStatesPublisher;
-  nt::StructArrayPublisher<frc::SwerveModuleState> m_desiredModuleStatesPublisher;
   nt::StructPublisher<frc::ChassisSpeeds> m_currentChassisSpeedsPublisher;
-  nt::StructPublisher<frc::ChassisSpeeds> m_desiredChassisSpeedsPublisher;
   nt::StructPublisher<frc::Rotation2d> m_rotation2dPublisher;
 
   // Declaring the four SwerveModule objects

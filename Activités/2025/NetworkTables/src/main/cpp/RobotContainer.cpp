@@ -10,7 +10,7 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
-  m_commandJoystick = new frc2::CommandJoystick{OperatorConstants::kJoystickControllerPort};
+  // m_commandJoystick = new frc2::CommandJoystick{OperatorConstants::kJoystickControllerPort};
   m_commandXbox = new frc2::CommandXboxController{OperatorConstants::kXboxControllerPort};
 
   mIMU = new SubIMU;
@@ -37,15 +37,12 @@ RobotContainer::RobotContainer() {
   ConfigureBindings();
 
   mIMU->resetAngle();
-
-  mTabGeneral->AddCamera("camera Tab","Limelight + usb",std::span<const std::string>({ "http://10.66.22.11:5800/" })).WithWidget(frc::BuiltInWidgets::kCameraStream);
-  mTabGeneral->Add("GoToTag",false);
 }
 
 void RobotContainer::ConfigureBindings() {
-  m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();}, {mIMU}).ToPtr());
+  // m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();}, {mIMU}).ToPtr());
   
-  m_commandXbox->Y().OnTrue(frc2::RunCommand([this] {mIMU->resetAngle();}, {mIMU}).ToPtr());
+  m_commandXbox->Y().WhileTrue(frc2::RunCommand([this] {mIMU->resetAngle();}, {mIMU}).ToPtr());
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {

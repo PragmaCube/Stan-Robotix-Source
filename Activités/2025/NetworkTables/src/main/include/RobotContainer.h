@@ -4,10 +4,9 @@
 
 #pragma once
 
-#include <frc2/command/button/CommandJoystick.h>
 #include <frc2/command/CommandPtr.h>
+#include <frc2/command/button/CommandJoystick.h>
 #include <frc2/command/button/CommandXboxController.h>
-#include <frc/Joystick.h>
 #include <pathplanner/lib/commands/PathPlannerAuto.h>
 #include <pathplanner/lib/auto/AutoBuilder.h>
 #include <frc/smartdashboard/SmartDashboard.h>
@@ -15,12 +14,7 @@
 #include <pathplanner/lib/auto/NamedCommands.h>
 #include <memory>
 
-#include <wpi/sendable/Sendable.h>
-
 #include "Constants.h"
-
-#include <frc/shuffleboard/Shuffleboard.h>
-#include <frc/shuffleboard/ShuffleboardTab.h>
 
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
@@ -63,9 +57,4 @@ private:
   // The robot's subsystems are defined here...
   SubDriveTrain *mDriveTrain = nullptr;
   SubIMU *mIMU = nullptr;
-
-  // wpi::SendableBuilder:: *mRobotPose;
-
-  // Creating the DashBoard object
-  frc::ShuffleboardTab *mTabGeneral = &frc::Shuffleboard::GetTab("Main Tab");
 };

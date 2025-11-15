@@ -8,10 +8,7 @@
 
 #include "frc/DataLogManager.h"
 
-Robot::Robot() {
-  frc::DataLogManager::Start();
-  URCL::Start();
-}
+Robot::Robot() {}
 
 /**
  * This function is called every 20 ms, no matter the mode. Use

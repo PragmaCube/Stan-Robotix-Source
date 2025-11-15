@@ -2,6 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+#include <iostream>
 #include "subsystems/SubDriveTrain.h"
 
 SubDriveTrain::SubDriveTrain(SubIMU *iIMU)
@@ -18,14 +19,9 @@ SubDriveTrain::SubDriveTrain(SubIMU *iIMU)
     m_backLeftModule = new SwerveModule{DriveTrainConstants::kBackLeftMotorID, DriveTrainConstants::kBackLeftMotor550ID};
     m_backRightModule = new SwerveModule{DriveTrainConstants::kBackRightMotorID, DriveTrainConstants::kBackRightMotor550ID};
 
-    m_frontLeftModule->setNeoInverted(true);
-
-    // m_moduleStatesTopic = nt::NetworkTable::GetStructArrayTopic("Swerve Module States");
-
+    // Initialization of the Swerve Data Publishers
     m_currentModuleStatesPublisher = table->GetStructArrayTopic<frc::SwerveModuleState>("Current SwerveModuleStates").Publish();
-    m_desiredModuleStatesPublisher = table->GetStructArrayTopic<frc::SwerveModuleState>("Desired SwerveModuleStates").Publish();
     m_currentChassisSpeedsPublisher = table->GetStructTopic<frc::ChassisSpeeds>("Current ChassisSpeeds").Publish();
-    m_desiredChassisSpeedsPublisher = table->GetStructTopic<frc::ChassisSpeeds>("Desired ChassisSpeeds").Publish();
     m_rotation2dPublisher = table->GetStructTopic<frc::Rotation2d>("Current Rotation2d").Publish();
 
     // Initialization of the IMU
@@ -33,6 +29,7 @@ SubDriveTrain::SubDriveTrain(SubIMU *iIMU)
 
     // Initialization of the swerve kinematics with the SwerveModules' location
     m_kinematics = new frc::SwerveDriveKinematics<4>{*m_frontLeftLocation, *m_frontRightLocation, *m_backLeftLocation, *m_backRightLocation};
+
     // Initialization of the robot's pose
     switch (StartPose)
     {
@@ -58,6 +55,9 @@ SubDriveTrain::SubDriveTrain(SubIMU *iIMU)
         m_robotPose = new frc::Pose2d{units::meter_t(7), units::meter_t(4), mIMU->getRotation2d()};
         break;
     }
+
+    // m_robotPose = new frc::Pose2d{0_m, 0_m, mIMU->getRotation2d()};
+
     // Initialization of the swerve odometry with the kinematics, the robot's rotation, an array of the SwerveModules' position, and the robot's pose
     m_odometry = new frc::SwerveDriveOdometry<4>{*m_kinematics, mIMU->getRotation2d(), {
                     m_frontLeftModule->getModulePosition(),
@@ -115,7 +115,8 @@ void SubDriveTrain::Periodic()
                                 m_backRightModule->getModuleState()});
 
     m_currentChassisSpeedsPublisher.Set(getRobotRelativeSpeeds());
-    m_rotation2dPublisher.Set(gyroAngle);
+    m_rotation2dPublisher.Set(mIMU->getRotation2d().Degrees());
+    std::cout << m_robotPose->X().value() << std::endl << m_robotPose->Y().value() << std::endl;
 }
 
 void SubDriveTrain::Init() {}
@@ -123,16 +124,13 @@ void SubDriveTrain::Init() {}
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double SpeedModulation)
 {
     // Creating a ChassisSpeeds from the wanted speeds and the robot's rotation
-    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iX,
-                                                                            units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iY,
-                                                                            units::radians_per_second_t(DriveTrainConstants::kMaxSpeed0) * i0,
+    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(DriveTrainConstants::kMaxSpeed * iX,
+                                                                            DriveTrainConstants::kMaxSpeed * iY,
+                                                                            DriveTrainConstants::kMaxSpeed0 * i0,
                                                                             mIMU->getRotation2d());
  
     // Transforming the ChassisSpeeds into four SwerveModuleState for each SwerveModule
     auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
-
-    m_desiredChassisSpeedsPublisher.Set(speeds);
-    m_desiredModuleStatesPublisher.Set(std::array<frc::SwerveModuleState, 4>{fl, fr, bl, br});
 
     // Setting the desired state of each SwerveModule to the corresponding SwerveModuleState
     m_frontLeftModule->setDesiredState(fl, SpeedModulation);
