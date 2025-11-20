@@ -78,6 +78,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
   nt::StructArrayPublisher<frc::SwerveModuleState> m_currentModuleStatesPublisher;
   nt::StructPublisher<frc::ChassisSpeeds> m_currentChassisSpeedsPublisher;
   nt::StructPublisher<frc::Rotation2d> m_rotation2dPublisher;
+  nt::StructPublisher<frc::Pose2d> m_pose2dPublisher;
 
   // Declaring the four SwerveModule objects
   SwerveModule * m_frontLeftModule;

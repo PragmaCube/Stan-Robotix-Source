@@ -25,6 +25,7 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     m_currentModuleStatesPublisher = table->GetStructArrayTopic<frc::SwerveModuleState>("Current SwerveModuleStates").Publish();
     m_currentChassisSpeedsPublisher = table->GetStructTopic<frc::ChassisSpeeds>("Current ChassisSpeeds").Publish();
     m_rotation2dPublisher = table->GetStructTopic<frc::Rotation2d>("Current Rotation2d").Publish();
+    m_pose2dPublisher = table->GetStructTopic<frc::Pose2d>("Current Pose2d").Publish();
     
 	// Initialization de l'array utiliser pour la vision
     visionMeasurementStdDevs = new wpi::array<double, 3>{0.7, 0.7, 99999};
@@ -136,6 +137,7 @@ void SubDriveTrain::Periodic()
 
     m_currentChassisSpeedsPublisher.Set(getRobotRelativeSpeeds());
     m_rotation2dPublisher.Set(mIMU->getRotation2d().Degrees());
+    m_pose2dPublisher.Set(m_poseEstimator->GetEstimatedPosition());
 }
 
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double SpeedModulation)
