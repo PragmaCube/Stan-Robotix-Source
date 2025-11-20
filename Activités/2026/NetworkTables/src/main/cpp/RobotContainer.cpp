@@ -10,8 +10,8 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
-  // m_commandJoystick = new frc2::CommandJoystick{OperatorConstants::kJoystickControllerPort};
-  m_commandXbox = new frc2::CommandXboxController{OperatorConstants::kXboxControllerPort};
+  m_commandJoystick = new frc2::CommandJoystick{OperatorConstants::kJoystickControllerPortID};
+  m_commandXbox = new frc2::CommandXboxController{OperatorConstants::kXboxControlerPortID};
 
   mIMU = new SubIMU;
   mDriveTrain = new SubDriveTrain{mIMU};

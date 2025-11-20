@@ -51,9 +51,6 @@ private:
   frc2::CommandJoystick *m_commandJoystick = nullptr;
   frc2::CommandXboxController *m_commandXbox = nullptr;
 
-  // Build an auto chooser. This will use frc2::cmd::None() as the default option.
-  frc::SendableChooser<frc2::Command *> autoChooser;
-
   // The robot's subsystems are defined here...
   SubDriveTrain *mDriveTrain = nullptr;
   SubIMU *mIMU = nullptr;

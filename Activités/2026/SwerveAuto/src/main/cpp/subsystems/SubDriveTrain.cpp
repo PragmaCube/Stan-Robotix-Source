@@ -20,8 +20,13 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     m_backLeftModule   = new SwerveModule{DriveTrainConstants::kBackLeftMotorID  , DriveTrainConstants::kBackLeftMotor550ID};
     m_backRightModule  = new SwerveModule{DriveTrainConstants::kBackRightMotorID , DriveTrainConstants::kBackRightMotor550ID};
 
-    m_frontLeftModule->setNeoInverted(true);
 
+    // Initialization of the Swerve Data Publishers
+    m_currentModuleStatesPublisher = table->GetStructArrayTopic<frc::SwerveModuleState>("Current SwerveModuleStates").Publish();
+    m_currentChassisSpeedsPublisher = table->GetStructTopic<frc::ChassisSpeeds>("Current ChassisSpeeds").Publish();
+    m_rotation2dPublisher = table->GetStructTopic<frc::Rotation2d>("Current Rotation2d").Publish();
+    
+	// Initialization de l'array utiliser pour la vision
     visionMeasurementStdDevs = new wpi::array<double, 3>{0.7, 0.7, 99999};
 
     // Initialization of the IMU
@@ -29,6 +34,7 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
 
     // Initialization of the swerve kinematics with the SwerveModules' location
     m_kinematics = new frc::SwerveDriveKinematics<4>{*m_frontLeftLocation, *m_frontRightLocation, *m_backLeftLocation, *m_backRightLocation};
+
     // Initialization of the robot's pose
     switch (StartPose)
     {
@@ -63,22 +69,27 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     mt2 = LimelightHelpers::getBotPoseEstimate_wpiBlue_MegaTag2("");
 
     pathplanner::AutoBuilder::configure(
-      [this](){ return getPose(); }, // Robot pose supplier
-      [this](frc::Pose2d pose){ resetPose(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
-      [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-      [this](auto speeds, auto feedforwards){ driveRobotRelative(speeds, 1); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
-      std::make_shared<pathplanner::PPHolonomicDriveController>( // PPHolonomicController is the built in path following controller for holonomic drive trains
-      pathplanner::PIDConstants(PathPlannerConstants::kPTranslation, PathPlannerConstants::kITranslation, PathPlannerConstants::kDTranslation), // Translation PID constants
-      pathplanner::PIDConstants(PathPlannerConstants::kPRotation, PathPlannerConstants::kIRotation, PathPlannerConstants::kDRotation) // Rotation PID constants
-      ),
-      config, // The robot configuration
-      []() {
-          // Boolean supplier that controls when the path will be mirrored for the red alliance
-          // This will flip the path being followed to the red side of the field.
-          // THE ORIGIN WILL REMAIN ON THE BLUE SIDE  
-          return false;
-      },
-      this // Reference to this subsystem to set requirements
+        [this]()
+        { return getPose(); }, // Robot pose supplier
+        [this](frc::Pose2d pose)
+        { resetPose(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
+        [this]()
+        { return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+        [this](auto speeds, auto feedforwards)
+        { driveRobotRelative(speeds, 1); },                                                                                                           // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
+        std::make_shared<pathplanner::PPHolonomicDriveController>(                                                                                    // PPHolonomicController is the built in path following controller for holonomic drive trains
+            pathplanner::PIDConstants(PathPlannerConstants::kPTranslation, PathPlannerConstants::kITranslation, PathPlannerConstants::kDTranslation), // Translation PID constants
+            pathplanner::PIDConstants(PathPlannerConstants::kPRotation, PathPlannerConstants::kIRotation, PathPlannerConstants::kDRotation)           // Rotation PID constants
+            ),
+        config, // The robot configuration
+        []()
+        {
+            // Boolean supplier that controls when the path will be mirrored for the red alliance
+            // This will flip the path being followed to the red side of the field.
+            // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
+            return false;
+        },
+        this // Reference to this subsystem to set requirements
     );
 }
 
@@ -93,6 +104,7 @@ void SubDriveTrain::Periodic()
 
     // Update of the robot's pose with the robot's rotation and an array of the SwerveModules' position
     frc::Rotation2d gyroAngle = mIMU->getRotation2d();
+    
     m_poseEstimator->Update(gyroAngle, {m_frontLeftModule->getModulePosition(),
                                         m_frontRightModule->getModulePosition(),
                                         m_backLeftModule->getModulePosition(),
@@ -115,14 +127,23 @@ void SubDriveTrain::Periodic()
     {
         m_poseEstimator->AddVisionMeasurement(mt2.pose, frc::Timer::GetFPGATimestamp());
     }
+    
+    m_currentModuleStatesPublisher.Set(std::array<frc::SwerveModuleState, 4>{
+                                m_frontLeftModule->getModuleState(),
+                                m_frontRightModule->getModuleState(),
+                                m_backLeftModule->getModuleState(),
+                                m_backRightModule->getModuleState()});
+
+    m_currentChassisSpeedsPublisher.Set(getRobotRelativeSpeeds());
+    m_rotation2dPublisher.Set(mIMU->getRotation2d().Degrees());
 }
 
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double SpeedModulation)
 {
     // Creating a ChassisSpeeds from the wanted speeds and the robot's rotation
-    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(-units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iY,
-                                                                            -units::meters_per_second_t(DriveTrainConstants::kMaxSpeed) * iX,
-                                                                            -units::radians_per_second_t(DriveTrainConstants::kMaxSpeed0) * i0,
+    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(DriveTrainConstants::kMaxSpeed * iX,
+                                                                            DriveTrainConstants::kMaxSpeed * iY,
+                                                                            DriveTrainConstants::kMaxSpeed0 * i0,
                                                                             mIMU->getRotation2d());
 
     // Transforming the ChassisSpeeds into four SwerveModuleState for each SwerveModule

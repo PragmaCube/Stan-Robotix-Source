@@ -7,7 +7,6 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandJoystick.h>
 #include <frc2/command/button/CommandXboxController.h>
-#include <frc/Joystick.h>
 #include <pathplanner/lib/commands/PathPlannerAuto.h>
 #include <pathplanner/lib/auto/AutoBuilder.h>
 #include <frc/smartdashboard/SmartDashboard.h>
@@ -17,9 +16,6 @@
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
-
-#include <frc/shuffleboard/Shuffleboard.h>
-#include <frc/shuffleboard/ShuffleboardTab.h>
 
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubIMU.h"
@@ -50,6 +46,8 @@ public:
   frc2::CommandPtr GetAutonomousCommand(Auto);
 
 private:
+  void ConfigureBindings();
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandJoystick *m_commandJoystick = nullptr;
   frc2::CommandXboxController *m_commandXbox = nullptr;
@@ -58,10 +56,6 @@ private:
   ExampleSubsystem m_subsystem;
   SubDriveTrain *mDriveTrain = nullptr;
   SubIMU *mIMU = nullptr;
-
-  void ConfigureBindings();
-
-private:
+  
   frc::Pose2d PoseInit;
-  frc::ShuffleboardTab *mTabGeneral = &frc::Shuffleboard::GetTab("Main Tab");
 };

@@ -21,8 +21,8 @@
 
 namespace OperatorConstants {
 
-    constexpr int kJoystickPortID = 0;
-    constexpr int kXboxControlerPortID = 1;
+    constexpr int kJoystickControllerPortID = 1;
+    constexpr int kXboxControlerPortID = 0;
 
 }  // namespace OperatorConstants
 
@@ -37,9 +37,9 @@ namespace DriveTrainConstants {
     constexpr int kBackLeftMotorID = 4;
     constexpr int kBackLeftMotor550ID = 3; 
 
-    constexpr float kSpeedCap = 0.9; 
-    constexpr float kMaxSpeed = 1;
-    constexpr double kMaxSpeed0 = std::numbers::pi;
+    constexpr double kSecToMinFactor = 60;
+    constexpr units::meters_per_second_t kMaxSpeed = 1_mps;
+    constexpr units::radians_per_second_t kMaxSpeed0 = std::numbers::pi * 0.5_rad_per_s;
     constexpr double kGearRatio = 1 / 5.08;
     constexpr double kWheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 

@@ -24,8 +24,8 @@
 
 namespace OperatorConstants {
 
-inline constexpr int kXboxControllerPort = 0;
-inline constexpr int kJoystickControllerPort = 0;
+    constexpr int kJoystickControllerPortID = 1;
+    constexpr int kXboxControlerPortID = 0;
 
 }  // namespace OperatorConstants
 

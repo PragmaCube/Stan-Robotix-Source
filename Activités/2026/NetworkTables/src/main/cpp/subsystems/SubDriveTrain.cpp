@@ -99,9 +99,9 @@ void SubDriveTrain::Periodic()
     m_backLeftModule->refreshModule();
     m_backRightModule->refreshModule();
 
-
     // Update of the robot's pose with the robot's rotation and an array of the SwerveModules' position
     frc::Rotation2d gyroAngle = mIMU->getRotation2d();
+    
     *m_robotPose = m_odometry->Update(gyroAngle, {
                     m_frontLeftModule->getModulePosition(),
                     m_frontRightModule->getModulePosition(),
@@ -116,10 +116,7 @@ void SubDriveTrain::Periodic()
 
     m_currentChassisSpeedsPublisher.Set(getRobotRelativeSpeeds());
     m_rotation2dPublisher.Set(mIMU->getRotation2d().Degrees());
-    std::cout << m_robotPose->X().value() << std::endl << m_robotPose->Y().value() << std::endl;
 }
-
-void SubDriveTrain::Init() {}
 
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double SpeedModulation)
 {
@@ -128,7 +125,7 @@ void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double Spee
                                                                             DriveTrainConstants::kMaxSpeed * iY,
                                                                             DriveTrainConstants::kMaxSpeed0 * i0,
                                                                             mIMU->getRotation2d());
- 
+
     // Transforming the ChassisSpeeds into four SwerveModuleState for each SwerveModule
     auto [fl, fr, bl, br] = m_kinematics->ToSwerveModuleStates(speeds);
 

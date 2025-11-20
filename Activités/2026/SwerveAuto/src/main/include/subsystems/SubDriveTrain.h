@@ -16,10 +16,12 @@
 #include <frc/kinematics/ChassisSpeeds.h>
 #include <frc/estimator/SwerveDrivePoseEstimator.h>
 #include <frc/DriverStation.h>
-#include <frc/Joystick.h>
-#include <frc/Timer.h>
-#include <units/math.h>
-
+#include <units/velocity.h>
+#include <units/angle.h>
+#include <networktables/NetworkTableInstance.h>
+#include <networktables/NetworkTable.h>
+#include <networktables/StructArrayTopic.h>
+#include <networktables/StructTopic.h>
 
 #include "Constants.h"
 #include "subsystems/SubIMU.h"
@@ -57,9 +59,6 @@ class SubDriveTrain : public frc2::SubsystemBase {
 // Method that redefines the robot's pose with its input
   void resetPose(frc::Pose2d iRobotPose);
 
-// Method that gets set as the Subsystem's default command 
-  void DefaultCommand();
-
   // Load the RobotConfig from the GUI settings. You should probably
   // store this in your Constants file
   pathplanner::RobotConfig config = pathplanner::RobotConfig::fromGUISettings();
@@ -74,6 +73,11 @@ class SubDriveTrain : public frc2::SubsystemBase {
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+  nt::NetworkTableInstance inst = nt::NetworkTableInstance::GetDefault();
+  std::shared_ptr<nt::NetworkTable> table = inst.GetTable("Swerve");
+  nt::StructArrayPublisher<frc::SwerveModuleState> m_currentModuleStatesPublisher;
+  nt::StructPublisher<frc::ChassisSpeeds> m_currentChassisSpeedsPublisher;
+  nt::StructPublisher<frc::Rotation2d> m_rotation2dPublisher;
 
   // Declaring the four SwerveModule objects
   SwerveModule * m_frontLeftModule;

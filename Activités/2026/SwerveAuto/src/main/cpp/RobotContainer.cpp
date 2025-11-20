@@ -15,7 +15,7 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
-  m_commandJoystick = new frc2::CommandJoystick{OperatorConstants::kJoystickPortID};
+  m_commandJoystick = new frc2::CommandJoystick{OperatorConstants::kJoystickControllerPortID};
   m_commandXbox = new frc2::CommandXboxController{OperatorConstants::kXboxControlerPortID};
 
   mIMU = new SubIMU;
@@ -23,29 +23,22 @@ RobotContainer::RobotContainer() {
 
   mDriveTrain->SetDefaultCommand(frc2::RunCommand(
       [this] {
-     mDriveTrain->driveFieldRelative(m_commandJoystick->GetHID().GetX(),
-                                     m_commandJoystick->GetHID().GetY(),
-                                     m_commandJoystick->GetHID().GetZ(),
-                                     (-(m_commandJoystick->GetHID().GetThrottle()) / 2) + 0.5);
-      },
-      {mDriveTrain}));
+      mDriveTrain->driveFieldRelative(-m_commandXbox->GetLeftY (),
+                                      -m_commandXbox->GetLeftX (),
+                                      -m_commandXbox->GetRightX (),
+                                      (1 - m_commandXbox->GetRightTriggerAxis()));
+     },
+     {mDriveTrain}));
 
   ConfigureBindings();
 
   mIMU->resetAngle();
 
   pathplanner::NamedCommands::registerCommand("Go to tag", std::move(GoToTag(mDriveTrain, mIMU).ToPtr()));
-
-  mTabGeneral->AddCamera("camera Tab","Limelight + usb",std::span<const std::string>({ "http://10.66.22.11:5800/" })).WithWidget(frc::BuiltInWidgets::kCameraStream);
-  mTabGeneral->Add("GoToTag",false);
 }
 
-void RobotContainer::ConfigureBindings() {
-  // Configure your trigger bindings here
-
-  m_commandJoystick->Button(JoystickBindingsConstants::kGoToTag).OnTrue(GoToTag(mDriveTrain, mIMU).ToPtr());
-
-  m_commandJoystick->Button(JoystickBindingsConstants::kResetIMU).WhileTrue(frc2::RunCommand([this] {mIMU->resetAngle();},{mIMU}).ToPtr());
+void RobotContainer::ConfigureBindings() {  
+  m_commandXbox->Y().WhileTrue(frc2::RunCommand([this] {mIMU->resetAngle();}, {mIMU}).ToPtr());
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {
@@ -80,6 +73,9 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {
   case Test:
     return pathplanner::PathPlannerAuto("Test").ToPtr();
     break;
+
+  default:
+    return autos::ExampleAuto(&m_subsystem);
+    break;
   }
-  // return autos::ExampleAuto(&m_subsystem);
 }
