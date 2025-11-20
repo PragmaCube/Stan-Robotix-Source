@@ -19,3 +19,10 @@ namespace OperatorConstants {
 inline constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
+
+namespace DriveConstants{
+    constexpr int kPortMoteurADroite= 1;
+    constexpr int kPortMoteurDDroite= 2;
+    constexpr int kPortMoteurAGauche= 3;
+    constexpr int kPortMoteurDGauche= 4;
+}
