@@ -2,15 +2,18 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include <iostream>
-
 #include "subsystems/SwerveModule.h"
 
-SwerveModule::SwerveModule(int iNeoMotorID, int iNeo550MotorID)
+SwerveModule::SwerveModule(int iNeoMotorID, int iNeo550MotorID, bool iSetInveryed)
 {
     // Initialization of the motor controllers with the motorID constructor input
     m_MotorNeo = new rev::spark::SparkMax{iNeoMotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
     m_MotorNeo550 = new rev::spark::SparkMax{iNeo550MotorID, rev::spark::SparkLowLevel::MotorType::kBrushless};
+
+    m_NeoConfig = new rev::spark::SparkMaxConfig{};
+    m_NeoConfig->Inverted(iSetInveryed);
+
+    m_MotorNeo->Configure(*m_NeoConfig, rev::spark::SparkBase::ResetMode::kNoResetSafeParameters, rev::spark::SparkBase::PersistMode::kNoPersistParameters);
 
     // Initialization of the PIDController with the P,I and D constants and a continuous input from 0 to 1
     m_Neo550PID = new frc::PIDController{DriveTrainConstants::PIDs::kP, DriveTrainConstants::PIDs::kI, DriveTrainConstants::PIDs::kD};
@@ -43,11 +46,6 @@ void SwerveModule::setDesiredState(frc::SwerveModuleState iDesiredState, double 
     m_Neo550PID->SetSetpoint(double(OptimizedState.angle.Radians() / (2 * std::numbers::pi)) + 0.5);
     m_MotorNeo550->Set(m_Neo550PID->Calculate(m_Neo550AbsoluteEncoder->GetPosition()));
     m_MotorNeo->Set(double(OptimizedState.speed * SpeedModulation));
-}
-
-void SwerveModule::setNeoInverted(bool iInverted)
-{
-    m_MotorNeo->SetInverted(iInverted);
 }
 
 frc::SwerveModuleState SwerveModule::getModuleState()

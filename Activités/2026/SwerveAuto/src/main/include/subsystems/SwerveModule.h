@@ -7,7 +7,8 @@
 #include <rev/SparkMax.h>
 #include <rev/RelativeEncoder.h>
 #include <rev/AbsoluteEncoder.h>
-#include <frc/kinematics/SwerveDriveKinematics.h>
+#include <rev/config/SparkMaxConfig.h>
+#include <frc/kinematics/SwerveModuleState.h>
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/controller/PIDController.h>
 #include <units/velocity.h>
@@ -19,7 +20,7 @@ class SwerveModule{
  public:
   SwerveModule();
 // Constructeur de la classe avec un motorID pour le Neo et un pour le Neo550
-  SwerveModule(int iNeoMotorID, int iNeo550MotorID);
+  SwerveModule(int iNeoMotorID, int iNeo550MotorID, bool iSetInveryed = false);
 
 // Méthode qui retourne le SwerveModulePosition du module
   frc::SwerveModulePosition getModulePosition();
@@ -32,9 +33,6 @@ class SwerveModule{
 // Méthode qui fait rouler le module à partir du SwerveModuleState désiré
   void setDesiredState(frc::SwerveModuleState iDesiredState, double SpeedModulation);
 
-// Méthode qui inverse le moteur Neo du module
-  void setNeoInverted(bool iInvertion);
-
 // Méthode qui met à jour le SwerveModulePosition et le SwerveModuleState du module
   void refreshModule();
 
@@ -44,6 +42,8 @@ class SwerveModule{
 
   rev::spark::SparkMax * m_MotorNeo;
   rev::spark::SparkMax * m_MotorNeo550;
+
+  rev::spark::SparkMaxConfig * m_NeoConfig;
 
   rev::spark::SparkRelativeEncoder * m_NeoEncoder;
   rev::spark::SparkRelativeEncoder * m_Neo550Encoder;

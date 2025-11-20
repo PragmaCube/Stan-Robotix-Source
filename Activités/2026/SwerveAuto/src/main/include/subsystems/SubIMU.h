@@ -3,10 +3,11 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
-#include <frc/geometry/Rotation2d.h>
-#include <ctre/phoenix6/Pigeon2.hpp>
 
 #include <frc2/command/SubsystemBase.h> 
+
+#include <frc/geometry/Rotation2d.h>
+#include <ctre/phoenix6/Pigeon2.hpp>
 
 #include "Constants.h"
 
@@ -29,7 +30,6 @@ class SubIMU : public frc2::SubsystemBase {
   void resetAngle();
 
  private:
-
   ctre::phoenix6::hardware::Pigeon2 * mIMU;
 
   // Components (e.g. motor controllers and sensors) should generally be

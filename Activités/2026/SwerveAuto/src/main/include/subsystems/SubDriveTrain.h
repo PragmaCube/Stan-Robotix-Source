@@ -16,8 +16,6 @@
 #include <frc/kinematics/ChassisSpeeds.h>
 #include <frc/estimator/SwerveDrivePoseEstimator.h>
 #include <frc/DriverStation.h>
-#include <units/velocity.h>
-#include <units/angle.h>
 #include <networktables/NetworkTableInstance.h>
 #include <networktables/NetworkTable.h>
 #include <networktables/StructArrayTopic.h>
@@ -59,11 +57,9 @@ class SubDriveTrain : public frc2::SubsystemBase {
 // Method that redefines the robot's pose with its input
   void resetPose(frc::Pose2d iRobotPose);
 
-  // Load the RobotConfig from the GUI settings. You should probably
-  // store this in your Constants file
-  pathplanner::RobotConfig config = pathplanner::RobotConfig::fromGUISettings();
-
  private:
+  // Components (e.g. motor controllers and sensors) should generally be
+  // declared private and exposed only through public methods.
 
   // Declaring the locations of the SwerveModules
   frc::Translation2d * m_frontLeftLocation;
@@ -71,8 +67,6 @@ class SubDriveTrain : public frc2::SubsystemBase {
   frc::Translation2d * m_backLeftLocation;
   frc::Translation2d * m_backRightLocation;
 
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
   nt::NetworkTableInstance inst = nt::NetworkTableInstance::GetDefault();
   std::shared_ptr<nt::NetworkTable> table = inst.GetTable("Swerve");
   nt::StructArrayPublisher<frc::SwerveModuleState> m_currentModuleStatesPublisher;
@@ -86,15 +80,13 @@ class SubDriveTrain : public frc2::SubsystemBase {
   SwerveModule * m_backLeftModule;
   SwerveModule * m_backRightModule;
 
-  // wpi::array<frc::SwerveModulePosition, 4> * m_swerveModulePositions;
-
   // Declaring my swerve kinematics object
   frc::SwerveDriveKinematics<4> * m_kinematics;
-  // Declaring the robot pose object
+  // Declaring the robot starting pose object
   frc::Pose2d * m_startingRobotPose;
   // Declaring the swerve odometry object
   frc::SwerveDriveOdometry<4> * m_odometry;
-
+  // Declaring the pose estimator
   frc::SwerveDrivePoseEstimator<4> * m_poseEstimator;
 
   wpi::array<double, 3> * visionMeasurementStdDevs;
@@ -107,4 +99,8 @@ class SubDriveTrain : public frc2::SubsystemBase {
   StartPoses StartPose = RougeCentre;
 
   LimelightHelpers::PoseEstimate mt2;
+
+  // Load the RobotConfig from the GUI settings. You should probably
+  // store this in your Constants file
+  pathplanner::RobotConfig config = pathplanner::RobotConfig::fromGUISettings();
 };

@@ -2,12 +2,10 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include <iostream>
 #include "subsystems/SubDriveTrain.h"
 
 SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
 {
-
     // Initialization of the SwerveModules' location relative to the robot center
     m_frontLeftLocation  = new frc::Translation2d{ 0.3683_m,  0.3556_m};
     m_frontRightLocation = new frc::Translation2d{ 0.3683_m, -0.3556_m};
@@ -26,9 +24,6 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     m_currentChassisSpeedsPublisher = table->GetStructTopic<frc::ChassisSpeeds>("Current ChassisSpeeds").Publish();
     m_rotation2dPublisher = table->GetStructTopic<frc::Rotation2d>("Current Rotation2d").Publish();
     m_pose2dPublisher = table->GetStructTopic<frc::Pose2d>("Current Pose2d").Publish();
-    
-	// Initialization de l'array utiliser pour la vision
-    visionMeasurementStdDevs = new wpi::array<double, 3>{0.7, 0.7, 99999};
 
     // Initialization of the IMU
     mIMU = iIMU;
@@ -65,9 +60,9 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     // Initialization of the swerve pose estimator with the kinematics, the robot's rotation, an array of the SwerveModules' position, and the robot's pose
     m_poseEstimator = new frc::SwerveDrivePoseEstimator<4>{*m_kinematics, mIMU->getRotation2d(), {m_frontLeftModule->getModulePosition(), m_frontRightModule->getModulePosition(), m_backLeftModule->getModulePosition(), m_backRightModule->getModulePosition()}, *m_startingRobotPose};
 
+	// Initialization des standard deviations de la vision
+    visionMeasurementStdDevs = new wpi::array<double, 3>{0.7, 0.7, 99999};
     m_poseEstimator->SetVisionMeasurementStdDevs(*visionMeasurementStdDevs);
-
-    mt2 = LimelightHelpers::getBotPoseEstimate_wpiBlue_MegaTag2("");
 
     pathplanner::AutoBuilder::configure(
         [this]()
@@ -88,6 +83,13 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
             // Boolean supplier that controls when the path will be mirrored for the red alliance
             // This will flip the path being followed to the red side of the field.
             // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
+
+            std::optional<frc::DriverStation::Alliance> alliance = frc::DriverStation::GetAlliance();
+            std::cout << alliance.value() << std::endl;
+            if (alliance) {
+                std::cout << alliance.value() << std::endl;
+                return alliance.value() == frc::DriverStation::Alliance::kRed;
+            }
             return false;
         },
         this // Reference to this subsystem to set requirements
@@ -111,10 +113,13 @@ void SubDriveTrain::Periodic()
                                         m_backLeftModule->getModulePosition(),
                                         m_backRightModule->getModulePosition()});
 
-    bool rejectUpdate = false;
-    // LimelightHelpers::SetRobotOrientation("", m_poseEstimator->GetEstimatedPosition().Rotation().Degrees().value(), 0, 0, 0, 0, 0);
+    // Update de la rotation du robot
     LimelightHelpers::SetRobotOrientation("", mIMU->getAngleYaw(), 0, 0, 0, 0, 0);
+
     mt2 = LimelightHelpers::getBotPoseEstimate_wpiBlue_MegaTag2("");
+
+    bool rejectUpdate = false;
+
     if (mIMU->getRate() > 360 || mIMU->getRate() < -360)
     {
         rejectUpdate = true;
@@ -129,15 +134,15 @@ void SubDriveTrain::Periodic()
         m_poseEstimator->AddVisionMeasurement(mt2.pose, frc::Timer::GetFPGATimestamp());
     }
     
+    // Publication de valeurs sur le NetworkTables
+    m_currentChassisSpeedsPublisher.Set(getRobotRelativeSpeeds());
+    m_rotation2dPublisher.Set(mIMU->getRotation2d().Degrees());
+    m_pose2dPublisher.Set(m_poseEstimator->GetEstimatedPosition());
     m_currentModuleStatesPublisher.Set(std::array<frc::SwerveModuleState, 4>{
                                 m_frontLeftModule->getModuleState(),
                                 m_frontRightModule->getModuleState(),
                                 m_backLeftModule->getModuleState(),
                                 m_backRightModule->getModuleState()});
-
-    m_currentChassisSpeedsPublisher.Set(getRobotRelativeSpeeds());
-    m_rotation2dPublisher.Set(mIMU->getRotation2d().Degrees());
-    m_pose2dPublisher.Set(m_poseEstimator->GetEstimatedPosition());
 }
 
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double SpeedModulation)

@@ -6,6 +6,7 @@
 
 #include <units/length.h>
 #include <units/angle.h>
+#include <units/angular_velocity.h>
 #include <units/velocity.h>
 #include <numbers>
 
@@ -24,18 +25,17 @@ namespace OperatorConstants {
     constexpr int kJoystickControllerPortID = 1;
     constexpr int kXboxControlerPortID = 0;
 
-}  // namespace OperatorConstants
-
+} // namespace OperatorConstants
 
 namespace DriveTrainConstants {
-    constexpr int kBackRightMotorID = 6; 
-    constexpr int kBackRightMotor550ID = 5; 
-    constexpr int kFrontRightMotorID = 8; 
-    constexpr int kFrontRightMotor550ID = 7; 
-    constexpr int kFrontLeftMotorID = 2;   
+    constexpr int kBackRightMotorID = 6;
+    constexpr int kBackRightMotor550ID = 5;
+    constexpr int kFrontRightMotorID = 8;
+    constexpr int kFrontRightMotor550ID = 7;
+    constexpr int kFrontLeftMotorID = 2;
     constexpr int kFrontLeftMotor550ID = 1;
     constexpr int kBackLeftMotorID = 4;
-    constexpr int kBackLeftMotor550ID = 3; 
+    constexpr int kBackLeftMotor550ID = 3;
 
     constexpr double kSecToMinFactor = 60;
     constexpr units::meters_per_second_t kMaxSpeed = 1_mps;
@@ -43,13 +43,12 @@ namespace DriveTrainConstants {
     constexpr double kGearRatio = 1 / 5.08;
     constexpr double kWheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 
-    namespace PIDs{
+    namespace PIDs {
         // constexpr double kP = 4.0; Garder la valeure
         constexpr double kP = 3.0;
         constexpr double kI = 0.1;
         constexpr double kD = 0.05;
     }
-
 }
 
 namespace IMUConstants {
@@ -68,7 +67,7 @@ namespace PathPlannerConstants {
     constexpr double kStartingPoseY = 0.789;
 }
 
-namespace JoystickBindingsConstants{
+namespace JoystickBindingsConstants {
     constexpr int kGoToTag = 2;
 
     constexpr int kResetIMU = 8;
