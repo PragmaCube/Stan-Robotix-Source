@@ -39,6 +39,7 @@ RobotContainer::RobotContainer() {
 
 void RobotContainer::ConfigureBindings() {  
   m_commandXbox->Y().WhileTrue(frc2::RunCommand([this] {mIMU->resetAngle();}, {mIMU}).ToPtr());
+  m_commandXbox->X().WhileTrue(frc2::RunCommand([this] {mDriveTrain->resetPose(frc::Pose2d(0_m, 0_m, 0_rad));}, {mDriveTrain}).ToPtr());
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand(Auto iStartingPoint) {

@@ -13,7 +13,7 @@ SwerveModule::SwerveModule(int iNeoMotorID, int iNeo550MotorID, bool iSetInverye
     m_NeoConfig = new rev::spark::SparkMaxConfig{};
     m_NeoConfig->Inverted(iSetInveryed);
 
-    m_MotorNeo->Configure(*m_NeoConfig, rev::spark::SparkBase::ResetMode::kNoResetSafeParameters, rev::spark::SparkBase::PersistMode::kNoPersistParameters);
+    m_MotorNeo->Configure(*m_NeoConfig, rev::spark::SparkBase::ResetMode::kNoResetSafeParameters, rev::spark::SparkBase::PersistMode::kPersistParameters);
 
     // Initialization of the PIDController with the P,I and D constants and a continuous input from 0 to 1
     m_Neo550PID = new frc::PIDController{DriveTrainConstants::PIDs::kP, DriveTrainConstants::PIDs::kI, DriveTrainConstants::PIDs::kD};
