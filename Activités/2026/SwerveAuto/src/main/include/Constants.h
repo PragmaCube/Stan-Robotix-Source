@@ -38,8 +38,8 @@ namespace DriveTrainConstants {
     constexpr int kBackLeftMotor550ID = 3;
 
     constexpr double kSecToMinFactor = 60;
-    constexpr units::meters_per_second_t kMaxSpeed = 1_mps;
-    constexpr units::radians_per_second_t kMaxSpeed0 = std::numbers::pi * 0.5_rad_per_s;
+    constexpr units::meters_per_second_t kSpeedConstant = 0.5_mps;
+    constexpr units::radians_per_second_t kSpeedConstant0 = std::numbers::pi * 0.2_rad_per_s;
     constexpr double kGearRatio = 1 / 5.08;
     constexpr double kWheelPerimeter = 3 * 0.0254 * std::numbers::pi;
 

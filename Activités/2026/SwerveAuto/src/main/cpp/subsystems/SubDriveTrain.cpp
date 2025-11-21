@@ -13,8 +13,8 @@ SubDriveTrain::SubDriveTrain(SubIMU * iIMU)
     m_backRightLocation  = new frc::Translation2d{-0.3683_m, -0.3556_m};
 
     // Initialization of the SwerveModules with the motor IDs
-    m_frontLeftModule  = new SwerveModule{DriveTrainConstants::kFrontLeftMotorID , DriveTrainConstants::kFrontLeftMotor550ID};
-    m_frontRightModule = new SwerveModule{DriveTrainConstants::kFrontRightMotorID, DriveTrainConstants::kFrontRightMotor550ID};
+    m_frontLeftModule  = new SwerveModule{DriveTrainConstants::kFrontLeftMotorID , DriveTrainConstants::kFrontLeftMotor550ID, true};
+    m_frontRightModule = new SwerveModule{DriveTrainConstants::kFrontRightMotorID, DriveTrainConstants::kFrontRightMotor550ID, true};
     m_backLeftModule   = new SwerveModule{DriveTrainConstants::kBackLeftMotorID  , DriveTrainConstants::kBackLeftMotor550ID};
     m_backRightModule  = new SwerveModule{DriveTrainConstants::kBackRightMotorID , DriveTrainConstants::kBackRightMotor550ID};
 
@@ -152,9 +152,9 @@ void SubDriveTrain::Periodic()
 void SubDriveTrain::driveFieldRelative(float iX, float iY, float i0, double SpeedModulation)
 {
     // Creating a ChassisSpeeds from the wanted speeds and the robot's rotation
-    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(DriveTrainConstants::kMaxSpeed * iX,
-                                                                            DriveTrainConstants::kMaxSpeed * iY,
-                                                                            DriveTrainConstants::kMaxSpeed0 * i0,
+    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(DriveTrainConstants::kSpeedConstant * iX,
+                                                                            DriveTrainConstants::kSpeedConstant * iY,
+                                                                            DriveTrainConstants::kSpeedConstant0 * i0,
                                                                             mIMU->getRotation2d());
 
     // Transforming the ChassisSpeeds into four SwerveModuleState for each SwerveModule
