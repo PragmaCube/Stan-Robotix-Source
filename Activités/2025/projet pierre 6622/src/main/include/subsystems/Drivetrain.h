@@ -18,6 +18,8 @@ class Drivetrain : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
+  void Drive (double LeftSpeed,double RightSpeed);
+
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
@@ -29,7 +31,6 @@ class Drivetrain : public frc2::SubsystemBase {
 
   frc::MotorControllerGroup Leftgroup{FrontLeftMotor, BackLeftMotor};
   frc::MotorControllerGroup Rightgroup{FrontRightMotor, BackLeftMotor};
-
-  frc::DifferentialDrive DriveTrain{Leftgroup, Rightgroup};
   
+  frc::DifferentialDrive DriveTrain{Leftgroup, Rightgroup};
 };

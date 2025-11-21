@@ -6,7 +6,13 @@
 
 Drivetrain::Drivetrain() = default;
 
+
+
 // This method will be called once per scheduler run
 void Drivetrain::Periodic() {}
 
 
+void DriveTrain::Drive(double LeftSpeed,double RightSpeed)
+{
+    DriveTrain->TankDrive(LeftSpeed, RightSpeed);
+}
