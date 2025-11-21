@@ -14,7 +14,7 @@ Drivetrain::Drivetrain(){
 
     Droite= new frc::MotorControllerGroup(*mMoteurADroite, *mMoteurDDroite);
     Gauche= new frc::MotorControllerGroup(*mMoteurAGauche, *mMoteurDGauche);
-    Drive= new frc::DifferentialDrive(*Droite, *Gauche);
+    DifferentialDrive= new frc::DifferentialDrive(*Droite, *Gauche);
 }
 
 // This method will be called once per scheduler runn
@@ -22,6 +22,6 @@ void Drivetrain::Periodic() {}
 
 void Drivetrain::tankDrive(double leftSpeed, double rightSpeed) 
 {
-   Drive->TankDrive(leftSpeed, rightSpeed); 
+   DifferentialDrive->TankDrive(leftSpeed, rightSpeed);
 }
 

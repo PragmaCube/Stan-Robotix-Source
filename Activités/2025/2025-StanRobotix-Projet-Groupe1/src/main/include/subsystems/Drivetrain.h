@@ -35,7 +35,7 @@ class Drivetrain : public frc2::SubsystemBase {
   
   frc::MotorControllerGroup * Droite;// Groupe Droite 
   frc::MotorControllerGroup * Gauche;// Groupe Gauche
-  frc::DifferentialDrive * Drive;//Tank drive
+  frc::DifferentialDrive * DifferentialDrive;//Tank drive
 
 };
 
