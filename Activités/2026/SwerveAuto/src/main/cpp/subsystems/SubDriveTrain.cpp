@@ -128,6 +128,10 @@ void SubDriveTrain::Periodic()
     {
         rejectUpdate = true;
     }
+    else if (mt2.pose == frc::Pose2d(0_m, 0_m, 0_rad))
+    {
+        rejectUpdate = true;
+    }
 
     if (!rejectUpdate)
     {

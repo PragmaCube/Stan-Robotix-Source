@@ -24,7 +24,7 @@ double SubIMU::getAngleYaw()
 
 double SubIMU::getRate()
 {
-    return mIMU->GetRate();
+    return mIMU->GetAngularVelocityZWorld().GetValue().value();
 }
 
 void SubIMU::resetAngle()
