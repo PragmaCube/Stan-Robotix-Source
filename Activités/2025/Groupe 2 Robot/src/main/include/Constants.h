@@ -19,3 +19,11 @@ namespace OperatorConstants {
 inline constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
+
+namespace DriveTrainConstants
+{
+    constexpr int moteur1LID = 1;
+    constexpr int moteur2LID = 2;
+    constexpr int moteur1RID = 3;
+    constexpr int moteur2RID = 4;
+} 

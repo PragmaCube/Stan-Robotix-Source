@@ -4,7 +4,25 @@
 
 #include "subsystems/Drivetrain.h"
 
-Drivetrain::Drivetrain() = default;
+Drivetrain::Drivetrain()
+{
+   moteur1L = new  ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::moteur1LID};
+   moteur2L = new  ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::moteur2LID};
+   moteur1R = new  ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::moteur1RID};
+   moteur2R = new  ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::moteur2RID};
+   
+   GroupL = new frc::MotorControllerGroup{*moteur1L, *moteur2L};
+   GroupR = new frc::MotorControllerGroup{*moteur1R, *moteur2R};
+   Drive = new frc::DifferentialDrive(*GroupL, *GroupR);
+}
 
 // This method will be called once per scheduler run
 void Drivetrain::Periodic() {}
+
+void Drivetrain::TankDrive( double leftSpeed, double rightSpeed)
+{
+    Drive->TankDrive( leftSpeed, rightSpeed);
+}
+
+
+
