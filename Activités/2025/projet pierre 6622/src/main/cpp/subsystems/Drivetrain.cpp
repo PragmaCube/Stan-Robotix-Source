@@ -12,7 +12,7 @@ Drivetrain::Drivetrain() = default;
 void Drivetrain::Periodic() {}
 
 
-void DriveTrain::Drive(double LeftSpeed,double RightSpeed)
+void Drivetrain::Drive(double LeftSpeed,double RightSpeed)
 {
-    DriveTrain->TankDrive(LeftSpeed, RightSpeed);
+    DriveTrain.TankDrive(LeftSpeed, RightSpeed);
 }
