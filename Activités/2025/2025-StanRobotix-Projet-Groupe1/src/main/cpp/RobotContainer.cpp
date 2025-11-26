@@ -11,7 +11,7 @@
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-
+  m_drivetrain = new Drivetrain;
   // Configure the button bindings
   ConfigureBindings();
 }
