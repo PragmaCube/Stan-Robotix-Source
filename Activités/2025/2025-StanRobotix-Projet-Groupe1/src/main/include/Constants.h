@@ -22,7 +22,8 @@ inline constexpr int kDriverControllerPort = 0;
 
 namespace DriveConstants{
     constexpr int kPortMoteurADroite= 1;
-    constexpr int kPortMoteurDDroite= 2;
-    constexpr int kPortMoteurAGauche= 3;
+    constexpr int kPortMoteurDDroite= 3;
+    constexpr int kPortMoteurAGauche= 2;
     constexpr int kPortMoteurDGauche= 4;
+    constexpr int kAngleRotationDroite = 90;
 }

@@ -36,5 +36,5 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::Control()
 {
-  m_drivetrain->tankDrive(m_driveXboxController.GetLeftY(), m_driveXboxController.GetRightY()); 
+  m_drivetrain->tankDrive(-m_driveXboxController.GetLeftY(), m_driveXboxController.GetRightY()); 
 }
