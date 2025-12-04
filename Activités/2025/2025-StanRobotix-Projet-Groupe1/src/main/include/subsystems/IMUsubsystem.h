@@ -5,8 +5,10 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/ADIS16448_IMU.h>
 #include "Constants.h"
+#include <ctre/phoenix6/Pigeon2.hpp>
+#include <ctre/phoenix6/core/CorePigeon2.hpp>
+
 
 class IMUsubsystem : public frc2::SubsystemBase {
  public:
@@ -22,5 +24,5 @@ class IMUsubsystem : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  frc::ADIS16448_IMU * mIMU = nullptr;
+  ctre::phoenix6::hardware::Pigeon2 * mIMU = nullptr;
 };

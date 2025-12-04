@@ -12,6 +12,8 @@
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/Drivetrain.h"
 #include "subsystems/IMUsubsystem.h"
+#include <frc2/command/RunCommand.h>
+#include <iostream>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -32,9 +34,11 @@ class RobotContainer {
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{OperatorConstants::kDriverControllerPort};
 
+
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
   Drivetrain * m_drivetrain;
+  IMUsubsystem * m_IMUsubsystem;
 
   frc::XboxController m_driveXboxController{0};
   void ConfigureBindings();

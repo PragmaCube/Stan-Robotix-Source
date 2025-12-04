@@ -4,14 +4,15 @@
 
 #include "subsystems/IMUsubsystem.h"
 
+
 IMUsubsystem::IMUsubsystem()
 {
-    mIMU = new frc::ADIS16448_IMU;
+    mIMU = new ctre::phoenix6::hardware::Pigeon2(6);
 }
 
 double IMUsubsystem::GetYawAxis()
 {
-    // return frc::ADIS16448_IMU::GetYawAxis();
+    return mIMU->GetYaw().GetValue().value();
 }
 // This method will be called once per scheduler run
 void IMUsubsystem::Periodic() {}

@@ -12,8 +12,17 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   m_drivetrain = new Drivetrain;
+  m_IMUsubsystem = new IMUsubsystem;
   // Configure the button bindings
   ConfigureBindings();
+
+    m_IMUsubsystem->SetDefaultCommand(frc2::RunCommand(
+      [this]
+      {
+        std::cout<<m_IMUsubsystem->GetYawAxis()<<std::endl;
+      },
+      {m_IMUsubsystem}));
+
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -38,3 +47,4 @@ void RobotContainer::Control()
 {
   m_drivetrain->tankDrive(-m_driveXboxController.GetLeftY(), m_driveXboxController.GetRightY()); 
 }
+
