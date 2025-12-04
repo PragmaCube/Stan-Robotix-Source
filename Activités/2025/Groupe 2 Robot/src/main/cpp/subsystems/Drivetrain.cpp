@@ -6,17 +6,17 @@
 
 Drivetrain::Drivetrain()
 {
-   moteur1L = new  ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::moteur1LID};
-   moteur2L = new  ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::moteur2LID};
-   moteur1R = new  ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::moteur1RID};
-   moteur2R = new  ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::moteur2RID};
+   moteur1L = new  ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::kMoteur1LID};
+   moteur2L = new  ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::kMoteur2LID};
+   moteur1R = new  ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::kMoteur1RID};
+   moteur2R = new  ctre::phoenix::motorcontrol::can::WPI_TalonSRX{DriveTrainConstants::kMoteur2RID};
    
    GroupL = new frc::MotorControllerGroup{*moteur1L, *moteur2L};
    GroupR = new frc::MotorControllerGroup{*moteur1R, *moteur2R};
    Drive = new frc::DifferentialDrive(*GroupL, *GroupR);
 }
 
-// This method will be called once per scheduler run
+// This method will be called once per scheduler runs
 void Drivetrain::Periodic() {}
 
 void Drivetrain::TankDrive( double leftSpeed, double rightSpeed)

@@ -5,13 +5,15 @@
 #include "subsystems/IMU.h"
 
 IMU::IMU() = default;
-
 // This method will be called once per scheduler run
 void IMU::Periodic() {}
 
-units::degree_t IMU::GetAngle()
+void IMU::ResetAngle()
 {
+    mImu.Reset();
+}
 
-
-    return;
+double IMU::GetAngle()
+{
+    return mImu.GetAngle();
 }
