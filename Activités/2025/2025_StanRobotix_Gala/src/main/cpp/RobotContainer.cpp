@@ -13,28 +13,29 @@
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-  mIMU = new SubIMU;
-  mArms = new SubArms;
-  mIMU->ResetAngle();
+  // mIMU = new SubIMU;
+  // mArms = new SubArms;
+  // mIMU->ResetAngle();
+  mLED = new LED;
 
-  mSub = new SubDriveTrain{mIMU, 1};
+  // mSub = new SubDriveTrain{mIMU, 1};
 
   m_commandJoystick = new frc2::CommandJoystick{OperatorConstants::kDriverControllerPort};
   m_joystick = &m_commandJoystick->GetHID();
 
 
-  mSub->SetDefaultCommand(frc2::RunCommand(
-      [this] {
-        mSub->driveRobotRelativeFromJoystick(m_joystick->GetX(), m_joystick->GetY(), -m_joystick->GetZ(), 0.4);
-        },
-        {mSub}));
+  // mSub->SetDefaultCommand(frc2::RunCommand(
+  //     [this] {
+  //       mSub->driveRobotRelativeFromJoystick(m_joystick->GetX(), m_joystick->GetY(), -m_joystick->GetZ(), 0.4);
+  //       },
+  //       {mSub}));
 
 
 
-  mArms->SetDefaultCommand(frc2::RunCommand([this] {
-        mArms->GoToPlace(((m_joystick->GetThrottle() + 1) / 2), ((m_joystick->GetThrottle() + 1) / 2));
-        },
-        {mArms})); 
+  // mArms->SetDefaultCommand(frc2::RunCommand([this] {
+  //       mArms->GoToPlace(((m_joystick->GetThrottle() + 1) / 2), ((m_joystick->GetThrottle() + 1) / 2));
+  //       },
+  //       {mArms})); 
   // Configure the button bindings
   ConfigureBindings();
 }
@@ -55,44 +56,44 @@ void RobotContainer::ConfigureBindings() {
   m_commandJoystick->Button(JoystickBindingsConstants::Arms::kArmsUp).OnTrue(ArmsPivotAt(mArms, SubArms::Positions::Up, SubArms::Positions::Up).ToPtr());
   m_commandJoystick->Button(1).WhileTrue(frc2::RunCommand([this] {mIMU->ResetAngle();}, {mIMU}).ToPtr());
 }
-/*
+
 void RobotContainer::setLED()
 {
-  // mLED.setWhite();
-  if (abs(m_joystick->GetX()) > 0.2 || abs(m_joystick->GetY()) > 0.2 ||  abs(m_joystick->GetZ()) > 0.2)
-  {
-    if (!mLED.isMoving)
-    {
-      std::cout << "moving" << std::endl;
-      mLED.setMode(mLED.moving);
-    }
-  }
+  mLED->setWhite();
+  // if (abs(m_joystick->GetX()) > 0.2 || abs(m_joystick->GetY()) > 0.2 ||  abs(m_joystick->GetZ()) > 0.2)
+  // {
+  //   if (!mLED->isMoving)
+  //   {
+  //     std::cout << "moving" << std::endl;
+  //     mLED->setMode(mLED->moving);
+  //   }
+  // }
 
-  else if (m_joystick->GetRawButtonPressed(JoystickBindingsConstants::Arms::kArmsUp) || m_joystick->GetRawButtonPressed(JoystickBindingsConstants::Arms::kArmsDown))
-  {
-    std::cout << "waving" << std::endl;
-    mLED.setMode(mLED.waving);
-  }
+  // else if (m_joystick->GetRawButtonPressed(JoystickBindingsConstants::Arms::kArmsUp) || m_joystick->GetRawButtonPressed(JoystickBindingsConstants::Arms::kArmsDown))
+  // {
+  //   std::cout << "waving" << std::endl;
+  //   mLED->setMode(mLED->waving);
+  // }
 
-  else if (m_joystick->GetRawButtonPressed(5))
-  {
-    std::cout << "talking" << std::endl;
-    mLED.setMode(mLED.talking);
-  }
+  // else if (m_joystick->GetRawButtonPressed(5))
+  // {
+  //   std::cout << "talking" << std::endl;
+  //   mLED->setMode(mLED->talking);
+  // }
 
-  else if (m_joystick->GetRawButtonPressed(4))
-  {
-    std::cout << "immobile" << std::endl;
-    mLED.setMode(mLED.immobile);
-  }
+  // else if (m_joystick->GetRawButtonPressed(4))
+  // {
+  //   std::cout << "immobile" << std::endl;
+  //   mLED->setMode(mLED->immobile);
+  // }
 
-  else if (m_joystick->GetRawButtonPressed(6))
-  {
-    std::cout << "test" << std::endl;
-    mLED.setMode(mLED.test);
-  }
+  // else if (m_joystick->GetRawButtonPressed(6))
+  // {
+  //   std::cout << "test" << std::endl;
+  //   mLED->setMode(mLED->test);
+  // }
 }
-*/
+
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);

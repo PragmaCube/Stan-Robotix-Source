@@ -1,4 +1,4 @@
-/*#include "LED.h"
+#include "LED.h"
 
 LED::LED()
 {
@@ -50,11 +50,8 @@ void LED::pulseLEDs(frc::Color iPulseColor)
 
 void LED::setWhite()
 {
-    for (int i = 0; i < LEDsConstants::kLength; i++)
-    {
-        m_ledBuffer[i].SetRGB(255, 50, 0);
-    }
-    m_ledBuffer[20].SetRGB(255, 255, 255);
+    frc::LEDPattern white = frc::LEDPattern::Solid(frc::Color::kWhite);
+    white.ApplyTo(m_ledBuffer);
     m_led.SetData(m_ledBuffer);
 }
 
@@ -120,4 +117,4 @@ void LED::setMode(Mode iMode){
             setWhite();
     };
     m_led.SetData(m_ledBuffer);
-}*/
+}

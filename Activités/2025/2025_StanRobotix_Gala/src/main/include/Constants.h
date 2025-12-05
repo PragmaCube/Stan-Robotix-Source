@@ -36,11 +36,6 @@ namespace JoystickBindingsConstants {
     }
 }
 
-namespace DrivingConstants {
-    constexpr int joystickPort = 0;
-    constexpr int pigeon2port = 5;
-}
-
 namespace DriveTrainConstants {
     /* These names are refering to the robot oriented position of the motor controllers.
     Meaning the back is generally refering to the side where the battery is held.
@@ -76,7 +71,7 @@ namespace LEDsConstants{
     constexpr units::meter_t kLedSpacing = 0.03_m;
     constexpr int kMouthCenter = 20;
     constexpr int kMaxMouthSize = 10;
-    constexpr int kLEDPort = 8;
+    constexpr int kLEDPort = 9;
 }
 
 namespace ArmsConstants {
