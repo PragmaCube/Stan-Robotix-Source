@@ -34,3 +34,11 @@ namespace IMUConstants
 {
     constexpr int kImuCanID = 0;
 }
+
+namespace PIDConstants
+{
+    constexpr double Kp = 0.0000001;
+    constexpr double Ki = 0;
+    constexpr double Kd = 0;
+
+}

@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "RobotContainer.h"
-
+#include <iostream>
 
 #include <frc2/command/RunCommand.h>
 #include <frc2/command/button/Trigger.h>
@@ -13,12 +13,20 @@
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-m_drivetrain.SetDefaultCommand(frc2::RunCommand(
+/*m_drivetrain.SetDefaultCommand(frc2::RunCommand(
   [this]
   {
     m_drivetrain.TankDrive(XboxController.GetLeftY(), XboxController.GetLeftX());
   },
-  {&m_drivetrain}).ToPtr());
+  {&m_drivetrain}).ToPtr());*/
+
+  mImu.SetDefaultCommand(frc2::RunCommand(
+  [this]
+  {
+   std::cout << mImu.GetAngle() << std::endl;
+  },
+  {&mImu}).ToPtr());
+  
   // Configure the button bindings
   ConfigureBindings();
 }
