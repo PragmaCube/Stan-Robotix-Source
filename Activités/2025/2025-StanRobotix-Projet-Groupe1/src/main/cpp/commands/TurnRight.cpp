@@ -3,13 +3,22 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/TurnRight.h"
+#include <frc2/command/Command.h>
+#include "subsystems/Drivetrain.h"
 
-TurnRight::TurnRight() {
+TurnRight::TurnRight(Drivetrain * iDrivetrain, IMUsubsystem * iIMUsubsystem) {
   // Use addRequirements() here to declare subsystem dependencies.
+  mDrivetrain = iDrivetrain;
+  mIMUsubsystem = iIMUsubsystem;
+  mPIDController= new frc::PIDController(TurnRightConstants::kP,TurnRightConstants::kI,TurnRightConstants::kD);
+  AddRequirements(mDrivetrain);
+  AddRequirements(mIMUsubsystem);
 }
 
 // Called when the command is initially scheduled.
-void TurnRight::Initialize() {}
+void TurnRight::Initialize() {
+  
+}
 
 // Called repeatedly when this Command is scheduled to run
 void TurnRight::Execute()

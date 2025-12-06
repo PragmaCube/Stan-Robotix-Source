@@ -28,3 +28,11 @@ namespace DriveConstants{
     constexpr int kAngleRotationDroite = 90;
 }
 
+namespace TurnRightConstants{
+    constexpr double kP= 1;
+    constexpr double kI= 0;
+    constexpr double kD= 0;
+    constexpr double kSetPoint= 90;
+    constexpr double kTolerance= 0;
+
+}

@@ -6,6 +6,10 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
+#include <subsystems/Drivetrain.h>
+#include <subsystems/IMUsubsystem.h>
+#include <frc/controller/PIDController.h>
+#include "Constants.h"
 
 /**
  * An example command.
@@ -20,7 +24,7 @@ class TurnRight
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  TurnRight();
+  TurnRight(Drivetrain*, IMUsubsystem*);
 
   void Initialize() override;
 
@@ -29,4 +33,8 @@ class TurnRight
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+private:
+  Drivetrain * mDrivetrain;
+  IMUsubsystem * mIMUsubsystem;
+  frc::PIDController * mPIDController;
 };

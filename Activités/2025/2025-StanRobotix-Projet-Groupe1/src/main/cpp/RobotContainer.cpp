@@ -16,12 +16,12 @@ RobotContainer::RobotContainer() {
   // Configure the button bindings
   ConfigureBindings();
 
-    m_IMUsubsystem->SetDefaultCommand(frc2::RunCommand(
-      [this]
-      {
-        std::cout<<m_IMUsubsystem->GetYawAxis()<<std::endl;
-      },
-      {m_IMUsubsystem}));
+    //m_IMUsubsystem->SetDefaultCommand(frc2::RunCommand(
+    //  [this]
+    //  {
+    //    std::cout<<m_IMUsubsystem->GetYawAxis()<<std::endl;
+    //  },
+    //  {m_IMUsubsystem}));
 
 }
 
