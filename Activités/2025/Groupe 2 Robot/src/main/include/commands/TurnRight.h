@@ -7,6 +7,7 @@
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
 
+#include "Constants.h"
 #include "subsystems/Drivetrain.h"
 #include "subsystems/IMU.h"
 #include <frc/controller/PIDController.h>
@@ -34,14 +35,12 @@ class TurnRight
 
   bool IsFinished() override;
 
-  frc::PIDController mPIDcontroller	(	double	Kp, double	Ki, double	Kd, units::second_t	period = 20_ms );
-
 
   private:
   Drivetrain* mDrivetrain;
   IMU* mIMU;
+  frc::PIDController mPIDcontroller {PIDConstants::Kp, PIDConstants::Ki, PIDConstants::Kd};
 
-
-
+  double StartingAngle;
 
 };
