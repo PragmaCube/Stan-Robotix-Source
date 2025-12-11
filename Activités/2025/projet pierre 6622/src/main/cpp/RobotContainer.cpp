@@ -30,7 +30,7 @@ void RobotContainer::ConfigureBindings() {
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
 
-  m_Drivetrain.SetDefaultCommand(frc2::RunCommand(
+    m_Drivetrain.SetDefaultCommand(frc2::RunCommand(
     [this]
     {
       m_Drivetrain.Drive(m_XboxController.GetLeftY(),m_XboxController.GetRightY());
@@ -38,7 +38,6 @@ void RobotContainer::ConfigureBindings() {
     },
     {&m_Drivetrain}));
 }
-
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous

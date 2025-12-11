@@ -14,8 +14,22 @@
  * they are needed.
  */
 
+namespace PIDConstant {/*OUTPUT🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️*/
+
+
+constexpr double kPController = 1.0;
+constexpr double kDController = 0.0;
+constexpr double kIController = 0.0;
+constexpr double kSetPointController = 90.0;
+
+
+
+}
+
 namespace OperatorConstants {
 
 inline constexpr int kDriverControllerPort = 0;
+
+
 
 }  // namespace OperatorConstants

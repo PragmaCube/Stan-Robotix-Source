@@ -14,6 +14,8 @@
 
 #include <frc/XboxController.h>
 
+
+
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -22,7 +24,6 @@
  * commands, and trigger mappings) should be declared here.
  */
 class RobotContainer {
-
  public:
   RobotContainer();
 
@@ -33,11 +34,10 @@ class RobotContainer {
   frc2::CommandXboxController m_driverController{
       OperatorConstants::kDriverControllerPort};
 
-  
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
 
-  Drivetrain m_Drivetrain;
+   Drivetrain m_Drivetrain;
   
   frc::XboxController m_XboxController{0};
 

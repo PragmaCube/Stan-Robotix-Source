@@ -18,7 +18,7 @@ class Drivetrain : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  void Drive (double LeftSpeed,double RightSpeed);
+void Drive (double LeftSpeed,double RightSpeed);
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
