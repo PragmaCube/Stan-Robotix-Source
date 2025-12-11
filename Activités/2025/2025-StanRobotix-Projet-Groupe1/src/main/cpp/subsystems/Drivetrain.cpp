@@ -22,5 +22,5 @@ void Drivetrain::Periodic() {}
 
 void Drivetrain::tankDrive(double leftSpeed, double rightSpeed) 
 {
-   DifferentialDrive->TankDrive(leftSpeed, rightSpeed);
+   DifferentialDrive->TankDrive(-leftSpeed, rightSpeed);
 }

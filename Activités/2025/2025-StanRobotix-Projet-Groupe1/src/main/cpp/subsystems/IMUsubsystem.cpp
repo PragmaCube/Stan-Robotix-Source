@@ -7,7 +7,7 @@
 
 IMUsubsystem::IMUsubsystem()
 {
-    mIMU = new ctre::phoenix6::hardware::Pigeon2(6);
+    mIMU = new ctre::phoenix6::hardware::Pigeon2(IMUConstants::kPortIMU);
 }
 
 double IMUsubsystem::GetYawAxis()

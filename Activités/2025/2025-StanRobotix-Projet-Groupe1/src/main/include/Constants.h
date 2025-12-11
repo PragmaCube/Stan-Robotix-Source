@@ -29,10 +29,14 @@ namespace DriveConstants{
 }
 
 namespace TurnRightConstants{
-    constexpr double kP= 1;
+    constexpr double kP= 0.0001;
     constexpr double kI= 0;
     constexpr double kD= 0;
     constexpr double kSetPoint= 90;
     constexpr double kTolerance= 0;
 
+}
+
+namespace IMUConstants{
+    constexpr int kPortIMU= 1;
 }

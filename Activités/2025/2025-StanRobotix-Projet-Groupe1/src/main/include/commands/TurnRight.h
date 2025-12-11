@@ -10,6 +10,8 @@
 #include <subsystems/IMUsubsystem.h>
 #include <frc/controller/PIDController.h>
 #include "Constants.h"
+#include <iostream>
+
 
 /**
  * An example command.
@@ -24,7 +26,7 @@ class TurnRight
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  TurnRight(Drivetrain*, IMUsubsystem*);
+  TurnRight(Drivetrain * iDrivetrain, IMUsubsystem * iIMUsubsystem);
 
   void Initialize() override;
 
