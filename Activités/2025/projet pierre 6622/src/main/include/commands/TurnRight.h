@@ -28,7 +28,7 @@ class TurnRight
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  TurnRight();
+  TurnRight(IMU * iImu, Drivetrain * iDrivetrain);
 
   void Initialize() override;
 
@@ -40,18 +40,12 @@ class TurnRight
 
 private :
 
-IMU IMU;
+IMU * mImu;
+Drivetrain * mDrivetrain;
 
-Drivetrain Drivetrain;
+frc::PIDController mPIDController{PIDConstant::kPController, PIDConstant::kIController, PIDConstant::kDController};
+double InitialAngle;
 
-
-frc::PIDController mPIDController{
-PIDConstant::kPController,
-PIDConstant::kIController,
-PIDConstant::kDController
-};
-
-
-/*Laisser une note ggs 👍👍👍👍👍👍👍👍🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️✈️✈️✈️✈️✈️✈️✈️✈️*/
+/*Continuer TurnRight.cpp*/
 
 };

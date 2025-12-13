@@ -14,6 +14,8 @@
 
 #include <frc/XboxController.h>
 
+#include "subsystems/IMU.h"
+
 
 
 /**
@@ -39,6 +41,8 @@ class RobotContainer {
 
    Drivetrain m_Drivetrain;
   
+  IMU m_Imu;
+
   frc::XboxController m_XboxController{0};
 
   void ConfigureBindings();

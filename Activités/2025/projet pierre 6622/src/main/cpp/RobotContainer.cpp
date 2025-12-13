@@ -11,6 +11,8 @@
 
 #include <frc2/command/RunCommand.h>
 
+#include "commands/TurnRight.h"
+
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
@@ -26,6 +28,11 @@ void RobotContainer::ConfigureBindings() {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
 
+  frc2::Trigger([this] {
+  return m_XboxController.GetAButtonPressed();
+  }).OnTrue(TurnRight(&m_Imu,&m_Drivetrain).ToPtr());
+
+
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
@@ -37,6 +44,14 @@ void RobotContainer::ConfigureBindings() {
 
     },
     {&m_Drivetrain}));
+
+    //m_Imu.SetDefaultCommand(frc2::RunCommand(
+    //[this]
+    //{
+    //  m_Drivetrain.(m_XboxController.GetLeftY(),m_XboxController.GetRightY());
+
+    //},
+    //{&m_Drivetrain}));
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
