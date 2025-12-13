@@ -5,6 +5,7 @@
 #include "RobotContainer.h"
 
 #include <frc2/command/button/Trigger.h>
+#include <frc2/command/RunCommand.h>
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
@@ -34,19 +35,18 @@ void RobotContainer::ConfigureBindings() {
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
 
   frc2::Trigger([this] {
-    return m_driveXboxController.GetAButton();
+    return m_driveXboxController.GetAButtonPressed();
   }).OnTrue(TurnRight(m_drivetrain, m_IMUsubsystem).ToPtr());
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+
+  m_drivetrain->SetDefaultCommand(frc2::RunCommand([this] {
+    m_drivetrain->tankDrive(m_driveXboxController.GetLeftY(), m_driveXboxController.GetRightY()); 
+  }, {m_drivetrain}).ToPtr());
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);
-}
-
-void RobotContainer::Control()
-{
-  m_drivetrain->tankDrive(m_driveXboxController.GetLeftY(), m_driveXboxController.GetRightY()); 
 }

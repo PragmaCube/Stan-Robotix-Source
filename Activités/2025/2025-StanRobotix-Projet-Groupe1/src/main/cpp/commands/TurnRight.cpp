@@ -5,7 +5,7 @@
 #include "commands/TurnRight.h"
 #include <frc2/command/Command.h>
 
-int Resultat;
+
 
 TurnRight::TurnRight(Drivetrain * iDrivetrain, IMUsubsystem * iIMUsubsystem) {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -19,7 +19,7 @@ TurnRight::TurnRight(Drivetrain * iDrivetrain, IMUsubsystem * iIMUsubsystem) {
 // Called when the command is initially scheduled.
 void TurnRight::Initialize() {
   Resultat = mIMUsubsystem->GetYawAxis();
-  Resultat += TurnRightConstants::kSetPoint;
+  Resultat -= TurnRightConstants::kSetPoint;
   mPIDController->SetSetpoint(Resultat);
   std::cout << "Debut de la commande" << Resultat << std::endl ;
 }
@@ -27,14 +27,17 @@ void TurnRight::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void TurnRight::Execute()
 {
-  mDrivetrain->tankDrive(mPIDController->Calculate(mIMUsubsystem->GetYawAxis()), -mPIDController->Calculate(mIMUsubsystem->GetYawAxis()));
+  std::cout << "Rotation su Axe Y : " << mIMUsubsystem->GetYawAxis() << std::endl;
+  Movement= mPIDController->Calculate(mIMUsubsystem->GetYawAxis());
+  mDrivetrain->tankDrive(Movement, -Movement);
 }
 
 // Called once the command ends or is interrupted.
-void TurnRight::End(bool interrupted) {}
+void TurnRight::End(bool interrupted) {
+  std::cout << "Fin de la commande" << std::endl;
+}
 
 // Returns true when the command should end.
 bool TurnRight::IsFinished() {
   return mPIDController->AtSetpoint();
-  std::cout << "Fin de la commande";
 }

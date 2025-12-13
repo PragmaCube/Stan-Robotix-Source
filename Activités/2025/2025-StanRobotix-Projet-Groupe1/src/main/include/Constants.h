@@ -26,12 +26,13 @@ namespace DriveConstants{
     constexpr int kPortMoteurAGauche= 2;
     constexpr int kPortMoteurDGauche= 4;
     constexpr int kAngleRotationDroite = 90;
+    constexpr float kDriveCoef = 0.5;
 }
 
 namespace TurnRightConstants{
-    constexpr double kP= 0.0001;
-    constexpr double kI= 0;
-    constexpr double kD= 0;
+    constexpr double kP= 0.03;
+    constexpr double kI= 0.01;
+    constexpr double kD= 0.02;
     constexpr double kSetPoint= 90;
     constexpr double kTolerance= 0;
 

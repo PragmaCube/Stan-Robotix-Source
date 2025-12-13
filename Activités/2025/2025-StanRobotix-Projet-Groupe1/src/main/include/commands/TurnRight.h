@@ -39,4 +39,6 @@ private:
   Drivetrain * mDrivetrain;
   IMUsubsystem * mIMUsubsystem;
   frc::PIDController * mPIDController;
+  int Resultat;
+  double Movement;
 };
