@@ -41,4 +41,5 @@ private:
   frc::PIDController * mPIDController;
   int Resultat;
   double Movement;
+  double AngleDepart;
 };

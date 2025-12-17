@@ -18,6 +18,7 @@ TurnRight::TurnRight(Drivetrain * iDrivetrain, IMUsubsystem * iIMUsubsystem) {
 
 // Called when the command is initially scheduled.
 void TurnRight::Initialize() {
+  AngleDepart = mIMUsubsystem->GetYawAxis();
   Resultat = mIMUsubsystem->GetYawAxis();
   Resultat -= TurnRightConstants::kSetPoint;
   mPIDController->SetSetpoint(Resultat);
@@ -30,11 +31,12 @@ void TurnRight::Execute()
   std::cout << "Rotation su Axe Y : " << mIMUsubsystem->GetYawAxis() << std::endl;
   Movement= mPIDController->Calculate(mIMUsubsystem->GetYawAxis());
   mDrivetrain->tankDrive(Movement, -Movement);
+
 }
 
 // Called once the command ends or is interrupted.
 void TurnRight::End(bool interrupted) {
-  std::cout << "Fin de la commande" << std::endl;
+  std::cout << "Fin de la commande " << "L'angle : " << AngleDepart - mIMUsubsystem->GetYawAxis() << std::endl;
 }
 
 // Returns true when the command should end.
