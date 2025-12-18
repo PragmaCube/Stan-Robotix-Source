@@ -39,9 +39,9 @@ class RobotContainer {
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
 
-   Drivetrain m_Drivetrain;
+  Drivetrain * m_Drivetrain;
   
-  IMU m_Imu;
+  IMU * m_Imu = nullptr;
 
   frc::XboxController m_XboxController{0};
 

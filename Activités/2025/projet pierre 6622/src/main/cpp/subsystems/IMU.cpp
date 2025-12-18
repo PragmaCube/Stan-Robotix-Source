@@ -10,6 +10,6 @@ IMU::IMU() = default;
 void IMU::Periodic() {}
 
 double IMU::GetAngle()
-{
-    mpigeon2.GetAngle();
+{ 
+    return mpigeon2.GetAngle();
 }

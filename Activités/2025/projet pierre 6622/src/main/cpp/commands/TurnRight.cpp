@@ -16,6 +16,7 @@ TurnRight::TurnRight(IMU * iImu, Drivetrain * iDrivetrain) {
   InitialAngle = mImu->GetAngle();
 
   mPIDController.SetSetpoint(InitialAngle - 90);
+  mPIDController.SetTolerance(1);
 }
 
 // Called when the command is initially scheduled.
@@ -28,7 +29,7 @@ void TurnRight::Initialize() {
 void TurnRight::Execute() {  
   double Output = mPIDController.Calculate(mImu->GetAngle());
 
-  mDrivetrain->Drive(Output, - Output);
+  mDrivetrain->Drive(Output * 0.5, - Output * 0.5);
   
   }
 

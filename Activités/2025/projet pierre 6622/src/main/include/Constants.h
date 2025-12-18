@@ -14,12 +14,12 @@
  * they are needed.
  */
 
-namespace PIDConstant {/*OUTPUT🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️*/
+namespace PIDConstant {/*OUTPUT*/
 
 
-constexpr double kPController = 1.0;
-constexpr double kDController = 0.0;
-constexpr double kIController = 0.0;
+constexpr double kPController = 0.02;
+constexpr double kDController = 0.1;
+constexpr double kIController = 0.4;
 constexpr double kSetPointController = 90.0;
 
 

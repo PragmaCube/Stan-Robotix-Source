@@ -16,6 +16,9 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
+  m_Imu = new IMU;
+  m_Drivetrain = new Drivetrain;
+
   // Configure the button bindings
   ConfigureBindings();
 }
@@ -30,20 +33,20 @@ void RobotContainer::ConfigureBindings() {
 
   frc2::Trigger([this] {
   return m_XboxController.GetAButtonPressed();
-  }).OnTrue(TurnRight(&m_Imu,&m_Drivetrain).ToPtr());
+  }).OnTrue(TurnRight(m_Imu, m_Drivetrain).ToPtr());
 
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
   m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
 
-    m_Drivetrain.SetDefaultCommand(frc2::RunCommand(
+    m_Drivetrain->SetDefaultCommand(frc2::RunCommand(
     [this]
     {
-      m_Drivetrain.Drive(m_XboxController.GetLeftY(),m_XboxController.GetRightY());
+      m_Drivetrain->Drive(m_XboxController.GetLeftY(),m_XboxController.GetRightY());
 
     },
-    {&m_Drivetrain}));
+    {m_Drivetrain}));
 
     //m_Imu.SetDefaultCommand(frc2::RunCommand(
     //[this]
