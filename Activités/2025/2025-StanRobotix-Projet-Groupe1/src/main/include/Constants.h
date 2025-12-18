@@ -41,3 +41,8 @@ namespace TurnRightConstants{
 namespace IMUConstants{
     constexpr int kPortIMU= 1;
 }
+
+namespace LiftConstants{
+    constexpr int kChannel1;
+    constexpr int kChannel2;
+}
