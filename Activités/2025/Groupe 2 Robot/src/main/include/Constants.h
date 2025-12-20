@@ -43,3 +43,10 @@ namespace PIDConstants
 
     constexpr double SetPoint = 90;
 }
+
+namespace AscenseurConstants
+{
+    constexpr int MotorIDL = 0;
+    constexpr int MotorIDR = 1;
+
+}
