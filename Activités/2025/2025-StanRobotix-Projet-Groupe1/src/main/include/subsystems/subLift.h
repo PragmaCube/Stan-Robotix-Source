@@ -17,11 +17,17 @@ class subLift : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
+  void LiftUp();
+
+  void LiftDown();
+
+  void StopLift();
+
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-  frc::PWMSparkMax * mSparkMax1 = nullptr;
-  frc::PWMSparkMax * mSparkMax2 = nullptr;
+  frc::PWMSparkMax * mSparkMaxG = nullptr;
+  frc::PWMSparkMax * mSparkMaxD = nullptr;
 
 };

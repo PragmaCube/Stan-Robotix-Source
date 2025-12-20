@@ -43,6 +43,7 @@ namespace IMUConstants{
 }
 
 namespace LiftConstants{
-    constexpr int kChannel1;
-    constexpr int kChannel2;
+    constexpr int kChannelD = 6;
+    constexpr int kChannelG = 9;
+    constexpr double kVitesse = 0.5;
 }

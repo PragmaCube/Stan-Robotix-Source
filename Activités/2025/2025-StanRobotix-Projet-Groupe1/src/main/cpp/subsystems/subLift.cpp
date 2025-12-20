@@ -5,9 +5,24 @@
 #include "subsystems/subLift.h"
 
 subLift::subLift() {
-    mSparkMax1 = new frc::PWMSparkMax (LiftConstants::kChannel1);
-    mSparkMax2 = new frc::PWMSparkMax (LiftConstants::kChannel2);
+    mSparkMaxG = new frc::PWMSparkMax (LiftConstants::kChannelG);
+    mSparkMaxD = new frc::PWMSparkMax (LiftConstants::kChannelD);
 }
 
 // This method will be called once per scheduler run
 void subLift::Periodic() {}
+
+void subLift::LiftUp() {
+    mSparkMaxG->Set(LiftConstants::kVitesse);
+    mSparkMaxD->Set(-LiftConstants::kVitesse);
+}
+
+void subLift::LiftDown() {
+    mSparkMaxG->Set(-LiftConstants::kVitesse);
+    mSparkMaxD->Set(LiftConstants::kVitesse);
+}
+
+void subLift::StopLift() {
+    mSparkMaxG->Set(0);
+    mSparkMaxD->Set(0);
+}

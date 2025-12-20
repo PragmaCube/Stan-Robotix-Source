@@ -15,6 +15,7 @@
 #include <frc2/command/RunCommand.h>
 #include <iostream>
 #include "commands/TurnRight.h"
+#include "subsystems/subLift.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -39,6 +40,7 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   Drivetrain * m_drivetrain;
   IMUsubsystem * m_IMUsubsystem;
+  subLift * m_subLift;
 
   frc::XboxController m_driveXboxController{0};
   void ConfigureBindings();
