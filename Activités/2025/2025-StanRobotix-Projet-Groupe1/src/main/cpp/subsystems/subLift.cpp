@@ -5,8 +5,8 @@
 #include "subsystems/subLift.h"
 
 subLift::subLift() {
-    mSparkMaxG = new frc::PWMSparkMax (LiftConstants::kChannelG);
-    mSparkMaxD = new frc::PWMSparkMax (LiftConstants::kChannelD);
+    mSparkMaxG = new rev::spark::SparkMax (LiftConstants::kChannelG, rev::spark::SparkLowLevel::MotorType::kBrushless);
+    mSparkMaxD = new rev::spark::SparkMax (LiftConstants::kChannelD, rev::spark::SparkLowLevel::MotorType::kBrushless);
 }
 
 // This method will be called once per scheduler run
@@ -25,4 +25,9 @@ void subLift::LiftDown() {
 void subLift::StopLift() {
     mSparkMaxG->Set(0);
     mSparkMaxD->Set(0);
+}
+
+double subLift::GetEncoderPosition()
+{
+    return mSparkMaxD->GetAlternateEncoder().GetPosition();
 }

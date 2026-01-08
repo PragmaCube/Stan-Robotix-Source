@@ -5,8 +5,9 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/motorcontrol/PWMSparkMax.h>
 #include "Constants.h"
+#include <rev/SparkMax.h>
+#include <rev/SparkMaxAlternateEncoder.h>
 
 class subLift : public frc2::SubsystemBase {
  public:
@@ -23,11 +24,13 @@ class subLift : public frc2::SubsystemBase {
 
   void StopLift();
 
+  double GetEncoderPosition();
+
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-  frc::PWMSparkMax * mSparkMaxG = nullptr;
-  frc::PWMSparkMax * mSparkMaxD = nullptr;
+  rev::spark::SparkMax * mSparkMaxG = nullptr;
+  rev::spark::SparkMax * mSparkMaxD = nullptr;
 
 };
