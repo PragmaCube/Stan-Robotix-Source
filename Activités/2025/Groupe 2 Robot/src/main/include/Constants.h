@@ -37,11 +37,13 @@ namespace IMUConstants
 
 namespace PIDConstants
 {
-    constexpr double Kp = 0.0000001;
+    constexpr double Kp = 0.1;
     constexpr double Ki = 0;
     constexpr double Kd = 0;
 
     constexpr double SetPoint = 90;
+
+
 }
 
 namespace AscenseurConstants

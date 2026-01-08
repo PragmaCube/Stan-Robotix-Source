@@ -17,13 +17,14 @@ TurnRight::TurnRight(Drivetrain* iDriveTrain, IMU* imu)
 // Called when the command is initially scheduled.
 void TurnRight::Initialize() 
 {
-  StartingAngle = mIMU->GetAngle();
-  mPIDcontroller.SetSetpoint;
 
+  StartingAngle = mIMU->GetAngle();
+  mPIDcontroller.SetSetpoint ( StartingAngle + PIDConstants::SetPoint);
+}
 // Called repeatedly when this Command is scheduled to run
 void TurnRight::Execute() 
 {
-  mDrivetrain->TankDrive (0.0, 0.8);
+  mDrivetrain->TankDrive (mPIDcontroller.Calculate(mIMU->GetAngle()), -mPIDcontroller.Calculate(mIMU->GetAngle()));
 }
 
 // Called once the command ends or is interrupted.
@@ -32,15 +33,5 @@ void TurnRight::End(bool interrupted) {}
 // Returns true when the command should end.
 bool TurnRight::IsFinished() 
 {
-  return (mIMU->GetAngle() - StartingAngle) > PIDConstants::SetPoint;
-}
-
-void frc::PIDController::SetSetpoint(double setpoint)
-{
-  setpoint = PIDConstants::SetPoint;
-}
-
-bool frc::PIDController::AtSetpoint()
-{
-
-}
+  return mPIDcontroller.AtSetpoint();
+};

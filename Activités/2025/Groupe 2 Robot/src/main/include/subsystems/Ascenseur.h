@@ -6,9 +6,12 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include "Constants.h"
+#include <rev/SparkMax.h>
 
-class Ascenseur : public frc2::SubsystemBase {
+class Ascenseur : public frc2::SubsystemBase
+{
  public:
+
   Ascenseur();
 
   /**
