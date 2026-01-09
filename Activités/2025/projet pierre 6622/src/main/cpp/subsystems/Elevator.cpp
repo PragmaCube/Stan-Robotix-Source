@@ -15,7 +15,7 @@ void Down (double Speed);
 void Elevator::Up()
 {
 
-}
+}eweweewewe
 
 void Elevator::Down()
 {
