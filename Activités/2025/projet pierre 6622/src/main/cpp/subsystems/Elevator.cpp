@@ -4,7 +4,13 @@
 
 #include "subsystems/Elevator.h"
 
+#include <rev/SparkMax.h>
+
 Elevator::Elevator() = default;
+
+void Up (double Speed);
+
+void Down (double Speed);
 
 void Elevator::Up()
 {
