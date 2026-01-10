@@ -8,6 +8,7 @@
 #include "Constants.h"
 #include <rev/SparkMax.h>
 #include <rev/SparkMaxAlternateEncoder.h>
+#include <iostream>
 
 class subLift : public frc2::SubsystemBase {
  public:
@@ -24,7 +25,7 @@ class subLift : public frc2::SubsystemBase {
 
   void StopLift();
 
-  double GetEncoderPosition();
+  void GetEncoderPosition();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -32,5 +33,7 @@ class subLift : public frc2::SubsystemBase {
 
   rev::spark::SparkMax * mSparkMaxG = nullptr;
   rev::spark::SparkMax * mSparkMaxD = nullptr;
+
+  double Encoder;
 
 };

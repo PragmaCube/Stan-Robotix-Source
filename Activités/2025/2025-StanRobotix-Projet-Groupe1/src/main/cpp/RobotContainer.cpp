@@ -40,14 +40,14 @@ void RobotContainer::ConfigureBindings() {
   }).OnTrue(TurnRight(m_drivetrain, m_IMUsubsystem).ToPtr());
 
   frc2::Trigger([this] {
-    return m_driveXboxController.GetYButtonPressed();
-    }).OnTrue(frc2::RunCommand([this] {
+    return m_driveXboxController.GetYButton();
+    }).WhileTrue(frc2::RunCommand([this] {
       m_subLift->LiftUp();
       }, {m_subLift}).ToPtr());
 
   frc2::Trigger([this] {
-    return m_driveXboxController.GetAButtonPressed();
-    }).OnTrue(frc2::RunCommand([this] {
+    return m_driveXboxController.GetAButton();
+    }).WhileTrue(frc2::RunCommand([this] {
       m_subLift->LiftDown();
       }, {m_subLift}).ToPtr());
 
@@ -59,9 +59,10 @@ void RobotContainer::ConfigureBindings() {
     m_subLift->StopLift();
   }, {m_subLift}).ToPtr());
 
-  m_drivetrain->SetDefaultCommand(frc2::RunCommand([this] {
-    m_drivetrain->tankDrive(m_driveXboxController.GetLeftY(), m_driveXboxController.GetRightY()); 
-  }, {m_drivetrain}).ToPtr());
+//  m_drivetrain->SetDefaultCommand(frc2::RunCommand([this] {
+//    m_drivetrain->tankDrive(m_driveXboxController.GetLeftY(), m_driveXboxController.GetRightY()); 
+//  }, {m_drivetrain}).ToPtr());
+
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {

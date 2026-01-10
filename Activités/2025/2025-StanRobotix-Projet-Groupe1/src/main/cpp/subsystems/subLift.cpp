@@ -15,11 +15,13 @@ void subLift::Periodic() {}
 void subLift::LiftUp() {
     mSparkMaxG->Set(LiftConstants::kVitesse);
     mSparkMaxD->Set(-LiftConstants::kVitesse);
+    std::cout<<Encoder;
 }
 
 void subLift::LiftDown() {
     mSparkMaxG->Set(-LiftConstants::kVitesse);
     mSparkMaxD->Set(LiftConstants::kVitesse);
+    std::cout<<Encoder;
 }
 
 void subLift::StopLift() {
@@ -27,7 +29,7 @@ void subLift::StopLift() {
     mSparkMaxD->Set(0);
 }
 
-double subLift::GetEncoderPosition()
+void subLift::GetEncoderPosition()
 {
-    return mSparkMaxD->GetAlternateEncoder().GetPosition();
+    Encoder= mSparkMaxD->GetAlternateEncoder().GetPosition()/48*3.56;
 }
