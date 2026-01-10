@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/TurnRight.h"
+#include <iostream>
 
 TurnRight::TurnRight(Drivetrain* iDriveTrain, IMU* imu) 
 {
@@ -17,6 +18,7 @@ TurnRight::TurnRight(Drivetrain* iDriveTrain, IMU* imu)
 // Called when the command is initially scheduled.
 void TurnRight::Initialize() 
 {
+  std::cout << mIMU->GetAngle();
 
   StartingAngle = mIMU->GetAngle();
   mPIDcontroller.SetSetpoint ( StartingAngle + PIDConstants::SetPoint);
@@ -33,5 +35,6 @@ void TurnRight::End(bool interrupted) {}
 // Returns true when the command should end.
 bool TurnRight::IsFinished() 
 {
+  std::cout << mIMU->GetAngle();
   return mPIDcontroller.AtSetpoint();
 };

@@ -10,22 +10,32 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include "commands/TurnRight.h"
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-/*m_drivetrain.SetDefaultCommand(frc2::RunCommand(
-  [this]
-  {
-    m_drivetrain.TankDrive(XboxController.GetLeftY(), XboxController.GetLeftX());
-  },
-  {&m_drivetrain}).ToPtr());*/
 
-  mImu.SetDefaultCommand(frc2::RunCommand(
+  m_drivetrain = new Drivetrain;
+  mImu = new IMU;
+
+  
+m_drivetrain->SetDefaultCommand(frc2::RunCommand(
   [this]
   {
-   std::cout << mImu.GetAngle() << std::endl;
+    m_drivetrain->TankDrive(XboxController.GetLeftY(), XboxController.GetLeftX());
   },
-  {&mImu}).ToPtr());
+  {m_drivetrain}).ToPtr());
+
+  mImu->SetDefaultCommand(frc2::RunCommand(
+  [this]
+  {
+   std::cout << mImu->GetAngle() << std::endl;
+  },
+  {mImu}).ToPtr());
+
+  frc2::Trigger([this] {
+    return XboxController.GetAButtonPressed();
+  }).OnTrue(TurnRight(m_drivetrain, mImu).ToPtr());
   
   // Configure the button bindings
   ConfigureBindings();
@@ -38,6 +48,8 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+
+
 
 
 
