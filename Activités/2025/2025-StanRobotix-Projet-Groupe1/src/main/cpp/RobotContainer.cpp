@@ -1,0 +1,71 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+#include "RobotContainer.h"
+
+#include <frc2/command/button/Trigger.h>
+#include <frc2/command/RunCommand.h>
+
+#include "commands/Autos.h"
+#include "commands/ExampleCommand.h"
+
+RobotContainer::RobotContainer() {
+  // Initialize all of your commands and subsystems here
+  m_drivetrain = new Drivetrain;
+  m_IMUsubsystem = new IMUsubsystem;
+  m_subLift = new subLift;
+  // Configure the button bindings
+  ConfigureBindings();
+
+    //m_IMUsubsystem->SetDefaultCommand(frc2::RunCommand(
+    //  [this]
+    //  {
+    //    std::cout<<m_IMUsubsystem->GetYawAxis()<<std::endl;
+    //  },
+    //  {m_IMUsubsystem}));
+
+}
+
+void RobotContainer::ConfigureBindings() {
+  // Configure your trigger bindings here
+
+  // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
+  frc2::Trigger([this] {
+    return m_subsystem.ExampleCondition();
+  }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+
+  frc2::Trigger([this] {
+    return m_driveXboxController.GetBButtonPressed();
+  }).OnTrue(TurnRight(m_drivetrain, m_IMUsubsystem).ToPtr());
+
+  frc2::Trigger([this] {
+    return m_driveXboxController.GetYButton();
+    }).WhileTrue(frc2::RunCommand([this] {
+      m_subLift->LiftUp();
+      }, {m_subLift}).ToPtr());
+
+  frc2::Trigger([this] {
+    return m_driveXboxController.GetAButton();
+    }).WhileTrue(frc2::RunCommand([this] {
+      m_subLift->LiftDown();
+      }, {m_subLift}).ToPtr());
+
+  // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
+  // pressed, cancelling on release.
+  m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+
+  m_subLift->SetDefaultCommand(frc2::RunCommand([this] {
+    m_subLift->StopLift();
+  }, {m_subLift}).ToPtr());
+
+//  m_drivetrain->SetDefaultCommand(frc2::RunCommand([this] {
+//    m_drivetrain->tankDrive(m_driveXboxController.GetLeftY(), m_driveXboxController.GetRightY()); 
+//  }, {m_drivetrain}).ToPtr());
+
+}
+
+frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
+  // An example command will be run in autonomous
+  return autos::ExampleAuto(&m_subsystem);
+}
