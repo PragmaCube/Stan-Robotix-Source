@@ -15,7 +15,7 @@ void Down (double Speed);
 void Elevator::Up()
 {
 
-}eweweewewe
+}//aide mettre puissance 0.2
 
 void Elevator::Down()
 {
